@@ -1,0 +1,278 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <!-- <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Rebate Type<span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="Rebate_rec.types" ng-change="onSRMChangeRebateType()"
+                                            ng-options="opt as opt.name for opt in arr_rebate_types" required
+                                            ng-disabled="Rebate_rec.id > 0" class="form-control">
+                                        <option style="display:none" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+                <div class="col-md-12">
+                    <div class="row"><!--  ng-show="Rebate_rec.types.id == 1" -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Universal Type<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="Rebate_rec.universal_types" ng-change="resetItemsRebate()"
+                                            ng-required="Rebate_rec.types.id == 1"
+                                            ng-options="opt as opt.name for opt in arr_rebate_universal"
+                                            ng-disabled="Rebate_rec.id > 0" class="form-control">
+                                        <option style="display:none" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    <div class="row"
+                         ng-if="(Rebate_rec.types.id == 3 || Rebate_rec.universal_types.id == 2) && Rebate_rec.types.id != 2 ">
+                        <div class="col-md-6"><!-- || Rebate_rec.universal_types.id == 3-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Unit of Measure<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="Rebate_rec.uoms" ng-disabled="rebate_chk_readonly"
+                                            ng-options="opt as opt.title for opt in uni_prooduct_arr"
+                                            class=" form-control" required ng-change="changeItemsRebate()">
+                                        <option value="" disabled selected>Select Unit of Measure</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="row"
+                         ng-show="(Rebate_rec.types.id == 3 || Rebate_rec.universal_types.id == 2 || Rebate_rec.universal_types.id == 3) && Rebate_rec.types.id != 2 ">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">
+                                    <span ng-show="Rebate_rec.item_type != 2">Item(s)</span>
+                                    <span ng-show="Rebate_rec.item_type == 2">Service(s)</span>
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <div title="{{selSRMrebateItemsTooltip}}">
+                                        <div class="panel panel-info no-margin"
+                                             ng-class="{'dont-click':rebate_chk_readonly}">
+                                            <div class="panel-body" ng-click="getItemsRebate()"
+                                                 style="padding:10px !important; min-height:30px;">
+                                                <span ng-repeat="item in selectedItems track by $index">
+                                                    <span ng-if="$index == 0">
+                                                        <span>{{item.name}}</span>
+                                                    </span>
+                                                    <span ng-if="$index > 0 && $index < 3">,&nbsp;<span>{{item.name}}</span></span>
+                                                    <span ng-if="$index ==2">
+                                                        <span>...</span>
+                                                    </span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row" ng-show="Rebate_rec.types.id == 2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">
+                                    <span ng-show="Rebate_rec.category_type != 2">Item</span>
+                                    <span ng-show="Rebate_rec.category_type == 2">Service</span> Category(ies)
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <div title="{{selSRMrebateCategoriesTooltip}}">
+                                        <div class="panel panel-info no-margin"
+                                             ng-class="{'dont-click':rebate_chk_readonly}">
+                                            <div class="panel-body" ng-click="getCategories()"
+                                                 style="padding:10px !important; min-height:30px;">
+                                                <span ng-repeat="cat in selectedCats track by $index">
+                                                    <span ng-if="$index == 0">
+                                                        <span>{{cat.name}}</span>
+                                                    </span>
+                                                    <span ng-if="$index > 0 && $index < 3">,&nbsp;<span>{{cat.name}}</span></span>
+                                                    <span ng-if="$index ==2">
+                                                        <span>...</span>
+                                                    </span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div style="overflow-y: scroll; max-height: 325px;">
+                                        <div class="panel panel-info no-margin" style="border-radius: 5px;"
+                                             ng-class="{'dont-click':rebate_chk_readonly}">
+                                            <div class="panel-body" ng-click="getCategories()"
+                                                 style="padding:10px !important; min-height:30px;">
+                                                <span ng-repeat="cat in selectedCats track by $index">
+                                                    <span ng-if="$index == 0">{{cat.name}}</span>
+                                                    <span ng-if="$index > 0">,&nbsp;{{cat.name}}</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row"
+                         ng-if="Rebate_rec.universal_types.id == 1 || Rebate_rec.types.id == 2 || Rebate_rec.types.id == 3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Rebate Type<span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-disabled="rebate_chk_readonly || rebateTypeDisable" required
+                                            ng-model="Rebate_rec.rebate_price_types"
+                                            ng-options="opt as opt.name for opt in list_type"
+                                            class="select2me form-control">
+                                        <option value="" disabled selected></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="Rebate_rec.types.id == 2 && Rebate_rec.rebate_price_types.id ==2 ">
+                    <label class="col-md-4 control-label">Unit of Measure<span class="required">*</span></label>
+
+                    <div class="col-md-8">
+                        <ui-select required ng-model="Rebate_rec.uoms" ng-disabled="rebate_chk_readonly" ng-change="changeItemsRebate()">
+                            <ui-select-match placeholder="Select Unit Of Measure">{{$select.selected.title}}</ui-select-match>
+                            <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row"
+                         ng-if="Rebate_rec.universal_types.id == 1 || Rebate_rec.types.id == 2 || Rebate_rec.types.id == 3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Rebate <span
+                                        ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span></label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" ng-model="Rebate_rec.rebate_price" id="volume_1_price"
+                                               class="form-control" ng-readonly="rebate_chk_readonly"  />
+
+                                        <span ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row" ng-if="Rebate_rec.universal_types.id > 0 || Rebate_rec.types.id > 1">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input class="form-control" jqdatepicker id="ck_sdate_rebate" required readonly
+                                           ng-model="Rebate_rec.offer_date"
+                                           ng-change="testdate_by_id('ck_sdate_rebate','ck_edate_rebate','date_msg_rebate')">
+                                </div>
+                                <!-- ng-click="load_date_picker('load')"-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row" ng-if="Rebate_rec.universal_types.id > 0 || Rebate_rec.types.id > 1">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">End Date</label>
+                                <!-- <span class="required">*</span>required-->
+
+                                <div class="col-md-8">
+                                    <input class=" form-control" jqdatepicker id="ck_edate_rebate" readonly
+                                           ng-model="Rebate_rec.offer_valid_date"
+                                           ng-change="testdate_by_id('ck_sdate_rebate','ck_edate_rebate','date_msg_rebate')">
+                                    <span id="date_msg_rebate" style="color:#F00; display: none;">End Date is earlier then Start Date</span>
+                                </div>
+                                <!--ng-click="load_date_picker('load')" -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row" ng-show="Rebate_rec.universal_types.id > 0 || Rebate_rec.types.id > 1">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"><!--Rebate -->Date Created</label>
+
+                                <div class="col-md-8">
+                                    <input readonly="readonly" type="text" class="form-control"
+                                           ng-model="Rebate_rec.rebate_date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row" ng-show="Rebate_rec.universal_types.id > 0 || Rebate_rec.types.id > 1">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Created By</label>
+
+                                <div class="col-md-8">
+                                    <input readonly="readonly" type="text" class="form-control"
+                                           ng-model="Rebate_rec.created_by">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-submit " type="submit" ng-show="!rebate_chk_readonly"> Save</button>
+                            <button class="btn btn-edit " type="button" ng-click="showSrmRebateEditForm()"
+                                    ng-show="rebate_chk_readonly">Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="getSrmRebate();">Cancel
+                            </button>
+                            <!--showSrmRebateListing()-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

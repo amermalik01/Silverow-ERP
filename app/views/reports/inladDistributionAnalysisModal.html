@@ -1,0 +1,159 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="inlandDistrubutionAnalysisModal">
+    <div class="modal-dialog modal-md"
+         style=" width:85% !important;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+
+                    <htmlpageheader name='MyCustomHeader{{$index}}'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                </div>                             
+                                
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                     <span>Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                    <table style="width: 100%;"
+                           >
+                        <thead>
+                            <tr>
+                                <th> Cust. No. </th>
+                                <th> Name </th>
+                                <!-- <th> Location</th>
+                                <th> Address</th> -->
+                                <th> Warehouse </th>
+                                <th> City </th>
+                                <th> Post Code </th>
+                                <th> SO No. </th>
+                                <th> Linked PO No.</th>
+                                <th> Supp.No. </th>
+                                <th> Name </th>
+                                <th style="text-align: right;"> PO Net Amount({{defaultCurrencyCode}}) </th>
+                                <th style="text-align: right;"> Target({{defaultCurrencyCode}}) </th>
+                                <th style="text-align: right;"> Difference({{defaultCurrencyCode}}) </th>
+                                <th> PO Status </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index">
+                                <td> {{rec.customer_no}} </td>                              
+                                <td> {{rec.customer_name}} </td>
+                                <!-- <td> {{rec.location_name}} </td>
+                                <td> {{rec.address}} </td> -->
+                                <td> {{rec.warehouse_name}} </td>
+                                <td> {{rec.city}} </td>
+                                <td> {{rec.postcode}} </td>
+                                <td> {{rec.sale_order_no}} </td>
+                                <td> {{rec.purchase_order_no}} </td>
+                                <td> {{rec.supplier_no}} </td>
+                                <td> {{rec.supplier_name}} </td>
+                                <td style="text-align: right;"> <span >{{(rec.puchase_net_amount!=0) ? (rec.puchase_net_amount | numberNoDecimalsIfZeroFilter:2:'') : '-'}}</span></td>
+                                <td style="text-align: right;"> <span >{{(rec.target_amount!=0) ? (rec.target_amount | numberNoDecimalsIfZeroFilter:2:'') : '-'}}</span></td>
+                                <td style="text-align: right;"  ng-style="{'color':rec.color}"><span >{{(rec.target_diff!=0) ? (rec.target_diff | numberNoDecimalsIfZeroFilter:2:'') : '0'}}</span></td>
+                                <td> {{rec.po_status}} </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><b>Total ({{defaultCurrencyCode}})</b></td>
+                                <td colspan="7"></td>
+                                <td style="text-align: right;"> <span >{{(printPdfVals.net_total!=0) ? (printPdfVals.net_total | numberNoDecimalsIfZeroFilter:2:'') : ''}}</span></td>
+                                <td style="text-align: right;" > <span >{{(printPdfVals.target_total!=0) ? (printPdfVals.target_total | numberNoDecimalsIfZeroFilter:2:'') : ''}}</span></td>
+                                <td style="text-align: right;" ng-style="{'color':printPdfVals.color2}"> <span >{{(printPdfVals.diff_total!=0) ? (printPdfVals.diff_total | numberNoDecimalsIfZeroFilter:2:'') : '0'}}</span></td>
+                                <td></td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('inlandDistrubutionAnalysisModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportInlandDistributionAnalysis(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

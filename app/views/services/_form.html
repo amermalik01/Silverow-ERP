@@ -1,0 +1,251 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- Row starts -->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+      <tabset> <tab heading="General" class="general_information"  ng-click="generalInformation()" >
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class="form-horizontal no-margin" role="form" validate-form="" 
+                novalidate="" ng-submit="addGeneral(formData)"  ng-hide="showLoader">
+            <div ng-include="'app/views/services/general_form.html'"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_cat_type(formData2)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_cat_type.html'"  ng-show="show_cat_pop"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_brand_type(formData3)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_brand.html'"  ng-show="show_brand_pop"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_unit_type(formData4)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_unit.html'" ng-show="show_unit_pop"  ></div>
+          </form>
+        </div>
+        </tab> <tab heading=" Invoicing" class="detail_setting"  ng-click="getinvoice()">
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class="form-horizontal no-margin" role="form"  
+                ng-submit="adddetail(formData)" name="adddetailForm" validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/add_details.html'"></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_unit_type_p(formData4)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_p_unit.html'" ng-show="show_p_unit_pop"  > </div>
+          </form>
+        </div>
+        </tab> <!--<tab heading="Details" class="invoice_setting"  ng-click="getdetail()">
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class="form-horizontal no-margin" role="form"  
+                ng-submit="addinvoice(formData)" name="addinvoiceForm" validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/add_invocing.html'"></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_country_pop(formData6)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_country_pop.html'"  > </div>
+           
+          </form>
+        </div>
+        </tab>--> 
+        
+        <tab heading="Sales Promotion" class="supplier_setting" ng-click="get_sale()">
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class="form-horizontal no-margin" role="form" ng-submit="add_sale(formData)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/sale_form.html'" ng-show="show_sale_form"></div>
+          </form>
+          <div ng-include="'app/views/services/sale.html'" ng-show="show_sale_list"></div>
+          <!-- //jquery method bootstrap model-->
+          <form autocomplete="off"class="form-horizontal no-margin" role="form" ng-submit="add_customer(formData_customer)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/sale_list_cancel.html'" ></div>
+          </form>
+          <div ng-include="'app/views/services/sale_list_get.html'" ></div>
+        </div>
+        </tab> <tab heading="Sales Volume Discount" class="supplier_setting" ng-click="getsupplier()">
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class=" no-margin" role="form" ng-submit="add_supplier(formData)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/supplier_form.html'" ng-show="show_supp_form"></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol1_type(formData_vol_1)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_1.html'"    ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol2_type(formData_vol_2)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_2.html'"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol3_type(formData_vol_3)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_3.html'"  ></div>
+          </form>
+          <div ng-include="'app/views/services/supplier.html'" ng-show="show_supplier_list"></div>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_supplier(formData)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/supplier_pop.html'" ></div>
+          </form>
+        </div>
+        </tab> <tab heading="Purchase Volume Discount" class="purchase_setting" ng-click="getpurchase()">
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class=" no-margin" role="form" ng-submit="add_purchase(formData)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/services/purchase_form.html'" ng-show="show_purchase_form"></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol_purchase_type_1(formData_vol_purchase_1)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_purchase_1.html'"   ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol_purchase_type_2(formData_vol_purchase_2)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_purchase_2.html'"   ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_vol_purchase_type_3(formData_vol_purchase_3)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_vol_purchase_3.html'"  ></div>
+          </form>
+          <div ng-include="'app/views/services/purchase.html'" ng-show="show_purchase_list"></div>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_purchase(formData)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/purchase_pop.html'"  ></div>
+          </form>
+        </div>
+        </tab> 
+        
+     
+        
+          
+
+         <tab ng-controller="ImgUploadController"
+         heading="Documents" class="document" ng-click="itemselectPage(1);getDocuments();">
+        <div >
+          <div class="vertical_space"></div>
+
+          <div ng-include="'app/views/hr_values/document.html'" ng-show="showdocumentlist"></div>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="adddocument(formData)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/document_form.html'" ng-show="showdoc"></div>
+          </form>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder(formData2)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+            <div ng-include="'app/views/hr_values/add_folder.html'"  ></div>
+          </form>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder_edit(formData22)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+            <div ng-include="'app/views/hr_values/add_folder_edit.html'"  ></div>
+          </form>
+        </div>
+        </tab> 
+        
+        
+        <tab  ng-controller="ImgUploadController" heading="Images" class="Images" ng-click="itemselectPage(1);get_image()">
+        <div >
+          <div class="vertical_space"></div>
+          
+          <div ng-include="'app/views/hr_values/image.html'" ng-show="show_image_list"></div>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_image(formData_images)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/image_form.html'" ng-show="show_image_form"></div>
+          </form>
+          
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder_image(formData2)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+            <div ng-include="'app/views/hr_values/image_add_folder.html'" ng-show="show_add_folder_image" ></div>
+          </form>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="edit_folder_image(formData22)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+            <div ng-include="'app/views/hr_values/image_add_folder_edit.html'" ng-show="show_edit_folder_image" ></div>
+          </form>
+        </div>
+        </tab>
+        
+        
+        <tab ng-controller="ImgUploadController" heading="Comments" class="comments" ng-click="itemselectPage(1);getComments()" >
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addcomment(coment_data)" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/comments_form.html'" ng-show="show_coments_form"></div>
+          </form>
+          <div ng-include="'app/views/hr_values/comment.html'" ng-show="show_coments_list"></div>
+        </div>
+        </tab>  
+ 
+        <!--<div ng-app ng-controller="TabsController">    
+          <tab    ng-repeat="tab in rec" heading="{{tab.tab_name}}" ng-click="getFormFields(tab.id)">
+   			
+            
+                 <div  ng-repeat="formFields in fields_rec" >
+        <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+          <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-lg-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+             </tab>
+        </div> 
+        <div  ng-repeat="formFields in fields_rec" >
+        <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+          <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-lg-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div>
+        </div>
+      </div>
+        
+         </tabset>
+    </div>
+  </div>--> 
+        
+      </tabset>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+
+<!--
+<tabset> <tab ng-repeat="tab in rec" heading="{{tab.tab_name}}"  class="disabled disabledTab" ng-click="getFormFields(tab.id,tab.tab_name)">
+  <div class="vertical_space"></div>
+ 
+ <div ng-include="'app/views/services/general_form.html'"  ></div>
+   <div ng-include="'app/views/hr_values/general_form_add.html'"  ></div>
+  </tab> </tabset> 
+-->

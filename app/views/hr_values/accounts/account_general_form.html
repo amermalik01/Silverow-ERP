@@ -1,0 +1,220 @@
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label class="col-sm-4 control-label "> User Email</label>
+                <div class="col-sm-8">
+                  <input type="text"
+                         readonly
+                         disabled
+                         value="{{formData.user_email}}"
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Password <span class="required"> *</span>
+                </label>
+                <div class="col-md-8"
+                     ng-if="formData.user_type!=1">
+                  <input ng-readonly="check_hrvalues_readonly"
+                         type="{{inputType}}"
+                         required
+                         class="form-control"
+                         ng-change="checkPassword()"
+                         ng-model="formData.user_password"
+                         
+                         ng-focus="clearPassword();"
+                        x-validity="regx.password"
+                        data-parsley-error-message="The password should contain atleast 
+                                                    1 Capital alphabet, 
+                                                    1 Small alphabet, 
+                                                    1 Numeric, 
+                                                    1 Special Character and 
+                                                    length must be atleast 8 Characters"
+                                                                
+                                                                />
+                  <!-- <span class="show_password"
+                        ng-mousedown="eye_symbol_close=1; inputType='text'"
+                        ng-mouseup="eye_symbol_close=0; inputType='password'"
+                        ng-mouseleave="eye_symbol_close=0; inputType='password'">
+                    <i class="fa fa-eye f5"
+                       ng-show="eye_symbol_close==0 && !check_hrvalues_readonly"
+                       aria-hidden="true"> </i>
+                    <i class="fa fa-eye-slash f5"
+                       ng-show="eye_symbol_close>0  && !check_hrvalues_readonly"
+                       aria-hidden="true"> </i>
+                  </span> -->
+                </div>
+
+                <div class="col-md-8"
+                     ng-if="formData.user_type==1">
+                  <input ng-readonly="check_hrvalues_readonly"
+                         type="{{inputType}}"
+                         required
+                         ng-change="checkPassword()"
+                         ng-model="formData.user_password"
+                         class="form-control"
+                         x-validity="regx.password"
+                         data-parsley-error-message="The password should contain at least 
+                                                    1 Capital alphabet, 
+                                                    1 Small alphabet, 
+                                                    1 Numeric, 
+                                                    1 Special Character and 
+                                                    length must be atleast 8 Characters" />
+                  <!-- <span class="show_password"
+                        ng-mousedown="eye_symbol_close=1; inputType='text'"
+                        ng-mouseup="eye_symbol_close=0; inputType='password'"
+                        ng-mouseleave="eye_symbol_close=0; inputType='password'">
+                    <i class="fa fa-eye f5"
+                       ng-show="eye_symbol_close==0 && !check_hrvalues_readonly"
+                       aria-hidden="true"> </i>
+                    <i class="fa fa-eye-slash f5"
+                       ng-show="eye_symbol_close>0  && !check_hrvalues_readonly"
+                       aria-hidden="true"> </i> -->
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label ">Confirm Password  <span class="required"> *</span> </label>
+                <div class="col-sm-8">
+                  <div class="input-symbol">
+                    <input 
+                           ng-change="checkPassword()"
+                           type="password"
+                           ng-readonly="check_hrvalues_readonly"
+                           ng-model="formData.confirm_password"
+                           class="form-control" />
+
+                           <span class="fa fa-times-circle" aria-hidden="true" ng-if="!isPasswordConfirm && !check_hrvalues_readonly && isPasswordTouched" style="color:red;font-size: 14px;"></span>
+                           <span class="fa fa-check-circle" ng-if="isPasswordConfirm" style="color:green;font-size: 14px;" ></span>
+                  </div>
+
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label ">First Name </label>
+                <div class="col-sm-8">
+                  <input readonly
+                         type="text"
+                         ng-model="formData.first_name"
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label ">Middle Name </label>
+                <div class="col-sm-8">
+                  <input readonly
+                         type="text"
+                         ng-model="formData.middle_name"
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label ">Last Name </label>
+                <div class="col-sm-8">
+                  <input readonly
+                         type="text"
+                         ng-model="formData.last_name"
+                         class="form-control" />
+                </div>
+              </div>
+            </div>
+         
+            <div class="col-md-5 col-md-offset-2">
+              <div class="form-group">
+                <label class="col-sm-4 control-label "> Employee No.
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-8"
+                     ng-if="formData.user_type==1">
+                  <input readonly
+                         type="text"
+                         value="{{formData.user_code}}"
+                         required
+                         class="form-control" />
+                </div>
+                <div class="col-sm-8"
+                     ng-if="formData.user_type!=1">
+                  <input readonly
+                         type="text"
+                         ng-model="formData.user_code"
+                         required
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label ">Preferred Name </label>
+
+                <div class="col-sm-8"
+                     ng-if="formData.user_type==1">
+                  <input readonly
+                         value=" Super Admin "
+                         type="text"
+                         ng-model="formData.known_as"
+                         class="form-control" />
+                </div>
+                <div class="col-sm-8"
+                     ng-if="formData.user_type!=1"><!-- ng-readonly="check_hrvalues_readonly" -->
+                  <input readonly 
+                         type="text"
+                         ng-model="formData.known_as"
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group"
+                   ng-if="formData.user_type!=1">
+                <label class="col-sm-4 control-label ">Job Title </label>
+                <div class="col-sm-8">
+                  <input readonly
+                         type="text"
+                         ng-model="formData.job_title"
+                         class="form-control" />
+                </div>
+              </div>
+              <div class="form-group"
+                   ng-if="formData.user_type!=1">
+
+                <label class="col-sm-4 control-label ">Line Manager </label>
+                <div class="col-sm-8  dont-click"
+                     id="pleaseNo">
+                  <x-flexi-select x-flexi-select-title="'Line Manager'"
+                                  x-flexi-select-modal-id="'LineManagerSelectModal'"
+                                  x-flexi-select-output='formData.line_manager_name_id'
+                                  x-flexi-select-data="all_employees"
+                                  x-flexi-select-show-cols="lineManagerShowCols"
+                                  x-flexi-select-readonly="1"
+                                  x-flexi-radio>
+                  </x-flexi-select>
+                  <!-- <input type="text" ng-model="formData.line_manager_name" id="formData.line_manager_name" class="form-control" readonly />
+                  <input type="hidden" ng-model="formData.line_manager_name_id" class="form-control" /> -->
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-12">
+              <div class="pull-right">
+
+                <button class="btn btn-submit"
+                        type="submit"
+                        ng-show="!check_hrvalues_readonly"> Save</button>
+                <button class="btn btn-edit"
+                        type="button"
+                        ng-click="showEditForm()"
+                        ng-show="check_hrvalues_readonly"> Edit</button>
+                <button class="btn btn-cancel"
+                        type="button"
+                        ng-if="allowviewhr_employee"
+                        ui-sref="{{btnCancelUrl}}"> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-include="'app/views/_listing_modal.html'"></div>
+  </div>
+</div>

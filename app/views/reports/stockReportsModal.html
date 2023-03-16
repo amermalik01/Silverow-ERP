@@ -1,0 +1,515 @@
+<style>
+    #stockReportModal .modal-body {
+        max-height: 80vh;
+        overflow: auto;
+        padding: 1.5cm;
+
+    }
+</style>
+<div class="modal fade template-design"
+     id="stockReportModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 28cm !important;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}">
+
+                <div ng-if="printPdfVals.module != 'location' && printPdfVals.module != 'stockdetailed'"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <htmlpageheader name='MyCustomHeader'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                    ng-if="printPdfVals.reportType=='inventory'">Inventory List</div>
+                                <div class='reportHeading__left__reportname'
+                                    ng-if="printPdfVals.reportType!='inventory'">Stock Availability Report - Summary <!-- (By Posting Date) -->
+                                </div>
+                                <div class='reportHeading__left__reportfilter'>
+                                    As at {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                    class='reportHeading__right__img '
+                                    ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <sethtmlpageheader name='MyCustomHeader'
+                                    page='ALL'
+                                    value='on'
+                                    show-this-page='1' />
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                page='ALL'
+                                value='on'
+                                show-this-page='1' />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+                    <!-- posted Sale Order -->
+                    <table style="width: 100%;float: left;"
+                        class="tabletopmargin"
+                        ng-if="printPdfVals.module != 'location'"
+                        class="report-spacing-table">
+                        <thead>
+                            <tr>
+                                <th ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'nameWidth':column.title == 'Name'}">
+                                    <span ng-if="column.title == 'Requested Delivery_date'">Req. Delivery Date</span>
+                                    <span ng-if="column.title == 'Amount Incl. Vat'">Amount Incl. VAT</span>
+                                    <span ng-if="column.title == 'Vat Amount'">VAT Amount</span>
+                                    <span ng-if="column.title == 'Purchasepriceaverage'">Purchase Price Average</span>
+                                    <span ng-if="column.title == 'Purchaseaddcostaverage'">Additional Cost Average</span>
+                                    <span ng-if="column.title == 'Salepriceaverage'">Sale Price Average</span>
+                                    <span
+                                        ng-if="column.title != 'Vat Amount' && column.title != 'Amount Incl. Vat' && 
+                                                column.title != 'Requested Delivery_date' && column.title != 'Purchasepriceaverage' && 
+                                                column.title != 'Purchaseaddcostaverage' && column.title != 'Salepriceaverage'">{{column.title}}</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+                                <td ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'rightAlign': column.title == 'Allocated Stock Value' || column.title == 'Avail Stock Value' || 
+                                            column.title == 'Purchasepriceaverage' || column.title == 'Purchaseaddcostaverage' || 
+                                            column.title == 'Salepriceaverage','nameWidth':column.title == 'Name'}">
+
+                                    <span ng-if="column.title != 'Allocated Stock Value' && column.title != 'Avail Stock Value' && 
+                                                column.title != 'Purchasepriceaverage' && column.title != 'Purchaseaddcostaverage' && 
+                                                column.title != 'Salepriceaverage'">{{rec[column.field]}}</span>
+
+                                    <span ng-if="column.title == 'Allocated Stock Value' || column.title == 'Avail Stock Value' || 
+                                                column.title == 'Purchasepriceaverage' || column.title == 'Purchaseaddcostaverage' || 
+                                                column.title == 'Salepriceaverage'">{{rec[column.field]
+                                        | currency : "" : decimal_range }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr.records track by $index" style="clear: both;margin-bottom: 72px;"
+                    ng-if="printPdfVals.module == 'location' || (printPdfVals.module == 'stockdetailed' && printPdfVals.reportDesctypeID == 1)">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                    page='ALL'
+                                    value='on'
+                                    show-this-page='1' />
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                page='ALL'
+                                value='on'
+                                show-this-page='1' />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+
+                    <htmlpageheader name='MyCustomHeader{{$index}}' >
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                        style="margin-bottom: 12px;">Stock Availability Report - Summary<!--  (By Posting Date) -->
+                                </div>
+                                <div class="font10" ng-if="printPdfVals.reportResultType == 2">
+                                    <b ng-if="rec.warehouse!='Grand Total'">Warehouse : </b>
+                                    <span ng-if="rec.warehouse && rec.warehouse!='Grand Total'">{{rec.warehouse}}</span>
+                                    <b ng-if="rec.warehouse && rec.warehouse=='Grand Total'">{{rec.warehouse}}</b>
+                                </div>
+
+                                <div class="font10" ng-if="printPdfVals.reportResultType == 1">
+                                    <b ng-if="rec.product_code">Item No. : </b>
+                                    <span ng-if="rec.product_code">{{rec.product_code}}</span>
+                                </div> 
+
+                                <div class="font10" ng-if="printPdfVals.reportResultType == 1">
+                                    <b ng-if="rec.description && rec.warehouse!='Grand Total'">Description : </b>
+                                    <span ng-if="rec.description && rec.warehouse!='Grand Total'">{{rec.description}}</span>
+                                    <b ng-if="rec.description && rec.warehouse=='Grand Total'">{{rec.warehouse}}</b>
+                                </div>
+
+                                <div class="font10" ng-if="printPdfVals.reportResultType == 1">
+                                    <b ng-if="rec.unitMeasure && rec.warehouse!='Grand Total'">Unit of Measure : </b>
+                                    <span ng-if="rec.unitMeasure && rec.warehouse!='Grand Total'">{{rec.unitMeasure}}</span>
+                                </div>
+
+                                <div class='reportHeading__left__reportfilter'
+                                        style="width: 100%;margin-bottom: 5px;">
+                                    As at {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                        class='reportHeading__right__img '
+                                        ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+
+                    <table style="width: 100%;float: left; margin-bottom: 80px;"
+                        class="tabletopmargin report-spacing-table"
+                        ng-if="(printPdfVals.module == 'location' || (printPdfVals.module == 'stockdetailed' && printPdfVals.reportDesctypeID == 1)) && rec.warehouse!='Grand Total'">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;" ng-if="printPdfVals.reportResultType == 2">Item No.</th>
+                                <th style="width: 25%;" ng-if="printPdfVals.reportResultType == 2">Description</th>
+                                <th ng-if="printPdfVals.reportResultType == 2">U.O.M</th>
+                                <th ng-if="printPdfVals.reportResultType == 1">Warehouse</th> 
+                                <th style="text-align: right">Available Qty.</th>
+                                <th ng-if="printPdfVals.byvalue == 1"
+                                    style="text-align: right">Available Stock Value ({{defaultCurrencyCode}})</th>
+                                <th style="text-align: right">Allocated Qty.</th>
+                                <th ng-if="printPdfVals.byvalue == 1"
+                                    style="text-align: right">Allocated Stock Value ({{defaultCurrencyCode}})</th>
+                                <th style="text-align: right">Current Qty.</th>
+                                <th ng-if="printPdfVals.byvalue == 1"
+                                    style="text-align: right">Current Stock Value ({{defaultCurrencyCode}})</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr ng-repeat="rec in printPdfVals.reportsDataArr"
+                                ng-class="{'bg-gray':rec.RecordType == 'Head1'}">
+                                <td ng-if="rec.RecordType == 'Head1' && printPdfVals.byvalue != 1"
+                                    colspan="6"
+                                    style="width: 20%;">
+                                    <b>{{rec.warehouse}}</b></td>
+                                <td ng-if="rec.RecordType == 'Head2' && printPdfVals.byvalue != 1"
+                                    colspan="6"
+                                    style="padding-left: 17px !important;width: 20%;">
+                                    <b style="color: gray;"
+                                    ng-if="rec.location">{{rec.warehouse}} - {{rec.location}}</b>
+                                    <b style="color: gray;"
+                                    ng-if="!rec.location">{{rec.warehouse}}</b>
+                                </td>
+
+                                <td ng-if="rec.RecordType == 'Head1' && printPdfVals.byvalue == 1"
+                                    colspan="9"
+                                    style="width: 20%;">
+                                    <b>{{rec.warehouse}}</b></td>
+                                <td ng-if="rec.RecordType == 'Head2' && printPdfVals.byvalue == 1"
+                                    colspan="9"
+                                    style="padding-left: 17px !important;width: 20%;">
+                                    <b style="color: gray;"
+                                    ng-if="rec.location">{{rec.warehouse}} - {{rec.location}}</b>
+                                    <b style="color: gray;"
+                                    ng-if="!rec.location">{{rec.warehouse}}</b>
+                                </td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="padding-left: 17px !important;width: 20%;">{{rec.product_code}}</td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="    width: 15%;">{{rec.description}}</td>
+                                <td ng-if="rec.RecordType == 'Detail'">{{rec.Unit_of_measure}}</td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="text-align: right">{{rec.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right"><span
+                                        ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}
+                                    </span>
+                                </td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="text-align: right">{{rec.allocatedQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency :
+                                        "" : decimal_range}} </span>
+                                </td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="text-align: right">{{rec.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" :
+                                        decimal_range}} </span>
+                                </td>
+
+                                <td ng-if="rec.RecordType == 'total'"></td>
+                                <td ng-if="rec.RecordType == 'total'"><b>Total ({{defaultCurrencyCode}})</b></td>
+                                <td ng-if="rec.RecordType == 'total'"></td>
+                                <td ng-if="rec.RecordType == 'total'"></td>
+                                <td ng-if="rec.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}
+                                    </b>
+                                </td>
+                                <td ng-if="rec.RecordType == 'total'"></td>
+                                <td ng-if="rec.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : ""
+                                        : decimal_range}} </b>
+                                </td>
+                                <td ng-if="rec.RecordType == 'total'"></td>
+                                <td ng-if="rec.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" :
+                                        decimal_range}} </b>
+                                </td>
+
+                                <td ng-if="rec.RecordType == 'grand'"></td>
+                                <td ng-if="rec.RecordType == 'grand'"><b>Grand Total ({{defaultCurrencyCode}})</b></td>
+                                <td ng-if="rec.RecordType == 'grand'"></td>
+                                <td ng-if="rec.RecordType == 'grand'"></td>
+                                <td ng-if="rec.RecordType == 'grand' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}
+                                    </b>
+                                </td>
+                                <td ng-if="rec.RecordType == 'grand'">
+                                </td>
+                                <td ng-if="rec.RecordType == 'grand' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : ""
+                                        : decimal_range}} </b>
+                                </td>
+                                <td ng-if="rec.RecordType == 'grand'">
+                                </td>
+                                <td ng-if="rec.RecordType == 'grand' && printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" :
+                                        decimal_range}} </b>
+                                </td>
+                            </tr> -->
+
+                            <tr ng-repeat="inv in rec.items" ng-if="printPdfVals.reportResultType == 2">    
+                                <td ng-if="inv.RecordType == 'Detail' && printPdfVals.reportResultType == 2"
+                                    style="padding-left: 17px !important;width: 10%;">{{inv.product_code}}</td>
+                                <td ng-if="inv.RecordType == 'Detail' && printPdfVals.reportResultType == 2"
+                                    style="width: 25%;">{{inv.description}}</td>
+                                <td ng-if="inv.RecordType == 'Detail' && printPdfVals.reportResultType == 2">{{inv.Unit_of_measure}}</td>
+                                
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">{{inv.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right"><span
+                                        ng-if="inv.Value.length >0">{{(inv.Value) ? (inv.Value | currency : "" : decimal_range) : ''}}
+                                    </span>
+                                </td>
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">
+                                    {{(inv.allocatedQty) ? (inv.allocatedQty | numberNoDecimalsIfZeroFilter:2:'') : ''}}
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="inv.allocatedStockValue.length >0">{{inv.allocatedStockValue | currency : "" : decimal_range}} </span>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">{{inv.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="inv.currentStockValue.length >0">{{inv.currentStockValue | currency : "" : decimal_range}} </span>
+                                </td>
+                                <td ng-if="inv.RecordType == 'total'" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.RecordType == 'total'" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.RecordType == 'total'" style="text-align: right; background: #f9f9f9;"><b>Total</b></td>
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{(inv.Value) ? (inv.Value | currency : "" : decimal_range) : ''}}</b>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{(inv.allocatedQty) ? (inv.allocatedQty | numberNoDecimalsIfZeroFilter:2:'') : ''}}</b>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.allocatedStockValue | currency : "" : decimal_range}}</b></td>
+
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+                                
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.currentStockValue | currency : "" : decimal_range}}</b></td>
+                                <!-- <td ng-if="inv.RecordType == 'total'" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.RecordType == 'total'" style="background: #f9f9f9;"></td> -->
+
+                            </tr>
+
+
+                            <tr ng-repeat="inv in rec.warehouse" ng-if="printPdfVals.reportResultType == 1">   
+                                
+                                <td ng-if="inv.RecordType == 'Detail'">{{inv.warehouse}}</td>
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">{{inv.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right"><span
+                                        ng-if="inv.Value.length >0">{{(inv.Value) ? (inv.Value | currency : "" : decimal_range) : ''}}
+                                    </span>
+                                </td>
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">
+                                    {{(inv.allocatedQty) ? (inv.allocatedQty | numberNoDecimalsIfZeroFilter:2:'') : ''}}
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="inv.allocatedStockValue.length >0">{{inv.allocatedStockValue | currency : "" : decimal_range}} </span>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'Detail'"
+                                    style="text-align: right">{{inv.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                
+                                <td ng-if="inv.RecordType == 'Detail' &&  printPdfVals.byvalue == 1"
+                                    style="text-align: right">
+                                    <span ng-if="inv.currentStockValue.length >0">{{inv.currentStockValue | currency : "" : decimal_range}} </span>
+                                </td>
+                               
+                                <td ng-if="inv.RecordType == 'total'" style="text-align: right; background: #f9f9f9;"><b>Total</b></td>
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{(inv.Value) ? (inv.Value | currency : "" : decimal_range) : ''}}</b>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{(inv.allocatedQty) ? (inv.allocatedQty | numberNoDecimalsIfZeroFilter:2:'') : ''}}</b>
+                                </td>
+
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.allocatedStockValue | currency : "" : decimal_range}}</b></td>
+
+                                <td ng-if="inv.RecordType == 'total'"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+                                
+                                <td ng-if="inv.RecordType == 'total' && printPdfVals.byvalue == 1"
+                                    style="text-align: right; background: #f9f9f9;">
+                                    <b>{{inv.currentStockValue | currency : "" : decimal_range}}</b></td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <table style="width:100%;" ng-if="rec.warehouse =='Grand Total'" >
+                        <tr>
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Stock Qty. </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.totalQty | currency:""}}</td>
+                        </tr>
+
+                        <tr ng-if="printPdfVals.byvalue == 1">
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Stock Value </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.totalValue | currency:""}} {{defaultCurrencyCode}}</td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Allocated Stock Qty. </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.allocatedQty | currency:""}}</td>
+                        </tr>
+
+                        <tr ng-if="printPdfVals.byvalue == 1">
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Allocated Stock Value </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.allocatedValue | currency:""}} {{defaultCurrencyCode}}</td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Available Stock Qty. </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.availableQty | currency:""}}</td>
+                        </tr>
+
+                        <tr ng-if="printPdfVals.byvalue == 1">
+                            <td style="text-align: left; background-color: #eeeeee;"><b>Total Available Stock Value </b></td>
+                            <td style="text-align: right; background-color: #eeeeee;">{{rec.availableValue | currency:""}} {{defaultCurrencyCode}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModal('stockReportModal')">Cancel</button>
+
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportStockAvailabilityBWS(printPdfVals)"
+                       ng-if="!jsreportLoading && printPdfVals.reportType!='inventory'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a> -->
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportStockAvaByWarehouseSummary(printPdfVals)"
+                       ng-if="!jsreportLoading && 
+                            (printPdfVals.module == 'location' || (printPdfVals.module == 'stockdetailed' && printPdfVals.reportDesctypeID == 1)) && printPdfVals.reportResultType == 2">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportStockAvaByItemSummary(printPdfVals)"
+                       ng-if="!jsreportLoading && (printPdfVals.module == 'location' || (printPdfVals.module == 'stockdetailed' && printPdfVals.reportDesctypeID == 1)) && printPdfVals.reportResultType == 1">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

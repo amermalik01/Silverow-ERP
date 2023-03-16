@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--    Add    permision for Company User /superadmin -->
+    <a id="prompt"  ng-if="addCompetitorsPermission" ng-click="showCrmCompetitorForm()" class="btn btn_add pull-right"> Add</a> </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-md-12" >
+    <div class="widget">
+
+      <div class="widget-body1 ">
+        <div id="dt_example" class="example_alt_pagination" ng-controller="CompetitorsController as table">
+          <!--<div class="panel-heading">
+         <div class="panel-title">Competitors Controller Listing</div>
+      </div>-->
+          <div class="table-responsive">
+            <!--    View    permision for Company User /superadmin -->
+
+            <table     class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+               ng-if="viewCompetitorsPermission">
+              <thead>
+                <tr class="bg-col" ng-show="columns.length > 0">
+                  <th ng-repeat="column in columns"
+                                    ng-if="	column.title != 'Id'  "> {{column.title}} </th>
+                  <th style="width: 11%;">Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body courser">
+              <tr ng-repeat="rec in record_data"  ng-show="columns.length > 0" >
+                  <td ng-repeat="column in columns" ><span ng-class="{'dont-click':viewCompetitorsPermission==0}" ng-click="detail(rec.id)">{{rec[column.field]}}</span>
+                    <!--    Edit    permision for Company User /superadmin -->
+                     </td>
+                   <td><a ng-click="editForm(rec.id)"
+  ng-class="{'dont-click':editCompetitorsPermission==0}" title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+                    <!--    Delete    permision for Company User /superadmin -->
+                    </span> <a ng-click="delete(rec.id,$index,$data)" ng-if="editCompetitorsPermission" title="Delete" class="btn"><i class="fa fa-times"></i></a> </span></td>
+                </tr>
+                <tr ng-repeat="rec in $data"  ng-show="columns.length > 0" >
+
+
+                  <td ng-repeat="column in columns" >
+
+
+
+                  <span ng-if="column.field =='Category' || column.field =='Service_Category'" ng-class="{'dont-click':addCompetitorsPermission==0}"  ng-click="detail(rec.id)"> <span ng-if="rec.category_type == 1"> {{rec['Category']}} </span> <span ng-if="rec.category_type == 2"> {{rec['Service_Category']}} </span> </span> <span ng-if="column.field !='Category' && column.field !='Service_Category' && column.field != 'Action' && column.field != 'Type'" ng-click="detail(rec.id)">{{rec[column.field]}} </span> <span ng-if="column.field == 'Type'"> <span ng-if="rec.category_type == 1">Item</span> <span ng-if="rec.category_type == 2">Service</span> </span> <span ng-if="column.field == 'Action'">
+                    <!--    Edit    permision for Company User /superadmin -->
+                    <a ng-click="editForm(rec.id)" ng-class="{'dont-click':editCompetitorsPermission==0}"  title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+                    <!--    Delete    permision for Company User /superadmin -->
+                    <a ng-click="delete(rec.id,$index,$data)" ng-if="deleteCompetitorsPermission" title="Delete" class="btn"><i class="fa fa-times"></i></a> </span></td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

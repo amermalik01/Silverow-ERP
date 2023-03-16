@@ -1,0 +1,942 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+
+            <div class="widget-body" style="background:none;">
+                <!-- div style="margin-bottom:2px;" ng-show="check_crm_readonly">
+                        <div style="text-align:right; margin:0px 0px 5px;">
+                        <button type="Edit" class="btn btn-warning btn-sm" ng-click="gotoEdit()">
+                        <em class="fa fa-edit fa-fw mr-edit"></em>Edit</button>
+                        <button type="Delete" class="btn btn-danger btn-sm"  ng-click="delete({id:id})">
+                        <em class="fa fa-trash fa-fw mr-edit"></em>Delete</button>
+                        </div>
+                        </div> -->
+                <!-- <div style="margin-bottom:3px;" ng-show="!check_crm_readonly">
+                        <div style="text-align:right;">
+                        <button type="button" class="btn btn-primary ng-scope pull-right btn-btnn" ng-click="addNew()">
+                        <em class="fa fa-plus-circle fa-fw mr-sm"></em>Add New</button>
+                        </div>
+                        </div> -->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">General</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">CRM Code</label>
+
+                                <div class="col-md-8">
+                                    <!-- <a ng-click="get_country_list()">test</a>
+                                                       <a ng-click="removeAllcache()">remove</a>
+                   -->
+
+                                    <input type="text" ng-model="rec.crm_code"
+                                           class="form-control ng-pristine ng-untouched ng-valid"
+                                           ng-readonly="product_type || rec.id > 0">
+                                    <input type="hidden" ng-model="rec.code_type"
+                                           class="ng-pristine ng-untouched ng-valid">
+                                    <input type="hidden" ng-model="rec.crm_no"
+                                           class="form-control ng-pristine ng-untouched ng-valid">
+                                </div>
+
+                                <!-- <div class="col-md-7">
+                                                <input type="text" id="code" ng-model="code" class="form-control" readonly="readonly"    />
+                                                <input type="hidden" id="crm_no" ng-model="rec.crm_no" class="form-control"/>
+                                                </div> -->
+
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" id="id" ng-model="rec.id" class="form-control"/>
+                                <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.name" id="name" class="form-control"
+                                           ng-readonly="check_crm_readonly" required/>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                          <label class="col-md-4 control-label">Previous CRM Code </label>
+                                          <div class="col-md-8">
+                                          <input type="text" ng-model="rec.prev_code" id="prev_code" class="form-control"
+                                          ng-readonly="check_crm_readonly"/>
+                                          </div>
+                                          </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 1 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_1" id="address" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 2 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_2" id="address_2" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">City </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.city" id="city" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">County </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Postcode<span class="required">*</span> </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.postcode" required id="postcode"
+                                           class="form-control" ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone </label>
+
+                                <div class="col-md-8">
+                                     <input type="text" ng-model="rec.phone" id="Telephone" class="form-control"
+                                           ng-readonly="check_crm_readonly"/> 
+                                    <!-- data-parsley-error-message={{error_msg}}
+                                                      pattern="{{newFormat}}" -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.fax" id="fax2" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Country </label>
+
+                                <div class="col-md-8">
+
+                                    <!--     <option ng-repeat="value in country_type_arr"
+                                                                  ng-selected="drp.country_id  == value.id"
+                                                                 value="{{value}}">{{value.title}}
+                                                          </option>   -->
+
+
+                                    <select ng-model="drp.country_id" class="  form-control"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-options="opt as opt.name for opt in country_type_arr track by opt.id"
+                                            ng-class="{'not-click-allow':disableClass > 0}"
+                                            ng-change="setCountryCode()">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">View Bucket</label>
+
+                                <div class="col-md-8">
+                                    <div class="panel-info"
+                                         ng-class="{'dont-click readonly':check_cut_readonly}">
+                                        <div class="panel-body"
+                                             ng-click="!check_crm_readonly && getbucket_array(0)"
+                                             ng-class="{'dont-click readonly':check_crm_readonly}">
+                                            <span ng-repeat="sp in bucket_selected_array track by $index">
+                                                <span ng-if="$index == 0">
+                                                    <span>{{sp.name}}</span>
+                                                </span>
+                                                <span ng-if="$index > 0"> ;&nbsp;<span>{{sp.name}}</span></span>
+                                            </span>
+                                            <!--
+                                            ng-class="{'hilight':sp.isPrimary}"
+                                            ng-class="{'hilight':sp.isPrimary}"-->
+                                            <aside>
+                                            </aside>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Salesperson </label>
+
+                                <div class="col-md-6 pr0">
+
+                                    <div title="{{sel_SalePersons_tooltip}}">
+                                        <div class="panel-info" ng-class="{'dont-click readonly':check_crm_readonly}">
+                                            <!-- style="overflow-x: auto;"-->
+                                            <div class="panel-body" ng-click="getSalePersons_general(0, rec.bucket_id, '77')">
+                        <span ng-repeat="sp in selectedSalespersons track by $index">
+                                                    <span ng-if="$index == 0">
+                                                        <span ng-class="{'hilight':sp.isPrimary}">{{sp.name}}</span>
+                        </span>
+                        <span ng-if="$index > 0">;&nbsp;<span
+                                ng-class="{'hilight':sp.isPrimary}">{{sp.name}}</span>
+                        </span>
+                        </span>
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-icon pull-right" type="button"
+                                            ng-click="!check_crm_readonly && historytype('Salespersons')"
+                                            title="Salesperson History"><i class="fa fa-history"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-if="rec.type==1">
+                                <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+
+                                <div class="col-md-6 pr0">
+                                    <select ng-model="drp.status_id"
+                                            ng-options="opt as opt.title for opt in rec.arr_crm_status"
+                                            class=" form-control"
+                                            ng-change="addNewPredefinedPopup(drp.status_id, 'STATUS', 'Status', drp)"
+                                            ng-disabled="check_crm_readonly" required>
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-icon pull-right" type="button"
+                                            ng-click="historytype('Status')" title="Status History">
+                                        <i class="fa fa-history"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Credit Rating
+                                    <!--<span class="required">*</span>--></label>
+
+                                <div class="col-md-6 pr0">
+
+                                    <select ng-model="rec.credit_rating" class="  form-control"
+                                            ng-options="opt as opt.title for opt in rec.arr_crm_credit_rating"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-change="addNewPredefinedPopup(rec.credit_rating, 'CREDIT_RATING', 'Credit Rating', drp)"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-icon pull-right" type="button"
+                                            ng-click="historytype('CreditLimit')" title="Credit Rating History"><i
+                                            class="fa fa-history"></i></button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Ownership Type</label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="rec.ownership_type" class="  form-control"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-options="opt as opt.title for opt in rec.arr_ownership"
+                                            ng-change="addNewPredefinedPopup(rec.ownership_type, 'OWNER', 'Owner', drp)"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Type</label>
+
+                                <div class="col-md-8 pl0">
+                                    <div class="input-symbol">
+                                        <label class="col-md-4">
+                                            <input type="checkbox" name="a" ng-model="rec.is_billing_address"
+                                                   ng-disabled="check_crm_readonly"
+                                                   id="genis_billing_address" ng-checked="rec.is_billing_address > 0"
+                                                   class="">&nbsp;Billing</label>
+
+                                        <label class="col-md-4 pl0">
+                                            <input type="checkbox" name="c" ng-model="rec.is_invoice_address"
+                                                   ng-disabled="check_crm_readonly"
+                                                   id="genis_invoice_address" ng-checked="rec.is_invoice_address > 0"
+                                                   class=""> &nbsp;Payment</label>
+
+                                        <label class="col-md-4 pl0">
+                                            <input type="checkbox" name="b" ng-model="rec.is_shipping_address"
+                                                   ng-disabled="check_crm_readonly"
+                                                   id="genis_shipping_address" ng-checked="rec.is_shipping_address > 0"
+                                                   class="">&nbsp;Delivery</label>
+
+
+                                        <!--<span>-->
+                                        <!--<a ng-if="rec.is_shipping_address==1 && rec.alt_loc_id>0"-->
+                                        <!--ng-click="getloccaiontiming_general(rec.alt_loc_id)">-->
+                                        <!--<i  class="fa fa-clock-o add-del-time" aria-hidden="true" title="Add  Delivery Time(s)"> </i>-->
+                                        <!--</a>-->
+                                        <!--</span>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Web Address </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" ng-model="rec.web_address" id="web_address"
+                                               class="form-control" ng-readonly="check_crm_readonly"
+                                               ng-blur="set_link()" placeholder="https://"/>
+                    <span>
+                                            <a href='{{rec.web_address}}' ng-if="rec.web_address != undefined"
+                                               target='_blank'>
+                                                <i style="      color: #3693cf;" class="fa fa-external-link"
+                                                   aria-hidden="true"> </i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Trading Currency<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="drp.currency"
+                                            ng-options="opt as opt.name for opt in arr_currency"
+                                            class="  form-control" ng-disabled="check_crm_readonly"
+                                            ng-change="addNewCurrencyPopup(drp)"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option value="" selected>Select</option>
+                                    </select>
+                                </div>
+                                <!-- <div class="col-md-2 remove-left-pad">
+                                                <button class="btn btn-info btn_blue" type="button" ng-click="historytype('CreditLimit')">
+                                                <!--<i class="fa fa-history"> </i>--History</button>
+                                                </div> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Turnover </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+
+                                        <input type="text" ng-model="rec.turnover" class="form-control"
+                                               data-parsley-trigger="keyup" ng-readonly="check_crm_readonly"
+                                               data-parsley-minlength-message="Invalid Value"
+                                               ng-readonly="check_readonly_opp"
+                                               data-parsley-type-message="Invalid Value"
+                                               data-parsley-error-message="Invalid Value"
+                                               pattern="[0-9]+([\.,][0-9]+)*"/>
+                                        <span>    <!--     {{drp.currency.code}} -->   {{defaultCurrencyCode}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">No. Of Employees</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.emp_no" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                    <!-- data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Segment </label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="drp.crm_segment_id" class="  form-control"
+                                            ng-options="opt as opt.title for opt in segment_customer_arr"
+                                            ng-change="addNewPredefinedPopup(drp.crm_segment_id, 'SEGMENT', 'Segment', drp)"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                    <!--<div style="  overflow-y: scroll; max-height: 325px;">
+                                                      <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':check_crm_readonly}" >
+                                                      <div class="panel-body" ng-click="getGroups(1)" style="padding:10px !important; min-height:30px;">
+                                                      <span ng-repeat="cust in selectedSegments track by $index">
+                                                      <span ng-if="$index == 0">{{cust.title}}</span>
+                                                      <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                                                      </span>
+                                                      </div>
+                                                      </div>
+                                                      </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Buying Group </label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="drp.buying_grp_id"
+                                            ng-options="opt as opt.title for opt in bying_group_customer_arr"
+                                            class="  form-control"
+                                            ng-change="addNewPredefinedPopup(drp.buying_grp_id, 'BUYING_GROUP', 'Buying Group', drp)"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                    <!--<div style="  overflow-y: scroll; max-height: 325px;">
+                                                      <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':check_crm_readonly}" >
+                                                      <div class="panel-body" ng-click="getGroups(3)" style="padding:10px !important; min-height:30px;">
+                                                      <span ng-repeat="cust in selectedBuyingGroups track by $index">
+                                                      <span ng-if="$index == 0">{{cust.title}}</span>
+                                                      <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                                                      </span>
+                                                      </div>
+
+                                                      </div>
+                                                      </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Region</label>
+
+                                <div class="col-md-8">
+
+                                    <select ng-model="rec.region_id" class="  form-control"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-options="opt as opt.title for opt in region_customer_arr"
+                                            ng-change="addNewPredefinedPopup(rec.region_id, 'REGION', 'Region', drp)"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                    <!--
+                                                      <div style="  overflow-y: scroll; max-height: 325px;">
+                                                      <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':check_crm_readonly}" >
+                                                      <div class="panel-body" ng-click="getGroups(2)" style="padding:10px !important; min-height:30px;">
+                                                      <span ng-repeat="cust in selectedRegions track by $index">
+                                                      <span ng-if="$index == 0">{{cust.title}}</span>
+                                                      <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                                                      </span>
+                                                      </div>
+                                                      </div>
+                                                      </div>-->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Source Of CRM </label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="drp.sources_of_crm_id"
+                                            ng-options="opt as opt.name for opt in rec.arr_sources_of_crm"
+                                            ng-change="addNewPredefinedPopup(drp.sources_of_crm_id, 'SOURCES_OF_CRM', 'Source Of CRM', drp)"
+                                            class="form-control" ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Classification</label>
+                                <!--ng-change="addNewPredefinedPopup(drp.crm_classification, 'CRM_CLASSIFICATION', 'CRM Classification', drp)"-->
+                                <div class="col-md-8 ">
+                                    <select ng-model="drp.crm_classification"
+                                            ng-options="opt as opt.title for opt in rec.arr_crm_classification"
+                                            class="form-control" ng-disabled="check_crm_readonly">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">-->
+                            <!--<label class=" col-md-4   control-label"> Social Media</label>-->
+
+                            <!--<div class="col-md-8">-->
+
+                            <!--<div class="animated fadeIn"-->
+                            <!--ng-repeat="mail2 in rec.social_mediascrm track by $index" ng-if="$index==0"-->
+                            <!--style="float: left;">-->
+                            <!--<div class="col-md-5 no-padding" style="    padding-right: 3px !important;    margin-bottom: 3px;">-->
+                            <!--<select ng-model="mail2.media_id" class=" form-control"-->
+                            <!--ng-options="opt as opt.name for opt in social_medias"-->
+                            <!--ng-change="add_social_media_popup(mail2.media_id, 1)"-->
+                            <!--ng-disabled="check_crm_readonly"-->
+                            <!--ng-class="{'not-click-allow':disableClass > 0}">-->
+                            <!--<option style="display:block" value=""></option>-->
+                            <!--</select>-->
+
+                            <!--</div>-->
+                            <!--<div class="col-md-5 no-padding">-->
+                            <!--<input type="text" ng-model="mail2.addrees" class="form-control"-->
+                            <!--ng-readonly="check_crm_readonly">-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 text-center">-->
+
+                            <!--<a href="javascript: void(0);" ng-show="!check_contact_readonly"-->
+                            <!--class="circle-icon2"-->
+                            <!--ng-class="{'dont-click readonly':check_crm_readonly}"-->
+                            <!-->
+                            <!--<i class="fa fa-minus"-->
+                            <!--ng-click="rec.social_mediascrm.splice($index, 1)"></i>-->
+                            <!--</a>-->
+
+                            <!--<a ng-if=" val==1" href="javascript: void(0);"-->
+                            <!--class="circle-icon2 pull-right " style="    margin-right: 25px;"-->
+                            <!--data-ng-class="{'indirect-hidden':rec.social_mediascrm.length > 4,'dont-click readonly':check_crm_readonly}"><i   class="fa fa-plus"   ng-click="rec.social_mediascrm.push({'id': ''});val=2"    aria-hidden="true"></i></a>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="animated fadeIn"-->
+                            <!--ng-repeat="mail2 in rec.social_mediascrm track by $index" ng-if="$index>0"-->
+                            <!--style="float: left;">-->
+                            <!--<div class="col-md-5 no-padding" style="    padding-right: 3px !important;    margin-bottom: 3px;">-->
+                            <!--<select ng-model="mail2.media_id" class=" form-control"-->
+                            <!--ng-options="opt as opt.name for opt in social_medias"-->
+                            <!--ng-change="add_social_media_popup(mail2.media_id, 1)"-->
+                            <!--ng-disabled="check_crm_readonly"-->
+                            <!--ng-class="{'not-click-allow':disableClass > 0}">-->
+                            <!--<option style="display:block" value=""></option>-->
+                            <!--</select>-->
+
+                            <!--</div>-->
+                            <!--<div class="col-md-5  no-padding">-->
+                            <!--<input type="text" ng-model="mail2.addrees" class="form-control"-->
+                            <!--ng-readonly="check_crm_readonly">-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 text-center">-->
+                            <!--&lt;!&ndash;  ng-show="!check_crm_readonly" &ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="javascript: void(0);" class="circle-icon2    " ng-if=" $index == 0 "><i&ndash;&gt;-->
+                            <!--&lt;!&ndash;class="fa fa-plus   "&ndash;&gt;-->
+                            <!--&lt;!&ndash;ng-class="{'dont-click readonly':check_crm_readonly}"&ndash;&gt;-->
+                            <!--&lt;!&ndash;ng-click="rec.social_mediascrm.push({'id': ''})"&ndash;&gt;-->
+                            <!--&lt;!&ndash;ng-if="rec.social_mediascrm.length < 5" aria-hidden="true"></i></a>&ndash;&gt;-->
+
+                            <!--<a href="javascript: void(0);" ng-show="!check_contact_readonly"-->
+                            <!--class="circle-icon2"-->
+                            <!--ng-class="{'dont-click readonly':check_crm_readonly}"-->
+                            <!--ng-if="$index > 0">-->
+                            <!--<i class="fa fa-minus"-->
+                            <!--ng-click="rec.social_mediascrm.splice($index, 1)"></i>-->
+                            <!--</a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="col-md-12    "><a href="javascript: void(0);"  class="circle-icon2 pull-right "-->
+                            <!--style="  margin-right: -10px;position: relative;bottom: 33px;background: white;"   ng-if="rec.social_mediascrm.length>0"    data-ng-class="{'indirect-hidden':rec.social_mediascrm.length > 4,'dont-click readonly':check_crm_readonly}"><i-->
+                            <!--class="fa fa-plus" ng-click="rec.social_mediascrm.push({'id': ''})"-->
+                            <!--aria-hidden="true"></i></a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 1</label>
+
+
+                                <div class="col-md-4 padr6">
+                                    <select ng-model="rec.socialmedia1" class="form-control"
+                                            ng-options="opt as opt.name for opt in social_medias"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""> </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.socialmedia1_value" class="form-control"
+                                           ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 2</label>
+
+                                <div class="col-md-4 padr6">
+                                    <select ng-model="rec.socialmedia2" class="form-control"
+                                            ng-options="opt as opt.name for opt in social_medias"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.socialmedia2_value" class="form-control"
+                                           ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 3</label>
+
+                                <div class="col-md-4 padr6">
+                                    <select ng-model="rec.socialmedia3" class="form-control"
+                                            ng-options="opt as opt.name for opt in social_medias"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.socialmedia3_value" class="form-control"
+                                           ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 4</label>
+
+                                <div class="col-md-4 padr6">
+                                    <select ng-model="rec.socialmedia4" class="form-control"
+                                            ng-options="opt as opt.name for opt in social_medias"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.socialmedia4_value" class="form-control"
+                                           ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 5</label>
+
+                                <div class="col-md-4 padr6">
+                                    <select ng-model="rec.socialmedia5" class="form-control"
+                                            ng-options="opt as opt.name for opt in social_medias"
+                                            ng-disabled="check_crm_readonly"
+                                            ng-class="{'not-click-allow':disableClass > 0}">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.socialmedia5_value" class="form-control"
+                                           ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br/>
+
+
+                <!--            <div class="panel panel-default pad15 pb0" style="margin-top:-33px">
+
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Company Social Media </h3>
+                                        </div>
+                                        <div class="panel-body  ">
+                                            <div ng-show="!crm_media_form">
+                                                <div><a id="prompt" ng-click="showCrmMediaForm()" ng-class="{'dont-click':check_crm_readonly}" class="btn btn_add2 pull-right" style="position: relative;top: -55px;"><i
+                                                            class="fa fa-plus fa_display"></i> Add</a></div>
+
+                                                <div>
+                                                    <table class="table table-condensed table-striped table-bordered table-hover" style="    position: relative;top: -24px;">
+                                                        <thead>
+                                                            <tr class="bg-col" ng-show="columns_crm_social.length > 0">
+
+                                                                <th>Social Media </th>
+                                                                <th>Social Media ID</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="courser table-body">
+                                                            <tr ng-repeat="recs in crm_social_medias track by $index" ng-show="columns_crm_social.length > 0">
+                                                                <td> {{recs.social_media| capitalize}}</td>
+                                                                <td> {{recs.address}}</td>
+                                                                <td><a ng-click="delete_crm_social_media(recs.id)" title="Delete" class="btn"><i
+                                                                            class="fa fa-times"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div ng-show="crm_media_form">
+                                                <div>
+                                                    <div class="col-md-5 pl0">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label">Social Media<span
+                                                                    class="required">*</span></label>
+
+                                                            <div class="col-md-8">
+                                                                <select ng-model="crmMediaForm.media" ng-options="opt as opt.name for opt in social_medias" class="select2me form-control" ng-change="add_social_media_popup(crmMediaForm.media, 1)" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                                                    <option value="" disabled selected>Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 col-md-offset-2">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label">
+
+                                                                <span ng-if="crmMediaForm.media.id > 0">{{crmMediaForm.media.name}}
+                                                                </span>
+
+                                                                ID<span class="required">*</span></label>
+
+                                                            <div class="col-md-8">
+                                                                <input type="text" ng-model="crmMediaForm.address" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="pull-right">
+                                                            <button class="btn btn-submit2" type="button" ng-show="!check_crm_media_readonly" ng-click="add_crm_social_media();">Save
+                                                            </button>
+
+                                                            <button class="btn btn-cancel" type="button" ng-click="hideCrmMediaForm();">Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 affix">
+                    <div class="pull-right">
+
+                        <div class="dropdown ib" ng-show="rec.id > 0 && crm_general_tab_module > 0">
+                            <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="dte-ico"></i>
+                            </button>
+                            <ul class="dropdown-menu dte animated fadeIn">
+                <span ng-click="set_document_internal(crm_general_tab_module)">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                <span>
+                                <i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                <span>
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-default2 active-btns" ng-show="rec.type == 1" type="button"
+                                ng-click="convert()"> Convert to Customer
+                        </button>
+                        <!--    Delete    permision for Company User /superadmin -->
+                        <button class="btn btn-delete active-btns" ng-if="allowdelete_crm_general_tab == 1"
+                                ng-show="rec.id > 0" type="button" ng-click="deleteCRM()"> Delete
+                        </button>
+                        <button class="btn btn-submit" ng-class="{'dont-click':isSaveting}"
+                                type="button" ng-if="!check_crm_readonly">Save
+                        </button><!--whirl line back-and-forth -->
+                        <!--    Edit    permision for Company User /superadmin -->
+                        <button class="btn btn-edit" ng-class="{'dont-click':allowedit_crm_general_tab == 0}"
+                                type="button" ng-click="showEditForm()" ng-if="check_crm_readonly">Edit
+                        </button>
+                        <!-- <button class="btn btn-info btn_blue" type="button" ng-click="delete({id:id})" ng-show="check_crm_readonly">
+                                <i class="fa fa-times"></i> Delete</button> -->
+                        <button class="btn btn-cancel" type="button" ui-sref="app.crm()"> Cancel</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="margin-left:14px;"> Primary Contact Details </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Name</label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.contact_person" id="contact_person" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                            <input type="hidden" ng-model="rec.alt_contact_id" id="alt_contact_id"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Job Title </label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.cjob_title" id="job_title" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Direct Line </label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.cdirect_line" id="direct_line" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Mobile </label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.cmobile" id="mobile" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email </label>
+
+                        <div class="col-md-7">
+
+                            <div class="input-symbol">
+                                <input type="email" ng-model="rec.cemail" id="email" data-parsley-type="email"
+                                       name="email" class="form-control" data-email-msg="Email format is not valid"
+                                       ng-readonly="check_crm_readonly" placeholder="e.g. myname@example.com"/>
+                <span>
+                  <a ng-if="rec.cemail != undefined"
+                     href="mailto:{{rec.cemail}}?Subject=silverow CRM&Body=silverow CRM">
+                      <i style=" color: #3693cf;" class="fa fa-external-link" aria-hidden="true"> </i>
+                  </a>
+              </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Telephone </label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.cphone" id="cTelephone" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Fax </label>
+
+                        <div class="col-md-7">
+                            <input type="text" ng-model="rec.cfax" id="fax" class="form-control"
+                                   ng-readonly="check_crm_readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Preferred Method Of Communication">Pref. Method Of Comm.</label>
+
+                        <div class="col-md-7">
+                            <select ng-model="drp.cpref_method_of_communication"
+                                    ng-options="opt as opt.title for opt in arr_pref_method_comm"
+                                    class="select2me form-control"
+                                    ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""> </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+
+                    <div class="form-group" style="  margin-bottom: 20px;">
+                        <label class="col-md-4 control-label">Notes</label>
+
+                        <div class="col-md-8">
+                            <textarea style="height:100px !important; resize:none; "
+                                      ng-model="rec.cbooking_instructions"
+                                      id="cnotes" class="form-control" ng-disabled="check_crm_readonly"
+                                      maxlength="100"/>
+                            </textarea>
+                            <!-- <span class="word-counter">{{rec.cbooking_instructions.length}}/100</span>-->
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Social Media 1</label>
+
+                        <div class="col-md-4 padr6">
+                            <select ng-model="rec.csocialmedia1" class="form-control"
+                                    ng-options="opt as opt.name for opt in social_medias"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 padl6">
+                            <input type="text" ng-model="rec.csocialmedia1_value" class="form-control"
+                                   ng-readonly="check_crm_readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Social Media 2</label>
+
+                        <div class="col-md-4 padr6">
+                            <select ng-model="rec.csocialmedia2" class="form-control"
+                                    ng-options="opt as opt.name for opt in social_medias"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 padl6">
+                            <input type="text" ng-model="rec.csocialmedia2_value" class="form-control"
+                                   ng-readonly="check_crm_readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Social Media 3</label>
+
+                        <div class="col-md-4 padr6">
+                            <select ng-model="rec.csocialmedia3" class="form-control"
+                                    ng-options="opt as opt.name for opt in social_medias"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 padl6">
+                            <input type="text" ng-model="rec.csocialmedia3_value" class="form-control"
+                                   ng-readonly="check_crm_readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Social Media 4</label>
+
+                        <div class="col-md-4 padr6">
+                            <select ng-model="rec.csocialmedia4" class="form-control"
+                                    ng-options="opt as opt.name for opt in social_medias"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 padl6">
+                            <input type="text" ng-model="rec.csocialmedia4_value" class="form-control"
+                                   ng-readonly="check_crm_readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Social Media 5</label>
+
+                        <div class="col-md-4 padr6">
+                            <select ng-model="rec.csocialmedia5" class="form-control"
+                                    ng-options="opt as opt.name for opt in social_medias"
+                                    ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 padl6">
+                            <input type="text" ng-model="rec.csocialmedia5_value" class="form-control"
+                                   ng-readonly="check_crm_readonly">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,305 @@
+<div id="" role="main" ng-controller="MailController" ng-init="search();" >
+    <style type="text/css">
+        ol.breadcrumb{margin-bottom: 5px !important;}
+    </style>
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12 remove-left-pad remove-right-pad"></div>
+    <div ng-controller="MailAttachmentController">
+
+      <div class="col-md-3 no-padding">
+        <div class="d-wi e-wi no-padding">
+          <div class="hb">
+            <!-- <a href="javascript: void(0);" ng-click="folder();"><i class="fa fa-refresh email-refresh pull-right"></i></a> -->
+            <div style="padding: 14px 0px 0px 14px;font-size: 10x;font-weight: 600;">Search : {{$stateParams.keyword}}</div>
+              <a href="#"><i class="fa fa-refresh email-refresh pull-right"></i></a>
+              <a class=" compose-mail " data-toggle="collapse" data-target="#search" title="Search" style="background: inherit;color: #888888;"><i class="fa fa-search" aria-hidden="true"></i></a>
+
+            <div id="search" class="collapse e-as">
+              <input type="text" placeholder="From / To /Subject" id="search" class="form-control search_e pull-left "  ng-model="searchKeyword" />
+              <button ui-sref="app.search({id:$stateParams.id,keyword:searchKeyword})" class="i-89" title="Search"><i class="fa fa-search" aria-hidden="true" style=""></i></button>
+              <input type="text" placeholder="From"  class="form-control search_e pull-left "/>
+              <input type="text" placeholder="To"  class="form-control search_e pull-left "/>
+              <input type="text" placeholder="Subject"  class="form-control search_e pull-left "/>
+            </div>
+
+          </div>
+        </li>
+          <div>
+            <div>
+              <div >
+                <div>
+                  <div>
+                    <div>
+                      <div style="margin-top: 12px;" class="message-scroll">
+
+                        <div ng-repeat="(key, folder) in searchResults">
+                          <div ng-repeat="email in folder track by $index" class="email_item fadeIn animated">
+
+                          <div>
+                            <div class="sss" ng-if="email.MailDate" style="display: block;height: 45px;float: left;margin-right: 11px;margin-top: 12px;">
+                            <i class="material-icons f-1" style="font-size: 29px;color: #e4e4e4;">&#xE853;</i>
+                                                      </div>
+                            <a href="javascript: void(0);" ng-click="getSearchMessage(email.Msgno, 1, key);setMessageIndex($index);" ng-show="email.Recent == 'N' || email.Recent == 'R' || email.Unseen == 'U'" id="{{'msgu_' + email.Msgno}}">
+                              <b ng-repeat="sender in email.sender" class="sender-name">{{sender.personal}}</b>
+                              <div ng-bind="email.subject" class="sender-subject"></div>
+                              <div class="show-gh">
+                              <div ng-show="email.MailDate" class="s-a" title="{{email.MailDate}}">{{email.MailDate}}</div>
+                              </div>
+                            </a>
+
+                            <a href="javascript: void(0);" ng-click="getSearchMessage(email.Msgno, 0, key);setMessageIndex($index);" ng-show="email.Recent == '' && email.Unseen == ''" id="{{'msgr_' + email.Msgno}}">
+                            <b ng-repeat="sender in email.sender" class="sender-name">{{sender.personal}}</b>
+                            <div ng-bind="email.subject" class="sender-subject"></div>
+                            </a>
+
+                            <div class="show-gh">
+                            <div ng-show="email.MailDate" class="s-a">{{email.MailDate}}</div>
+                            </div>
+
+                        </div>
+
+                          <div class="message-icons animated fadeInRight">
+                            <i class="fa fa-paperclip" title="Contains Attachment" ng-show="email.Attachment == 'A'"></i>
+                            <i class="fa fa-star" title="Favourite "ng-show="email.Flagged == 'F'" ng-click="changeFlag(email.Msgno, '\\Flagged', 'imap', 0);" id="{{'flags' + email.Msgno}}"></i>
+                            <i class="fa fa-star-o  " title="Add to Favourites" ng-show="email.Flagged == ''" ng-click="changeFlag(email.Msgno, '\\Flagged', 'imap', 1);" id="{{'flagu' + email.Msgno}}"></i>
+                            <i class="fa fa-mail-forward" title="Forwaded Email" ng-show="email.Forwarded == 'F' && email.Answered == ''"></i>
+                            <i class="fa fa-mail-reply " ng-show="email.Forwarded == '' && email.Answered == 'A'" title="Replied"></i>
+                            <i class="fa" ng-show="email.Forwarded == 'F' && email.Answered == 'A'"><img src="{{$rootScope.basePath + 'app/img/forward-reply-icon.png'}}">
+                            </i>
+
+                         </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9" ng-init="getMailFolders();">
+        <div class="d-wi no-padding d-wf">
+          <div>
+            <div class="hb" style="padding-top: 10px;padding-left: 14px;padding-right: 14px;">
+
+              <i ng-if="header.subject" class="fa fa-envelope-open-o" aria-hidden="true" style="float: left;font-size: 18px;margin-right: 8px;margin-top: 4px;"></i>
+              <div ng-bind="header.subject" class="pull-left header-sub"></div>
+
+            <div class="pull-right" ng-if="header.subject">
+              <a class="iic"  title="Print" ng-show="readmail" ng-click="printMessage();"><i class="fa fa-print" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <div class="inbox-area">
+              <div ng-show="readmail" >
+
+                <div class="col-md-9 no-padding" id="mailheader" style="word-break: break-all;">
+                  <p><strong ng-repeat="sender in header.sender" ng-bind="sender.personal"></strong></p>
+                  <p><strong style="width: 30px; font-weight: bold;" ng-show="header.to.length > 0">To:</strong> <span ng-repeat="to in header.to">{{to.personal + '<' + to.to + '>'}}&nbsp;</span></p>
+                  <div ng-show="attachments"> <strong style="width: 30px; font-weight: bold;" ng-show="attachments.length > 0">Attachment(s): </strong>
+
+                    <div style="display:inline-block;" ng-repeat="attachment in attachments">
+                      <a href="javascipt: void(0);" class="attachments" ng-click="downloadAttachment(attachment.mailno, attachment.ano, attachment.enc, attachment.method, attachment.name, attachment.partNum, attachment.subtype);">{{attachment.name}} </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3 no-padding text-right">
+                   <div ng-show="header.date" class="text-right f-d" title="Date">{{header.date}}</div>
+                </div>
+
+                <div class="col-md-12 no-padding">
+                  <p style="margin:0px;"><strong style="width: 20px;font-weight: bold;float: left;margin:0;" ng-show="header.cc.length > 0">Cc:</strong>
+                    <div style="word-break: break-all;" >
+                    <span ng-repeat="cc in header.cc">
+                      {{cc.personal + '<' + cc.cc + '>'}};&nbsp;
+                    </span>
+                    </div>
+                  </p>
+                </div>
+
+                <div class="clearfix"></div>
+                <br/>
+
+                <iframe id="iframe1" frameborder="0"> </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button type="button" id="modaladdmailbtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaladdmaildetails" style="display: none;">
+        Email Configuration
+    </button>
+    <div class="modal fade" id="modaladdmaildetails">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Email Configuration</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <p ng-bind="clientCon.errorMessage" style="text-align: center; color: #FF0000;"></p>
+                        <p ng-bind="clientCon.successMessage" style="text-align: center; color: #00FF00;"></p>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="IMAP_Server"><strong>IMAP Server:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.imapServer">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="IMAP_Port"><strong>IMAP Port:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.imapPort">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="IMAP_SSL"><strong>IMAP SSL:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.imapSSL">
+                                                <option value="">Please Select</option>
+                                                <option value="on" label="On">On</option>
+                                                <option value="off" label="Off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="IMAP_SPA"><strong>IMAP SPA:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.imapSPA">
+                                                <option value="">Please Select</option>
+                                                <option value="on" label="On">On</option>
+                                                <option value="off" label="Off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="POP3_Server"><strong>POP3 Server:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.pop3Server">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="POP3_Port"><strong>POP3 Port:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.pop3Port">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="POP3_SSL"><strong>POP3 SSL:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.pop3SSL">
+                                                <option value="">Please Select</option>
+                                                <option value="on" label="On">On</option>
+                                                <option value="off" label="Off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="POP3_SPA"><strong>POP3 SPA:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.pop3SPA">
+                                                <option value="">Please Select</option>
+                                                <option value="on" label="On">On</option>
+                                                <option value="off" label="Off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="SMTP_Server"><strong>SMTP Server:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.smtpServer">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="SMTP_Port"><strong>SMTP Port:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.smtpPort">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="SMTP_SSL"><strong>SMTP SSL:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.smtpSSL">
+                                                <option value="">Please Select</option>
+                                                <option value="on">On</option>
+                                                <option value="off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="SMTP_SSL"><strong>SMTP SPA:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.smtpSPA">
+                                                <option value="">Please Select</option>
+                                                <option value="on">On</option>
+                                                <option value="off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="SMTP_SPA"><strong>SMTP Authentication:</strong></label>
+                                            <select class="form-control" ng-model="clientCon.smtpAuth" >
+                                                <option value="">Please Select</option>
+                                                <option value="on">On</option>
+                                                <option value="off">Off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="Username"><strong>Email:</strong></label>
+                                            <input type="text" class="form-control" ng-model="clientCon.username">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 remove-left-pad">
+                                        <div class="form-group">
+                                            <label for="Password"><strong>Password:</strong></label>
+                                            <input type="password" class="form-control" ng-model="clientCon.password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info btn_blue" ng-click="addClientConfiguration();"><i class="fa fa-check"></i> Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ><i class="fa fa-undo"></i> Cancel</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="mainModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" ng-bind="modalTitle"></h4>
+                </div>
+                <div class="modal-body">
+                    <p ng-bind="modalBody"></p>
+                </div>
+                <div class="modal-footer">
+                    <!--<button class="btn btn-sm btn-danger mr" data-dismiss="modal">OK</button>-->
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

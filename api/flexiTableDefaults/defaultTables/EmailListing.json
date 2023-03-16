@@ -1,0 +1,74 @@
+[
+        {
+                
+                "title": "Email Date",
+                "field_name": "date_added",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "date"
+                
+        },
+        {
+                
+                "title": "Module Name",
+                "field_name": "module_name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "Sender",
+                "field_name": "sender_name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "From",
+                "field_name": "email_address_from",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "To",
+                "field_name": "email_address_to",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "Subject",
+                "field_name": "email_subject",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        }
+]

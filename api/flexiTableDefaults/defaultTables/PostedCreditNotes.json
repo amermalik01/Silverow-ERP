@@ -1,0 +1,425 @@
+[{
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Claim Date",
+        "field_name": "offer_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "date"
+    },
+    {
+        "title": "Posted CN No.",
+        "field_name": "return_invoice_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Credit Note No.",
+        "field_name": "return_order_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Claim No.",
+        "field_name": "cust_order_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Prev. Code",
+        "field_name": "prev_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Customer No.",
+        "field_name": "sell_to_cust_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "sell_to_cust_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 1",
+        "field_name": "sell_to_address",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 2",
+        "field_name": "sell_to_address2",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "City",
+        "field_name": "sell_to_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "County",
+        "field_name": "sell_to_county",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Postcode",
+        "field_name": "sell_to_post_code",
+        "custom_classes": "text-uppercase",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Country Code",
+        "field_name": "country_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Contact Person",
+        "field_name": "bill_to_contact",
+        "db_table": "crm_region",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Telephone",
+        "field_name": "cust_phone",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Email",
+        "field_name": "cust_email",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Salesperson",
+        "field_name": "sale_person",
+        "db_table": "sr_sel_emp_sale_dept",
+        "db_field": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "bill_to_posting_group_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "db_table": "crm_segment",
+        "db_where": " segment_type = 1 ",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "net_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "VAT",
+        "field_name": "tax_amount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "db_table": "crm_segment",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Finance Charges",
+        "field_name": "finance_charges_exists",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Insurance Charges",
+        "field_name": "insurance_charges_exists",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Req. Rcpt. Date",
+        "field_name": "requested_delivery_date",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "date"
+    },
+    {
+        "title": "Receipt Date",
+        "field_name": "delivery_date",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Shipping Agent",
+        "field_name": "shipping_agent_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Method",
+        "field_name": "shipment_method_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Address 1",
+        "field_name": "ship_to_address",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Address 2",
+        "field_name": "ship_to_address2",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping City",
+        "field_name": "ship_to_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping County",
+        "field_name": "ship_to_county",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Postcode",
+        "field_name": "ship_to_post_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Contact",
+        "field_name": "book_in_tel",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Tel. No.",
+        "field_name": "comm_book_in_contact",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Email",
+        "field_name": "book_in_email",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "W/H Book. Ref.",
+        "field_name": "warehouse_booking_ref",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Cust. W/H Ref.",
+        "field_name": "customer_warehouse_ref",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Linked SI",
+        "field_name": "sale_invoice",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Linked SO",
+        "field_name": "sale_order_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "VAT Posted",
+        "field_name": "vatPosted",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Docs. Attached for CN",
+        "field_name": "documentCNCount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Docs. Attached for PCN",
+        "field_name": "documentPCNCount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Emails Sent",
+        "field_name": "emailCount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "numberWithCommaRightAlign"
+    }
+]

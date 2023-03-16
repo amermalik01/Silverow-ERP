@@ -1,0 +1,41 @@
+<div class="modal fade" id="compose_mail_popup"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+    <div ng-class="{'loader_pop':loader_pop}"></div>
+    <div class="modal-dialog  modal-lg" ng-init="">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Compose Mail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button class="btn btn_blue width_80" type="button" ng-click="getUserInfo()"
+                                ><i class="fa fa-edit fa_display"></i> Mail
+                        </button>
+                    </div>
+                    <div class="col-lg-4" ng-show="show_check_readonly_mail">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Account Type</label>
+
+                            <div class="col-lg-7">
+                                <select ng-change="folder_id(account_type)" ng-model="account_type"
+                                        ng-options="opt as opt.username for opt in account_type_list"
+                                        class=" form-control">
+                                    <option style="display:none" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                </div>
+                <div class="clearboth"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</div>

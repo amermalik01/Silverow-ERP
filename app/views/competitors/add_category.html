@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12">
+          <h4>Add Category</4>
+          <div class="hr_line2"></div>
+            
+        </div>
+  <div class="col-md-12 col-md-12">
+         <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addForm.$valid && add(cat)" name="addForm" validate-form="" novalidate="">
+<div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+        <label class="col-md-4 control-label">Name<span class="required">*</span></label>
+        <div class="col-md-8">
+          <input type="text" ng-model="cat.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1" />
+        </div>
+    </div>
+  </div>
+</div> 
+
+<!-- <div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+        <label class="col-md-4 control-label">Description<span class="required">*</span></label>
+        <div class="col-md-8">
+          <textarea name="cat.description" cols="160" rows="10" id="description" ng-model="cat.description" class="form-control" required="1" ng-readonly="check_readonly" tabindex="2"></textarea>
+        </div>
+    </div>
+  </div>
+</div>  -->
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+        <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="cat.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" ng-disabled="check_readonly" id="status" tabindex="4" required ><option style="display:none" ></option>  </select>
+        </div>
+    </div>
+  </div>
+</div> 
+
+<div class="col-md-12">
+          <div class="hr_line2"></div>
+            <div class="pull-right">
+            <button class="btn btn_blue width_80" type="button" ng-click="confirm(cat)"><i class="fa fa-check fa_display"></i> Submit</button>
+            <button class="btn default width_80" type="button" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+            </div>
+        </div>
+    
+</form>
+</div>
+</div>

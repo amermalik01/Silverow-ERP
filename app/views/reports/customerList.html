@@ -1,0 +1,138 @@
+<style>
+    #stockReportModal .modal-body {
+        max-height: 80vh;
+        overflow: auto;
+        padding: 1.5cm;
+    }
+</style>
+<div class="modal fade template-design"
+     id="stockReportModal">
+    <div class="modal-dialog modal-md"
+         style="margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}">
+
+                <!-- posted Sale Order -->
+
+                <div ng-if="!printPdfVals.other_location">
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'>{{printPdfVals.reportTitle}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+                    <div ng-if="printPdfVals.show_address" ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                    style="clear: both;"
+                    class="mystyle2">
+
+                   <h5><b>({{rec.customer_code}}) - {{rec.name}}</b></h5>
+                   <div style="padding-bottom: 12px;">
+                       <div>{{rec.address_1}}</div>
+                       <div>{{rec.address_2}}</div>
+                       <div>{{rec.city}}, {{rec.postcode}}</div>
+                       <div>{{rec.phone}}</div>
+                       <div>{{rec.fax}}</div>
+                   </div>
+                   <hr />
+               </div>
+               <div ng-if="!printPdfVals.show_address">
+                    <table style="width: 100%;float: left;"
+                    class="tabletopmargin report-spacing-table">
+                 <thead>
+                     <tr>
+                         <th>Customer No.</th>
+                         <th>Customer Name</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+                         <td>{{rec.customer_code}}</td>
+                         <td>{{rec.name}}</td>
+                     </tr>
+                 </tbody>
+             </table>
+               </div>
+                </div>
+
+
+                <div ng-if="printPdfVals.other_location">
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'>{{printPdfVals.reportTitle}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+                    <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                         style="clear: both;"
+                         class="mystyle2">
+
+                        <h5><b>({{rec.customer_code}}) - {{rec.name}}</b></h5>
+                        <div ng-repeat="recL in rec.loc track by $index"
+                             style="padding-bottom: 12px;">
+                            <div><b>{{$index+1}} - {{recL.loc_name}}</b></div>
+                            <div>{{recL.loc_address_1}}</div>
+                            <div>{{recL.loc_address_2}}</div>
+                            <div>{{recL.loc_city}}, {{recL.loc_postcode}}</div>
+                            <div>{{recL.phone}}</div>
+                            <div>{{recL.fax}}</div>
+                        </div>
+                        <hr />
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                        <a type="button"
+                        class="btn btn-default2"
+                        title="Print as Label"
+                        ng-click="downloadReportCustomerList(printPdfVals,1)"
+                        ng-if="!jsreportLoading1 && printPdfVals.show_address">
+                         Print as Label
+                     </a>
+                     <a type="button"
+                     ng-if="jsreportLoading1"
+                     class="btn btn-default2"
+                     title="Print as Label">
+                      <i class='fa-spin fa fa-spinner'></i>
+                  </a>
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModal('stockReportModal')">Cancel</button>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportCustomerList(printPdfVals,0)"
+                       ng-if="!jsreportLoading">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>                    
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

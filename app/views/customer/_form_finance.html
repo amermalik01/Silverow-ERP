@@ -1,0 +1,375 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row ng-scope">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Finance</div>
+                        <div class="col-md-5">
+                            <!--<div class="form-group">-->
+                            <!--<label class="col-md-4 control-label">Bill to Customer</label>-->
+
+                            <!--<div class="col-md-7">-->
+                            <!--<input type="text" ng-model="recfinance.bill_to_customer" id="bill_to_customer"-->
+                            <!--class="form-control" ng-click="" ng-disabled="check_cfinance_readonly"-->
+                            <!--readonly="readonly"/>-->
+                            <!--<input type="hidden" ng-model="recfinance.bill_to_customer_id" class="form-control"/>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Person</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.contact_person" id="contact_person" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                    <input type="hidden" ng-model="recfinance.customer_no" id="customer_no" class="form-control" />
+                                    <input type="hidden" ng-model="recfinance.update_id" id="update_id" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email
+                                    <!-- <span class="required">*</span> -->
+                                </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" ng-model="recfinance.email" id="email" class="form-control" ng-readonly="check_cfinance_readonly" data-parsley-type="email" placeholder="e.g. myname@example.com" />
+                                        <!-- <span>
+                                            <a ng-if="recfinance.email != undefined"
+                                               href="mailto:{{recfinance.email}}?Subject=Silverow CRM&Body=Silverow CRM">
+                                                <i style=" color: #3693cf;" class="fa fa-external-link"
+                                                   aria-hidden="true"> </i>
+                                            </a>
+                                        </span> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.phone" id="phone" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.fax" id="fax" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Alternate Contact Person">Alt. Contact Person
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.alt_contact_person" id="alt_contact_person" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Alternate Contact Email">Alt. Contact Email </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" x-validity="regx.multiEmail" ng-model="recfinance.alt_contact_email" id="email" class="form-control" ng-readonly="check_cfinance_readonly" />
+                                        <!-- <span>
+                                            <a ng-if="recfinance.alt_contact_email != undefined"
+                                               href="mailto:{{recfinance.alt_contact_email}}?Subject=Silverow CRM&Body=Silverow CRM">
+                                                <i style=" color: #3693cf;" class="fa fa-external-link"
+                                                   aria-hidden="true"> </i>
+                                            </a>
+                                        </span> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Generate</label>
+
+                                <div class="col-md-8 mt6">
+                                    <!-- <select ng-model="drp.generate" ng-options="opt as opt.name for opt in arr_generate" class=" form-control" ng-disabled="check_cfinance_readonly" tabindex="7"> </select> -->
+                                    <!-- <ui-select multiple="" id="generat"  ng-model="drp.generate" theme="bootstrap" ng-disabled="check_cfinance_readonly" >
+                                                       <ui-select-match>{{$item.name}}</ui-select-match>
+                                                       <ui-select-choices repeat="opt in arr_generate | propsFilter: {name: $select.search}">
+                                                          <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                                       </ui-select-choices>
+                                                    </ui-select> -->
+                                    <label ng-repeat="gen in arr_generate track by $index">
+                                        <input type="checkbox" class="eGenerate{{$index}}" ng-disabled="check_cfinance_readonly" ng-checked="gen.chk" ng-click="setGenerate(gen.id)"> &nbsp;{{gen.name}}&nbsp;&nbsp; </label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-repeat="gen in arr_generate track by $index" ng-if="gen.chk">
+                                <label class="col-md-4 control-label">{{gen.name}}</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control eGenerateEmail{{$index}}" ng-readonly="check_cfinance_readonly" x-validity="regx.multiEmail" ng-model="drp['email_'+gen.id]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Payable Bank </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol" ng-click="getBankAccount()">
+                                        <input type="text" ng-model="bank_name" id="bank_name" class="form-control" ng-disabled="check_cfinance_readonly" ng-class="{'pickdate':!check_cfinance_readonly}" readonly />
+                                        <input type="hidden" ng-model="recfinance.bank_account_id" id="bank_account_id" class="form-control" />
+                                        <span>
+                                            <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Default G/L Account Receivable</label>
+                                <div class="col-md-8">
+                                    <div class="input-symbol" ng-click="getGLcode()">
+                                        <!-- ng-click="getpurchaseGL('sale')" -->
+                                        <input type="text" ng-model="recfinance.account_payable_number" id="account_payable_number" class="form-control" ng-class="{'white_bg':!check_cfinance_readonly}" readonly />
+                                        <span><i class="fa fa-external-link"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Payment</label>
+
+                                <div class="col-md-4 padr6">
+                                    <!-- <input type="text" ng-model="payment_term" id="payment_term" class="form-control" ng-click="getPaymentTerms()"  ng-disabled ="check_cfinance_readonly" />
+                                                      <input type="hidden" ng-model="recfinance.payment_terms_id" id="payment_terms_id" class="form-control" /> -->
+                                    <ui-select ng-model="drp.payment_terms_ids" ng-change="addNewPaymentTerm(drp.payment_terms_ids, 3, 'Payment Terms', drp)" ng-disabled="check_cfinance_readonly">
+                                        <ui-select-match placeholder="Payment Terms">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_payment_terms | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="drp.payment_method_ids" ng-disabled="check_cfinance_readonly" ng-change="addNewPaymentMethod(drp.payment_method_ids, 3, 'Payment Method', drp)">
+                                        <ui-select-match placeholder="Payment Method">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_payment_methods | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Finance Charge</label>
+
+                                <div class="col-md-4 padr6">
+                                    <!-- <select ng-model="drp.finance_charges_ids" ng-options="opt as opt['Charge'] |  numberNoDecimalsIfZeroFilter:2:'&#37;' for opt in recfinance.arr_finance_charges"
+                                        ng-change="addNewCharges(drp.finance_charges_ids, 1, 'Finance Charges', drp)" class=" form-control"
+                                        ng-disabled="check_cfinance_readonly">
+                                    </select> -->
+
+                                    <div class="input-symbol">
+                                        <input type="text" id="fincharges" name="fincharges" class="form-control" ng-readonly="true" ng-model="recfinance.fincharges" />
+                                        <span ng-if="recfinance.finchargetype==1">&#37;</span>
+                                        <span ng-if="recfinance.finchargetype==2">{{defaultCurrencyCode}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 pl0" style="      margin-left: 7px;  margin-top: 3px;">
+                                    <input type="checkbox" ng-disabled="check_cfinance_readonly" ng-checked="recfinance.finance_chk" ng-model="recfinance.finance_chk" title="Apply Finance Charges">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Insurance Charge</label>
+
+                                <div class="col-md-4 padr6">
+                                    <!-- <input type="text" ng-model="insurance_charges_value" id="insurance_charges_value" ng-click="getCharges('insurance')" class="form-control"  ng-disabled ="check_cfinance_readonly" tabindex="12"/>
+                                                      <input type="hidden" ng-model="recfinance.insurance_charges_id" id="insurance_charges_id" class="form-control" /> -->
+                                    <div class="input-symbol">
+                                        <input type="text" id="inscharges" name="inscharges" class="form-control" ng-readonly="true" ng-model="recfinance.inscharges" />
+                                        <span ng-if="recfinance.inschargetype==1">&#37;</span>
+                                        <span ng-if="recfinance.inschargetype==2">{{defaultCurrencyCode}}</span>
+                                    </div>
+                                    <!-- <select ng-model="drp.insurance_charges_ids" ng-options="opt as opt['Charge'] |  numberNoDecimalsIfZeroFilter:2:'&#37;' for opt in recfinance.arr_insurance_charges"
+                                        ng-change="addNewCharges(drp.insurance_charges_ids, 2, 'Insurance Charges', drp)" class=" form-control"
+                                        ng-disabled="check_cfinance_readonly">
+                                    </select> -->
+                                </div>
+                                <div class="col-md-1 pl0" style="      margin-left: 7px;  margin-top: 3px;">
+                                    <input type="checkbox" ng-disabled="check_cfinance_readonly" ng-checked="recfinance.insurance_chk" ng-model="recfinance.insurance_chk" title="Apply Insurance Charges">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">VAT No.</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.vat_number" id="vat_number" class="form-control" ng-readonly="check_cfinance_readonly" />
+                                </div>
+                            </div>
+                            <!--     <div class="form-group">
+                                          <label class="col-md-4 control-label" title="VAT Business Group">VAT Bus. Group <span class="required">*</span></label>
+                                          <div class="col-md-7">
+                                              <select ng-model="drp.vat_bus_posting_group" ng-options="opt as opt.name for opt in constants" class=" form-control" ng-change="addNewPredefinedPopup(drp.vat_bus_posting_group, 'VAT_BUS_POSTING_GROUP', 'VAT Bus. Group', drp)"  ng-disabled ="check_cfinance_readonly"  required> <option style="display:none;" value=""></option></select>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="col-md-4 control-label">Customer Group <span class="required">*</span></label>
+                                          <div class="col-md-7">
+                                              <select ng-model="drp.customer_posting_group" ng-options="opt as opt.name for opt in customer" class=" form-control" ng-change="addNewPredefinedPopup(drp.customer_posting_group, 'CUST_POSTING_GROUP', 'Customer Group', drp)"  ng-disabled ="check_cfinance_readonly"  required> <option style="display:none;" value=""></option></select>
+                                          </div>
+                                      </div>-->
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label" title="Company Registration No.">Company Reg. No.
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.company_reg_no" id="company_reg_no" class="form-control" ng-disabled="check_cfinance_readonly"
+                                    />
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Posting Group<span class="required"> *</span></label>
+                                <div class="col-md-8">
+                                    <!-- <ui-select ng-model="drp.posting_group_ids" ng-disabled="check_cfinance_readonly" ng-disabled="check_srm_finance_readonly">
+                                        <ui-select-match placeholder="Select Posting Group">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_posting_group_ids | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select> -->
+                                    <select class="form-control" required id="posting_group_ids" name="posting_group_ids" ng-model="drp.posting_group_ids" ng-options="opt as opt.posting_group for opt in postingGroups" ng-disabled="check_cfinance_readonly">
+                                        <option value="" selected disabled>Select Posting Group</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" ng-if="defaultCompany == 133">
+                                <label class="col-md-4 control-label">Tax Office Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="recfinance.taxOfficeName" id="taxOfficeName" class="form-control" ng-readonly="check_cfinance_readonly" />
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-if="defaultCompany == 133">
+                                <label class="col-md-4 control-label">E-Archive Invoices</label>
+
+                                <div class="col-md-8">
+                                    <input type="checkbox" ng-disabled="check_cfinance_readonly" ng-checked="recfinance.e_archive_chk" ng-model="recfinance.e_archive_chk" title="Apply E-Archive Invoices">
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                                            <label class="col-md-4 control-label">G/L Sales Account</label>
+                                            <div class="col-md-7">
+                                              <input type="text" ng-model="recfinance.purchase_code_number" id="purchase_code" class="form-control" ng-click="getpurchaseGL('saleperson')"  ng-readonly="check_cfinance_readonly"   />
+                                              <input type="hidden" ng-model="recfinance.purchase_code_id"  class="form-control" />
+                                            </div>
+                                          </div>-->
+                            <!-- <div class="form-group">
+                                        <label class="col-md-4 control-label">Overrider</label>
+                                          <div class="col-md-7">                                      
+                                      <select ng-model="drp.overrider_ids" ng-options="opt as opt.charge | numberNoDecimalsIfZeroFilter:2 for opt in arr_overrider" ng-change="addNewCharges(drp.overrider_ids,3,'Overrider',drp)" class=" form-control"  ng-disabled ="check_cfinance_readonly"> </select>
+                                    </div>
+                                </div> -->
+                        </div>
+
+                        <!-- <div class="col-md-6">
+                             <div class="form-group">
+                               <label class="col-md-4 control-label">Gen. Bus. Posting Group<span class="required">*</span></label>
+                               <div class="col-md-7">
+                                 <select ng-model="drp.gen_bus_posting_group" ng-options="opt as opt.name for opt in general" class=" form-control" ng-change="addNewPredefinedPopup(drp.gen_bus_posting_group,'GEN_BUS_POSTING_GROUP','Gen. Bus. Posting Group',drp)" ng-disabled="check_cfinance_readonly" tabindex="13" required> </select>
+                               </div>
+                             </div>
+                           </div> -->
+
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div>
+                                    <div class="col-md-5">
+                                        <h5 style="margin: 23px 0 2px 0;">
+                                            <b class="text-capitalize">Customer Bank Account Details</b>
+                                        </h5>
+                                        <hr style="    margin: 10px 0 11px 0;">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Account Name</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="recfinance.account_name" id="account_name" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Sort Code</label>
+
+                                            <div class="col-md-3 padr6">
+                                                <input type="text" x-validity="regx.sortCode" ng-model="recfinance.sort_code" id="sort_code" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                            <label class="col-md-2 control-label">Account No.</label>
+
+                                            <div class="col-md-3 padl6">
+                                                <input type="text" x-validity="regx.accNo" ng-model="recfinance.account_no" id="account_no" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Swift/BIC </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="recfinance.swift_no" id="swift_no" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">IBAN</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="recfinance.iban" id="iban" class="form-control text-capitalize" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Bank Name</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="recfinance.bill_bank_name" id="bill_bank_name" class="form-control" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Bank Address</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="recfinance.bank_address" ng-disabled="check_cfinance_readonly" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="    margin-top: 11px;">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <!-- <button class="btn  btn-default" type="button" ng-show="recfinance.id>0 &&  cust_finanace_tab_module>0" ng-click="set_document_internal(cust_finanace_tab_module)">
+                                    <img src="app/img/infile.png" style="width:16px;" class="doc-icon">
+                                </button> -->
+                                <button class="btn btn-submit" type="submit" ng-show="!check_cfinance_readonly && (allowadd_cust_finanace_tab ||  allowedit_cust_finanace_tab)">
+                                    Save
+                                </button>
+                                <!--    Edit    permision for Company User /superadmin -->
+                                <button class="btn btn-edit" type="button" ng-if="allowedit_cust_finanace_tab" ng-click="showEditCFinanceForm()" ng-show="check_cfinance_readonly">Edit
+                                </button>
+                                <!-- <button class="btn btn-info btn_blue" type="button" ng-click="delete({id:id})" ng-show="check_cfinance_readonly"><i class="fa fa-times"></i> Delete</button> -->
+                                <button class="btn btn-cancel" type="button" ui-sref="app.customer()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-include="'app/views/_listing_modal_customer.html'"></div>
+<div ng-include="'app/views/_listing_modal_cust.html'"></div>
+<div ng-include="'app/views/customer/_gl_accountfinance.html'"></div>
+<div ng-include="'app/views/customer/_listing_modal_bank_order.html'"></div>
+<div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div>

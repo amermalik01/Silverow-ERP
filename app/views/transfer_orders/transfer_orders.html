@@ -1,0 +1,60 @@
+<div ng-controller="TransferOrdersController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div class="row"
+         style="margin-bottom: 0 !important;">
+        <div class="col-md-12">
+            <div class="nav nav-tabs"
+                 style="padding:8px;">
+                <div class="col-md-6">
+                    <div class="search-wrapper">
+                        <input type="text"
+                               placeholder="Search in Transfer Stock"
+                               class="form-control"
+                               ng-model="rec.Serachkeyword" />
+                        <i class="fa fa-search search-icon"
+                           aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a id="prompt"
+                       ui-sref="app.add-transfer-orders"
+                       class="btn btn_add pull-right"
+                       ng-if="allowadditem_transferstock && posted == 0">Add</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example"
+                         class="example_alt_pagination">
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               ng-show="transfer_orders.length > 0">
+                            <thead>
+                                <tr>
+                                    <th> No. </th>
+                                    <th> Created By</th>
+                                    <th> Created Date </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="to in transfer_orders | filter:rec.Serachkeyword"
+                                    ui-sref="app.view-transfer-order({id:to.id})">
+                                    <td> {{to.code}} </td>
+                                    <td> {{to.AddedBy}} </td>
+                                    <td> {{to.AddedOn}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div ng-show="!transfer_orders.length > 0"
+                             class="no-record"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,280 @@
+<div class="modal fade"
+     id="_sales_forecast">
+
+    <div class="modal-dialog"
+         style="width: 60%;">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        ng-click="getSalesForecast(selected_sale_person.id, rec.year);"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"> Sales Forecast of {{selected_sale_person.name}} for {{selected_month}}
+                    {{rec.year}}
+                </h4>
+            </div>
+            <div class="modal-body"
+                 style="margin-bottom: 15px;">
+                <div class="row"
+                     ng-if="show_forecast_listing == true"
+                     style="float: right; margin: 0px;">
+
+                     <h5 class="sales_heading" style="float:left;color:red; font-style: italic; height:0px; margin-top:5px;" ng-if="rec.status == 0">Locked</h5> &nbsp;
+
+                    <button class="btn btn-delete pic_block"
+                            ng-click="lock_forecast(0)"
+                            ng-if="selected_sale_person.id == userId && rec.status == 1"
+                            type="button">Lock</button>
+                    <button class="btn btn-submit pic_block"
+                            ng-click="lock_forecast(1)"
+                            ng-if="(selected_sale_person.line_manager_name_id == userId || user_type == '1') && rec.status == 0"
+                            type="button">Unlock</button>
+
+                </div>
+                <div class="row"
+                     ng-if="show_forecast_listing == true"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div class="flexiTable"
+                             x-report-modal="'true'"
+                             x-generate-table
+                             x-data="salesForecastTableData.data"
+                             x-controller-initiate
+                             x-forget-filters="true"
+                             x-table-name="SalesForecastModal"
+                             x-filter-function="getCustomerForSalesForecast()"
+                             x-row-click="getCustomerForecastDetails(file)"
+                             x-filter-object="searchKeyword_cust"></div>
+                    </div>
+                </div>
+                <div class="row"
+                     ng-if="show_forecast_listing == false">
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Customer No. </label>
+
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           ng-readonly="1"
+                                           ng-model="selected_customer.customer_code"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="clearfix"
+                                 style="height: 10px;"></div>
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Customer Name </label>
+
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           ng-readonly="1"
+                                           ng-model="selected_customer.name"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="clearfix"
+                                 style="height: 10px;"></div>
+                            <!-- <div class="form-group">
+                                <button type="button"
+                                        class="btn btn-default2"
+                                        ng-click="selectItem(1)"
+                                        style="color:#2196F3; margin-left: -14px;">Select Item(s)</button>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12"
+                         style="margin-bottom: 20px; padding-right: 20px;">
+                        <div class="widget">
+                            <div class="widget-body1 ">
+                                <div id="dt_example"
+                                     class="example_alt_pagination">
+
+                                    <!--  View permision for Company User /superadmin    "-->
+                                    <a title="Add Item(s)"
+                                       ng-click="selectItem(1)"
+                                       ng-if="rec.status == 1 && !cust_forecast_readonly"
+                                       class="ib add-dis-btn"
+                                       style="position: absolute; z-index: 5; right: 40px; float:right; top:-12px;">
+                                        <i class="material-icons">&#xE147;</i>
+                                    </a>
+                                    <table class="table table-condensed table-striped table-hov er table-bordered"
+                                           id="data-table">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th>No.</th>
+                                                <th>Description</th>
+                                                <th>U.O.M</th>
+                                                <th>Qty</th>
+                                                <th>Unit Price</th>
+                                                <!-- <th>VAT Rate</th>
+                                                <th>VAT</th> -->
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="fd in customer_forecast_detail track by $index | filter:searchKeyword">
+                                                <td>{{fd.item_code}}</td>
+                                                <td>{{fd.item_name}}</td>
+                                                <td>{{fd.uom_name}}</td>
+                                                <td><input typ="number"
+                                                           ng-disabled="rec.status == 0 || cust_forecast_readonly"
+                                                           ng-model="fd.qty"
+                                                           oninput="validity.valid||(value='');"
+                                                           class="form-control input_text text-right"></td>
+                                                <td><input typ="number"
+                                                           ng-disabled="rec.status == 0 || cust_forecast_readonly"
+                                                           ng-model="fd.unit_price"
+                                                           oninput="validity.valid||(value='');"
+                                                           class="form-control input_text text-right"></td>
+                                                <!-- <td>
+                                                    <select class="form-control"
+                                                            ng-model="fd.vat_id">
+                                                        <option ng-repeat="opt in arr_vat_post_grp_sales"
+                                                                ng-selected="{{opt.id == fd.vat_id}}"
+                                                                value="{{opt.id}}"> {{opt.name}}</option>
+                                                    </select>
+
+                                                </td>
+                                                <td>{{rowVat(fd) }}</td> -->
+                                                <td>{{(fd.qty*fd.unit_price) + rowVat(fd) | currency:""}}
+                                                    <a style="float: right;margin-right: 15px;"
+                                                       ng-class="{'dont-click':rec.status == 0 || cust_forecast_readonly}"
+                                                       ng-click="!(rec.status == 0 || cust_forecast_readonly) ? delete_customer_forecast_item(fd, $index): return;"
+                                                       title="Delete"
+                                                       class="btn">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                            <tr ng-if="customer_forecast_detail.length ==0">
+                                                <td colspan="5">No records found</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 pull-right"
+                         style="padding-right: 20px;"
+                         id="total-amout">
+                        <table class="invoice_total ">
+                            <tr>
+                                <td class="text-right">Total Amount</td>
+                                <td class="text-right"> {{net_total() | currency:""}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="text-right">VAT</td>
+                                <td class="text-right"> {{vat_total() | currency:""}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Grand Total</td>
+                                <td class="text-right"> {{net_total() + vat_total() | currency:""}}</td>
+                            </tr> -->
+                        </table>
+                        <div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="pull-right">
+                            <button class="btn btn-submit pic_block"
+                                    ng-if="rec.status == 1 && !cust_forecast_readonly"
+                                    ng-click="save_customer_forecast_details()"
+                                    type="button">Save</button>
+                            <button class="btn btn-edit pic_block"
+                                    ng-if="rec.status == 1 && cust_forecast_readonly"
+                                    ng-click="edit_forecast_form()"
+                                    type="button">Edit </button>
+                            <button class="btn btn-cancel"
+                                    ng-click="cancle_forecast_details()"
+                                    type="button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /  data-dismiss="modal"  ng-click="reload_popup(2,'add_unit_category')"  -->
+        </div>
+
+    </div>
+</div>
+<div id="productModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable
+         style="    width: 91%;">
+
+        <!-- Modal content-->
+        <!--  -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Item(s)</h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div class="flexiTable"
+                             x-report-modal="'true'"
+                             x-generate-table
+                             x-data="itemTableData.data"
+                             x-controller-initiate
+                             x-forget-filters="true"
+                             x-table-name="itemDetailPriceModal"
+                             x-filter-function="selectItem()"
+                             x-checked-records="selectedRecFromModalsItem"
+                             x-selected-record-preview="product_code"
+                             x-filter-object="searchKeywordItem"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <span class="pull-left">Selected:&nbsp;{{(itemTableData.data| filter: {chk: true}).length}}</span> -->
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-click="addProduct()"
+                            ng-disabled="(itemTableData.data | filter: {chk: true}).length == 0">Add</button>
+
+                            <!-- ng-click="clearPendingOrderItems()" -->
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template"
+        id="modalDeleteDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> Are you sure you want to delete this item? </b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>

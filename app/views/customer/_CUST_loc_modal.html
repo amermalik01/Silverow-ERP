@@ -1,0 +1,55 @@
+<div class="modal fade" id="CUSTLocModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top:89px;" dragable>
+        <!-- modal-lg-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-symbol">
+                            <input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword.search">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div><!--  ng-class="{'whirl no-overlay': root_arr_location.length >0}" -->
+                                <table class="table table-striped table-bordered table-hover" ng-if="root_arr_location.length > 0">
+                                    <thead>
+                                        <tr class="bg-col">
+                                            <th style="width:5%;">
+                                                <input type="checkbox" class="checkAllCRMLoc" ng-model="selectedAllCRMLoc" ng-click="checkAllCRMLoc(selectedAllCRMLoc)">
+                                            </th>
+                                            <th> Location Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="courser table-body">
+                                        <tr ng-repeat="loc in root_arr_location | filter:searchKeyword.search ">
+                                            <td>
+                                                <input type="checkbox" ng-checked="loc.chk>0" ng-click="selectCRMLoc(loc)">
+                                            </td>
+                                            <td> {{loc.title}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row ends -->
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(root_arr_location | filter: {chk: true}).length}}</span>
+                <button class="btn btn_add2" ng-click="submitPendingSelectedCRMLoc()" type="button">Add</button>
+                <button type="button" class="btn btn-cancel" ng-click="clearPendingSelectedCRMLoc()">Cancel</button>
+            </div>
+            <!-- data-dismiss="modal"-->
+        </div>
+    </div>
+</div>

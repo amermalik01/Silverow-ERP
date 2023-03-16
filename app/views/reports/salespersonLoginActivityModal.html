@@ -1,0 +1,164 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="salespersonSysActivityLoginModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr.records track by $index"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+
+                    <htmlpageheader name='MyCustomHeader{{$index}}'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                </div>
+                                <div class="font10">
+                                    <b>Employee No. : </b>
+                                    <span ng-if="rec.empCode">{{rec.empCode}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b>Employee Name : </b>
+                                    <span ng-if="rec.saleperson">{{rec.saleperson}}</span>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                     <span>Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                    <table style="width: 100%;"
+                           ng-if="rec.activity.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Login Date & Time </th>
+                                <th> Logout Date & Time </th>
+                                <th style="text-align: right;"> Total Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.activity">
+                                <td> {{inv.login_time}} </td>
+                                <td> {{inv.logout_time}} </td>                                
+                                <td style="text-align: right;"> {{inv.total}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;">Total For {{rec.saleperson}}</b>
+                    <table style="width:100%;">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"></td>
+                            <td style="text-align: right;width:20%;"></td>
+                            <td style="text-align: right;width:20%;"></td>
+                            <td style="text-align: right;width:20%;"><b>Total Time</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">                                
+                               
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                               
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                               
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.total_hours | myDateFilter}}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('salespersonSysActivityLoginModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportSalespersonSystemLoginActivity(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

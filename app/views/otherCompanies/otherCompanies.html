@@ -1,0 +1,37 @@
+<div ng-controller="otherCompaniesControllerListing as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+    <div class="row hideAdd" style="margin-bottom: 0 !important;">
+        <a id="openNewCompanyModal" ng-click="openNewCompanyModal()" class="btn pull-right btn_add oval">
+            <i class="fa fa-plus"></i>
+        </a>
+        <!-- ui-sref="app.add-otherCompanies" -->
+
+        <style>
+            .hideAdd {
+                margin-top: 20px;
+            }
+        </style>
+    </div>
+
+    <div class="row" style="margin-bottom: 0 !important;">
+        <div class="col-md-12 col-md-12">
+            <style>
+                .linkLeft span {
+                    float: right;
+                    margin-right: 13px;
+                }
+            </style>
+            <div id="dt_example" class="example_alt_pagination">
+                <div style=" margin-top: -14px;">
+                    <div class="flexiTable makeModalFixed" x-generate-table x-data="tempOtherCompanies.data" x-table-name="OtherCompanies" x-filter-function="showOtherCompaniesListing()" x-filter-object="searchKeyword">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div ng-include="'app/views/_confirm_modal.html'"></div> model_add_company-->
+    <div ng-include="'app/views/otherCompanies/add_otherCompanies.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

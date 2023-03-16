@@ -1,0 +1,25 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Employee Code",
+            "field_name": "code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        },
+        {
+            "title": "Employee Name",
+            "field_name": "name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        }
+    ]
+}

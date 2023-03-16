@@ -1,0 +1,127 @@
+<!-- Row starts -->
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body ">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control ng-valid ng-dirty"
+                                   ng-model="searchKeyword2">
+                        </div>
+                        <div class="col-md-2">
+                            <select required
+                                    class="select2me form-control"
+                                    ng-model="searchKeyword.status_ids"
+                                    ng-options="opt as opt.value for opt in warehouse_status_list"
+                                    ng-change="warehouse_location(searchKeyword.status_ids.id)">
+                                <option value=""
+                                        disabled
+                                        selected>Select Status</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 pull-right"
+                             ng-if="allowadditem_warehouse_location_cost">
+                            <a id="prompt"
+                               class="btn btn_add pull-right "
+                               ng-click="warehouse_loc_add_Form()">Add</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="dt_example"
+                     class="table-responsive example_alt_pagination"
+                     ng-if="allowviewitem_warehouse_location_cost">
+                    <table class="table table-condensed table-striped table-hover table-bordered"
+                           id="data-table"
+                           ng-if="columns.length > 0">
+                        <thead class="fixit">
+                            <tr class="bg-col">
+                                <th ng-repeat="column in columns"
+                                    ng-if="	column.title != 'Id' && column.title != 'Cost History' && 
+                                            column.title != 'Warehouse Id' && column.title != 'Loc Id' && column.title != 'Stockcheck'">
+                                    <span ng-if="column.title != 'Add Cost'"
+                                          ng-class="{'white-space-normal': column.title == 'Location Within Warehouse'}">
+                                        {{column.title}}</span>
+                                    <!-- <span ng-if="column.title == 'Add Cost'"> Additional Cost <br><sub>(if
+                                            Applicable)</sub></span> -->
+                                </th>
+                                <th class="ShowHideAction">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fixit">
+                            <tr ng-repeat="rec in prod_warehouse_loc_data | filter: searchKeyword2"
+                                ng-show="columns.length > 0">
+                                <td sortable="column.title"
+                                    ng-repeat="column in columns"
+                                    ng-click="edit_warehouse_location(rec)"
+                                    ng-if="column.title != 'Id' && column.title != 'Cost History' && 
+                                           column.title != 'Warehouse Id' && column.title != 'Loc Id' && column.title != 'Stockcheck'">
+                                    <span 
+                                          ng-if="column.title != 'Add Cost'"> {{rec[column.field]}}</span>
+                                    <!-- <span ng-if="column.title == 'Add Cost'"
+                                          ng-click="show_add_cost_pop(rec.id)">
+                                        <a title="Show Additional Cost"
+                                           class="tooltips_clss btn hilight"
+                                           style="font-size: 11px;"
+                                           ng-if="rec['add_cost']>0">Yes</a>
+                                    </span> -->
+                                </td>
+                                <td class="text-left ShowHideAction"
+                                    ng-show="columns.length > 0">
+                                    <!-- <a title="Product Location History"
+                                       class="btn"
+                                       ng-click="prod_warehouse_loc_History(rec.id,rec)"
+                                       ng-if="rec['cost_history']>0"><i class="fa fa-history"
+                                           aria-hidden="true"></i></a> -->
+
+                                    <a title="Edit"
+                                       class="btn"><i class="fa fa-edit"></i></a>
+
+                                    <a title="Delete"
+                                       class="btn "
+                                       ng-click="delete_warehouse_location(rec.id,$index,prod_warehouse_loc_data)"><i
+                                           class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                            <tr ng-show="columns.length == 0 && !showLoader">
+                                <td>No Record found agaist this entity! Please add.</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div ng-show="prod_warehouse_paging.total_pages > 1">
+                        <div class="form-group"
+                             style="text-align: left;">
+                            <ul class="pagination"
+                                style="margin: 0px !important; margin-top: -14px !important;"
+                                ng-show="prod_warehouse_paging.total_pages > 1">
+                                <li ng-class="{'disabled': prod_warehouse_paging.cpage == 1}"
+                                    class="">
+                                    <a href="javascript: void(0);"
+                                       class=""
+                                       ng-click="warehouse_location(prod_warehouse_paging.ppage)">�</a>
+                                </li>
+                                <li ng-repeat="(key,value) in prod_warehouse_paging.pages"
+                                    ng-class="{'active': value == prod_warehouse_paging.cpage}">
+                                    <a href="javascript: void(0);"
+                                       ng-click="warehouse_location(value);"><span ng-bind="value"></span>
+                                    </a>
+                                </li>
+                                <li
+                                    ng-class="{'disabled': prod_warehouse_paging.cpage == prod_warehouse_paging.total_pages}">
+                                    <a href="javascript: void(0);"
+                                       ng-click="warehouse_location(prod_warehouse_paging.npage); ">�</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="no-record"
+                         ng-show="!columns.length > 0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/warehouse/cost_modal.html'"></div>

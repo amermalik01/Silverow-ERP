@@ -1,0 +1,53 @@
+<div class="col-lg-6 col-md-6">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Title <span class="sterik_red">*</span></label>
+      <div class="col-sm-8">
+        <input type="text" ng-model="rec.name" id="title" class="form-control" ng-readonly="check_readonly" required="required"  tabindex="1"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="userName">Module</label>
+      <div class="col-sm-8">
+        <select ng-model="module_codes" ng-options="opt as opt.module_title for opt in accounts"  class="select2me form-control" ng-change="getId()" ng-disabled="check_readonly || check_disabled"  tabindex="4" required ng-class="{'not-click-allow':disableClass > 0}">
+ 
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="userName">&nbsp;</label>
+      <div class="col-sm-8">
+         <div nestable="" nestable-control="myNestable2" class="dd">
+        <ol class="dd-list">
+          <li ng-repeat="rec in fields" data-id="{{rec.id}}" class="dd-item dd3-item">
+            <div class="dd-handle dd3-handle">Drag</div>
+            <div class="dd3-content"> 
+             <input type="checkbox" name="selectedFruits[]" value="{{rec.id}}" ng-checked="selection.indexOf(rec.id) > -1" ng-click="toggleSelection(rec.id)" checked="checked" ng-disabled="check_readonly">
+             {{rec.description}}
+            </div>
+          </li>
+        </ol>
+      </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-lg-6 col-md-6">
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="userName">Set as Default</label>
+      <div class="col-sm-8">
+            <div data-toggle="buttons" class="btn-group">
+                <label class="btn btn-primary" ng-class="{'active':is_default}"  ng-click='getDefault(1);'>YES</label>
+                <label class="btn btn-primary" ng-class="{'active':!is_default}"  ng-click='getDefault(0);'>NO</label>
+              </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="userName">Set as Public</label>
+      <div class="col-sm-8">
+            <div data-toggle="buttons" class="btn-group">
+                <label class="btn btn-primary" ng-class="{'active':is_public}" ng-click='getPublic(1);'>YES</label>                  
+                <label class="btn btn-primary" ng-class="{'active':!is_public}" ng-click='getPublic(0);'>NO</label>
+              </div>
+      </div>
+    </div>
+</div>

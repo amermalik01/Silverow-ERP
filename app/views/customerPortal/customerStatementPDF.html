@@ -1,0 +1,303 @@
+<div class="modal fade template-design"
+     id="customerStatementPDF">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     style="clear: both;"
+                     class="mystyle2">
+
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">Customer Statement</div>
+                            <table align="left"
+                                   style="width: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b style="font-size: 13px;">{{rec.name}} ({{rec.customer_code}})</b>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="rec.primary_address_1">
+                                        <td>{{rec.primary_address_1}}</td>
+                                    </tr>
+                                    <tr ng-if="rec.primary_address_2">
+                                        <td>{{rec.primary_address_2}}</td>
+                                    </tr>
+
+                                    <tr ng-if="rec.city">
+                                        <td>{{rec.city}}</td>
+                                    </tr>
+                                    <tr ng-if="rec.county">
+                                        <td>{{rec.county}}</td>
+                                    </tr>
+                                    <tr ng-if="rec.postcode">
+                                        <td class="text-uppercase">{{rec.postcode}}</td>
+                                    </tr>
+                                    <tr ng-if="rec.country">
+                                        <td>{{rec.country}}</td>
+                                    </tr>
+
+                                    <tr ng-if="rec.primaryc_phone">
+                                        <td>{{rec.primaryc_phone}}</td>
+                                    </tr>
+                                    <tr ng-if="rec.primaryc_email">
+                                        <td>{{rec.primaryc_email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="margin-bottom: 16px;margin-top: 5px;">
+                                As at {{printPdfVals.upToDate}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right margin-bottomreport'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+
+                            <table align="right">
+                                <tbody>
+                                    <tr>
+                                        <td class="temp-pad-left"
+                                            style="text-align: left">
+                                            <b>Bank</b>
+                                        </td>
+                                        <td class="template-text-right">{{rec.bank_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="temp-pad-left"
+                                            style="text-align: left">
+                                            <b>Account Name</b>
+                                        </td>
+                                        <td class="template-text-right">{{rec.account_name}}</td>
+                                    </tr>
+                                    <tr
+                                        ng-if="((rec.postingGroup == 'UK' && rec.sort_code.length>0) || (rec.postingGroup != 'UK' && rec.swift_no.length>0))">
+                                        <td class="temp-pad-left"
+                                            style="text-align: left"
+                                            ng-if="rec.postingGroup == 'UK'">
+                                            <b>Sort Code</b>
+                                        </td>
+                                        <td class="template-text-right"
+                                            ng-if="rec.postingGroup == 'UK'">
+                                            {{rec.sort_code}}</td>
+                                        <td ng-if="rec.postingGroup != 'UK'"
+                                            style="text-align: left">
+                                            <b>Swift Code</b>
+                                        </td>
+                                        <td ng-if="rec.postingGroup != 'UK'"
+                                            class="template-text-right">
+                                            {{rec.swift_no}}</td>
+
+                                    </tr>
+                                    <tr
+                                        ng-if="((rec.postingGroup == 'UK' && rec.account_no.length>0) || (rec.postingGroup != 'UK' && rec.iban.length>0))">
+                                        <td class="temp-pad-left"
+                                            ng-if="rec.postingGroup == 'UK'"
+                                            style="text-align: left">
+                                            <b>Account No.</b>
+                                        </td>
+                                        <td class="template-text-right"
+                                            ng-if="rec.postingGroup == 'UK'">
+                                            {{rec.account_no}}
+                                        </td>
+                                        <td ng-if="rec.postingGroup != 'UK'"
+                                            style="text-align: left">
+                                            <b>IBAN</b>
+                                        </td>
+                                        <td ng-if="rec.postingGroup != 'UK'"
+                                            class="template-text-right">
+                                            {{rec.iban}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="temp-pad-left"
+                                            style="text-align: left">
+                                            <b>VAT Reg. No.</b>
+                                        </td>
+                                        <td class="template-text-right">{{rec.vat_number}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left">
+                                            <b>Payment Terms</b>
+                                        </td>
+                                        <td class="template-text-right">{{rec.payment_terms}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <table style="width: 100%;"
+                           class="tabletopmargin alternateRowColor">
+                        <thead>
+                            <tr>
+                                <th ng-repeat="column in printPdfVals.columns"
+                                    style="width: 10%;"
+                                    x-col="{{column.title}}"
+                                    ng-class="{'rightAlign':column.title == 'Remaining Amount' || column.title == 'Settled Amount' || column.title == 'Original Amount' || column.title == 'Balance' || column.title == 'Outstanding Amount' || column.title == 'Due Date','equalwidth':toggleLandscape}">
+                                    <span ng-if="column.title != 'Ref No' && column.title != 'Duedate'">
+                                        {{column.title}}</span>
+                                    <span ng-if="column.title == 'Ref No'">Customer Ref. No.</span>
+                                    <span ng-if="column.title == 'Duedate'">Due Date</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="recA in rec.res">
+                                <td ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'rightAlign':column.title == 'Remaining Amount' || (column.title == 'Settled Amount' && recA['Settled_Amount']>0)|| column.title == 'Original Amount' || column.title == 'Balance' || column.title == 'Outstanding Amount' || column.title == 'Due Date', 'equalwidth':toggleLandscape}">
+                                    <!-- <span>{{recA[column.field]}} </span>  Remaining Amount -->
+                                    <!-- {{recA['Settled Amount']}} -->
+                                    <span
+                                          ng-if="column.title != 'Outstanding Amount' && column.title != 'Settled Amount' && column.title != 'Original Amount' && column.title != 'Balance' && column.title != 'Summary' && column.title != 'Ref No'">{{recA[column.field]}}</span>
+                                    <span
+                                          ng-if="column.title == 'Outstanding Amount' || (column.title == 'Settled Amount' && recA['Settled_Amount']>0) || column.title == 'Original Amount' || column.title == 'Balance'">{{recA[column.field] | currency : "" : decimal_range}}</span>
+                                    <span
+                                          ng-if="column.title == 'Ref No' && recA['Ref_No'].length>0">{{recA[column.field]}}</span>
+                                    <span ng-if="column.title == 'Ref No' && !(recA['Ref_No'].length>0)">-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'rightAlign': column.title == 'Outstanding Amount' || column.title == 'Settled Amount'}">
+                                    <span ng-if="column.title == 'Settled Amount'">
+                                        <b>Total</b>
+                                    </span>
+                                    <span ng-if="column.title == 'Outstanding Amount'">
+                                        <b>{{rec.res[rec.res.length-1]['balance'] | currency : "" : decimal_range}}</b>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class='reportHeading2'>
+                        <table style="width: 100%;"
+                               class="tabletopmargin">
+                            <thead>
+                                <tr>
+                                    <th>Ageing Summary</th>
+                                    <th class="rightAlign">
+                                        0- 30 Days
+                                    </th>
+                                    <th class="rightAlign">
+                                        31- 60 Days
+                                    </th>
+                                    <th class="rightAlign">
+                                        61- 90 Days
+                                    </th>
+                                    <th class="rightAlign">
+                                        91- 120 Days
+                                    </th>
+                                    <th class="rightAlign">
+                                        Over 120 Days
+                                    </th>
+                                    <th class="rightAlign">
+                                        Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{rec.summary['currency']}}</td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.s0to30days != 333333333">
+                                            {{rec.summary.s0to30days | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.s0to30days == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.s31to60days != 333333333">
+                                            {{rec.summary.s31to60days | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.s31to60days == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.s61to90days != 333333333">
+                                            {{rec.summary.s61to90days | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.s61to90days == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.s91to120days != 333333333">
+                                            {{rec.summary.s91to120days | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.s91to120days == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.over120days != 333333333">
+                                            {{rec.summary.over120days | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.over120days == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="rightAlign">
+                                        <span ng-if="rec.summary.total != 333333333">
+                                            {{rec.summary.total | currency : "" : decimal_range}}
+                                        </span>
+                                        <span ng-if="rec.summary.total == 333333333">
+                                            -
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModalCustPortal('customerStatementPDF')">Cancel</button>
+
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadCustPortalReport(printPdfVals)">
+                         <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i> 
+                           Download PDF
+                    </a> -->
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-if="!jsreportLoading"
+                            ng-click="downloadCustPortalReport(printPdfVals)">Download PDF</button>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,180 @@
+
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="panel-title2">Contact Information</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Address Line 1</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text"
+                                           ng-model="empAccountData.address_1"
+                                           class="form-control"/>
+                                    <!-- ng-readonly="check_hrvalues_readonly" -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Address Line 2</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text"
+                                           ng-model="empAccountData.address_2"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input readonly type="text" ng-model="empAccountData.city"
+                                           class="form-control" placeholder="City"/>
+                                </div>
+
+                                <div class="col-md-4 padl6">
+                                    <input readonly value="" type="text" ng-model="empAccountData.country"
+                                           class="form-control" placeholder="County"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input readonly type="text"
+                                           ng-model="empAccountData.post_code" placeholder="Postcode"
+                                           class="form-control crm-postcode"/>
+                                </div>
+                                <div class="col-md-4 padl6 dont-click">
+                                    <ui-select disabled 
+                                    ng-model="empAccountData.post_code_country">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                          <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                      </ui-select>
+                                </div><!-- ng-disabled="check_hrvalues_readonly" -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Work Telephone</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text"
+                                           ng-model="empAccountData.work_phone"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Home Telephone</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text"
+                                            ng-model="empAccountData.home_phone"
+                                            class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Mobile</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text"
+                                           ng-model="empAccountData.mobile_phone"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Personal Email</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text" x-validity="regx.multiEmail"
+                                           ng-model="empAccountData.personal_email"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Work Email </label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="email"
+                                           ng-model="empAccountData.work_email"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Social Media</label>
+
+                                <div class="col-md-4 padr6">
+                                    <div class="input-symbol">
+                                        <input readonly type="text"
+                                        ng-model="empAccountData.skype_id" style="    padding-right: 24px;"
+                                        class="form-control"/>
+                                        <span><i class="fa fa-skype" style="    color: #2196F3;"></i></span>       
+                                    </div>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <div class="input-symbol">
+                                        <input readonly type="text"
+                                        ng-model="empAccountData.linked_id" style="    padding-right: 24px;"
+                                        class="form-control"/>
+                                        <span><i class="fa fa-linkedin" style="    color: #1f6b8e;"></i></span>       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="empAccountData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{empAccountData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="empAccountData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                    name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input readonly type="hidden" ng-model="empAccountData.emp_picture">
+                    <input readonly type="hidden" ng-init="empAccountData.emp_picture = empAccountData.emp_picture" ng-model="empAccountData.emp_picture">
+                </div>
+            </div>
+
+            <i ng-if="!empAccountData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="empAccountData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+empAccountData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            
+
+            <span class="name">
+                {{empAccountData.first_name + ' ' + empAccountData.last_name}}
+            </span>
+            <span class="job">
+                {{empAccountData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{empAccountData.user_email}}">{{empAccountData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="empAccountData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{empAccountData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="empAccountData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{empAccountData.skype_id}}</div>
+            </span>
+        </div>
+    </div> 

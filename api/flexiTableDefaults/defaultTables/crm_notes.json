@@ -1,0 +1,44 @@
+{
+    "tblMeta": {
+        "autoAdjust": true,
+        "hideSetup": true
+    },
+    "colMeta": [
+        {
+            "title": "Created By",
+            "field_name": "Created By_name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        },
+        {
+            "title": "Date Created",
+            "field_name": "Date Created_without_seconds",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "date"
+        },
+        {
+            "title": "Subject",
+            "field_name": "Subject",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        },
+        {
+            "title": "Description",
+            "field_name": "Description",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        }
+    ]
+}

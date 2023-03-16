@@ -1,0 +1,30 @@
+<div ng-controller="SRMOrderReturnController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div class="col-md-12 col-md-12">
+        <a id="prompt" ui-sref="app.addsrmorderreturn" class="btn btn_add pull-right" title="Add Debit Note" ng-if="allowadd_prucase_order_return"><i class="fa fa-plus fa_display"></i> Add</a>
+    </div>
+
+    <style>
+        .hideAdd {
+            margin-top: 35px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example" class="example_alt_pagination">
+                        <div>
+                            <!-- style="margin-top: -13px;" -->
+                            <div class="flexiTable" ng-class="{'hideAdd':!allowadd_prucase_order_return}" x-generate-table x-data="tableData.data" x-table-name="DebitNotes" x-filter-function="getSrmOrderReturnListing()" x-checked-records="selectedRecBulkEmail" x-filter-object="searchKeyword"
+                                x-bulk-email-function="bulkEmailOption()" x-selected-record-preview="debitNoteCode"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <div ng-include="'app/views/_bulkOptionsModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

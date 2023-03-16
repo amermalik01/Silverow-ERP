@@ -1,0 +1,422 @@
+<!-- <style>
+  body {
+    background-image: url(app/css/bg.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  </style> -->
+
+<style>
+  body {
+    background-color: white;
+  }
+
+  .feature-panel--enterprise {
+    background: url(app/css/bg.jpeg);
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position-x: -380px;
+    background-size: cover;
+  }
+
+  .feature-panel {
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 460px;
+    min-height: 600px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .main-panel {
+    margin-left: 460px;
+    position: relative;
+  }
+
+  .main-panel__table {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+
+  .main-panel__table-cell {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .main-panel__switch {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 38px;
+    margin-bottom: 46px;
+    margin-right: 5%;
+    font-size: 13px;
+    color: #596377;
+    letter-spacing: 0;
+    line-height: 36px;
+  }
+
+  .main-panel__subheading {
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #737373;
+  }
+
+  .main-panel__content {
+    clear: both;
+    width: 90%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .main-panel__heading {
+    font-size: 28px;
+    font-weight: 400;
+    color: #434C5F;
+    margin-bottom: 50px;
+  }
+
+  .panel-wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  .panel-drop:before {
+    content: '\A';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00000057;
+  }
+
+  .enterprise-panel__content {
+    padding: 0 55px;
+  }
+
+  .enterprise-panel__footer {
+    position: absolute;
+    bottom: 40px;
+    left: 55px;
+    right: 55px;
+  }
+
+  .enterprise-panel__header {
+    margin-bottom: 33px;
+    opacity: .89;
+    font-weight: 600;
+    font-size: 26px;
+    color: #FFF;
+    letter-spacing: 1.42px;
+    text-transform: uppercase;
+    line-height: 42px;
+  }
+
+  .form__label {
+    display: block;
+    font-weight: 700;
+    font-size: 11px;
+    color: #434C5E;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form__input {
+    border: 1px solid #D4D9E2;
+    border-radius: 3px;
+    padding: 15px;
+    font-size: 14px;
+    color: #596377;
+    outline: 0;
+    -webkit-transition: border-color .2s ease;
+    transition: border-color .2s ease;
+    height: 50px;
+    display: block;
+    width: 100%;
+  }
+
+  .form__group {
+    position: relative;
+    margin-bottom: 23px;
+  }
+
+  .enterprise-panel__caption {
+    margin-bottom: 35px;
+    opacity: .69;
+    font-style: italic;
+    font-size: 15px;
+    color: #FFF;
+    line-height: 25px;
+  }
+
+  .silverow-logo {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 38px;
+    left: 129px;
+    width: 204px;
+  }
+
+  .enterprise-panel__subheader {
+    display: block;
+    margin-bottom: 17px;
+    font-size: 12px;
+    color: #FFF;
+    letter-spacing: 1.09px;
+  }
+
+  .enterprise-panel__footer span {
+    font-size: 25px;
+    color: #ffffff;
+    padding: 12px;
+  }
+
+  .icon-holder {
+    display: inline-block;
+    position: relative;
+    margin-right: 18px;
+  }
+
+  .icon-name {
+    margin-top: 9px;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+  }
+
+  .enterprise-panel__footer__lead {
+    margin-bottom: 28px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #FFF;
+    letter-spacing: .91px;
+    font-weight: bold;
+  }
+
+  .border-color {
+    border-color: red;
+  }
+
+  .main-panel-footer {
+    position: fixed;
+    left: 0;
+    display: none;
+    right: 0;
+    padding: 13px;
+    bottom: 0px;
+    margin-left: 460px;
+    text-align: center;
+    border-top: 1px solid #e8ebee;
+    background-color: white;
+  }
+</style>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="panel-wrapper"
+     ng-controller="LoginFormController">
+  <img src="app/img/login-logo.png"
+       class="silverow-logo">
+  <div class="feature-panel feature-panel--enterprise panel-drop">
+    <div class="enterprise-panel__content">
+      <h2 class="enterprise-panel__header">
+        <small class="enterprise-panel__subheader">
+          GO BEYOND WITH SILVEROW
+        </small>
+        Take full control of your business
+      </h2>
+
+      <!-- <p class="enterprise-panel__caption ">
+          Silverow covers all the features you need to run a small or medium business.
+      </p> -->
+    </div>
+    <div class="enterprise-panel__footer">
+      <p class="enterprise-panel__footer__lead">
+        Business in Motion
+      </p>
+      <div class="icon-holder">
+        <span class="mbri-growing-chart"></span>
+        <div class="icon-name">Finance</div>
+      </div>
+      <div class="icon-holder">
+        <span class="mbri-sale"></span>
+        <div class="icon-name">Sales</div>
+      </div>
+      <div class="icon-holder">
+        <span class="mbri-shopping-bag"></span>
+        <div class="icon-name">Purchases</div>
+      </div>
+      <div class="icon-holder">
+        <span class="mbri-extension"></span>
+        <div class="icon-name">Inventory</div>
+      </div>
+      <div class="icon-holder">
+        <span class="mbri-letter"></span>
+        <div class="icon-name">Mail</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <div class="main-panel__table">
+      <div class="main-panel__table-cell">
+        <div class="main-panel__content">
+          <div class="ipadUsermessage">
+            <span class="mbri-italic"></span> Tablet users: For better user experince, view silverow in landscape mode.
+          </div>
+          <h1 class="main-panel__heading ">
+            Sign in to Silverow
+            <small class="main-panel__subheading">
+              Enter your details below.
+            </small>
+          </h1>
+          <form role="form"
+                ng-submit="login(credentials)"
+                validate-form=""
+                novalidate="">
+            <div class="authmessage"
+                 ng-if="session_expiry_message">
+                 <i class="material-icons">error_outline</i> {{session_expiry_message}}
+            </div>
+            <div class="authmessage"
+                 ng-if="authMsg">
+                 <i class="material-icons">error_outline</i> {{authMsg}}
+            </div>
+            <div class="form__group">
+              <label class="form__label">Email Address</label>
+              <input type="text"
+                     ng-class="{'border-color':authMsg}"
+                     class="form__input topre fields_h"
+                     id="userName"
+                     placeholder="Username"
+                     autocomplete="off"
+                     ng-model="credentials.user_name"
+                     required="required">
+            </div>
+            <div class="form__group">
+              <label class="form__label">Password</label>
+              <input type="password"
+                     ng-class="{'border-color':authMsg}"
+                     class="form__input botre fields_h"
+                     id="Password1"
+                     placeholder="Password"
+                     ng-model="credentials.password"
+                     required="required"
+                     style="margin-bottom: 10px;">
+            </div>
+            <div class="actions text-center">
+              <button class="btn-login"
+                      name="Login"
+                      type="submit"
+                      ng-class="{'disable-sign':flagSignin}">
+                <span ng-if="!flagSignin">SIGN IN</span>
+                <span ng-if="flagSignin">
+                  SIGNING IN
+                  <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"
+                     style="font-size: 13px"></i>
+                </span>
+              </button>
+              <div class="clearfix"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="main-panel-footer">
+      <a data-toggle="modal"
+         data-target="#forgotPassword"
+         class="tooltips_clsshilight cursorPointer"
+         style="    font-size: 13px;">Reset your password</b>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+
+<div id="forgotPassword"
+     class="modal fade"
+     role="dialog">
+  <div class="modal-dialog"
+       style="width: 400px;">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Change Password</h4>
+      </div> -->
+      <div class="modal-body">
+        <div class="text-center">
+          <i class="material-icons"
+             style="font-size: 60px;color: #2196F3;">
+            lock_open
+          </i>
+          <h4 style="font-weight: 300;margin-top: 6px;">Your password has expired</h4>
+          <p style="    font-size: 13px;
+                            display: block;
+                            border-bottom: 1px solid whitesmoke;
+                            padding-bottom: 16px;
+                            margin-bottom: 24px;">Fill in the details below to change password.</p>
+        </div>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Email</label>
+            <div class="col-md-8">
+              <input type="email"
+                     class="form-control"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Current Password</label>
+            <div class="col-md-8">
+              <input type="password"
+                     class="form-control"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">New Password</label>
+            <div class="col-md-8">
+              <input type="password"
+                     class="form-control"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Retype New Password</label>
+            <div class="col-md-8">
+              <input type="password"
+                     class="form-control"></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn_add2"
+                data-dismiss="modal"
+                style="width:auto;">Change Password</button>
+        <button type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                style="width:auto;">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

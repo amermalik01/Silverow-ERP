@@ -1,0 +1,197 @@
+<style>
+    .input-symbol2 {
+        width: 15px;
+        text-align: center;
+    }
+</style>
+<!-- <div class="row">
+    <div class="col-md-11">
+        <div class="row"
+            ng-repeat="field in fields[ propertyName ] track by $index">
+            <div class="col-md-4 pr0">
+                <input class="form-control" type="text"
+                    uib-typeahead="opt.name for opt in lookupTable | filter:$viewValue | limitTo:8"
+                    typeahead-min-length="0"
+                    typeahead-editable="false"
+                    ng-model="field.name"
+                    typeahead-on-select="field.id = $item.id"
+                    placeholder="Select social media"
+                    ng-disabled="readOnly">
+
+                 <ui-select ng-model="fields[ propertyName ][ $index ]" ng-disabled="readOnly" ng-class="{'not-click-allow':disableClass > 0}" style="    margin-bottom: 6px;">
+                    <ui-select-match placeholder="Social Media">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in lookupTable | filter: $select.search">
+                        <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices> 
+                </ui-select> 
+                
+            </div>
+            <div class="col-md-7  pr0">
+                <input type="text" class="form-control"
+                    ng-model="field.value"
+                    ng-style="fields[ propertyName ][ $index ].name?{'background-color':'none'}:{'background-color':'#ffc'}"
+                    ng-disabled="readOnly || !fields[ propertyName ][ $index ].name">
+            </div>
+            <div class="col-md-1 text-center"
+                ng-if="(!readOnly) && (fields[ propertyName ].length > 1)">
+                <a
+                    ng-click="fields[ propertyName ].splice($index, 1)">
+                    <i class="fa fa-minus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1">
+       <a
+            ng-if="!readOnly"
+            ng-click="setNewField()">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</div>
+ -->
+<div ng-repeat="field in fields[ propertyName ] track by $index">
+    <div class="pl0 col-md-4 padr6">
+        <ui-select ng-model="fields[ propertyName ][ $index ]"
+                   id='SocialMedia_{{$index}}'
+                   ng-disabled="readOnly"
+                   ng-change="disableItems();"
+                   ng-class="{'not-click-allow':disableClass > 0}"
+                   style="    margin-bottom: 6px;">
+            <ui-select-match placeholder="Select option">{{$select.selected.name}}
+            </ui-select-match>
+            <!-- -->
+            <ui-select-choices ui-disable-choice="opt.isExist"
+                               repeat="opt in lookupTable | filter: $select.search">
+                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+        <!-- <input class="form-control" type="text" uib-typeahead="opt.name for opt in lookupTable | filter:$viewValue | limitTo:8" 
+            typeahead-min-length="0" typeahead-editable="false" ng-model="field.name" typeahead-on-select="field.id = $item.id" 
+            ng-disabled="readOnly"> -->
+
+    </div>
+
+    <div class="padl6"
+         ng-class="{'col-md-8 pr0':readOnly,'col-md-5 padr6':!readOnly}">
+        <div class="input-symbol">
+            <input type="text"
+                   class="form-control"
+                   ng-model="field.value"
+                   ng-required="!(readOnly || !fields[ propertyName ][ $index ].name)"
+                   ng-disabled="readOnly || !fields[ propertyName ][ $index ].name"
+                   style="    margin-bottom: 6px;padding-right: 21px;">
+            <span class="input-symbol2">
+                <i ng-if="field.name.toLowerCase()=='facebook'"
+                   class="fa fa-facebook"
+                   style="color:#3383c3"></i>
+                <i ng-if="field.name.toLowerCase()=='skype'"
+                   class="fa fa-skype"
+                   style="color:#2196F3"></i>
+                <i ng-if="field.name.toLowerCase()=='instagram'"
+                   class="fa fa-instagram"
+                   style="    color: #E91E63;"></i>
+                <i ng-if="field.name.toLowerCase()=='linkedin'"
+                   class="fa fa-linkedin"
+                   style="color: #0879ad;"></i>
+                <i ng-if="field.name.toLowerCase()=='twitter'"
+                   class="fa fa-twitter"
+                   style="    color: #2196F3;"></i>
+                <i ng-if="field.name.toLowerCase()=='pinterest'"
+                   class="fa fa-pinterest"
+                   style="color: red;"></i>
+                <i ng-if="field.name.toLowerCase()=='youtube'"
+                   class="fa fa-youtube-play"
+                   style="color: red;"></i>
+                <i ng-if="field.name.toLowerCase()=='yahoo'"
+                   class="fa fa-yahoo"
+                   style="    color: #9C27B0"></i>
+                <i ng-if="field.name.toLowerCase()=='vimeo'"
+                   class="fa fa-vimeo "
+                   style="color: #2196F3;"></i>
+                <i ng-if="field.name.toLowerCase()=='whatsapp'"
+                   class="fa fa-whatsapp"
+                   style="    color: #087d08;"></i>
+                <i ng-if="field.name.toLowerCase()=='tumblr'"
+                   class="fa fa-tumblr"
+                   style="    color: #5b7079;"></i>
+                <i ng-if="field.name.toLowerCase()=='gmail'"
+                   class="fa fa-google"
+                   style="color: red;"></i>
+                <i ng-if="field.name.toLowerCase()=='google plus'"
+                   class="fa fa-google-plus-official"
+                   style="color: red;"></i>
+                <i ng-if="field.name.toLowerCase()=='flickr'"
+                   class="fa fa-flickr"
+                   style="    color: #f52d50;"></i>
+                <i ng-if="field.name.toLowerCase()=='outlook' || field.name.toLowerCase()=='hotmail' || field.name.toLowerCase()=='live'"
+                   class="fa fa-windows"
+                   style="    color: #2196F3;"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-md-1 pr0 text-center"
+         ng-if="(!readOnly) && (fields[ propertyName ].length > 1)">
+        <a ng-click="deleteField($index);"
+           class="plusminus">
+            <i class="fa fa-minus"></i>
+        </a>
+    </div>
+
+</div>
+<div class="col-md-1 text-center">
+    <a ng-if="!readOnly && fields[ propertyName ].length < qty"
+       ng-click="setNewField()"
+       class="plusminus">
+        <i class="fa fa-plus"></i>
+    </a>
+</div>
+
+
+
+<!-- <label>Max. number of fields: <input ng-model="max"></label><br>
+<hr> -->
+<!-- <label class="col-md-4 control-label">Social Medias</label>
+<div class="col-md-8 ">
+<div class="row"
+    ng-repeat="field in fields[ propertyName ] track by $index">
+    <div class=" col-md-5 pr0">
+        
+         <input class="form-control"
+            ng-model="fields[ propertyName ][ $index ]"
+            uib-typeahead="opt as opt.name for opt in lookupTable | filter:$viewValue | limitTo:8"
+            typeahead-min-length="0"> 
+         
+        <ui-select ng-model="fields[ propertyName ][ $index ]" ng-disabled="readOnly" ng-class="{'not-click-allow':disableClass > 0}">
+            <ui-select-match placeholder="Social Media">{{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="opt in lookupTable | filter: $select.search">
+                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>    
+    </div>
+
+    <div class="col-md-5  pr0">
+        <input type="text" class="form-control"
+            ng-model="field.value"
+            ng-style="field.value?{'background-color':'none'}:{'background-color':'#ffc'}"
+            ng-readonly="readOnly || fields.is_primary == 1">
+    </div>
+
+    <div class="col-md-2 text-center"
+        ng-if="!readOnly && fields.is_primary != 1">
+        <button ng-if="$index < (fields[ propertyName ].length-1) || $index == max-1"
+            ng-click="fields[ propertyName ].splice($index, 1)"
+            ng-disabled="readOnly">
+            <i class="fa fa-minus"></i>
+        </button>
+
+        <button id="addButton" ng-if="$index == (fields[ propertyName ].length-1) && $index != max-1"
+            ng-disabled="readOnly" ng-click="setNewField(-1, '')">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</div>
+</div> -->

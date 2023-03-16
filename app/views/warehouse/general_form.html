@@ -1,0 +1,329 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Warehouse No.</label>
+
+                                <div class="col-md-8">
+                                    <input type="hidden" ng-model="rec.code_type" />
+                                    <input type="text" id="code" ng-model="rec.wrh_code" class="form-control" ng-readonly="product_type" />
+                                    <input type="hidden" ng-model="rec.wrh_no" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" id="id" ng-model="rec.id" class="form-control" />
+                                <label class="col-md-4 control-label">Name <span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.name" id="name" class="form-control" ng-readonly="check_wh_readonly" required/>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">Warehouse Previous Code </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.prev_code" id="prev_code" class="form-control"
+                                           ng-readonly="check_wh_readonly"/>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 1 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_1" id="address" class="form-control" ng-readonly="check_wh_readonly" placeholder="Address Line 1" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 2 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-readonly="check_wh_readonly" / placeholder="Address Line 2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input type="text" ng-model="rec.city" id="city" class="form-control" ng-readonly="check_wh_readonly" placeholder="City" />
+                                </div>
+
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control" ng-readonly="check_wh_readonly" placeholder="County" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Postcode </label>
+
+                                <div class="col-md-4  padr6">
+                                    <input type="text" ng-model="rec.postcode" id="postcode" class="form-control crm-postcode" ng-readonly="check_wh_readonly" placeholder="Postcode" />
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="rec.country_id" ng-disabled="check_wh_readonly " ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in countries | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.phone" id="telephone" class="form-control" ng-readonly="check_wh_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.fax" id="fax" class="form-control" ng-readonly="check_wh_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Warehouse Storage Type<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select required ng-model="rec.types" id="storage_type" ng-options="opt as opt.title for opt in storage_type_list" ng-change="onChange_storage_warehouse_type()" required class="select2me form-control" ng-disabled="check_wh_readonly">
+                                        <option value="" style="display:block">Select an Option</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="col-md-4 control-label">Storage Charge</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" data-parsley-trigger="keyup" required ng-model="rec.storage"
+                                           id="storage" ng-blur="validatePrice(rec.storage,'level_1')"
+                                           class="form-control"
+                                           ng-readonly="check_wh_readonly"
+                                           data-parsley-minlength-message="Invalid Value"
+                                           data-parsley-type-message="Invalid Value"
+                                           data-parsley-error-message="Invalid Value"
+                                           data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Currency </label>
+
+                                <div class="col-md-8">&lt;!&ndash;|| checked_value&ndash;&gt;
+                                    <select ng-disabled="check_wh_readonly " ng-model="rec.currency_id"
+                                            ng-change="validatePrice(rec.storage,'level_1')"
+                                            ng-options="opt as opt.code +' - '+ opt.name for opt in arr_currency"
+                                            class="form-control">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Converted Price </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" readonly="readonly" ng-model="rec.converted_price"
+                                               class="form-control "
+                                               readonly/>
+                                         <span> {{defaultCurrencyCode}} </span> </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Per Pallet</label>
+
+                                <div class="col-md-8">
+                                    <select required ng-model="rec.pallet_type"
+                                            ng-options="opt as opt.value for opt in storage_list"
+                                            class="select2me form-control" ng-disabled="check_wh_readonly">
+                                    </select>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Person<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.contact_person" id="contact_person" class="form-control" ng-readonly="check_wh_readonly" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Job Title</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.job_title" id="job_title" class="form-control" ng-readonly="check_wh_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Direct Line </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.direct_line" id="direct_line" class="form-control" ng-readonly="check_wh_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Mobile </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.mobile" id="mobile" class="form-control" ng-readonly="check_wh_readonly" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email </label>
+
+                                <div class="col-md-8">
+                                    <input type="email" ng-model="rec.email" id="email" data-parsley-type="email" name="email" class="form-control" ng-readonly="check_wh_readonly" placeholder="e.g. myname@example.com" data-email-msg="Email format is not valid" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Generate</label>
+
+                                <div class="col-md-8 mt6">
+                                    <label ng-repeat="gen in arr_generate">
+                                            <input type="checkbox" ng-readonly="check_wh_readonly" ng-disabled="check_wh_readonly" ng-checked="gen.chk" ng-click="setGenerate(gen.id)"> &nbsp;{{gen.name}}&nbsp;&nbsp;
+                                        </label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-repeat="gen in arr_generate" ng-if="gen.chk">
+                                <label class="col-md-4 control-label">{{gen.name}}</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" ng-readonly="check_wh_readonly" x-validity="regx.multiEmail" ng-model="drp['email_'+gen.id]">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <div class="col-md-12">
+                            
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default padb0" style="  margin-top: 15px;">
+            <div class="panel-body">
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Primary Storage Location
+                                <span class="required">*</span>
+                            </label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec_loc.title" placeholder="Location" class="form-control" ng-disabled="check_wh_readonly" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Parent Storage Location </label>
+                        <div class="col-md-8">
+
+                            <ui-select ng-model="rec_loc.parent_bin_location" ng-disabled="check_wh_readonly">
+                                <ui-select-match placeholder="Select Parent Storage Location">
+                                    {{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="opt in parent_bin | filter: $select.search">
+                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Start Date
+                                <span class="required">*</span>
+                            </label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="form-control 2date-picker" id="warehouse_sdate" ng-model="rec_loc.warehouse_loc_sdate" readonly required ng-disabled="check_wh_readonly " ng-class="{'pickdate':!check_wh_readonly}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Unit of Measure
+                                <span class="required">*</span>
+                            </label>
+
+                        <div class="col-md-8">
+                            <select ng-disabled="check_wh_readonly " ng-options="opt as opt.title for opt in arr_dimension" ng-model="rec_loc.dimension" class="form-control" required>
+                                    <option value=""
+                                            disabled
+                                            selected>Select Unit of Measure</option>
+                                    <!--disabled-->
+                                    <option style="display:block"
+                                            value=""></option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Cost Frequency <span ng-if="rec_loc.bin_cost && rec_loc.bin_cost!=0" class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select ng-disabled="check_wh_readonly " ng-model="rec_loc.cost_type" ng-options="opt as opt.title for opt in cost_types" class="form-control">
+                                    <option value=""
+                                            disabled
+                                            selected>Select Cost Frequency</option>
+                                    <!--disabled-->
+                                    <option style="display:block"
+                                            value=""></option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Currency </label>
+                        <div class="col-md-3 padr6">
+                            <select ng-disabled="check_wh_readonly " ng-model="rec_loc.currency" ng-options="opt as opt.code for opt in arr_currency" ng-change="check_conversion_rate(rec_loc.currency.id)" class="form-control">
+                                    <option value=""
+                                            selected
+                                            disabled>Select Currency</option>
+                                </select>
+                        </div>
+
+                        <label class="control-label col-md-2">Cost </label>
+                        <div class="col-md-3 padl6">
+                            <input type="text" ng-model="rec_loc.bin_cost" id="cost" class="form-control" ng-disabled="check_wh_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Comments </label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec_loc.description" class="form-control" maxlength="100" ng-disabled="check_wh_readonly" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 affix">
+                    <div class="pull-left">
+
+                    </div>
+                    <div class="pull-right">
+
+                        <button class="btn btn-delete active-btns" type="button" ng-click="delete()" ng-show="rec.id>0 && !check_wh_readonly"> Delete
+                                    </button>
+                        <button class="btn btn-submit" type="submit" ng-show="!check_wh_readonly">Save</button>
+                        <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_wh_readonly"> Edit
+                                    </button>
+                        <button class="btn btn-cancel" type="button" ui-sref="app.warehouse()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

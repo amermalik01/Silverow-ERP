@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "sales_invoice_no": "sale_invioce_code"
+    },
+    "fileName": "SI.[[sales_invoice_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

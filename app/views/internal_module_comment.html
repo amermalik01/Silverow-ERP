@@ -1,0 +1,163 @@
+<div class="row" ng-show="show_coments_list">
+    <div class="col-md-12"><a id="prompt" ng-click="show_add_comment_form()"
+                              class="btn btn_add pull-right margin_bottom"><i class="fa fa-plus fa_display"> </i>
+        Add</a></div>
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body " style="margin-top:15px;">
+                <div id="dt_example" class="example_alt_pagination"
+                     ng-show="columns.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                               style="overflow: auto;">
+                            <thead>
+                            <!--<tr class="bg-col"   >
+                              <th ng-repeat="column in columns"
+                class="sortable sort-asc" ng-class="{ 'sort-asc': vm.tableParams.isSortBy(column.field, 'asc'),   'sort-desc': !vm.tableParams.isSortBy(column.field, 'desc')   }"
+                  ng-click="vm.tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+
+                    ng-if="column.title!= 'Id'"  sortable="column.title" filter="{ column.title: 'text'}"
+                    > {{column.title}} </th>
+                              <th    style="width: 7%;">Action</th>
+                            </tr>-->
+                            <tr class="bg-col">
+                                <th style="width: 10%;">Created By</th>
+                                <th style="width: 10%;">Date Created</th>
+                                <th style="width: 10%;">Subject/ Title</th>
+                                <th style="width: 10%;">Comments</th>
+                                <th style="width: 1%;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="courser table-body">
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                            <tr
+                                    ng-repeat="record in recod_coments| filter:Serachkeyword">
+                                <td> {{currentUser| capitalize }}</td>
+                                <!--<td ng-repeat="column in columns" ng-click="showEditFormComent(record.id)"
+                                        ng-if="column.title != 'Id'   && column.title != 'Docupload' "  ><span ng-if="column.field != 'date_created'"> {{record[column.field]}}</span> <span ng-if="column.field == 'date_created'"> <span ng-if=" record[column.field] != 0 "> {{convert_unix_date_to_angular(record[column.field])}} </span></span></td>-->
+
+                                <td ng-click="showEditFormComent(record.id)">
+                                    {{convert_unix_date_to_angular(record.date_created)}}
+                                </td>
+                                <td ng-click="showEditFormComent(record.id)"> {{record.subject}}</td>
+                                <td ng-click="showEditFormComent(record.id)" class="tabhover"
+                                    data-hover="{{record.comments}}"> {{record.comments| limitStr:true:20}} ...
+                                </td>
+                                <td><a title="Delete" ng-click="delete_coment(record.id, $index, recod_coments)"
+                                       class="tooltips_clss btn"><i class="fa fa-times"> </i></a> <span
+                                        ng-repeat="i_image in record.docupload| mysplit:','" ng-if="i_image"> <a
+                                        title="View" target="_blank" ng-if="i_image"
+                                        href="{{imagePath + i_image}}" download="{{i_image}}"
+                                        class="tooltips_clss btn"> <i class="fa fa-eye"> </i></a> </span></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a ng-click="itemselectPage(item_paging.ppage);
+                                    getComments();" href="javascript: void(0);" class="">«</a></li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}"><a ng-click="itemselectPage(value);
+                                        getComments();" href="javascript: void(0);"><span ng-bind="value"></span></a>
+                                </li>
+                                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a ng-click="itemselectPage(item_paging.npage);
+                                    getComments();" href="javascript: void(0);">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="social" viewBox="0 0 489 489"><title>social</title>
+        <path style="fill:#2C2F33;"
+              d="M272.55,181.2c9.3-8.1,14.7-19.8,14.7-32.3V75.8c0-41.8-34-75.8-75.8-75.8h-15.7 c-41.8,0-75.8,34-75.8,75.8v73.1c0,12.5,5.4,24.2,14.7,32.3v61.5c-15.2,7.7-60.3,31.7-102.2,66.1c-10.5,8.6-16.5,21.4-16.5,35 v50.1c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9v-50.1c0-7.7,3.4-14.9,9.3-19.7c44.5-36.6,92.9-61,102.1-65.5 c4.5-2.2,7.4-6.8,7.4-11.8v-70.5c0-3.3-1.7-6.4-4.4-8.2c-6.5-4.3-10.3-11.5-10.3-19.2V75.8c0-30.9,25.1-56,56-56h15.6 c30.9,0,56,25.1,56,56v73.1c0,7.7-3.9,14.9-10.3,19.2c-2.8,1.8-4.4,4.9-4.4,8.2v70.5c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9 L272.55,181.2L272.55,181.2z"/>
+        <path style="fill:#2C2F33;"
+              d="M227.85,257.1c-5.5,0-9.9,4.4-9.9,9.9c0,4.1-1.8,7.9-4.6,10.5c-0.6,0.4-1.2,0.9-1.7,1.4 c-2.3,1.5-5,2.4-8,2.4c-7.9,0-14.3-6.4-14.3-14.3c0-5.5-4.4-9.9-9.9-9.9s-9.9,4.4-9.9,9.9c0,8.1,2.8,15.5,7.5,21.3l-7.3,169.3 c-0.1,2.9,1.1,5.8,3.3,7.8l23.2,21c1.9,1.7,4.3,2.6,6.6,2.6c2.4,0,4.8-0.9,6.6-2.6l23.6-21.3c2.2-2,3.4-4.8,3.3-7.8l-7.6-167.3 c5.6-6.1,9-14.1,9-23C237.75,261.6,233.25,257.1,227.85,257.1z M202.85,465.8l-13.1-11.8l6.6-153.5c2.3,0.5,4.8,0.8,7.3,0.8 c2,0,3.9-0.2,5.8-0.5l6.9,152.9L202.85,465.8z"/>
+        <path style="fill:#2C2F33;"
+              d="M443.55,269.8c-19-19-44.2-29.4-71.1-29.4s-52.1,10.5-71.1,29.4c-35.9,35.9-39.2,92.9-8.5,132.5 c-3.5,6.5-7.5,10.8-11.8,13c-5.3,2.6-8.2,8.2-7.3,14.1c0.9,5.8,5.4,10.3,11.2,11.3c2.4,0.4,4.9,0.6,7.5,0.6 c11.8,0,24.2-3.8,34.8-10.5c14,7,29.5,10.7,45.3,10.7c26.9,0,52.1-10.5,71.1-29.4c19-19,29.4-44.2,29.4-71.1 C472.95,314.1,462.55,288.8,443.55,269.8z M429.55,398c-15.2,15.2-35.5,23.6-57.1,23.6c-14.4,0-28.5-3.8-40.9-11.1 c-1.6-0.9-3.3-1.4-5-1.4c-2.2,0-4.3,0.7-6.1,2.1c-5.1,4-10.3,6.4-14.8,7.9c2.9-4,5.6-8.8,7.9-14.2c1.5-3.5,0.9-7.6-1.7-10.5 c-28.2-31.9-26.7-80.4,3.4-110.6c15.2-15.2,35.5-23.6,57.1-23.6s41.8,8.4,57.1,23.6s23.6,35.5,23.6,57.1 C453.15,362.5,444.75,382.8,429.55,398z"/>
+        <circle style="fill:#3C92CA;" cx="372.45" cy="340.9" r="11"/>
+        <circle style="fill:#3C92CA;" cx="410.85" cy="340.9" r="11"/>
+        <circle style="fill:#3C92CA;" cx="333.95" cy="340.9" r="11"/>
+    </symbol>
+</svg>
+
+<div class="row" ng-show="show_coments_form">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body animated fadeIn" style="    padding-top: 48px !important;">
+                <div class="row" >
+                    <input type="hidden" ng-model="coment_data.coment_id"/>
+
+                    <div class="col-md-12 ">
+                        <div class="col-md-10 col-md-offset-1 ">
+                            <div class="col-md-2">
+                                <div class="text-center" style="margin-top:27px;">
+                                    <svg class="icon" style="width: 101px;height: 95px;">
+                                        <use xlink:href="#social"/>
+                                    </svg>
+                                    <div class="current-user">{{currentUser| capitalize }} <br>( {{company_name|
+                                        capitalize }} )
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="comment-section">
+                                    <div class="comment-title">
+                                        <b><input type="text" ng-readonly="check_doc_readonly"
+                                                  ng-model="coment_data.subject" class="form-control"
+                                                  placeholder="Subject / Title"/></b>
+                                    </div>
+                                    <div class="posted">Posted {{coment_data.create_date}}</div>
+                                    <div>
+                                        <input required type="hidden" ng-model="coment_data.create_date"
+                                               class="form-control"/>
+                                        <textarea type="text" required placeholder="Write Comment "
+                                                  style="    resize: none;height: 106px;border:0px;padding-left: 17px;"
+                                                  ng-disabled="check_doc_readonly" ng-model="coment_data.description"
+                                                  class="form-control" rows="4" cols="30" id="redactor_content"
+                                                  maxlength="500">{{coment_data.description}}</textarea>
+                                        <span class="word-counter"
+                                              style="    top: 60px;background: white ;color: #d4d4d4;right: 20px;">{{coment_data.description.length}}/500</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-submit" type="submit" ng-submit="addcommentoop(coment_data)"
+                                    ng-show="!check_doc_readonly"> Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditFormComentopp()"
+                                    ng-show="check_doc_readonly"> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="getCommentsoop()"> Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

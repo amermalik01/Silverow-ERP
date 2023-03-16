@@ -1,0 +1,148 @@
+<div class="modal fade" id="price_item_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div ng-class="{'whirl no-overlay':showLoader22}"></div>
+    <div ng-class="{'loader_pop':loader_pop}"></div>
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden;">
+                <!-- Filter Start -->
+                <div class="row" ><!--ng-init="get_category_list();get_brand_list(); get_uom_list();"-->
+                    <div class="col-md-3">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form"
+                              ng-submit="getproductsPriceOffer()">
+                            <div class="input-symbol">
+                                <input type="text" Placeholder="Search" class="form-control"
+                                       ng-model="searchKeyword_price.searchBox"><!-- ng-blur="getproductsPriceOffer()" -->
+                                <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="searchKeyword_price.category_names"
+                                ng-options="opt as opt.name for opt in cat_prodcut_arr" class=" form-control">
+                            <!--ng-change="getproductsPriceOffer()"-->
+                            <option value="" disabled selected>Select Category</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select ng-model="searchKeyword_price.brand_names"
+                                ng-options="opt as opt.name for opt in brand_prodcut_arr" class=" form-control">
+                            <!--ng-change="getproductsPriceOffer()"-->
+                            <option value="" disabled selected>Select Brand</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select ng-model="searchKeyword_price.units"
+                                ng-options="opt as opt.title for opt in uni_prooduct_arr" class=" form-control">
+                            <!-- ng-change="getproductsPriceOffer()"-->
+                            <option value="" disabled selected>Select Unit</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-default m0auto" title="Clear Fields"
+                                ng-click="clear_prod_filter()" ng-model="strict"><i class="fa fa-refresh"></i>
+                        </button><!--getproductsPriceOffer(77,1);-->
+                    </div>
+                </div>
+                <div>
+                    <!--paging options start-->
+                    <div class="page-options" style="margin-top:5px">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-6 show_record">Show Entries </label>
+
+                                <div class="col-md-4">
+                                    <select ng-model="item_paging.pagination_limit"
+                                            ng-options="opt as opt.label for opt in pagination_arry" class="in-t-1"
+                                            ng-change="getproductsPriceOffer()">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-center total_paging_center" ng-if="products.length > 0">
+                                {{total_paging_record}}
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-right total_paging_record" ng-if="products.length > 0">Total: {{total}}
+                            </div>
+                        </div>
+                    </div>
+                    <!--paging options end-->
+                </div>
+
+                <div>
+                    <table class="table table-striped table-bordered table-hover no-margin">
+                        <thead class="fixit">
+                        <!--<tr class="bg-col">
+                            <th ng-repeat="column in columns"
+                                ng-show="column.title != 'Id' && column.title != 'Current Stock' && column.title != 'Brand Id' && column.title != 'Category Id' && column.title != 'Unit Id' ">
+                                {{column.title}}
+                            </th>
+                        </tr>-->
+                        <tr class="bg-col">
+                            <th>Item Code</th>
+                            <th style="    width: 303px;">Name</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Unit Of Measure</th>
+                            <th>Standard Price</th>
+                        </tr>
+                        </thead>
+                        <tbody class="courser table-body fixit" style="max-height:300px;">
+                        <!--  | filter:searchKeyword_price:strict  track by $index  -->
+                        <!--<tr ng-repeat="prod in   products" ng-click="confirm2(prod)">-->
+                        <tr ng-click="confirm2(prod)"
+                            ng-repeat="prod in prooduct_arr | filter:searchKeyword_price.searchBox | filter:searchKeyword_price.brand_names.name | filter:searchKeyword_price.units.title | filter:searchKeyword_price.category_names.name">
+
+                        <!--<td ng-repeat="column in columns"
+                                ng-show="column.title != 'Id' && column.title != 'Current Stock' && column.title != 'Brand Id' && column.title != 'Category Id' && column.title != 'Unit Id' ">
+                                <span> {{prod[column.field]}}</span>
+
+                            </td>
+                        </tr>-->
+                            <td>{{prod.product_code}}</td><!--.code-->
+                            <td style="    width: 303px;">{{prod.description}}</td>
+                            <td>{{prod.category_name}}</td>
+                            <td>{{prod.brand_name}}</td>
+                            <!--<td>{{prod.base_unit_of_measure}}</td>-->
+                            <td>{{prod.unit_name}}</td>
+                            <td>{{prod.standard_price}}</td>
+                        </tr>
+                        <tr ng-if="prooduct_arr.length == 0">
+                            <td colspan="7" class="text-center">No record found!</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<div ng-if="products.length > 0" class="pull-left" style="    margin-top: -8px;">
+                    <div class="pull-right">
+                        <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                            <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                    ng-click="itemselectPage(item_paging.ppage); getproductsPriceOffer(item_paging.ppage);"
+                                    href="javascript: void(0);" class="">«</a></li>
+                            <li ng-repeat="(key,value) in item_paging.pages"
+                                ng-class="{'active': value == item_paging.cpage}"><a
+                                    ng-click="itemselectPage(value); getproductsPriceOffer(value);"
+                                    href="javascript: void(0);"><span
+                                    ng-bind="value"></span></a></li>
+                            <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                    ng-click="itemselectPage(item_paging.npage); getproductsPriceOffer(item_paging.npage);"
+                                    href="javascript: void(0);">»</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- Selected:&nbsp;{{(products | filter: {chk: true}).length}} -->
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>

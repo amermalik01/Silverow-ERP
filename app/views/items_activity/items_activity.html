@@ -1,0 +1,30 @@
+<div ng-controller="itemsActivityController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <!-- Row starts -->
+          <div class="row">
+            <div class="col-md-12">
+              <div ng-if="tableData.data.ack"
+                   style="margin-top: 18px;">
+                <div class="flexiTable"
+                     x-generate-table
+                     x-data="tableData.data"
+                     x-forget-filters="true"
+                     x-controller-initiate
+                     x-table-name="AllItemsActivity"
+                     x-filter-function="account_activity()"
+                     x-filter-object="searchKeyword">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

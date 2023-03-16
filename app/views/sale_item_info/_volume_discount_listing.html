@@ -1,0 +1,36 @@
+<div class="pull-right col-sm-2">
+    <a id="prompt" ng-click="showVolumeDiscForm()" class="btn btn_add pull-right "
+       ng-show="(rec.id > 0 || isAdded)"> Ad</a>
+    <!-- ng-show="(rec.id > 0 || isAdded) && isBtnVolNew" -->
+</div>
+
+<div class="panel-body">
+    <div id="dt_example" class="example_alt_pagination">
+        <div class="panel panel-default">
+            <table ng-table="tableParams5" class="table table-condensed table-striped table-hover table-bordered"
+                   ng-show="$data.length > 0">
+                <tbody class="table-body">
+                <tr ng-repeat="vol_disc in $data">
+
+                    <td data-title="'Volume'">{{vol_disc.volume}}</td>
+                    <td data-title="'Price'">{{vol_disc.price | numberNoDecimalsIfZeroFilter:2:rec.currencys.code}}</td>
+                    <td data-title="'Discount Type'">{{vol_disc.discount_type}}</td>
+                    <td data-title="'Discount'">{{vol_disc.discount}}</td>
+                    <td data-title="'Discounted Price'">{{vol_disc.discounted_price |
+                        numberNoDecimalsIfZeroFilter:2:rec.currencys.code}}
+                    </td>
+                    <td data-title="'Start Date'">{{convert_unix_date_to_angular(vol_disc.start_date)}}</td>
+                    <td data-title="'End Date'">{{convert_unix_date_to_angular(vol_disc.end_date)}}</td>
+
+                    <td class="text-left " data-title="'Action'">
+                        <a ng-click="editVolDisc(vol_disc.id)" title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+                        <a ng-click="delete(vol_disc.id,$index,$data)" title="Delete" class="btn"><i
+                                class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+                <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>

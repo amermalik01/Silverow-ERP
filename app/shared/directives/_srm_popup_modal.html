@@ -1,0 +1,44 @@
+<!-- Order Customer -->
+<div class="modal fade"
+     id="srm_Modal_Left"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog  modal-lg"
+       style="width: 94%; margin-top: 20px;"
+       dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                onclick="$('#srm_Modal_Left').modal('hide');">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+       <div class="row"
+             style="    margin-bottom: 0px !important;">
+          <div class="col-md-12">
+            <div class="flexiTable"
+                 x-report-modal="'true'"
+                 x-generate-table
+                 x-data="srmTableData.data"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-table-name="SRM"
+                 x-filter-function="getSRMLeft()"
+                 x-row-click="confirm_Srm_single(file)"
+                 x-filter-object="searchKeywordSrm"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer"> 
+        <button type="button"
+                class="btn btn-cancel"
+                onclick="$('#srm_Modal_Left').modal('hide');">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

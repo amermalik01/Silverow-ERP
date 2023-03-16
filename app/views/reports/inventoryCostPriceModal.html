@@ -1,0 +1,131 @@
+<style>
+    #stockReportModal .modal-body {
+        max-height: 80vh;
+        overflow: auto;
+        padding: 1.5cm;
+
+    }
+</style>
+<div class="modal fade template-design"
+     id="CostPriceReportModal">
+    <div class="modal-dialog modal-md"
+         style="  width: 24cm;margin-top: 11px;">
+         <!-- width: 1200px !important;margin-top: 11px; -->
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+                <div class='reportHeading' style="clear: both;margin-bottom: 72px;">
+                    <div class='reportHeading__left'>
+                        <div class='reportHeading__left__reportname'
+                             ng-if="printPdfVals.reportType=='inventory'">Inventory List</div>
+                        <div class='reportHeading__left__reportname'
+                             ng-if="printPdfVals.reportType!='inventory'">Inventory Cost & Sales Price List
+                        </div>
+                        <!-- <div class='reportHeading__left__reportfilter'>
+                            From {{printPdfVals.dateFrom}} To {{printPdfVals.dateTo}}
+                        </div> -->
+                        <div class='reportHeading__left__reportfilter'>
+                            Date {{printPdfVals.dateTo}}
+                        </div>
+                    </div>
+                    <div class='reportHeading__right'>
+                        <img ng-src='{{imagePath+defaultLogo}}'
+                             class='reportHeading__right__img '
+                             ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                        <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                    </div>
+                </div>
+                <!-- <div style="clear: both; margin: 0pt; padding: 0pt; "></div> -->
+                <div style="display: inline-block;height: 17px;width: 100%"></div>
+
+                <!-- posted Sale Order -->
+                <!-- class="table table-condensed table-striped table-hover report-spacing-table"
+                       id="data-table" -->
+                       
+                <table style=" width: 100%;">
+                    <!-- margin-top: 8px;margin-bottom: 10px; -->
+                    <!-- <thead>
+                        <tr class="bg-col">
+                            <th width="10%">Item No.</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Category</th>
+                            <th width="10%">Brand</th>
+                            <th width="10%">Date Valid From</th>
+                            <th width="10%">Date Vaid Till</th>
+                            <th width="10%"
+                                class="text-right">Cost Price</th>
+                            <th width="10%">Date Valid From</th>
+                            <th width="10%">Date Vaid Till</th>
+                            <th width="10%"
+                                class="text-right">Sale Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+                            <td width="10%">{{rec.product_code}}</td>
+                            <td width="10%">{{rec.description}}</td>
+                            <td width="10%">{{rec.category}}</td>
+                            <td width="10%">{{rec.brand}}</td>
+                            <td width="10%">{{rec.purchase_from}}</td>
+                            <td width="10%">{{rec.purchase_to}}</td>
+                            <td width="10%"
+                                class="text-right">{{rec.costPrice | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            <td width="10%">{{rec.sale_from}}</td>
+                            <td width="10%">{{rec.sale_to}}</td>
+                            <td width="10%"
+                                class="text-right">{{rec.salePrice | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                        </tr>
+                    </tbody> -->
+                     <!-- class="bg-col" -->
+
+                    <thead>
+                        <tr>
+                            <th width="10%">Item No.</th>
+                            <th width="30%">Description</th>
+                            <th width="20%">Category</th>
+                            <th width="10%">Brand</th>
+                            <th width="10%">U.O.M</th>
+                            <th width="10%" class="text-right">Cost Price</th>
+                            <th width="10%" class="text-right">Sale Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+                            <td width="10%">{{rec.product_code}}</td>
+                            <td width="30%">{{rec.description}}</td>
+                            <td width="20%">{{rec.category}}</td>
+                            <td width="10%">{{rec.brand}}</td>
+                            <td width="10%">{{rec.uom}}</td>
+                            <td width="10%" class="text-right">{{rec.costPrice | numberNoDecimalsIfZeroFilter:2:''}} {{defaultCurrencyCode}}</td>
+                            <td width="10%" class="text-right">{{rec.salePrice | numberNoDecimalsIfZeroFilter:2:''}} {{defaultCurrencyCode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModal('CostPriceReportModal')">Cancel</button>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportCostPrice(printPdfVals)"
+                       ng-if="!jsreportLoading && printPdfVals.reportType!='inventory'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

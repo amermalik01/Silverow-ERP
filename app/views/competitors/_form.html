@@ -1,0 +1,234 @@
+<div class="widget">
+    <div class="widget-body">
+        <div class="row animated fadeIn">
+            <div class="col-md-12">
+                <div class="panel-title2">Competitors</div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Category <span class="required">*</span></label>
+
+                        <div class="col-md-8">
+                            <!-- <select ng-model="rec.category_ids"  ng-options="opt as opt.name for opt in arr_category"   ng-disabled ="check_readonly" ng-change="addNewCategoryPopup(rec)" class="form-control" required  ><option style="display:none" ></option>
+                                      </select> -->
+                            <div class="input-symbol">
+                                <input type="text" ng-model="rec.category_name" id="category_name" ng-click="addCategory()"
+                                       class="form-control" ng-disabled="check_readonly" required/>
+                                <input type="hidden" ng-model="rec.category_id" id="category_id" class="form-control"/>
+                                <input type="hidden" ng-model="rec.category_type" id="category_type" class="form-control"/>
+                                <input type="hidden" ng-model="rec.id" id="update_id" class="form-control"/>
+                                <span><i class="fa fa-window-maximize" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Brand <span class="required">*</span></label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.brand" id="brand" class="form-control"
+                                   ng-disabled="check_readonly" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><span ng-if="rec.category_type != 2">Item</span><span
+                                ng-if="rec.category_type == 2">Service</span> Name </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.item_notes" id="item_notes" class="form-control"
+                                   ng-disabled="check_readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Unit Of Measure">U.O.M<span class="required">*</span> </label>
+
+                        <div class="col-md-8">
+                            <select ng-model="drp.unit_id" ng-options="opt as opt.title for opt in unit_measures"
+                                    class=" form-control" ng-change="addNewPopup(drp.unit_id, 'UNIT', 'Unit', drp)"
+                                    ng-disabled="check_readonly" required>
+                                <option value='' style="display:none;"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Purchase Price<span class="required">*</span> </label>
+
+                        <div class="col-md-4">
+                            <div class="input-symbol">
+                                <input type="text" ng-model="rec.price" id="price" class="form-control input_text"
+                                       ng-disabled="check_readonly" required/>
+                                <span>{{defaultCurrencyCode + '/' + drp.unit_id.title}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="checkbox" ng-model="rec.purchase_price_vat_chk"
+                                   ng-checked="rec.purchase_price_vat_chk > 0" id="purchase_price_vat_chk">
+                            &nbsp;&nbsp;&nbsp;<label class="control-label">( Include VAT ) </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Wholesale Price<span class="required">*</span> </label>
+
+                        <div class="col-md-4">
+                            <div class="input-symbol">
+                                <input type="text" ng-model="rec.sale_price" id="sale_price" class="form-control input_text"
+                                       ng-disabled="check_readonly" required/>
+                                <span>{{defaultCurrencyCode + '/' + drp.unit_id.title}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                            <input type="checkbox" ng-model="rec.wholesale_price_vat_chk"
+                                   ng-checked="rec.wholesale_price_vat_chk > 0" id="wholesale_price_vat_chk">
+                            &nbsp;&nbsp;&nbsp;<label class="control-label">( Include VAT ) </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Volume<span class="required">*</span></label>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="rec.volume" id="volume" class="form-control"
+                                   ng-disabled="check_readonly" required/>
+                        </div>
+                        <div class="col-md-4">
+                            <select ng-model="rec.vol_unit_id" ng-options="opt as opt.title for opt in unit_measures"
+                                    required ng-disabled="check_readonly" class="form-control">
+                                <option style="display:none" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Order Frequency</label>
+
+                        <div class="col-md-4">
+                            <!--                        <input type="text" ng-model="rec.order_frequency" id="order_frequency" class="form-control"  ng-disabled ="check_readonly" />-->
+                            <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup"
+                                   ng-model="rec.lead_time"
+                                   class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+                                   data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                                   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                        </div>
+                        <div class="col-md-4">
+                            <select ng-model="drp.lead_type" ng-options="opt as opt.title for opt in lead_types"
+                                    class=" form-control" ng-change="addNewPopup(drp.lead_type, 'LEAD', 'Lead', drp)"
+                                    ng-disabled="check_readonly" required>
+                                <option value='' style="display:none;"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Date</label>
+
+                        <div class="col-sm-8">
+                            <input jqdatepicker class="2date-picker form-control" ng-model="rec.created_date" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" style="    width: 14%;">Comments</label>
+
+                        <div class="col-md-10" style="position:relative;">
+                            <textarea name="note" cols="160" rows="4" id="note" ng-model="rec.note" class="form-control"
+                                      ng-readonly="check_readonly" style="resize:none;" ng-change="showWordsLimits()"
+                                      maxlength="500"></textarea>
+                            <span class="word-counter">{{wordsLength}}/500</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" style="width:14%;">Upload File</label>
+
+                        <div class="col-md-4 ">
+                            <!-- <input id="uploadFile"  placeholder="Choose File" disabled="disabled"  /> -->
+
+                            <div class="fileUpload btn btn_blue pull-left"><span>Select File</span>
+                                <input id="uploadBtn" type="file" ngf-select="onFileSelect($files)" name="file"
+                                       class="upload" ng-disabled="check_readonly"/>
+                            </div>
+                            <em style="font-size: 30px;float: left;margin: 2px 5px; display:block;"
+                                style="font-size: 30px !important;" class="fa fa-file-image-o"
+                                ng-if="check_files == 1"></em> <a style="float: left;margin: 2px 5px;"
+                                ng-if="check_files == 2" target="_blank"
+                                href="{{basePath + 'upload/sales/crm/' + files[0].name}}">
+                                <em style="font-size: 30px !important;" class="fa fa-file-image-o"></em></a>
+
+                            <!-- isFileExist(basePath+'upload/sales/crm/',files[0].name) -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="pull-right">
+
+                        <div class="dropdown ib" ng-show="rec.id > 0 && cust_competetor_tab_module > 0">
+                            <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                            <ul class="dropdown-menu dte animated fadeIn">
+                                <span ng-click="set_document_internal(cust_competetor_tab_module)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-submit" type="submit" ng-show="!check_readonly"><i
+                                class="fa fa-check fa_display"></i> Save
+                        </button>
+                        <button class="btn btn_blue width_80" type="button" ng-click="showCrmCompEditForm()"
+                                ng-show="check_readonly"><i class="fa fa-edit fa_display"></i> Edit
+                        </button>
+                        <button class="btn btn-cancel" type="button" ng-click="showCrmCompListing()"><i
+                                class="fa fa-undo fa_display"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div ng-show="check_files">
+        <br/><br/><br/>
+
+        <table class="table table-bordered table-striped" id="comp_file_table">
+        <thead>
+           <tr>
+              <th width="80%">Name</th>
+        <!-- <th ng-show="uploader.isHTML5">Size</th> --
+        <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,file) in files">
+        <td>
+          <div class="form-group no-margin">
+           <span style="font-size:20px;" class="col-md-1" ng-bind-html='file.name | fileIcon'></span>&nbsp;
+           <div class="col-md-5">
+            <span ng-show="check_readonly">{{ file.title }}</span><input type="text" class="input-sm form-control" ng-model="file.title" ng-show="!check_readonly">
+           </div>
+          </div>
+        </td>
+        <!-- <td nowrap="">{{ value.file |  }} MB</td> --
+
+        <td nowrap="">
+        <a target="_blank" ng-if="file.id" href="{{basePath+'upload/sales/crm/'+file.name}}" title="View" class="btn btn-info btn-xs"><em class="fa fa-eye"></em></a>
+
+        <button type="button" ng-if="file.id" class="btn btn-info btn-xs" ng-click="deleteFile(key,file.id)" title="Delete"><em class="fa fa-trash-o"></em></button>
+        <button type="button" ng-if="!file.id" class="btn btn-info btn-xs" ng-click="removeFile(key)" title="Delete"><em class="fa fa-trash-o"></em></button>
+
+        <!-- <a download="{{file.file}}" ng-if="file.id" ng-href="{{basePath+'upload/sales/crm/'+file.name}}" class="btn btn-info btn-xs" title="Download"><em class="fa fa-download"></em></a>
+
+        <button type="button" ng-if="file.id" class="btn btn-info btn-xs" ng-click="viewFile(file.id)" title="Preview" ><em class="fa fa-eye"></em></button>
+        <button type="button" ng-if="file.id" class="btn btn-info btn-xs" ng-click="deleteFile(key,file.id)" title="Delete"><em class="fa fa-trash-o"></em></button>
+
+        <button type="button" ng-if="!file.id" class="btn btn-info btn-xs" ng-click="removeFile(key)" title="Delete"><em class="fa fa-trash-o"></em></button> --
+        </td>
+        </tr>
+        </tbody>
+        </table>
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>-->
+    </div>
+</div>
+<div ng-include="'app/views/competitors/_item_services_popup.html'"></div>

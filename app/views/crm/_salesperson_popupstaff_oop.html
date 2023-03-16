@@ -1,0 +1,114 @@
+<div class="modal fade" id="salesPersonOppstaff" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" dragable style="width: 92%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden;">
+                <!-- Filter Start -->
+                <div class="row">
+                    <div>
+                        <!-- Filter Start -->
+                        <div class="col-md-3">
+                            <form autocomplete="off" class="form-horizontal no-margin ng-pristine ng-valid" role="form">
+
+                                <div class="input-symbol">
+                                    <input type="text" Placeholder="Search" class="form-control"
+                                           ng-model="searchKeyword.search">
+                                    <span id="date_msg_4">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </form>
+
+                            <!-- <form class="form-horizontal no-margin" ng-submit="">
+                                <div class="col-sm-4 ">
+                                    <div class="form-group ">
+                                        <div class="input-symbol">
+                                            <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" id="searchKeyword" ng-model="searchKeyword">
+                                            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                                    </div>
+                                </div>
+                            </form> -->
+                        </div>
+                        <!-- <div class="col-md-2 remove-left-pad">
+                            <ui-select ng-model="searchKeyword.employee_type">
+                                <ui-select-match placeholder="Select Employment Type">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt in emp_type_arr | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div> -->
+                        <!-- <div class="col-md-1 remove-left-pad">
+                            <button class="btn btn-default2"
+                                    type="button"
+                                    ng-click="searchKeyword={}" ng-model="strict2">Clear Filter</button>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- Filter End -->
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div>
+                                <!--{{recordsupportstaff}}-->
+                                <table class="table table-condensed table-striped table-bordered table-hover" ng-if="columnsstaff.length > 0">
+                                    <thead class="fixit">
+                                        <tr class="bg-col">
+                                            <th style="width: 4%;">
+                                                <!--<input type="checkbox" class="checkAllexcluded">-->
+
+                                                <div class="pure-checkbox">
+                                                    <input type="checkbox"
+                                                        ng-click="checkAllStaffOopCycle(selectedAll)" 
+                                                        ng-checked="selectedAll" 
+                                                        ng-model="selectedAll" id="checkall9">
+                                                    <label for="checkall9"></label>
+                                                </div>
+                                            </th>
+                                            <th ng-repeat="column in columnsstaff" ng-show="column.field != 'isPrimary'" ng-if="column.title != 'Internal Extension' && column.title != 'Telephone' && column.title != 'Mobile' &&
+                                                    column.title != 'Allow Login' && column.title != 'Status' && column.title != 'Isprimary'"
+                                                ng-class="{'despwidth3':column.title== 'Employee Type'}"> 
+                                                
+                                                <span ng-if="column.title =='Code'">Employee No.</span>
+                                                <span ng-if="column.title !='Code'">{{column.title}}</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fixit" style="max-height: 255px;">
+                                        <tr ng-repeat="sp in recordsupportstaff | filter:searchKeyword.search | filter:searchKeyword.employee_type.name track by $index">
+                                            <!--salepersons_support_arry-->
+                                            <td style="width: 4%;">
+                                                <div class="pure-checkbox" style="margin: 0px 3px;padding-top: 3px;">
+                                                    <input type="checkbox" name="testss{{$index}}" data-parsley-multiple="checkbox" id="testss{{$index}}" ng-checked="sp.chk"
+                                                        ng-click="selectstaffperson(sp)">
+                                                    <label for="testss{{$index}}"></label>
+                                                </div>
+                                            </td>
+                                            <td ng-repeat="column in columnsstaff" ng-show="column.field != 'isPrimary'" ng-if="	column.title != 'Internal Extension' && column.title != 'Telephone' && column.title != 'Mobile' &&
+                                                    column.title != 'Allow Login' && column.title != 'Status' && column.title != 'Isprimary'"
+                                                ng-class="{'despwidth3':column.title== 'Employee Type'}">
+                                                {{sp[column.field]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row ends -->
+            </div>
+            <div class="modal-footer">
+                <!--<span class="pull-left">Selected:&nbsp;{{(arr_salepersons_support_arry| filter: {chk: true}).length}}</span>
+                <button class="btn btn_add2" data-dismiss="modal" type="button">Add</button>
+                <button type="button" class="btn btn-cancel2" data-dismiss="modal">Cancel</button>-->
+                <span class="pull-left">Selected:&nbsp;{{(recordsupportstaff | filter: {chk: true}).length}}</span>
+                <button class="btn btn_add2" ng-click="submitPendingSelectedStaffOopCycle()" type="button">Add</button>
+                <button type="button" class="btn btn-cancel" ng-click="clearPendingSelectedStaffOopCycle()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ends

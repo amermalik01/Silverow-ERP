@@ -1,0 +1,22 @@
+
+<script type="text/ng-template" id="modalcontinueid">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 3px;color: #adadad;">Confirmation</h3>
+        <p><b style="    margin: 7px 0 12px 0; display: block;">Are you sure you want to Continue?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<style type="text/css">
+    .ngdialog-content {
+        background: #FFF !important;
+        padding: 10px !important;
+    }
+</style>

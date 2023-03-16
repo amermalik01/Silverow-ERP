@@ -1,0 +1,265 @@
+[
+    {
+        "title": "Item No.",
+        "field_name": "product_code",
+        "event": {
+            "name": "openInventoryLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "85",
+        "data_type": "string"
+    },
+    {
+        "title": "Description",
+        "field_name": "product_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Brand",
+        "field_name": "brand_name",
+        "visible": "0",
+        "pinned": "0",
+        "db_table": "brand",
+        "db_field": "brandname",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Category",
+        "field_name": "category_name",
+        "db_table": "category",
+        "db_field": "name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "U.O.M",
+        "field_name": "unit_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Sales - YTD",
+        "field_name": "sales_current_year",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:1",
+                "title:Sales - YTD"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Purchases - YTD",
+        "field_name": "purchases_current_year",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:2",
+                "title:Purchases - YTD"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - YTD",
+        "field_name": "profit_current_year",
+        "visible": "1",
+        "headerTotal": true,
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit % - YTD",
+        "field_name": "profit_percentage_current_year",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Sales - Selected Period",
+        "field_name": "sales_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:3",
+                "title:Sales - Selected Period"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Purchases - Selected Period",
+        "field_name": "purchases_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:4",
+                "title:Purchases - Selected Period"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "190",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - Selected Period",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "profit_period",
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit % - Selected Period",
+        "field_name": "profit_percentage_period",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "170",
+        "data_type": "number", 
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh"
+        
+    },
+    {
+        "title": "Sales - Prior Period",
+        "field_name": "sales_prev_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:5",
+                "title:Sales - Prior Period"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "0",
+        "custom_classes": "highlightColBoth2 ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Purchases - Prior Period",
+        "field_name": "purchases_prev_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:6",
+                "title:Purchases - Prior Period"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "0",
+        "custom_classes": "highlightColBoth2 ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "170",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - Prior Period",
+        "custom_classes": "highlightColBoth2 ",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "profit_prev_period",
+        "headerTotal": true,
+        "visible": "0",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit %  - Prior Period",
+        "field_name": "profit_percentage_prev_period",
+        "custom_classes": "highlightColBoth2 ",
+        "custom_classesHeader": "highlightTh",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Status",
+        "field_name": "status",
+        "default_filter": true,
+        "filter_type": "Exact",
+        "filter_value": "Active",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "drop_down"
+    }
+]

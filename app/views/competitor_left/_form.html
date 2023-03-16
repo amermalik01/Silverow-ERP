@@ -1,0 +1,83 @@
+                <div class="row">
+               <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Category <span class="required">*</span></label>
+                      <div class="col-lg-8">
+                      <select ng-model="rec.category_id"  ng-options="opt as opt.label for opt in arr_category"  ng-readonly="check_readonly" class="form-control" 
+                      ng-class="{'not-click-allow':disableClass > 0}">
+                        </select>
+                       <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Brand <span class="required">*</span></label>
+                       <div class="col-lg-8">
+                        <input type="text" ng-model="rec.brand" id="brand" class="form-control" ng-readonly="check_readonly" required="1"/>
+                      
+                    </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Price </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.price" id="price" class="form-control" ng-readonly="check_readonly"    />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label"> Purchase Volume</label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.volume" id="volume" class="form-control" ng-readonly="check_readonly"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="col-lg-2 control-label">Order Frequency</label>
+                      <div class="col-lg-4">
+                        <input type="text" ng-model="rec.order_frequency" id="order_frequency" class="form-control" ng-readonly="check_readonly"    />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="row">
+              	<div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Note </label>
+                  <div class="col-lg-10">
+                <textarea name="note" cols="160" rows="10" id="note" ng-model="rec.note" class="form-control"   ng-readonly="check_readonly" ></textarea>  </div>
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="col-lg-2 control-label">&nbsp;</label>
+                      <div class="col-lg-10 ">
+                      	<input id="uploadFile" placeholder="Choose File" disabled="disabled" ng-hide="check_readonly" />
+                        <div class="fileUpload btn btn-primary" ng-hide="check_readonly">
+                            <span>Upload</span>
+                            <input id="uploadBtn" type="file" ng-file-select="onFileSelect($files)" name="file[]" multiple accept="image/*" class="upload" />
+                        </div>
+                        <br />
+                        <div class="file_container" ng-show="check_file"><span  ng-repeat="file in str_files">{{file.name}}<span ng-click="removeFile(file.index)" class="spndelete"><em class="fa fa-trash-o"></em></span></span></div>
+                        <br /><br />
+                        <div class="file_container" ng-show="check_files"><span  ng-repeat="(key,value) in comp_files">
+                        <a download="{{value.file}}" ng-href="api/uploads/documents/company-{{rec.company_id}}/competitor/{{value.file}}">
+                        <span style="font-size:20px;" ng-bind-html='value.file | fileIcon'></span>&nbsp;{{value.file}}</a><span ng-click="viewFile(value.id)"><em class="fa fa-eye"></em></span><span ng-click="deleteFile(key,value.id)" class="spndelete"><em class="fa fa-trash-o"></em></span></span>	
+                        <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>                

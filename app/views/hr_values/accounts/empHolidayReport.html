@@ -1,0 +1,173 @@
+<div>
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+  <div class="a-content">
+    <div class="a-label-container">
+
+      <b class="a-title"
+         ng-if="module=='AbsencesList'"
+         style="width: 120px;">Date <span class="required"> *</span>
+      </b>
+      <div class="input-symbol a-date"
+           ng-if="module=='AbsencesList'">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               placeholder="From"
+               readonly
+               ng-model="filterReport.dateFrom"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date"
+           ng-if="module=='AbsencesList'">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         ng-if="module=='AbsencesList'"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate"
+                type="button"
+                ng-if="module=='AbsencesList'"
+                ng-click="generateEmpAbsenceReport()">Generate Report</button>        
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <button class="btn report-default"
+                type="button"
+                ng-if="module!='AbsencesList'"
+                ng-click="showPdfModal()">Print Preview</button>
+
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-if="module=='AbsencesList'"><a ng-click="generateEmpAbsenceReport('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <!-- <div class="report-box"
+           ng-if="module=='AbsencesList' && filterReport.filter_by==1">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Employee(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="selectEmployees()">
+          <div class="panel-body"
+               style="background-color: white;">
+            <span ng-repeat="sp in employeesArr track by $index">
+              <span ng-if="employeesArr.length == 1">{{sp.name}}</span>
+              <span ng-if="employeesArr.length > 1">{{sp.name}}<span
+                      ng-if="$index < employeesArr.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Select Holiday Type</b>
+
+        <div class="a-form-control"
+             style="width: 334px;">
+          <label style="margin-right: 3px;"
+                 ng-repeat="ht in holidayType_arr">
+            <input type="checkbox"
+                   name="holiday_type"
+                   ng-model="filterReport.holiday[ht.id]"
+                   id="holiday_type_{{ht.id}}"
+                   ng-true-value="{{ht.id}}">
+            {{ht.title}}
+          </label>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Report Type</b>
+
+        <div class="a-date">
+          <select class="form-control"
+                  ng-model="filterReport.reporttype">
+            <option>Summary</option>
+            <option>Detailed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.dateTo}}</small>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+    <div>
+      <div id="dt_example"
+           class="example_alt_pagination">
+        <table class="table table-condensed table-striped table-hover report-spacing"
+               id="data-table"
+               style="    margin-top: 8px;">
+          <thead class="fixit">
+            <tr class="bg-col">
+              <th ng-repeat="column in columns"
+                  ng-if="column.title!= 'Id'"
+                  x-col="{{column.title}}">
+                <span ng-if="column.title == 'Employee Type'">Employment Type</span>
+                <span ng-if="column.title == 'No'">Emp. No.</span>
+                <span ng-if="column.title == 'Name'">Name</span>
+                <span
+                      ng-if="column.title != 'Employee Type' && column.title != 'No' && column.title != 'Name'">{{column.title}}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="fixit">
+            <tr ng-repeat="rec in reportsDataArr | filter: searchKeyword.search"
+                ng-if="columns.length > 0">
+              <td ng-repeat="column in columns"
+                  title="{{rec[column.field]}}"
+                  ng-if="column.title != 'Id'">
+                <span>{{rec[column.field]}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

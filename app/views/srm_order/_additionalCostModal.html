@@ -1,0 +1,474 @@
+<style>
+    .smallwidget {
+        width: 31.5%;
+        margin-top: 5px;
+    }
+
+    .smallwidget span {
+        font-weight: normal;
+        font-size: 11px;
+    }
+</style>
+<div class="modal fade"
+     id="additionalCostModal">
+    <div class="modal-dialog modal-lg"
+         style="width:90%"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Item Additional Cost Amounts - Purchase Order ({{rec.order_code}})</h4>
+            </div>
+            <div class="modal-body">
+                <!-- <div ng-class="{'whirl no-overlay':showLoader}"></div> -->
+                <div class="row">
+                    <!-- <div class="col-md-4">
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Item</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.product_code}} - {{formData.product_name}}</label>
+                        </div>                        
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Supplier </label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal;">{{formData.order_no}} - {{rec.sell_to_cust_name}}</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label" title="Consignment No.">Cons. No.</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.bl_shipment_no}}</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Warehouse</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.warehouses_name}}</label>
+                        </div >
+                    </div> -->
+                    <div class="col-md-5">
+                        <div class="smallwidget">
+                            <div>
+                                Total Amount
+                            </div>
+                            <div>
+                                <!-- {{formData.additionalCost}} -->
+                                {{formData.additionalCost | currency : "" : decimal_range }}
+                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                            </div>
+                        </div>
+                        <div class="smallwidget"
+                             ng-class="{'StkAllocated':formData.remainingAdditionalCost == 0}">
+                            <div>
+                                <!-- formData.additionalCost==formData.allocatedAdditionalCost -->
+                                Allocated Amount
+                            </div>
+                            <div>
+                                <!-- {{formData.allocatedAdditionalCost}} -->
+                                {{formData.allocatedAdditionalCost | currency : "" : decimal_range }}
+                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                            </div>
+                        </div>
+                        <div class="smallwidget"
+                             ng-class="{'belowzero2':formData.remainingAdditionalCost>0,'extraAlocated':formData.remainingAdditionalCost<0}">
+                            <div>
+                                Remaining Amount
+                            </div>
+                            <div>
+                                <!-- {{formData.remainingAdditionalCost}} -->
+                                {{formData.remainingAdditionalCost | currency : "" : decimal_range }}
+                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 14px 0 13px 0;">
+                <div class="row">
+                    <div class="col-md-3"
+                         style="margin-bottom: 6px;"
+                         ng-if="invoiceRec==1">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="additionalCostSearch.search">
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-1"
+                         ng-if="invoiceRec==1">
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-click="clearAdditionalCostFilter()"
+                                ng-model="strict">Clear Filter</button>
+                    </div>
+
+                    <div class="col-sm-2"
+                         ng-if="invoiceRec==0"
+                         style="    margin-bottom: 11px;">
+                        <select class="form-control"
+                                ng-model="additionalCostSearch.selSpread"
+                                ng-disabled="check_srm_readonly"
+                                ng-options="opt as opt.name for opt in arrSpread">
+                            <option value=""
+                                    disabled>Select Spread</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 pl0"
+                         ng-if="invoiceRec==0"
+                         style="    width: 10%;">
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-disabled="check_srm_readonly"
+                                ng-click="applySpread(additionalCostSearch.selSpread,formData.additionalCost)">Apply
+                            Spread</button>
+                    </div>
+                    <div class="col-md-2 pl0"
+                         ng-if="invoiceRec==0">
+                        <input placeholder="Invoice No."
+                               type="text"
+                               class="form-control"
+                               ng-model="searchKeyword.si.invoice_code"
+                               ng-disabled="check_srm_readonly">
+                    </div>
+                    <div class="col-md-2 pl0"
+                         ng-if="invoiceRec==0">
+                        <input placeholder="Consignment No."
+                               type="text"
+                               class="form-control"
+                               ng-model="searchKeyword.si.consignment_no"
+                               ng-disabled="check_srm_readonly">
+                    </div>
+                    <div class="col-md-2 pl0"
+                         ng-if="invoiceRec==0">
+                        <input placeholder="Reference No."
+                               type="text"
+                               class="form-control"
+                               ng-model="searchKeyword.wa.container_no"
+                               ng-disabled="check_srm_readonly">
+                    </div>
+                    <div class="col-md-1 pl0"
+                         ng-if="invoiceRec==0">
+                        <button class="btn btn-default2"
+                                style="    width: 100%;"
+                                type="button"
+                                ng-click="applyLocalFilterAdditionalItemCost(1)"
+                                ng-disabled="check_srm_readonly">Search</button>
+                    </div>
+
+                    <div class="col-md-1 pl0"
+                         ng-if="invoiceRec==0">
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-click="clearSearchFilter();"
+                                ng-model="strict">Clear Filter</button>
+                    </div>
+
+                    <!-- {{itemAddCostPurchaseOrder|json}} -->
+                    <div class="col-md-12"
+                         ng-if="itemAddCostPurchaseOrderFiltered.length || checkChecked()">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="fixit">
+                                    <tr>
+                                        <th style="width: 5%;text-align: center;"
+                                            ng-if="invoiceRec==0">
+                                            <input type="checkbox"
+                                                   ng-model="selectedAllItemAddCostPurchaseOrder"
+                                                   ng-disabled="check_srm_readonly"
+                                                   ng-click="checkAllItemAddCostPurchaseOrder(selectedAllItemAddCostPurchaseOrder)"
+                                                   ng-checked="checkIfAllChecked()">
+                                        </th>
+
+                                        <th title="Purchase Order">PO No.</th>
+                                        <th title="Purchase Invoice">PI No.</th>
+                                        <th title="Consignment No.">Cons. No.</th>
+                                        <th>Posting Date</th>
+                                        <th>Item No.</th>
+                                        <th style="width:15%;">Description</th>
+                                        <th title="Reference No.">Ref. No.</th>
+                                        <th>Qty.</th>
+                                        <th>Amount Per {{formData.uom}}</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fixit"
+                                       style="    max-height: 200px !important;">
+                                    <tr ng-repeat="rec in itemAddCostPurchaseOrder"
+                                        ng-if="rec.chk && ((rec.postedChk>0 && invoiceRec==1) || (rec.postedChk==0 && invoiceRec==0))">
+                                        <td style="width: 5%;text-align: center;"
+                                            ng-if="invoiceRec==0">
+                                            <input type="checkbox"
+                                                   name="rec_{{$index}}"
+                                                   id="rec_{{$index}}"
+                                                   ng-if="!(rec.postedChk>0)"
+                                                   ng-model="rec.chk"
+                                                   ng-disabled="check_srm_readonly"
+                                                   ng-change="checkedItemAddCostPurchaseOrder(rec)">
+                                            <!-- 
+                                                    ng-checked="rec.chk" -->
+                                        </td>
+                                        <td>
+                                            {{rec.order_code}}
+                                        </td>
+                                        <td>
+                                            <!-- {{rec.invoice_code}} -->
+                                            <span ng-if="rec.invoice_code == 0">-</span>
+                                            <span ng-if="rec.invoice_code !=0">{{rec.invoice_code}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="rec.consignmentNo==0">-</span>
+                                            <span ng-if="rec.consignmentNo!=0">{{rec.consignmentNo}}</span>
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.postingDate}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.product_code}}
+
+                                        </td>
+                                        <td style="width:15%;">
+
+                                            {{rec.prddescription}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.ref_no}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.qty}}
+
+                                            <!-- <div class="input-symbol" 
+                                                    ng-class="{'dont-click':check_srm_readonly}">
+                                                    <input type="text" id="qty_{{$index}}" class="form-control"
+                                                        ng-click="openStockAllocation(rec)" 
+                                                        ng-model="rec.qty"
+                                                        readonly ng-class="{'white_bg':!check_srm_readonly}"  />
+                                                    <span><i class="fa fa-external-link"></i></span>
+                                                </div> -->
+                                        </td>
+                                        <td>
+                                            <div ng-if="rec.postedChk>0">
+                                                {{rec.additionAmount2| currency : "" : decimal_range}}
+                                            </div>
+
+                                            <div class="input-symbol"
+                                                 ng-if="!(rec.postedChk>0)">
+                                                <input type="text"
+                                                       id="additionAmount_{{$index}}"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.additionAmount2"
+                                                       ng-readonly="check_srm_readonly"
+                                                       ng-change="calculateAdditionalAmount(rec,1,additionalCostSearch.selSpread)"
+                                                       data-parsley-trigger="keyup"
+                                                       data-parsley-minlength-message="Invalid Value"
+                                                       data-parsley-type-message="Invalid Value"
+                                                       data-parsley-error-message="Invalid Value"
+                                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- <div class="col-lg-12 pl0">
+                                                    <label> {{rec.calcAmount}} 
+                                                        {{rec.calcAmount| currency : "" : decimal_range }}
+                                                    </label>
+                                                </div> -->
+                                            <div ng-if="rec.postedChk>0">
+                                                {{rec.calcAmount2| currency : "" : decimal_range}}
+                                            </div>
+                                            <div class="input-symbol"
+                                                 ng-if="!(rec.postedChk>0)">
+                                                <input type="text"
+                                                       id="calcAmount_{{$index}}"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.calcAmount2"
+                                                       ng-readonly="check_srm_readonly"
+                                                       ng-change="calculateAdditionalAmount(rec,2,additionalCostSearch.selSpread)"
+                                                       data-parsley-trigger="keyup"
+                                                       data-parsley-minlength-message="Invalid Value"
+                                                       data-parsley-type-message="Invalid Value"
+                                                       data-parsley-error-message="Invalid Value"
+                                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                                            </div>
+                                        </td>
+                                        <!-- <td class="text-center allo" ng-if="!check_srm_readonly && (formData.purchase_status==0  || formData.purchase_status==1)">
+                                                
+                                                <i class="fa fa-retweet" title="Update" 
+                                                    ng-click="allocateQty(rec,1)"
+                                                    ng-if="rec.id>0 && rec.editchk>0"></i>
+    
+                                                <i class="fa fa-plus" title="Allocate" 
+                                                    ng-click="allocateQty(rec,0)"
+                                                    ng-if="!(rec.id>0)"></i>
+    
+                                                <i class="fa fa-edit" title="Edit" 
+                                                    ng-click="editModeAllocation(rec)"
+                                                    ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)"></i>
+                                            
+                                                <i class="fa fa-minus" title="Un-Allocate"
+                                                    ng-click="delete_ware(rec.id,$index,stockAllocationRecord)"
+                                                    ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)" ></i>
+                                            </td> -->
+                                    </tr>
+                                    <tr ng-repeat="rec in itemAddCostPurchaseOrderFiltered | filter:additionalCostSearch.search"
+                                        ng-if="itemAddCostPurchaseOrderFiltered.length && itemAddCostPurchaseOrderFiltered.length <= 500 && checkUnchecked() && !rec.chk && ((rec.postedChk>0 && invoiceRec==1) || (rec.postedChk==0 && invoiceRec==0))">
+                                        <td style="width: 5%;text-align: center;"
+                                            ng-if="invoiceRec==0">
+                                            <input type="checkbox"
+                                                   name="rec_{{$index}}"
+                                                   id="rec_{{$index}}"
+                                                   ng-if="!(rec.postedChk>0)"
+                                                   ng-model="rec.chk"
+                                                   ng-disabled="check_srm_readonly"
+                                                   ng-change="checkedItemAddCostPurchaseOrder(rec)">
+                                            <!-- 
+                                                ng-checked="rec.chk" -->
+                                        </td>
+                                        <td>
+                                            {{rec.order_code}}
+                                        </td>
+                                        <td>
+                                            <!-- {{rec.invoice_code}} -->
+                                            <span ng-if="rec.invoice_code == 0">-</span>
+                                            <span ng-if="rec.invoice_code !=0">{{rec.invoice_code}}</span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="rec.consignmentNo==0">-</span>
+                                            <span ng-if="rec.consignmentNo!=0">{{rec.consignmentNo}}</span>
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.postingDate}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.product_code}}
+
+                                        </td>
+                                        <td style="width:15%;">
+
+                                            {{rec.prddescription}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.ref_no}}
+
+                                        </td>
+                                        <td>
+
+                                            {{rec.qty}}
+
+                                            <!-- <div class="input-symbol" 
+                                                ng-class="{'dont-click':check_srm_readonly}">
+                                                <input type="text" id="qty_{{$index}}" class="form-control"
+                                                    ng-click="openStockAllocation(rec)" 
+                                                    ng-model="rec.qty"
+                                                    readonly ng-class="{'white_bg':!check_srm_readonly}"  />
+                                                <span><i class="fa fa-external-link"></i></span>
+                                            </div> -->
+                                        </td>
+                                        <td>
+                                            <div ng-if="rec.postedChk>0">
+                                                {{rec.additionAmount2| currency : "" : decimal_range}}
+                                            </div>
+
+                                            <div class="input-symbol"
+                                                 ng-if="!(rec.postedChk>0)">
+                                                <input type="text"
+                                                       id="additionAmount_{{$index}}"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.additionAmount2"
+                                                       ng-readonly="check_srm_readonly"
+                                                       ng-change="calculateAdditionalAmount(rec,1,additionalCostSearch.selSpread)"
+                                                       data-parsley-trigger="keyup"
+                                                       data-parsley-minlength-message="Invalid Value"
+                                                       data-parsley-type-message="Invalid Value"
+                                                       data-parsley-error-message="Invalid Value"
+                                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- <div class="col-lg-12 pl0">
+                                                <label> {{rec.calcAmount}} 
+                                                    {{rec.calcAmount| currency : "" : decimal_range }}
+                                                </label>
+                                            </div> -->
+                                            <div ng-if="rec.postedChk>0">
+                                                {{rec.calcAmount2| currency : "" : decimal_range}}
+                                            </div>
+                                            <div class="input-symbol"
+                                                 ng-if="!(rec.postedChk>0)">
+                                                <input type="text"
+                                                       id="calcAmount_{{$index}}"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.calcAmount2"
+                                                       ng-readonly="check_srm_readonly"
+                                                       ng-change="calculateAdditionalAmount(rec,2,additionalCostSearch.selSpread)"
+                                                       data-parsley-trigger="keyup"
+                                                       data-parsley-minlength-message="Invalid Value"
+                                                       data-parsley-type-message="Invalid Value"
+                                                       data-parsley-error-message="Invalid Value"
+                                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                <!-- <span>{{formData.unit_of_measure_name}}</span> -->
+                                            </div>
+                                        </td>
+                                        <!-- <td class="text-center allo" ng-if="!check_srm_readonly && (formData.purchase_status==0  || formData.purchase_status==1)">
+                                            
+                                            <i class="fa fa-retweet" title="Update" 
+                                                ng-click="allocateQty(rec,1)"
+                                                ng-if="rec.id>0 && rec.editchk>0"></i>
+
+                                            <i class="fa fa-plus" title="Allocate" 
+                                                ng-click="allocateQty(rec,0)"
+                                                ng-if="!(rec.id>0)"></i>
+
+                                            <i class="fa fa-edit" title="Edit" 
+                                                ng-click="editModeAllocation(rec)"
+                                                ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)"></i>
+                                        
+                                            <i class="fa fa-minus" title="Un-Allocate"
+                                                ng-click="delete_ware(rec.id,$index,stockAllocationRecord)"
+                                                ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)" ></i>
+                                        </td> -->
+                                    </tr>
+                                    <tr ng-show="itemAddCostPurchaseOrderColumns.length == 0">
+                                        <td>No Record found agaist this entity! Please add.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-submit2"
+                            ng-if="!check_srm_readonly"
+                            ng-click="updateAdditionalCostResults()">Save</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Close
+                        <!-- OK Cancel -->
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div ng-include="'app/views/srm_order/_additionalCostAllocationModal.html'"></div> -->
+<!-- <div ng-include="'app/views/orders/order_trail_modal.html'"></div> -->

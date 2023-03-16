@@ -1,0 +1,134 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- Row starts -->
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+      <tabset> <tab heading="General" class="disabled disabledTab  general_information"  ng-click="generalInformation()" >
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" validate-form="" 
+                novalidate="" ng-submit="addGeneral(formData)" ng-init="getCode(formData)" ng-hide="showLoader">
+            <div ng-include="'app/views/services/general_form.html'"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_cat_type(formData2)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_cat_type.html'"  ng-show="show_cat_pop"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_brand_type(formData3)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_brand.html'"  ng-show="show_brand_pop"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_unit_type(formData4)"  
+     	  validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+            <div ng-include="'app/views/services/add_unit.html'" ng-show="show_unit_pop"  ></div>
+          </form>
+        </div>
+        </tab> <tab heading="Invoicing" class="personal_setting dont-click"  ng-click="getinvoice()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <!--<tab heading=" Details" class="contact_setting dont-click"  ng-click="getdetail()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab>--> <tab heading="Sales Promotion" class="supplier_setting dont-click" ng-click="getsupplier()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Sales Volume Discount" class="supplier_setting dont-click" ng-click="getsupplier()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Purchase Volume Discount" class="purchase_setting dont-click" ng-click="getpurchase()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Document" class="document dont-click" ng-click="general_document()">
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Images" class="image dont-click" >
+    <div >
+      <div class="vertical_space"></div>
+    </div>
+    </tab><tab heading="Comments" class="comments dont-click" ng-click="itemselectPage(1);getComments()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> 
+        
+        <!--<div ng-app ng-controller="TabsController">    
+          <tab    ng-repeat="tab in rec" heading="{{tab.tab_name}}" ng-click="getFormFields(tab.id)">
+   			
+            
+                 <div  ng-repeat="formFields in fields_rec" >
+        <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+          <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-lg-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+             </tab>
+        </div> 
+        <div  ng-repeat="formFields in fields_rec" >
+        <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+          <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-lg-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div>
+        </div>
+      </div>
+        
+         </tabset>
+    </div>
+  </div>--> 
+        
+      </tabset>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+
+<!--<tabset> <tab ng-repeat="tab in rec" heading="{{tab.tab_name}}"  class="disabled disabledTab" ng-click="getFormFields(tab.id,tab.tab_name)">
+  <div class="vertical_space"></div>
+ 
+ <div ng-include="'app/views/services/general_form.html'"  ></div>
+   <div ng-include="'app/views/hr_values/general_form_add.html'"  ></div>
+  </tab> </tabset>
+  
+   
+
+-->

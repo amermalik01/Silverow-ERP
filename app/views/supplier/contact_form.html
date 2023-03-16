@@ -1,0 +1,160 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <!-- <div class="widget-header">
+          <div class="title">
+            Add Company General Information
+          </div>
+
+        </div> -->
+            <div class="widget-body" style="background:none;">
+                <div class="row" >
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Contact Person <span
+                                        class="required">*</span></label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.contact_name" id="contact_name"
+                                           class="form-control" ng-disabled="check_readonly" required/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Location Name</label>
+                              <div class="col-lg-8">
+                                <input type="text" ng-model="rec.depot" id="depot" class="form-control"  ng-disabled ="check_readonly"  />
+                                <input type="hidden" ng-model="rec.id" id="update_id" class="form-control"/>
+                              </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Job Title </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.job_title" id="job_title" class="form-control"
+                                           ng-disabled="check_readonly"/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Address 1 </label>
+                              <div class="col-lg-8">
+                                <input type="text" ng-model="rec.address_1" id="address_1" class="form-control"  ng-disabled ="check_readonly"   />
+                              </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Direct Line </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.direct_line" id="direct_line" class="form-control"
+                                           ng-disabled="check_readonly"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Location<span class="required">*</span></label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.location" id="location" class="form-control"
+                                           ng-disabled="check_readonly" required/> <input type="hidden"
+                                                                                          ng-model="rec.id"
+                                                                                          id="update_id"
+                                                                                          class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Address 2 </label>
+                              <div class="col-lg-8">
+                                <input type="text" ng-model="rec.address_2" id="address_2" class="form-control"  ng-disabled ="check_readonly"   />
+                              </div>
+                            </div>-->
+                            <div class="form-group"><!-- ng-hide="rec.id>0"-->
+                                <label class="col-lg-4 control-label">Same As General</label>
+
+                                <div class="col-lg-8"><!--ng-disabled="rec.id > 0"-->
+                                    <input  type="checkbox" ng-click="sameAsGeneral('contact')"
+                                           ng-model="rec.is_same_as_general" ng-checked="false">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Telephone </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.phone" id="phone" class="form-control"
+                                           ng-disabled="check_readonly"/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">City </label>
+                              <div class="col-lg-8">
+                                <input type="text" ng-model="rec.city" id="city" class="form-control"  ng-disabled ="check_readonly"   />
+                              </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Fax </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.fax" id="fax" class="form-control"
+                                           ng-disabled="check_readonly"/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">County </label>
+                              <div class="col-lg-8">
+                                <input type="text" ng-model="rec.county" id="county" class="form-control"  ng-disabled ="check_readonly"   />
+                              </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Mobile </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.mobile" id="mobile" class="form-control"
+                                           ng-disabled="check_readonly"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Email </label>
+
+                                <div class="col-lg-8">
+                                    <input type="text" ng-model="rec.email" id="email" class="form-control"
+                                           ng-disabled="check_readonly" data-parsley-type="email"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="hr_line2"></div>
+                            <div class="pull-right">
+                            <button class="btn  btn-default" type="button" 
+            ng-show=" supplier_contact_tab>0" ng-click="set_document_internal(supplier_contact_tab)"  > <span class="int-doc">{{document_title}}<img src="app/img/infile.png" style="width:16px;" class="doc-icon"></span> </button>
+                                <button class="btn btn_blue width_80" type="submit" ng-show="!check_readonly"><i
+                                        class="fa fa-check fa_display"></i> Submit
+                                </button>
+                                <button class="btn btn_blue width_80" type="button" ng-click="gotoedit()"
+                                        ng-show="check_readonly"><i class="fa fa-edit fa_display"></i> Edit
+                                </button>
+                                <button class="btn default width_80" type="button" ng-click="general_contact()"><i
+                                        class="fa fa-undo fa_display"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

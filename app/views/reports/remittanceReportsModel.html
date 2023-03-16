@@ -1,0 +1,232 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+    .mystyle2 {
+            margin-bottom: 72px;
+    }
+</style>
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<div class="modal fade template-design"
+     id="remittanceReportsModel2">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <htmlpageheader name='MyCustomHeader'>
+
+                </htmlpageheader>
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     style="clear: both;"
+                     class="mystyle2">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">Remittance Advice
+
+                            </div>
+                            <table align="left"
+                                   style="width: 50%;">
+                                <tbody>
+                                    <tr ng-repeat="addr in rec.address track by $index">
+                                        <td style="padding-left: 0" >
+                                                <span ng-if="addr.length > 0">{{addr}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Document Number:</b>
+                                        </td>
+                                        <td>{{rec.pd_document_no}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b ng-if="rec.document_type == 'debit_note'">Posting Date:</b>
+                                            <b ng-if="rec.document_type == 'payment'">Payment Date:</b>
+                                        </td>
+                                        <td>{{rec.pd_posting_date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Total Amount Paid:</b>
+                                        </td>
+                                        <td style="font-weight:bold; width: 80px;">{{rec.payment_total_amount | currency:""}} {{rec.currency}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+
+                    <table style="width: 100%;" class="report-spacing-table">
+                        <thead>
+                            <tr>
+                                <th> Posting Date </th>
+                                <th> Document Type </th>
+                                <th> Our Reference </th>
+                                <th> Your Reference </th>
+                                <th> Currency Code </th>
+                                <th style="text-align: right"> Original Amount </th>
+                                <th style="text-align: right"> Previous Allocations </th>
+                                <th style="text-align: right"> Allocated Amount </th>
+                                <th style="text-align: right"> Remaining Amount </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.invoices">
+                                <td> {{inv.posting_date}} </td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td> {{inv.suplier_invoice_no}} </td>
+                                <td> {{rec.currency}} </td>
+                                <td style="text-align: right"> {{inv.original_payment | currency:""}} {{rec.currency}} </td>
+                                <td style="text-align: right"> {{inv.previous_allocations | currency:""}} {{rec.currency}} </td>
+                                <td style="text-align: right"> {{inv.current_payment | currency:""}} {{rec.currency}} </td>
+                                <td style="text-align: right"> {{inv.remaining_amount | currency:""}} {{rec.currency}} </td>
+                            </tr>
+
+                            <tr style="background-color: #ffffff;">
+                                <td colspan="9"></td>
+                            </tr>
+
+                            <tr style="background-color: whitesmoke !important;">
+                                <td style="text-align: right;" colspan="7"><b>Total Amount Allocated:</b></td>
+                                <td style="text-align: right;"><b>{{rec.total_paid | currency:""}} {{rec.currency}}</b></td>
+                                <td></td>
+                            </tr>
+
+                            <tr style="background-color: whitesmoke !important;" ng-if="rec.payment_total_amount - rec.total_paid > 0">
+                                <td style="text-align: right;" colspan="7"><b>Unallocated Amount:</b></td>
+                                <td style="text-align: right;"><b>{{rec.payment_total_amount - rec.total_paid | currency:""}} {{rec.currency}}</b></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    
+                    <!-- <table style="width:100%;">
+                        <tr style="background-color: whitesmoke;">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;padding-top: 50px !important;"><b>Total Amount Allocated: {{rec.total_paid | currency:""}} {{rec.currency}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table style="width:100%;" ng-if="rec.payment_total_amount - rec.total_paid > 0">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Unallocated Amount: {{rec.payment_total_amount - rec.total_paid | currency:""}} {{rec.currency}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.reportsDataArr.length - 1 != $index"></div>
+                    <div style="height: 10px;float: left;"
+                         ng-if="printPdfVals.reportsDataArr.length - 1 != $index">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('remittanceReportsModel2')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox" ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Send Email"
+                       ng-click="sendRemittanceReportsViaEmail(printPdfVals)">
+                         Send Email
+                    </a>
+                    <!-- <a type="button" class="btn btn-default2" title="Generate PDF" ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+                        <!-- jsreport download button -->
+                        <a type="button" class="btn btn-default2" ng-if="!jsreportLoading" title="Download PDF"
+                            ng-click="downloadReportRemittanceAdvice(printPdfVals)">
+                            <i class="fa fa-cloud-download" aria-hidden="true" style="color: #3ea756;"></i>
+                        </a>
+                        <a type="button"
+                           ng-if="jsreportLoading"
+                           class="btn btn-default2"
+                           title="Downloading PDF">
+                            <i class='fa-spin fa fa-spinner'></i>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

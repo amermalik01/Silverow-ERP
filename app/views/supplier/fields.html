@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-lg-6">
+	<div class="form-group" ng-repeat="field in arrFields" ng-if="!field.column">
+	  <label class="col-lg-4 control-label">{{field.label}} <span ng-if="field.is_required" class="required">*</span></label>
+	  <div class="col-lg-8">
+	     <input type="{{field.type}}" ng-if="field.type == 'text'" ng-model="formData[field.field_id].value" name="{{field.name}}" class="form-control" ng-readonly="check_readonly" ng-required="field.is_required" />
+	     <select ng-model="formData[field.field_id].value" ng-if="field.type == 'select'" ng-init="fillCombo(field.module_id,field.field_id)" ng-options="opt as opt.name for opt in arr_combo[field.field_id]" class="select2me form-control" ng-change="getComboValue(field.field_id)" ng-disabled="check_readonly" required    ><option style="display:none" ></option> </select>
+	  </div>
+	  </div>
+	 
+  </div>
+  <div class="col-lg-6">
+	<div class="form-group" ng-repeat="field in arrFields" ng-if="field.column">
+	  <label class="col-lg-4 control-label">{{field.label}}<span ng-if="field.is_required" class="required">*</span></label>
+	  <div class="col-lg-8">
+	     <input type="{{field.type}}" ng-if="field.type == 'text'" ng-model="formData[field.field_id].value" name="{{field.name}}" class="form-control" ng-readonly="check_readonly" ng-required="field.is_required" />
+	     <select ng-model="formData[field.field_id].value" ng-if="field.type == 'select'" ng-init="fillCombo(field.module_id,field.field_id)" ng-options="opt as opt.name for opt in arr_combo[field.field_id]" class="select2me form-control" ng-change="getComboValue(field.field_id)" ng-disabled="check_readonly" required  ><option style="display:none" ></option> </select>
+	  </div>
+	  </div>
+  </div>
+</div>
+
+	

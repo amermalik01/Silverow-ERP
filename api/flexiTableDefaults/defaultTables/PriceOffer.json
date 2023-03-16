@@ -1,0 +1,53 @@
+{
+        "tblMeta": {
+                "autoAdjust": true,
+                "hideSetup": true
+        },
+        "colMeta": [
+                {
+                        "title": "Name",
+                        "field_name": "name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Offered By",
+                        "field_name": "offered_by1",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Start Date",
+                        "field_name": "start_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                },
+                {
+                        "title": "End Date",
+                        "field_name": "end_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                },
+                {
+                        "title": "Created Date",
+                        "field_name": "AddedOn",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                }
+        ]
+}

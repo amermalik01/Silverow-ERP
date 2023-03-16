@@ -1,0 +1,85 @@
+<div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="">
+                <div class="widget">
+                    <div class="widget-body" style="    margin-top: 10px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-title2">Sales Bucket</div>
+                                <div class="col-md-5">
+                                    <input type="hidden" ng-model="rec.update_id" />
+                                    <input type="hidden" ng-model="rec.id" />
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"> Bucket No.
+                                        </label>
+
+                                        <div class="col-md-8">
+                                            <input ng-readonly="product_type" type="text" ng-model="rec.sale_bk_code" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label "> Name
+                                            <span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-8">
+                                            <input ng-readonly="check_sale_bucket_readonly" type="text" ng-model="rec.name" required class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"> Employee(s)</label>
+                                        <x-flexi-select x-flexi-select-title="'Employees(s)'" x-flexi-select-modal-id="'EmployeesSelectModal'" x-flexi-select-output='selectedEmployees' x-flexi-select-data="allEmployees" x-flexi-select-show-cols="EmployeeSelectAllowedCols" x-flexi-select-readonly="check_sale_bucket_readonly"
+                                            x-flexi-primary-select="is_primary" x-flexi-primary-value="primarySalesperson" x-flexi-select-modal-width="80%">
+                                        </x-flexi-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-offset-2">
+                                    <div ng-repeat="filterItem in modules | orderBy: 'order'" class="form-group">
+                                        <label class="col-md-4 control-label text-capitalize">{{filterItem.name}}
+                                            <span class="text-lowercase"></span>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <!-- 'dont-click readonly':check_sale_bucket_readonly || rec.id==0 , -->
+                                            <button class="btn btn-default2 " title="Add/Change {{filterItem.name}}" ng-class="{'dont-click readonly': check_sale_bucket_readonly,'setshow3':ifFilters(filterItem.data.id)}" type="button" ng-click="getproduct_filter(1,null,null,filterItem.name);itemselectPage(1);">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                <span> Change Filter</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 20px">
+                                    <button class="btn btn-submit2 isPrimary_sp pull-left" type="button" ng-click="askConfirmation(rec, 1)" ng-show="!check_sale_bucket_readonly && allAppliedFilters.length"> Overwrite Salespersons
+                                    </button>
+                                    <div class="pull-right">
+                                        <button class="btn btn-delete active-btns" ng-show="rec.id>0 && !check_sale_bucket_readonly" type="button" ng-click="delete_sale_buket(rec.id)"> Delete
+                                        </button>
+                                        <button class="btn btn-submit2 isPrimary_sp" type="button" ng-click="askConfirmation(rec)" ng-show="!check_sale_bucket_readonly"> Save
+                                        </button>
+                                        <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_sale_bucket_readonly">Edit
+                                        </button>
+                                        <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">
+                                            <i class="fa fa-undo fa_display"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ng-include="'app/views/sales_bucket/_customer_pop.html'"></div>
+            <div ng-include="'app/views/sales_bucket/_product_pop.html'"></div>
+            <div ng-include="'app/views/sales_bucket/_salesperson_popup.html'"></div>
+        </div>
+    </div>
+
+
+
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+</div>

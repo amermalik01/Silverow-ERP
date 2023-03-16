@@ -1,0 +1,235 @@
+<style>
+    #no-display {
+        display: none
+    }
+
+    tbody.addclasshere tr td {
+        padding: 9px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+</style>
+
+<div class="row expenses_font" id="companyVehicleForm">
+    <div class="col-md-12 col-md-12">
+        <div class="whitebg1">
+            <div>
+
+                <div id="dt_example" class="example_alt_pagination">
+                    <div>
+                        <div class="row">
+                                <div class="col-md-3">
+                                        <div class="input-symbol">
+                                            <input type="text" Placeholder="Search" class="form-control" ng-model="comExpSearch" >
+                                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                                        </div>
+                                      </div>
+                            <div class="col-md-9">
+                                <button type="button" ng-click="addNewChoice_CV()" class="btn btn_add pull-right" ng-if="(expenseForm.expense_status.id <= 0 || expenseForm.expense_status.id == 3) && (allowaddhr_expenses==1 || userId == formData.id)" ng-disabled="check_expense_form_readonly"> Add
+                                </button>
+                            </div>
+                        </div>
+                        <table class="table table-condensed table-striped table-bordered pull-left">
+                            <thead>
+                            <tr>
+                                <th> Fuel Type</th>
+                                <th> Engine Type</th>
+                                <th> Date of Travel</th>
+                                <th> Description</th>
+                                <th> Postcode From</th>
+                                <th> Postcode To</th>
+                                <!-- <th> Calculated Miles</th> -->
+                                <th> Miles</th>
+                                <th> Mileage Rate</th>
+                                <th> Comments</th>
+                                <th> Amount</th>
+                                <th> Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="addclasshere">
+                            <!--ng-repeat="companyVehical in  resultValue=(users)" -->
+                             <!-- <tr data-ng-repeat="companyVehical in arr_company_expense | filter:searchKeyword"  -->
+                            
+                            <tr data-ng-repeat="companyVehical in arr_company_expense | limitedFilter:comExpSearch:['fuelTypeName', 'engineTypeName', 'date_of_travel', 'description', 'postcodeFrom', 'postcodeTo', 'miles', 'actual_miles', 'mileage_rate', 'comment', 'total_sub']"
+                                ng-class="{'bg-red' : companyVehical.miles < companyVehical.actual_miles} ">
+                                <td style="width:10%">
+                                    <div class="replace_reload {{'replace_button_' + companyVehical.id}}">
+                                        <select ng-model="companyVehical.fuelType"
+                                                class="form-control  {{'new_' + companyVehical.id}}"
+                                                ng-change="change_engine_sizes(companyVehical.fuelType, $index)"  ng-disabled="check_expense_form_readonly"
+                                                id="fuelType{{$index}}">
+                                            <option value="" disabled selected>Select</option>
+                                            <option ng-repeat="val in arr_car_fuel_type"
+                                                    ng-selected="companyVehical.fuelType == val.value"
+                                                    value="{{val.value}}">{{val.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="width:10%">
+                                    <div class="replace_reload {{'replace_button_' + companyVehical.id}}">
+                                        <select ng-model="companyVehical.engineType"
+                                                class="form-control  {{'new_' + companyVehical.id}}"
+                                                id="companyVehical{{$index}}"
+                                                ng-disabled="check_expense_form_readonly"
+                                                ng-change="calculateRate(companyVehical.engineType,{{$index}})">
+                                                <option value="" disabled selected>Select</option>
+                                            <option ng-repeat="val in arr_car_enngine  | filter:{type: companyVehical.fuelType}"
+                                                    ng-selected="companyVehical.engineType == val.value"
+                                                    value="{{val.value}}">{{val.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="width:9%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input ng-model="companyVehical.date_of_travel" id="date_of_travel{{$index}}" style="background-color: white;"
+                                                ng-disabled="check_expense_form_readonly"
+                                               jqdatepicker class="2date-picker form-control  {{'new_' + companyVehical.id}}"
+                                               readonly>
+                                        <!--<span class="fa fa-calendar  new_ca  form-control-feedback"></span>-->
+                                    </div>
+                                </td>
+                                <td style="width:14%" title="{{companyVehical.description}}">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input id="comp_description{{$index}}" type="text" ng-model="companyVehical.description" ng-disabled="check_expense_form_readonly"
+                                               class="form-control"/>
+                                    </div>
+                                </td>
+                                <td style="width:8%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input id="postcodeFrom{{$index}}" type="text"
+                                                ng-model="companyVehical.postcodeFrom"
+                                                ng-disabled="check_expense_form_readonly"                                                
+                                                class="form-control crm-postcode"/>
+                                    </div>
+                                    <!--  ng-blur="getDistanceFromGoogleCompany($index)"-->
+                                </td>
+
+                                <td style="width:8%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input id="postcodeTo{{$index}}" type="text"
+                                               ng-model="companyVehical.postcodeTo"
+                                                ng-disabled="check_expense_form_readonly"
+                                               class="form-control crm-postcode"
+                                               />
+                                    </div>
+                                </td>
+                                <!-- <td style="width:8%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input type="text" placeholder="0" id="miles{{$index}}"
+                                               data-parsley-trigger="keyup" ng-model="companyVehical.miles"
+                                               class="form-control {{'new_' + companyVehical.id}}"
+                                               data-parsley-type="number" ng-model-options="{ updateOn: 'change' }"
+                                               readonly="readonly">
+                                    </div>
+                                </td> -->
+                                <td style="width:8%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input type="number" placeholder="0" id="actual_miles{{$index}}"
+                                                min="0"
+                                                 ng-disabled="check_expense_form_readonly"
+                                                onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189 || event.keyCode == 190)? false : true" 
+                                               data-parsley-trigger="keyup" ng-model="companyVehical.actual_miles"
+                                               class="form-control {{'new_' + companyVehical.pid}}"
+                                               data-parsley-type="number" ng-model-options="{ updateOn: 'change' }">
+                                    </div>
+                                </td>
+                                <td style="width:7%">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input type="text" placeholder="0" data-parsley-trigger="keyup"
+                                               data-parsley-minlength="1" ng-model="companyVehical.mileage_rate"
+                                                ng-disabled="check_expense_form_readonly"
+                                               id="mileage_rate{{$index}}"
+                                               class="form-control input_text {{'new_' + companyVehical.id}}"
+                                               data-parsley-type="number" required
+                                               ng-model-options="{ updateOn: 'change' }">
+                                    </div>
+                                </td>
+                                <td style="width:11%" title="{{companyVehical.comment}}">
+                                    <div class="{{'replace_button_' + companyVehical.id}}">
+                                        <input id="comment{{$index}}" type="text" ng-model="companyVehical.comment"  ng-disabled="check_expense_form_readonly"
+                                               class="form-control"/>
+                                    </div>
+                                </td>
+                                <td style="width:17%">
+                                   <!--  {{ total_sub	= companyVehical.actual_miles * companyVehical.mileage_rate | number:2 }} -->
+                                   
+                                    <input type="text" id="camount{{$index}}"
+                                           value="{{companyVehical.total_sub | number:2}}"
+                                            ng-disabled="check_expense_form_readonly"
+                                           class="form-control" readonly="">
+<!-- 
+                                    <span ng-if="companyVehical.actual_miles >0"
+                                          class="place-gbp2">{{defaultCurrencyCode}}</span> -->
+                                    <!-- {{defaultCurrencyCode}}-->
+
+                                    <!--   ng-change="net_total_amount()" -->
+                                    <!--  <td>{{companyVehical.total_sub = row_amount(companyVehical) | number:2}}&nbsp{{defaultCurrencyCode}}</td>-->
+                                </td>
+
+                                <td><!-- <input type="text"   ng-model="companyVehical.sort_id" />   -->
+
+                                    <input type="hidden" ng-model="formData.expense_id"/>
+                                    <input type="hidden" ng-model="companyVehical.id"/>
+                                    <a title="Delete" ng-disabled="check_expense_form_readonly" 
+                                        ng-click="deletesubexpensesCV(companyVehical.id,$index)"
+                                        class="tooltips_clss btn"><i class="fa fa-times"> </i></a>
+                                    <!--  <a title="Ticked" ng-click="tickedPersonalExpense($index)" class="tooltips_clss btn"><i class="fa fa-times"> </i></a>-->
+                                </td>
+                            </tr>
+                            <tr style="background-color: #f9f9f9;    border-bottom: 0;">
+                                <td colspan="10" class="text-right"><b style="color: black;">Grand Total</b></td>
+                                <td colspan="2"style="color: black;">{{net_total_amount_company() | number:decimal_range}} {{defaultCurrencyCode}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <table style="margin-top: 15px;float: left;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 200px;"><b>Miles Travelled Prior to {{expenseForm.event_code}}</b></td>
+                            <td>{{company_calc_milage_total}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Miles Travelled to {{expenseForm.event_code}}</b></td>
+                            <td>{{net_calculate_miles_company}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Total Miles Travelled</b></td>
+                            <td>{{net_calculate_miles_company_current_year + company_calc_milage_total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                 <button class="btn btn-delete" type="button" ng-click="deleteexpenses(expense_id)" ng-if="!check_expense_form_readonly && allowdeletehr_expenses">Delete
+                            </button>
+                            <button class="btn btn-default2" ng-click="GetApprovalStatus(expense_id, 5)" 
+                                ng-if="check_expense_form_readonly && allowconverthr_expenses && expense_approval_req > 0 && 
+                                        ((arr_personal_expense != undefined && arr_personal_expense[0].id > 0) || 
+                                            (arr_company_expense != undefined && arr_company_expense[0].id > 0) || 
+                                            (choices != undefined && choices[0].id > 0))">Approval History</button>
+                            <button class="btn btn-default" type="button" ng-click="ConvertToPurchaseOrder(expense_id)" 
+                                ng-if="expenseForm.status == 1 && check_expense_form_readonly && allowconverthr_expenses  && ((arr_personal_expense != undefined && arr_personal_expense[0].pid > 0) || (arr_company_expense != undefined && arr_company_expense[0].id
+                                > 0) || (choices != undefined && choices[0].id > 0))">Convert To Purchase Order
+                            </button>
+                                <button type="submit" class="btn btn-submit" ng-click="submitCompany_all(companyVehical)" ng-if="expenseForm.status == 1 && !check_expense_form_readonly && !expense_status_readonly"><i
+                                        class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showExpenseEditForm()" ng-if="expenseForm.status == 1 && !expense_status_readonly && check_expense_form_readonly && (allowedithr_expenses==1 || userId == formData.id) "> Edit
+                                </button>
+                                    <button type="button" class="btn btn-cancel" ng-click="getexpenses()"><i
+                                            class="fa fa-undo fa_display"></i> Cancel
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "customer_no": "customer_code"
+    },
+    "fileName": "CS.[[customer_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

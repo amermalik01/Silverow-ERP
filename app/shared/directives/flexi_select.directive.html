@@ -1,0 +1,149 @@
+
+<div class="col-md-8">
+    <div title="{{flexiSelectDataTooltip ? flexiSelectOutput : flexiSelectTitle}}">
+        <div class="panel-info pi2 " style="min-width:20px;"
+             ng-class="{'readonly':flexiSelectReadonly, 'max-height':flexiSelectOutputArray.length>1 }">
+             <div ng-if="flexiSelectHtmlTemplate" 
+                    ng-click="showModal()"
+                    tabindex="0"
+                    ng-keypress="handleKeyPress($event)"
+                    ng-bind-html="flexiSelectHtmlTemplate"></div>
+            <div class="panel-body" ng-if="!flexiSelectHtmlTemplate" 
+                 ng-click="showModal()"
+                 tabindex="0"
+                 ng-keypress="handleKeyPress($event)">
+                <span ng-if="!objReturn"
+                      ng-repeat="list_item in flexiSelectOutputArray track by $index">
+                    <span ng-if="$index == 0">
+                        <span>{{list_item['name'].trim()}}</span>
+                    </span>
+                    <span ng-if="$index > 0">
+                        <span>; {{list_item['name'].trim()}}</span>
+                    </span>
+
+                </span>
+                <span ng-if="objReturn"
+                      ng-repeat="list_item in flexiSelectOutputArray">
+                    <span ng-if="key != 'id'"
+                          ng-repeat="(key,value) in list_item track by $index">
+                        <span ng-if="$index == 0">
+                            <span>{{value.trim()}}</span>
+                        </span>
+                        <span ng-if="$index > 0">
+                            <span>- {{value.trim()}}</span>
+                        </span>
+                    </span>
+
+                </span>
+                <aside></aside>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.fixhover table tbody tr td {
+    box-shadow: none !important;
+}
+</style>
+<div class="modal fade overflow-visible fixhover"
+     id="{{flexiSelectModalId}}"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="{{flexiSelectTitle}}"
+     aria-hidden="true">
+    <div class="modal-dialog flexi_media_ipad"
+         style=" width:{{flexiSelectModalWidth?flexiSelectModalWidth:'55%'}} !important;"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        ng-click="revertChanges(); searchKeyword.search=''">&times;</button>
+                <h4 class="modal-title">{{flexiSelectTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <div ng-if="flexiSelectParam">
+                    <div class="col-md-5 pl0"
+                         style="margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   style="border-color: #e5e5e5 !important;border-radius: 2px;"
+                                   class="form-control"
+                                   ng-model="searchKeyword.search" #reference>
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="fixit">
+                            <tr class="bg-col">
+                                <th style="width: 9%;text-align: center;">
+                                    <input type="checkbox" ng-disabled="flexiSelectReadonly"
+                                           ng-if="!flexiRadio"
+                                           ng-click="checkToggle($event)"
+                                           ng-checked="checkIfAllChecked()">
+                                </th>
+                                <th style="width: 9%;text-align: center;"
+                                    ng-if="flexiPrimarySelect.length>0">
+                                    Primary
+                                </th>
+                                <th ng-repeat="header in columnHeaders"
+                                    ng-if="header!='Id' && header!='id'">
+                                    {{header.replace("_", " ")}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="fixit">
+                            <tr x-record-id="record_{{selectItem[flexiSelectParam]}}"
+                                ng-repeat='selectItem in tempArr | filter:searchKeyword.search'>
+                                <td style="    width: 9%;text-align: center;">
+                                    <input ng-disabled="flexiSelectReadonly" id='{{flexiSelectTitle.replace(" ","_")}}_{{flexiRadio?"radio":"checkbox"}}_{{selectItem[flexiSelectParam]}}'
+                                           type='{{flexiRadio?"radio":"checkbox"}}'
+                                           name="flexiSelect"
+                                           ng-click='updateSelection(selectItem[flexiSelectParam],checkChecked(selectItem[flexiSelectParam]))'
+                                           ng-checked='checkChecked(selectItem[flexiSelectParam])' />
+                                </td>
+                                <td style="    width: 9%;text-align: center;"
+                                    ng-if="flexiPrimarySelect.length>0">
+                                    <input ng-disabled="flexiSelectReadonly" id="{{flexiSelectTitle.replace(' ','_')}}_radio_prim_{{selectItem[flexiSelectParam]}}"
+                                           type='radio'
+                                           name="flexiSelect"
+                                           ng-disabled="!(checkChecked(selectItem[flexiSelectParam]))"
+                                           ng-click="changePrimarySelect(selectItem[flexiSelectParam])"
+                                           ng-model="selectItem[flexiPrimarySelect]"
+                                           ng-checked="selectItem[flexiPrimarySelect]" />
+                                </td>
+                                <td ng-repeat="(key,value) in selectItem track by $index"
+                                    ng-if="$index < columnHeaders.length && columnHeaders[$index]!='id' && columnHeaders[$index]!='Id'">
+                                    {{selectItem[columnHeaders[$index]]}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <span ng-if="!flexiRadio"
+                      class="pull-left showSelected" style="margin-top: 4px;">Selected:&nbsp;{{tempOutput.length}}</span>
+                <button ng-show="!flexiSelectReadonly" ng-click="saveChanges(); searchKeyword.search = '';"
+                        class="btn btn_add2"
+                        type="button"
+                        style="    padding: 6px 12px !important;">OK
+                </button>
+                <button ng-click="revertChanges();searchKeyword.search = ''; reference.value=''"
+                        type="button"
+                        class="btn btn-cancel"
+                        style="    padding: 6px 12px !important;" >Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .this123 .modal-backdrop {
+        opacity: 0;
+    }
+</style>

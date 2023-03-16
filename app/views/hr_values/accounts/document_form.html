@@ -1,0 +1,134 @@
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="row" >
+          <input type="hidden"   ng-model="formData.document_id" />
+          <input type="hidden"   ng-model="document_id" />
+          <input type="hidden"   ng-model="formData.eid" />
+          <input type="hidden"   ng-model="formData.employee_id" />
+          <input type="hidden"   ng-model="formData.tab_id_2"   value="4"/>
+          <div class="row">
+            <div class="col-md-6 col-md-6">
+              <div class="form-group">
+                <label class="col-sm-3 control-label "> Folder </label>
+                <div class="col-sm-7">
+                  <button type="button" id="folder_pop" class="btn btn-info btn_blue pull-left margin_bottom" 
+       
+        data-toggle="modal" data-target="#folder_pop_type" style="display:none !important"   > Add New </button>
+                  <!--  ng-options="opt as opt.name for opt in list_folder"   
+                  ng-options="option.value group by option.type for option in options"
+              	  --> 
+                  
+                  <!--  <select  ng-disabled="check_hrvalues_readonly"   ng-model="formData.folder_id"
+               		  	 ng-options="obj.id as obj.name group by obj.parent_id for obj in p_list" 
+                  
+                class="select2me form-control"   
+               ng-change="onChange_folder()"   id="case_folder">
+              <option style="display:none" ></option>
+            </select>--> 
+                  
+                  <!-- <select  ng-disabled="check_hrvalues_readonly"   ng-model="formData.folder_id"
+               		  	 ng-options="obj.id as obj.name group by obj.parent_id for obj in p_list2" 
+                  
+                class="select2me form-control"   
+               ng-change="onChange_folder()"   id="case_folder">
+              <option style="display:none" ></option>
+            </select>-->
+                  
+                  <select  ng-disabled="check_hrvalues_readonly"   ng-model="formData.folder_id"
+               		  	 ng-options="opt as opt.name for opt in list_folder" 
+                  
+                class="select2me form-control"    required
+               ng-change="onChange_folder()"   id="case_folder">
+                    <option style="display:none" ></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Title </label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_hrvalues_readonly"   type="text" ng-model="formData.document_title" class="form-control" 
+             />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-md-6">
+              <div class="form-group">
+                <label class="col-sm-3 control-label"> Code </label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_hrvalues_readonly"  type="text" 
+                  ng-model="formData.document_code" class="form-control" 
+             />
+                </div>
+              </div>
+              <div class="form-group" ng-controller="DocUploadDocument_single" ng-class="{'whirl no-overlay':showLoader}">
+                <label class="col-sm-3 control-label  " for="userName">Upload Document</label>
+                <div class="col-sm-7">
+                  <div class="fileUpload btn btn_blue col-sm-7"  > <span ng-if="!formData.document_path">Upload Document</span><span ng-if="formData.document_path">Upload Document</span> 
+                    <!--       accept="image/*" -->
+                    <input  type="file" 
+        ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+         accept=".gif, .jpg, .png, .doc, .docx,.pdf"    multiple class="upload" ngf-max-size="2MB"  />
+                    <input type="hidden"  ng-model="formData.FileType">
+                    <input type="hidden"  ng-model="formData.document_path">
+                    <input type="hidden"  ng-init="formData.document_path = formData.document_path"    
+           ng-model="formData.document_path">
+                    <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span> </div>
+                  <div class="form-group col-sm-5" ng-if="formData.document_path">
+                    <div class="col-sm-7"> <span   ng-if=" formData.document_path !='' "  > <a target="_blank" href="{{imagePath+formData.document_path}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+                    <!--     
+                <div class="form-group"  ng-if="formData.FileType=='doc' || formData.FileType=='docx'">
+                  <div class="col-sm-7">
+                    <label class="col-sm-7 control-label" > <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-file-word-o ng-binding"></i> {{formData.document_path}} </a></label>
+                  </div>
+                </div>
+                <div class="form-group" ng-if="formData.FileType=='pdf'">
+                  <div class="col-sm-7">
+                    <label class="col-sm-4 control-label"> <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-download ng-binding">{{formData.document_path}}</i> </a> </label>
+                  </div>
+                </div>
+             
+                <div class="form-group"  ng-if="formData.FileType=='jpg'  || formData.FileType=='jpeg' 
+                 || formData.FileType=='png' || formData.FileType=='gif'">
+                  <div class="col-sm-7"> <!--<img  ng-src="{{imagePath+formData.document_path}}" 
+   style="width:100px; height:100px;" /> 
+                    <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-file-word-o ng-binding">{{formData.document_path}}</i> </a> </div>
+                </div>--> 
+                  </div>
+                </div>
+              </div>
+              
+              <!-- {{fileimg}}
+              <div class="form-group" ng-show="fileimg" >
+                  <div class="col-sm-7"> <img  ng-src="{{imagePath+formData.document_path}}" 
+      tabindex="13" style="width:100px; height:100px;" /> </div>
+                </div>--> 
+              <!--<div class="form-group" ng-if="formData.document_path">
+                <div class="form-group" ng-show="fileimg" >
+                  <div class="col-sm-7"> <img  ng-src="{{imagePath+formData.document_path}}" 
+      tabindex="13" style="width:100px; height:100px;" /> </div>
+                </div>
+              </div>--> 
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="hr_line2"></div>
+                <div class="pull-right">
+                  <button class="btn btn_blue width_80" type="submit" ng-show="perreadonly"><i class="fa fa-check fa_display"></i> Submit</button>
+                  <button class="btn btn-info btn_blue width_80" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+                  
+                  <!--   <button class="btn btn_blue" type="submit"  ><i class="fa fa-check"></i> Submit</button>
+                 <button class="btn btn_blue" type="button" ng-click="showdocEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn_blue" type="button" ng-click="deletedocumentAccount(bank.id)" ng-show="check_hrvalues_readonly"><i class="fa fa-times"></i> Delete</button>
+           -->
+                  <button class="btn default width_80" type="button" ng-click="getDocuments()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

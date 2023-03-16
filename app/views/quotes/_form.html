@@ -1,0 +1,65 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<tabset id="quotes_tabs">
+    <tab heading="General"ng-click="general_information()">
+        <form name="company" ng-submit="add_general(rec)" class="form-horizontal small_fields" role="form" validate-form=""
+              novalidate="">
+            <div ng-include="'app/views/quotes/_general.html'"></div>
+        </form>
+        <div ng-include="'app/views/quotes/_check_cridit_modal.html'"></div>
+        <!--<div ng-include="'app/views/quotes/_customer_listing_modal.html'"   ></div>-->
+        <div ng-include="'app/views/_customer_modal_single.html'"></div>
+    </tab>
+    <!--   ng-class="{dont-click:rec.id>0} "class="dont-click"-->
+    <tab heading="Invoicing" ng-click="rec.id > 0 && invoice_information()">
+        <form name="company" ng-submit="add(rec)" ng-init="" class="form-horizontal small_fields" role="form"
+              validate-form="" novalidate="">
+            <div ng-include="'app/views/quotes/_invoicing.html'"></div>
+        </form>
+        <!--ng-class="{dont-click:rec.id>0} "-->
+    </tab>
+    <tab heading="Shipping" ng-click="rec.id > 0 && shiping_information()">
+        <form name="company" ng-submit="add(rec)" ng-init="" class="form-horizontal small_fields" role="form"
+              validate-form="" novalidate="">
+            <div ng-include="'app/views/quotes/_shipping.html'"></div>
+        </form>
+    </tab>
+    <!-- <tab heading="Quote" class="{{notClickAllow}}" >
+    <!--<div ng-include="'app/views/finance/_form.html'"></div>
+    </tab>
+    <tab heading="Comment" class="{{notClickAllow}}" >
+    <div ng-include="'app/views/quotes/_comment.html'"></div>
+    </tab> -->
+
+</tabset>
+<div class="clearfix" style="margin-top:40px;"></div>
+<div class="row" ng-show="crm_id > 0">
+    <div class="col-md-12 col-md-12">
+        <div class="panel panel-default" ng-controller="QuoteTabController">
+            <div class="panel-heading">
+                <h3 class="panel-title">Quote</h3>
+            </div>
+            <div class="col-md-12"><a id="prompt" ng-click="addProducts(rec.id, rec.name, rec.discount_type, rec.discount)"   class="btn btn-info btn_blue pull-right margin_bottom" style="margin-top: 10px;"   ng-if="rec.update_id > 0"><i class="fa fa-plus"></i> Add Item(s)</a></div>
+            <div class="clearfix"></div>
+            <div class="panel-body">
+                <div id="dt_example" class="example_alt_pagination">
+                    <div class="clearfix" style="margin-top:10px;"></div>
+                    <form name="Order" ng-submit="" class="form-horizontal small_fields" role="form"
+                          validate-form="" novalidate="">
+                        <div ng-include="'app/views/quotes/_quote_tab.html'"></div>
+                    </form>
+                    <div ng-include="'app/views/_confirm_modal.html'"></div>
+                    <!-- <div ng-include="'app/views/quotes/_account_modal.html'" ></div> -->
+                    <div ng-include="'app/views/orders/_account_modal.html'"></div>
+                    <div ng-include="'app/views/orders/_listing_prod_modal.html'"></div>
+                    <div ng-include="'app/views/orders/_listing_service_modal.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><div ng-include="'app/views/_conform_to_continue.html'"></div>
+
+<div ng-include="'app/views/orders/_listing_purchase_orders.html'"></div>
+

@@ -1,0 +1,163 @@
+    	    <div class="row">
+
+<div class="col-lg-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+ 
+</div> -->
+<div class="widget-body" style="background:none;">  
+          
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Contact Name <span class="required">*</span></label>
+                      <div class="col-lg-8">
+                    <input type="text" ng-model="rec.contact_name" id="contact_name" class="form-control"  ng-disabled ="check_readonly" required tabindex="1"   />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Location Name</label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.depot" id="depot" class="form-control"  ng-disabled ="check_readonly" tabindex="8"  />
+                      <input type="hidden" ng-model="rec.id" id="update_id" class="form-control"/> 
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Job Title   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.job_title" id="job_title" class="form-control"  ng-disabled ="check_readonly" tabindex="2"   />
+                      </div>
+                    </div>
+                  </div>
+                
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Address   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.address_1" id="address_1" class="form-control"  ng-disabled ="check_readonly" tabindex="9"   />
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Direct Line   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.direct_line" id="direct_line" class="form-control"  ng-disabled ="check_readonly" tabindex="3"   />
+                      </div>
+                    </div>
+                  </div>
+                   <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Address 2   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.address_2" id="address_2" class="form-control"  ng-disabled ="check_readonly" tabindex="10"  />
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Mobile</label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.mobile" id="mobile" class="form-control"  ng-disabled ="check_readonly" tabindex="4"   />
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">City   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.city" id="city" class="form-control"  ng-disabled ="check_readonly" tabindex="11"  />
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Telephone  </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.phone" id="phone" class="form-control"  ng-disabled ="check_readonly" tabindex="5"   />
+                      </div>
+                    </div>
+                  </div>
+                  
+                   <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">County   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.county" id="county" class="form-control"  ng-disabled ="check_readonly" tabindex="12"  />
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Fax   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.fax" id="fax" class="form-control"  ng-disabled ="check_readonly" tabindex="6"  />
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Postcode   </label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.postcode" id="postcode" class="form-control"  ng-disabled ="check_readonly" tabindex="13"  />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                 <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Email   </label>
+                      <div class="col-lg-8">
+                        <input type="text"   ng-model="rec.email" id="email" class="form-control"  ng-disabled ="check_readonly" data-parsley-type="email" tabindex="7"  />
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Country <span class="required">*</span></label>
+                  <div class="col-lg-8">
+                    <select ng-model="alt_country_id" ng-options="opt as opt.name for opt in countries" class="select2me form-control"  ng-disabled ="check_readonly" tabindex="14">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </div>
+                <div class="row">
+                <div class="col-lg-12">
+                  <div class="hr_line2"></div>
+                      <div class="pull-right">
+                      <button class="btn btn-info btn_blue" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+                      <button class="btn btn-info btn_blue" type="button" ng-click="showAltContEditForm()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+                      <button class="btn default" type="button" ng-click="showAltContListing()"><i class="fa fa-undo"></i> Cancel</button>
+                      </div>
+                </div>
+                </div>
+</div>
+</div>
+</div>
+
+
+

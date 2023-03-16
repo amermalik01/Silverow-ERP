@@ -1,0 +1,70 @@
+<div id="_areaModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" draggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Covered Areas</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row" style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div ng-if="moduleType == 'coveredArea' && tableData_areas.data.ack">   
+                            <div class="form-group">                       
+                                <div class="col-md-4">
+                                    <input class=" form-control" style="margin-bottom: 15px;" type="text"
+                                        ng-model="searchKeywordCoveredAreaFrom.search"
+                                        ng-keydown="$event.keyCode === 13 && getHaulierLoc(haulierLocType)" 
+                                        ng-if="haulierLocType == 1"/>  
+                                    <input class=" form-control" style="margin-bottom: 15px;" type="text"
+                                        ng-model="searchKeywordCoveredAreaTo.search" 
+                                        ng-keydown="$event.keyCode === 13 && getHaulierLoc(haulierLocType)" 
+                                        ng-if="haulierLocType == 2"
+                                         />                                    
+                                </div>
+                                                     
+                                <div class="col-md-4">
+                                    <button class="btn btn-cancel" type="button" ng-click="clearFilterHaulierLoc()">Clear</button>
+                                    <button class="btn btn-submit" type="button" ng-click="getHaulierLoc(haulierLocType)">Search</button>
+                                    <!-- searchFilterHaulierLoc -->
+                                </div>
+                            </div>
+                                       <!-- ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)" -->
+                            <div class="flexiTable makeModalFixed" ng-if="haulierLocType == 1"
+                                x-report-modal="'true'" 
+                                x-generate-table
+                                x-data="tableData_areas.data" 
+                                x-forget-filters="true" 
+                                x-controller-initiate
+                                x-table-name="haulierLoc" 
+                                x-filter-function="getHaulierLoc(haulierLocType)"
+                                x-row-click="addAreasFrom(file)"
+                                x-filter-object="searchKeywordCoveredAreaFrom"></div>
+
+                            <div class="flexiTable makeModalFixed" ng-if="haulierLocType == 2"
+                                x-report-modal="'true'" 
+                                x-generate-table
+                                x-data="tableData_areas.data" 
+                                x-forget-filters="true" 
+                                x-controller-initiate
+                                x-table-name="haulierLoc" 
+                                x-filter-function="getHaulierLoc(haulierLocType)"
+                                x-selected-record-preview="level3" 
+                                x-checked-records="selectedRecFromModalsCoveredAreaTo"
+                                x-filter-object="searchKeywordCoveredAreaTo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                    <button class="btn btn-default" type="button" ng-click="addNewLocation()" >Add New Location</button>
+                </div>                    
+                <div class="pull-right">
+                    <!-- (tempCustomerArr| filter: {chk: true})  -->
+                    <button class="btn btn-submit" type="button" ng-click="addAreas()" ng-if="haulierLocType == 2">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearAreas()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

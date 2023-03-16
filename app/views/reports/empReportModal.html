@@ -1,0 +1,145 @@
+<div class="modal fade template-design"
+     id="empReportModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 28cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 1.5cm;">
+
+                <div style="clear: both;">
+                    <htmlpageheader name='MyCustomHeader'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'>Employee List</div>
+                                <div class='reportHeading__left__reportfilter'>
+                                    As at {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+                    <pagefooter name='MyFooter1'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name="MyFooter1"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter1;
+                        }
+                    </style>
+                </div>
+
+                <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+                <!-- posted Sale Order -->
+                <table style="width: 100%;"
+                       class="tabletopmargin report-spacing-table">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in printPdfVals.columns"
+                                style="width: 10%;"
+                                ng-class="{'nameWidth':column.title == 'Name'}"
+                                x-name="{{column.title}}"
+                                ng-if="column.title!= 'Id'">
+                                <span ng-if="column.title == 'Department'">Dept.</span>
+                                <span ng-if="column.title == 'Employee Type'">Emp. Type</span>
+                                <span ng-if="column.title == 'No'">Emp. No.</span>
+                                <span ng-if="column.title == 'Name'">Name</span>
+                                <span
+                                      ng-if="column.title != 'Department' && column.title != 'Employee Type' && column.title != 'No' && column.title != 'Name' ">
+                                    {{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+
+                            <td ng-repeat="column in printPdfVals.columns"
+                                ng-if="column.title!= 'Id'"
+                                style="width: 10%;">
+                                <span>
+                                    {{rec[column.field]}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('empReportModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- data-dismiss="modal" -->
+
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+
+                    <!-- jsreport download button -->
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-if="!jsreportLoading"
+                       ng-click="downloadReportEmployeeList(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

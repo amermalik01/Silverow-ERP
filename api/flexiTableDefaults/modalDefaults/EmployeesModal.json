@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Select",
+        "field_name": "checkbox",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "select"
+    },
+    {
+        "title": "Employee No.",
+        "field_name": "no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    }
+]

@@ -1,0 +1,1073 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+
+            <div class="widget-body padb0" style="background:none;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">General</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">CRM No.<span ng-if="moduleCodeType == 1"
+                                          class="required">*</span></label>
+
+                                <div class="col-md-8">
+
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="rec.crm_code" ng-readonly="product_type || rec.id > 0" ng-if="moduleCodeType == 0">
+
+                                    <input type="text" class="form-control" required ng-model="rec.crm_code" ng-readonly="check_crm_readonly" ng-if="moduleCodeType == 1" />
+
+                                    <input type="hidden" ng-model="rec.code_type" class="ng-pristine ng-untouched ng-valid">
+                                    <input type="hidden" ng-model="rec.crm_no" class="form-control ng-pristine ng-untouched ng-valid">
+                                </div>
+
+                                <!-- <div class="col-md-7">
+                                                <input type="text" id="code" ng-model="code" class="form-control" readonly="readonly"    />
+                                                <input type="hidden" id="crm_no" ng-model="rec.crm_no" class="form-control"/>
+                                                </div> -->
+
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" id="id" ng-model="rec.id" class="form-control" />
+                                <label class="col-md-4 control-label">Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" maxlength="50" ng-model="rec.name" id="name" class="form-control" ng-readonly="check_crm_readonly" required />
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                          <label class="col-md-4 control-label">Previous CRM Code </label>
+                                          <div class="col-md-8">
+                                          <input type="text" ng-model="rec.prev_code" id="prev_code" class="form-control"
+                                          ng-readonly="check_crm_readonly"/>
+                                          </div>
+                                          </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 1</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_1" id="address" class="form-control" ng-readonly="check_crm_readonly" placeholder="Address Line 1" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 2 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-readonly="check_crm_readonly" placeholder="Address Line 2" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input type="text" ng-model="rec.city" id="city" class="form-control" ng-readonly="check_crm_readonly" / placeholder="City" title="City">
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control" placeholder="County" ng-readonly="check_crm_readonly" title="County" />
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">County </label>
+
+                                <div class="col-md-4 padr6">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control"
+                                           ng-readonly="check_crm_readonly"/>
+                                </div>
+
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">
+                                    <!--<span class="required">*</span> -->
+                                </label>
+
+                                <div class="col-md-4 padr6">
+
+                                    <input type="text" ng-model="rec.postcode" id="postcode" class="form-control crm-postcode" ng-readonly="check_crm_readonly" placeholder="Postcode" title="Postcode" />
+                                    <!--required-->
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="drp.country_id" ng-disabled="check_crm_readonly">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.phone" id="Telephone" class="form-control" ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Company Email</label>
+                                <div class="col-md-8">
+                                    <input type="email" ng-model="rec.email" id="Email" class="form-control" placeholder="info@company.com" ng-readonly="check_crm_readonly">
+                                </div>
+                            </div>
+                            <div class="form-group" style="    padding-top: 4px;">
+                                <div class="col-md-6 col-md-offset-4 input-symbol">
+                                    <input type="checkbox" name="unsubscribeEmail" id="unsubscribeEmail" ng-click="unsubscribeEmail(rec.unsubscribeEmail)" ng-model="rec.unsubscribeEmail" ng-disabled="check_crm_readonly" ng-checked="rec.unsubscribeEmail_address > 0">
+                                    <label for="unsubscribeEmail">Unsubscribe From Email Campaigns</label>
+                                </div>
+                                <div class="col-md-2 input-symbol">
+                                    <input type="checkbox" name="verified" id="verified" ng-model="rec.verified" ng-disabled="check_crm_readonly" ng-checked="rec.verified_chk > 0">
+                                    <label for="verified">Verified</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.fax" id="fax2" class="form-control" ng-readonly="check_crm_readonly" />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Web</label>
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+
+                                        <!-- condition to create link only in view mode if link exists. -->
+                                        <a href='{{rec.web_address}}' ng-if="rec.web_address.length>7 && check_crm_readonly" target='_blank' class="showpointer">
+                                            <input type="text" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_crm_readonly" ng-blur="set_link()" placeholder="https://" />
+                                            <span>
+                                                <i class="fa fa-external-link-square"
+                                                   aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
+                                        <!-- condition to not create a link only in view mode if no link exists.  -->
+                                        <input type="text" ng-if="(rec.web_address.length==7 || rec.web_address.length==0) && check_crm_readonly" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_crm_readonly" ng-blur="set_link()" placeholder="https://" />
+
+                                        <!-- condition to not create a link only in Edit mode.  -->
+                                        <input type="text" ng-if="!check_crm_readonly" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_crm_readonly" ng-blur="set_link()" placeholder="https://" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+
+                                    <ui-select ng-model="rec.region_id" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(rec.region_id, 'REGION', 'Region', drp)">
+                                        <ui-select-match placeholder="Select Territory>{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in region_customer_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Location Type</label>
+
+                                <div class="col-md-8 pl0" style="margin-top:2px;">
+                                    <div class="input-symbol">
+                                        <div class="col-md-4">
+                                            <div class="pure-checkbox">
+                                                <input type="checkbox" name="a" ng-model="rec.is_billing_address" ng-disabled="check_crm_readonly" id="genis_billing_address" ng-checked="rec.primary_is_billing_address > 0">
+                                                <label for="genis_billing_address">Billing</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4 pl0">
+                                            <div class="pure-checkbox">
+                                                <input type="checkbox" name="c" ng-model="rec.is_invoice_address" ng-disabled="check_crm_readonly" id="genis_invoice_address" ng-checked="rec.primary_is_invoice_address > 0" class="">
+                                                <label for="genis_invoice_address">Payment</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 pl0">
+
+
+                                            <div class="pure-checkbox">
+                                                <input type="checkbox" name="b" ng-model="rec.is_delivery_collection_address" ng-disabled="check_crm_readonly" id="genis_delivery_collection_address" ng-checked="rec.primary_is_delivery_collection_address > 0" class="">
+                                                <label for="genis_delivery_collection_address">Delivery</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">View Bucket</label>
+                                <div class="col-md-8">
+                                    <ui-select ng-if="allowChangeBucket"
+                                               ng-model="selectedSalesBucket.obj"
+                                               ng-disabled="check_cust_readonly">
+                                        <ui-select-match placeholder="Select View Bucket">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in SaleBucketList | filter: $select.search">
+                                            <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+
+
+                                    <div ng-if="!allowChangeBucket"
+                                         title="{{SelBucketTooltip}}">
+                                        <div class="panel-info pi2 dont-click readonly"
+                                             ng-class="{'max-height':bucket_selected_array.length>5}"
+                                             ng-click="getbucket_array(0)">
+                                            <div class="panel-body"
+                                                 ng-class="{'dont-click readonly':check_crm_readonly}">
+                                                <span ng-repeat="sp in bucket_selected_array track by $index">
+                                                    <span ng-if="$index == 0">
+                                                        <span>{{sp.name}}</span>
+                                                    </span>
+                                                    <span ng-if="$index > 0">;&nbsp;
+                                                        <span>{{sp.name}}</span>
+                                                    </span>
+                                                </span>
+                                                <aside>
+                                                </aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- <div ng-if="bucket_selected_array.length >0"
+                                 class="form-group">
+                                <label class="col-md-4 control-label">Salesperson </label>
+
+                                <div class="col-md-8  ">
+
+                                    <div title="{{selectedSalespersons.length>0?SelSalePerGenTooltip:''}}">
+                                        <div class="panel-info pi2 dont-click readonly"
+                                             ng-click="getSalePersons_general(0)"
+                                             ng-class="{'max-height':selectedSalespersons.length>5}">
+                                            <div class="panel-body">
+                                                    <span ng-repeat="sp in selectedSalespersons | orderBy: '-isPrimary' track by $index">
+                                                            <span>
+                                                                <span ng-class="{'text-primary':sp.isPrimary}">{{sp.name.trim()}};&nbsp;</span>
+                                                            </span>
+                                                    </span>
+
+
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Salesperson <!-- Code --> </label>
+                                <div class="col-md-8">
+
+                                    <div class="input-symbol">
+                                        <input type="text" ng-click="get_empl_list('saleperson_code')" ng-model="rec.saleperson_code" id="saleperson_code" class="form-control" ng-disabled="check_crm_readonly" />
+                                        <input type="hidden" ng-model="rec.saleperson_code_id" id="saleperson_code_id" class="form-control" ng-readonly="check_srm_readonly" />
+                                        <span>
+                                            <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!-- ng-if="rec.type==1" -->
+                                <label class="col-md-4 control-label">Status
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8  ">
+                                    <ui-select ng-model="drp.status_id" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(drp.status_id, 'STATUS', 'Status', drp)">
+                                        <ui-select-match placeholder="Select Status">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in rec.arr_crm_status | filter: $select.search">
+                                            <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <!-- <div class="col-md-2 adj-btn">
+                                    <button class="btn btn-icon pull-right" type="button" ng-click="historytype('Status')" title="Status History" ng-disabled="check_crm_readonly">
+                                        <i class="fa fa-history"></i>
+                                    </button>
+                                </div> -->
+                            </div>
+
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Credit Rating
+                                    <!--<span class="required">*</span>-->
+                                </label>
+
+                                <div class="col-md-8  ">
+
+                                    <ui-select ng-model="rec.credit_rating" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(rec.credit_rating, 'CREDIT_RATING', 'Credit Rating', drp)">
+                                        <ui-select-match placeholder="Select Credit Rating">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in rec.arr_crm_credit_rating | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <!-- <div class="col-md-2 adj-btn">
+                                    <button class="btn btn-icon pull-right" type="button" ng-click="historytype('CreditLimit')" title="Credit Rating History" ng-disabled="check_crm_readonly">
+                                        <i class="fa fa-history"></i>
+                                    </button>
+                                </div> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Currency
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="drp.currency" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewCurrencyPopup(drp)">
+                                        <ui-select-match placeholder="Select Trading Currency">
+                                            {{$select.selected.code}}
+                                        </ui-select-match>
+                                        <!--name-->
+                                        <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                                            <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                                <!-- <div class="col-md-2 remove-left-pad">
+                                                <button class="btn btn-info btn_blue" type="button" ng-click="historytype('CreditLimit')">
+                                                <i class="fa fa-history"> </i>History</button>
+                                                </div> -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Ownership Type</label>
+
+                                <!-- <div class="col-md-8">
+
+                                    <ui-select ng-model="rec.ownership_type" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}"
+                                        ng-change="addNewPredefinedPopup(rec.ownership_type, 'OWNER', 'Owner', drp)">
+                                        <ui-select-match placeholder="Select Ownership Type">
+                                            {{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in rec.arr_ownership | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div> -->
+                                <div class="col-md-8">
+                                    <ui-select ng-model="rec.ownership_type" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(rec.ownership_type, 'OWNER', 'Owner', drp)">
+                                        <ui-select-match placeholder="Select Ownership Type">
+                                            {{$select.selected.label}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_type_of_Business | filter: $select.search">
+                                            <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">No. Of Employee(s)</label>
+
+                                <div class="col-md-2 padr6">
+                                    <input type="number" class="form-control" pattern="^(0|[1-9][0-9]*)$" ng-model="rec.emp_no" ng-readonly="check_crm_readonly" data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Please enter numeric values only"
+                                    />
+                                    <!-- data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                                </div>
+                                <label class="col-md-2 control-label pt7"> Turnover </label>
+
+                                <div class="col-md-4 padl6">
+                                    <div class="input-symbol">
+
+                                        <input ng-if="!check_crm_readonly" type="number" class="form-control" pattern="^[$\-\s]*[\d\,]*?([\.]\d{0,4})?\s*$" ng-model="rec.turnover" ng-readonly="check_crm_readonly || retailer == 1" data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                                            data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" />
+                                        <!--[0-9]+([\.,][0-9]+)*-->
+                                        <!--check_readonly_opp-->
+                                        <input ng-if="check_crm_readonly" type="text" class="form-control" disabled>
+                                        <span ng-if="check_crm_readonly" style="position: absolute;left: 7px;font-size: 11px;">{{rec.turnover |
+                                            currency : "" }}</span>
+                                        <span>
+                                            <!--     {{drp.currency.code}} -->{{drp.currency.code}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Company Registration No.">Company Reg. No. </label>
+
+                                <div class="col-md-2 padr6">
+                                    <input type="text" ng-model="rec.company_reg_no" id="company_reg_no" class="form-control" ng-readonly="check_crm_readonly || retailer == 1" />
+                                </div>
+
+                                <label class="col-md-2 control-label pt7" title="Date of Incorporation">Date Of Inc. </label>
+                                <div class="col-md-4  padl6">
+                                    <div class="input-symbol">
+                                        <input jqdatepicker class="2date-picker form-control " id="date_of_inc" ng-model="rec.date_of_inc" ng-class="{'pickdate':!check_crm_readonly && retailer != 1}" ng-disabled="check_crm_readonly || retailer == 1" readonly>
+                                        <span>
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label blue-label">Segment <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="drp.crm_segment_id" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(drp.crm_segment_id, 'SEGMENT', 'Segment', drp)">
+                                        <ui-select-match placeholder="Select Segment">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in segment_customer_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label blue-label">Sales Status<!-- Territory --> <span class="required">*</span></label>
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="rec.region_id" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(rec.region_id, 'REGION', 'Region', drp)">
+                                        <ui-select-match placeholder="Select Sales Status">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in region_customer_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Buying Group </label>
+
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="drp.buying_grp_id" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(drp.buying_grp_id, 'BUYING_GROUP', 'Buying Group', drp)">
+                                        <ui-select-match placeholder="Select Buying Group">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in bying_group_customer_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Source Of CRM </label>
+
+                                <div class="col-md-8">
+                                    <ui-select ng-model="drp.sources_of_crm_id" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(drp.sources_of_crm_id, 'SOURCES_OF_CRM', 'Source Of CRM', drp)">
+                                        <ui-select-match placeholder="Select Source Of CRM">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in rec.arr_sources_of_crm | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Classification</label>
+                                <!--ng-change="addNewPredefinedPopup(drp.crm_classification, 'CRM_CLASSIFICATION', 'CRM Classification', drp)"-->
+                                <!-- ng-change="addNewPredefinedPopup(drp.sources_of_crm_id, 'SOURCES_OF_CRM', 'Source Of CRM', drp)" -->
+                                <div class="col-md-8 ">
+                                    <ui-select ng-model="drp.crm_classification" ng-disabled="check_crm_readonly || disable_classification || retailer == 1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Select Classification">
+                                            {{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices ui-disable-choice="opt.title =='Customer' || opt.title == 'Previous Customer'" repeat=" opt in arr_crm_classification | filter: $select.search">
+                                            <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Type</label>
+                                <div class="col-md-8 ">
+                                    <!--  || (drp.crm_type.id > 0 && rec.crm_code.length > 0)  -->
+                                    <ui-select ng-model="drp.crm_type" ng-disabled="check_crm_readonly || retailer == 1" ng-class="{'not-click-allow':!check_crm_readonly}">
+                                        <ui-select-match placeholder="Select Type">
+                                            {{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat=" opt in rec.arr_crm_type | filter: $select.search">
+                                            <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-if="drp.crm_type.id != undefined && drp.crm_type.id != 1">
+                                <label class="col-md-4 control-label" title="Link to Indirect CRM" ng-if="drp.crm_type.id == 2">Link </label>
+                                <label class="col-md-4 control-label" title="Link to Route To Market" ng-if="drp.crm_type.id == 3">Link </label>
+                                <div class="col-md-8">
+                                    <div class="panel-info pi2" ng-class="{'dont-click readonly':check_crm_readonly ,'max-height':selectedRouteToMarkets.length>21 }">
+                                        <div class="panel-body " style="    height: 28px;" ng-click="ShowRouteToMarketList(drp.crm_type.id);">
+                                            <aside>
+                                            </aside>
+                                            {{selectedRouteToMarkets}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Payable Bank </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol" ng-class="{'dont-click':check_crm_readonly || retailer == 1}" ng-click="getBankAccount()">
+                                        <input type="text" ng-model="rec.crm_bank_name" id="bank_name" class="form-control" ng-disabled="check_crm_readonly || !cust_finanace_tab_module" ng-class="{'pickdate':!check_crm_readonly && retailer != 1}" readonly />
+                                        <input type="hidden" ng-model="rec.crm_bank_account_id" id="crm_bank_account_id" class="form-control" />
+                                        <span>
+                                            <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Posting Group</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="posting_group_ids" name="posting_group_ids" ng-model="drp.posting_group_ids" ng-options="opt as opt.posting_group for opt in postingGroups" ng-disabled="check_crm_readonly || !cust_finanace_tab_module || retailer == 1">
+                                        <option value="" selected disabled>Select Posting Group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Additional Information</label>
+                                <div class="col-md-8">
+                                    <input type="text" maxlength="250" ng-model="rec.additionalInformation" id="additionalInformation" class="form-control" ng-readonly="check_crm_readonly || retailer == 1" />
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0 !important;">
+                                <label class="col-md-4 control-label">Social Media</label>
+                                <div class="col-md-8 genSocialMedia">
+
+                                    <x-dynamic-select lookup-table="social_medias_general_form" fields="socialMediasGeneral" property-name="crmSM" qty="{{qty}}" default-option-index="{{defaultOption}}" read-only="check_crm_readonly || retailer == 1">
+                                    </x-dynamic-select>
+                                </div>
+
+                            </div>
+
+                            <!-- <div><pre>{{socialMediasGeneral | json}}</pre></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel panel-default padb0" style="    margin-top: 15px;">
+            <!-- <div class="panel-heading">
+                <h3 class="panel-title" style="padding-left:14px;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <div class="panel-title-hover">Primary Contact Details
+                        <i class="fa fa-caret-right collapseicon" ng-if="rec.contactCollapse==true"></i>
+                        <i class="fa fa-caret-down collapseicon" ng-if="rec.contactCollapse==false"></i>
+                    </div>
+                </h3>
+            </div> -->
+            <!-- ng-class="{'in' : rec.contactCollapse==false , 'collapse' : rec.contactCollapse == true}" id="collapseExample" -->
+            <div class="panel-body">
+                <div class="col-md-5">
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Primary Contact Name
+                            <span ng-if=" rec.primaryc_id > 0 || rec.cjob_title.length>0 || rec.cdirect_line.length>0 || rec.cdirect_line>0 || rec.cmobile.length>0 || rec.cemail.length>0 || rec.cphone.length>0 ||
+                                                rec.cfax.length>0 || drp.pref_mthod_of_comm || rec.cbooking_instructions.length>0 ||
+                                                (socialMediasContactGeneral.CRMprimaryContactSM.length>0 && (socialMediasContactGeneral.CRMprimaryContactSM[0].value ||
+                                                 socialMediasContactGeneral.CRMprimaryContactSM[1].value || socialMediasContactGeneral.CRMprimaryContactSM[2].value ||
+                                                  socialMediasContactGeneral.CRMprimaryContactSM[3].value || socialMediasContactGeneral.CRMprimaryContactSM[4].value))"
+                                  class="required">*</span>
+                        </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.contact_person" id="contact_person" class="form-control" ng-readonly="check_crm_readonly" ng-required="rec.primaryc_id > 0 || rec.cjob_title.length>0 || rec.cdirect_line.length>0 || rec.cdirect_line>0 ||
+                                                rec.cmobile.length>0 || rec.cemail.length>0 || rec.cphone.length>0 ||
+                                                rec.cfax.length>0 || drp.pref_mthod_of_comm || rec.cbooking_instructions.length>0 ||
+                                                (socialMediasContactGeneral.CRMprimaryContactSM.length>0 && (socialMediasContactGeneral.CRMprimaryContactSM[0].value ||
+                                                 socialMediasContactGeneral.CRMprimaryContactSM[1].value || socialMediasContactGeneral.CRMprimaryContactSM[2].value ||
+                                                  socialMediasContactGeneral.CRMprimaryContactSM[3].value || socialMediasContactGeneral.CRMprimaryContactSM[4].value))" />
+
+                            <input type="hidden" ng-model="rec.alt_contact_id" id="alt_contact_id" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Job Title </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cjob_title" id="job_title" class="form-control" ng-readonly="check_crm_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Direct Line </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cdirect_line" id="direct_line" class="form-control" ng-readonly="check_crm_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Mobile </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cmobile" id="mobile" class="form-control" ng-readonly="check_crm_readonly" />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Telephone </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cphone" id="cTelephone" class="form-control" ng-readonly="check_crm_readonly" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Fax </label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cfax" id="fax" class="form-control" ng-readonly="check_crm_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email </label>
+
+                        <div class="col-md-8">
+
+                            <div class="input-symbol">
+                                <input type="email" ng-model="rec.cemail" id="email" data-parsley-type="email" name="email" class="form-control" data-email-msg="Email format is not valid" ng-readonly="check_crm_readonly" placeholder="e.g. myname@example.com" />
+                                <span>
+                                    <a ng-if="rec.cemail != undefined"
+                                       href="mailto:{{rec.cemail}}?Subject=silverow CRM&Body=silverow CRM">
+                                        <i style=" color: #3693cf;"
+                                           class="fa fa-envelope-o"
+                                           aria-hidden="true"> </i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Prefer Method Of Communication">Pref. Method Of Comm.</label>
+
+                        <div class="col-md-8">
+
+                            <ui-select ng-model="drp.cpref_method_of_communication" ng-disabled="check_crm_readonly" ng-class="{'not-click-allow':disableClass > 0}" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)">
+                                <ui-select-match placeholder="Select Prefer Method Of Communication">
+                                    {{$select.selected.title}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in arr_pref_method_comm | filter: $select.search">
+                                    <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="rec.totalLocAssigned>0">
+                        <label class="col-md-4 control-label">Assigned Location(s)</label>
+
+                        <div class="col-md-2">
+                            <button style=" line-height: 18px;" class="btn btn-icon pull-right" type="button" ng-click="getGenAssinLoc(rec.alt_contact_id)" title="Total Record: {{rec.totalLocAssigned}}">
+                                <!-- {{rec_contact.showdata2}} -->
+                                <!-- ng-class="{'setshow3':rec_contact.showdata2>0}" -->
+                                <!-- <span ng-if="rec_contact.showdata2==0 || !rec_contact.showdata2>0">0</span>
+                                    <span ng-if="rec_contact.showdata2>0">{{rec_contact.showdata2}}</span> -->
+                                <span ng-if="!loadingprimaryLocModal">{{rec.totalLocAssigned}}</span>
+                                <span class="fa fa-spinner fa-spin text-center"
+                                      ng-if="loadingprimaryLocModal"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0 !important">
+                        <label class="col-md-4 control-label">Social Media</label>
+                        <div class="col-md-8 genContactSocialMedia">
+                            <x-dynamic-select lookup-table="social_medias_contact_form" fields="socialMediasContactGeneral" property-name="CRMprimaryContactSM" qty="{{qty}}" default-option-index="{{defaultOption}}" read-only="check_crm_readonly || retailer == 1">
+                            </x-dynamic-select>
+                        </div>
+                    </div>
+                    <div class="form-group notes-tip-pop">
+                        <label class="col-md-4 control-label">Primary Contact Notes
+                        </label>
+
+                        <div class="col-md-8">
+                            <textarea style="height:100px !important; resize:none; " ng-model="rec.cbooking_instructions" id="cnotes" class="form-control" ng-disabled="check_crm_readonly" maxlength="250" />
+                            </textarea>
+                            <!-- <span class="word-counter">{{rec.cbooking_instructions.length}}/100</span>-->
+                        </div>
+                    </div>
+                    <!-- <div><pre>{{socialMediasContactGeneral | json}}</pre></div>     -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 affix">
+
+        <div class="pull-left">
+            <!-- <div class="communication">
+                <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+            </div> -->
+        </div>
+        <div class="pull-right">
+
+            <div class="dropdown ib" ng-show="rec.id > 0 && crm_general_tab_module > 0">
+                <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="dte-ico"></i>
+                </button>
+                <ul class="dropdown-menu dte animated fadeIn">
+                    <span ng-click="set_document_internal(crm_general_tab_module)">
+                        <i class="fa fa-file-text-o"
+                           aria-hidden="true"></i> Add Document</span>
+                    <span>
+                        <i class="fa fa-check"
+                           aria-hidden="true"></i> Add Task</span>
+                    <span>
+                        <i class="fa fa-envelope-o"
+                           aria-hidden="true"></i> Compose Email</span>
+                </ul>
+            </div>
+
+            <!-- <a class="btn btn-default2" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-envelope"></i>
+            </a> -->
+
+            <flexi-history x-screen-name="crm" x-params='{"id":{{recnew.crmid}}}' class="ib"></flexi-history>
+
+            <button class="btn btn-default2 active-btns" ng-if="allowconvert_crm_general_tab && rec.id > 0 " ng-show="rec.type == 1 || rec.type == 0" type="button" ng-click="convert()" ng-disabled="!check_crm_readonly">
+                Convert to Customer
+            </button>
+            <button class="btn btn-default2 active-btns" ng-if="rec.id > 0 " ng-show="rec.type == 0" type="button" ng-click="convertToCRM()" ng-disabled="!check_crm_readonly">
+                Convert to CRM
+            </button>
+            <!--    Delete    permision for Company User /superadmin -->
+            <button class="btn btn-delete active-btns" ng-if="allowdelete_crm_general_tab == 1 && !check_crm_readonly" ng-show="rec.id > 0" type="button" ng-click="deleteCRM()">
+                Delete
+            </button>
+            <button class="btn btn-submit" ng-class="{'dont-click':isSaveting}" type="button" ng-if="!check_crm_readonly">Save
+            </button>
+            <!--whirl line back-and-forth -->
+            <!--    Edit    permision for Company User /superadmin -->
+            <!-- {'dont-click':allowedit_crm_general_tab == 0}" -->
+            <button class="btn btn-edit" ng-if="allowedit_crm_general_tab && check_crm_readonly" type="button" ng-click="showEditForm()">Edit
+            </button>
+            <!-- <button class="btn btn-info btn_blue" type="button" ng-click="delete({id:id})" ng-show="check_crm_readonly">
+                    <i class="fa fa-times"></i> Delete</button> -->
+            <button class="btn btn-cancel" type="button" ng-if="retailer == 1" ui-sref="app.crm_retailer()"> Cancel</button>
+            <button class="btn btn-cancel" type="button" ng-if="retailer == 2" ui-sref="app.prospect()"> Cancel</button>
+            <button class="btn btn-cancel" type="button" ng-if="retailer != 1 && retailer != 2" ui-sref="app.crm()"> Cancel</button>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="fieldsHistory" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">History</h4>
+            </div>
+            <div class="modal-body">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default2">
+                        <i class="fa fa-table"
+                           aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-default2">
+                        <i class="fa fa-list-ul"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!-- 
+                <table class="table table-condensed table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Field Name</th>
+                            <th>Changed By</th>
+                            <th>Changed On</th>
+                            <th>Old Value</th>
+                            <th>New Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>Super Admin</td>
+                            <td>10/10/2019 - 19:00</td>
+                            <td>Restaurant Wholesale</td>
+                            <td>Saka Water 5L</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Super Admin</td>
+                            <td>10/10/2019 - 19:00</td>
+                            <td>Restaurant Wholesale</td>
+                            <td>Saka Water 5L</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Super Admin</td>
+                            <td>10/10/2019 - 19:00</td>
+                            <td>Restaurant Wholesale</td>
+                            <td>Saka Water 5L</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+                <div class="fields-timeline">
+                    <div class="fields-timeline-item">
+                        <div class="fields-timeline-item-small">
+                            <span style="position: absolute;left: 0px;">10/06/2019 - 10:00</span>
+                            <span>
+                                <b>Super Admin </b>Changed value of "Name" from
+                                <b>Restaurant Wholesale</b> to <b>Saka Pure Water 19 Liter</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fields-timeline-item">
+                        <div class="fields-timeline-item-small">
+                            <span style="position: absolute;left: 0px;">10/10/2019 - 19:00</span>
+                            <span>
+                                <b>Farhan Afzal </b>Changed value of "Ownership Type" from
+                                <b>Limited Company (Ltd)</b> to <b>Partnership</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fields-timeline-item">
+                        <div class="fields-timeline-item-small">
+                            <span style="position: absolute;left: 0px;">10/10/2019 - 19:00</span>
+                            <span>
+                                <b>Noor Alam </b>Changed value of "Segment" from
+                                <b>Airline Industries</b> to <b>Furniture Handling Business</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fields-timeline-item">
+                        <div class="fields-timeline-item-small">
+                            <span style="position: absolute;left: 0px;">10/10/2019 - 19:00</span>
+                            <span>
+                                <b>Super Admin </b>Changed value of <b >"Company Reg. No" </b>from
+                                <b>SUI0090</b> to <b>HJ00939</b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel2" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="myModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"
+                    ng-hide="composeIntEmail == 1">Email</h4>
+                <h4 class="modal-title"
+                    ng-if="composeIntEmail == 1"
+                    ng-hide="replyEmail">Compose Email</h4>
+            </div>
+            <div class="modal-body"
+                 ng-init="readEmail = 2 ; composeIntEmail = 2"
+                 style="overflow: hidden;padding-bottom: 15px;">
+
+                <a class="btn pull-right btn_add2 oval"
+                   ng-click="composeIntEmail = 1"
+                   ng-hide="composeIntEmail == 1 || readEmail == 1">
+                    <i class="fa fa-plus"
+                       aria-hidden="true"></i>
+                </a>
+                <div ng-show="composeIntEmail == 1 || replyEmail == 1"
+                     class="lefttoright">
+                    <div ng-if="composeIntEmail == 1"
+                         ng-hide="replyEmail">
+                        <select class="form-control pull-left select_mail">
+                            <option>
+                                From: demo@silverow.com
+                            </option>
+                        </select>
+
+                        <div></div>
+                    </div>
+                    <div ng-click="composeIntEmail = 0"
+                         class="ib goBack pull-right">
+                        <i class="fa fa-angle-left"
+                           aria-hidden="true"></i>
+                    </div>
+
+                    <b style="font-size: 15px;"
+                       ng-if="replyEmail == 1">RE: Meeting at 12:00 </b>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="To : Recipients"
+                           style="margin-bottom: 5px;">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Cc : Recipients"
+                           style="margin-bottom: 5px;">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Subject"
+                           style="margin-bottom: 5px;">
+                    <div id="internalEmail"></div>
+                    <div class="attachment_area">
+                        <b>Attachments</b>
+                        <span>Farhan Afzal Image
+                            <div>
+                                <i class="fa fa-minus"></i>
+                            </div>
+                        </span>
+                        <span>Testing Image 123
+                            <div>
+                                <i class="fa fa-minus"></i>
+                            </div>
+                        </span>
+                        <span>Image Test 090
+                            <div>
+                                <i class="fa fa-minus"></i>
+                            </div>
+                        </span>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('#internalEmail').summernote(
+                                {
+                                    height: 100,
+                                    minHeight: 50,
+                                    maxHeight: 100,
+                                    focus: true,
+                                    disableResizeEditor: true,
+
+                                    toolbar: [
+                                        ['style', ['bold', 'italic', 'underline']],
+                                        ['fontsize', ['fontsize']],
+                                        ['color', ['color']],
+                                        ['para', ['ul', 'ol', 'paragraph']],
+                                        ['object', ['link', 'table']],
+                                        ['history', ['undo', 'redo']],
+                                    ]
+                                }
+                            );
+                        });
+                        $('.note-btn').removeAttr('title');
+                        $('.note-color-btn').removeAttr('title');
+                    </script>
+                </div>                
+                <table class="table table-condensed table-striped table-hover table-bordered"
+                       ng-hide="readEmail == 1 || composeIntEmail == 1"
+                       ng-class="{'righttoleft': composeIntEmail == 0 || readEmail == 0}">
+                    <thead>
+                        <tr>
+                            <th>Sender Email Address</th>
+                            <th>Subject</th>
+                            <th>Email Content</th>
+                            <th>Date Received</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-click="readEmail = 1"
+                            style="cursor: pointer;">
+                            <td>demo@silverow.com</td>
+                            <td>Meeting at 12:00</td>
+                            <td>Dear all, we have a meeting at 12:00...</td>
+                            <td>12/12/18 at 19:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+
+               
+                <div ng-show="readEmail == 1"
+                     ng-hide="composeIntEmail || replyEmail"
+                     class="lefttoright">
+
+                    <div ng-click="readEmail = 0"
+                         class="ib goBack">
+                        <i class="fa fa-angle-left"
+                           aria-hidden="true"></i>
+                    </div>
+
+                    <b style="font-size: 15px;">Meeting at 12:00
+                        <small style="color: #9c9c9c;font-size: 10px;">demo@silverow.com</small>
+                    </b>
+                    <i class="pull-right"
+                       style="margin-right: 9px;margin-top: 2px;">12/12/18 at 19:00</i>
+
+                    <div class="viewEmail">
+                        <div class="options">
+                            <i class="material-icons md-18"
+                               ng-click="replyEmail = 1;readEmail = 0;composeIntEmail = 1">&#xE15E;</i>
+                            <i class="material-icons md-18">&#xE15F;</i>
+                            <i class="material-icons md-18">&#xE5C8;</i>
+                            <i class="material-icons md-18">&#xE313;</i>
+                        </div>
+                        <p class="text-justify">
+                            It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout.
+                            The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
+                            letters,
+                            as opposed to using 'Content here, content here', making it look like readable English.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <style>
+                .note-editor {
+                    margin-bottom: 0;
+                }
+            </style>
+            <div class="modal-footer"
+                 style="border-top: 1px solid gainsboro;padding-top: 7px;padding-bottom: 7px;">
+                <div ng-if="composeIntEmail == 1"
+                     class="pull-left">
+                    <a class="btn btn-submit2 no-margin">Send</a>
+                    <div class="fileUpload btn btn-default2 "
+                         style="    margin-right: 6px;">
+                        <span class="fa fa-paperclip"></span>
+                        <input type="file"
+                               ngf-select="onFileSelect($files, $invalidFiles)"
+                               name="file"
+                               multiple=""
+                               class="upload">
+                    </div>
+                    <label>
+                        <input type="radio"> Private
+                    </label>
+                    <label>
+                        <input type="radio"> Public
+                    </label>
+                </div>
+                <button type="button"
+                        class="btn btn-cancel2"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div> -->

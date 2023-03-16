@@ -1,0 +1,199 @@
+<div class="modal fade template-design"
+     id="agingDetailsModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div class='reportHeading'>
+                    <div class='reportHeading__left'>
+                        <div class='reportHeading__left__reportname'
+                             style="margin-bottom: 12px;">
+                            <span ng-if="printPdfVals.module == 'customerAgingDetail'">Customer Aging Detailed</span>
+                            <span ng-if="printPdfVals.module == 'supplierAgingDetail'">Supplier Aging Detailed</span>
+                            <span ng-if="printPdfVals.module == 'creditorsAgingDetail'">Creditors Aging Detailed</span>
+                        </div>
+                        <div class='reportHeading__left__reportfilter'
+                             style="margin-bottom: 16px;margin-top: 5px;">
+                            As at {{printPdfVals.upToDate}}
+                        </div>
+                        <div class='reportHeading__left__reportfilter' ng-if="printPdfVals.module == 'customerAgingDetail'">
+                            <b>Finance: {{printPdfVals.finance}}</b>
+                        </div>
+                        <div class='reportHeading__left__reportfilter' ng-if="printPdfVals.module == 'customerAgingDetail'">
+                            <b>Insurance: {{printPdfVals.insurance}}</b>
+                        </div>
+                    </div>
+                    <div class='reportHeading__right margin-bottomreport'>
+                        <img ng-src='{{imagePath+defaultLogo}}'
+                             class='reportHeading__right__img '
+                             ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                        <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                    </div>
+                </div>
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     ng-if="rec.res"
+                     style="clear: both;"
+                     class="mystyle2">
+
+                    <!-- <div ng-if="((rec.name != printPdfVals.reportsDataArr[$index-1].name && $index>0) || $index == 0)" {{rec.name}}> -->
+                    <!-- <pagebreak resetpagenum="1" />  -->
+
+                    <!-- </div> -->
+
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <!-- <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">
+                                     <span ng-if="printPdfVals.module == 'customerAgingDetail'">Customer Aging Detailed</span>
+                                     <span ng-if="printPdfVals.module == ''">Aging Detailed</span>
+                                     </div> -->
+                            <table align="left"
+                                   style="width: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b style="font-size: 13px;"
+                                               ng-if="printPdfVals.module == 'customerAgingDetail'">{{rec.name}}
+                                                ({{rec.customer_code}})</b>
+                                            <b style="font-size: 13px;"
+                                               ng-if="printPdfVals.module == 'supplierAgingDetail' || printPdfVals.module == 'creditorsAgingDetail'">{{rec.name}}
+                                                ({{rec.supplier_code}})</b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <div class='reportHeading__left__reportfilter'
+                                     style="margin-bottom: 16px;margin-top: 5px;">
+                                    As at {{printPdfVals.upToDate}}
+                                </div>
+                                <div class='reportHeading__left__reportfilter'>
+                                <b>Finance: {{printPdfVals.finance}}</b>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'>
+                                <b>Insurance: {{printPdfVals.insurance}}</b>
+                                </div> -->
+                        </div>
+                        <!-- <div class='reportHeading__right margin-bottomreport'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>  -->
+                    </div>
+                    <table style="width: 100%;"
+                           class="tabletopmargin alternateRowColor">
+                        <thead>
+                            <tr>
+                                <th ng-repeat="column in printPdfVals.columns"
+                                    style="width: 10%;"
+                                    x-col="{{column.title}}"
+                                    ng-class="{'rightAlign':column.title == 'Remaining Amount' || column.title == 'Settled Amount' || column.title == 'Original Amount' || column.title == 'Balance' || column.title == 'Outstanding Amount' || column.title == 'Outstanding Amountlcy' || column.title == 'Due Date','equalwidth':toggleLandscape}">
+                                    <span
+                                          ng-if="column.title != 'Ref No' && column.title != 'Duedate' && column.title != 'Outstanding Amountlcy'">
+                                        {{column.title}}</span>
+                                    <span ng-if="column.title == 'Ref No'">Ref. No.</span>
+                                    <span ng-if="column.title == 'Duedate'">Due Date</span>
+                                    <span ng-if="column.title == 'Outstanding Amountlcy'">Outstanding Amount
+                                        (LCY)</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="recA in rec.res">
+                                <td ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'rightAlign':column.title == 'Remaining Amount' || (column.title == 'Settled Amount' && recA['Settled_Amount']>0)|| column.title == 'Original Amount' || column.title == 'Balance' || column.title == 'Outstanding Amount' || column.title == 'Outstanding Amountlcy' || column.title == 'Due Date', 'equalwidth':toggleLandscape}">
+                                    <!-- <span>{{recA[column.field]}} </span>  Remaining Amount -->
+                                    <!-- {{recA['Settled Amount']}} -->
+                                    <span
+                                          ng-if="column.title != 'Outstanding Amount' && column.title != 'Outstanding Amountlcy' && column.title != 'Settled Amount' && column.title != 'Original Amount' && column.title != 'Balance' && column.title != 'Summary' && column.title != 'Ref No'">{{recA[column.field]}}</span>
+                                    <span
+                                          ng-if="column.title == 'Outstanding Amount' || column.title == 'Outstanding Amountlcy' || (column.title == 'Settled Amount' && recA['Settled_Amount']>0) || column.title == 'Original Amount' || column.title == 'Balance'">{{recA[column.field] | currency : "" : decimal_range}}</span>
+                                    <span
+                                          ng-if="column.title == 'Ref No' && recA['Ref_No'].length>0">{{recA[column.field]}}</span>
+                                    <span ng-if="column.title == 'Ref No' && !(recA['Ref_No'].length>0)">-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ng-repeat="column in printPdfVals.columns"
+                                    ng-class="{'rightAlign': column.title == 'Outstanding Amount' || column.title == 'Currency'}">
+                                    <span ng-if="column.title == 'Currency'">
+                                        <b>Total</b>
+                                    </span>
+                                    <span ng-if="column.title == 'Outstanding Amount'">
+                                        <b>{{rec.res[rec.res.length-1]['balance'] | currency : "" : decimal_range}}</b>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class='reportHeading2'>
+                    <table style="width: 40%;"
+                           class="tabletopmargin">
+                        <tbody>
+                            <tr ng-repeat="rec in printPdfVals.reportsDataArr.sum track by $index">
+                                <td>
+                                    <b>{{rec.currency}}</b>
+                                </td>
+                                <td class="rightAlign">
+                                    {{rec.outstanding_amount | currency : "" : decimal_range}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModal('agingDetailsModal')">Cancel</button>
+                    <!--  data-dismiss="modal" -->
+
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- <a type="button" class="btn btn-default2" title="Send Email" ng-click="sendCustomerStatementReportsViaEmail(printPdfVals)">
+                            Send Email
+                       </a> -->
+
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportCustomerAgingDetail(printPdfVals)"
+                       ng-if='!jsreportLoading && printPdfVals.reportName == "customerAgingReportDetail"'>
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportSupplierAgingDetail(printPdfVals)"
+                       ng-if='!jsreportLoading && (printPdfVals.reportName == "supplierAgingReportDetail" ||
+                        printPdfVals.reportName == "creditorsAgingReportDetail")'>
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

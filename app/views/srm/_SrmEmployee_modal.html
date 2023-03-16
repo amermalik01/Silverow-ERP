@@ -1,0 +1,107 @@
+<div class="modal fade"
+     id="_SrmEmplisting_model"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg"
+         dragable
+         style="width: 94%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchaser</h4>
+            </div>
+
+            <div class="modal-body">
+                <!-- Filter Start -->
+                <div class="row">
+                    <!-- ng-init="get_employee_type_list();"-->
+                    <div>
+                        <!-- Filter Start -->
+                        <div class="col-md-4">
+                            <form autocomplete="off"
+                                  class="form-horizontal no-margin ng-pristine ng-valid"
+                                  role="form">
+
+                                <div class="input-symbol">
+                                    <!-- ng-submit="getOffer_PriceOffer()"-->
+                                    <input type="text"
+                                           Placeholder="Search"
+                                           class="form-control"
+                                           ng-model="searchKeyword.search">
+                                    <span id="date_msg_4">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div class="col-md-3 remove-left-pad">
+                            <ui-select ng-model="searchKeyword.employee_type">
+                                <ui-select-match placeholder="Select Employment Type">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in emp_type_arr | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div> -->
+                        <div class="col-md-1 remove-left-pad">
+                            <button class="btn btn-default2"
+                                    type="button"
+                                    ng-click="searchKeyword={}"
+                                    ng-model="strict2">Clear Filter</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filter End -->
+                <div class="row"
+                     style="margin-bottom: 0 !important;">
+                    <div class="col-md-12 col-md-12">
+                        <!-- {{record_pr}} -->
+                        <div class="bs-example bs-example-tabs"
+                             data-example-id="togglable-tabs">
+                            <table class="table table-condensed table-striped table-bordered table-hover"
+                                   ng-if="columns_pr.length > 0">
+                                <thead class="fixit">
+                                    <tr class="bg-col">
+                                        <th ng-repeat="column in columns_pr"
+                                            x-col="{{column.title}}"
+                                            ng-if=" column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication' && column.field != 'notes' && column.title != '$$Hashkey' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status'"
+                                            ng-hide="column.field == 'id' || column.field == 'type'">
+
+                                            <span ng-if="column.title == 'Code'">Emp. No.</span>
+                                            <span ng-if="column.title != 'Code'">{{column.title}}</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fixit">
+                                    <tr ng-repeat="rec in record_pr  | filter:searchKeyword.search | filter:searchKeyword.employee_type.name track by $index"
+                                        ng-click="confirm_employeeList(rec, empListType)">
+                                        <td style="text-overflow: ellipsis !important;"
+                                            title="{{rec[column.field]}}"
+                                            ng-repeat="column in columns_pr"
+                                            ng-if="column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication' && column.field != 'notes' && column.title != '$$Hashkey' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status'"
+                                            ng-hide="column.field == 'id'  ||  column.field == 'type'">
+                                            <span ng-if="column.field != 'start_date' &&   column.field != 'end_date' ">
+                                                {{rec[column.field]}}</span>
+                                            <!-- <span ng-if="column.field == 'start_date'  || column.field == 'end_date' ">
+                                            <span ng-if="rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-cancel"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

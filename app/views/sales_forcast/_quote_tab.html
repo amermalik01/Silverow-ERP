@@ -1,0 +1,119 @@
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover narrow_table">
+    <thead>
+      <tr class="bg-col">
+        <th width="8%">Type</th>
+        <th width="8%">Code</th>
+        <th width="16%">Description</th>
+        <th width="5%">Qty.</th>
+        <th width="8%">Unit Of Measure</th>
+        <!--   <th width="8%">Location</th>-->
+        <th width="8%">Unit Price</th>
+        <!-- <th width="8%">Discount Type</th>
+        <th width="8%">Discount</th>
+        <th width="8%">VAT</th>-->
+        <th width="8%">Total</th>
+        <th width="3%">Action</th>
+      </tr>
+    </thead>
+    <tbody class="courser table-body">
+      <tr ng-repeat="item in items track by $index">
+        <td ng-if="item.item_type == 0"><select disabled="disabled" class="form-control col-md">
+            <option>Item</option>
+          </select></td>
+        <td ng-if="item.item_type == 2"><select disabled="disabled" class="form-control col-md">
+            <option>Service</option>
+          </select></td>
+        <td ng-if="item.item_type == 1"><select disabled="disabled" class="form-control col-md">
+            <option>G/L No.</option>
+          </select></td>
+        <td>{{item.product_code}}</td>
+        <td ng-if="item.item_type == 0 || item.item_type == 2">{{item.description}}</td>
+        <td ng-if="item.item_type == 1"><input type="text" ng-model="item.description" ng-readonly="check_readonly" class="form-control col-md" style="color:#000000"></td>
+        <td><input type="text" ng-model="item.qty" class="form-control col-md" ng-readonly="check_readonly" style="color:#000000" required data-parsley-type="digits" min="1"></td>
+        <td ng-if="item.item_type == 0"><select ng-model="item.units" tabindex="4"  ng-options="opt as opt.name+'('+opt.quantity+')' for opt in item.arr_units"   ng-readonly ="check_readonly" class="form-control">
+            <option style="display:none" value=""></option>
+          </select></td>
+        <td ng-if="item.item_type == 2"><select ng-model="item.units" tabindex="4"  ng-options="opt as opt.title for opt in arr_service_units" required   ng-readonly ="check_readonly" class="form-control">
+            <option style="display:none" value=""></option>
+          </select></td>
+        <!--<td ng-if="item.item_type == 0 || item.item_type == 2"><select ng-model="item.warehouses" ng-change="checkDuplWHItem(item,$index)" tabindex="4"  ng-options="opt as opt.code for opt in arr_warehouse"   ng-disabled ="check_readonly || item.sale_status == 2" class="form-control">
+            <option style="display:none" value=""></option>
+          </select></td>-->
+        <td ng-if="item.item_type == 1">&nbsp </td>
+        <td ng-if="item.item_type == 1">&nbsp </td>
+        <td><div class="input-symbol">
+            <input type="text" ng-model="item.standard_price" ng-readonly="check_readonly" class="form-control col-md"  style="color:#000000">
+            <span>{{defaultCurrencyCode}}</span> </div></td>
+        <!-- <td><select ng-model="item.discount_type_id" tabindex="4"  ng-options="opt as opt.name for opt in arr_discount_type"   ng-readonly ="check_readonly" class="form-control">
+            <option style="display:none" value=""></option>
+          </select></td>
+        <td><div class="input-symbol">
+            <input type="number" ng-model="item.discount" class="form-control col-md" ng-readonly="check_readonly" style="color:#000000" ng-required="item.discount_type_id.id && item.discount_type_id.id !='None'" data-parsley-type="digits" ng-min="item.discount_type_id.id && item.discount_type_id.id !='None'?1:''">
+            <span ng-show="item.discount_type_id.id =='Percentage'">&#37;</span> </div></td>
+        <td><select ng-model="item.vats" tabindex="4"  ng-options="opt as opt.name for opt in arr_vat"   ng-readonly ="check_readonly" class="form-control">
+            <option style="display:none" value=""></option>
+          </select>
+           </td>-->
+        <td>{{item.total_price = rowTotal(item) | number:2}}&nbsp{{defaultCurrencyCode}}
+          <ul class="parsley-errors-list filled" ng-show="item.total_price <= 0 || !item.total_price">
+            <li class="parsley-type">This value should be greater than zero.</li>
+          </ul></td>
+        <td><a ng-click="delete($index,item.update_id)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a></td>
+      </tr>
+      <tr ng-hide="check_readonly">
+        <td class="text-left"><select ng-model="rec.item_types" ng-change="selectItem(rec)" ng-options="opt as opt.label for opt in arrItems" class="form-control col-md pull-left">
+          </select></td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td><input type="text" value="0" class="form-control col-md" readonly="readonly" style="color:#000000"></td>
+        <td><input type="text" ng-class="{'dont-click':check_readonly}" readonly="readonly" value="N/A" class="form-control col-md"  style="color:#000000"></td>
+        <td><input type="text" value="N/A" readonly="readonly" class="form-control col-md"  style="color:#000000"></td>
+        <td>0</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- END table-responsive-->
+
+<div class="col-md-9" style="padding-left: 0;">
+  <textarea ng-model="rec.note" class="form-control" style="width:100%; resize: none;" rows="4"  cols="30"
+ng-change="showWordsLimits_invoice()" maxlength="500"
+placeholder="Add Note">{{rec.note}}</textarea>
+  <span class="word-counter">{{wordsLength}}/500</span> </div>
+<div style="background:#D4F2F4;" class="col-md-3 no-padding" id="total-amout">
+  <table class="table invoice_items-total no-margin">
+    <tbody>
+      <tr>
+        <th>Amount </th>
+        <td align="right">{{grandTotal() | number:2}}&nbsp{{defaultCurrencyCode}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="hr_line2"></div>
+    <div class="pull-right">
+      <button type="button" ng-show="0" ui-sref="app.addsaleforcast()"></button>
+      <button class="btn" ng-class="{'btn-info btn_blue':enable_btn_submit,'default dont-click':!enable_btn_submit}" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+      <button class="btn btn-info btn_blue" type="button" ng-click="gotoEdit()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+      <button class="btn default" type="button" ui-sref="app.sales-forcast()"><i class="fa fa-undo"></i> Cancel</button>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+.table-body input.ng-invalid {
+border: 1px solid red;
+}
+.table-body .parsley-errors-list.filled{
+  position: absolute !important;
+  z-index: 1111;
+}
+/*input.ng-valid {
+border: 1px solid green;
+}*/
+</style>

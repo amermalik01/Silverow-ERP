@@ -1,0 +1,178 @@
+<div ng-if="recnew.crmid > 0">
+    <tabset>
+        <tab heading="General" ng-click="get_crm_data_by_id()" ng-if="crm_general_tab_module">
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <form class="form-horizontal" autocomplete="off" name="company" ng-submit="add_general(rec, drp)" role="form" validate-form="" unsaved-warning-form
+                novalidate="">
+                <div ng-include="'app/views/crm/_general.html'"></div>
+            </form>
+            <div ng-include="'app/views/crm/primaryAssignedlocmodal.html'"></div>
+        </tab>
+        <div ng-controller="nexttabcrmcontroller">
+            <tab heading="Other Contacts" class="alt_contact" ng-click="getAltContacts();" ng-if="crm_contact_tab">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-show="altContacFormShow">
+                    <form autocomplete="off" id="alt_contact" name="alt_contact" ng-submit="add_contact(rec_contact, drp)" class="form-horizontal"
+                        role="form" validate-form="" novalidate="">
+                        <div ng-include="'app/views/crm/_contact_form.html'"></div>
+                    </form>
+                    <div ng-include="'app/views/crm/add_locationinternal.html'"></div>
+                </div>
+                <div ng-include="'app/views/crm/_contact_listing.html'" class="tab-btt" ng-show="altContacListingShow"></div>
+            </tab>
+            <tab heading="Other Locations" class="alt_depot" ng-click="getAltLocation()" ng-if="crm_location_tab_module">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-show="altDepotFormShow">
+                    <form autocomplete="off" id="alt_location" name="alt_location" ng-submit="add_location(rec_loc, drp)" class="form-horizontal"
+                        role="form" validate-form="" novalidate="">
+                        <div ng-include="'app/views/crm/_CRM_Loc_form.html'"></div>
+                    </form>
+                    <div ng-include="'app/views/crm/_add_contactinertnal.html'"></div>
+                </div>
+                <div ng-include="'app/views/crm/_CRM_Loc_listing.html'" class="tab-btt" ng-show="altDepotListingShow"></div>
+            </tab>
+            <tab heading="Competitors" class="competitors" ng-click="getCompetitor()" x-sidebar-modules="['attachments']" ng-if="crm_competetor_module">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-if="crmCompFormShow">
+                    <form autocomplete="off" id="crm_competitors" name="crm_competitors" ng-submit="add_comp(arr_cmp)" class="form-horizontal"
+                        role="form" validate-form="" novalidate="">
+                        <div ng-include="'app/views/crm/_form_competitors.html'"></div>
+                    </form>
+                </div>
+                <div ng-include="'app/views/crm/_listing_competitors.html'" ng-if="crmCompListingShow" class="tab-btt"></div>
+            </tab>
+            <tab heading="Price" class="p_offer" ng-click="getPriceOffer(1)" ng-if="crm_price_tab_module">
+                <tabset>
+                    <tab heading="Price Offer" ng-click="getPriceOffer(1)">
+                        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <div ng-if="CRMPriceInfoFormShow">
+                            <form autocomplete="off" id="p_offer" name="p_offer"  class="form-horizontal"
+                                role="form" validate-form="" novalidate="">
+                                <div ng-include="'app/views/price/PriceInfoForm.html'"></div>
+                            </form>
+                            <div ng-include="'app/views/price/PriceInfoEmployee_modal.html'"></div>
+                            <!--        For CRM/Customer Price Items Modal        -->
+                            <div ng-include="'app/views/price/PriceItemsModal.html'"></div>
+                        </div>
+                        <div ng-include="'app/views/price/PriceInfoListing.html'" class="tab-btt" ng-show="CRMPriceInfoListingShow"></div>
+                    </tab>
+
+                    <tab heading="Rebates"
+                         ng-click="getRebate()">
+                        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <div ng-if="rebateFormShow">
+                            <form autocomplete="off"
+                                  id="rebate"
+                                  name="rebate"
+                                  class="form-horizontal"                                  
+                                  validate-form=""
+                                  novalidate="">
+                                <div ng-include="'app/views/customer/_form_rebate.html'"></div>
+                            </form>
+                            <div ng-include="'app/views/customer/_item_rebate_popup.html'"></div>
+                            <div ng-include="'app/views/customer/_category_rebate_popup.html'"></div> 
+                        </div>
+                        <div class="tab-btt"
+                             ng-include="'app/views/customer/_listing_rebate.html'"
+                             ng-if="rebateListingShow">
+                        </div>
+                    </tab>
+                    <!-- <tab heading="Promotion" class="promotions" ng-click="getPromotion()" ng-if="crm_promotiom_tab_module">
+                        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <form autocomplete="off" class="form-horizontal" role="form" ng-submit="addPromo(rec_promo)" name="crm_promotion" id="crm_promotion"
+                            validate-form="" novalidate="">
+                            <div ng-include="'app/views/crm/_form_promotion.html'" ng-show="crmPromotionFormShow"></div>
+                        </form>
+                        <div ng-include="'app/views/crm/_promotion_prodcuts_selected.html'" ng-show="prooduct_arr.length > 0 && crmPromotionFormShow"></div>
+                        <div ng-include="'app/views/crm/_listing_prod_modal.html'"></div>
+                        <div ng-include="'app/views/crm/_listing_promotion.html'" ng-show="crmPromotionListingShow" class="tab-btt"></div>
+                    </tab> -->
+                </tabset>
+            </tab>
+            <tab heading="Opportunity Cycle" class="opportunity_cycle" 
+                active="isOppCycle"
+                ng-init="getOpportunityCycleDirect(isOppCycle)" x-sidebar-modules="['attachments']" ng-click="getOpportunityCycle();" ng-if="crm_oop_cycle_tab_module">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div class="row" ng-show="oppCycleFormShow">
+                    <div class="col-md-12 col-md-12">
+                        <div class="widget" style="background:none;">
+                            <div class="widget-body" style="background:none;">
+                                <div id="crm-opp-cycle">
+                                    <form autocomplete="off" id="opportunity_cycle" name="opportunity_cycle" ng-submit="add_oop_data(rec_oop, detail)" class="form-horizontal"
+                                        >
+                                        <div ng-include="'app/views/crm/_form_oop_cycle.html'"></div>
+                                    </form>
+                                    <div ng-include="'app/views/crm/_CRMSalePersonOopCycleModal.html'"></div>
+                                    <div ng-include="'app/views/crm/OopCycleFrequencyModal.html'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-include="'app/views/crm/_listing_oop_cycle.html'" ng-show="oppCycleListingShow" class="tab-btt"></div>
+            </tab>
+            <tab heading="Notes" class="opportunity_cycle " ng-click="getAltNotes()" ng-if="crm_oop_cycle_tab_module">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-show="altNotesFormShow">
+                    <form autocomplete="off" id="alt_notes" name="alt_notes" ng-submit="addCRMcomment(coment_notes_data)" class="form-horizontal"
+                        role="form" validate-form="" novalidate="">
+                        <div ng-include="'app/views/crm/crm_notes_form.html'"></div>
+                    </form>
+                </div>
+                <div ng-include="'app/views/crm/crm_notes_listing.html'" class="tab-btt" ng-show="altNotesListingShow"></div>
+            </tab>
+            <tab heading="Tasks" class="opportunity_cycle " ng-click="getAltTasks()" ng-if="crm_oop_cycle_tab_module">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-show="altTasksFormShow">
+                    <form autocomplete="off" id="alt_tasks" name="alt_tasks" ng-submit="addCRMtasks(rec_tasks, drp)" class="form-horizontal"
+                        role="form" validate-form="" novalidate="">
+                        <div ng-include="'app/views/crm/crm_tasks_form.html'"></div>
+                    </form>
+                </div>
+                <div ng-include="'app/views/crm/crm_tasks_listing.html'" class="tab-btt" ng-show="altTasksListingShow"></div>
+            </tab>
+        </div>
+        <div ng-if="rec.customer_code" ui-sref="app.editCustomer({id:rec.id})">
+            <div ng-class="{'dont-click': !allowview_customer_module, 'custwarning' : drp.status_id.id!=1,'custhiglisght' : drp.status_id.id==1}"
+                title="Goto Customer">
+                <i class="fa fa-user"> </i> {{rec.customer_code}}
+            </div>
+        </div>
+    </tabset>
+</div>
+<div ng-if="recnew.crmid == 0">
+    <tabset>
+        <tab heading="General">
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <form class="form-horizontal" autocomplete="off" name="company" ng-submit="add_general(rec, drp)" role="form" validate-form="" unsaved-warning-form
+                novalidate="">
+                <div ng-include="'app/views/crm/_general.html'"></div>
+            </form>
+        </tab>
+        <tab heading="Other Contacts" class="alt_contact  dont-click" ng-if="crm_contact_tab"></tab>
+        <tab heading="Other Locations " class="alt_depot dont-click" ng-if="crm_location_tab_module"></tab>
+        <tab heading="Competitors" class="competitors dont-click" ng-if="crm_competetor_module"></tab>
+        <tab heading="Price" class="p_offer dont-click" ng-if="crm_price_tab_module"></tab>
+        <tab heading="Opportunity Cycle" class="opportunity_cycle dont-click" ng-if="crm_oop_cycle_tab_module"></tab>
+        <tab heading="Notes" class="opportunity_cycle  dont-click"></tab>
+        <tab heading="Tasks" class="opportunity_cycle  dont-click"></tab>
+    </tabset>
+</div>
+<div ng-include="'app/views/hr_values/document_internal.html'" ng-show="list_internal_document"></div>
+<div ng-include="'app/views/crm/history_modal.html'"></div>
+<!-- <div ng-include="'app/views/crm/_promo_pricing_popup.html'"></div> -->
+<!-- <div ng-include="'app/views/crm/_segment_popup.html'"></div>
+<div ng-include="'app/views/crm/_region_popup.html'"></div>
+<div ng-include="'app/views/crm/_buying_group_popup.html'"></div> -->
+<div ng-include="'app/views/crm/_listing_modal_bucket.html'"></div>
+<div ng-include="'app/views/crm/_bucket_list.html'"></div>
+<div ng-include="'app/views/crm/_salesperson_popup.html'"></div>
+<div ng-include="'app/views/crm/_CRMSalepersonModal.html'"></div>
+<div ng-include="'app/views/customer/_crmEmployee_modal.html'"></div>
+<!-- <div ng-include="'app/views/_conform_leave.html'"></div>
+<div ng-include="'app/views/_notication_location.html'"></div>
+<div ng-include="'app/views/crm/_prev_tab_detail_oop.html'"></div>
+<div ng-include="'app/views/crm/_crm_loc_contact_add.html'"></div> -->
+<div ng-include="'app/views/_customer_route_to_market.html'"></div>
+<div ng-include="'app/views/_customer_route_to_market_sub.html'"></div>
+<div ng-include="'app/views/customer/_listing_modal_bank_order.html'"></div>

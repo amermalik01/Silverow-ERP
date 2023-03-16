@@ -1,0 +1,52 @@
+<div class="modal fade" id="hr_history_modal">
+    <div class="modal-dialog modal-lg"><!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> {{history_title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="panel panel-default no-padding no-border no-margin">
+                                            <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                    <tr class="bg-col" ng-show="columns_his.length > 0">
+                                                        <th ng-repeat="column in columns_his"
+                                                            ng-if="column.field != 'id' && column.field != 'emp_name'">
+                                                            {{column.title}}
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="courser table-body">
+                                                    <tr ng-repeat="rec in history" ng-show="columns_his.length > 0">
+                                                        <td ng-repeat="column in columns_his" sortable="column.title"
+                                                            ng-if="column.field != 'id'  && column.field != 'emp_name'">
+                                                            {{rec[column.field]}}
+                                                        </td>
+                                                        <!--<span ng-if="column.field == 'salary'">{{defaultCurrencyCode}} </span>-->
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

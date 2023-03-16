@@ -1,0 +1,225 @@
+<!-- Top Nav Start -->
+
+
+<ul class="level-1" ng-if="user_type ==1 || user_type ==2">
+    <li class='active'>
+        <a ui-sref="app.dashboard()"> <i class="fa fa-home nav_round"></i> Dashboard </a>
+    </li>
+    <li>
+        <a> <i class="fa fa-book nav_round"></i> General Ledger </a>
+        <ul>
+            <li><a ui-sref="app.general_ledger_list()">Chart of Accounts</a></li>
+            <!--   <li><a ui-sref="app.general_ledger_tree()"> Chart of Accounts Tree </a></li>-->
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-bar-chart-o nav_round"></i>Sales & CRM</a>
+        <ul>
+            <li><a ui-sref="app.crm()">CRM</a></li>
+            <li><a ui-sref="app.customer()">Customers</a>
+                <ul>
+                    <li><a ui-sref="app.quotes()">Quotes</a></li>
+                    <li><a ui-sref="app.orders()">Orders</a></li>
+                    <li><a ui-sref="app.sale-invoice()">Invoices</a></li>
+                    <li><a ui-sref="app.return-orders()">Sales Return</a></li>
+                    <li><a ui-sref="app.salePromotion()">Sales Promotion</a></li>
+                    <li><a ui-sref="app.priceAdjustment()">Price Adjustment</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-tag nav_round"></i>Purchases</a>
+        <!-- <ul>
+      <li ><a ui-sref="app.purchase_shipping_agents()">Shipping Agents </a></li>
+    </ul>-->
+
+        <ul>
+            <li><a ui-sref="app.srm()">SRM</a></li>
+            <li><a ui-sref="app.supplier()">Suppliers</a>
+                <ul>
+                    <li><a ui-sref="app.srmorder()">Orders</a></li>
+                    <li><a ui-sref="app.srminvoice()">Invoices</a></li>
+                    <li><a ui-sref="app.srm_order_return()">Purchase Return </a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-th-large nav_round"></i>Inventory</a>
+        <ul>
+            <li><a ui-sref="app.item()">Items </a></li>
+            <li><a ui-sref="app.stock-sheet()">Stock Sheet </a></li>
+        </ul>
+    </li>
+
+
+    <li class=''> <a href='#'><i class="fa fa-user nav_round"></i>Human Resources</a>
+        <ul>
+            <li><a ui-sref="app.hr_listing()">HR </a></li>
+        </ul>
+    </li>
+    <!--<li class=''> <a href='#'><i class="fa fa-cog nav_round"></i>Setup</a>
+    <ul class="level-2">
+      <li><a href='#'>General</a>
+        <ul>
+          <li><a ui-sref="app.company()">Company</a></li>
+          <!-- <li><a ui-sref="app.currency()">Currency</a></li>                       
+                        <li><a ui-sref="app.modules-codes()">Module Codes</a></li>
+                        <li><a ui-sref="app.filters()">Modules Filters</a></li> --
+        </ul>
+      </li>
+      <li><a href='#'>Ledger Group</a>
+        <ul>
+          <li><a ui-sref="app.gl_category()">G/L Category</a></li>
+          <li><a ui-sref="app.predefines()">Predefines</a></li>
+          <!-- <li><a ui-sref="app.vat-setup()">Vat Setup</a></li> --
+          <li><a ui-sref="app.posting-setup()">Posting Setup</a></li>
+        </ul>
+      </li>
+      <li class=""><a  >Sales & CRM</a>
+        <ul class="level-3">
+          <li class="up"> <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Sales <i class="fa-angle-down pull-right fa-sort-asc fa"></i></a>
+            <div class="collapse" id="collapseExample">
+              <div class="well dropp"> <a role="button" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">Payments <i class="fa fa-angle-down pull-right"></i></a>
+                <div class="collapse" id="collapseExample3">
+                  <div class="well dropp"> <a ui-sref="app.payment-methods()">Payment Methods</a> <a ui-sref="app.payment-terms()">Payment Terms</a> </div>
+                </div>
+                <a role="button" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">Charges <i class="fa fa-angle-down pull-right"></i></a>
+                <div class="collapse" id="collapseExample4">
+                  <div class="well dropp"> <a ui-sref="app.finance-charges()">Finance Charges</a> <a ui-sref="app.insurance-charges">Insurance Charges</a> </div>
+                </div>
+                <a ui-sref="app.shipment-methods()">Shipment Methods</a> <a ui-sref="app.sales-pipeline-target">Sales Target</a> <a ui-sref="app.price-offer-volume()">Price Offer Volumes</a> <a ui-sref="app.rebate-volume()">Rebate Volumes</a> </div>
+            </div>
+          </li>
+          <li class=""> <a role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">CRM <i class="fa fa-angle-down pull-right"></i></a>
+            <div class="collapse" id="collapseExample2">
+              <div class="well dropp"> <a role="button" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample5">Dynamic <i class="fa fa-angle-down pull-right"></i></a>
+                <div class="collapse" id="collapseExample5">
+                  <div class="well dropp"> <a ui-sref="app.crm-tabs()">Tabs</a> <a ui-sref="app.crm-tabs-fields()">Fields</a> </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><a ui-sref="app.customer-status()">Customer Status</a></li>
+          <li><a ui-sref="app.turnover()">Turnovers</a></li>
+          <li><a ui-sref="app.segment()">Segments</a></li>
+          <li><a ui-sref="app.buying-group()">Buying Groups</a></li>
+          <li><a ui-sref="app.source-of-crm()">Source Of CRM</a></li>
+          <li><a ui-sref="app.opportunity-cycle-tabs()">Opp Cycle Tabs</a></li>
+          <li><a ui-sref="app.job-title()">Emoloyee Role In Opp Cycle</a></li>
+          <li><a ui-sref="app.process-of-decision()">Process Of Decisions</a></li>
+          <li><a ui-sref="app.overrider()">Overrider</a></li>
+        </ul>
+      </li>
+      <li><a href='#'>Purchases & SRM</a>
+        <ul>
+          <li><a ui-sref="app.srm-payment-term()">Payment Terms</a></li>
+          <li><a ui-sref="app.srm-payment-method()">Payment Methods</a></li>
+        </ul>
+      </li>
+      <li><a href='#'>Suppliers</a>
+        <ul>
+          <li><a ui-sref="app.coverage-areas()">Areas</a></li>
+          <li><a ui-sref="app.shipping-measurments()">Shippings</a></li>
+          <li><a ui-sref="app.purchase_offer_volume()">Purchase Offer Volumes</a></li>
+        </ul>
+      </li>
+      <li><a  ui-sref="app.warehouse()">Warehouses</a></li>
+      <li><a href='#'>Services</a>
+        <ul>
+          <li><a ui-sref="app.services()">Manage</a></li>
+          <li><a ui-sref="app.service_cat_measure()">Categories Unit of Measures</a></li>
+          <li><a ui-sref="app.service_category()">Categories</a></li>
+          <li><a ui-sref="app.service_units_of_measure()">Unit of Measures</a></li>
+          <li> <a ui-sref="app.service_price_offer_volume()">Price Offer Volumes</a> </li>
+          <li><a ui-sref="app.service_purchase_offer_volume()">Purchase Offer Volumes</a> </li>
+        </ul>
+      </li>
+      <li><a href='#'>Inventory</a>
+        <ul>
+         <li><a ui-sref="app.dimensions()">Dimensions</a></li>
+          <li><a ui-sref="app.cat_units_of_measure()">Category Unit of Measures</a></li>
+          <li><a ui-sref="app.category()">Categories</a></li>
+          <li><a ui-sref="app.brands()">Brands</a></li>
+          <li><a ui-sref="app.units_of_measure()">Units</a></li>
+          <li><a href='#'>Dynamic</a>
+            <ul>
+              <li><a ui-sref="app.item_tabs()">Tabs</a></li>
+              <li><a ui-sref="app.product_tabs_col()">Fields</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href='#'>HR</a>
+        <ul>
+              <li><a ui-sref="app.cause-of-inactivity()">Cause of Inactivities</a></li> 
+            <li><a ui-sref="app.job-title()">Job Titles</a></li>
+          <li><a ui-sref="app.department()">Departments</a></li>
+          <li><a href='#'>Dynamic</a>
+            <ul>
+              <li><a ui-sref="app.hr_tabs()">Tabs</a></li>
+              <li><a ui-sref="app.hr_tabs_col()">Fields</a></li>
+            </ul>
+          </li>
+          <li><a ui-sref="app.roles()">Roles</a></li>
+          <li><a ui-sref="app.religion()">Religions</a></li>
+          <li><a ui-sref="app.employee_type()">Employment Type</a></li>
+          <!-- <li><a ui-sref="app.folder()">Folder</a></li>--
+        </ul>
+      </li>
+    </ul>
+  </li>-->
+</ul>
+
+
+<!-- OLd methd
+    <!-- Assign Add permision Super Admin In HR
+	<span  ng-if="user_type ==1 "> <a id="prompt" ui-sref="app.add_hr_values" class="btn pull-right btn_add"><i   class="fa fa-plus fa_display"></i> Add</a> </span>
+
+<!-- Assign  Add check permision for Company User
+     <span ng-if="user_type ==2" ng-repeat="namesList in new_data">
+   		 <span ng-repeat="assign in namesList.p_id | mysplit:','"
+      ng-if="namesList.m_id ==hr_module && assign==1"> <a id="prompt"  ui-sref="app.add_hr_values"  class="btn pull-right btn_add"><i  class="fa fa-plus fa_display"></i> Add</a> </span>
+     </span>
+    ui-sref-disabled="allowedithr==1  && user_type==1"   ui-sref-if="allowedithr==1  && user_type==1"
+    ui-sref=" {{ allowedithr==1  && user_type==2?  ' ' :  'app.viewhrvalues({id:rec.id})' }}"
+    ng-class="{'dont-click':allowedithr==0}"
+    -->
+
+
+
+<!--USer Roles-->
+<ul class="level-1" ng-if="user_type ==3 || user_type == 4">
+    <li class='active'>
+        <a ui-sref="app.dashboard()"> <i class="fa fa-home nav_round"></i> Dashboard </a>
+    </li>
+    <li ng-repeat-start="namesList in new_data" ng-if=" namesList.m_id ==1">
+        <a> <i class="fa fa-book nav_round"></i> General Ledger </a>
+        <ul>
+            <li><a ui-sref="app.general_ledger()">Chart of Accounts</a></li>
+        </ul>
+    </li>
+    <li ng-if=" namesList.m_id ==12   "> <a href='#'><i class="fa fa-bar-chart-o nav_round"></i>Sales & CRM</a>
+        <ul>
+            <li ng-repeat-start="namesList in new_data" ng-if="namesList.m_id ==12"><a ui-sref="app.crm()">CRM</a></li>
+            <li ng-repeat-end ng-if="namesList.m_id ==23"><a ui-sref="app.customer()">Customers</a></li>
+        </ul>
+    </li>
+    <li ng-if=" namesList.m_id ==10 "> <a href='#'><i class="fa fa-tag nav_round"></i>Purchases</a> </li>
+    <li ng-if=" namesList.m_id ==18 "> <a href='#'><i class="fa fa-th-large nav_round"></i>Inventories</a>
+        <ul>
+            <li ng-if=" namesList.m_id ==18 "><a ui-sref="app.item()">Items </a></li>
+        </ul>
+    </li>
+    <!--  <ul ng-if=" namesList.m_id ==12 ">
+    <li ng-if=" namesList.m_id ==12 "><a ui-sref="app.product_values()">Product Values</a></li>
+  </ul>-->
+
+    <li ng-repeat-end ng-if="namesList.m_id ==3"> <a href='#'><i class="fa fa-user nav_round"></i>Human Resources</a>
+        <ul>
+            <li ng-if="namesList.m_id ==3"><a ui-sref="app.hr_listing()">HR </a></li>
+        </ul>
+    </li>
+
+
+
+
+</ul>

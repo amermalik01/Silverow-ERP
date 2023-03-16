@@ -1,0 +1,9 @@
+{
+  "name": "bower_libraries",
+  "version": "0.1.1",
+  "dependencies": {
+    "angular": "~1.2.5",
+    "chart.js": "^2.7.2",
+    "angular-chart": "latest"
+  }
+}

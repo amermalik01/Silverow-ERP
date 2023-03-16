@@ -1,0 +1,68 @@
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label class="col-lg-4 control-label">Posting Type <span class="required">*</span> </label>
+    <div class="col-lg-7"> 
+      <!-- <select ng-model="rec.type" name="type" id="type" ng-readonly="check_readonly" class="form-control" ng-class="{'parsley-error':drp_error_type}"  ng-change="getData(rec.type)" required>
+      <option value=1> General </option>
+      <option value=2> VAT </option>
+      <option value=3> Customer Posting </option>
+      <option value=4> Supplier Posting </option>
+    </select> -->
+      <select ng-model="rec.types" name="type" id="type" ng-class="{'parsley-error':drp_error_type}" ng-options="opt as opt.label for opt in arr_types" class="form-control"   ng-change="getData(rec.type)" ng-disabled ="check_disabled" required>
+        <option value=""></option>
+      </select>
+      <ul class="parsley-errors-list filled" id="parsley-id-type" ng-show="drp_error_type">
+        <li class="parsley-required">This value is required.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-4 control-label">{{lbl_business_posting}} <span class="required">*</span> </label>
+    <div class="col-lg-7">
+      <select ng-model="rec.customers" name="customer_posting_group" id="customer_posting_group" ng-class="{'parsley-error':drp_error_cust_group}" ng-options="opt as opt.label for opt in arr_customer_posting_group" class="form-control"  ng-disabled ="check_disabled"  >
+        <option value=""></option>
+      </select>
+      <ul class="parsley-errors-list filled" id="parsley-id-customer_posting_group" ng-show="drp_error_cust_group">
+        <li class="parsley-required">This value is required.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group" ng-if="chck_type == 1 || chck_type == 2">
+    <label class="col-lg-4 control-label">{{lbl_product_posting}}<span class="required">*</span></label>
+    <div class="col-lg-7">
+      <select ng-model="rec.products" ng-options="opt as opt.label for opt in arr_product_posting_group" class="select2me form-control"  ng-class="{'parsley-error':drp_error_prod_group}"  ng-disabled ="check_disabled"  >
+        <option value=""></option>
+      </select>
+      <ul class="parsley-errors-list filled" id="parsley-id-type" ng-show="drp_error_prod_group">
+        <li class="parsley-required">This value is required.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-4 control-label">{{lbl_sales_account}}<span class="required">*</span></label>
+    <div class="col-lg-7">
+      <input type="text" ng-model="rec.account" id="account" name="account" ng-click="getSaleAccount(1)" class="form-control"    required ng-readonly="check_readonly" ng-class="{'not-click-allow':check_readonly}" />
+    </div>
+  </div>
+  <div class="form-group" ng-if="chck_type == 1 || chck_type == 2">
+    <label class="col-lg-4 control-label">{{lbl_purchase_account}} <span class="required">*</span></label>
+    <div class="col-lg-7">
+      <input type="text" ng-model="rec.account_2" id="account_2" name="account_2" ng-click="getSaleAccount(2)" class="form-control"   required ng-readonly="check_readonly"  ng-class="{'not-click-allow':check_readonly}" />
+    </div>
+  </div>
+  <div class="form-group" ng-if="chck_type == 1">
+    <label class="col-lg-4 control-label">COGS Account <span class="required">*</span></label>
+    <div class="col-lg-7">
+      <input type="text" ng-model="rec.cogs_account" id="cogs_account" name="cogs_account" ng-click="getSaleAccount(3)" class="form-control"    required ng-readonly="check_readonly"  ng-class="{'not-click-allow':check_readonly}" />
+    </div>
+  </div>
+  <div class="form-group" ng-if="chck_type == 1">
+    <label class="col-lg-4 control-label">Inventory Account <span class="required">*</span></label>
+    <div class="col-lg-7">
+      <input type="text" ng-model="rec.inventory_account" id="inventory_account" name="inventory_account" ng-click="getSaleAccount(4)" class="form-control"  
+                             ng-readonly="check_readonly" required="1"  ng-class="{'not-click-allow':check_readonly}"/>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/posting_setup/_account_modal.html'" ></div>

@@ -1,0 +1,52 @@
+<div class="modal fade" id="model_vol_3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="reload_popup(number_close,'model_vol_3')"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Price Offer Volume {{rec.ref_service_type}} </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label "> Name <span class="required">*</span></label>
+
+                                            <div class="col-sm-7">
+                                                <input ng-readonly="check_sub_readonly" required id="name" type="text"
+                                                       ng-model="formData_vol_1.name" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label "> Description <span
+                                                    class="required">*</span></label>
+
+                                            <div class="col-sm-7">
+                                                <input ng-readonly="check_sub_readonly" required id="description"
+                                                       type="text"
+                                                       ng-model="formData_vol_1.description" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-submit" type="submit"><i class="fa fa-check fa_display"></i> Submit
+                </button>
+                <button type="button" class="btn btn-cancel" ng-click="reload_popup(number_close,'model_vol_3')">
+                    Cancel
+                </button>
+            </div>
+            <!-- data-dismiss="modal"-->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

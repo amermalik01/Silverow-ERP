@@ -1,0 +1,74 @@
+<div class="row">
+<div class="col-lg-12">
+      <!-- START panel-->
+      <div class="panel panel-default">
+         <div class="panel-heading">{{title}}</div>
+         <div class="panel-body" style="  overflow-y: scroll; max-height: 325px;">
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+               <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+         <th ng-repeat="column in columns" ng-show="column.visible" class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')" ng-if="column.field != 'Volume_1'&& column.field != 'Volume_2'&& column.field != 'Volume_3'&& column.field != 'Service_Code'&& column.field != 'Service_Description'"> {{column.title}} </th>
+                 <!--  <th ng-show="columns.length > 0" class="sortable sort-asc"> Price Offered </th> -->
+        </tr>
+        <!-- <tr>
+          <th ng-repeat="column in columns" ng-if="column.field != 'One_Four_Pallet' && column.field != 'Half_Load' && column.field != 'Full_Load' && column.field != 'Primary' " ng-show="column.visible" class="sortable"> 
+          <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+          <th class="sortable">  
+          <input type="text" class="form-control"/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody class="table-body">
+        <tr ng-repeat="rec in record" ng-click="confirm(rec)">
+          <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" ng-if="column.field != 'Volume_1'&& column.field != 'Volume_2'&& column.field != 'Volume_3' && column.field != 'Service_Code'&& column.field != 'Service_Description'" >
+             
+            <span ng-if="column.field !='Start_Date' && column.field !='End_Date' && column.field !='List_Date' && column.field != 'List_Price_On' && column.field != 'Volume_1' && column.field != 'Volume_2' && column.field != 'Volume_3'">
+              <span ng-if="column.field == 'Item_Code'">
+                <span ng-if="rec['Type'] == 1">{{rec['Item Code']}}</span>
+                <span ng-if="rec['Type'] == 2">{{rec['Service Code']}}</span>
+              </span>
+              <span ng-if="column.field == 'Item_Description'">
+                <span ng-if="rec['Type'] == 1">{{rec['Item Description']}}</span>
+                <span ng-if="rec['Type'] == 2">{{rec['Service Description']}}</span>
+              </span>
+              <span ng-if="column.field == 'Offered_By'">
+                {{rec[column.title]}}
+              </span>
+              <span ng-if="column.field == 'Type'">
+                <span ng-if="rec['Type'] == 1">Item</span>
+                <span ng-if="rec['Type'] == 2">Service</span>
+              </span>
+           </span>
+          <span ng-if="column.field =='Start_Date' || column.field =='End_Date' || column.field =='List_Date'">{{rec[column.title] | date: dateFormats[defaultDateFormat]}}</span>
+
+          <span ng-if="column.field == 'List_Price_On'">
+              <!-- <span>{{rec['Volume 1']}}&nbsp;:&nbsp;{{rec.volume_1_price}}</span> -->
+              <ul>
+                  <li ng-if="rec['Volume 1'] != ''">{{rec['Volume 1']}}&nbsp;@&nbsp;{{rec.volume_1_price}}</li>
+                  <li ng-if="rec['Volume 2'] != ''">{{rec['Volume 2']}}&nbsp;@&nbsp;{{rec.volume_2_price}}</li>
+                  <li ng-if="rec['Volume 3'] != ''">{{rec['Volume 3']}}&nbsp;@&nbsp;{{rec.volume_3_price}}</li>
+              </ul>
+          </span>
+
+          </td>
+          <!-- <td>
+            <span ng-repeat="column in columns" ng-if="(column.field == 'One_Four_Pallet' || column.field == 'Half_Load' || column.field == 'Full_Load') && (rec[column.title] != '' || rec[column.title] > 0)" ng-show="column.field == rec['Primary']" >{{rec[column.title]}}</span>
+            
+          </td> -->
+          
+        
+        </tr>
+        <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+      </tbody>
+    </table>
+            </div>
+            <!-- END table-responsive-->
+         </div>
+      </div>   
+      <!-- END panel-->
+   </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="modal fade" id="history_modal">
+    <div class="modal-dialog modal-lg"><!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> {{history_title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text" Placeholder="Search" class="form-control"
+                                   ng-model="searchKeyword.search">
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="fixit">
+                        <tr class="bg-col" ng-show="columns_history.length>0">
+                            <!-- <th ng-repeat="column in columns_history" ng-hide="column.field == 'id'">{{column.field}}</th>-->
+                            <!-- <td> First Name </td>
+                            <td> Last Name </td>
+                            <td> User </td>
+                            <td> Date </td>-->
+                            <th ng-repeat="column in columns_history"
+                                ng-if="column.title != 'Id'"> {{column.title}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="fixit">
+                        <tr ng-repeat="recs in crm_history | filter:searchKeyword.search"
+                            ng-show="columns_history.length>0">
+                            <!-- <td ng-repeat="column in columns_history" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>-->
+
+                            <!--<td ng-if="history_type == 'Salespersons'"> {{recs.first_name |
+                                capitalize }}
+                            </td>
+                            <td ng-if="history_type == 'Salespersons'"> {{recs.last_name |
+                                capitalize }}
+                            </td>-->
+                            <td ng-if="history_type == 'Salespersons'"> {{recs.Saleperson |
+                                capitalize }}
+                            </td>
+                            <td ng-if="history_type == 'Salespersons'"> {{recs.job_title |
+                                capitalize }}
+                            </td>
+
+                            <!--<td ng-if="history_type == 'Salespersons'"><span ng-if="recs.is_primary == 1">Yes</span> <span ng-if="recs.is_primary == 0">No</span></td>-->
+                            <td ng-if="history_type == 'CreditLimit'"> {{recs.credit_rating
+                                | capitalize}}
+                            </td>
+                            <td ng-if="history_type == 'Status'"> {{recs.status |
+                                capitalize}}
+                            </td>
+
+                            <!-- <td> {{recs.date | date: ngDateFormats[defaultDateFormat]+' '+timeFormats[defaultTimeFormat]}} </td> -->
+                            <!-- <td ng-if="history_type == 'Salespersons'">
+                                {{recs.changed_on}}
+                            </td> -->
+                            <td> {{recs.changed_by | capitalize}}</td>
+                            <!-- <td ng-if="history_type != 'Salespersons'"> {{recs.date}}</td> -->
+                            <td> {{recs.Start_date}}</td>
+                            <td> {{recs.End_date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

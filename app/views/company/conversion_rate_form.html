@@ -1,0 +1,74 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Conversion Rate <span class="required">*</span></label>
+      <div class="col-md-8">
+        <input type="text" ng-model="rate.conversion_rate" id="conversion_rate" name="conversion_rate" class="form-control" tabindex="1" 
+                            required="1" ng-readonly="check_rate_readonly" data-parsley-type="number" />
+        <input type="hidden" ng-model="rate.update_id" id="update_id" name="update_id" />
+        <input type="hidden" ng-model="rate.currency_id" id="currency_id" name="currency_id" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+      <div class="col-md-8">
+      
+        <input jqdatepicker class="2date-picker form-control ck_sdate"  id="ck_sdate"
+                  ng-model="rate.start_date"
+
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')" 
+                  required="" readonly="" >
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+ 
+
+
+         
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+      <div class="col-md-8">
+         <input jqdatepicker class="2date-picker form-control ck_edate"  id="ck_edate"
+                  ng-model="rate.end_date"
+
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')" 
+                  required="" readonly="" >
+                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+ 
+                  
+        <span    id="date_msg_leave_sale_currency" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+      <div class="col-md-8">
+        <select ng-model="rate.c_status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" ng-readonly="check_rate_readonly" id="status" tabindex="4" required >
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="hr_line2"></div>
+    <div class="pull-right">
+      <button class="btn btn-info btn_blue" type="submit" ng-show="!check_rate_readonly"><i class="fa fa-check"></i> Submit</button>
+      <!--    <button class="btn btn-info btn_blue" type="button" ng-click="showConversionRate(rate.id)" ng-show="check_rate_readonly"><i class="fa fa-edit"></i> Edit</button> -->
+      <button class="btn default" type="button" ng-click="showCurrencyViewForm(rate.currency_id)"><i class="fa fa-undo"></i> Cancel</button>
+    </div>
+  </div>
+</div>

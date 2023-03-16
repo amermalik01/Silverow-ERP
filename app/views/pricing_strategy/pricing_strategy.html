@@ -1,0 +1,57 @@
+<div ng-controller="PricingStrategyController">
+    <div class="row">
+        <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12"></div>
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <!--<div class="row">
+      <div class="col-lg-12"> <a id="add_module_code" ui-sref="app.addModuleCode()" class="btn btn_blue pull-right margin_bottom width_80" ><i class="fa fa-plus fa_display"></i> Add / Manage</a> </div>
+    </div>-->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="title"> Add Promotional Pricing Strategy </div>
+                </div>
+                <div class="widget-body nobg-widget-body remove-left-pad remove-right-pad">
+                    <div class="">
+
+                        <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addStrategy(rec);"  name="addForm" validate-form="" novalidate="">
+
+                            <div class="col-lg-12 border_cover" >
+                                <div ng-repeat="strategy in pricing_strategy_types1">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="radio"> <label><input type="radio" ng-model="rec.strategy1" name="strategy1" ng-checked="SelectedStrategies[strategy.type]['id'] == strategy.id" id="" value="{{strategy.id}}" > {{strategy.name}} </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="vertical_space"></div>
+                            <div class="col-lg-12 border_cover">
+                                <div ng-repeat="strategy in pricing_strategy_types2">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="radio"> <label><input type="radio" ng-model="rec.strategy2" name="strategy2" ng-checked="SelectedStrategies[strategy.type]['id'] == strategy.id" id="" value="{{strategy.id}}"> {{strategy.name}} </label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="hr_line2"></div>
+                                    <div class="pull-right">
+                                        <button class="btn btn_blue width_80" type="submit"><i class="fa fa-check fa_display"></i> Submit</button>
+                                        <button class="btn default width_80" type="button" ui-sref="app.setup"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

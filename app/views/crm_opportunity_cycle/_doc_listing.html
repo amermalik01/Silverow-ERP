@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+      <a id="prompt" ng-click="showAddOppCycleDocForm()" class="btn btn_blue pull-right margin_bottom width_80"><i class="fa fa-plus fa_display"></i> Add New</a>
+    </div>
+  </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Additional Address(es)
+          </div>
+          
+        </div> -->
+         <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+<div class="panel panel-default" ng-controller="CrmOppDocumentsController as table">
+      <!--<div class="panel-heading">
+         <div class="panel-title">Competitors Controller Listing</div>
+      </div>-->
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true" ng-show="$data.length > 0">
+      <thead>
+        <tr class="bg-col">
+          <th ng-repeat="column in columns" ng-show="column.visible"
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+                    <th ng-show="columns.length > 0"  class="sortable sort-asc" style="width: 151px;">Action</th>
+        </tr>
+        <!-- <tr>
+          <th ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody class="table-body">
+        <tr ng-repeat="rec in $data" >
+          <td ng-repeat="column in columns" ng-show="column.visible" ng-click="detail(rec.id)" sortable="column.field"  ng-if="column.field != 'Size'"> <!-- <span ng-if="column.field == 'Title'" style="font-size:20px;" ng-bind-html='rec.name | fileIcon'></span> --> {{rec[column.title]}} <!-- <br /> <span style="font-size:12px;">{{rec.create_date | date: longDate}} ({{rec.user_name}})</span> --></td>
+          <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" ng-if="column.field == 'Size'"> {{rec[column.title] | sizeConverter}} </td>
+          <td class="text-left "   ng-show="columns.length > 0">
+            <a target="_blank" href="{{basePath+'upload/sales/crm/'+rec.name}}" title="View" class="btn"><em class="fa fa-eye"></em></a>
+
+            <!-- <a download="{{rec.name}}" title="Download" class="btn btn-primary icon_square" ng-href="{{basePath+'upload/sales/crm/'+rec.name}}"><em class="fa fa-download"></em></a>
+            <span title="View" class="btn btn-primary icon_square" ng-click="viewFile(rec.id)"><em class="fa fa-eye"></em></span></span> --> 
+            <a ng-click="editForm(rec.id)" title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+        <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+      </tbody>
+    </table>
+ </div>
+  </div>
+</div>
+</div>
+<button class="btn default width_80" style="float:right;" tabindex="19" type="button" ng-click="showOppCycleListing()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+</div>
+
+</div>

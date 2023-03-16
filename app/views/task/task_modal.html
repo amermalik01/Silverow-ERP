@@ -1,0 +1,198 @@
+<div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-4">
+      <div>
+        <div class="clearfix" style="margin-bottom: 14px;">
+          <select class="pull-left form-control" style="width: auto;">
+            <option value="alltasks" selected>All Tasks</option>
+            <option value="completed">Completed Tasks</option>
+            <option value="completed">High Priority Tasks</option>
+            <option value="completed">Low Priority Task</option>
+          </select>
+          <b ng-click="showAddForm()" class="pull-right">
+              <a class="ib add-dis-btn">
+                  <i class="material-icons">&#xE147;</i>
+              </a>
+          </b>
+        </div>
+        <tabset class="modaltabs">
+          <tab heading="All Tasks">
+            <div class="taskListing">
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  This is high priority task
+                </div>
+                <div class="ib pull-right taskpriority taskhigh">
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Wed, 20 June
+                </div>
+              </div>
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  {{testttt}}
+                </div>
+                <div class="ib pull-right taskpriority tasklow">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Wed, 20 June
+                </div>
+              </div>
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  CRM task heading
+                </div>
+                <div class="ib pull-right taskpriority tasklow">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Wed, 10 June
+                </div>
+              </div>
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  CRM Contact Person
+                </div>
+                <div class="ib pull-right taskpriority taskhigh">
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Fri, 10 June
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab heading="CRM">
+            <div class="taskListing">
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  CRM task heading
+                </div>
+                <div class="ib pull-right taskpriority tasklow">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Wed, 10 June
+                </div>
+              </div>
+              <div class="taskdata">
+                <div class="ib">
+                  <input type="checkbox">
+                </div>
+                <div class="taskname ib">
+                  CRM Contact Person
+                </div>
+                <div class="ib pull-right taskpriority taskhigh">
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                </div>
+                <div class="taskduedate">
+                  Fri, 10 June
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+      <div class="form-group">
+        <label class="control-label col-md-4">Subject</label>
+        <div class="col-md-8">
+          <input required type="text" class="form-control" ng-readonly="check_task_readonly" ng-model="formData.t_title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">Start Time</label>
+        <div class="col-md-4 pr0">
+          <input jqdatepicker required class="2date-picker form-control borderrightjoin" placeholder="dd/mm/yyyy" id="ck_sdate" ng-readonly="check_task_readonly"
+            ng-model="formData.t_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg');taskStartDate(formData.t_date)">
+        </div>
+        <div class="col-md-4 pl0">
+          <input jqtimepicker required class="form-control borderleftjoin" placeholder="--:--" id="t_time" ng-readonly="check_task_readonly" ng-model="formData.t_time"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">End Time</label>
+        <div class="col-md-4 pr0">
+          <input jqdatepicker required class="2date-picker form-control borderrightjoin" placeholder="dd/mm/yyyy" id="ck_edate" ng-readonly="check_task_readonly"
+            ng-model="formData.e_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg')">
+        </div>
+        <div class="col-md-4 pl0">
+          <input jqtimepicker required class="form-control borderleftjoin" placeholder="--:--" id="e_time" ng-readonly="check_task_readonly" ng-model="formData.e_time"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">Reminder</label>
+        <div class="col-md-4 pr0">
+          <input jqdatepicker class="2date-picker form-control borderrightjoin" placeholder="dd/mm/yyyy" id="r_date" ng-readonly="check_task_readonly"
+            ng-model="formData.r_date">
+        </div>
+        <div class="col-md-4 pl0">
+          <input jqtimepicker class="form-control borderleftjoin" placeholder="--:--" id="r_time" ng-readonly="check_task_readonly" ng-model="formData.r_time"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4"></label>
+        <div class="col-md-4 padr6">
+          <select class="form-control" ng-model="formData.reminder">
+              <option value="" disabled selected>Select Duration</option>
+            <option value="1">15 Min</option>
+            <option value="2">1 Hour</option>
+            <option value="3">1 Week</option>
+            <option value="4">1 Month</option>
+          </select>
+        </div>
+        <div class="col-md-4 padl6">
+          <select class="form-control" ng-model="formData.priority">
+            <option value="" disabled selected>Select Priority</option>
+            <option value="1">High</option>
+            <option value="2">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">Comments</label>
+        <div class="col-md-8">
+          <textarea type="text" class="form-control" rows="4" cols="30" id="redactor_content" style="resize: none;" ng-disabled="check_task_readonly"
+            ng-model="formData.t_description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">Notify</label>
+        <div class="col-md-4 padr6">
+          <input type="checkbox" ng-model="formData.notify" ng-click="setNotification();" id="notify">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <hr/ style="margin:4px 0 10px 0;">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4">Linked to</label>
+        <div class="col-md-8">
+          <a href="#" class="linkedto">A & L Restaurants Limited</a>
+        </div>
+      </div>
+
+    </div>
+  </div>

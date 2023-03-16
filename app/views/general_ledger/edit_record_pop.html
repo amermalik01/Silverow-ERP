@@ -1,0 +1,215 @@
+<div class="modal fade" id="modal_edit_pop_gl">
+    <div class="modal-dialog modal-lg"><!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Account </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" ng-model="record_id"/>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Category <span class="required">*</span></label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.gl_category_ids"
+
+                                        ng-options="opt as opt.name for opt in category_list" ng-change="get_parent()"
+                                        class="select2me form-control" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Sub Category
+                                <!--<span class="required">*</span>--></label>
+
+                            <div class="col-sm-7">
+
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.category_ids"
+                                        ng-change="get_list_one(11)"
+                                        ng-options="opt as opt.name for opt in category_sub_list track by opt.name"
+                                        class="select2me form-control" required>
+                                </select><!--{{formData.category_ids}}-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Heading</label>
+
+                            <div class="col-sm-7">
+
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.level_ones"
+
+                                        ng-options="opt as opt.name for opt in category_list_one track by opt.name"
+                                        class="select2me form-control"><!--ng-change="get_list_one(1)"-->
+                                </select><!--{{formData.level_ones}}-->
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="col-sm-3 control-label ">Select Level 2</label>
+
+                            <div class="col-sm-7">
+
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.level_seconds"
+                                        ng-change="get_list_one(2)"
+                                        ng-options="opt as opt.name for opt in category_list_second"
+                                        class="select2me form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Select Level 3</label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.level_thirds"
+                                        ng-change="get_list_one(3)"
+                                        ng-options="opt as opt.name for opt in category_list_third"
+                                        class="select2me form-control">
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Account type <span class="required">*</span></label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.account_type"
+                                        ng-options="opt as opt.name for opt in account_list_type"
+                                        ng-change="select_posting_option()"
+                                        class=" form-control" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="allow_posting>0">
+                            <label class="col-sm-3 control-label ">Allow Posting</label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.allow_posting"
+                                        ng-options="opt as opt.name for opt in posting_allow_list"
+                                        class=" form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="total_code_ranges>0">
+                            <label class="col-sm-3 control-label ">Sum of Ranges <br>Start Code</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" placeholder="0" min="1" step="100" data-parsley-trigger="keyup"
+                                       data-parsley-minlength="1" ng-model="formData.total_start_range_code"
+                                       id="range_start"
+                                       class="form-control input_text" data-parsley-minlength-message="only Decimal"
+                                       data-parsley-type="number"
+                                       data-parsley-type-message="only Decimal" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="total_code_ranges>0">
+                            <label class="col-sm-3 control-label ">Sum of Ranges <br>End Code</label>
+
+                            <div class="col-sm-7">
+                                <input type="text" placeholder="0" min="1" step="100" data-parsley-trigger="keyup"
+                                       data-parsley-minlength="1" ng-model="formData.total_end_range_code"
+                                       id="range_end"
+                                       class="form-control input_text" data-parsley-minlength-message="only Decimal"
+                                       data-parsley-type="number"
+                                       data-parsley-type-message="only Decimal" required>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-group">
+                            <label class="col-sm-3 control-label ">Cash/Bank <span class="required">*</span></label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.company_account"
+                                        ng-options="opt as opt.name for opt in company_list"
+                                        class=" form-control" required>
+                                </select>
+                            </div>
+                        </div>-->
+
+
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Name<span class="required">*</span> </label>
+
+                            <div class="col-sm-7">
+                                <input ng-readonly="check_gl_readonly" type="text" ng-model="formData.name"
+                                       class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Account Code<span class="required">*</span>
+                            </label>
+
+                            <div class="col-sm-7">
+                                <input type="text" placeholder="0" min="1" step="100" data-parsley-trigger="keyup"
+                                       data-parsley-minlength="1" ng-model="formData.number" id="number"
+                                       class="form-control input_text" data-parsley-minlength-message="only Decimal"
+                                       data-parsley-type="number"
+                                       data-parsley-type-message="only Decimal" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">VAT Rate </label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.vat_list_ids"
+
+                                        ng-options="opt as opt.name for opt in vat_gl_list"
+                                        class="select2me form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Transaction </label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.transcation_types"
+
+                                        ng-options="opt as opt.name for opt in transcation_list"
+                                        class="select2me form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="col-sm-3 control-label ">Opening Balance</label>
+
+                            <div class="col-sm-7">
+                                <input ng-readonly="check_gl_readonly" type="text" ng-model="formData.opening_balnc"
+                                       class="form-control"/>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Status<span class="required">*</span></label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" required
+                                        ng-model="formData.statuss" ng-options="opt as opt.name for opt in status_data"
+                                        class="select2me form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"><!--{{perreadonly}}{{check_gl_readonly}}-->
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-submit" type="submit" ng-show="perreadonly"><i
+                                class="fa fa-check fa_display"></i>Save
+                        </button>
+                        <button class="btn btn_blue width_80" type="button" ng-click="gotoEdit()"
+                                ng-show="check_gl_readonly"><i class="fa fa-edit fa_display"></i> Edit
+                        </button>
+                        <button class="btn btn-cancel" type="button" data-dismiss="modal"><i
+                                class="fa fa-undo fa_display"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<script type="text/ng-template" id="modalDialogId2">
+
+  <div class="row">
+    <div class="col-lg-12" style="padding-left: 3px !important; padding-right: 3px !important;">
+      <!-- START panel-->
+      <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="panel panel-default no-padding no-border no-margin">
+        <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+
+          <div class="row" ng-init="get_employee_type_list();">
+
+            <div class="col-lg-2">
+              <label class="  control-label">Search </label>
+              <div class=" ">
+                <div class="input-symbol">
+                  <input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword.$">
+                  <span id="date_msg_4"> <i class="fa fa-search"></i></span> 
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <label class="  control-label">Emp Type </label>
+              <div class=" ">
+                <select ng-model="searchKeyword.employee_type" class=" form-control">
+                <option style="display:block" value=""></option>
+                <option ng-repeat="value in emp_type_arr" 
+                      value="{{value.name}}">{{value.name}} </option>
+              </select>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+
+              <!--paging options end-->
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <div>
+                <table class="table table-striped table-bordered table-hover table-condensed no-margin">
+                  <thead>
+                    <tr class="bg-col">
+                      <th ng-repeat="column in columns" ng-if="column.title != 'Internal Extension' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status' && column.field != 'id' && column.field != 'type' && column.field != 'is_primary'"
+                        >{{column.title}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--| filter:searchKeyword:strict  track by $index  -->
+                    <!-- ng-hide="column.field == 'id'  ||  column.field == 'type'" -->
+                    <tr ng-repeat="rec in record " ng-click="confirm(rec)">
+                      <td ng-repeat="column in columns" ng-if="column.title != 'Internal Extension' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status' && column.field != 'id' && column.field != 'type' && column.field != 'is_primary'"
+                        >
+                        <span ng-if="column.field != 'start_date' &&   column.field != 'end_date' "> {{rec[column.field]}}</span>
+                        <span ng-if="column.field == 'start_date'  || column.field == 'end_date' ">
+                                            <span ng-if="rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12" ng-if="record.length > 0">
+            <div class="form-group" style="text-align: left;">
+              <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""> <a ng-click="itemselectPage(item_paging.ppage); getOffer();" href="javascript: void(0);" class="">«</a> </li>
+                <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"> <a ng-click="itemselectPage(value); getOffer();" href="javascript: void(0);"><span ng-bind="value"></span></a>                  </li>
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"> <a ng-click="itemselectPage(item_paging.npage); getOffer();" href="javascript: void(0);">»</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <br/>
+      <div class="modal-footer">
+        <button type="button" class="btn default width_80" data-dismiss="modal" ng-click="closeThisDialog();"><i class="fa fa-undo fa_display"></i> Cancel</button>
+      </div>
+
+      <!-- END panel-->
+    </div>
+  </div>
+</script>

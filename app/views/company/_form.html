@@ -1,0 +1,20 @@
+<tabset>
+    <tab heading="General Information" class="general_information">
+        <div class="vertical_space"></div>
+        <div ng-include="'app/views/company/general_form.html'"></div>
+    </tab>
+    <tab heading="Additional Address" ng-click="getCompanyAddresses()" class="company_adddresses dont-click">
+        <div class="vertical_space"></div>
+        <div ng-include="'app/views/company/company_addresses.html'" ng-show="showAddrListing"></div>
+        <div ng-include="'app/views/company/company_addresses_form.html'" ng-show="showAddrForm"></div>
+    </tab>
+    <tab heading="Bank Account(s)" class="bank_accounts dont-click" ng-click="getBankAccounts()">
+        <div class="vertical_space"></div>
+        <div ng-include="'app/views/company/bank.html'" ng-show="showBankListing"></div>
+        <div ng-include="'app/views/company/bank_form.html'" ng-show="showBankForm"></div>
+    </tab>
+    <tab heading="Financial Settings" class="financial_setting dont-click">
+        <div class="vertical_space"></div>
+        <div ng-include="'app/views/company/financial_settings.html'"></div>
+    </tab>
+</tabset>

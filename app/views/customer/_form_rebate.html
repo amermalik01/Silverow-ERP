@@ -1,0 +1,569 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12 col-md-12">
+        <div class="widget"
+             style="background:none;">
+            <div class="widget-body"
+                 style="background:none;">
+                <div class="panel-title2">Rebate</div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Category
+                            <span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <ui-select required
+                                       ng-model="Rebate_rec.types"
+                                       ng-change="onChangeRebateType()"
+                                       ng-disabled="Rebate_rec.id > 0">
+                                <ui-select-match placeholder="Select Category">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in arr_rebate_types | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- ng-required="Rebate_rec.types.id == 1" -->
+                        <label class="col-md-4 control-label">Rebate Type<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <ui-select ng-model="Rebate_rec.universal_types"
+                                       ng-change="resetItemsRebate()"                                       
+                                       ng-disabled="rebateTypeDisable || Rebate_rec.id > 0">
+                                <ui-select-match placeholder="Select Rebate Type">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in arr_rebate_universal | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-if="Rebate_rec.types.id == 3 || Rebate_rec.universal_types.id == 2">
+                        <label class="col-md-4 control-label">Base Unit of Measure<span class="required">*</span></label>
+
+                        <div class="col-md-8">
+                            <ui-select required
+                                       ng-model="Rebate_rec.uoms"
+                                       ng-disabled="rebate_chk_readonly"
+                                       ng-change="changeItemsRebate()">
+                                <ui-select-match placeholder="Select Base Unit Of Measure">{{$select.selected.title}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-if="Rebate_rec.types.id == 3 || Rebate_rec.universal_types.id == 2 || Rebate_rec.universal_types.id == 3">
+                        <label class="col-md-4 control-label">
+                            <span ng-show="Rebate_rec.item_type != 2">Item(s)</span>
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="col-md-8">
+                            <div>
+                                <div class="panel-info pi2"
+                                     ng-class="{'dont-click readonly':rebate_chk_readonly,'max-height':selectedItems.length>5}">
+                                    <div class="panel-body"
+                                         ng-click="clearFiltersAndSelectItems()"><!-- getItemsRebate -->
+                                        <span ng-repeat="item in selectedItems track by $index">
+                                            <span ng-if="selectedItems.length == 1">{{item.description}}</span>
+                                            <span ng-if="selectedItems.length > 1">{{item.description}}<span
+                                                      ng-if="$index < selectedItems.length && $index!=0">;&nbsp;</span></span>
+                                        </span>
+                                        <aside></aside>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-if="Rebate_rec.types.id == 2">
+                        <label class="col-md-4 control-label">
+                            <span>Category(ies)</span>
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="col-md-8">
+                            <div>
+                                <div class="panel-info pi2"
+                                     ng-class="{'dont-click readonly':rebate_chk_readonly,'max-height':selectedCategories.length>5}">
+                                     <div class="panel-body"
+                                     ng-click="clearFiltersAndSelectCategories()"><!-- getItemsRebate -->
+                                    <span ng-repeat="cat in selectedCategories track by $index">
+                                        <span ng-if="selectedCategories.length == 1">{{cat.name}}</span>
+                                        <span ng-if="selectedCategories.length > 1">{{cat.name}}<span
+                                                  ng-if="$index < selectedCategories.length && $index!=0">;&nbsp;</span></span>
+                                    </span>
+                                    <aside></aside> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Price Type<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <ui-select required
+                                       ng-disabled="rebate_chk_readonly || rebateTypeDisable || Rebate_rec.id > 0"
+                                       ng-model="Rebate_rec.rebate_price_types">
+                                <ui-select-match placeholder="Select Price Type">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in list_type | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-if="Rebate_rec.universal_types.id == 1">
+                        <label class="col-md-4 control-label">Rebate</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol">
+                                <input type="number"
+                                       step="any"
+                                       id="volume_1_price"
+                                       class="form-control"
+                                       ng-model="Rebate_rec.rebate_price"
+                                       ng-readonly="rebate_chk_readonly" />
+                                <span ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                <span
+                                      ng-if="Rebate_rec.rebate_price_types.id==2">{{cust_current_edit_currency.code}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="table-responsive"
+                         ng-if="Rebate_rec.universal_types.id == 2">
+                        <table class="table table-striped table-bordered table-hover"
+                               style="    margin-top: 19px;">
+                            <thead class="fixit">
+                                <tr>
+                                    <th class="text-right">Qty. From ({{Rebate_rec.uoms.name}})</th>
+                                    <th class="text-right">Qty. To ({{Rebate_rec.uoms.name}})</th>
+                                    <th class="text-right">Rebate <span
+                                              ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                        <span ng-if="Rebate_rec.rebate_price_types.id==2">({{drp.currency.code}})</span>
+                                    </th>
+                                    <th class="text-center"
+                                        ng-if="!rebate_chk_readonly">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec in volumeBasedRebate"
+                                    ng-if="volumeBasedRebate.length > 0">
+                                    <td>
+                                        <input class="form-control input_text text-right"
+                                               data-parsley-type="number"
+                                               type="text"
+                                               ng-if="!rebate_chk_readonly"
+                                               ng-model="rec.revenue_volume_from"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="rebate_chk_readonly">{{rec.revenue_volume_from | numberNoDecimalsIfZeroFilter:2:''}}</span>
+
+                                    </td>
+                                    <td>
+                                        <input class="form-control input_text text-right"
+                                               data-parsley-type="number"
+                                               type="text"
+                                               ng-if="!rebate_chk_readonly"
+                                               ng-model="rec.revenue_volume_to"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="rebate_chk_readonly">{{rec.revenue_volume_to| numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    </td>
+                                    <td>
+                                        <input id="purchase_price_1"
+                                               type="text"
+                                               class="form-control input_text text-right"
+                                               ng-model="rec.rebate"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                    </td>
+                                    <td class="text-center allo"
+                                        ng-if="!rebate_chk_readonly">
+
+                                        <i class="fa fa-retweet"
+                                           title="Update"
+                                           ng-click="addVolumeRebate(rec,1,$index)"
+                                           ng-if="rec.editchk>0"></i>
+
+                                        <i class="fa fa-plus"
+                                           title="Add"
+                                           ng-click="addVolumeRebate(rec,0,$index)"
+                                           ng-if="!(rec.mode>0) && !(rec.editchk>0) && !(rec.qtyID>0)"></i>
+
+                                        <i class="fa fa-edit"
+                                           title="Edit"
+                                           ng-click="editVolumeRebate(rec,$index)"
+                                           ng-if="rec.mode>0 && !(rec.editchk>0) && !rebate_chk_readonly"></i>
+
+                                        <i class="fa fa-minus"
+                                           title="Delete"
+                                           ng-click="deleteVolumeRebate($index,volumeBasedRebate)"
+                                           ng-if="rec.mode>0 && !rebate_chk_readonly"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-show="volumeBasedRebate.length == 0">
+                                    <td>No Record found agaist this entity! Please add.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive"
+                         ng-if="Rebate_rec.universal_types.id == 3">
+                        <table class="table table-striped table-bordered table-hover"
+                               style="    margin-top: 19px;">
+                            <thead class="fixit">
+                                <tr>
+                                    <th>Revenue From</th>
+                                    <th>Revenue To</th>
+                                    <th>Rebate</th>
+                                    <th class="text-center"
+                                        ng-if="!rebate_chk_readonly">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec in revenueBasedRebate"
+                                    ng-if="revenueBasedRebate.length > 0">
+                                    <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input class="form-control input_text"
+                                                       data-parsley-type="number"
+                                                       type="text"
+                                                       ng-model="rec.revenue_volume_from"
+                                                       ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                                <span> {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input class="form-control input_text"
+                                                       data-parsley-type="number"
+                                                       type="text"
+                                                       ng-model="rec.revenue_volume_to"
+                                                       ng-readonly="rebate_chk_readonly  || rec.mode>0">
+                                                <span> {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input id="purchase_price_1"
+                                                       type="text"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.rebate"
+                                                       ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                                <span ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                                <span ng-if="Rebate_rec.rebate_price_types.id==2">
+                                                    {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center allo"
+                                        ng-if="!rebate_chk_readonly">
+
+                                        <i class="fa fa-retweet"
+                                           title="Update"
+                                           ng-click="addRevenueRebate(rec,1,$index)"
+                                           ng-if="rec.mode>0 && rec.editchk>0"></i>
+
+                                        <i class="fa fa-plus"
+                                           title="Add"
+                                           ng-click="addRevenueRebate(rec,0,$index)"
+                                           ng-if="!(rec.mode>0)"></i>
+
+                                        <i class="fa fa-edit"
+                                           title="Edit"
+                                           ng-click="editRevenueRebate(rec,$index)"
+                                           ng-if="rec.mode>0 && !(rec.editchk>0) && !rebate_chk_readonly"></i>
+
+                                        <i class="fa fa-minus"
+                                           title="Delete"
+                                           ng-click="deleteRevenueRebate($index,revenueBasedRebate)"
+                                           ng-if="rec.mode>0 && !rebate_chk_readonly"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-show="revenueBasedRebate.length == 0">
+                                    <td>No Record found agaist this entity! Please add.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <div class="table-responsive"
+                         ng-if="Rebate_rec.universal_types.id == 2">
+                        <table class="table table-striped table-bordered table-hover"
+                               style="    margin-top: 19px;">
+                            <thead class="fixit">
+                                <tr>
+                                    <th class="text-right"><!-- Qty. From --> Min. Order Qty. ({{Rebate_rec.uoms.name}})</th>
+                                    <!-- <th class="text-right">Qty. To ({{Rebate_rec.uoms.name}})</th> -->
+                                    <th class="text-right">Rebate <span
+                                              ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                        <span ng-if="Rebate_rec.rebate_price_types.id==2">({{drp.currency.code}})</span>
+                                    </th>
+                                    <th class="text-center"
+                                        ng-if="!rebate_chk_readonly">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec in volumeBasedRebate"
+                                    ng-if="volumeBasedRebate.length > 0">
+                                    <td>
+                                        <input class="form-control input_text text-right"
+                                               data-parsley-type="number"
+                                               type="text"
+                                               ng-if="!rebate_chk_readonly"
+                                               ng-model="rec.revenue_volume_from"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="rebate_chk_readonly">{{rec.revenue_volume_from | numberNoDecimalsIfZeroFilter:2:''}}</span>
+
+                                    </td>
+                                    <!-- <td>
+                                        <input class="form-control input_text text-right"
+                                               data-parsley-type="number"
+                                               type="text"
+                                               ng-if="!rebate_chk_readonly"
+                                               ng-model="rec.revenue_volume_to"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="rebate_chk_readonly">{{rec.revenue_volume_to| numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    </td> -->
+                                    <td>
+                                        <input id="purchase_price_1"
+                                               type="text"
+                                               class="form-control input_text text-right"
+                                               ng-model="rec.rebate"
+                                               ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                    </td>
+                                    <td class="text-center allo"
+                                        ng-if="!rebate_chk_readonly">
+
+                                        <i class="fa fa-retweet"
+                                           title="Update"
+                                           ng-click="addVolumeRebate(rec,1,$index)"
+                                           ng-if="rec.editchk>0"></i>
+
+                                        <i class="fa fa-plus"
+                                           title="Add"
+                                           ng-click="addVolumeRebate(rec,0,$index)"
+                                           ng-if="!(rec.mode>0) && !(rec.editchk>0) && !(rec.qtyID>0)"></i>
+
+                                        <i class="fa fa-edit"
+                                           title="Edit"
+                                           ng-click="editVolumeRebate(rec,$index)"
+                                           ng-if="rec.mode>0 && !(rec.editchk>0) && !rebate_chk_readonly"></i>
+
+                                        <i class="fa fa-minus"
+                                           title="Delete"
+                                           ng-click="deleteVolumeRebate($index,volumeBasedRebate)"
+                                           ng-if="rec.mode>0 && !rebate_chk_readonly"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-show="volumeBasedRebate.length == 0">
+                                    <td>No Record found agaist this entity! Please add.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive"
+                         ng-if="Rebate_rec.universal_types.id == 3">
+                        <table class="table table-striped table-bordered table-hover"
+                               style="    margin-top: 19px;">
+                            <thead class="fixit">
+                                <tr>
+                                    <th>Revenue From</th>
+                                    <!-- <th>Revenue To</th> -->
+                                    <th>Rebate</th>
+                                    <th class="text-center"
+                                        ng-if="!rebate_chk_readonly">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec in revenueBasedRebate"
+                                    ng-if="revenueBasedRebate.length > 0">
+                                    <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input class="form-control input_text"
+                                                       data-parsley-type="number"
+                                                       type="text"
+                                                       ng-model="rec.revenue_volume_from"
+                                                       ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                                <span> {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input class="form-control input_text"
+                                                       data-parsley-type="number"
+                                                       type="text"
+                                                       ng-model="rec.revenue_volume_to"
+                                                       ng-readonly="rebate_chk_readonly  || rec.mode>0">
+                                                <span> {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td> -->
+                                    <td>
+                                        <div class="col-lg-12 pl0">
+                                            <div class="input-symbol">
+                                                <input id="purchase_price_1"
+                                                       type="text"
+                                                       class="form-control input_text"
+                                                       ng-model="rec.rebate"
+                                                       ng-readonly="rebate_chk_readonly || rec.mode>0">
+                                                <span ng-if="Rebate_rec.rebate_price_types.id==1">&#37;</span>
+                                                <span ng-if="Rebate_rec.rebate_price_types.id==2">
+                                                    {{drp.currency.code}} </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center allo"
+                                        ng-if="!rebate_chk_readonly">
+
+                                        <i class="fa fa-retweet"
+                                           title="Update"
+                                           ng-click="addRevenueRebate(rec,1,$index)"
+                                           ng-if="rec.mode>0 && rec.editchk>0"></i>
+
+                                        <i class="fa fa-plus"
+                                           title="Add"
+                                           ng-click="addRevenueRebate(rec,0,$index)"
+                                           ng-if="!(rec.mode>0)"></i>
+
+                                        <i class="fa fa-edit"
+                                           title="Edit"
+                                           ng-click="editRevenueRebate(rec,$index)"
+                                           ng-if="rec.mode>0 && !(rec.editchk>0) && !rebate_chk_readonly"></i>
+
+                                        <i class="fa fa-minus"
+                                           title="Delete"
+                                           ng-click="deleteRevenueRebate($index,revenueBasedRebate)"
+                                           ng-if="rec.mode>0 && !rebate_chk_readonly"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-show="revenueBasedRebate.length == 0">
+                                    <td>No Record found agaist this entity! Please add.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group"
+                         ng-if="Rebate_rec.universal_types.id > 0 ">
+                         <!--  || Rebate_rec.types.id > 1 -->
+                        <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   jqdatepicker
+                                   id="ck_sdate_rebate"
+                                   required
+                                   readonly
+                                   ng-disabled="rebate_chk_readonly || Rebate_rec.id > 0"
+                                   ng-model="Rebate_rec.offer_date"
+                                   ng-change="testdate_by_id('ck_sdate_rebate','ck_edate_rebate','date_msg_rebate')"
+                                   ng-class="{'pickdate':(!rebate_chk_readonly && !(Rebate_rec.id > 0))}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                  aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-if="Rebate_rec.universal_types.id > 0">
+                         <!--  || Rebate_rec.types.id > 1 -->
+                        <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <div class="input-symbol">
+                                <input class=" form-control"
+                                       jqdatepicker
+                                       id="ck_edate_rebate"
+                                       required
+                                       readonly
+                                       ng-disabled="rebate_chk_readonly"
+                                       ng-model="Rebate_rec.offer_valid_date"
+                                       ng-change="testdate_by_id('ck_sdate_rebate','ck_edate_rebate','date_msg_rebate')"
+                                       ng-class="{'pickdate':!rebate_chk_readonly}">
+                                <span class="fa fa-calendar"
+                                      aria-hidden="true"
+                                      style="right: 11px !important;top: 9px;color: #464646;z-index: 1;font-size: 13px !important;color: #cccccc;"></span>
+                            </div>
+                            <span id="date_msg_rebate"
+                                  style="color:#F00; display: none;">End Date is earlier then Start Date</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Notes</label>
+
+                        <div class="col-md-8">
+                            <textarea style="height:100px !important; resize:none;"
+                                      ng-model="Rebate_rec.notes"
+                                      id="Rnotes"
+                                      class="form-control"
+                                      ng-disabled="rebate_chk_readonly"
+                                      maxlength="250" />
+                            </textarea>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group"
+                         ng-if="!(Rebate_rec.universal_types.id == 3 || Rebate_rec.universal_types.id == 2)">
+                        <label class="col-md-4 control-label">Notes</label>
+
+                        <div class="col-md-8">
+                            <textarea style="height:100px !important; resize:none;"
+                                      ng-model="Rebate_rec.notes"
+                                      id="Rnotes"
+                                      class="form-control"
+                                      ng-disabled="rebate_chk_readonly"
+                                      maxlength="250" />
+                            </textarea>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <button class="btn btn-delete"
+                                        ng-if="Rebate_rec.id && !rebate_chk_readonly && deletePriceTabPermission"
+                                        type="button"
+                                        ng-click="delete_rebate($event,Rebate_rec.id)">
+                                    Delete
+                                </button>
+                                <button class="btn btn-submit"
+                                        type="button"
+                                        ng-click="addRebate(Rebate_rec)"
+                                        ng-show="!rebate_chk_readonly">Save</button>
+                                <button class="btn btn-edit "
+                                        type="button"
+                                        ng-click="showRebateEditForm()"
+                                        ng-show="rebate_chk_readonly"
+                                        ng-if="editPriceTabPermission" >Edit</button>
+                                <button class="btn btn-cancel"
+                                        type="button"
+                                        ng-click="getRebate();">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

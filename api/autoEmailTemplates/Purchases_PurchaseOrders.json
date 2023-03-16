@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "purchase_order_no": "order_code"
+    },
+    "fileName": "PO.[[purchase_order_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

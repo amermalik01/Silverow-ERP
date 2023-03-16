@@ -1,0 +1,866 @@
+<style>
+    #sales_order_modal_parent {
+        /* display: none !important; */
+    }
+</style>
+<div ng-hide="noModal" class="modal fade template-design" id="sales_order_modal_parent">
+    <div class="modal-dialog" style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body" id="sales_order_modal" style="height: 80vh;overflow: auto;padding: 2cm;">
+                <htmlpageheader name="MyCustomHeader">
+                    <div style="clear: both">
+                        <div class="temp-left-area">
+                            <div class="temp-logo">
+                                <img ng-src="{{imagePath+defaultLogo}}" ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            </div>
+                            <div class="temp-company-address">
+                                <table class="table-no-padding">
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            {{print_invoice_vals.com_name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">{{print_invoice_vals.com_address_1}}
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="print_invoice_vals.com_address_2">
+                                        <td style="padding-left: 0 !important;">{{print_invoice_vals.com_address_2}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">{{print_invoice_vals.com_city}}</td>
+                                    </tr>
+                                    <tr ng-if="print_invoice_vals.com_postcode">
+                                        <td style="padding-left: 0 !important; text-transform: uppercase">
+                                            {{print_invoice_vals.com_postcode}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="    padding-left: 0 !important;">
+                                            <b>Tel.&nbsp;</b>{{print_invoice_vals.com_telephone}}
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                            <td>
+                                                <b>Fax No.&nbsp;</b>{{print_invoice_vals.com_fax}}
+                                            </td>
+                                        </tr> -->
+                                </table>
+                            </div>
+                        </div>
+                        <div class="temp-right-area">
+                            <table align="right" style="    width: 100%;" class="table-no-padding">
+                                <tr ng-if="print_invoice_vals.templateType == 'salesOrder'">
+                                    <td class="template-name">
+                                        Sales Order No. {{print_invoice_vals.order_no}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesQuote' && print_invoice_vals.isPerforma">
+                                    <td class="template-name">
+                                        Sales Performa No. {{print_invoice_vals.order_no}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesInvoice'">
+                                    <td class="template-name">
+                                        Sales Invoice No. {{print_invoice_vals.invoice_no}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesQuote' && !print_invoice_vals.isPerforma">
+                                    <td class="template-name">
+                                        Sales Quote No. {{print_invoice_vals.quote_no}}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table align="right" class="table-no-padding" style="margin-top: 15px;">
+                                <tr ng-if="print_invoice_vals.templateType == 'salesOrder'">
+                                    <td class="temp-pad-left">
+                                        <b>Order Date</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        {{print_invoice_vals.order_date}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesQuote'">
+                                    <td ng-if="print_invoice_vals.isPerforma" class="temp-pad-left">
+                                        <b>Performa Date</b>
+                                    </td>
+                                    <td ng-if="!print_invoice_vals.isPerforma" class="temp-pad-left">
+                                        <b>Quote Date</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        {{print_invoice_vals.order_date}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesInvoice'">
+                                    <td class="temp-pad-left">
+                                        <b>Invoice Date</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        {{print_invoice_vals.invoice_date}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>Bank</b>
+                                    </td>
+                                    <td class="template-text-right">{{print_invoice_vals.bank_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>Account Name</b>
+                                    </td>
+                                    <td class="template-text-right">{{print_invoice_vals.account_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left" ng-if="print_invoice_vals.posting_group == 'UK'">
+                                        <b>Sort Code</b>
+                                    </td>
+                                    <td class="template-text-right" ng-if="print_invoice_vals.posting_group == 'UK'">
+                                        {{print_invoice_vals.sort_code}}</td>
+
+                                    <td ng-if="print_invoice_vals.posting_group != 'UK'">
+                                        <b>Swift Code</b>
+                                    </td>
+                                    <td ng-if="print_invoice_vals.posting_group != 'UK'" class="template-text-right">
+                                        {{print_invoice_vals.swift_code}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left" ng-if="print_invoice_vals.posting_group == 'UK'">
+                                        <b>Account No.</b>
+                                    </td>
+                                    <td class="template-text-right" ng-if="print_invoice_vals.posting_group == 'UK'">
+                                        {{print_invoice_vals.account_no}}</td>
+                                    <td ng-if="print_invoice_vals.posting_group != 'UK'">
+                                        <b>IBAN</b>
+                                    </td>
+                                    <td ng-if="print_invoice_vals.posting_group != 'UK'" class="template-text-right">
+                                        {{print_invoice_vals.iban}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>VAT Reg. No.</b>
+                                    </td>
+                                    <td class="template-text-right">{{print_invoice_vals.vat_reg_no}}</td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.payment_terms">
+                                    <td>
+                                        <b>Payment Terms</b>
+                                    </td>
+                                    <td class="template-text-right">{{print_invoice_vals.payment_terms}}</td>
+                                </tr>
+                                <tr ng-if="print_invoice_vals.templateType == 'salesInvoice' && print_invoice_vals.templateType && print_invoice_vals.due_date != '0' && print_invoice_vals.due_date != ''">
+                                    <td>
+                                        <b>Due Date</b>
+                                    </td>
+                                    <td class="template-text-right">{{print_invoice_vals.due_date}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </htmlpageheader>   
+                
+                <!-- <htmlpageheader name="otherpages" ng-if="print_invoice_vals.company_id == 2" style="visibility: hidden;">
+                    
+                </htmlpageheader> -->
+                
+
+                <sethtmlpageheader name="MyCustomHeader" page="ALL" value="on" show-this-page="1"/>
+                <sethtmlpageheader name="otherpages" value="on" ng-if="print_invoice_vals.company_id == 2"/>  
+                <!-- <sethtmlpageheader name="MyCustomHeader" page="ALL" value="on" show-this-page="1" ng-if="print_invoice_vals.company_id != 2"  /> -->
+                <sethtmlpageheader name="MyCustomHeader" page="E" value="on" />     <!--  ng-if="print_invoice_vals.company_id != 2" --> 
+                
+                <pagefooter name="MyFooter1" content-left="{{print_invoice_vals.additional_information}}" content-right="Page {PAGENO} of {nb}" footer-style="color:#00000;font-size: 11px" />
+
+                <setpagefooter name="MyFooter1" page="ALL" value="on" show-this-page="1" />
+                <!-- ng-if="print_invoice_vals.company_id != 2"  -->
+
+                <!-- <pagefooter name="MyFooter1" content-left="{{print_invoice_vals.additional_information}}" content-right="Page {PAGENO} of {nb}" footer-style="color:#00000;font-size: 8px" ng-if="print_invoice_vals.company_id == 2" />
+
+                <setpagefooter name="MyFooter1" page="ODD" value="on" show-this-page="1" ng-if="print_invoice_vals.company_id == 2" />
+
+                <pagefooter name="MyFooter2" content-left="" content-right="Page {PAGENO} of {nb}" footer-style="color:#00000;font-size: 8px" ng-if="print_invoice_vals.company_id == 2" />
+
+                <setpagefooter name="MyFooter2" page="E" value="on" ng-if="print_invoice_vals.company_id == 2" /> -->
+
+                <div style="clear: both;padding-top: 10px;" class="temp-body">
+                    <div style="float: left;width: 40%">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="temp-no-pad" style="padding-right: 60px;padding-left: 0 !important;">
+                                        <table class="table-no-padding">
+                                            <tr>
+                                                <td class="temp-text-uppercase temp-no-pad" style="    padding-left: 0 !important;">
+                                                    <b style="color: #2196F3;font-size: 14px;">Invoice To</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad" style="    padding-left: 0 !important;">
+                                                    {{print_invoice_vals.name}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad" style="    padding-left: 0 !important;">
+                                                    {{print_invoice_vals.address_1}}</td>
+                                            </tr>
+                                            <tr ng-if="print_invoice_vals.address_2">
+                                                <td class="temp-no-pad" style="    padding-left: 0 !important;">
+                                                    {{print_invoice_vals.address_2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad" style="    padding-left: 0 !important;">
+                                                    {{print_invoice_vals.city}}
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="print_invoice_vals.postcode">
+                                                <td class="temp-no-pad" style="text-transform: uppercase;padding-left: 0 !important;">
+                                                    {{print_invoice_vals.postcode}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table class="table-no-padding temp-color" ng-if="print_invoice_vals.ship_name || print_invoice_vals.ship_address_1 || print_invoice_vals.ship_city || print_invoice_vals.ship_postcode"
+                                            style="padding-left: 12px;">
+                                            <tr>
+                                                <td class="temp-no-pad">
+                                                    <b style="color: #2196F3;font-size: 14px;">Ship To</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad">{{print_invoice_vals.ship_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad">{{print_invoice_vals.ship_address_1}}</td>
+                                            </tr>
+                                            <tr ng-if="print_invoice_vals.ship_address_2">
+                                                <td class="temp-no-pad">{{print_invoice_vals.ship_address_2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad">
+                                                    {{print_invoice_vals.ship_city}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td ng-if="print_invoice_vals.ship_postcode" class="temp-no-pad" style="text-transform: uppercase">
+                                                    {{print_invoice_vals.ship_postcode}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="float: right;width: 60%">
+                        <table align="right">
+                            <tr>
+                                <td class="temp-box" ng-if="print_invoice_vals.bill_to_cust_no">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Cust. No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.bill_to_cust_no}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Cust. VAT Reg. No.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.cust_vat_reg_no}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box" ng-if="print_invoice_vals.templateType == 'salesInvoice'">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Sales Order No.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.order_no}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Cust. Order No.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.cust_order_no}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="temp-box" ng-if="print_invoice_vals.salesperson">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Salesperson
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.salesperson}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box" ng-if="print_invoice_vals.templateType == 'salesOrder'">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Shipment Date
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{ print_invoice_vals.delivery_date}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td class="temp-box" ng-if="print_invoice_vals.templateType == 'salesQuote' && print_invoice_vals.req_recpt_del_date > 0">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Req. Delivery Date
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.req_recpt_del_date}}
+                                                <!-- {{(line.req_recpt_del_date != '0') ? line.req_recpt_del_date : ''}} -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box" ng-if="print_invoice_vals.templateType == 'salesInvoice'">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Order Date
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.order_date}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="temp-box" ng-if="print_invoice_vals.templateType == 'salesInvoice'">
+                                    <table class="temp-no-padding">
+                                        <tr>
+                                            <td class="temp-highlight" style="    padding-left: 0;">
+                                                Delivery Date
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad " style="    padding-left: 0;">
+                                                {{print_invoice_vals.delivery_date}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="temp-main-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    No.
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th class="rightAlign">
+                                    Qty.
+                                </th>
+                                <th>
+                                    U.O.M
+                                </th>
+                                <th ng-if="print_invoice_vals.volumePermission>0">
+                                    <span>Volume</span>
+                                </th>
+                                <th ng-if="print_invoice_vals.weightPermission>0">
+                                    <span>Weight</span>
+                                </th>
+                                <th class="rightAlign">
+                                    Unit Price
+                                </th>
+                                <th>
+                                    <span ng-if="print_invoice_vals.discount > 0">Discount Type</span>
+                                </th>
+                                <th class="rightAlign">
+                                    <span ng-if="print_invoice_vals.discount > 0">Discount</span>
+                                </th>
+                                <th>
+                                    VAT
+                                </th>
+                                <th class="rightAlign">
+                                    <span ng-if="print_invoice_vals.discount > 0">Discount Amount</span>
+                                </th>
+                                <th class="rightAlign">
+                                    Total Amount
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="line in print_invoice_vals.doc_details_arr">
+                                <td>
+                                    <span ng-if="line.type == 0">{{line.number}} </span>
+                                    <span ng-if="line.type != 0">&nbsp; </span>
+                                </td>
+                                <td style="width: 37%; word-break: break-word;">
+                                    {{line.description}}                                    
+                                    <span ng-if="print_invoice_vals.company_id == 3 && line.batch_no"><br><b>Frame No. </b>{{line.batch_no}} </span>
+                                </td>
+                                <td class="rightAlign">
+                                    {{line.quantity | numberNoDecimalsIfZeroFilter:2:''}}
+                                </td>
+                                <td>
+                                    {{line.uom}}
+                                </td>
+                                <td ng-if="print_invoice_vals.volumePermission>0">
+                                    <span ng-if="line.volume!=0  && line.type == 0">{{line.volume | quantityNum:2:''}}
+                                        <span>cm&sup3;</span>
+                                    <!-- <span ng-if="line.volumeUnit == 'cm3'">cm&sup3;</span>
+                                        <span ng-if="line.volumeUnit != 'cm3'">{{line.volumeUnit}}</span> -->
+                                    </span>
+                                    <span ng-if="line.volume==0">-</span>
+                                </td>
+                                <td ng-if="print_invoice_vals.weightPermission>0">
+                                    <span ng-if="line.weight!=0 && line.type == 0">{{line.weight | quantityNum:2:''}}
+                                        {{line.weightUnit2}}</span>
+                                    <span ng-if="line.weight==0">-</span>
+                                </td>
+                                <td class="rightAlign">
+                                    {{line.unit_price | unitPriceFilter}}
+                                </td>
+                                <td>
+                                    <span ng-if="line.discount > 0">
+                                        {{line.discount_type}}
+                                    </span>
+                                </td>
+                                <td class="rightAlign">
+                                    <span ng-if="line.discount > 0">
+                                        {{line.discount | currency:""}}<span>{{line.discount_type == 'Percentage' ? '%' : ''}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    {{line.vat_rate}}
+                                </td>
+                                <td class="rightAlign">
+                                    <span ng-if="line.discount > 0">{{ line.discount_amount | currency:""}}</span>
+                                    <!-- {{line.discount_price | currency:""}} -->
+                                </td>
+                                <td class="rightAlign">
+                                    {{line.total_amount | currency:""}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="clear: both;padding-top: 50px;">
+                        <div style="width: 40%;float: left;">
+                            <table class="temp-notes">
+                                <tr>
+                                    <td style="text-align: justify">
+                                        {{print_invoice_vals.notes}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="width: 30%;float: left;">
+                            <table align="right">
+                                <tr ng-repeat="vol in print_invoice_vals.volume_total" ng-if="vol.total_qty!=0 && print_invoice_vals.volumePermission>0">
+                                    <td style="color: #2196F3;padding-right: 10px;">
+                                        <b>Total Volume</b>
+                                    </td>
+                                    <td style="text-align: right;color: #2196F3;">
+                                        <b>{{vol.total_qty | quantityNum:2:''}} <span>cm&sup3;</span>
+                                            <!-- <span ng-if="vol.volume_unit == 'cm3'">cm&sup3;</span>
+                                            <span ng-if="vol.volume_unit != 'cm3'">{{vol.volume_unit}}</span> -->
+                                        </b>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="weight in print_invoice_vals.weight_total" ng-if="weight.total_qty!=0 && print_invoice_vals.weightPermission>0">
+                                    <td style="color: #2196F3;padding-right: 10px;">
+                                        <b>Total Weight</b>
+                                    </td>
+                                    <td style="text-align: right;color: #2196F3;">
+                                        <b>{{weight.total_qty | quantityNum:2:''}} {{weight.weightunit}}</b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="width: 30%;float: right;">
+                            <table align="right" class="totalFont">
+                                <tr ng-if="print_invoice_vals.discountedValue > 0">
+                                    <td style="padding-left: 0;text-align: right;">
+                                        <b>Discount</b>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        {{print_invoice_vals.discountedValue | currency:""}} {{print_invoice_vals.currency}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 0;text-align: right;">
+                                        <b>Amount</b>
+                                    </td>
+                                    <td style="text-align: right;padding-left: 19px;">
+                                        {{print_invoice_vals.net_amount | currency:""}} {{print_invoice_vals.currency}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 0;text-align: right;">
+                                        <b>VAT</b>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        {{print_invoice_vals.tax_amount | currency:""}} {{print_invoice_vals.currency}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-total" style="padding-left: 0;text-align: right;">
+                                        <b>Amount Incl. VAT</b>
+                                    </td>
+                                    <td class="temp-total">
+                                        {{print_invoice_vals.grand_total | currency:""}} {{print_invoice_vals.currency}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--Table Wrapper-->
+
+                <div style="width:100%; font-size:7px; bottom:0px;display: inline-block;clear: both;line-height: 10px;" ng-if="print_invoice_vals.company_id == 2">ALL payments must be paid according to the terms specified on this invoice, Any queries or disputes must be raised within 48 hours of receiving delivery.<br>Please find our full terms & conditions attached.</div>
+                
+
+                <div class="termsandCond" style="clear: both;font-size: 7px !important; line-height: 10px !important; visibility: hidden;" ng-if="print_invoice_vals.company_id == 2">
+                    <!-- <br style="page-break-before: always" /> -->
+                    <div style="page-break-before:always">&nbsp;</div>
+
+                    
+                    <sethtmlpageheader value="-1" show-this-page="1" /> 
+                    <div style="clear: both;text-align: right;">
+                        <div class="temp-left-area">                                
+                        </div>
+                        <div class="temp-right-area">
+                            <div class="temp-logo">
+                                <img ng-src="{{imagePath+defaultLogo}}" ng-class="{'reportHeading__right__img_resized': company_logo_height >= 70 }">
+                            </div>
+                            <!-- <div class="temp-company-address">
+                                <table class="table-no-padding2" style="width:100%;text-align: right;">
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            {{print_invoice_vals.com_name}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <div>
+                        
+                        <table class="temp-notes">
+                            <tr>
+                                <td style="text-align: justify" colspan="2">TERMS AND CONDITIONS</td>
+                            </tr>
+                        </table>
+                        <div style="clear: both;"></div>
+                        <table class="temp-notes" style="clear: both; line-height: 7px !important;">
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Definitions In these conditions, unless the context requiresotherwise:</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">1.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">‘Buyer’ means the person who buys or agrees tobuy the goods fromthe Seller;</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">1.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">‘Conditions/Terms’ means the terms and conditions of sale set out in this document and any special terms and conditions agreedin writing by theSeller;</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">1.3</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">‘Delivery/Shipment Date’ means the date specified by the Seller when the goods are to be delivered</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">1.4</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">‘Goods/Item’ means the articles which the Buyer agrees to buy from the Seller;</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">1.5</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">‘Price’ means the price for the Goods including carriage and packing; and</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">1.6</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">‘Seller’ means VESTROLIMITED</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Conditions applicable</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">2.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">These Conditions shall apply to all contracts for the sale of Goods by the Seller to the Buyer to the exclusion of all other terms and conditions including any terms or conditions which the Buyer may purport to apply under any purchase order,confirmation of order or similar documentor in correspondence. These Conditions constitute the entire understanding between the Buyer and the Seller with respect to the subject matter covered by the Contract of purchase and supersede all previous Agreements and understandings between the Parties.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">2.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">All orders for Goods shall be deemed to be an offer by the Buyer to purchase Goods pursuant to these Conditions.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">2.3</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">Placing of an Order for delivery of the Goods shall be deemed conclusive evidence of the Buyer’s acceptance of these Conditions.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">2.4</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">Any variation to these Conditions (including any special terms and conditions agreed between the parties) shall be inapplicable unless agreed in writing by theSeller.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">3</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Price and payment</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Price of the Goods shall be the price set out overleaf(if any) or if no price shall be set out overleaf the Seller’s Quoted Price, which shall be binding upon the Seller.The Price is exclusive of VAT, which shall be due at the rate ruling on the date of the Seller’s invoice.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">Payment of the Price and VAT shall be due on the date and terms stated on the Seller’s Invoice. Time for payment shall be of the essence.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.3</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">Interest on overdueinvoices shall accrue from the date when payment becomes due from dayto day until the date of payment at a rate of 8% above Bank Base Rate from time to time in force and shall accrue at such a rate after as well as before any Judgment.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.4.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">If the Buyer fails to make any payment on the due date then without prejudice to any of the Seller’s other rights the Seller may:</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;"></td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.4.1. Suspendor cancel deliveries of any articles due to theBuyer;and/or</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;"></td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">3.4.2. Appropriate any payment made by the Buyer to such of the Goods (or Goods supplied under anyother contract with the Buyer) as the Seller may in its sole discretion think fit.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">3.5.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">If the invoice is not paid in full within the payment terms stipulated on the invoice, then Seller holds the right to instruct a Debt Collection Agency,a surcharge of 15% will be added to the invoice;in addition, theBuyer will be liable for all legal costs occurred in collection of the monies.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">4</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">The Goods</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">4.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The quantity and description of the Goods shall be as set out overleaf on the Seller’s Quote,Order Confirmation or Invoice.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">4.2.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">Anychanges required to the orderof the Goods after placing of the Order maybe the subject of an additional Charge.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">5</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Warranties and liability</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">5.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">The Seller warrants that the Goods supplied will at the time of delivery correspond to the description given by the Seller.Except where the Buyer is dealing as a consumer(as defined in the Unfair Contract Terms Act 1977 Section 12 and/or the Unfair Terms in Consumer Contracts Regulations 1999 Regulation 3(1)) all other warranties,conditions or terms relating to fitness for purpose, quality or condition of the Goods, whether express or implied by statute or common law or otherwise are excluded to the fullest extent permitted by law.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">6</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Delivery of the Goods</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">6.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">The Goods shall be delivered to the Buyer at the Buyer’s address or if different to the address shown overleaf or otherwise notified in writing to the Seller.The risk in the Goods shall pass to the Buyer upon such delivery taking place. The Buyer shall make all arrangements to take delivery of the Goods wherever they are tendered for delivery.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">7</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Acceptance of the Goods</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Buyer shall inspect the Goods on delivery and shall within 48 hours of delivery notify the Seller of any alleged defect, shortage in quantity,damage or failure to comply with description or sample.The Buyer shall afford the Seller an opportunity to inspect the Goods within a reasonable time following delivery and before anyuse is made of them.If the Buyer shall fail to comply with these  Provisions the Goods shall be conclusively presumed to be in accordance with the Contract and free from any defect or damage which would be apparent on a reasonable examination of the Goods and the Buyer shall be deemed to have accepted the Goods</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.2.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Buyer shall notify the Seller of any non-delivery of a whole consignment of complete cartons within 48 hours of the date of dispatch(as statedon the Invoice). Notwithstanding the receipt by the Seller of any such Notice a clear signature on a Carrier’s Delivery Advice Sheet shall be deemed to signify receipt of the quantity of cartons indicated on the Advice Sheet.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.3.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">If the Goods are not in accordance with the Contract for any reason the Buyer’s sole remedy shall be limited to the Seller making good any shortage by replacing such Goods or,if the Seller shall elect, by refunding a proportionate part of thePrice.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.4</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Buyer shall be deemed to have accepted the Goods 48 hours after delivery to the Buyer.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.5</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 3px !important;">After acceptance the Buyer shall not be entitled to reject Goods which are not in accordance with the Contract</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">7.6.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">If the Buyer properly rejects any of the Goods which are not in accordance with the Contract the Buyer shall nonetheless pay the full price for such Goods unless the Buyer promptly gives Notice of Rejection to the Seller and at the Buyer’s cost returning such Goods to the Seller before the date when payment of the Price is due.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">7.7.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">1. No Goods delivered to theBuyer which are in accordance with the Contract will be accepted for return without the prior written approval of the Seller (in accordance with the Seller’s Returns Authorisation procedure) and on terms to be determined at the absolute discretion of the Seller.<br> 2. If the Seller agrees to accept any such Goods for return the Buyer shall be liable to paya handling charge(20%) of the Invoice price. Such Goods must be returned by the Buyer carriage-paid to the Seller in their original shipping carton.<br> 3. Gods returned without prior written approval of the Seller may at the Seller’s absolute discretion be returned to the Buyer or stored at the Buyer’s cost without prejudice to any rights or remedies the Seller mayhave.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">8</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Title and Risk</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">8.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">Notwithstandingdelivery to the Buyer,the Seller shall be legally and beneficially entitled to the ownership of the Goods until payment of all debts owedby the Buyerto the Seller.Until such payment, and subject to the following provisions, the Buyer holds the goods as Bailee of the Seller and owes to the Seller the normal fiduciary obligations of a Bailee by wayof custody in respect of the Goods. Insofaras the Buyer shall,or shall purport to, offer for sale and sell the Goods,it shall do so only at the best obtainable price in the ordinary course of its business as principal and not as Agent for the Seller.The Seller shall, by reason of the said relationship of bailment between the Buyer(as Bailee) and itself (as Bailor), be and remain legally and beneficially entitled to the proceeds of sale and the Buyer shall pay such proceeds of sale into a separate Account or,otherwise, shall ensure that all the proceeds of sale are kept by or on behalf of the Buyer in a separate and identifiable form. The proceeds shall not be paid into an overdrawn bank account. Upon receipt of the proceeds of sale, the Buyer shall discharge the debt due to the Seller and shall not use or deal with the proceeds of sale in any way whatsoever until such debt has been discharged.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">8.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">Risk shall pass ondelivery of the Goods.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">9</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Remedies of Buyer</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">9.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">The Specification and Design of the Goods (and including the Copyright, Design Right or other Intellectual Property in them) shall as between the parties be the property of the Seller.Where any designsor specifications have been supplied by the Buyer for manufacture by the Seller or to the order of the Buyer then the Buyer warrants that the use of those designs or specifications for the manufacture,processing,assembly or supply of the Goods shall not infringe the rights of any third party.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">10.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Exclusion of liability for delay in Delivery</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">10.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Seller shall not be liable for anyloss or damage whatever due to failure by the Seller to deliver the Goods(or anyof them) promptly or at all.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">10.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">Notwithstandingthat the Seller may have delayed or failed to deliver the Goods(or any of them) promptly the Buyer shall be bound to accept delivery and to pay for the Goods in full provided that delivery shall be tendered at any time within one month of the Delivery Date.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">11.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Exclusion of Seller’s liability for indirect loss and Limitation of Liability</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">11.1</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">The Seller shall be under noliability whatever to the Buyer for any indirect loss and/or expense (including loss of profit) suffered by the Buyer arising out of a breach by the Seller of this Contract.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">11.2</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">In the event of anybreach of this Contract by the Seller the remedies of the Buyer shall be limited to damages. Under no circumstances shall the liability of the Seller exceed the Price of the Goods.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">12.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Sale or Return</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">12.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 3px !important;">If the Seller shall agree to sell Goods to the Buyer on a Sale or return basis any Goods not returned to the Seller within 2 months of delivery shall be deemed to have been sold by the Buyer and the Buyer shall be liable for thePrice.</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">13.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 3px !important; padding-bottom: 1px !important;">Proper law of contract</td>
+                            </tr>
+                            <tr>
+                                <td style="width:10px;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">13.1.</td>
+                                <td style="text-align: justify;width:95%;font-size: 7px !important;padding-top: 1px !important; padding-bottom: 1px !important;">This contract is subject to the law of England and Wales.</td>
+                            </tr>
+                        </table>
+                        <div style="clear: both;"></div>
+                        <table class="temp-notes">
+                            <tr>
+                                <td class="termsandCondFooter" style="text-align: justify; font-size: 12px; padding-left: 50px !important; padding-top: 30px !important; font-weight: 600;line-height: 15px !important;"> 
+                                    <b>Vestro Ltd,</b> Park House, 15-19 Greenhill Crescent, Watford, WD18 8PH <br>
+                                    Registration Number: 12627806
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <div class="pull-right">
+
+                    <button type="button" class="btn btn-cancel pull-right " data-dismiss="modal" ng-click="destroyPdfModal('sales_order_modal_parent');">Close</button>
+
+                    <a type="button" ng-if="print_invoice_vals.templateType == 'salesQuote'" data-dismiss="modal" ng-click="openEmailer('emailerBtnSales_SalesQuotes');"
+                        class=" btn btn-default2">Send Email</a>
+
+                    <a type="button" ng-if="print_invoice_vals.templateType == 'salesOrder'" data-dismiss="modal" ng-click="openEmailer('emailerBtnSales_SalesOrders');"
+                        class=" btn btn-default2">Send Email</a>
+
+                    <a type="button" ng-if="print_invoice_vals.templateType == 'salesInvoice'" data-dismiss="modal" ng-click="openEmailer('emailerBtnSales_SalesInvoices');"
+                        class=" btn btn-default2">Send Email</a>
+
+                    <a ng-click="generatePDFandDownload(print_invoice_vals.templateType, print_invoice_vals, 0)" class="btn btn-default2" title="Download PDF">
+
+                        <i class="fa fa-download"
+
+                           aria-hidden="true"
+
+                           style="color:#444444;"></i>
+
+                    </a>
+
+                    <!-- <a href="app/views/invoice_templates_pdf/Sale_Order.pdf" ng-if="printinvoiceFlag" target="_blank" class="btn btn-default2"
+
+                            title="Download PDF">
+
+                            <i class="fa fa-download" aria-hidden="true"></i>
+
+                        </a> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</div>

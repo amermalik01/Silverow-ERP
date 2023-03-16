@@ -1,0 +1,114 @@
+<div ng-controller="BankReconciliationController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <form>
+        <div class="widget">
+          <div class="widget-body" style="padding-top: 0 !important;    margin-top: 10px;">
+            <div class="row ng-scope">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <b class="bit headingreport">Silverow Bank Reconciliation</b>
+                </div>
+              </div>
+              <div class="col-md-12">
+
+                <div style="width: 100%;display: inline-block;margin-top: 10px;">
+                  <label class="control-label col-md-2" style="padding-top: 4px;">Posting Date<span class="required">*</span></label>
+                  <div class="col-md-2  ">
+                    <div class="input-symbol">
+                      <input jqdatepicker class="form-control" id="dateFrom" readonly style="background-color: white;" ng-model="filterTransaction.postingDate"
+                        ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+                      <span>
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <label class="control-label col-md-2" style="padding-top: 4px;">Bank Type<span class="required">*</span> </label>
+                  <div class="col-md-2 ">
+                    <div title="{{SelBankTooltip}}">
+                      <div class="panel-info pi2" ng-click="selectBanks()">
+                          <div class="panel-body">
+                          <span ng-repeat="bank in BankArr track by $index">
+                              <span ng-if="$index == 0">
+                              <span>{{bank.title}}</span>
+                              </span>
+                              <span ng-if="$index > 0">;&nbsp;
+                              <span>{{bank.title}}</span>
+                              </span>
+                          </span>
+                          <aside></aside>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="width: 100%;display: inline-block;margin-top: 10px;">
+                    <label class="control-label col-md-2" style="padding-top: 4px;">Transaction Type<span class="required">*</span></label>
+                    <div class="col-md-2  ">
+                      <div title="{{SelBankTooltip}}">
+                        <select class="select2me form-control" ng-model="filterTransaction.type" >
+                          <option style="display:none"></option>
+                          <option value="gl">General Journal</option>
+                          <option value="customer">Customer Journal</option>
+                          <option value="suplier">Supplier Journal</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12" style="margin-top: 9px;    margin-left: 15px;">
+                <button style="  margin-left: 0;" class="btn btn-default2" type="button" ng-click="getData()">Proceed</button>
+                <button class="btn btn-default2" type="button" ng-click="clearFilter()">Clear Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 0 !important;" >
+    <div class="col-lg-12 col-md-12" style=" margin-top: 11px;">
+      <table class="table table-condensed table-striped table-hover table-bordered">
+        <thead class="fixit">
+           <tr>
+              <th title="{{column.title}}" ng-repeat="column in silColumns" >
+                <span>{{column.title}}</span>
+              </th>
+              <th ng-show="silColumns.length == 0"> Action</th>
+          </tr>
+        </thead>
+        <tbody class="fixit">
+          <tr ng-repeat="stat in silBankStatements| filter:Serachkeyword2">
+             <td ng-repeat="column in silColumns">
+
+                <span ng-if="column.field == 'Balance' || column.field == 'Debit Amount' || column.field == 'Credit Amount' || column.field == 'Closing Bank Balance'">{{stat[column.field] | number:decimal_range}} </span>                
+                <span ng-if="column.field == 'Posting Date' || column.field == 'Account No' || column.field == 'Account Name' || column.field == 'Reference ID' || column.field == 'Last Date Reconceited'">{{stat[column.field]}} </span>
+                <span ng-if="column.field == 'Doc Type' && stat[column.field] == '1'">General Journal </span>                           
+                <span ng-if="column.field == 'Doc Type' && stat[column.field] == '2'">Payment </span>                           
+                <span ng-if="column.field == 'Doc Type' && stat[column.field] == '3'">Refund </span>                           
+                <span ng-if="column.field == 'status' && stat[column.field] == 0">Not </span>                           
+                <span ng-if="column.field == 'status' && stat[column.field] == 1">Done </span> 
+              </td> 
+              <td>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <select class="select2me form-control" >
+                  <option value="reconcile">Reconcile</option>
+                  <option value="unreconcile" selected="selected">Un-Reconcile</option>
+                </select>
+                </div>
+              </td> 
+          </tr>
+          <tr style="text-align:center;" ng-show="silColumns.length == 0">
+            <td> No Record found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<div ng-include="'app/views/bank_reconciliation/_listingBankModal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

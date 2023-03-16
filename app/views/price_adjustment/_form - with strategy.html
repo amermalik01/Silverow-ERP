@@ -1,0 +1,343 @@
+<div class="row">
+
+<div class="col-md-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+ 
+</div> -->
+<div class="widget-body" style="background:none;"> 
+
+  <div class="panel panel-default">
+  
+  <div class="panel-heading">
+      <h4 class="panel-title">Pricing Strategy</h4>
+    </div>
+  
+  <div class="panel-body">
+    <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="col-md-4 control-label">Strategy Type<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.strategy_type" required ng-options="opt as opt.name for opt in arr_strategy_type" class="form-control"> </select> 
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Strategy<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.strategy" required ng-options="opt as opt.name for opt in arr_strategy" class="form-control"> </select> 
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="panel panel-default">
+  
+  <div class="panel-heading">
+      <h4 class="panel-title">Price Adjustment Detail</h4>
+    </div>
+  
+  <div class="panel-body">
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="col-md-4 control-label">Price Adjustment Name<span class="required">*</span></label>
+        <div class="col-md-8">
+          <input type="text" ng-model="rec.promotion_name" class="form-control" ng-readonly="check_readonly" required="1">
+        </div>
+    </div>
+
+    <!-- <div class="form-group">
+        <label class="col-md-4 control-label">Promotion Type<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.promotion_types" ng-options="opt as opt.title for opt in arr_promotion_type" class="form-control" ng-disabled="1" ng-change="onChangeType(rec.cust_prod_type.id)"> </select> 
+        </div>
+    </div> -->
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Product Price Adjustment On<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.product_promotion" ng-options="opt as opt.title for opt in arr_prod_promo_type" class="form-control" ng-disabled="rec.id > 0" ng-change="onProdChangeType(rec.cust_prod_type.id)"> </select> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.product_promotion.id == 1">
+      <label class="col-md-4 control-label">Category(ies)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getCatsBrands()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cat in selectedCatsBrands track by $index">
+                        <span ng-if="$index == 0">{{cat.name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cat.name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.product_promotion.id == 2">
+      <label class="col-md-4 control-label">Brand(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getCatsBrands()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="brand in selectedCatsBrands track by $index">
+                        <span ng-if="$index == 0">{{brand.name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{brand.name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.product_promotion.id == 3">
+      <label class="col-md-4 control-label">Product(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getProducts()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="prod in selectedProducts track by $index">
+                        <span ng-if="$index == 0">{{prod.description}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{prod.description}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.product_promotion.id < 3">
+      <label class="col-md-4 control-label">Excluded Product List</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':check_readonly}" >
+                  <div class="panel-body" ng-click="getProducts()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="prod in selectedProducts track by $index">
+                        <span ng-if="$index == 0">{{prod.description}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{prod.description}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Customer Price Adjustment On<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.cust_prod_type" ng-options="opt as opt.title for opt in arr_cust_prod_type" class="form-control" ng-disabled="rec.id > 0" ng-change="onChangeType(rec.cust_prod_type.id)"> </select> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 1">
+      <label class="col-md-4 control-label">Customer(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getCustomers()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedCustomers track by $index">
+                        <span ng-if="$index == 0">{{cust.Name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.Name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 2">
+        <label class="col-md-4 control-label">Customer<span class="required">*</span></label>
+        <div class="col-md-8">
+          <input type="text" ng-model="rec.customer_name" class="form-control" ng-readonly="rec.id > 0" ng-click="getCustomer()" ng-required="rec.cust_prod_type.id == 2">
+          <!-- <select ng-model="rec.customer" ng-options="opt as opt.Name for opt in arr_customers" class="form-control" ng-disabled="rec.id > 0" ng-change="selectAltLocation()"> </select> --> 
+
+        </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 2">
+      <label class="col-md-4 control-label">Alt. Location<span class="required">*</span></label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':rec.id > 0}" >
+                  <div class="panel-body" ng-click="getAltLocations()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedLocations track by $index">
+                        <span ng-if="$index == 0">{{cust.Location_Name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.Location_Name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 3">
+      <label class="col-md-4 control-label">Region(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 4">
+      <label class="col-md-4 control-label">Segment(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 5">
+      <label class="col-md-4 control-label">Buying Group(s)</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':cust_div_readonly}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id > 2">
+      <label class="col-md-4 control-label">Excluded Customer List</label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':check_readonly}" >
+                  <div class="panel-body" ng-click="getExcCustomers()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedCustomers track by $index">
+                        <span ng-if="$index == 0">{{cust.Name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cust.Name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Currency<span class="required">*</span></label>
+        <div class="col-md-8">
+          <select ng-model="rec.currency" ng-options="opt as opt.name for opt in arr_currency" class="form-control" ng-disabled="check_readonly" required> </select> 
+        </div>
+    </div>
+    <div class="form-group">
+        <label class=" control-label col-md-4"> Price<span class="required">*</span> </label>
+        <div class="col-md-8">
+            <input ng-readonly="check_readonly" type="text"  data-parsley-trigger="keyup"
+   data-parsley-minlength="1"  ng-model="rec.price"  id="discount_value_1" required 
+   class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+   data-parsley-type-message="only Decimal"     >
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+    <label class="  control-label col-md-4 "> Discount Type</label>
+    <div class="col-md-8">
+      <select  ng-disabled="check_readonly"   ng-model="rec.disc_type"
+                   ng-options="opt as opt.name for opt in arr_disc_type" id="type_1"
+                   ng-change="setSymbol(1);"
+              class="select2me form-control"   >
+        <option style="display:none" ></option>
+      </select>
+    </div>
+  </div>
+
+    <div class="form-group">
+        <label class=" control-label col-md-4"> Discount </label>
+        <div class="col-md-8">
+          <div class="input-symbol">
+            <input ng-readonly="check_readonly" type="text"  placeholder="0"  data-parsley-trigger="keyup"
+   data-parsley-minlength="1"  ng-model="rec.discount"  id="discount_value_1"  
+   class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+   data-parsley-type-message="only Decimal"     >
+            <span ng-show="rec.disc_type.id == 1" >&#37;</span> </div>
+        </div>
+      </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="rec.start_date" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['start_date']"  close-text="Close" ng-change="checkDate(rec.start_date,rec.end_date,'start_date')"  ng-disabled ="check_readonly" required tabindex="6" data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+          <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="datePicker.open($event, 'start_date')"   ng-disabled ="check_readonly"><i class="fa fa-calendar"></i></button>
+          </span>
+       </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="rec.end_date" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date']"  close-text="Close" ng-change="checkDate(rec.start_date,rec.end_date,'end_date')"  ng-disabled ="check_readonly" required tabindex="7" data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+          <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="datePicker.open($event, 'end_date');"  ng-disabled ="check_readonly"><i class="fa fa-calendar"></i></button>
+          </span>
+          
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--       
+
+   <div class="row">
+                <div class="col-md-12">
+                  <div class="hr_line2"></div>
+                      <div class="pull-right">
+                      <button class="btn btn-info btn_blue" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+                      <button class="btn btn-info btn_blue" type="button" ng-click="showCustItemInfoEditForm()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+                      <button class="btn default" type="button" ng-click="showCustItemInfoListing()"><i class="fa fa-undo"></i> Cancel</button>
+                      </div>
+                </div>
+                </div> -->
+</div>
+</div>
+</div>
+<div ng-include="'app/views/sale_item_info/_customer_popup.html'"></div>
+<div ng-include="'app/views/sale_item_info/_customer_popup2.html'"></div>
+<div ng-include="'app/views/sale_item_info/_customer_groups_popup.html'"></div>
+<div ng-include="'app/views/sale_item_info/_alt_locations_popup.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>
+<div ng-include="'app/views/price_adjustment/_product_popup.html'"></div>
+<div ng-include="'app/views/price_adjustment/_cats_brands_popup.html'"></div>
+</div>
+</div>

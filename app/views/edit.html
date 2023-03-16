@@ -1,0 +1,57 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget animated fadeIn">
+            <div class="widget-body nobg-widget-body" style="    margin-top: 10px;">
+                <div class="row">
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form" name="editForm" ng-submit="editForm.$valid && update(rec)"
+                        validate-form="" novalidate="">
+                        <div ng-include="formUrl()"></div>
+                        <div class="col-md-12">
+                        <div class="col-md-12" ng-show="!showLoader" ng-if="btnCancelUrl!='app.haulier-target'">
+                            <div class="pull-right">
+                                <!-- <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="rec.deletePerm>0" 
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0"> Delete
+                                </button> -->
+                                <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.deletePerm>0" 
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0"> Delete
+                                </button>
+                                <input type="hidden" name="update_id" ng-model="rec.update_id" />
+                                <button class="btn btn-submit date_block pic_block" type="submit">Save</button>
+                                <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7" ng-show="!showLoader" ng-if="btnCancelUrl=='app.haulier-target'">
+                            <div class="pull-right">
+                                <!-- <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="rec.deletePerm>0" 
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0"> Delete
+                                </button> -->
+                                <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.deletePerm>0" 
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0"> Delete
+                                </button>
+                                <input type="hidden" name="update_id" ng-model="rec.update_id" />
+                                <button class="btn btn-submit date_block pic_block" type="submit">Save</button>
+                                <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'app/views/category/warehouse_allocation_cost_data_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>

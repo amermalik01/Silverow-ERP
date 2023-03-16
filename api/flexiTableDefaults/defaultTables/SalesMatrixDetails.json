@@ -1,0 +1,85 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "93",
+        "data_type": "date"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openInvoiceLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "85",
+        "data_type": "string"
+    },
+    {
+        "title": "Customer No.",
+        "field_name": "customer_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Customer Name",
+        "field_name": "customer_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Saleperson",
+        "field_name": "saleperson",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "sr_sel_emp_sale_dept",
+        "db_field": "name",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Order Value",
+        "field_name": "revenue",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit",
+        "field_name": "profit",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit Percentage",
+        "field_name": "profit_percentage",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "128",
+        "data_type": "number"
+    }
+    
+]

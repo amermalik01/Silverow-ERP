@@ -1,0 +1,52 @@
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Name<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="rec.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Description<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="rec.description" id="description" name="description" class="form-control" ng-readonly="check_readonly" required tabindex="1" />
+        <!--<textarea name="rec.description" cols="160" rows="10" id="description" ng-model="rec.description" class="form-control" required="1" ng-readonly="check_readonly" tabindex="2"></textarea>--> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Status<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" ng-disabled="check_readonly" id="status" tabindex="4" required >
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <form class="form-horizontal" role="form" ng-submit="add(rec)" name="addForm" validate-form="" novalidate="" form-wizard="">
+<div class="row">
+<div class="form-group">
+  <label class="col-lg-2 control-label">Name<span class="required">*</span></label>
+  <div class="col-lg-6">
+     <input type="text" ng-model="rec.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1" />
+  </div>
+  </div>
+  </div>
+  <div class="row">
+<div class="form-group">
+  <label class="col-lg-2 control-label">Description <span class="required">*</span></label>
+  <div class="col-lg-6">
+    <textarea name="rec.description" cols="160" rows="10" id="description" ng-model="rec.description" class="form-control" required="1" ng-readonly="check_readonly" tabindex="2"></textarea>  </div>
+  </div>
+  </div>
+</form>-->

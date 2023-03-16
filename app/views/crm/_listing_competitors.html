@@ -1,0 +1,131 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text"
+                   ng-model="searchKeyword_competitors.search"
+                   placeholder="Search"
+                   class="in-t-1" />
+            <!-- <input type="submit"  style="display:none"   />-->
+            <span id="date_msg_4">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2 pl0">
+
+        <ui-select ng-model="searchKeyword_competitors.brand">
+            <ui-select-match placeholder="Select Brand">{{$select.selected.title}}</ui-select-match>
+            <ui-select-choices repeat=" opt in competitorBrandsArr | filter: $select.search">
+                <div ng-bind-html="opt.title | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+
+    </div>
+    <div class="col-md-2 pl0">
+        <ui-select ng-model="searchKeyword_competitors.category">
+            <ui-select-match placeholder="Select Category">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+
+    </div>
+    <div class="col-md-1 pl0">
+        <button class="btn btn-default2"
+                type="button"
+                ng-click="clear_competitors_filter()"
+                ng-model="strict">Clear Filter</button>
+    </div>
+
+    <div class="col-md-4">
+        <a id="prompt"
+           ng-if="addCompetitorsPermission"
+           ng-click="showCrmCompetitorForm()"
+           class="btn btn_add pull-right"> Add</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+
+            <div class="widget-body1 ">
+                <div id="dt_example"
+                     class="example_alt_pagination">
+                    <div class="table-responsive">
+                        <!--    View    permision for Company User /superadmin -->
+
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table"
+                               ng-show="viewCompetitorsPermission"
+                               ng-if="columns_cmp.length > 0">
+                            <thead class="fixit">
+                                <tr class="bg-col"
+                                    ng-show="columns_cmp.length > 0">
+                                    <th ng-repeat="column in columns_cmp"
+                                        x-col="{{column.title}}"
+                                        ng-if="	column.title != 'Id'"
+                                        ng-class="{'text-right': column.title=='Volume' || column.title=='Order Frequency' || column.title=='Purchase Price' || column.title=='Selling Price'}">
+                                        {{column.title}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+
+                                <tr ng-repeat="rec2 in record_data_cmp | filter: searchKeyword_competitors.search | filter:searchKeyword_competitors.category.name | filter:searchKeyword_competitors.brand.title"
+                                    ng-show="columns_cmp.length > 0">
+                                    <td ng-repeat="column in columns_cmp"
+                                        ng-class="{'text-right': column.title=='Volume' || column.title=='Order Frequency' || column.title=='Purchase Price' || column.title=='Selling Price'}"
+                                        ng-click="edit_cmp(rec2.id,1)">
+                                        <span ng-class="{'dont-click':viewCompetitorsPermission == 0}">
+                                            {{rec2[column.field]}}
+                                        </span>
+                                        <!--    Edit    permision for Company User /superadmin -->
+                                    </td>
+                                    <td style="width: 8%; text-align:center !important;"
+                                        class="ShowHideAction">
+
+                                        <!-- Edit record function with 
+                                            first parameter for record ID,
+                                            second for view/edit mode,
+                                            third for clone functionality   -->
+                                        <a ng-click="edit_cmp(rec2.id,0,0)"
+                                           ng-class="{'dont-click':editCompetitorsPermission == 0}"
+                                           title="Edit"
+                                           class="btn">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <!-- clone record function with 
+                                            first parameter for record ID,
+                                            second for view/edit mode,
+                                            third for clone functionality  -->
+
+                                        <a ng-click="edit_cmp(rec2.id,0,1)"
+                                           ng-class="{'dont-click':addCompetitorsPermission == 0}"
+                                           title="Clone Record"
+                                           class="btn">
+                                            <i class="fa fa-clone"></i>
+                                        </a>
+
+                                        <!--    Delete    permision for Company User /superadmin -->
+                                        <span>
+                                            <a ng-click="delete_comp(rec2.id, $index, record_data_cmp)"
+                                               ng-class="{'dont-click':deleteCompetitorsPermission == 0}"
+                                               title="Delete"
+                                               class="btn">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <div ng-show="!columns_cmp.length > 0"
+                                 class="no-record">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

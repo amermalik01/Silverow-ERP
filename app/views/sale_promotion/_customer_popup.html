@@ -1,0 +1,53 @@
+
+<div id="custInfoModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         draggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Customer(s) </h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        
+                        <div ng-if="moduleType == 'CUSTDetail'">
+                            <div class="flexiTable makeModalFixed"
+                                 x-report-modal="'true'"
+                                 x-generate-table
+                                 x-data="tableData.data"
+                                 x-forget-filters="true"
+                                 x-controller-initiate 
+                                 x-table-name="CUSTDetailModal"
+                                 x-filter-function="selectCustomers()"
+                                 x-selected-record-preview="customer_code"
+                                 x-checked-records="selectedRecFromModalsCUST"
+                                 x-filter-object="searchKeywordCUST"
+                                 x-read-only="{{customer_readonly}}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">
+                    <!-- Selected:&nbsp;{{PendingSelectedCustomers.length}} --></span>
+                <div class="pull-right">
+                    <!-- (tempCustomerArr| filter: {chk: true})  -->
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-if="rec.id == undefined || !(rec.id > 0)"
+                            ng-click="addCustomers()">Add</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="clearCustomers()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

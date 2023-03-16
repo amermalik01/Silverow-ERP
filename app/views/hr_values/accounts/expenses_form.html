@@ -1,0 +1,179 @@
+<style>
+.datepick-popup {
+	z-index: 2000 !important;
+	position: fixed;
+	left: 764.25px;
+	top: 96px;
+}
+</style>
+
+ 
+
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="row">
+          <input type="hidden"   ng-model="formData.expense_id" />
+          <input type="hidden"   ng-model="expense_id" id="expense_id" />
+          <input type="hidden"   ng-model="formData.eid" />
+          <input type="hidden"   ng-model="formData.employee_id" />
+          <input type="hidden"   ng-model="formData.tab_id_2"   value="6"/>
+          <input type="hidden"   ng-model="formData.base_currency_expense" id="base_currency_expense" />
+          <div class="col-md-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Employee Code </label>
+              <div class="col-sm-7">
+                <input type="text" ng-model="formData.user_code"  readonly="readonly"class="form-control" 
+             />
+              </div>
+            </div>
+            
+            <!--   <select    
+           ng-model="formData2.currency" ng-options="opt as opt.name for opt in currency_list_b"
+              class="select2me form-control"  id="currency"  >
+            <option style="display:none" ></option>
+          </select>
+          
+          -->
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label  ">Employee Name</label>
+              <div class="col-sm-7">
+                <input   type="text" ng-model="formData.first_name"readonly="readonly" class="form-control" 
+            />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label  ">Employee Company</label>
+              <div class="col-sm-7"> 
+                <!--  <input   type="text" ng-model="formData.company_name"readonly="readonly" class="form-control" 
+            />-->
+                <input   type="text"   readonly class="form-control" 
+            value="{{company_name | capitalize }}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Status </label>
+              <div class="col-sm-7">
+                <select   disabled="disabled"  ng-model="formData.expense_status" 
+             ng-options="opt as opt.name for opt in expense_status_list"
+              class="select2me form-control"  >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Base Currency </label>
+              <div class="col-sm-7">
+                <select       ng-model="formData.basecurrency" ng-options="opt as opt.name for opt in currency_list"
+              class="select2me form-control"  id="basecurrency"  >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Date </label>
+              <div class="col-sm-7"> 
+                <!--    <input type="text" class="form-control" 
+                            ng-model="formData.event_date" id="event_date">
+                 -->
+                
+                <p class="input-group">
+                  <input   readonly="readonly"   type="text" class="form-control"  ng-model="formData.event_date"      
+             
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['event_date']" 
+              close-text="Close"  
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                  <span class="input-group-btn">
+                  <button type="button"  ng-disabled="check_hrvalues_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'event_date')"><i class="fa fa-calendar"></i></button>
+                  </span> </p>
+                
+                <!--<p class="input-group"> 
+              <input   readonly="readonly"  type="text" class="form-control" ng-model="formData.event_date"      
+id="event_date"
+datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+is-open="datePicker.instances['event_date']" 
+close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" 
+/>
+              <span class="input-group-btn">
+              <button   type="button"   ng-disabled="check_hrvalues_readonly"  
+            class="btn btn-default" ng-click="datePicker.open($event, 'event_date')"><i class="fa fa-calendar"></i></button>
+              </span> </p>--> 
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Title</label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.event_name" 
+           class="form-control"  />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Code</label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.event_code" 
+           class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Description</label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.event_description" 
+         class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="hr_line2"></div>
+              <!--<div ng-if="expenses_sub.length > 0">
+                <button type="button" id="modaladdeventbtn" class="btn btn-info btn_blue pull-left margin_bottom" 
+       ng-click="get_data(expense_id,formData.employee_id,0)" data-toggle="modal" data-target="#modaladdevent" > Add Category </button>
+              </div>--> 
+              <!--   <a id="prompt" ng-click="showModal()" class="btn btn-info btn_blue pull-right margin_bottom">
+    <i class="fa fa-plus fa_display"> </i> Add New</a>
+    
+    <a  data-placement="top" class="btn btn-xs btn-link panel-config" href="#" role="button"  
+       data-href="http://localhost/navson/#/app/hr_values/86/edit/showModal()" data-toggle="modal"> <i class="icon-wrench"><strong>Add New</strong></i></a>
+    
+    -->
+              
+              <div class="pull-right"> 
+                
+                <!-- <button class="btn btn_blue" type="submit"  ><i class="fa fa-check"></i> Submit</button>-->
+                <button class="btn btn_blue width_80" type="submit" ng-show="!check_hrvalues_readonly">  Submit</button>
+                <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly">  Edit</button>
+                
+                <!-- <button class="btn btn_blue" type="button" ng-click="showroleEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn_blue" type="button" ng-click="deleterolesAccount(bank.id)" ng-show="check_hrvalues_readonly"><i class="fa fa-times"></i> Delete</button>
+           -->
+                <button class="btn default width_80" type="button" ng-click="getexpenses()">  Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  </form>--> 
+
+<!--
+ <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="adddata(formData2)"  
+               	 validate-form="" novalidate ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/sub_expense_form.html'" ng-show="showexpenses"></div>
+          </form>--> 
+
+<!--	 <select id='kap' name='kap'>
+<option value=''>-- number --</option>
+<option value="30">30</option>
+<option value="45">45</option>
+<option value="60">60</option>
+</select>
+-->

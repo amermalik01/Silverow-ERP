@@ -1,0 +1,247 @@
+<style>
+    .flexiTable .form-control {
+        position: initial;
+    }
+
+    .flexi_search_btn {
+        margin-left: 3px;
+        padding-bottom: 0;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-right: -4px;
+        padding: 3px 11px;
+        color: #1d9622;
+        background: #ffffff;
+        font-weight: bold;
+        box-shadow: 0 5px 14px 0 rgba(50, 50, 93, .1), 0 1px 6px 0 rgba(0, 0, 0, .07);
+    }
+
+    .flexi_clear_btn:hover {
+        cursor: pointer;
+        background: #929292;
+        color: white;
+    }
+
+    .flexi_search_btn:hover {
+        cursor: pointer;
+        background: #4fb354;
+        color: white;
+        padding: 3px 18px;
+    }
+
+    .flexi_clear_btn {
+        margin-left: 7px;
+        padding-bottom: 0;
+        border-radius: 10px;
+        font-size: 11px;
+        margin-right: -4px;
+        padding: 3px 11px;
+        color: #4a4a4a;
+        background: #ffffff;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .searchFilterApplied {
+        height: 43px;
+    }
+</style>
+<div>
+    <div class="tableSettings" ng-init="showFilters = true">
+        <!-- <a data-toggle="modal" data-target="#myModal{{tableName}}">
+            <i class="fa fa-cog"></i>
+        </a>
+        <a ng-click="showFilters = !showFilters" ng-class="{'activebtn':showFilters == 1}" style="padding-left: 2px">
+            <i class="fa fa-filter"></i>
+        </a>
+        <a ng-click="clearFilterObject()" title="Clear All" ng-show="showFilters">
+               <i class="fa fa-times" style="padding-left: 2px;"></i>
+        </a> -->
+
+    </div>
+
+    <div class="headerContainer horizontal1">
+        <div class="pinnedHeader" ng-if="pinnedCols.length" ng-style="{'z-index': 1,'width': calculateWidth([pinnedCols],'pinnedHeader') }">
+            <table class="pinned" width="">
+                <thead>
+                    <tr>
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title)}" ng-if="checkHeaderInfo('visible', header.title)" class="flexiCol pinnedCol"
+                            ng-repeat="header in pinnedCols" title="{{header.title}}">
+                            <span>{{header.title}} </span>
+                            <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'" x-flexi-select-title="header.title" x-flexi-select-modal-id="header.field_name"
+                                x-flexi-select-output='flexiSearch[header.field_name]' x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                x-flexi-select-string-return="name">
+                            </x-flexi-select>
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name]" ng-if="showFilters && header.data_type == 'string'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].lowerLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].upperLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="start_date" ng-model="flexiSearch[header.field_name].lowerLimit" required="" readonly="">
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="end_date" ng-model="flexiSearch[header.field_name].upperLimit" required="" readonly="">
+                            <a ng-show="showFilters && flexiSearch[header.field_name].length>0" ng-click="flexiSearch[header.field_name]='';" class="clearFlexi">
+                                ×
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="nonPinnedHeader" ng-style="{'width': calculateWidth([pinnedCols,nonPinnedCols],'nonPinnedHeader')}">
+            <table class="nonPinned">
+                <thead>
+                    <tr>
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title)}" ng-if="checkHeaderInfo('visible', header.title)" class="flexiCol pinnedCol"
+                            ng-repeat="header in pinnedCols" title="{{header.title}}">
+                            <span>{{header.title}}</span>
+                            <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'" x-flexi-select-title="header.title" x-flexi-select-modal-id="header.field_name"
+                                x-flexi-select-output='flexiSearch[header.field_name]' x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                x-flexi-select-string-return="name">
+                            </x-flexi-select>
+
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name]" ng-if="showFilters && header.data_type == 'string'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].lowerLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].upperLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="start_date" ng-model="flexiSearch[header.field_name].lowerLimit" required="" readonly="">
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="end_date" ng-model="flexiSearch[header.field_name].upperLimit" required="" readonly="">
+                            <a ng-show="showFilters && flexiSearch[header.field_name].length>0" ng-click="flexiSearch[header.field_name]='';" class="clearFlexi">
+                                ×
+                            </a>
+                        </th>
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title)}" ng-if="checkHeaderInfo('visible', header.title)" class="flexiCol nonPinnedCol"
+                            ng-repeat="header in nonPinnedCols" title="{{header.title}}">
+                            <span ng-if="header.data_type != 'select'">{{header.title}}</span>
+                            <!-- <ui-select tagging="" ng-if="showFilters && header.data_type == 'drop_down'" tagging-label="false" ng-model="flexiSearch[header.field_name]">
+                                <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt.name as opt in header.drop_down_list[header.field_name] | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select> -->
+
+                            <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'" x-flexi-select-title="header.title" x-flexi-select-modal-id="header.field_name"
+                                x-flexi-select-output='flexiSearch[header.field_name]' x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                x-flexi-select-string-return="name">
+                            </x-flexi-select>
+
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name]" ng-if="showFilters && header.data_type == 'string'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].lowerLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-model="flexiSearch[header.field_name].upperLimit" ng-if="showFilters && header.data_type == 'number'"
+                                class="flexiSearch form-control" type="text" />
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="start_date" ng-model="flexiSearch[header.field_name].lowerLimit" required="" readonly="">
+                            <input ng-model-options="{ debounce: 1000 }" ng-if="showFilters && header.data_type == 'date'" jqdatepicker class="2date-picker form-control"
+                                id="end_date" ng-model="flexiSearch[header.field_name].upperLimit" required="" readonly="">
+
+                            <input type="checkbox" name="selectFlexiChkBox" ng-if="header.data_type == 'select'" id="selectFlexiChkBox" ng-click="selectAll(data.response,flexiSearch)"
+                                ng-checked="selectFlexiChkBox" ng-class="{'searchFilterApplied': showFilters && header.data_type == 'select'}">
+                            <!-- <div ng-if="showFilters && header.data_type == 'select'" style="height: 29px;">&nbsp;</div> -->
+
+                            <a ng-show="showFilters && flexiSearch[header.field_name].length>0" ng-click="flexiSearch[header.field_name]='';" class="clearFlexi">
+                                ×
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="bodyContainer horizontal2 vertical2">
+        <div class="pinnedBody vertical1" ng-style="{'width': calculateWidth([pinnedCols],'pinnedBody')}">
+            <table>
+                <tr ng-repeat="value in data2.response | flexiFilter:flexiSearch">
+                    <!-- Key: {{key}}, Value: {{value}} -->
+                    <td ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                               'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                               'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                               'borderred':checkHeaderInfo('color', col.title) == '#fff5f2',
+                               'borderwhite':checkHeaderInfo('color', col.title) == '#ffffff'
+                            }" ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}"
+                        ng-if="checkHeaderInfo('visible', col.title)" class="flexiCol pinnedCol" x-data-type-manager-2 x-cell-conf="col"
+                        x-cell-data="value" ng-repeat="col in pinnedCols">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="nonPinnedBody" ng-style="{'width': calculateWidth([pinnedCols,nonPinnedCols],'nonPinnedBody')}">
+            <table>
+                <tr ng-repeat="value in data2.response  | flexiFilter:flexiSearch">
+                    <td ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}" ng-if="checkHeaderInfo('visible',
+                    col.title) == '1'" ng-if="checkHeaderInfo 
+                    ('visible', col.title)" ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                    'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                    'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                    'borderred':checkHeaderInfo('color', col.title) == '#fff5f2','borderwhite':checkHeaderInfo('color', col.title) == '#ffffff'}"
+                        class="flexiCol pinnedCol" x-data-type-manager-2 x-cell-conf="col" x-cell-data="value" x-select-single-rec="selectSingleRec(ac)" title="{{tableRow[col.title]}}"
+                        ng-repeat="col in pinnedCols">{{tableRow[col.title]}}
+                    </td>
+                    <td ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}" ng-if="checkHeaderInfo('visible',
+                    col.title) == '1'" ng-if="checkHeaderInfo('visible', col.title)" ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                    'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                    'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                    'borderred':checkHeaderInfo('color', col.title) == '#fff5f2','borderwhite':checkHeaderInfo('color', col.title) == '#ffffff'}"
+                        class="flexiCol nonPinnedCol" x-data-type-manager-2 x-cell-conf="col" x-cell-data="value" x-select-single-rec="selectSingleRec(ac)"
+                        ng-repeat="col in nonPinnedCols">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal{{tableName}}" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="margin-top: 90px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="dismissFlexiOptions()">&times;</button>
+                    <h4 class="modal-title">Table Customisation</h4>
+                </div>
+                <div class="modal-body" style="overflow: auto;     max-height: 300px;">
+                    <table class="tableCustomize">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <b>Title</b>
+                            </td>
+                            <td class="text-center">
+                                <b>Visible</b>
+                            </td>
+                            <!-- <td class="text-center">
+                                <b>Pinned</b>
+                            </td> -->
+                            <td>
+                                <b>Colour</b>
+                            </td>
+                            <td>
+                                <b>Size</b>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="header in data.response.tbl_meta_data.response.colMeta" output-func="output()" header="header" ng-droppable-2
+                            x-all-headers="data.response.tbl_meta_data.response.colMeta" d-index="{{$index}}" handle-drop="dirFunc(s,d)">
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="getDefaultTableMeta(tableName, data.response.tbl_meta_data.response.colMeta);" class="btn btn-default2 pull-left">Default</button>
+                    <button type="button" class="btn btn-submit2" ng-click="SaveTableMetaData(data.response.tbl_meta_data.response.colMeta); ">Save</button>
+                    <button type="button" class="btn btn-cancel2" ng-click="dismissFlexiOptions()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

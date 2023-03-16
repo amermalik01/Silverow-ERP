@@ -1,0 +1,36 @@
+<!-- Order Customer -->
+<div class="modal fade" id="customer_modal_lefside" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="static">
+
+  <div class="modal-dialog  modal-lg" style="width: 94%; margin-top: 20px;" dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" onclick="$('#customer_modal_lefside').modal('hide');">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row" style="    margin-bottom: 0px !important;">
+          <div class="col-md-12">
+            <div class="flexiTable"
+                 x-report-modal="'true'"
+                 x-generate-table
+                 x-data="customerTableData.data"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-table-name="CustomerModal"
+                 x-filter-function="getCustomerLeftSide()"
+                 x-row-click="confirmLeftCustomer(file)"
+                 x-filter-object="searchKeyword_cust"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-cancel"
+          onclick="$('#customer_modal_lefside').modal('hide');">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>

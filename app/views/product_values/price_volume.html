@@ -1,0 +1,170 @@
+<!--<div class="panel vv" >
+  <div id="collapseListGroupHeading1" role="tab" class="">
+    <h4 class="panel-title">
+      <button aria-controls="collapseListGroup1" aria-expanded="false" href="#collapseListGroup1" data-toggle="collapse" class="collapsed btn btn-link no-padding"> Purchase Volume Discount <i class="fa fa-chevron-down"></i> </button>
+    </h4>
+  </div>
+  <div aria-labelledby="collapseListGroupHeading1" role="tabpanel" class="panel-collapse collapse" id="collapseListGroup1" aria-expanded="false" style="height: 0px;">
+  -->
+<style>
+.purchase_cost {
+	width: 11% !important;
+}
+.type_cost {
+	width: 13% !important;
+}
+</style>
+
+<div class="panel vv">
+  <div id="collapseListGroupHeading1" role="tab" class="">
+    <h4 class="panel-title">
+      <button aria-controls="collapseListGroup11" aria-expanded="false" href="#collapseListGroup11" data-toggle="collapse" class="collapsed btn btn-link no-padding"> Purchase Volume Discount <i class="fa fa-chevron-down"></i> </button>
+      
+      <!-- <button button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"> Purchase Volume Discount</button>
+     --> 
+    </h4>
+  </div>
+  <div aria-labelledby="collapseListGroupHeading1" role="tabpanel" class="panel-collapse collapse out" id="collapseListGroup11" aria-expanded="false" style="height: 0px;"> 
+    <!--  <div id="demo" class="collapse out">-->
+    
+    <div class="col-md-12 no-padding">
+      <div class="pull-left">
+        <button type="button" id="buttons" aria-expanded="true"   ng-click="addNewChoice()"
+          class="btn  btn_blue   width_80"  > Add New</button>
+      </div>
+    </div>
+    <input type="hidden" ng-model="formData_price_data.product_id " >
+    <input type="hidden" ng-model="formData_price_data.product_code"    />
+    <input type="hidden" ng-model="formData_price_data.item_description"  >
+    <div class="row" data-ng-repeat="formData_price_data in choices track by $index">
+      <div class="col-sm-2">
+        <div class="  form-group">
+          <label class="control-label col-sm-12 "> Volume {{formData_price_data.volume_type}} </label>
+          <div class="col-sm-12"> 
+            
+            <!--<select  ng-model="formDataExpense.category" class="form-control  {{'new_' + formDataExpense.id}}" 
+                     id="category"      >
+                      <option value="">--- Select an option ---</option>
+                      <option ng-repeat="value in category_expense"
+                      ng-selected="formDataExpense.category == value.id"
+                      value="{{value.id}}">{{value.name}} </option>
+                    </select>-->
+            
+            <button type="button" id="model_btn_vol_1" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_vol_1" style="display:none"  > Add New </button>
+            <select ng-model="formData_price_data.volume_id" 
+                  ng-options="opt as opt.name for opt in arr_volume_id" class="form-control" 
+                   ng-disabled ="check_item_readonly"     ng-change="onChange_volume(1,'sale',formData_price_data.volume_type)"  id="vol_1_id">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 purchase_cost"  >
+        <div class="form-group">
+          <label class="control-label col-sm-12"> Purchase Cost </label>
+          <div class="col-sm-12  ">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.purchase_price"   id="purchase_price_1"   ng-change="show_price_price(1,formData_price_data);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} /   {{priceFormData.purchase_measure.name}} --> 
+              {{priceFormData.sale_currency}} </span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 type_cost">
+        <div class="form-group">
+          <label class="  control-label col-sm-12  "> Discount Type</label>
+          <div class="  col-sm-12">
+            <select  ng-disabled="check_item_readonly"   ng-model="formData_price_data.supplier_type"
+                               ng-options="opt as opt.name for opt in list_type" id="type_1"
+                               ng-change="setSymbol(1);show_price_price(1,formData_price_data);change_volume_price()" 
+                          class=" form-control"    >
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discount </label>
+          <div class="  col-sm-12  ">
+            <div class=" input-symbol">
+              <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"       ng-change="setSymbol(1,formData_price_data);show_price_price(1);change_volume_price()"
+            ng-model="formData_price_data.discount_value"  id="discount_value_1" 
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" >
+              <span  id="date_msg_1"  style=" display: none;" >&#37;</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class="  control-label col-sm-12"> Discounted  Price </label>
+          <div class="  col-sm-12">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.discount_price"   id="discount_price_1"   ng-change="show_price_price(1,formData_price_data);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Start Date </label>
+          <div class="col-sm-12">
+            <p class="input-group">
+              <input readonly ng-model="formData_price_data.start_date" type="text" class="form-control" 
+id="datePickerItem"  ng-change="testdate(formData_price_data.start_date,formData_price_data.end_date,20);check_dates($index,formData_price_data)" 
+datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+ is-open="formData_price_data['opened_start']"
+current-text="Today"  clear-text="Clear" close-text="Close"  
+ data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/"  />
+              <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openDatePicker($event, formData_price_data)"> <i class="glyphicon glyphicon-calendar"></i> </button>
+              </span> </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">End Date </label>
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input readonly ng-model="formData_price_data.end_date" type="text" class="form-control" 
+id="datePickerItem" 
+ ng-change="testdate(formData_price_data.start_date,formData_price_data.end_date,20);check_dates($index)" 
+datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+ is-open="formData_price_data['opened_end']"
+current-text="Today"  clear-text="Clear" close-text="Close"  
+ data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/"  />
+              <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openDatePicker_end($event, formData_price_data)"> <i class="glyphicon glyphicon-calendar"></i> </button>
+              </span> </p>
+            
+            <!--<div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.end_date" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date']"  close-text="Close"    id="end_date_1"   readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button  type="button" class="btn btn-default date_block_11 "  ng-click="datePicker.open($event, 'end_date')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>--> 
+            <span    id="date_msg_leave_20" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+          <div class="col-sm-2" ng-if="formData_price_data.id_1>0">
+            <div class="form-group">
+              <div class="  col-sm-12"> <a  title="Delete" ng-click="delete_volume(formData_price_data.id,$index)"
+                   class="tooltips_clsss btn "><i class="fa fa-times"> </i></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

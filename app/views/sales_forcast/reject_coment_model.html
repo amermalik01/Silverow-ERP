@@ -1,0 +1,30 @@
+<script type="text/ng-template" id="reject_coment_model">
+
+<div class="row">
+  <div class="col-lg-12" style="padding-left: 3px !important; padding-right: 3px !important;"> 
+    <!-- START panel-->
+    <div class="modal-header">
+      <h4 class="modal-title">Comments</h4>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="panel panel-default no-padding no-border no-margin">
+      <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="table-responsive">
+          <div style="padding-left: 0;">
+            <textarea ng-model="note" class="form-control" style="width:100%; resize: none;" rows="4"  cols="30"
+maxlength="500"
+placeholder="Add Note">{{note}}</textarea>
+            <!--<span class="word-counter">{{wordsLength}}/500</span>--> </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="modal-footer">
+      <button class="btn btn-info btn_blue pull-right" style="margin:0 5px;" type="button" ng-click="confirm(note)">save</button>
+      <button type="button" class="btn default width_80" data-dismiss="modal" ng-click="closeThisDialog();"><i class="fa fa-undo fa_display"></i> Cancel</button>
+    </div>
+  </div>
+</div>
+</script> 

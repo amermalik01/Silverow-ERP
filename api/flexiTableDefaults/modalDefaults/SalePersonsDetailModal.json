@@ -1,0 +1,67 @@
+{
+  "tblMeta": {
+    "autoAdjust": false
+  },
+  "colMeta": [
+    {
+      "title": "Select",
+      "field_name": "checkbox",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "select"
+    },
+    {
+      "title": "Employee No.",
+      "field_name": "code",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "string"
+    },
+    {
+      "title": "Name",
+      "field_name": "name",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "string"
+    },
+    {
+      "title": "Email",
+      "field_name": "email",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "string"
+    },
+    {
+      "title": "Job Title",
+      "field_name": "job_title",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "string"
+    },
+    {
+      "title": "Employment Type",
+      "field_name": "employee_type",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "0",
+
+      "data_type": "string"
+    }
+  ]
+}

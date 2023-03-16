@@ -1,0 +1,117 @@
+<div ng-controller="WarehouseControllerListing as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <!--<div class="row" style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs" style="padding:8px;">
+            <div class="col-md-11">
+              <div class="search-wrapper">
+                  <input type="text" placeholder="Search in Warehouse" class="form-control" 
+                  ng-model="rec.Serachkeyword" />
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-md-1">
+                <span ng-if="user_type ==3 || user_type == 4" ng-repeat="namesList in new_data">
+                    <span ng-repeat="y in namesList.p_id | mysplit:','" ng-if="y==13"> 
+                      <a id="prompt" ui-sref="app.add-warehouse" class="btn btn_add pull-right">Add</a> 
+                    </span>
+                  </span>
+                  <span>
+                    <a id="prompt" ui-sref="app.add-warehouse" class="btn btn_add pull-right "> Add</a>
+                  </span>
+            </div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <div id="dt_example" class="example_alt_pagination"> 
+            <span ng-if="user_type ==3 || user_type == 4" ng-repeat="namesList in new_data"> 
+              <span ng-repeat="y in namesList.p_id | mysplit:','" ng-if="y==14"  ></span>
+            </span> 
+            <span ng-if="user_type ==3 || user_type == 4" ng-repeat="namesList in new_data">
+              <span ng-repeat="y in namesList.p_id | mysplit:','" ng-if="y==15"  ></span>
+            </span> 
+            <span>
+            <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" ng-show="columns.length > 0">
+              <thead class="fixit" >
+                <tr class="bg-col"  >
+                  <th class="sortable sort-asc" sortable="column.title" filter="{ column.title: 'text'}"
+                    ng-repeat="column in columns" 
+                    ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                    ng-if="column.title!= 'Id'" > {{column.title}} </th>
+                  <th style="width: 9%;" class="ShowHideAction">Action</th>
+                </tr>
+              </thead>
+              <tbody class="fixit">
+                <tr 
+                  ng-repeat="rec in $data | filter:rec.Serachkeyword"  
+                  ng-show="columns.length > 0" >
+                  <td  sortable="column.title" ui-sref="app.view-warehouse({id:rec.id})"
+                    ng-repeat="column in columns"
+                    ng-if="column.title!= 'Id' && column.title!= 'Type'"> {{rec[column.field]}} </td>
+                  <td class="ShowHideAction">
+                    <a title="Edit" style="display:grid" ui-sref="app.edit-warehouse({id:rec.id})" class=" btn "> 
+                      <i class="fa fa-edit"></i> 
+                    </a> 
+                    <a title="Delete" style="display:grid" class=" btn "
+                      ng-click="delete(rec.id,$index,$data)" > 
+                      <i class="fa fa-times"></i> 
+                    </a> 
+                    <a style="display:grid" title="Convert to customer"class="btn "
+                      ng-if="rec.type == 1"  
+                      ng-click="convert(rec.id,$index,$data)" >
+                      <i class="fa fa-exchange"></i>
+                    </a>
+                  </td>
+                </tr>
+                <div ng-show="!columns.length > 0" class="no-record"></div>
+              </tbody>
+            </table>
+            </span> 
+        </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+    <div class="row" style="margin-bottom: 0 !important;">
+        <div class="col-md-12 col-md-12">
+
+            <a id="prompt" ui-sref="app.add-warehouse" title="Add Warehouse" class="btn pull-right btn_add">
+                <!-- <i class="fa fa-plus"></i> oval-->
+                <i class="fa fa-plus fa_display"></i> Add
+            </a>
+        </div>
+
+        <style>
+            .hideAdd {
+                margin-top: -20px;
+            }
+        </style>
+    </div>
+
+    <div class="row" style="margin-bottom: 0 !important;">
+        <div class="col-md-12 col-md-12">
+            <style>
+                .linkLeft span {
+                    float: right;
+                    margin-right: 13px;
+                }
+            </style>
+            <div id="dt_example" class="example_alt_pagination">
+
+                <div style=" margin-top: -14px;">
+                    <div class="flexiTable makeModalFixed" x-generate-table x-data="tempWarehouseArr.data" x-table-name="Warehouse" x-filter-function="showWarehouseListing()" x-filter-object="searchKeyword">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

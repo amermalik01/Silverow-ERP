@@ -1,0 +1,119 @@
+[
+    {
+        "title": "Invoice Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Order Date",
+        "field_name": "offer_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "sale_invioce_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "string"
+    },
+    {
+        "title": "Order No.",
+        "field_name": "sale_order_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "string"
+    },
+    {
+        "title": "Cust. Order No.",
+        "field_name": "cust_order_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "80",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "net_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "number"
+    },
+    {
+        "title": "VAT",
+        "field_name": "tax_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "number"
+    },
+    {
+        "title": "Due Date",
+        "field_name": "due_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Req. Del. Date",
+        "field_name": "requested_delivery_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Dispatch Date",
+        "field_name": "dispatch_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Delivery Date",
+        "field_name": "delivery_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    }
+]

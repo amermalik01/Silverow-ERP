@@ -1,0 +1,1338 @@
+<style>
+
+    @media print {
+
+        table {
+
+            page-break-after: always !important;
+
+        }
+
+    }
+
+
+
+    .mystyle2 {
+
+        margin-bottom: 88px !important;
+
+        width: 100%;
+
+        display: inline-block;
+
+    }
+
+</style>
+
+<div ng-hide="noModal"
+
+     class="modal fade template-design">
+
+    <div class="modal-dialog"
+
+         style=" width: 24cm;margin-top: 11px;">
+
+        <div class="modal-content">
+
+
+
+            <div class="modal-body printArea"
+
+                 id="delivery_note_modal"
+
+                 style="height: 80vh;overflow: auto;">
+
+
+
+                <div ng-repeat="rec in print_invoice_vals.doc_details_arr track by $index"
+
+                     class="mystyle2"
+
+                     style="clear: both">
+
+
+
+                    <htmlpageheader name="MyCustomHeader{{$index}}">
+
+
+
+                        <div style="clear: both">
+
+                            <div class="temp-left-area">
+
+
+
+                                <div class="temp-logo">
+
+                                    <img ng-src="{{imagePath+defaultLogo}}"
+
+                                         ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+
+                                </div>
+
+
+
+                                <div class="temp-company-address">
+
+                                    <table class="table-no-padding">
+
+                                        <tr>
+
+                                            <td style="    padding-left: 0 !important;">
+
+                                                {{print_invoice_vals.com_name}}
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td style="    padding-left: 0 !important;">
+
+                                                {{print_invoice_vals.com_address_1}}</td>
+
+                                        </tr>
+
+                                        <tr ng-if="print_invoice_vals.com_address_2">
+
+                                            <td style="    padding-left: 0 !important;">
+
+                                                {{print_invoice_vals.com_address_2}}</td>
+
+                                        </tr>
+
+                                        <tr ng-if="print_invoice_vals.com_postcode">
+
+                                            <td style="    padding-left: 0 !important;text-transform: uppercase">
+
+                                                {{print_invoice_vals.com_postcode}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td style="    padding-left: 0 !important;">
+
+                                                <b>Tel.&nbsp;</b>{{print_invoice_vals.com_telephone}}
+
+                                            </td>
+
+                                            <td></td>
+
+                                        </tr>
+
+                                        <!-- <tr>
+
+                                            <td>
+
+                                                <b>Fax No.&nbsp;</b>{{print_invoice_vals.com_fax}}
+
+                                            </td>
+
+                                        </tr> -->
+
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="temp-right-area">
+
+
+
+                                <table align="right"
+
+                                       class="table-no-padding"
+
+                                       style="    width: 100%;">
+
+                                    <tr>
+
+                                        <td class="template-name"
+
+                                            style="padding-bottom: 6px !important;">
+
+                                            Delivery Note
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td ng-if="print_invoice_vals.templateType != 'purchaseDelivery'"
+
+                                            style="    font-size: 12px;
+
+                                    text-align: right;
+
+                                    padding-top: 6px;">
+
+
+
+                                            Sales Order No. {{print_invoice_vals.order_no}}
+
+                                        </td>
+
+                                        <td ng-if="print_invoice_vals.templateType == 'purchaseDelivery'"
+
+                                            style="    font-size: 12px;
+
+                                    text-align: right;
+
+                                    padding-top: 6px;">
+
+
+
+                                            Purchase Order No. {{print_invoice_vals.order_no}}
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                                <table align="right">
+
+                                    <tr>
+
+                                        <td class="temp-no-pad"
+
+                                            style="padding-right: 0 !important;padding-top: 16px;">
+
+                                            <table class="table-no-padding">
+
+                                                <tr>
+
+                                                    <td class="temp-text-uppercase temp-no-pad rightAlign">
+
+                                                        <b style="color: #2196F3;font-size: 14px;">Pick Up Address</b>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse != ''">
+
+                                                    <td class="temp-no-pad rightAlign">
+
+                                                        {{rec[0].warehouse}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse_address_1 != ''">
+
+                                                    <td class="temp-no-pad rightAlign">{{rec[0].warehouse_address_1}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse_address_2 != ''">
+
+                                                    <td class="temp-no-pad rightAlign">{{rec[0].warehouse_address_2}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse_city != ''">
+
+                                                    <td class="temp-no-pad rightAlign">{{rec[0].warehouse_city}}</td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse_post_code">
+
+                                                    <td class="temp-no-pad rightAlign"
+
+                                                        style="text-transform: uppercase">{{rec[0].warehouse_post_code}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="rec[0].warehouse_telephone != ''">
+
+                                                    <td class="temp-no-pad rightAlign"
+
+                                                        style="padding-bottom: 18px !important;">
+
+                                                        {{rec[0].warehouse_telephone}}</td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+
+
+
+
+                                <!-- <table align="right"
+
+                                       class="table-no-padding"
+
+                                       style="margin-top: 15px;">
+
+                                    <tr>
+
+                                        <td class="temp-pad-left">
+
+                                            <b>Order Date</b>
+
+                                        </td>
+
+                                        <td class="template-text-right">
+
+                                            {{print_invoice_vals.order_date * 1000 | date:'dd/MM/yyyy'}}
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr ng-if="print_invoice_vals.date_dispatched">
+
+                                        <td class="temp-pad-left">
+
+                                            <b>Dispatch Date</b>
+
+                                        </td>
+
+                                        <td class="template-text-right">{{print_invoice_vals.date_dispatched * 1000 |
+
+                                            date:'dd/MM/yyyy'}}</td>
+
+                                    </tr>
+
+                                </table> -->
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+                    </htmlpageheader>
+
+
+
+                    <sethtmlpageheader name="MyCustomHeader{{$index}}"
+
+                                       page="ALL"
+
+                                       value="on"
+
+                                       show-this-page="1" />
+
+
+
+                    <pagefooter name="MyFooter1"
+
+                                content-right='Page {PAGENO} of {nbpg}'
+
+                                resetpagenum="1"
+
+                                footer-style="color:#00000;font-size: 11px" />
+
+
+
+                    <setpagefooter name="MyFooter1"
+
+                                   page="ALL"
+
+                                   value="on"
+
+                                   show-this-page="1" />
+
+
+
+                    <div style="clear: both;"></div>
+
+
+
+                    <div style="padding-top: 14px;">
+
+                        <div style="float: left;width: 40%">
+
+                            <table>
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <td style=" padding-left: 0 !important;">
+
+                                            <table class="table-no-padding temp-color"
+
+                                                   style=" padding-left: 0;">
+
+                                                <tr>
+
+                                                    <td class="temp-no-pad"
+
+                                                        style=" padding-left: 0 !important;">
+
+                                                        <b style="color: #2196F3;font-size: 14px;">Ship To</b>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        <b>{{print_invoice_vals.ship_name}}</b></td>
+
+                                                </tr>
+
+                                                <!-- <tr ng-if="print_invoice_vals.ship_name != ''">
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.ship_name}}</td>
+
+                                                </tr> -->
+
+                                                <tr ng-if="print_invoice_vals.ship_address_1 != ''">
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.ship_address_1}}</td>
+
+                                                </tr>
+
+                                                <tr ng-if="print_invoice_vals.ship_address_2 != ''">
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.ship_address_2}}</td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.ship_city}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="print_invoice_vals.ship_postcode != ''">
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.ship_postcode}}
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr ng-if="print_invoice_vals.book_in_tel != ''">
+
+                                                    <td class="temp-no-pad"
+
+                                                        style="font-size: 14px;font-weight: bold; padding-left: 0 !important;">
+
+                                                        {{print_invoice_vals.telephone}}</td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+
+
+                        <div style="float: right;width: 60%;">
+
+                            <table align="right">
+
+                                <tr>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Shipping Agent
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.shipping_agent_code">
+
+                                                    {{print_invoice_vals.shipping_agent_code}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.shipping_agent_code">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Shipt. Ref. No.
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.ship_ref_no">
+
+                                                    {{print_invoice_vals.ship_ref_no}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.ship_ref_no">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    W/H Book. Ref.
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.warehouse_booking_ref">
+
+                                                    {{print_invoice_vals.warehouse_booking_ref}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.warehouse_booking_ref">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Cust. No.
+
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="padding-left: 0 !important;">
+
+                                                    {{print_invoice_vals.bill_to_cust_no}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+
+
+                                </tr>
+
+                                <tr>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Delivery Date
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.delivery_date">
+
+                                                    {{print_invoice_vals.delivery_date}}
+
+                                                    <!-- {{(line.req_recpt_del_date != '0') ? line.req_recpt_del_date : ''}} -->
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.delivery_date">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Delivery Time
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.ship_delivery_time">
+
+                                                    {{print_invoice_vals.ship_delivery_time}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.ship_delivery_time">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Cust. W/H Ref.
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.cust_wh_ref">
+
+                                                    {{print_invoice_vals.cust_wh_ref}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.cust_wh_ref">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                    <td class="temp-box">
+
+                                        <table class="temp-no-padding">
+
+                                            <tr>
+
+                                                <td class="temp-highlight"
+
+                                                    style="    padding-left: 0 !important;">
+
+                                                    Cust. Order No.
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="print_invoice_vals.cust_order_no">
+
+                                                    {{print_invoice_vals.cust_order_no}}
+
+                                                </td>
+
+                                                <td class="temp-no-pad "
+
+                                                    style="    padding-left: 0 !important;"
+
+                                                    ng-if="!print_invoice_vals.cust_wh_ref">
+
+                                                    &nbsp;
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="table-wrapper">
+
+                        <table class="temp-main-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+
+                                        No.
+
+                                    </th>
+
+                                    <th>
+
+                                        Description
+
+                                    </th>
+
+                                    <th>
+
+                                        U.O.M
+
+                                    </th>
+
+                                    <th ng-if="print_invoice_vals.volumePermission>0">
+
+                                        Volume
+
+                                    </th>
+
+                                    <th ng-if="print_invoice_vals.weightPermission>0">
+
+                                        Weight
+
+                                    </th>
+
+                                    <th class="rightAlign">
+
+                                        Qty.
+
+                                    </th>
+
+                                    <th class="rightAlign">
+
+                                        Pallets
+
+                                    </th>
+
+                                    <!-- <th>
+
+                                    Unit Price
+
+                                </th>
+
+                                <th ng-if="print_invoice_vals.discount > 0">
+
+                                    Discount Type
+
+                                </th>
+
+                                <th ng-if="print_invoice_vals.discount > 0">
+
+                                    Discount
+
+                                </th>
+
+                                <th>
+
+                                    VAT
+
+                                </th>
+
+                                <th ng-if="print_invoice_vals.discount > 0">
+
+                                    Discount Amount
+
+                                </th>
+
+                                <th>
+
+                                    Total Amount
+
+                                </th> -->
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr ng-repeat="line in rec">
+
+                                    <td>
+
+                                        {{line.number}}
+
+                                    </td>
+
+                                    <td style="width: 37%; word-break: break-word;">
+
+                                        {{line.description}}                          
+                                        <span ng-if="print_invoice_vals.company_id == 3 && line.batch_no"><br><b>Frame No. </b>{{line.batch_no}} </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        {{line.uom}}
+
+                                        <!-- <span ng-if="line.uom == 'Pallet'">({{line.uom_qty}})</span> -->
+
+                                        <!-- {{(line.uom == 'Pallet') ? line.uom_qty : ''}} -->
+
+                                    </td>
+
+                                    <td ng-if="print_invoice_vals.volumePermission>0">                                        
+
+                                        <span ng-if="line.volume!=0">{{line.volume | numberNoDecimalsIfZeroFilter:2:''}} <span>cm&sup3;</span>
+
+                                        <!-- <span ng-if="line.volumeUnit == 'cm3'">cm&sup3;</span>
+
+                                        <span ng-if="line.volumeUnit != 'cm3'">{{line.volumeUnit}}</span> -->
+
+                                    </span>
+
+                                        <span ng-if="line.volume==0">-</span>
+
+                                    </td>
+
+                                    <td ng-if="print_invoice_vals.weightPermission>0">
+
+                                        <span ng-if="line.weight!=0">{{line.weight | numberNoDecimalsIfZeroFilter:2:''}} {{line.weightUnit2}}</span>
+
+                                        <span ng-if="line.weight==0">-</span>
+
+                                    </td>
+
+                                    <td class="rightAlign">
+
+                                        {{line.quantity | currency:""}}
+
+                                    </td>
+
+                                    <td class="rightAlign">
+
+                                        {{line.pallet_qty | currency:""}}
+
+                                    </td>
+
+                                    <!-- <td>
+
+                                    {{line.unit_price}}
+
+                                </td>
+
+                                <td ng-if="print_invoice_vals.discount > 0">
+
+                                    {{line.discount_type}}
+
+                                </td>
+
+                                <td ng-if="print_invoice_vals.discount > 0">
+
+                                    {{(line.discount != '0') ? line.discount : ''}}
+
+                                    <span>{{line.discount_type == 'Percentage' ? '%' : ''}}</span>
+
+                                </td>
+
+                                <td>
+
+                                    {{line.vat_rate}}
+
+                                </td>
+
+                                <td ng-if="print_invoice_vals.discount > 0">
+
+                                    {{line.discount_price | number:decimal_range}}
+
+                                </td>
+
+                                <td>
+
+                                    {{line.total_amount | number:decimal_range}}
+
+                                </td> -->
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <div style="clear: both;padding-top: 50px;">
+
+                            <div style="width: 60%;float: left;">
+
+                                <table class="temp-notes">
+
+                                    <tr>
+
+                                        <td>
+
+                                            {{print_invoice_vals.notes}}
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                            <div style="width: 40%;float: right;">
+
+                                <table align="right">
+
+
+
+                                    <!-- <tr>
+
+                                    <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+
+                                        <b>Total Qty.:</b>
+
+                                    </td>
+
+                                    <td style="text-align: right;color: #2196F3;padding-right: 10px;font-size: 14px;">
+
+                                        <b>{{print_invoice_vals.totalQty}}</b>
+
+                                    </td>
+
+                                </tr> -->
+
+
+
+                                    <tr ng-repeat="uom_qty in rec.uom_qty_total">
+
+                                        <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+
+                                            <b>Total {{uom_qty.uom | toTitleCase}}</b>
+
+                                        </td>
+
+                                        <td style="text-align: right;color: #2196F3;font-size: 14px;">
+
+                                            <b>{{uom_qty.total_qty | currency:""}}</b>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr ng-if="rec.sumOfPallets"
+
+                                        style="border-top:2px;">
+
+                                        <td style="color: #2196F3;padding-right: 10px;font-size: 14px;"
+
+                                            ng-if="rec.sumOfPallets">
+
+                                            <b>Total Pallets:</b>
+
+                                        </td>
+
+                                        <td style="text-align: right;color: #2196F3;font-size: 14px;"
+
+                                            ng-if="rec.sumOfPallets">
+
+                                            <b>{{rec.sumOfPallets | currency:""}}</b>
+
+                                        </td>
+
+                                    </tr><!-- {{rec.volume_total}} -->
+
+
+
+                                    <tr ng-repeat="vol in rec.volume_total"
+
+                                        ng-if="vol.total_qty!=0 && print_invoice_vals.volumePermission>0">
+
+                                        <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+
+                                            <b>Total Volume</b>
+
+                                        </td>
+
+                                        <td style="text-align: right;color: #2196F3;font-size: 14px;">
+
+                                            <b>{{vol.total_qty | numberNoDecimalsIfZeroFilter:2:''}} <span>cm&sup3;</span>
+
+                                                <!-- <span ng-if="vol.volume_unit == 'cm3'">cm&sup3;</span>
+
+                                                <span ng-if="vol.volume_unit != 'cm3'">{{vol.volume_unit}}</span> -->
+
+                                            </b>
+
+                                        </td>
+
+                                    </tr> <!-- {{rec.weight_total}} -->
+
+
+
+                                    <tr ng-repeat="weight in rec.weight_total"
+
+                                        ng-if="weight.total_qty!=0 && print_invoice_vals.weightPermission>0">
+
+                                        <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+
+                                            <b>Total Weight</b>
+
+                                        </td>
+
+                                        <td style="text-align: right;color: #2196F3;font-size: 14px;">
+
+                                            <b>{{weight.total_qty | numberNoDecimalsIfZeroFilter:2:''}} {{weight.weightunit}}</b>
+
+                                        </td>
+
+                                    </tr>
+
+
+
+                                    <!-- <tr ng-if="print_invoice_vals.doc_details_arr[0].case_qty">
+
+                                    <td style="color: #2196F3;padding-right: 10px;font-size: 14px;"
+
+                                        ng-if="print_invoice_vals.doc_details_arr[0].case_qty">
+
+                                        <b>Cases:</b>
+
+                                    </td>
+
+                                    <td style="text-align: right;color: #2196F3;font-size: 14px;"
+
+                                        ng-if="print_invoice_vals.doc_details_arr[0].case_qty">
+
+                                        <b>{{print_invoice_vals.doc_details_arr[0].case_qty}}</b>
+
+                                    </td>
+
+                                </tr> -->
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div style="padding-top: 30px;float: left;width:100%;">
+
+                            <table>
+
+                                <tr>
+
+                                    <td style="padding-bottom: 10px;">
+
+                                        <b>Received By:</b>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>Name</td>
+
+                                    <td style="padding: 8px !important;">___________________________</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>Signature</td>
+
+                                    <td style="padding: 8px !important;">___________________________</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>Date</td>
+
+                                    <td style="padding: 8px !important;">___________________________</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>Comments</td>
+
+                                    <td style="padding: 8px !important;">___________________________</td>
+
+                                </tr>
+
+                            </table>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <pagebreak resetpagenum="1"
+
+                               ng-if="print_invoice_vals.total_records.length - 1 != $index"
+
+                               margin-header="30"
+
+                               sheet-size="A4" />
+
+                </div>
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <div class="pull-right">
+
+                    <a type="button"
+
+                       class="btn btn-cancel pull-right "
+
+                       data-dismiss="modal"
+
+                       ng-click="destroyPdfModal('delivery_note_modal');">Close</a>
+
+                    <a type="button"
+
+                       data-dismiss="modal"
+
+                       ng-if="print_invoice_vals.templateType != 'purchaseDelivery'"
+
+                       ng-click="openEmailer('emailerBtnSales_DeliveryNotes');"
+
+                       class=" btn btn-default2">Send Email</a>
+
+                    <a type="button"
+
+                       data-dismiss="modal"
+
+                       ng-if="print_invoice_vals.templateType == 'purchaseDelivery'"
+
+                       ng-click="openEmailer('emailerBtnPurchases_DeliveryNotes');"
+
+                       class=" btn btn-default2">Send Email</a>
+
+
+
+                    <a ng-click="generatePDFandDownload(print_invoice_vals.templateType, print_invoice_vals, 0)"
+
+                       target="_blank"
+
+                       class="btn btn-default2"
+
+                       title="Download PDF">
+
+                        <i class="fa fa-download"
+
+                           aria-hidden="true"
+
+                           style="color:#444444;"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

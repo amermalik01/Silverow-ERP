@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Document Type",
+        "field_name": "docType",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "invoice_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Cust. Ref. No.",
+        "field_name": "cust_order_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Our Ref. No.",
+        "field_name": "order_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "amount_without_vat",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "VAT",
+        "field_name": "tax_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Remaining Amount",
+        "field_name": "remaining_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Due Date",
+        "field_name": "due_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Shipping City",
+        "field_name": "shipped_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    }
+]

@@ -1,0 +1,85 @@
+<div ng-controller="ListItemsWeightcontroller as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+    <!-- Row starts -->
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body"
+                     style="margin-top: 8px;padding-bottom: 0 !important;">
+                    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class=" widget-body2 pull-left">
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-striped table-hover table-bordered">
+                                        <thead class="fixit">
+                                            <tr>
+                                                <th style="width: 200px;white-space: nowrap;vertical-align: middle;">
+                                                    Document Type </th>
+                                                <th style="vertical-align: middle;"
+                                                    title="Volume"
+                                                    class="text-center checkboxShow">
+                                                    <input type="checkbox"
+                                                           class="checkboxHide"
+                                                           ng-model="chckAll2"
+                                                           ng-click="CheckAll(2,chckAll2)"
+                                                           ng-disabled="readonly"><span>Volume</span></th>
+                                                <th style="vertical-align: middle;"
+                                                    title="Weight"
+                                                    class="text-center checkboxShow">
+                                                    <input type="checkbox"
+                                                           class="checkboxHide"
+                                                           ng-model="chckAll"
+                                                           ng-click="CheckAll(1,chckAll)"
+                                                           ng-disabled="readonly"><span>Weight</span></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="item in itemRoles">
+                                                <td style="width: 200px;white-space: nowrap;vertical-align: middle;">
+                                                    {{item.title}}</td>
+                                                <td class="text-center">
+                                                    <input type="checkbox"
+                                                           ng-disabled="readonly"
+                                                           ng-model="item.volume_permission">
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox"
+                                                           ng-disabled="readonly"
+                                                           ng-model="item.weight_permission">
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <a type="button"
+                                   style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+                                   class="btn btn-cancel2"
+                                   ui-serf="app.setup"
+                                   href="#/app/setup">Cancel</a>
+                                <a type="button"
+                                   style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+                                   class="btn btn-edit"
+                                   ng-if="readonly"
+                                   ng-click="showEditForm()">Edit</a>
+
+                                <a type="button"
+                                   style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+                                   class="btn btn-submit2"
+                                   ng-click="saveItemWeight();"
+                                   ng-if="!readonly">Save</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

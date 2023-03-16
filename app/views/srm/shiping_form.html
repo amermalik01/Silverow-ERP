@@ -1,0 +1,222 @@
+<div class="modal fade" id="modalAreas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%; max-height: 800px; height: 800px;" ng-init="get_countries_shipping_agent();">
+  <div class="modal-dialog modal-lg"   ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <!--<h4 class="modal-title" id="myModalLabel">View</h4>-->
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal no-margin" ng-submit="get_search_shipping_agent('add_listing')"  >
+          <div class="row">
+            <div class="col-lg-5 col-md-5">
+              <div class="form-group">
+                <div class="col-sm-7">
+                  <div class="input-symbol">
+                    <input type="text" ng-model="search_data" class="form-control" id="search_sale_add_listing_data">
+                    <!-- <input type="submit"  style="display:none"   />-->
+                    <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+                </div>
+                <!--<a id="prompt" ng-click="getItem()" class="btn btn_blue margin_bottom margin-right width_80"><i class="fa fa-search fa_display"></i>Search</a>-->
+
+                <a id="prompt" ng-click="unset_search_shipping_agent('add_listing')" class="btn btn_blue margin_bottom width_80"><i class="fa fa-check fa_display"></i>Show All</a> </div>
+            </div>
+          </div>
+        </form>
+        <div class="clearfix"></div>
+        <br/>
+        <!-- Row starts -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+              <tabset> <tab heading="Countries" ng-click="resetSearch('search_sale_add_listing_data');setCountrySelectPage(1);get_countries_shipping_agent();">
+                <div class=""  >
+                  <div class="">
+                    <div class="table-responsive" ng-class="{'whirl no-overlay':showShipLoader}" style="overflow-x: hidden;">
+                      <div style="  overflow-y: scroll; max-height: 300px;  ">
+                        <table class="table table-striped table-bordered table-hover no-margin">
+                          <thead>
+                            <tr class="bg-col">
+                              <th style="width: 30px;" ng-show="ship_column_country.length > 0"><input type="checkbox" id="checkAllCountries"
+                                                                           ng-model="selectedAll"  ng-click="checkAllCountries();" ng-true-value="'true'" ng-false-value="'false'"></th>
+                              <th ng-repeat="column in ship_column_country"
+                                                                    ng-if="	column.title != 'Id'"  > {{column.title}} </th>
+                            </tr>
+                          </thead>
+                          <tbody class="courser table-body">
+                            <tr ng-repeat="rec in ship_data_country" ng-show="ship_column_country.length > 0" >
+                              <td><input type="checkbox" id="shipping_country_{{rec.id}}" ng-click="" /></td>
+                              <td ng-repeat="column in ship_column_country" ng-if="column.title != 'Id'"   sortable="column.title"> {{rec[column.field]}} </td>
+                            </tr>
+                            <tr ng-show="ship_column_country.length == 0">
+                              <td colspan="2">No Counties Found!</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="clearfix"></div>
+                      <br/>
+                      <div class="row" >
+                        <div class="col-lg-9">
+                          <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;" ng-show="areas_country.total_pages > 1">
+                              <li ng-class="{'disabled': areas_country.cpage == 1}" class=""> <a ng-click="setCountrySelectPage(areas_country.ppage); get_countries_shipping_agent();" href="javascript: void(0);" class="">«</a> </li>
+                              <li ng-repeat="(key,value) in areas_country.pages" ng-class="{'active': value == areas_country.cpage}"> <a ng-click="setCountrySelectPage(value); get_countries_shipping_agent();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                              <li ng-class="{'disabled': areas_country.cpage == areas_country.total_pages}"> <a ng-click="setCountrySelectPage(areas_country.npage); get_countries_shipping_agent();" href="javascript: void(0);" >»</a> </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-lg-3" style="text-align: right;">
+                          <button class="btn btn_add" ng-click="addSaleArea(1);"><i class="fa fa-check fa_display"></i> Add</button>
+                          <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </tab> <tab heading="Regions" ng-click="resetSearch('search_sale_add_listing_data');setRegionSelectPage(1);get_regions_shipping_agent()">
+                <div class=""  >
+                  <div class="">
+                    <div class="table-responsive" ng-class="{'whirl no-overlay':showShipLoader}" style="overflow-x: hidden;">
+                      <div style="  overflow-y: scroll;  max-height: 300px;  ">
+                        <table class="table table-striped table-bordered table-hover no-margin">
+                          <thead>
+                            <tr class="bg-col">
+                              <th style="width: 30px;" ng-show="ship_column_region.length > 0"><input type="checkbox" id="checkAllRegions"
+                                                                           ng-model="selectedAll" ng-click="checkAllRegions();"  ng-true-value="'true'" ng-false-value="'false'"></th>
+                              <th ng-repeat="column in ship_column_region"
+                                                                    ng-if="	column.title != 'Id'"  > {{column.title}} </th>
+                            </tr>
+                          </thead>
+                          <tbody class="courser table-body">
+                            <tr ng-repeat="rec in ship_data_region" ng-show="ship_column_region.length > 0" >
+                              <td><input type="checkbox" id="shipping_region_{{rec.id}}" ng-click="selectSaleItem(rec)" /></td>
+                              <td ng-repeat="column in ship_column_region" ng-if="column.title != 'Id'"   sortable="column.title"> {{rec[column.field]}} </td>
+                            </tr>
+                            <tr ng-show="ship_column_region.length == 0">
+                              <td colspan="2">No Counties Found!</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="clearfix"></div>
+                      <br/>
+                      <div class="row" >
+                        <div class="col-lg-9" >
+                          <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;" ng-show="areas_region.total_pages > 1">
+                              <li ng-class="{'disabled': areas_region.cpage == 1}" class=""> <a ng-click="setRegionSelectPage(areas_region.ppage); get_regions_shipping_agent();" href="javascript: void(0);" class="">«</a> </li>
+                              <li ng-repeat="(key,value) in areas_region.pages" ng-class="{'active': value == areas_region.cpage}"> <a ng-click="setRegionSelectPage(value); get_regions_shipping_agent();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                              <li ng-class="{'disabled': areas_region.cpage == areas_region.total_pages}"> <a ng-click="setRegionSelectPage(areas_region.npage); get_regions_shipping_agent();" href="javascript: void(0);" >»</a> </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-lg-3" style="text-align: right;">
+                          <button class="btn btn_add" ng-click="addSaleArea(2);"><i class="fa fa-check fa_display"></i> Add</button>
+                          <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </tab> <tab heading="Counties" ng-click="resetSearch('search_sale_add_listing_data');setCountySelectPage(1);get_county_shipping_agent()">
+                <div class=""  >
+                  <div class="">
+                    <div class="table-responsive" ng-class="{'whirl no-overlay':showShipLoader}" style="overflow-x: hidden;">
+                      <div style="  overflow-y: scroll;  max-height: 300px; ">
+                        <table class="table table-striped table-bordered table-hover no-margin">
+                          <thead>
+                            <tr class="bg-col">
+                              <th style="width: 30px;" ng-show="ship_column_county.length > 0"><input type="checkbox" id="checkAllCounties"
+                                                                           ng-model="selectedAll" ng-click="checkAllCounties();"  ng-true-value="'true'" ng-false-value="'false'"></th>
+                              <th ng-repeat="column in ship_column_county"
+                                                                    ng-if="	column.title != 'Id'"  > {{column.title}} </th>
+                            </tr>
+                          </thead>
+                          <tbody class="courser table-body">
+                            <tr ng-repeat="rec in ship_data_county" ng-show="ship_column_county.length > 0" >
+                              <td><input type="checkbox" id="shipping_county_{{rec.id}}" ng-click="selectSaleItem(rec)" /></td>
+                              <td ng-repeat="column in ship_column_county" ng-if="column.title != 'Id'"   sortable="column.title"> {{rec[column.field]}} </td>
+                            </tr>
+                            <tr ng-show="ship_column_county.length == 0">
+                              <td colspan="2">No Counties Found!</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="clearfix"></div>
+                      <br/>
+                      <div class="row" >
+                        <div class="col-lg-9" >
+                          <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;" ng-show="areas_county.total_pages > 1">
+                              <li ng-class="{'disabled': areas_county.cpage == 1}" class=""> <a ng-click="setCountySelectPage(areas_county.ppage); get_county_shipping_agent();" href="javascript: void(0);" class="">«</a> </li>
+                              <li ng-repeat="(key,value) in areas_county.pages" ng-class="{'active': value == areas_county.cpage}"> <a ng-click="setCountySelectPage(value); get_county_shipping_agent();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                              <li ng-class="{'disabled': areas_county.cpage == areas_county.total_pages}"> <a ng-click="setCountySelectPage(areas_county.npage); get_county_shipping_agent();" href="javascript: void(0);" >»</a> </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-lg-3" style="text-align: right;">
+                          <button class="btn btn_add" ng-click="addSaleArea(3);"><i class="fa fa-check fa_display"></i> Add</button>
+                          <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </tab> <tab heading="Areas" ng-click="resetSearch('search_sale_add_listing_data');setAreaSelectPage(1);get_area_shipping_agent();">
+                <div class=""  >
+                  <div class="">
+                    <div class="table-responsive" ng-class="{'whirl no-overlay':showShipLoader}" style="overflow-x: hidden;">
+                      <div style="  overflow-y: scroll;  max-height: 300px; ">
+                        <table class="table table-striped table-bordered table-hover no-margin">
+                          <thead>
+                            <tr class="bg-col">
+                              <th style="width: 30px;" ng-show="ship_column_area.length > 0"><input type="checkbox" id="checkAllAreas"
+                                                                           ng-model="selectedAll" ng-click="checkAllAreas();"  ng-true-value="'true'" ng-false-value="'false'"></th>
+                              <th ng-repeat="column in ship_column_area"
+                                                                    ng-if="	column.title != 'Id'"  > {{column.title}} </th>
+                            </tr>
+                            <tr ng-show="ship_column_area.length == 0">
+                              <td colspan="2">No Counties Found!</td>
+                            </tr>
+                          </thead>
+                          <tbody class="courser table-body">
+                            <tr ng-repeat="rec in ship_data_area" ng-show="ship_column_area.length > 0" >
+                              <td><input type="checkbox" id="shipping_area_{{rec.id}}" ng-click="selectSaleItem(rec)" /></td>
+                              <td ng-repeat="column in ship_column_area" ng-if="column.title != 'Id'"   sortable="column.title"> {{rec[column.field]}} </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="clearfix"></div>
+                      <br/>
+                      <div class="row" >
+                        <div class="col-lg-9" >
+                          <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;" ng-show="areas_area.total_pages > 1">
+                              <li ng-class="{'disabled': areas_area.cpage == 1}" class=""> <a ng-click="setAreaSelectPage(areas_area.ppage); get_area_shipping_agent();" href="javascript: void(0);" class="">«</a> </li>
+                              <li ng-repeat="(key,value) in areas_area.pages" ng-class="{'active': value == areas_area.cpage}"> <a ng-click="setAreaSelectPage(value); get_area_shipping_agent();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                              <li ng-class="{'disabled': areas_area.cpage == areas_area.total_pages}"> <a ng-click="setAreaSelectPage(areas_area.npage); get_area_shipping_agent();" href="javascript: void(0);" >»</a> </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-lg-3" style="text-align: right;">
+                          <button class="btn btn_add" ng-click="addSaleArea(4);"><i class="fa fa-check fa_display"></i> Add</button>
+                          <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </tab> </tabset>
+            </div>
+          </div>
+        </div>
+        <!-- Row ends -->
+
+      </div>
+      <div class="modal-footer"> </div>
+    </div>
+  </div>
+</div>

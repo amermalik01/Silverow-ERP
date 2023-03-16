@@ -1,0 +1,75 @@
+<div ng-controller="CompanyController as table">
+    <div>
+        <div ng-include="'app/views/_breadcrumb.html'"></div>
+        <!-- <button type="button" class="btn btn-primary pull-right" ui-sref="app.addCompany"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Company</button> -->
+    </div>
+    <div class="row"
+         style="margin-bottom: 0 !important;">
+        <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-6">
+                <a id="prompt"
+                   ng-if="defaultCompany==77"
+                   ui-sref="app.addCompany()"
+                   class="btn btn_add pull-right ">Add</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"
+         style="    margin-top: 15px;">
+        <div class="col-md-3"
+             ng-repeat="rec in res_companies">
+            <div class="s-box"
+                 style="padding-bottom: 14px;
+                        padding-top: 9px;
+                        margin-top: 0;">
+                <div class="edit-company">
+                    <a ui-sref="app.viewCompany({id:rec.id})"
+                       class="edit-company"><i class="fa fa-edit"></i></a>
+                </div>
+                <div class="company-logo">
+                    <img ng-if="rec.logo.length>0"
+                         ng-style="{'background-image':'url('+ imagePath + rec.logo +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+                    <i ng-if="!rec.logo.length>0"
+                       class="fa fa-building-o"></i>
+                </div>
+                <div class="company-fullname">
+                    <a ng-href="http://{{rec.url}}"
+                       ng-if="rec.url"
+                       target="_blank">{{rec.name}}</a>
+                    <a ng-if="!rec.url"
+                       style="cursor: default;color: #333">{{rec.name}}</a>
+                </div>
+                <div class="company-city"
+                     ng-if="rec.city.length > 0">
+                    {{rec.city}}
+                </div>
+                <div class="company-city"
+                     ng-if="!rec.city.length > 0"
+                     style="color: #d0d0d0;font-style: italic;">
+                    City
+                </div>
+                <div class="company-telephone">
+                    <i class="fa fa-phone"
+                       aria-hidden="true"></i>Telephone
+                    <div class="pull-right"
+                         ng-if="!rec.telephone.length > 0"
+                         style="color: #d0d0d0;font-style: italic;">Telephone</div>
+                    <div class="pull-right"
+                         ng-if="rec.telephone.length > 0">{{rec.telephone}}</div>
+                </div>
+                <div class="company-postcode">
+                    <i class="fa fa-map-marker"
+                       aria-hidden="true"></i>Postcode
+                    <div class="pull-right"
+                         ng-if="!rec.postcode.length > 0"
+                         style="color: #d0d0d0;font-style: italic;">Postcode</div>
+                    <div class="pull-right">{{rec.postcode | uppercase}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

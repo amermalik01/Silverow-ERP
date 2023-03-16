@@ -1,0 +1,62 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div>
+      <div class="widget">
+        <div class="widget-body nobg-widget-body" style="    padding-top: 0 !important;margin-top: 10px!important;">
+          <div class="row">
+            <form class="form-horizontal no-margin" role="form" ng-submit="add(rec)" name="addForm" validate-form="" novalidate="">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-md-12">
+                    <b class="bit" style="background: white; border: 0; text-align: center; font-weight: bold; font-size: 13px; padding: 9px 2px; border-bottom: 1px solid #dddddd !important; margin-bottom: 20px;">G/L Account(s) Setup for Opening Balances</b>
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Stock Account</label>
+                        <div class="col-md-8">
+                          <div class="input-symbol" ng-click="getGLcode(1);" ng-class="{'dont-click':openingBalncGLReadonly}">
+                            <input type="text"  class="form-control" 
+                            ng-disabled="openingBalncGLReadonly" 
+                            readonly="" 
+                            ng-model="rec.stockAccountGL_code"
+                            ng-class="{'pickdate':!openingBalncGLReadonly,'dont-click':openingBalncGLReadonly}"
+                            />
+                            <span><i class="fa fa-external-link"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Opening Balance Account</label>
+                        <div class="col-md-8">
+                          <div class="input-symbol"  ng-click="getGLcode(2);" ng-class="{'dont-click':openingBalncGLReadonly}">
+                            <input type="text" class="form-control"  ng-model="rec.openingBalanceAccountGL_code" ng-disabled="openingBalncGLReadonly" 
+                            readonly=""
+                            ng-class="{'pickdate':!openingBalncGLReadonly}" 
+                            />
+                            <span><i class="fa fa-external-link"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <button class="btn btn-submit2 date_block" ng-if="!openingBalncGLReadonly" ng-class="{'whirl line back-and-forth dont-click':isSubmitting}" type="submit">Save</button>
+                      <button class="btn btn-edit date_block pic_block" type="button" ng-if="openingBalncGLReadonly" ng-click="gotoEdit()"><i class="fa fa-edit fa_display"></i> Edit</button>
+                      <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}" ng-click="gotoFinanceTab()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div>

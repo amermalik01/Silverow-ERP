@@ -1,0 +1,131 @@
+<div class="modal fade" id="_CustPriceInfoEmplisting_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div></div>
+    <div ng-class="{'loader_pop':loader_pop}"></div>
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <!-- Filter Start -->
+                <div class="row">
+                    <!-- ng-init="get_employee_type_list();"-->
+                    <div>
+                        <!-- Filter Start -->
+                        <div class="col-md-4">
+                            <form autocomplete="off" class="form-horizontal no-margin ng-pristine ng-valid" role="form">
+
+                                <div class="input-symbol">
+                                    <!-- ng-submit="getOffer_PriceOffer()"-->
+                                    <input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword_offered.search">
+                                    <span id="date_msg_4">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+
+                            <ui-select ng-model="searchKeyword_offered.employee_type">
+                                <ui-select-match placeholder="Select Employment Type">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt in emp_type_arr | filter: $select.search">
+                                  <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-md-2">
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-click="clear_salesperson_filter();"
+                                ng-model="strict">Clear Filter</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="display:none">
+                        <!--paging options start-->
+                        <div class="page-options" style="margin-top:5px">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label class="col-md-6 show_record">Show Entries </label>
+
+                                    <div class="col-md-4">
+                                        <select ng-model="item_paging.pagination_limit" ng-options="opt as opt.label for opt in pagination_arry" class="in-t-1" ng-change="getOffer_PriceOffer()">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-center total_paging_center" ng-if="record_pr.length > 0">
+                                    {{total_paging_record}}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-right total_paging_record" ng-if="record_pr.length > 0">Total: {{total}}
+                                </div>
+                            </div>
+                        </div>
+                        <!--paging options end-->
+                    </div>
+                </div>
+                <!-- Filter End -->
+                <div>
+                    <div>
+                        <div>
+                            <table class="table table-striped table-bordered table-hover table-condensed no-margin">
+                                <thead>
+                                    <tr class="bg-col">
+                                        <th ng-repeat="column in columns_pr" ng-if="column.title != 'Internal Extension' && column.title != '$$Hashkey' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status'"
+                                            ng-hide="column.field == 'id' || column.field == 'type'">{{column.title}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--| filter:searchKeyword:strict  track by $index  -->
+                                    <tr ng-repeat="rec in record_pr  | filter:searchKeyword_offered.search | filter:searchKeyword_offered.employee_type.name"
+                                        ng-click="confirmOffer_PriceOffer(rec)">
+                                        <td ng-repeat="column in columns_pr" ng-if="column.title != 'Internal Extension' && column.title != '$$Hashkey' && column.title != 'Mobile' && column.title != 'Allow Login' && column.title != 'Status'"
+                                            ng-hide="column.field == 'id'  ||  column.field == 'type'">
+                                            <span ng-if="column.field != 'start_date' &&   column.field != 'end_date' "> {{rec[column.field]}}</span>
+                                            <span ng-if="column.field == 'start_date'  || column.field == 'end_date' ">
+                                            <span ng-if="rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" ng-if="record_pr.length > 0">
+                    <div class="form-group" style="text-align: left;">
+                        <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                            <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a ng-click="itemselectPage(item_paging.ppage); getOffer_PriceOffer();" href="javascript: void(0);"
+                                    class="">�</a></li>
+                            <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"><a ng-click="itemselectPage(value); getOffer_PriceOffer();" href="javascript: void(0);"><span
+                                    ng-bind="value"></span></a></li>
+                            <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a ng-click="itemselectPage(item_paging.npage); getOffer_PriceOffer();" href="javascript: void(0);">�</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <!-- Selected:&nbsp;{{(products | filter: {chk: true}).length}} -->
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="col-md-2">
+    <label class="  control-label">Depatment </label>
+
+    <div class=" ">
+        <select ng-model="searchKeyword_offered.department"
+                ng-options="opt as opt.name for opt in deprtment_arr"
+                class=" form-control" ng-change="getOffer_PriceOffer()">
+            <option style="display:block" value=""></option>
+        </select>
+    </div>
+</div>-->

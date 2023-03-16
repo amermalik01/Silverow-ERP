@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "posted_debit_note_no": "invoice_code"
+    },
+    "fileName": "PDN.[[posted_debit_note_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

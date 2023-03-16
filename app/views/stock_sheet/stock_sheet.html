@@ -1,0 +1,27 @@
+<div><!-- ng-controller="StockSheetController as table" -->
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-12 col-md-12">
+      <style>
+        .linkLeft span {
+          margin-right: 13px;
+        }
+        </style>
+      <div id="dt_example" class="example_alt_pagination">
+
+        <div style="margin-top: 18px;"><!-- ng-if="tempProdArr.data.ack" -->
+          <div class="flexiTable makeModalFixed" 
+            x-generate-table 
+            x-data="tempProdArr.data" 
+            x-table-name="StockSheet" 
+            x-filter-function="showStockSheetPage()"
+            x-filter-object="searchKeyword">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/stock_sheet/history_modal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

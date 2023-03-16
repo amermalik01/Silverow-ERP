@@ -1,0 +1,246 @@
+
+<div ng-include="'app/views/_breadcrumb.html'" ></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs"      >
+      <div ng-app ng-controller="hrTabsController">
+        <tabset> <tab heading="General Information" class="general_information"  ng-click="generalInformation()" >
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" validate-form="" 
+                novalidate="" ng-submit="addGeneral(formData)" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/general_form.html'"  ></div>
+            </form>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_employee_type(formData2)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+              <div ng-include="'app/views/hr_values/add_employee_type.html'"   ></div>
+            </form>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_dep(formData4)"  
+       validate-form=""   novalidate=""    name="addForm"   ng-hide="showLoader" >
+              <div ng-include="'app/views/hr_values/add_department.html'"  ></div>
+            </form>
+          </div>
+          </tab> <tab heading="Contact Information" class="contact_setting"  ng-click="getcontact()">
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form"  
+                ng-submit="addcontact(formData)" name="addFinForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/add_contact.html'"></div>
+            </form>
+          </div>
+          </tab> <tab heading="Personal Information" class="personal_setting"  ng-click="getpersonalhr()">
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form"  
+                ng-submit="addpersonal(formData)" name="addFinForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/add_personal.html'"></div>
+            </form>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_religion(formData2)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+              <div ng-include="'app/views/hr_values/add_religion_type.html'"  ></div>
+            </form>
+          </div>
+          </tab> <tab heading="Salary  " class="salary_setting"  ng-click="getsalaryhr()">
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form"  
+                ng-submit="addsalary(formData)" name="addFinForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/add_salary.html'"></div>
+            </form>
+          </div>
+          </tab> <tab heading="Benefits" class="benifits_setting"  ng-click="getBenifits()">
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form"  
+                ng-submit="addBenifits(formData)" name="addFinForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/add_benifits.html'"></div>
+            </form>
+          </div>
+          </tab> <tab heading="Expenses" class="expenses" ng-click="itemselectPage(1);getexpenses()" >
+          <div >
+            <div class="vertical_space"></div>
+            <div ng-include="'app/views/hr_values/expenses.html'" ng-show="showexpenseslist"></div>
+            <!--small_fields-->
+            <form autocomplete="off"  class="form-horizontal no-margin " role="form" validate-form="" 
+       novalidate="" ng-submit="addexpenses(formData)"   ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/expenses_form.html'" ng-show="showexpenses"></div>
+            </form>
+            
+            <!--   ng-submit="adddatasubexpences(formData2)"  --> 
+            <!--  <form autocomplete="off"  class="form-horizontal no-margin  " role="form"    id="specific" ng-submit="adddatasubexpences(formData2)" 
+               	 validate-form="" novalidate ng-hide="showLoader"> --> 
+            <!-- <form autocomplete="off"  class="form-horizontal no-margin  "  
+         editable-form name="tableform" onaftersave="saveTable()" oncancel="cancel()">
+       --> 
+            
+            <!--  </form>--> 
+            
+            <!--<div ng-include="'app/views/hr_values/sub_expense_row.html'" ng-show="showsub_row_expenses"></div>
+      --> 
+            <!--    ng-submit="submitnew(formData)" -->
+            
+            <div ng-include="'app/views/hr_values/sub_expense_row.html'"  ng-show="row_sub_list_expenses" ></div>
+            <!-- <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_subexpense(formData2)" name="addForm"  validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/sub_expense_form.html'"  ng-show="row_sub_list_expenses_form" ></div>
+            </form>--> 
+            <!--pop up <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="adddata(formData2)"  r
+               	 validate-form="" novalidate ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/sub_expense_form.html'" ng-show="showexpenses"></div>
+          </form>--> 
+            
+            <!-- <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_subexpense(formData)" name="addForm" 
+                validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/hr_values/sub_expenses_form.html'" ng-show="subexpensesform"></div>
+            <div ng-include="'app/views/hr_values/sub_expenses.html'" ng-show="subexpenseslist"></div>
+          </form>--> 
+          </div>
+          </tab>
+           <tab heading="Roles & Permissions" class="roles" ng-click="itemselectPage(1);getRoles()" >
+          <div >
+            <div class="vertical_space"></div>
+            <div ng-include="'app/views/hr_values/roles.html'" ng-show="showroleslist"></div>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addroles(formData)" 
+                name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/roles_form.html'" ng-show="showroles"></div>
+            </form>
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="add_role_pop(formData)" 
+                name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/role_pop_form.html'"   ></div>
+            </form>
+          </div>
+          </tab>
+           <tab heading="Documents" class="document" ng-click="itemselectPage(1);getDocuments()">
+          <div >
+            <div class="vertical_space"></div>
+            <div ng-include="'app/views/hr_values/document.html'" ng-show="showdocumentlist"></div>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="adddocument(formData)" name="addForm" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/document_form.html'" ng-show="showdoc"></div>
+            </form>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder(formData2)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+              <div ng-include="'app/views/hr_values/add_folder.html'"  ></div>
+            </form>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder_edit(formData22)"  
+       validate-form=""   novalidate=""     ng-hide="showLoader" >
+              <div ng-include="'app/views/hr_values/add_folder_edit.html'"  ></div>
+            </form>
+          </div>
+          </tab>
+           <tab heading="Comments" class="comments" ng-click="itemselectPage(1);getComments()">
+          <div >
+            <div class="vertical_space"></div>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addcomment(coment_data)" name="addForm" 
+          validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/hr_values/comments_form.html'" ng-show="show_coments_form"></div>
+            </form>
+            <div ng-include="'app/views/hr_values/comment.html'" ng-show="show_coments_list"></div>
+          </div>
+          </tab> 
+          
+          <!--<tab    class="dynamic dont-click"  ng-repeat="tab in rec" heading="{{tab.tab_name}}" ng-click="getFormFields(tab.id)">
+      	           <div  ng-repeat="formFields in fields_rec" > 
+      				  <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+       
+       
+          <div >
+    <div class="vertical_space"></div>
+    <div class="row">
+<div class="col-md-12 col-md-12">
+<div class="widget"> 
+ 
+  <div class="widget-body">
+    <div class="row"> 
+        <div class="col-md-6 col-md-6">
+         <div class="form-group">
+            <label class="col-md-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div> 
+            </div>
+        </div>
+          </div>
+        </div>
+        
+        
+           </div>
+        </div>
+          </div>
+          
+          
+          
+        </div>
+        </div>
+        
+      				  <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+         
+           
+           <div >
+    <div class="vertical_space"></div>
+    <div class="row">
+<div class="col-md-12 col-md-12">
+<div class="widget"> 
+ 
+  <div class="widget-body">
+    <div class="row"> 
+        <div class="col-md-6 col-md-6">
+         <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-md-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div> 
+            </div>
+        </div>
+          </div>
+        </div>
+        
+        
+           </div>
+        </div>
+          </div>
+      </div>
+      				</div>
+             </tab>--> 
+          
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div ng-include="'app/views/hr_values/_listing_modal.html'" ></div>-->
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+
+<!--<div  ng-repeat="formFields in fields_rec" >
+        <div ng-show="fields_rec.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-md-4 control-label">{{formFields.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+          <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+            <label class="col-md-4 control-label">{{formSelData.name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+            </div>
+          </div>
+        </div>
+      </div>
+        
+         </tabset>
+    </div>-->

@@ -1,0 +1,103 @@
+<style type="text/css">
+.ngdialog-content {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+</style>
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="modal-header">
+      <h4 class="modal-title">Add Currency</h4>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <br/>
+  <br/>
+  <div class="col-md-12 col-md-12">
+    <div class="col-md-12 col-md-12">
+      <div class="row">
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+            <div class="col-md-8">
+              <input type="text" ng-model="currency.name" autocomplete="off" id="name" name="name" class="form-control"  tabindex="1"
+                            required="1"  />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+            <div class="col-md-8">
+              <input jqdatepicker class="2date-picker form-control "  id="ck_sdate"
+                  ng-model="currency.start_date"
+                  required="" readonly="" >
+              <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span    id="date_msg_leave_sale_target" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+          </div>
+        </div><!-- ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')"  -->
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Currency Code <span class="required">*</span></label>
+            <div class="col-md-8">
+              <input type="text" autocomplete="off" ng-model="currency.code" id="code" name="code" class="form-control" tabindex="1" required="1"  />
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+            <div class="col-md-8">
+              <select ng-model="currency.c_status" autocomplete="off" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control"  id="status" tabindex="4" required >
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+            <div class="col-md-8">
+              <input jqdatepicker class="2date-picker form-control "  id="ck_sdate"
+                  ng-model="currency.end_date"
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')" 
+                  required="" readonly="" >
+              <span class="fa fa-calendar  new_ca  form-control-feedback"></span> </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="padding-right: 0px !important;">Conversion Rate <span class="required">*</span></label>
+            <div class="col-md-8">
+              <input type="text" autocomplete="off" ng-model="currency.conversion_rate" id="conversion_rate" name="conversion_rate" class="form-control" tabindex="1"
+                            required="1"  data-parsley-type="number" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   <div class="row">
+    <div class="col-md-6 col-md-6">
+    <div class="form-group">
+      <label class="col-md-5 control-label">Currency Symbol <span class="required">*</span></label>
+      <div class="col-md-8">
+        <input type="text" ng-model="currency.symbol" id="symbol" name="symbol" class="form-control"  tabindex="1" required="1" />
+      </div>
+    </div>
+  </div>
+</div> --> 
+    
+  </div>
+  <div class="col-md-12">
+    <div class="modal-footer" >
+      <div class="pull-right">
+        <button class="btn btn-submit" type="button"  ng-click="confirm(currency)"><i class="fa fa-check fa_display"></i> Save</button>
+        <button class="btn btn-cancel" type="button" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

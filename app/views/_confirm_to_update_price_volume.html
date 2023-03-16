@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="ModalContinueUpdatePrice">
+    <div class="ngdialog-message"><h3>Confirmation</h3>
+        <!-- the--><!--Are you sure you want to Continue?-->
+        <p> The volume discount for current and future dates will be
+            updated with new price. Are you sure you want update the vol discounts?</p>
+        <button type="button" ng-click="confirm(1)" class="btn btn-delete">Confirm</button>
+        &nbsp;&nbsp;
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel">Cancel</button>
+    </div>
+</script>
+<style type="text/css">
+    .ngdialog-content {
+        background: #FFF !important;
+        padding: 10px !important;
+    }
+</style>

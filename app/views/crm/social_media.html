@@ -1,0 +1,54 @@
+<style type="text/css">
+    .ngdialog-content{padding-left: 0px !important; padding-right: 0px !important;}
+    .ngdialog.ngdialog-theme-default-custom-large .ngdialog-content{width: 600px !important;}
+</style>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="modal-header"><h4 class="modal-title">Add Social Media</h4></div>
+    </div>
+    <div class="clear"></div><br/><br/>
+    <!--<div class="col-md-12">
+            <h4>Add {{popup_title}}</4>
+
+          </div>-->
+    <div class="col-md-12 col-md-12">
+        <div class="col-md-11 col-md-11">
+
+            <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addMediaForm.$valid" name="addMediaForm" validate-form="" novalidate="">
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-3 control-label">Name <span class="sterik_red">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="socialForm.name" id="name" name="name" class="form-control" required  ng-blur="checkMediaValue();"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-md-12">
+                        <div class="form-group">
+                            <label for="userName" class="col-sm-3 control-label">Description </label>
+                            <div class="col-sm-9">
+                                <textarea ng-model="socialForm.description" id="description" name="description" class="form-control" required  ></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-md-12 col-md-12">
+        <div class="modal-footer">
+            <div class="pull-right">
+
+
+          <!--  ng-class="{'btn-info btn_blue':isSocialFormValid,'default dont-click':!isSocialFormValid}" type="button"-->
+
+                <button class="btn btn-submit"  ng-click="confirm(socialForm)"><i class="fa fa-check fa_display"></i> Submit</button>
+                <button class="btn btn-cancel" type="button" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

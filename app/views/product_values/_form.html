@@ -1,0 +1,155 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ng-include="'app/views/_breadcrumb.html'"></div>
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+        <div class="row">
+            <div class="col-md-12 col-md-12">
+                <div>
+                    <!--  class="bs-example bs-example-tabs" data-example-id="togglable-tabs" -->
+                    <div ng-if="recnew > 0">
+                        <tabset>
+                            <tab heading="General" class="general_information" ng-click="generalInformation(); " ng-if="item_gneral_tab_module">
+                                <form autocomplete="off" class="form-horizontal no-margin" id="form_check" novalidate="" role="form" validate-form="" ng-submit="updateGeneral(formData)">
+                                    <!-- ng-hide="showLoader" -->
+                                    <!-- ng-submit="addGeneral(formData)" -->
+                                    <div ng-include="'app/views/product_values/general_form.html'"></div>
+                                </form>
+                                <!-- <div ng-include="'app/views/product_values/itemSubstituteModal.html'"></div> -->
+
+                                <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)" ng-hide="showLoader">
+                                    <div ng-include="'app/views/product_values/add_unit_setup.html'"></div>
+                                </form>
+                            </tab>
+
+                            <tab heading="Purchase Information " ng-if="item_purchase_tab_module" ng-click="getItemPurchaseInfo();">
+                                <form autocomplete="off" class="form-horizontal no-margin" id="PurchaseInformation" role="form" validate-form="" novalidate="" ng-hide="showLoader" ng-submit="addItemPurchaseInfo()">
+                                    <div ng-include="'app/views/product_values/itemPurchaseInfo.html'"></div>
+                                </form>
+                            </tab>
+
+                            <!-- Cost Price-->
+                            <tab heading="Sales Information" active="isSalesPrice" ng-click="getItemSalesInfo()" ng-if="item_sale_tab_module">
+                                <form autocomplete="off" class="form-horizontal no-margin" id="SalesInformation" role="form" validate-form="" novalidate="">
+                                    <div ng-include="'app/views/product_values/itemSalesInfo.html'"></div>
+                                </form>
+                            </tab>
+
+                            <tab heading="Item Margin Analysis" active="isSalesPrice" ng-click="getItemMarginalAnalysis()" ng-if="item_margin_analysis">
+                                <form autocomplete="off" class="form-horizontal no-margin" role="form" id="ItemMarginAnalysis" validate-form="" novalidate="">
+                                    <div ng-include="'app/views/product_values/itemMarginalAnalysis.html'"></div>
+                                </form>
+                            </tab>
+
+                            <tab heading="Warehouse Location & Cost" class="warehouse_location_info" ng-click="warehouse_location()" ng-if="warehouse_location_cost && allowviewitem_warehouse_location_cost">
+                                <div class="vertical_space"></div>
+                                <div ng-include="'app/views/product_values/warehouse_location_listing.html'" ng-show="warehouse_loc_ListingShow"></div>
+                                <div ng-include="'app/views/product_values/warehouse_loc_form.html'" ng-show="warehouse_loc_FormShow"></div>
+                                <div ng-include="'app/views/product_values/warehouseAdditionalCostSetup.html'"></div>
+                            </tab>
+
+                            <tab heading="Activity" class="account_activity_info" ng-click="account_activity(1)" ng-if="allowviewitem_activity">
+                                <div class="vertical_space"></div>
+                                <div ng-include="'app/views/product_values/account_activity.html'"></div>
+                            </tab>
+
+                            <!--  ng-if="item_purchase_tab_module" -->
+
+                            <!-- <tab heading="Finished Goods Information" ng-click="getItemFinishedGoodsInfo();" ng-if="allowviewitem_finished_goods">
+                                <form class="form-horizontal" id="FinishedGoodsInformation">
+                                    <div ng-include="'app/views/product_values/itemRawMaterialInfo.html'"></div>
+                                </form>
+                            </tab> -->
+                            <!-- Raw Material ng-click="getItemRawMaterialInfo();" -->
+
+                            <div class="pull-right">
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    Allocated Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative; font-weight: bold; padding: 1px 6px;" ng-click="clearFiltersAndGetAllocatedStock(formData)">{{formData.allocated_stock1 | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <!-- {{formData.unit_name}} -->
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.allocated_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                </h3>
+                                <!-- showOrderTrail(formData, 3) -->
+
+                                <h3 style="font-size: 12px;font-weight: bold;float: right;margin-right: 14px;margin-top: 15px;">
+                                    Available Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative;font-weight: bold;padding: 1px 6px;" ng-click="clearFiltersAndGetAvailableStock(formData)">{{formData.available_stock1 | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.available_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    <!-- {{formData.unit_name}} -->
+                                </h3>
+                                <!-- showOrderTrail(formData, 2) -->
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    <!-- Current -->Total Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative;
+                                                font-weight: bold;
+                                                padding: 1px 6px;" ng-click="clearFiltersAndGetTotalStockSheet(formData)">
+                                    {{formData.current_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</a>
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.current_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    <!-- {{formData.unit_name}} -->
+                                </h3>
+                                <!-- showOrderTrail(formData, 1) -->
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    On Route Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative; font-weight: bold; padding: 1px 6px;" ng-click="clearFiltersAndGetOnRouteStock(formData)">{{formData.total_stock_on_route | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <!-- {{formData.unit_name}} -->
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.total_stock_on_route | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                </h3>
+                                <!-- showOrderTrail(formData, 3) -->
+                            </div>
+                        </tabset>
+
+
+                        <div class="row">
+                            <div class="col-md-12 affix">
+                                <div class="pull-left">
+                                    <!-- <div class="communication">
+                                        <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                                        <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                                        <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                                    </div> -->
+                                </div>
+                                <div class="pull-right">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div ng-include="'app/views/orders/order_trail_modal.html'"></div> -->
+                        <div ng-include="'app/views/stock_sheet/history_modal.html'"></div>
+
+                        <div ng-include="'app/views/hr_values/document_internal.html'" ng-show="list_internal_document"></div>
+                        <!-- <div 
+                            ng-include="'app/views/leave_confirm_modal.html'"></div> -->
+                        <div ng-include="'app/views/product_values/status_history_modal.html'"></div>
+                        <div ng-include="'app/views/product_values/_item_gl_account_modal.html'"></div>
+                        <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+                    </div>
+                    <div ng-if="!(recnew > 0)">
+                        <tabset>
+                            <tab heading="General" class="general_information">
+                                <div class="vertical_space"></div>
+                                <form autocomplete="off" class="form-horizontal no-margin" id="general_information" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)" ng-init="generate_unique_id()" ng-hide="showLoader">
+                                    <div ng-include="'app/views/product_values/general_form.html'"></div>
+                                </form>
+                                <!-- <div ng-include="'app/views/product_values/itemSubstituteModal.html'"></div> -->
+                                <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+                                <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)" ng-hide="showLoader">
+                                    <div ng-include="'app/views/product_values/add_unit_setup.html'"></div>
+                                </form>
+                            </tab>
+                            <!-- <tab heading="Details" class="contact_setting dont-click"></tab> -->
+                            <tab ng-if="allowview_item_purchase_tab" heading="Purchase Information" class="supplier_setting dont-click"></tab>
+                            <tab ng-if="allowview_item_sale_tab" heading="Sales Information" class="cust_item_info dont-click"></tab>
+                            <tab ng-if="allowviewitem_warehouse_location_cost" heading="Warehouse Location & Cost" class="warehouse_location_info dont-click"></tab>
+                            <tab ng-if="allowviewitem_activity" heading="Activity" class="account_activity_info dont-click"></tab>
+                            <tab ng-if="allowviewitem_finished_goods" heading="Finished Goods Information" class="finished_goods_info dont-click"></tab>
+                        </tabset>
+                        <div ng-include="'app/views/product_values/_item_gl_account_modal.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/_confirm_modal.html'"></div>
+        </div>
+    </div>
+</div>

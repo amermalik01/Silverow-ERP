@@ -1,0 +1,152 @@
+<div class="clearfix"></div>
+<!--<div class="panel-body">-->
+<div class="widget">
+    <div class="widget-body">
+        <div id="dt_example" class="example_alt_pagination">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="  form-group">
+                        <label class=" control-label col-sm-4 "> Volume<span class="required">*</span></label>
+
+                        <div class="col-sm-8">
+                            <button type="button" id="model_btn_vol_1"
+                                    class="btn btn-info btn_blue pull-left margin_bottom"
+                                    data-toggle="modal" data-target="#model_vol_1" style="display:none"> Add New
+                            </button>
+                            <select ng-model="formData.volume_1" ng-show="isAdded && !formData.id && !rec.id"
+                                    multiple=""
+                                    ng-class="{'dont-click':isAdded && arr_volume_1.length > 1 && !formData.id && isFristTime}"
+                                    ng-options="opt as opt.name for opt in arr_volume_1" class="select2me form-control"
+                                    ng-disabled="check_volume_readonly"
+                                    ng-required="isAdded && arr_volume_1.length > 1 && !formData.id"
+                                    ng-change="onChange_vol_1(formData.volume_1)" id="vol_1_id">
+                                <option style="display:none" value=""></option><!--check_volume_readonly && ng-disabled="viewmode==0"-->
+                            </select>
+
+                            <select ng-model="formData.volume_1" ng-show="formData.id || rec.id > 0"
+                                    ng-class="{'dont-click':isAdded && arr_volume_1.length > 1 && !formData.id}"
+                                    ng-options="opt as opt.name for opt in arr_volume_1" class="select2me form-control"
+                                    ng-disabled="check_volume_readonly"
+                                    ng-required="formData.id || rec.id > 0"
+                                    ng-change="onChange_vol_1(formData.volume_1)" id="vol_2_id">
+                                <option style="display:none" value=""></option><!--check_volume_readonly && ng-disabled="viewmode==0"-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 "> Price </label>
+
+                        <div class="col-sm-8 ">
+                            <div class="input-symbol">
+                                <input ng-model="formData.purchase_price_1" id="purchase_price_1"
+                                        ng-readonly="check_volume_readonly" type="text" class="form-control input_text"
+                                       data-parsley-type="number" ng-change="show_price_one()"
+                                        >
+                                <span>{{rec.currencys.code}}/{{rec.unit_of_measures.name}}</span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-3 ">
+                         <p class="base_price"> {{ base_currency}} </p>                     ng-readonly="1"
+                       </div>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="  control-label col-sm-4 "> Discount Type<span class="required">*</span></label>
+
+                        <div class="col-sm-8">
+                            <select  required  ng-disabled="check_volume_readonly"
+                                    ng-model="formData.supplier_type_1"
+                                    ng-options="opt as opt.name for opt in list_type" id="type_1"
+                                    ng-change="setSymbol(1);show_price_one()"
+                                    class="select2me form-control">
+                                <option style="display:none"></option><!--check_volume_readonly && ng-disabled="viewmode==0"-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"> Discount<span class="required">*</span> </label>
+
+                        <div class="col-sm-8">
+                            <div class="input-symbol">
+                                <input  ng-readonly="check_volume_readonly" required type="text"
+                                       ng-blur="chkVolDiscPrice(formData.discount_price_1)" ng-change="show_price_one()"
+                                       ng-model="formData.discount_value_1" id="discount_value_1"
+                                       class="form-control input_text" data-parsley-type="number"
+                                       data-parsley-type-message="only Decimal"><!--check_volume_readonly && ng-readonly="viewmode==0"-->
+                                <!--ng-show="show_symbol"--> <span id="date_msg_1" style=" display: none;">&#37;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4"> Discounted Price <span class="required">*</span>
+                        </label>
+
+                        <div class="col-sm-8 ">
+                            <div class="input-symbol">
+                                <input ng-required="formData.volume_1.id > 0" required class="form-control input_text"
+                                       ng-readonly="check_volume_readonly"
+                                       ng-model="formData.discount_price_1" type="text"/>
+                                <span>{{rec.currencys.code}}/{{rec.unit_of_measures.name}}</span>
+
+                                <ul class="parsley-errors-list filled"
+                                    ng-show="formData.volume_1.id > 0 && formData.discount_price_1 <= 0">
+                                    <li class="parsley-custom-error-message">This value must be greater than 0.</li><!--ng-readonly="1"-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4">Start Date<span class="required">*</span> </label>
+
+                        <div class="col-sm-8">
+
+                            <!-- {{formData.start_date * 1000 | date:'dd-MM-yyyy'}} -->
+                            <input jqdatepicker class="2date-picker form-control" ng-model="formData.start_date1"
+                                   ng-change="checkDate(formData.start_date1,formData.end_date1,'start_date1')" required
+                                   ng-readonly="check_volume_readonly"><span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label col-sm-4">End Date<span class="required">*</span> </label>
+
+                        <div class="col-sm-8">
+
+                            <!-- {{formData.start_date * 1000 | date:'dd-MM-yyyy'}} -->
+                            <input jqdatepicker class="2date-picker form-control" ng-model="formData.end_date1"
+                                   ng-change="checkDate(formData.start_date1,formData.end_date1,'end_date1')" required
+                                   ng-readonly="check_volume_readonly"><span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hr_line2"></div>
+                    <div class="pull-right">
+                        <button class="btn btn-info btn_blue" type="submit"
+                                ng-show="!check_volume_readonly && viewmode>0"><i
+                                class="fa fa-check"></i> Submit
+                        </button>
+                        <!-- <button class="btn btn-info btn_blue" type="button" ng-click="showCustItemInfoEditForm()" ng-show="check_volume_readonly"><i class="fa fa-edit"></i> Edit</button> -->
+                        <button class="btn default" type="button" ng-click="showVolumeDiscListing()"><i
+                                class="fa fa-undo"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    #sale_volume_discount_form
+    .parsley-errors-list.filled {
+        position: absolute;
+        top: 21px;
+    }
+</style>

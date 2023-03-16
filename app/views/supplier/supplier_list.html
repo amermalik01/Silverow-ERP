@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <!--   Add   permision for Company User /superadmin -->
+        <a id="prompt" ng-click="fn_supplier_Form()" ng-if="allowadd_supplier==1"
+           class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"> </i> Add New</a>
+    </div>
+</div>
+
+<!--show_sp_edit_form(record.id)-->
+
+<div class="row" ng-show="columns.length > 0">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body ">
+
+                <!--    Add    permision for Company User /superadmin -->
+                <button type="button" id="model_btn_supplier_id" class="btn btn-info btn_blue pull-left margin_bottom"
+                        data-toggle="modal" data-target="#model_btn_supplier" ng-if="allowadd_supplier==1"
+                        style="display:none"> Add New
+                </button>
+                <div id="dt_example" class="example_alt_pagination">
+
+                    <!--    View    permision for Company User /superadmin -->
+                    <table class="table table-condensed table-striped table-hover table-bordered"
+                           ng-if="allowview_supplier ==1" id="data-table">
+                        <thead>
+                        <tr class="bg-col" ng-show="columns.length > 0">
+                            <th ng-repeat="column in columns" ng-show="column.visible"
+                                ng-if="column.title != 'Id'"> {{column.title}}
+                            </th>
+                            <th style=" width: 7%;">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-body courser ">
+                        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                        <tr ng-show="columns.length > 0" ng-repeat="record in supplier_list">
+                            <td ng-repeat="column in columns" ng-click="supplier_pop(record.id)"
+                                ng-if="column.title != 'Id'"><span
+                                    ng-if="column.field != 'start_date' && column.field != 'end_date'">{{record[column.field]}}</span>
+                                <span ng-if="column.field == 'start_date' || column.field == 'end_date'">{{convert_unix_date_to_angular(record[column.field])}}</span>
+                            </td>
+                            <td>
+
+                                <!--   Edit    permision for Company User /superadmin -->
+                                <a title="Edit" ng-click="supplier_pop(record.id)"
+                                   ng-class="{'dont-click':allowedit_supplier==0}"
+                                   class="tooltips_clsss btn btn-primary icon_square"> <i class="fa fa-edit"> </i></a>
+
+                                <!--    Delete   permision for Company User /superadmin -->
+                                <a title="Delete" ng-click="delete_sp(record.id,$index,supplier_list)"
+                                   ng-if="allowdelete_supplier==1"
+                                   class="tooltips_clsss btn btn-primary icon_square"><i class="fa fa-times"> </i></a>
+                            </td>
+                        </tr>
+                        <!--<tr ng-show="columns.length == 0 && !showLoader">
+                          <td class="text-center">No Record found!</td>
+
+                        </tr>-->
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

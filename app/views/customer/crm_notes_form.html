@@ -1,0 +1,298 @@
+<!-- <style>
+    .mbri-edit2 {
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<toaster-container toaster-options="{'toaster-id': 3,'position-class': 'toast-top-right', 'close-button':true}">
+</toaster-container>
+
+<span class="mbri-edit2"
+      ng-click="openNotesModal()"></span>
+<span ng-show="total > 0 && moduleTracker.module.record"
+      class="sidebarNotification"
+      ng-click="openNotesModal()">{{total}}</span>
+ -->
+
+ <div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget"
+             style="background:none;">
+            <div class="widget-body"
+                 style="background:none;">
+                <div class="row animated fadeIn">
+                    <div class="col-md-12">
+                        <div class="panel-title2"> Notes</div>
+
+
+                        <div class="col-md-4"
+                            ng-hide="addNote">
+                            <div class="input-symbol"
+                                style="display: inline">
+                                <input type="text"
+                                    tabindex="1"
+                                    ng-keydown="$event.keyCode === 13 && resetPageAndGetComments()"
+                                    ng-model="filterObject.multipleColumnSearch"
+                                    placeholder="Search"
+                                    class="form-control pull-left"
+                                    style="width: calc(100% - 89px);" />
+                                <i class="material-icons"
+                                ng-click="filterObject.multipleColumnSearch = '';clearFilterAndGetComments()"
+                                ng-if="filterObject.multipleColumnSearch">
+                                    clear
+                                </i>
+                            </div>
+                            <button ng-click="resetPageAndGetComments()"
+                                    tabindex="2"
+                                    class="btn btn-default2 btn-focus"
+                                    style="box-shadow: none;"
+                                    type="button"><i class="fa fa-search"></i>
+                            </button>
+                            <a ng-click=" showNoteAddForm()"
+                            class="pull-right btn btn_add2"
+                            tabindex="3">
+                                Add
+                            </a>
+                        </div>
+                        <div class="col-md-8 ipwe righttoleft"
+                            ng-hide="addNote || editMode"
+                            style="padding-left: 0;">
+                            <span style="   float: left;
+                                            display: block;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            color: black;"><b ng-if="focused.subject">Subject:&nbsp</b><span
+                                    style="font-weight: normal">{{focused.subject}}</span></span>
+                            <span class="pull-right"
+                                ng-show="focused.subject"
+                                style="
+                                                
+                                                display: block;
+                                                overflow: hidden;
+                                                white-space: nowrap;
+                                                text-overflow: ellipsis;
+                                                text-align: right;">{{focused.receiver_name}} |
+                                {{focused.module_name}}</span>
+                        </div>
+                    </div>
+
+                    <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader}"></div> 
+                    <div class="col-md-4 righttoleft"
+                         ng-hide="addNote">
+                        <tabset class="modaltabs"
+                                style="    margin-top: -6px;">
+                            <tab active="bringingLimitedRecords"
+                                 ng-init="getComments()"
+                                 ng-click="getComments()"
+                                 ng-if="moduleTracker.module.record"
+                                 heading="{{moduleTracker.module.recordName}}">
+                                <div class="mydocs"
+                                     ng-click="updateFocusedNote(comment)"
+                                     class="{{file.fileType}}clr"
+                                     ng-repeat="comment in recod_coments"
+                                     ng-class="focused.id == comment.id?'highlightdoc':''">
+                                    <div class="mynotessubject">
+                                        <b>{{comment.receiver_name}}</b>
+                                    </div>
+                                    <div class="mynotesrecord">{{comment.subject}}</div>
+                                    <div class="mynotescomment">{{comment.description}}</div>
+                                    <div class="mynotesmodule">{{comment.module_name}}</div>
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on
+                                        {{comment.date_created_without_seconds}}</div>
+                                </div>
+                            </tab>
+                            <tab ng-click="getComments(1)"
+                                 ng-if="!moduleTracker.module.record"
+                                 heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                <div class="mydocs"
+                                     ng-click="updateFocusedNote(comment)"
+                                     class="{{file.fileType}}clr"
+                                     ng-repeat="comment in recod_coments"
+                                     ng-class="focused.id == comment.id?'highlightdoc':''">
+                                    <div class="mynotessubject">
+                                        <b>{{comment.receiver_name}} </b>
+                                    </div>
+                                    <div class="mynotesrecord">{{comment.subject}} </div>
+                                    <div class="mynotescomment">{{comment.description}}</div>
+                                    <div class="mynotesmodule">{{comment.module_name}}</div>
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on
+                                        {{comment.date_created_without_seconds}}</div>
+                                </div>
+                            </tab>
+
+                        </tabset>
+                        <div class="text-center norecordmessage"
+                             ng-if="recod_coments.length == 0">
+                            <span class="mbri-edit2"></span>
+                            <div>No Notes found! Add one now!</div>
+                        </div>
+                        <div style="margin-top: 8px;">{{total || '0'}} Record(s)
+                        </div>
+                        <!-- <div id="pagination_wrapper" ng-show="item_paging.total_pages > 1"> 
+                            <ul class="pagination"
+                                style=" margin: 0 auto;
+                                    padding: 0 !important;
+                                    float: left !important;
+                                    margin-top: -7px;
+                                    display: table !important;"
+                                >
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = 1; getComments();"
+                                       href="javascript: void(0);"
+                                       ng-class="{'disable-el dont-click': item_paging.cpage == 1}">
+                                        <i class="fa fa-angle-left"
+                                           aria-hidden="true"></i><i class="fa fa-angle-left"
+                                           aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = item_paging.ppage; getComments();"
+                                       href="javascript: void(0);"
+                                       ng-class="{'disable-el dont-click': item_paging.cpage == 1}"
+                                       class="">
+                                        <i class="fa fa-angle-left"
+                                           aria-hidden="true"></i></a>
+                                </li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}">
+                                    <a ng-click="filterObject.selectedPage = value; getComments();"
+                                       href="javascript: void(0);">
+                                        <span ng-bind="value"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = item_paging.npage; getComments();"
+                                       href="javascript: void(0);"
+                                       ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+                                           class="fa fa-angle-right"
+                                           aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = item_paging.total_pages; getComments();"
+                                       href="javascript: void(0);"
+                                       ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+                                           class="fa fa-angle-right"
+                                           aria-hidden="true"></i><i class="fa fa-angle-right"
+                                           aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                    <div class="col-md-8 righttoleft"
+                         ng-show="focused.id && !addNote"
+                         style="padding-left: 0;">
+                        <div class="focusedcomments"
+                             ng-bind-html="formatComment(focused.description)"></div>
+                        <div class="cleafix">
+                            <div class="pull-left focusedcreated">
+                                by {{focused.created_by}} on {{focused.date_created}} | <b
+                                   ng-click="editThisNote(focused.id)"
+                                   class="edit-notes"><i class="fa fa-edit"></i> Edit Note</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 righttoleft"
+                         ng-show="addNote && !editMode">
+                        <!-- <div class="email-area">
+                            <b>Module</b>
+                            <div class="email-input">
+                                <select 
+                                        ng-model="selectedNotesCRM"
+                                        name=""
+                                        id=""
+                                        class="form-control"
+                                        style="width: 30%;">
+                                    <option selected disabled value="crm">CRM</option>
+                                    <option value="customer">Customer</option>
+                                    <option value="sales">Sales</option>
+                                    <option value="credit_note">Credit Note</option>
+                                    <option value="srm">SRM</option>
+                                    <option value="supplier">Supplier</option>
+                                    <option value="purchase">Purchases</option>
+                                    <option value="debit_note">Debit Note</option>
+                                    <option value="hr">HR</option>
+                                    <option value="items">Items</option>
+                                    <option value="warehouse">Warehouse</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <!-- <div class="email-area"
+                             ng-show="allNames.length">
+                            <b> Record</b>
+                            <div class="email-input">
+                                <ui-select ng-model="selectedNotesRecord"
+                                           ng-change="updateNotesRecord(selectedNotesRecord)"
+                                           style="width: 30%;">
+                                    <ui-select-match placeholder="Select Record Name">{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                        <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-md-8"></div>
+                    <div class="col-md-12 righttoleft"
+                         ng-show="addNote">
+                        <div class="email-area"
+                             ng-show="selectedNotesRecord.id || editMode">
+                            <b>Subject
+                                <span class="required">*</span>
+                            </b>
+                            <div class="email-input">
+                                <input type="text"
+                                       maxlength="100"
+                                       ng-model="coment_notes_data.subject"
+                                       ng-disabled="check_crm_notes_readonly"
+                                       required
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="email-area"
+                             ng-show="selectedNotesRecord.id || editMode">
+                            <b>Comments
+                                <span class="required">*</span>
+                            </b>
+                            <div class="email-input">
+                                <textarea maxlength="1000"
+                                          name=""
+                                          id=""
+                                          cols="30"
+                                          rows="10"
+                                          class="form-control"
+                                          ng-model="coment_notes_data.description"
+                                          ng-disabled="check_crm_notes_readonly"
+                                          required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+
+                                <button class="btn btn-delete" type="button"  ng-show="editMode" ng-click="deleteCRMcomment(focused.id)">Delete</button>
+
+                                <button class="btn btn-submit" type="submit" ng-show="!check_crm_notes_readonly">Save</button>
+
+                                <button class="btn btn-edit" type="button" ng-click="showEditForm_notes()" ng-if="check_crm_notes_readonly">Edit</button>
+
+                                <button class="btn btn-cancel" type="button" ng-click="clearNotesVarsCRM()">Cancel </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="col-md-12">
+  <div class="panel-title2">Add Document</div>
+  <div class="col-md-5">
+    <!--<div class="form-group">
+                  <input   type="hidden"      ng-model="formData.id"   />
+                  <label class="col-md-3 control-label"> Code <span   >*</span></label>
+                  <div class="col-md-7"> <input  ng-readonly="check_readonly"  type="text"
+                  ng-model="formData.document_code" class="form-control"             />
+                  </div>
+                </div>-->
+    <div class="form-group"  ng-show="formData.disable_user_readonly">
+      <label class="col-md-4 control-label "> Folder </label>
+      <div class="col-md-8">
+        <select  ng-disabled="chk_check_readonly"   ng-model="formData.folder_id"
+        ng-change="onChange_folder_main()"         ng-options="opt as opt.name+'('+opt.creater+')' for opt in arr_folder"   class="form-control"    >
+          <option value="" disabled selected>Select</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" >
+      <label class="col-md-4 control-label">Name<span  class="required">*</span> </label>
+      <div class="col-md-8" ng-show="formData.disable_user_readonly">
+        <input  ng-readonly="chk_check_readonly"
+               required type="text" ng-model="formData.document_title" class="form-control"
+              />
+      </div>
+      <div class="col-md-7" ng-show="!formData.disable_user_readonly">
+        <input  ng-readonly="!formData.disable_user_readonly"
+             required type="text" ng-model="formData.document_title" class="form-control"
+              />
+      </div>
+    </div>
+
+    <!--<div class="form-group"  >
+              <label class="col-md-3 control-label  " for="userName">Upload Document</label>
+              <div   class="col-md-7 form-group"  ng-show="uploadConShow" ng-controller="DocUploadControllerMulti"  >
+                <div class="fileUpload btn btn_blue col-md-7"  > <span >Select File</span>
+                  <input  type="file" ng-required="uploadConShow"   ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+  accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+
+				 class="upload" ngf-max-size="2MB"  />
+                  <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size & Format JPG, Word or PDF</span> </div>
+                <div class="form-group col-md-5"  ng-if="formData_images_data_opp_cycle">
+                  <div class="col-md-7">
+                    <div class="row" style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                      <div class="col-md-12"  style="padding-left: 0px;" >
+                        <div class="form-group no-margin"> <span ng-repeat="attachment in formData_images_data_opp_cycle"
+                          style="margin-left: 5px;" class="tag"  >
+                        <a target="_blank" href="{{imagePath+attachment.response}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div  ng-show="uploadConShow_defult" class="col-md-7 form-group"  >
+                <div class="fileUpload btn btn_blue col-md-7"  > <span >Select File</span>
+                  <input  type="file" ng-required="uploadConShow_defult"  ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+  accept=".gif, .jpg, .png, .doc, .docx,.pdf"      class="upload" ngf-max-size="2MB"  />
+                  <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size & Format JPG, Word or PDF</span> </div>
+                <div class="form-group col-md-5"  ng-if="formData_images_data">
+                  <div class="col-md-7">
+                    <div class="row" style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                      <div class="col-md-12"  style="padding-left: 0px;" >
+                        <div class="form-group no-margin"> <span ng-repeat="attachment in formData_images_data"
+                          style="margin-left: 5px;" class="tag"  >
+                           <a target="_blank" href="{{imagePath+attachment.response}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
+    <div class="form-group" ng-controller="DocUploadDocument_single">
+      <div ng-class="{'whirl no-overlay':showLoader}"></div>
+      <label class="col-md-4 control-label  " for="userName">Upload Document<span  class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="fileUpload btn btn_blue col-md-7"  > <span  >Upload Document</span>
+          <!--       accept="image/*" -->
+
+          <input     type="file"   ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+           multiple  class="upload"  ng-required='!formData.document_path'   />
+          <input  type="hidden"  ng-model="formData.document_path">
+          <input  type="hidden"   ng-init="formData.document_path = formData.document_path"
+          ng-model="formData.document_path" />
+        </div>
+        <div class="form-group col-md-5" ng-if="formData.document_path">
+          <div class="col-md-7"> <span   ng-if=" formData.document_path !='' "  >
+            <!-- <a class="defaultimage">
+          <img src="{{imagePath+formData.document_path}}" class="d1img"/>
+           <span class="animated fadeIn">
+           <img src="{{imagePath+formData.document_path}}"/> </span>
+           </a>-->
+
+            <a target="_blank" href="{{imagePath+formData.document_path}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+          <!--  <div class="form-group"  ng-if="formData.FileType=='doc' || formData.FileType=='docx'">
+                  <div class="col-md-7">
+                    <label class="col-md-7 control-label" > <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-file-word-o ng-binding"></i> {{formData.document_path}} </a></label>
+                  </div>
+                </div>
+                <div class="form-group" ng-if="formData.FileType=='pdf'">
+                  <div class="col-md-7">
+                    <label class="col-md-4 control-label"> <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-download ng-binding">{{formData.document_path}}</i> </a> </label>
+                  </div>
+                </div>
+
+                <div class="form-group"  ng-if="formData.FileType=='jpg'  || formData.FileType=='jpeg'
+                 || formData.FileType=='png' || formData.FileType=='gif'">
+                  <div class="col-md-7"> <!--<img  ng-src="{{imagePath+formData.document_path}}"
+   style="width:100px; height:100px;" />
+                    <a  style="font-size:14px"target="_blank" href="{imagePath+formData.document_path}}"> <i class="fa fa-file-word-o ng-binding">{{formData.document_path}}</i> </a> </div>
+                </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+
+    <!--<div class="form-group">
+      <label class="col-md-3 control-label">Status </label>
+      <div class="col-md-7">
+        <select ng-model="formData.status" ng-options="opt as opt.label for opt in arr_status" class=" form-control"  ng-disabled="check_readonly"    >
+          <option style="display:block" value=""></option>
+        </select>
+      </div>
+    </div>-->
+
+    <div class="form-group" ng-show="formData.disable_user_readonly">
+      <label class="col-md-4 control-label "> Share</label>
+      <div class="col-md-8">
+        <select  ng-disabled="check_readonly"   ng-model="formData.is_public"
+            ng-options="opt as opt.label for opt in arr_is_public"   class=" form-control"   >
+          <option value="" disabled selected>Select</option>
+        </select>
+      </div>
+    </div>
+    <!--<div class="form-group" ng-show="formData.disable_user_readonly">
+      <label class="col-md-3 control-label " ng-show="formData.is_public.id==2   "> &nbsp;Permissions </label>
+      <div class="col-md-7"  ng-show="formData.is_public.id==2   ">
+        <input type="checkbox"  ng-model="formData.allowuright_edit"
+                   ng-checked="formData.allowuright_edit"   name="edit"   id="name" />
+        Edit
+        <input type="checkbox"  ng-model="formData.allowuright_view"
+                   ng-checked="formData.allowuright_view"     name="view"  id="view" />
+        View
+        <input type="checkbox"  ng-model="formData.allowuright_delete"
+                    ng-checked="formData.allowuright_delete"      name="del" id="del"  />
+        Delete </div>
+
+    </div>-->
+    <div class="form-group"  ng-show="formData.disable_user_readonly">
+      <label class="col-md-4 control-label " ng-show="formData.is_public.id==2"> Type </label>
+      <div class="col-md-8" ng-show="formData.is_public.id==2">
+        <select  ng-disabled="check_readonly"   ng-model="formData.is_shared" ng-change="set_popup_data()"
+            ng-options="opt as opt.label for opt in arr_shared"   class=" form-control"   >
+          <option value="" disabled selected>Select</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" ng-show="formData.disable_user_readonly">
+      <label class="col-md-4 control-label" ng-show="formData.is_public.id==2">{{formData.is_shared.label}} </label>
+      <div class="col-md-8" ng-show="formData.is_public.id==2">
+        <div class="panel panel-info no-margin" ng-class="{'dont-click readonly':check_readonly}" >
+          <div class="panel-body" ng-click="itemselectPage(1);getSalePersons(0)" style="height:30px; overflow-y:auto;"> <span ng-repeat="sp in selectedSalespersons track by $index"> <span ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.name}}</span></span> <span ng-if="$index > 0">;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.name}}</span></span> </span> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/documents/add_folder.html'"></div>
+<div ng-include="'app/views/documents/add_permision.html'"></div>

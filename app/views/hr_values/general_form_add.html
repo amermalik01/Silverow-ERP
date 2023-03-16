@@ -1,0 +1,621 @@
+<div ng-controller="hr_add_values_controller" data-ng-init="getFormFields(tab.id,tab.tab_name)">
+ <form autocomplete="off"  class="form-horizontal no-margin" role="form" name="addForm" ng-submit="submitForm(formData)" validate-form=""
+   novalidate="" ng-hide="showLoader"  >
+  <div class="row">
+    <div class="col-md-12 col-md-6"> 
+      
+      <!--   {{tab.tab_name}}
+        {{tab.id}}--> 
+      
+      <!--    //Tab 1 start -->
+      <div   id="tab1" ng-if="tab_id_2==1 || tab_id_name == 'General Information'"  >
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 "> Email </label>
+            <div class="col-md-7">
+              <input type="text"   ng-model="formData.user_email" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> Password </label>
+            <div class="col-md-7">
+              <input type="text"   ng-model="formData.user_password" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> Employee No </label>
+            <div class="col-md-7">
+              <input type="text"  ng-model="formData.user_code" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> Type </label>
+            <div class="col-md-7">
+              <select   ng-model="formData.user_id" ng-options="opt as opt.label for opt in user_types"
+              class="select2me form-control"  >
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Company </label>
+            <div class="col-md-7">
+              <select   ng-model="formData.company_id"  ng-options="opt as opt.name for opt in companies"
+              class="select2me form-control" >
+                
+              </select>
+            </div>
+          </div>
+          
+          <!--<div  ng-repeat="formFields in fields_data_save" >
+        <div ng-show="fields_data_save.length != 0"> 
+             <div ng-show="formFields.length != 0">
+          <div class="form-group">
+            <label class="col-md-4 ">{{formFields.field_name}}</label>
+            <div class="col-sm-8">
+              <input type="text" ng-model="formData[formFields.field_name]" class="form-control"
+                         ng-init="formData[formFields.field_name]=formFields.value"  />
+            </div>
+          </div>
+        </div>
+         
+      </div>
+     
+        </div>--> 
+          
+          <!--  {{fields_data_save}}--> 
+          <!--   {{formData.job_title}}-->
+          <div class="form-group">
+            <label class="col-md-4 ">Job Title </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.job_title" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">First Name </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.first_name" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Middle Name </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.middle_name" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Last Name </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.last_name" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Known as </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.known_as" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Address  </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.address_1" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Address 2 </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.address_2" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> City</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.city" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Country </label>
+            <div class="col-md-7"> 
+              <!--<input type="text" ng-model="formData.country" 
+           class="form-control" />-->
+              
+              <select   ng-model="formData.country"  ng-options="opt as opt.name for opt in country_type_arr track by opt.id"
+              class="select2me form-control">
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Post Code</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.post_code" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Post Code Country</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.post_code_country" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Internal Extention</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.internal_extention" 
+           class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 ">Work Telephone</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.work_phone" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Mobile Telephone</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.mobile_phone" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Home Telephone</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.home_phone" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Personal Email</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.personal_email" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Work Email</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.work_email" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Department</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.department" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Line Manager Name</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.line_manager_name" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Area (if Applicable)</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.area" 
+             class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Start Date</label>
+            <div class="col-md-7">
+              <p class="input-group">
+                <input type="text" class="form-control" ng-model="formData.start_date"      
+             ng-init="formData[formFields.id]=formData.value"
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['start_date']" 
+            ng-readonly="check_readonly" close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                <span class="input-group-btn">
+                <button type="button" ng-disabled="check_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'start_date')"><i class="fa fa-calendar"></i></button>
+                </span> </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Employment Type</label>
+            <div class="col-md-7">
+              <select   
+         ng-model="formData.employee_type" ng-options="opt as opt.label for opt in employee_type"
+      			 class="select2me form-control">
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Leave Date</label>
+            <div class="col-md-7">
+              <p class="input-group">
+                <input type="text" class="form-control" ng-model="formData.leave_date"      
+             ng-init="formData[formFields.id]=formData.value"
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['leave_date']" 
+            ng-readonly="check_readonly" close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                <span class="input-group-btn">
+                <button type="button" ng-disabled="check_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'leave_date')"><i class="fa fa-calendar"></i></button>
+                </span> </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Case of Inactivity</label>
+            <div class="col-md-7">
+              <select ng-model="formData.case_of_inactivity" ng-options="opt as opt.label for opt in leave_types" 
+            class="select2me form-control" ng-disabled="check_readonly" id="case_of_inactivity"
+             ng-change="onChangeCasetype()"    >
+                <option ></option>
+              </select>
+              <div ng-show="is_case_reg_no">
+                <input type="text" class="form-control"  placeholder="Enter Details"
+         ng-model="formData.other_case" ng-readonly="check_readonly"   >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Reason of Leaving</label>
+            <div class="col-md-7">
+              <select ng-model="formData.reason_of_leaving" ng-options="opt as opt.label for opt in resign_type" 
+            class="select2me form-control" ng-disabled="check_readonly" id="reason_of_leaving"
+             ng-change="onChangeResigntype()"   >
+                <option ></option>
+              </select>
+              <div ng-show="is_comp_reg_no">
+                <input type="text" class="form-control"  placeholder="Enter Details"
+         ng-model="formData.other_leave" ng-readonly="check_readonly"   >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Skype ID</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.skype_id" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Linked ID</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.linked_id" 
+           class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Status</label>
+            <div class="col-md-7">
+              <select   
+         ng-model="formData.status" ng-options="opt as opt.label for opt in status_data"
+      			 class="select2me form-control">
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group" ng-controller="DocUploadDocument_single">
+            <label class="col-md-4 " for="userName">Change Image</label>
+            <div class="col-md-7"> 
+              
+              <!-- <input id="uploadDocFile" placeholder="Choose File" disabled="disabled" ng-value="general.logo"  /> -->
+              <div class="fileUpload btn btn-primary" tabindex="7"> <span ng-if="!formData.emp_picture">Select Image</span><span ng-if="formData.emp_picture">Change Image</span>
+                <input id="" type="file" 
+            ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+            multiple accept=".xlsx, .xls, .ppt, .pptx, .doc, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff,.zip" class="upload" 
+            />
+                <input type="hidden" name="logo" ng-model="formData.emp_picture">
+                <input type="hidden" name="old_logo" ng-init="formData.emp_picture = formData.emp_picture" 
+            ng-model="formData.emp_picture">
+              </div>
+            </div>
+          </div>
+          <div class="form-group" ng-if="formData.emp_picture">
+           
+            <div class="col-md-7"> <!--<img  ng-src="{{imagePath+formData.emp_picture}}" 
+             style="width:100px; height:100px;" />-->  <a target="_blank" href="{{imagePath+formData.emp_picture}}"><em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a></div>
+          </div>
+        </div>
+      </div>
+      <!--    //Tab 1 finish --> 
+      
+      <!--    //Tab 2 start -->
+      <div   id="tab2" ng-if="tab_id_2==2 || tab_id_name == 'Personal'"  >
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 ">Gender</label>
+            <div class="col-md-7">
+              <select   ng-model="formData.emp_gender" ng-options="opt as opt.label for opt in gender_type"
+                class="select2me form-control" >
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> Date of Birth</label>
+            <div class="col-md-7">
+              <p class="input-group">
+                <input type="text" class="form-control" ng-model="formData.date_of_birth"      
+             ng-init="formData[formFields.id]=formData.value"
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['date_of_birth']" 
+            ng-readonly="check_readonly" close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                <span class="input-group-btn">
+                <button type="button" ng-disabled="check_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'date_of_birth')"><i class="fa fa-calendar"></i></button>
+                </span> </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Next of Kin </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.next_of_kin" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Next of Kin Phone </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.next_of_kin_phone" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Next of Kin Email </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.next_of_kin_email" class="form-control" 
+             />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 ">National Insurance Number</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.insurance_number" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Entitle Holidays</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.entitle_holiday" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Ethicial Origin</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.ethical_origin" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Religion</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.religion" class="form-control" 
+             />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--    //Tab 2 finish --> 
+      
+      <!--    //Tab 3 start -->
+      <div   id="tab3" ng-if="tab_id_2==3 || tab_id_name == 'Salary'"  >
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 ">Salary</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.salary" class="form-control" 
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 "> Over Time Rate</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.over_time_rate" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Bonus </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.bonus" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Commision </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.commission" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Company Car</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.company_car" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Company Car Detail</label>
+            <div class="col-md-7">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input  type="text" ng-model="formData.car_model" 
+class="form-control  ng-pristine ng-untouched ng-valid" g-init="formData[formFields.id]=formData.value" placeholder="Model">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input  type="text" ng-model="formData.car_enngine" 
+class="form-control ng-pristine ng-untouched ng-valid" placeholder="Engine">
+                </div>
+                <div class="form-group">
+                  <input   type="text" ng-model="formData.car_fuel_type"
+ class="form-control ng-pristine ng-untouched ng-valid" placeholder="Fuel Type">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input style="  margin: 0px 1px;"  ng-model="formData.car_marked_value"
+ class="form-control ng-pristine ng-untouched ng-valid" placeholder="Markked Value">
+                </div>
+                <div class="form-group">
+                  <input  style="  margin: 0px 1px;"   type="text" ng-model="formData.car_vin" 
+class="form-control ng-pristine ng-untouched ng-valid" placeholder="VIN">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-6">
+          <div class="form-group">
+            <label class="col-md-4 ">Company Laptop</label>
+            <div class="col-md-7">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input style="  " type="text" ng-model="formData.company_laptop_model" 
+class="form-control ng-pristine ng-untouched ng-valid" placeholder="Make Model">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input style="  margin: 0px 3px;" type="text" ng-model="formData.company_laptop_serial"
+ class="form-control ng-pristine ng-untouched ng-valid" placeholder="Serial Number">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Company Mobile</label>
+            <div class="col-md-7">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input style="  " type="text" ng-model="formData.company_mobile_model" 
+class="form-control ng-pristine ng-untouched ng-valid" placeholder="Make Model">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input style="   margin: 0px 3px;" type="text" ng-model="formData.company_mobile_serial"
+ class="form-control ng-pristine ng-untouched ng-valid" placeholder="IEMI">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Other Benefits </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.other_benifits" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">EE Pention Contribution %</label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.ee_pention" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">ER Pention Contribution % </label>
+            <div class="col-md-7">
+              <input type="text" ng-model="formData.er_pention" class="form-control" 
+             />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Salary Review Start Date</label>
+            <div class="col-md-7">
+              <p class="input-group">
+                <input type="text" class="form-control" ng-model="formData.salary_date"      
+             ng-init="formData[formFields.id]=formData.value"
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['salary_date']" 
+            ng-readonly="check_readonly" close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                <span class="input-group-btn">
+                <button type="button" ng-disabled="check_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'salary_date')"><i class="fa fa-calendar"></i></button>
+                </span> </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 ">Salary Review End Date</label>
+            <div class="col-md-7">
+              <p class="input-group">
+                <input type="text" class="form-control" ng-model="formData.salary_date_review"      
+             ng-init="formData[formFields.id]=formData.value"
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['salary_date_review']" 
+            ng-readonly="check_readonly" close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                <span class="input-group-btn">
+                <button type="button" ng-disabled="check_readonly" 
+            class="btn btn-default" ng-click="datePicker.open($event, 'salary_date_review')"><i class="fa fa-calendar"></i></button>
+                </span> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--    //Tab 3 finish -->
+      
+      <input type="hidden" ng-model="open_tab_tabs" id="open_tab_tabs" name="open_tab_tabs" class="form-control" />
+      <!--  <input type="hidden"   ng-model="formData.eid" />
+      <input type="hidden"   ng-model="formData.employee_id" />-->
+      <div   id="tab1" ng-if="tab_id_2==1 &&tab_id_2==2 &&tab_id_2==3 "  >
+        <div  ng-repeat="formFields in fields_rec" >
+          <div ng-show="fields_rec.length != 0">
+            <div ng-show="formFields.length != 0">
+              <div class="form-group">
+                <label class="col-md-4 ">{{formFields.name}}</label>
+                <div class="col-sm-8">
+                  <input type="text" ng-model="formData[formFields.id]" class="form-control"
+                          />
+                </div>
+              </div>
+            </div>
+            <div ng-repeat="formSelData in formData.fields_data" ng-if="formSelData.employee_type == 0
+           && formSelData.employee_column_id == formFields.id">
+              <div class="form-group"  ng-show="formData[formFields.id] == formFields.id" >
+                <label class="col-md-4 ">{{formSelData.name}}</label>
+                <div class="col-sm-8">
+                  <input type="text" ng-model="formData[formFields.id]" class="form-control" 
+                ng-init="formData[formFields.id]=formSelData.value"  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="hr_line2"></div>
+      <div class="pull-right">
+        <button class="btn btn_blue width_80"   id="pic_block" type="submit"> Submit</button>
+        <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+        <button class="btn default width_80" type="button" ui-sref="app.hr_listing"href="#/app/hr_listing"><i class="fa fa-undo fa_display"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

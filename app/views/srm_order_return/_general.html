@@ -1,0 +1,180 @@
+<div class="widget">
+    <div class="widget-body widget_media_ipad" style="border: 0px;box-shadow: none;">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h5 class="sales_heading" ng-if="show_order">Debit Note</h5>
+                <h5 class="sales_heading" ng-if="show_invoiceLabel">Posted Debit Note</h5>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{title_code}}</label>
+                        <div class="col-md-8">
+                            <div ng-if="show_order">
+                                <div class="input-symbol">
+                                    <input type="text" class="form-control" ng-readonly="product_type" ng-model="rec.debitNoteCode" />
+                                    <span ng-click="unlockReadonly == 1"><i class="fa fa-lock"></i></span>
+                                </div>
+                            </div>
+                            <div ng-if="show_invoiceLabel">
+                                <input type="text" class="form-control" ng-readonly="product_type" ng-model="rec.invoice_code" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Supplier No.<span ng-if="!(rec.id > 0)" class="required"> *</span></label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly}">
+                                <input type="text" id="supplierNo" class="form-control" ng-model="rec.supplierNo" ng-disabled="check_sr_readonly" ng-click="!check_sr_readonly && get_supplier(1)" ng-class="{'white_bg':!check_sr_readonly }" readonly/>
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Name</label>
+                        <div class="col-md-8">
+                            <input type="text" required id="supplierName" class="form-control" ng-model="rec.supplierName" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Apply to Purchase Invoices">Apply to PI</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" id="sale_invoice" class="form-control" readonly ng-model="rec.purchaseInvoice" ng-click="getPurchaseInvoices()" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly}" />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 1</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierAddress" class="form-control" ng-model="rec.supplierAddress" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 2</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierAddress2" class="form-control" ng-model="rec.supplierAddress2" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">City</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierCity" class="form-control" ng-model="rec.supplierCity" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">County</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierCounty" class="form-control" ng-model="rec.supplierCounty" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
+                        <div class="col-md-4 pr0">
+                            <input type="text" id="supplierPostCode" class="form-control text-uppercase" ng-model="rec.supplierPostCode" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                        <div class="col-md-4" style="padding-left: 5px;">
+                            <!-- <select class="form-control" disabled
+								ng-model="rec.supplierCountry" 
+								ng-options="opt as opt.name for opt in country_type_arr">
+							</select> -->
+                            <input type="text" value="{{rec.supplierCountry.code}}" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person</label>
+                        <div class="col-md-8">
+                            <div ng-show="check_read">
+                                <div class="input-symbol">
+                                    <input type="text" style="padding-right: 29px;" id="supplierContactName" class="form-control" ng-model="rec.supplierContactName" ng-disabled="check_sr_readonly && !check_pi_readonly" />
+                                    <span><i class="fa fa-external-link"></i></span>
+                                </div>
+                            </div>
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" id="supplierContactName" class="form-control" ng-model="rec.supplierContactName" ng-click="getAltContact(1)" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly }" ng-disabled="check_sr_readonly && !check_pi_readonly" />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Telephone</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierContactTelephone" class="form-control" ng-model="rec.supplierContactTelephone" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierContactEmail" class="form-control" ng-model="rec.supplierContactEmail" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Purchaser</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" style="padding-right: 29px;" id="Purchaser" class="form-control" ng-click="get_empl_list('Purchaser')" ng-model="rec.Purchaser" ng-disabled="check_sr_readonly && !check_pi_readonly" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly }"
+                                />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="col-md-4 control-label " title="Supplier Reference Number">Suppl. Ref. No.
+                        </label>
+                        <div class="col-md-8">
+                            <input type="text" id="supplierReferenceNo" class="display_required form-control" 
+                                ng-model="rec.supplierReferenceNo"
+                                ng-readonly="check_sr_readonly" />
+                        </div>
+					</div> -->
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label  " title="Supplier Credit Note Date">Suppl. CN Date
+							<span  class="required">*</span>
+						</label>
+                        <div class="col-md-8 no-margin">
+                            <input jqdatepicker readonly class="form-control" id="supplierCreditNoteDate" ng-model="rec.supplierCreditNoteDate" ng-disabled="check_sr_readonly" ng-class="{'pickdate':!check_sr_readonly}" ng-change="testdate_by_id('dispatchDate','supplierCreditNoteDate','invsupplierCreditNoteDate')">
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            <span id="invsupplierCreditNoteDate" style="color:#F00; display: none;">Inv Date is earlier than Dispatch Date<!-- Order Date is earlier than Inv Date --></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label  " title="Supplier Credit Note Number">Suppl. CN No.<span
+                            ng-show="display_required" class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <input type="text" id="supp_order_no" class="display_required form-control" ng-required="display_required" ng-model="rec.supplierCreditNoteNo" ng-readonly="check_sr_readonly && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date Dispatch</label>
+                        <div class="col-md-8 no-margin">
+                            <input jqdatepicker readonly class="form-control" id="dispatchDate" ng-model="rec.dispatchDate" ng-class="{'pickdate':!check_sr_readonly}" ng-disabled="check_sr_readonly" ng-change="testdate_by_id('dispatchDate','supplierCreditNoteDate','invSupplierReceiptDate')">
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            <span id="invSupplierReceiptDate" style="color:#F00; display: none;">Inv Date is earlier than Dispatch Date</span>
+                        </div>
+                        <!-- date_msg_leave_order -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label  " title="Supplier Receipt Date">Suppl. Rec. Date</label>
+                        <div class="col-md-8 no-margin">
+                            <input jqdatepicker readonly class="form-control" id="supplierReceiptDate" ng-model="rec.supplierReceiptDate" ng-disabled="check_sr_readonly" ng-class="{'pickdate':!check_sr_readonly}" ng-change="testdate_by_id('dispatchDate','supplierReceiptDate','invSupplierReceiptDate2')">
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            <span id="invSupplierReceiptDate2" style="color:#F00; display: none;">Supplier Receipt Date is earlier than Date Dispatch</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label  ">Previous Code</label>
+                        <div class="col-md-8 no-margin">
+                            <input type="text" id="prev_code" class="form-control" ng-model="rec.prev_code" ng-readonly="check_sr_readonly" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,364 @@
+<script>
+    $("a").click(function () {
+        $(".parsley-errors-list").hide();
+        $(".form-control").removeClass("parsley-error");
+    });
+    $(".btn-submit").click(function () {
+        $(".parsley-errors-list").show();
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget animated fadeIn">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Bank Account(s)</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Account Name <span
+                                          class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.account_name"
+                                           id="account_name"
+                                           required
+                                           name="account_name"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">
+                                    <!-- Display -->Preferred Name
+                                    <!-- <span class="required">*</span> --></label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.display_name"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                                <!-- required -->
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Sort Code</label>
+
+                                <div class="col-md-3 padr6">
+                                    <input type="text"
+                                           id="sort_code"
+                                           class="form-control"
+                                           ng-model="bank.sort_code"
+                                           ng-disabled="check_bank_readonly"
+                                           x-validity="regx.sortCode"
+                                           data-parsley-trigger="keyup"
+                                           data-parsley-minlength-message="Value Format xx-xx-xx "
+                                           data-parsley-type-message="Value Format xx-xx-xx "
+                                           data-parsley-error-message="Value Format xx-xx-xx "
+                                           data-parsley-pattern="/(?!0{2}(-?0{2}){2})(\d{2}(-\d{2}){2})|(\d{6})/" />
+                                </div>
+                                <label class="col-md-2 control-label">Account No.<span class="required">*</span></label>
+
+                                <div class="col-md-3 padl6">
+                                    <input type="text"
+                                           x-validity="regx.accNo"
+                                           ng-model="bank.account_no"
+                                           id="account_no"
+                                           required
+                                           class="form-control"
+                                           ng-disabled="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">Account No.<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="bank.account_no" x-validity="regx.accNo" id="account_no" name="account_no" class="form-control"
+                                        ng-readonly="check_bank_readonly" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Sort Code </label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_bank_readonly" type="text" x-validity="regx.sortCode" data-parsley-trigger="keyup" ng-model="bank.sort_code"
+                                        class="form-control " data-parsley-minlength-message="Value Format xx-xx-xx " data-parsley-type-message="Value Format xx-xx-xx "
+                                        data-parsley-error-message="Value Format xx-xx-xx " data-parsley-pattern="/(?!0{2}(-?0{2}){2})(\d{2}(-\d{2}){2})|(\d{6})/">
+                                    // /^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Swift Code / BIC</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.swift_code"
+                                           id="swift_code"
+                                           name="swift_code"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">IBAN</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.iban"
+                                           id="iban"
+                                           name="iban"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Currency</label>
+
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="bank.currency"
+                                               ng-change="addNewCurrencyPopup()"
+                                               ng-disabled="check_bank_readonly">
+                                        <ui-select-match placeholder="Select Currency">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">G/L No.
+                                    <!--Posting--> </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol" ng-click="getGLcode(1)"
+                                         ng-class="{'dont-click':check_bank_readonly}">
+                                        <input type="text"
+                                               ng-class="{'white_bg':!check_bank_readonly}"
+                                               ng-model="bank.gl_posting_display"
+                                               id="gl_posting_display"
+                                               name="gl_posting_display"
+                                               class="form-control"
+                                               readonly />
+                                        <span><i class="fa fa-external-link"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--row ends-->
+                        <div class="col-md-5 col-md-offset-2">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Bank Name<span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.name"
+                                           id="name"
+                                           required
+                                           name="name"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 1 </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.address"
+                                           id="address"
+                                           name="address"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 2</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.address_2"
+                                           id="address_2"
+                                           name="address_2"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-4 padr6"
+                                     title="City">
+                                    <input type="text"
+                                           ng-model="bank.city"
+                                           id="city"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly"
+                                           placeholder="City">
+                                </div>
+                                <div class="col-md-4 padl6"
+                                     title="County">
+                                    <input type="text"
+                                           ng-model="bank.county"
+                                           id="county"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly"
+                                           placeholder="County">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-4 padr6"
+                                     title=" Postcode">
+                                    <input type="text"
+                                           ng-model="bank.postcode"
+                                           id="postcode"
+                                           class="form-control crm-postcode "
+                                           ng-readonly="check_bank_readonly"
+                                           placeholder="Postcode">
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="bank.country"
+                                               ng-disabled="check_bank_readonly">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">City</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="bank.city" id="city" name="city" class="form-control" ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">County </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="bank.county" id="county" name="county" class="form-control" ng-readonly="check_bank_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Postcode</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="bank.postcode" id="postcode" name="postcode" class="form-control" ng-readonly="check_bank_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Country <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+
+                                    <ui-select ng-model="bank.country" g-disabled="check_bank_readonly">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in countries | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.contact"
+                                           id="contact"
+                                           name="contact"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Mobile</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.mobile"
+                                           id="mobile"
+                                           name="mobile"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.phone_no"
+                                           id="phone_no"
+                                           name="phone_no"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.fax"
+                                           id="fax"
+                                           name="fax"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="bank.email"
+                                           x-validity="regx.multiEmail"
+                                           id="email"
+                                           name="email"
+                                           class="form-control"
+                                           ng-readonly="check_bank_readonly"
+                                           placeholder="e.g. myname@example.com" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="    margin-top: 22px;">
+                            <div class="pull-right">
+                                <button class="btn btn-delete"
+                                        type="button"
+                                        ng-click="deleteBankAccount(bank.id)"
+                                        ng-show="!check_bank_readonly"
+                                        ng-if="bank.id>0">Delete
+                                </button>
+                                <button class="btn btn-submit"
+                                        type="submit"
+                                        ng-show="!check_bank_readonly">Save
+                                </button>
+                                <button class="btn btn-edit"
+                                        type="button"
+                                        ng-click="showBankEditForm()"
+                                        ng-show="check_bank_readonly">Edit
+                                </button>
+                                <button class="btn btn-cancel"
+                                        type="button"
+                                        ng-click="getBankAccounts()">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div ng-include="'app/views/company/_gl_account_modal.html'"></div>-->

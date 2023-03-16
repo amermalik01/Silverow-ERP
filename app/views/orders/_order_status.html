@@ -1,0 +1,131 @@
+<style>
+    .opp-stages {
+  counter-reset: flag;
+  margin-bottom: 21px;
+  width: 100%;
+  overflow-x: auto;;
+  white-space: nowrap;
+  overflow-y: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.opp-stages a {
+  text-decoration: none;
+  outline: none;
+  display: block;
+  float: left;
+  font-size: 10.5px;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  padding: 0 8px 0 60px;
+  background: #bbbbbb;
+  position: relative;
+  width: 150px;
+}
+
+/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+.opp-stages a:first-child {
+	padding-left: 46px;
+	border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
+}
+.opp-stages a:first-child:before {
+	left: 14px;
+}
+.opp-stages a:last-child {
+	border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
+	padding-right: 20px;
+}
+
+/*hover/active styles*/
+.opp-stages a.active,.opp-stages a.active:after,
+.opp-stages a.active:hover,.opp-stages a.active:hover:after  {
+  background: #4cbbec;
+}
+.opp-stages a.missed,.opp-stages a.missed:after,
+.opp-stages a.missed:hover,.opp-stages a.missed:hover:after {
+  background: #e2a74f;
+}
+.opp-stages a.completed,.opp-stages a.completed:after,
+.opp-stages a.completed:hover,.opp-stages a.completed:hover:after {
+  background: #86bf86;
+}
+
+.opp-stages a:hover,.opp-stages a:hover:after {
+  background: #9c9c9c;
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+.opp-stages a:hover a:before {
+  color: #333333 !important;
+}
+
+
+/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+.opp-stages a:after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  transform: scale(0.6) rotate(45deg);
+  z-index: 1;
+  background: #bbbbbb;
+  box-shadow: 2px -2px 0 2px rgb(255, 255, 255), 3px -3px 0 2px rgba(255, 255, 255, 0.1);
+  border-radius: 0 5px 0 50px;
+}
+/*we dont need an arrow after the last link*/
+.opp-stages a:last-child:after {
+	content: none;
+}
+/*we will use the :before element to show numbers*/
+.opp-stages a:before {
+  content: counter(flag);
+  counter-increment: flag;
+  border-radius: 100%;
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  margin: 6px 0;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  background: #fff;
+  color: #bbbbbb;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+  .opp-stages a {
+    padding: 0 8px 0 27px;
+    width: 120px;
+    text-align: center;
+    text-transform: capitalize;
+}  .opp-stages a:first-child {
+    padding-left: 14px;
+}
+.opp-stages a:before {
+    display:none;
+}
+</style>
+
+    <!-- <div ng-controller="OrderTabController">
+        
+         <div class="opp-stages">
+            <a ng-repeat="rec_check in order_stages_array">
+                <input id="order_state_{{rec_check.rank}}" type="checkbox" class="badgebox" ng-model="rec_check.chk" ng-click="submit_order_status(rec_check)">
+                {{ rec_check.name}}</a>
+        </div>
+    </div> 
+
+    <li ng-repeat="rec_check in order_stages_array"  class="col-md-3">
+            <label class="label">
+                {{ rec_check.name}}&nbsp;&nbsp;
+                <input id="order_state_{{rec_check.rank}}" type="checkbox" class="badgebox" ng-model="rec_check.status" ng-click="submit_order_status(rec_check)" ng-checked="rec_check.status">
+                <span class="badge">&check;</span>
+            </label>
+    </li>  -->

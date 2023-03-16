@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-md-10">
+    <div class="widget">
+      <div class="widget-body animated fadeIn">
+        <div class="row">
+          <input type="hidden"   ng-model="formData.deduction_id" />
+          <input type="hidden"   ng-model="deduction_id" id="deduction_id" />
+          <input type="hidden"   ng-model="formData.eid" />
+          <input type="hidden"   ng-model="formData.employee_id" />
+          <input  type="hidden" ng-model="formData.fcd_no"  />
+          <input  type="hidden" ng-model="formData.rate"  />
+
+          <div class="col-md-12">
+            <div class="panel-title2">Fuel cost deduction</div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Deduction Code</label>
+                <div class="col-md-8">
+                  <input  readonly  type="text" ng-model="formData.fcd_code"
+           class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Employee Code </label>
+                <div class="col-md-8">
+                  <input type="text" ng-model="formData.user_code"  readonly="readonly" class="form-control"
+             />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label  ">Employee Name</label>
+                <div class="col-md-8">
+                  <input   type="text" ng-model="formData.first_name" readonly="readonly" class="form-control"
+            />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label  ">Employee Company</label>
+                <div class="col-md-8">
+                  <input   type="text"  readonly="readonly" class="form-control"
+          value=" {{company_name }}"   />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Start Miles</label>
+                <div class="col-md-8">
+                  <input  type="text" ng-model="formData.start_miles" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">End Miles</label>
+                <div class="col-md-8">
+                  <input   type="text" ng-model="formData.end_miles" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Fuel Type </label>
+                <div class="col-md-8">
+                  <select ng-model="formData.fuel_type"
+             ng-options="opt as opt.label for opt in arr_car_fuel_type"
+              class="select2me form-control" required>
+                     <option value="" disabled selected>Select</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Engine Type</label>
+                <div class="col-md-8">
+                  <select ng-model="formData.engine_type"
+             ng-options="opt as opt.label for opt in arr_car_enngine | filter:{type: formData.fuel_type.value}"
+              class="select2me form-control" required>
+                     <option value="" disabled selected>Select</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12">
+            <div class="pull-left">
+              <!--   <button class="btn btn-info btn_blue"  type="button"ng-click="addNewChoice()">Add Details</button>-->
+            </div>
+            <div class="pull-right">
+
+           <div class="dropdown ib"   ng-show="formData.id>0 &&  hr_fuel_cost_module>0" >
+             <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+             <ul class="dropdown-menu dte animated fadeIn">
+               <span ng-click="set_document_internal(hr_fuel_cost_module)" ><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+               <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+               <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+             </ul>
+           </div>
+              <button class="btn btn-submit" type="submit" ng-show="!check_hrholiday_readonly"> Save</button>
+              <button class="btn btn-edit" type="button" ng-click="showEditFormHoliday()" ng-show="check_hrholiday_readonly"> Edit</button>
+              <button class="btn btn-cancel" type="button" ng-click="getDeduction()"> Cancel</button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2 padl6">
+    <div class="EmployeeInfo">
+        <div ng-controller="DocUploadDocument_single">
+            <div class="fileUpload showupload">
+                <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+                <input ng-disabled="check_hrvalues_readonly" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')" name="file"
+                accept=".png,.jpeg,.jpg" class="upload" data-max-size="50" />
+                <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
+                <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
+            </div>
+
+            <i ng-if="!formData.emp_picture" class="material-icons" style="font-size: 81px;
+                color: #dedede;">&#xE853;</i>
+        </div>
+        <div ng-if="formData.emp_picture" style="display:inline-block">
+            <img ng-src="{{imagePath+formData.emp_picture}}" class="d1img" />
+        </div>
+        <span class="name">
+            {{formData.first_name + ' ' + formData.last_name}}
+        </span>
+        <span class="job">
+            {{formData.job_title}}
+        </span>
+        <span class="email">
+            <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+        </span>
+        <span class="mobile" ng-if="formData.mobile_phone.length>0">
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <div>{{formData.mobile_phone}}</div>
+        </span>
+        <span class="skype" ng-if="formData.skype_id.length>0">
+            <i class="fa fa-skype" aria-hidden="true"></i>
+            <div>{{formData.skype_id}}</div>
+        </span>
+    </div>
+</div>
+</div>

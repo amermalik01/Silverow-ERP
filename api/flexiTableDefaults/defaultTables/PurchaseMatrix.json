@@ -1,0 +1,173 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Supplier No.",
+            "field_name": "supplier_no",
+            "event": {
+                "name": "openSupplierLink",
+                "trigger": "ng-click",
+                "params": [
+                    "index"
+                ]
+            },
+            "classes": "tooltips_clsshilight pull-left",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "91",
+            "data_type": "string"
+        },
+        {
+            "title": "Name",
+            "field_name": "supplier_name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "Purchaser",
+            "field_name": "purchaser",
+            "visible": "1",
+            "pinned": "0",
+            "db_table": "sr_sel_emp_sale_dept",
+            "db_field": "name",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "drop_down"
+        },
+        {
+            "title": "Segment",
+            "field_name": "segment",
+            "db_table": "crm_segment",
+            "db_where": " segment_type = 2 ",
+            "db_field": "title",
+            "visible": "0",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "drop_down"
+        },
+        {
+            "title": "Territory",
+            "field_name": "territory",
+            "db_table": "crm_region",
+            "db_where": " status = 1 AND region_type IN (3, 34)",
+            "db_field": "title",
+            "visible": "0",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "drop_down"
+        },
+        {
+            "title": "Selling Group",
+            "field_name": "selling_group",
+            "db_table": "crm_buying_group",
+            "db_where": " crm_buying_group_type = 2 ",
+            "db_field": "title",
+            "visible": "0",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "drop_down"
+        },
+        {
+            "title": "Posting Group",
+            "field_name": "posting_group",
+            "visible": "0",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Orders",
+            "field_name": "orders_value",
+            "classes": "tooltips_clsshilight padright10",
+            "event": {
+                "name": "show_purchase_matrix_detail",
+                "trigger": "ng-click",
+                "params": [
+                    "index",
+                    "type:4",
+                    "title:Orders"
+                ]
+            },
+            "headerTotal": true,
+            "visible": "0",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "number"
+        },
+        {
+            "title": "Purchases - YTD",
+            "field_name": "current_year_purchases",
+            "classes": "tooltips_clsshilight padright10",
+            "event": {
+                "name": "show_purchase_matrix_detail",
+                "trigger": "ng-click",
+                "params": [
+                    "index",
+                    "type:1",
+                    "title:Purchases - YTD"
+                ]
+            },
+            "headerTotal": true,
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "number"
+        },
+        {
+            "title": "Purchases - Selected Period",
+            "field_name": "selected_period_purchases",
+            "classes": "tooltips_clsshilight padright10",
+            "event": {
+                "name": "show_purchase_matrix_detail",
+                "trigger": "ng-click",
+                "params": [
+                    "index",
+                    "type:2",
+                    "title:Purchases - Selected Period"
+                ]
+            },
+            "headerTotal": true,
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "custom_classes": "highlightColBoth",
+            "custom_classesHeader": "highlightTh",
+            "width": "182",
+            "data_type": "number"
+        },
+        {
+            "title": "Purchases - Prior Period",
+            "field_name": "selected_period_previous_purchases",
+            "classes": "tooltips_clsshilight padright10",
+            "custom_classes": "highlightColBoth2",
+            "custom_classesHeader": "highlightTh",
+            "event": {
+                "name": "show_purchase_matrix_detail",
+                "trigger": "ng-click",
+                "params": [
+                    "index",
+                    "type:3",
+                    "title:Purchases - Prior Period"
+                ]
+            },
+            "headerTotal": true,
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "160",
+            "data_type": "number"
+        }
+    ]
+}

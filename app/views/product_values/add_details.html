@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div id="dt_example" class="example_alt_pagination">
+          <div class="row" ng-repeat="formData_rec in unit_record_list  track by $index">
+            <div class="col-md-12">
+              <h4 class="no-span">Dimensions - {{formData_rec.setup_unit_name}}</h4>
+              <hr style="margin-left:13px;">
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="col-md-4 control-label "> Barcode</label>
+                  <div class="col-md-8">
+                    <input type="hidden" value="11223344556654" />
+                    <input type="hidden" value="3456erty4" />
+                    <input ng-readonly="check_item_detail_readonly" type="text" data-parsley-trigger="keyup" ng-model="formData_rec.prd_bar_code"
+                      class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value "
+                      data-parsley-error-message="Invalid Value" data-parsley-pattern="^[a-zA-Z0-9\-_]{0,50}$">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label ">Dimensions</label>
+                  <div class="col-md-2 padr6">
+                    <div class="input-label input-dimen">
+                      <div class="input-label-name">
+                        H:
+                      </div>
+                      <input ng-readonly="check_item_detail_readonly" type="number" data-parsley-trigger="keyup" ng-change="CalculateVolume($index)" ng-model="formData_rec.prd_height"
+                      class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                      data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                    </div>
+                  </div>
+                  <div class="col-md-2 padr6 padl6">
+                      <div class="input-label input-dimen">
+                          <div class="input-label-name">
+                            W:
+                          </div>
+                          <input ng-readonly="check_item_detail_readonly" type="number" data-parsley-trigger="keyup" ng-change="CalculateVolume($index)" ng-model="formData_rec.prd_width"
+                          class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                          data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                          </div>
+                        
+                    </div>
+                    <div class="col-md-2 padr6 padl6">
+                        <div class="input-label input-dimen">
+                            <div class="input-label-name">
+                              L:
+                            </div>
+                            <input ng-readonly="check_item_detail_readonly" type="number" data-parsley-trigger="keyup" ng-change="CalculateVolume($index)" ng-model="formData_rec.prd_length"
+                            class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                            data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                        </div>
+                      </div>
+                    <div class="col-md-2 padl6 ">
+                      <select ng-disabled="check_item_detail_readonly" ng-change="onChanglist(formData_rec,$index,1);"
+                        ng-model="formData_rec.prd_dimension_unit" ng-options="opt as opt.name for opt in unit_level_list" class=" form-control">
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label ">Volume </label>
+                    <div class="col-md-6 padr6">
+                      <input ng-readonly="check_item_detail_readonly" type="text" data-parsley-trigger="keyup" ng-model="formData_rec.volume" class="form-control input_text"
+                        data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                        data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" ng-disabled="1">
+                    </div>
+                    <div class="col-md-2 padl6">
+                      <select ng-change="onChanglist(formData_rec,$index,1)" ng-model="formData_rec.volume_unit"
+                        ng-options="opt as opt.name for opt in volume_list" class=" form-control" ng-disabled="1">
+                      </select>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-5 col-md-offset-2">
+                <div class="form-group">
+                  <label class="col-md-4 control-label ">Net Weight</label>
+                  <div class="col-md-6 padr6">
+                    <input ng-readonly="check_item_detail_readonly" type="text" data-parsley-trigger="keyup" class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+                      data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"
+                      ng-model="formData_rec.prd_net_weight" 
+                      ng-change="CalculateGrossWeight($index)"
+                      >
+                  </div>
+                  <div class="col-md-2 padl6">
+                    <select ng-disabled="check_item_detail_readonly" ng-change="onChanglist(formData_rec,$index,2)" ng-model="formData_rec.prd_net_weight_unit"
+                      ng-options="opt as opt.name for opt in unit_level_weight_list" class=" form-control">
+                    </select>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <label class="col-md-4 control-label ">
+                  Packaging Weight
+                  <span class="pull-left"><small>(if applicable)</small></span>
+                  </label>
+                  <div class="col-md-6 padr6">
+                    <input ng-readonly="check_item_detail_readonly" type="text" data-parsley-trigger="keyup" class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                      data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" 
+                      ng-model="formData_rec.prd_pkg_weight"
+                      ng-change="CalculateGrossWeight($index)"
+                      >
+                  </div>
+                  <div class="col-md-2 padl6">
+                    <select ng-disabled="check_item_detail_readonly" ng-change="onChanglist(formData_rec,$index,2)" ng-model="formData_rec.prd_pkg_weight_unit"
+                      ng-options="opt as opt.name for opt in unit_level_weight_list" class=" form-control">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label ">Gross Weight</label>
+                  <div class="col-md-6 padr6">
+                    <input ng-readonly="check_item_detail_readonly" type="text" data-parsley-trigger="keyup" class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                      data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"
+                      ng-model="formData_rec.prd_weight" ng-disabled="1"
+                      >
+                  </div>
+                  <div class="col-md-2 padl6">
+                    <select ng-change="onChanglist(formData_rec,$index,2)" ng-model="formData_rec.prd_weight_unit"
+                      ng-options="opt as opt.name for opt in unit_level_weight_list" class=" form-control" ng-disabled="1">
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 affix">
+              <div class="pull-right">
+
+                <div class="dropdown ib" ng-show="formData.id>0 &&  item_detal_tab_module>0">
+                  <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                  <ul class="dropdown-menu dte animated fadeIn">
+                    <span ng-click="set_document_internal(item_gneral_tab_module)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                    <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                    <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                  </ul>
+                </div>
+
+
+                <button class="btn btn-delete active-btns" type="button" ng-show="formData.id>0 &&  allowdelete_detal_tab==1 && !check_item_detail_readonly" ng-click="delete_product()"> Delete </button>
+                <button class="btn btn-submit picc_block" type="submit" ng-show="!check_item_detail_readonly
+&& allowadd_detal_tab==1 && allowedit_detal_tab==1 && allowview_detal_tab==1"><i class="fa fa-check fa_display"></i> Save </button>
+                <button class="btn btn-edit" type="button" ng-click="showEditForm_detail()" ng-show="check_item_detail_readonly
+&& allowadd_detal_tab==1 && allowedit_detal_tab==1 &&  allowview_detal_tab==1"><i class="fa fa-edit fa_display"></i> Edit </button>
+                <button class="btn btn-cancel no-width" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo     fa_display"></i> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

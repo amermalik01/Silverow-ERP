@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label"> Code<span class="required">*</span></label>
+
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.document_code" id="title" class="form-control"
+                                       ng-disabled="check_readonly" required/>
+                                <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                                <input type="hidden" ng-model="rec.old_file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Name <span class="required">*</span></label>
+
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.title" id="title" class="form-control"
+                                       ng-disabled="check_readonly" required/>
+                                <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                                <input type="hidden" ng-model="rec.old_file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label "> Folder </label>
+
+                            <div class="col-sm-8">
+                                <select ng-disabled="check_readonly" ng-model="rec.folders"
+                                        ng-options="opt as opt.name for opt in arr_folders"
+
+                                        class="select2me form-control" required
+                                        ng-change="addFolderPopup_srm()" id="case_folder">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-controller="SRMUploaDocument">
+                            <label class="col-sm-4 control-label  " for="userName">Upload Document</label>
+
+                            <div class="col-sm-8">
+                                <div class="fileUpload btn btn_blue col-sm-7"><span
+                                        ng-if="!rec.name">Upload Document</span><span
+                                        ng-if="rec.name">Upload Document</span>
+                                    <!--       accept="image/*" -->
+                                    <input type="file"
+                                           ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+                                           accept=".gif, .jpg, .png, .doc, .docx,.pdf" multiple class="upload"
+                                           ngf-max-size="2MB"/>
+                                    <input type="hidden" ng-model="rec.FileType">
+                                    <input type="hidden" ng-model="rec.name">
+                                    <input type="hidden" ng-init="rec.name = rec.name"
+                                           ng-model="rec.name">
+                                    <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span>
+                                </div>
+                                <div class="form-group col-sm-5" ng-if="rec.name">
+                                    <div class="col-sm-7"><span ng-if=" rec.name !='' "> <a target="_blank"
+                                                                                            href="{{imagePath+rec.name}}">
+                                        <em style="font-size: 30px !important;"
+                                            class="fa fa-file-image-o"></em></a> </span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="hr_line2"></div>
+                        <div class="pull-right">
+                            <button class="btn btn-submit" type="submit" ng-show="!check_readonly"><i
+                                    class="fa fa-check fa_display"></i> Submit
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="gotoedit()"
+                                    ng-show="check_readonly"><i class="fa fa-edit fa_display"></i> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="general_document()"><i
+                                    class="fa fa-undo fa_display"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

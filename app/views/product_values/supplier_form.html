@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body animated fadeIn">
+                <input type="hidden" ng-model="formData.sp_id"/>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6 ">
+                            <div class="  form-group">
+                                <label class="control-label col-md-4"> Volume {{formData.volume_type}} <span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="formData.volume_id" required
+                                            ng-options="opt as opt.name for opt in arr_volume_id" class="form-control"
+                                            ng-disabled="check_item__volume"
+                                            ng-change="onChange_vol_1(1,'sale',formData.volume_type)" id="vol_1_id">
+                                        <option style="display:none" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4"> Standard Sale Price<span
+                                        class="required">*</span> </label>
+
+                                <div class="col-md-8  ">
+                                    <div class="input-symbol">
+                                        <input readonly
+                                               type="text" data-parsley-trigger="keyup" required
+                                               ng-model="formData.purchase_price"
+                                               ng-change="convert_show_discount_price(1,formData)"
+                                               class="form-control input_text"
+                                               data-parsley-minlength-message="Invalid Value"
+                                               data-parsley-type-message="Invalid Value"
+                                               data-parsley-error-message="Invalid Value"
+                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                        <span>{{defaultCurrencyCode}} </span>
+                                        <!--{{customerCurrencyCode}}{{defaultCurrencyCode}} / {{priceFormData.sale_currency}}   {{priceFormData.purchase_measure.name}} -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="  control-label col-md-4  "> Discount Type<span class="required">*</span></label>
+
+                                <div class="  col-md-8">
+                                    <select ng-disabled="check_item__volume" required ng-model="formData.supplier_type"
+                                            ng-options="opt as opt.name for opt in list_type" id="type_1"
+                                            ng-change="setSymbol(11);convert_show_discount_price(1,formData)"
+                                            class=" form-control">
+                                        <option style="display:none" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class=" control-label col-md-4"> Discount<span class="required">*</span> </label>
+
+                                <div class="  col-md-8  ">
+                                    <div class=" input-symbol">
+                                        <input ng-readonly="check_item__volume" required
+                                               type="text" data-parsley-trigger="keyup"
+                                               ng-change="convert_show_discount_price(1,formData)"
+                                               ng-model="formData.discount_value" id="discount_value_1"
+                                               class="form-control input_text"
+                                               data-parsley-minlength-message="Invalid Value"
+                                               data-parsley-type-message="Invalid Value"
+                                               data-parsley-error-message="Invalid Value"
+                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                        <span ng-show="percentage_sign">&#37;</span> <span ng-show="curency_sign"> {{defaultCurrencyCode}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="  control-label col-md-4"> Discounted Price </label>
+
+                                <div class="  col-md-8">
+                                    <div class="input-symbol">
+                                        <input readonly
+                                               type="text" data-parsley-trigger="keyup"
+                                               ng-model="formData.discount_price" id="discount_price_1"
+                                               ng-change="convert_show_discount_price(1,formData)"
+                                               class="form-control input_text"
+                                               data-parsley-minlength-message="Invalid Value"
+                                               data-parsley-type-message="Invalid Value"
+                                               data-parsley-error-message="Invalid Value"
+                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                        <span> {{defaultCurrencyCode}} </span>
+                                    </div>
+                                    <!--{{customerCurrencyCode}}      {{priceFormData.sale_currency}} -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control " id="sddate"
+                                           ng-model="formData.start_date" required readonly
+                                           ng-change="testdate_by_id('sddate','eddate','date_msg_ssdate');">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="date_msg_ssdate" style="color:#F00; display: none;">start Date is earlier  then Start Date</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">End Date <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control " id="eddate"
+                                           ng-model="formData.end_date" required readonly
+                                           ng-change="testdate_by_id('sddate','eddate','date_msg_ssdate');">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label " title="G/L No. for Discount | Promotion">G/L No.<!--for Discount|Promotion-->  <!--<span
+                                        class="required">*</span>--></label>
+
+                                <div class="col-md-8">
+
+                                    <aside style="position: relative;"></aside>
+                                    <input type="text" title="{{formData.sale_volume_item_gl_codes}}"
+                                           ng-model="formData.sale_volume_item_gl_codes"
+                                           class="in-t-1 form-control" ng-disabled="check_readonly"
+                                           ng-click="getGL_account_code('sale_volume_item_gl')"
+                                           readonly/><!--ng-readonly="" required -->
+                                    <input type="hidden" ng-model="formData.sale_volume_item_gl_id"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn  btn-default" type="button"
+                                    ng-show="formData.id>0 &&  item_sale_tab_module>0"
+                                    ng-click="set_document_internal(item_sale_tab_module)">
+                                <span class="int-doc">{{document_title}}<img src="app/img/infile.png"
+                                                                             style="width:16px;" class="doc-icon">
+                                </span>
+                            </button>
+                            <button class="btn btn-submit date_block_start max_block date_block_end  pic_block date_block_standard_date"
+                                    ng-show="!check_item_readonly__volume" type="submit">
+                                <i class="fa fa-check   fa_display"></i> Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditvolume_form()"
+                                    ng-show="check_item__volume">
+                                <i class="fa fa-edit   fa_display"></i> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="getsupplier()">
+                                <i class="fa fa-undo   fa_display"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

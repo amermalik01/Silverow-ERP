@@ -1,0 +1,151 @@
+<div class="row">
+  <div class="widget">
+    <div class="widget-body">
+      <input type="hidden"   ng-model="formData.eid" />
+      <input type="hidden"   ng-model="formData.prooduct_id" />
+      <!--    <input type="hidden"   ng-model="formData.tab_id_2"   value="3"/>-->
+      <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Standard Unit Cost </label>
+          <div class="col-sm-7"> 
+            
+            <!--<input type="number" ng-model="unit_cost" format-num/><br/>
+  {{value | number:2}}<br/>--> 
+            
+            <!--   {{ formData.unit_cost  | number:2 }}
+                    {{formData.unit_cost}}-->
+            
+            <input ng-readonly="check_item_readonly" type="number"  placeholder="0"     min="0.01"  step="0.01"   data-parsley-trigger="keyup"  ng-chnage="valueEnteredChanged()"
+           data-parsley-minlength="1"  ng-model="formData.unit_cost"  id="unit_cost"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value">
+          </div>
+          <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Purchase Unit of Measure</label>
+          <div class="col-sm-7"> 
+            <!--            <input  ng-readonly="check_item_readonly" type="text" ng-model="formData.purchase_measure" class="form-control" 
+             />-->
+            
+            <button type="button" id="model_btn_p_unit" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_p_unit"   style="display:none" > Add New </button>
+            
+            <select  ng-disabled="check_item_readonly"  ng-model="formData.purchase_measure" ng-options="opt as opt.name for opt in purchase_unit_measures"  id="purchase_measure"
+                  class="select2me form-control"  ng-change="onChangpurchaseUnittype()"     >
+              
+            </select>
+          </div>
+        </div>
+        <!--<div class="form-group">
+          <label class="col-sm-3 control-label ">Costing Method </label>
+          <div class="col-sm-7">
+            <select  ng-disabled="check_item_readonly"    ng-model="formData.costing_method_id" ng-options="opt as opt.label for opt in costing_method" id="costing_method_id"
+                class="select2me form-control"    >
+              
+            </select>
+          </div>
+        </div>-->
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Average Cost </label>
+          <div class="col-sm-7">
+            <input ng-readonly="check_item_readonly" type="number"  placeholder="0"     min="0.01"  step="0.01" data-parsley-trigger="keyup" 
+           data-parsley-minlength="1"  ng-model="formData.average_cost_id"  id="average_cost_id"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value"   data-parsley-error-message="Invalid Value"  >
+          </div>
+          <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+        </div>
+        
+      </div>
+      <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+          <label class="col-sm-3 control-label ">VAT Rate </label>
+          <div class="col-sm-7">
+            <select  ng-disabled="check_item_readonly"     id="vat_rate_id"
+                  ng-model="formData.vat_rate_id" ng-options="opt as opt.name for opt in vat_method"
+                class="select2me form-control"   >
+              
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Standard Selling Price </label>
+          <div class="col-sm-7">
+            <input ng-readonly="check_item_readonly" type="number"  placeholder="0"     min="0.01"  step="0.01"  data-parsley-trigger="keyup"   
+           data-parsley-minlength="1"  ng-model="formData.standard_price"  id="standard_price"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value"   data-parsley-error-message="Invalid Value"  >
+          </div>
+          <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Average Selling Price</label>
+          <div class="col-sm-7">
+            <input ng-readonly="check_item_readonly" type="number"  placeholder="0"     min="0.01"  step="0.01"   data-parsley-trigger="keyup" 
+           data-parsley-minlength="1"  ng-model="formData.average_price"  id="average_price"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value"   data-parsley-error-message="Invalid Value"  >
+          </div>
+          <!--   <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+        </div>
+        <!--     <div class="form-group">
+                <label class="col-sm-3 control-label ">Profit </label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_item_readonly" type="text" ng-model="formData.profit_value" class="form-control" 
+             />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label ">Profit %</label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_item_readonly" type="text" ng-model="formData.profit_percentage" class="form-control" 
+             />
+                </div>
+              </div>-->
+        <!--<div class="form-group">
+          <label class="col-sm-3 control-label ">Purchase G/L Code </label>
+          <div class="col-sm-7"> 
+            
+            
+            <input type="text" ng-model="formData.purchase_code" 
+               id="purchase_code" class="form-control" 
+               ng-click="getpurchaseGL('saleperson')"  ng-readonly="check_item_readonly"   />
+            <input type="hidden" ng-model="formData.purchase_code_id"  class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Sale G/L Code </label>
+          <div class="col-sm-7"> 
+            
+            
+            <input type="text" ng-model="formData.sales_code" 
+               id="sales_code" class="form-control" 
+               ng-click="getpurchaseGL('sale')"  ng-readonly="check_item_readonly"   />
+            <input type="hidden" ng-model="formData.sales_code_id"  class="form-control" />
+          </div>
+        </div>-->
+      </div>
+      <div class="col-md-12">
+        <div class="hr_line2"></div>
+        <div class="pull-right">
+          <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+          <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_item_readonly"><i class="fa fa-edit"></i> Edit</button>
+          <!-- <button class="btn btn-info btn_blue" type="button" ng-click="gotoEdit()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+      <button class="btn btn-info btn_blue" type="button" ng-click="delete({id:id})" ng-show="check_readonly"><i class="fa fa-times"></i> Delete</button>
+     -->
+          <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/Gl_listing_modal.html'" ></div>

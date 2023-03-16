@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "credit_note_no": "return_invoice_code"
+    },
+    "fileName": "PCN.[[credit_note_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

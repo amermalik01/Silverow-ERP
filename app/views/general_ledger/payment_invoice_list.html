@@ -1,0 +1,214 @@
+
+<div class="modal fade" id="ReciptInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+    <div class="modal-dialog" style="margin-top:89px; width:75%">
+
+        {{doc_type}}
+        <!--    Payment-->
+        <div class="modal-content" ng-if="doc_type == 1 || doc_type == 4">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{postData.title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow-x: initial !important">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5 no-padding">
+                            <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty"
+                                   ng-model="searchKeyword2">
+                        </div>
+                        <div class="col-md-7"><span class="pull-right"> 
+
+                                <strong> Total to be Allocated :&nbsp;{{  final_amount | number  :decimal_range}} &nbsp;&nbsp;{{curency_code}} </strong>  <br>
+                                <strong> Remaining Amount to be Allocated :&nbsp;{{ netTotal() | number
+                                    :decimal_range}} &nbsp;&nbsp;{{curency_code}} </strong> </span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div class="panel-body">
+                                <div>
+                                    <table class="table table-striped table-bordered table-hover"
+                                           ng-if="ReciptInvoiceModalarr.length > 0">
+                                        <thead>
+                                            <tr class="bg-col">
+                                                <!-- <th><input type="checkbox" class="checkAllRecipt"></th>-->
+
+                                                <th> Invoice Date</th>
+                                                <th> Invoice No</th>
+                                                <th> Order No.</th>
+                                                <th> <!--  <span ng-if="postData.type == 2">Customer </span>
+                                                      <span ng-if="postData.type == 3">Supplier </span-->   Name</th>
+                                                <th> Original AMT </th>
+                                                <th> AMT in LCY</th>
+                                                <th> AMT Paid</th>
+                                                <th> Remaining AMT</th>
+                                                <th> AMT to be allocated</th>
+                                                <th> Paid In Full</th>
+                                                <th> Due Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="sp in ReciptInvoiceModalarr|filter: searchKeyword2">
+                                                <!-- <td><input type="checkbox" ng-checked="sp.chk " ng-click="Selectedinvoice_listssingle(sp,0)"></td>-->
+                                                <!--<td><input type="radio" ng-checked="sp.isPrimary" ng-click="Selectedinvoice_listssingle(sp,1)"></td>-->   <td> {{sp.invoice_date}}</td>
+
+                                                <td>  
+                                                    <a title="View Sale Invoice" class="tooltips_clss btn hilight " 
+                                                            style="font-size: 11px;" ui-sref="app.viewOrder({id:sp.id, isInvoice:1})" target="_blank" >
+                                                        {{sp.sale_invioce_code}} 
+                                                    </a>
+                                                </td>
+                                                <td>  
+                                                    {{sp.sale_order_code}}
+                                                </td>
+                                                <td> {{sp.name}}</td>
+                                                <td> {{ sp.orignal_grand_total | number:decimal_range }}&nbsp;&nbsp;{{sp.currency_code}}</td>
+                                                <td> {{ sp.grand_total| number:decimal_range }}  &nbsp;&nbsp;{{defaultCurrencyCode}} </td>
+                                                <td >    {{ sp.outstanding | number:decimal_range }}
+                                                    <span ng-if="sp.outstanding > 0">
+                                                        <a title="Payed" ng-click="get_payed_list(sp)"
+                                                           class="tooltips_clss btn "> <i class="fa fa-eye"></i> </a>
+                                                    </span>    &nbsp;&nbsp;{{defaultCurrencyCode}}
+                                                </td>
+                                                <td ><span ng-if="sp.orignal_grand_total - sp.outstanding == 0">
+                                                        {{sp.orignal_grand_total| number:decimal_range }} </span>
+                                                    <span ng-if="sp.orignal_grand_total - sp.outstanding > 0">
+                                                        {{sp.orignal_grand_total - sp.outstanding| number:decimal_range }} </span>
+                                                    &nbsp;&nbsp;{{sp.currency_code}}
+                                                </td>
+                                                <td>
+                                                    <!--  ng-blur="change_amount_invoice(ReciptInvoiceModalarr,$index);Selectedinvoice_listssingle(sp,0)"-->
+
+
+                                                    <div class="input-symbol">
+
+                                                        <input ng-if="sp.currency_id == select_curency_id" type="text"   data-parsley-trigger="keyup"
+                                                               ng-model="sp.amount" ng-blur="netTotal();
+                                                                           setremainingamount(sp)"   class="in-t-1 input_text"
+                                                               data-parsley-minlength-message="Invalid Value"
+                                                               data-parsley-type-message="Invalid Value"
+                                                               data-parsley-error-message="Invalid Value"
+                                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+
+                                                        <span ng-if="sp.currency_id == select_curency_id">{{curency_code}} </span> 
+
+                                                        <span ng-if="sp.currency_id !== select_curency_id">  {{defaultCurrencyCode}}  </span> 
+
+
+                                                    </div>
+
+                                                    <span ng-if="sp.currency_id != select_curency_id"
+                                                          title="Selected currency for payment should only be in Invoice based currency."> <i class="fa fa-exclamation-circle" aria-hidden="true"   style="font-size: 19px;color: #f55858;"></i> </span>
+                                                    <!--                                                    <span ng-if="sp.grand_total - sp.outstanding == 0">
+                                                                                                            <ul class="parsley-errors-list filled"    ng-show="sp.amount > sp.grand_total">
+                                                                                                                <li class="parsley-type">This value should be less than
+                                                                                                                    remaining. </li>
+                                                                                                            </ul>
+                                                                                                        </span>-->
+
+
+
+                                                    <input type="hidden" id="realised_currency_movement_amount"
+                                                           ng-model="sp.realised_currency_movement_amount">
+                                                    <input type="hidden" id="realised_currency_movement_type"
+                                                           ng-model="sp.realised_currency_movement_type">
+
+                                                    <!--{{sp.realised_currency_movement_amount}}{{sp.realised_currency_movement_type}}--></td>
+                                                <td><input type="checkbox" id="checkremaingamount_{{sp.id}}"
+                                                           ng-click="setremainingamount(sp)"></td>
+                                                <td> {{sp.due_date}}</td>
+
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<span class="pull-left">Selected:&nbsp;{{( ReciptInvoiceModalarr | filter: {chk: true}).length}}</span>-->
+
+                <strong> <span ng-if="netTotal() < 0"  style="color:    rgba(255, 0, 0, 0.78);"> Limit Exceed</span> </span> </strong>
+                <button   ng-if="array_receipt_gl_form.type == 1"    class="btn btn_add" ng-click="addrecptget_invoice()" type="button"   ng-class="{'dont-click':netTotal() < 0}">Save </button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+        <!--Refund-->
+        <div class="modal-content" ng-if="doc_type == 2 || doc_type == 3">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{postData.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5 no-padding">
+                            <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty"
+                                   ng-model="searchKeyword2">
+                        </div>
+                        <div class="col-md-7"> <span class="pull-right"> <strong> Remaining Amount to be Refund :&nbsp;{{netTotalrefund() | number
+                                 :decimal_range}} </strong> </span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered table-hover"
+                                       ng-if="ReciptInvoiceModalarr.length > 0">
+                                    <thead class="fixit">
+                                        <tr class="bg-col">
+                                            <th>Date</th>
+                                            <th>Unallocated Amount</th>
+                                            <th>Remaining Amount</th>
+                                            <th> Refund Amount</th>
+                                            <th> Refund In Full</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fixit">
+                                        <tr ng-repeat="sp in ReciptInvoiceModalarr|filter: searchKeyword2">
+                                            <td> {{sp.journal_date}}</td>
+                                            <td> {{sp.grand_total| number:decimal_range }}</td>
+                                            <td> {{ sp.outstanding | number:decimal_range }} </td>
+                                            <!-- <td>{{sp.payed | number:decimal_range }}</td>-->
+                                            <!--<td><span ng-if="sp.grand_total - sp.outstanding==0"> {{sp.grand_total | number:decimal_range }} </span> <span ng-if="sp.grand_total - sp.outstanding>0"> {{sp.grand_total - sp.outstanding| number:decimal_range }} </span></td>-->
+                                            <td><input type="text" data-parsley-trigger="keyup"
+                                                       ng-model="sp.amount" ng-blur="netTotalrefund();
+                                                                   setremianrefund(sp)"
+                                                       class="in-t-1 input_text"
+                                                       data-parsley-minlength-message="Invalid Value"
+                                                       data-parsley-type-message="Invalid Value"
+                                                       data-parsley-error-message="Invalid Value"
+                                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                                                <!--<ul class="parsley-errors-list filled" ng-show="sp.amount >sp.outstanding ">
+<li class="parsley-type">This value should be less than remaining.</li>
+</ul>--></td>
+                                            <td><input type="checkbox" id="checkremaingamountrefund_{{sp.id}}"
+                                                       ng-click="setremianrefund(sp)"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<span class="pull-left">Selected:&nbsp;{{( ReciptInvoiceModalarr | filter: {chk: true}).length}}</span>-->
+
+                <!--<strong  ng-if="netTotalrefund()<0" style="color: rgba(255, 0, 0, 0.78);"> Limit Exceed </strong>-->
+                <button class="btn btn_add" ng-click="addrecptget_invoice()" type="button"       ng-class="{'dont-click':netTotalrefund() < 0}">Save </button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

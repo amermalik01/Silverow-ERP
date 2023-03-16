@@ -1,0 +1,599 @@
+<div ng-controller="EmailInternal">
+    <div class="row ng-scope">
+        <div class="col-md-3">
+            <div class="input-symbol">
+                <input type="text" placeholder="Search" ng-model="searchKeyword" class="in-t-1">
+                <span id="date_msg_4"> <i class="fa fa-search" aria-hidden="true"></i></span></div>
+        </div>
+        <div class="col-md-9">
+            <a class="btn btn_add2 pull-right" ng-click="ComposeEmail(0)">Compose</a>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="checkAllbtn" title="Check All" ng-show="Listing == true">
+                <input type="checkbox" type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
+            </label>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" title="Refresh" ng-if="Listing == true"
+                        ng-click="getModuleEmails()"><i
+                        class="fa fa-refresh"></i></button>
+                <button type="button" class="btn btn-primary" title="Move to Archive"
+                        ng-if="listingType=='inbox' && Listing == true"
+                        ng-click="archivingEmails()"><i
+                        class="fa fa-archive"></i></button>
+                <button type="button" class="btn btn-primary" title="Move to Inbox"
+                        ng-if="listingType=='archive' && Listing == true"
+                        ng-click="InboxingEmails()"><i
+                        class="fa fa-inbox"></i></button>
+                <button type="button" class="btn btn-primary" title="Delete" ng-if="Listing == true"
+                        ng-click="DeleteEmails()"><i
+                        class="fa fa-trash"></i></button>
+            </div>
+            <h3 class="ib d12" ng-if="listingType=='archive'">Archive</h3>
+            <h3 class="ib d12" ng-if="listingType=='draft'">Drafts</h3>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-default2 pull-right" style="background: white;margin-top: 3px;" ng-show="Listing == false"
+               ng-click="ListingShow()">
+                Back</a>
+            <a class="btn btn-default pull-right" style="background: white;margin-top: 3px;"
+               ng-if="listingType!='archive'"
+               ng-click="getAllEmailsListing('archive')">
+                Archive</a>
+            <a class="btn btn-default pull-right" style="background: white;margin-top: 3px;margin-right:2px;"
+               ng-if="listingType != 'draft'"
+               ng-click="getAllEmailsListing('draft')">
+                Drafts</a>
+            <a class="btn btn-default pull-right" style="background: white;margin-top: 3px;"
+               ng-if="listingType!='inbox'"
+               ng-click="getAllEmailsListing('inbox')">
+                Inbox</a>
+        </div>
+    </div>
+    <div class="row" ng-class="{'whirl no-overlay':showLoader}">
+        <div class="col-md-12" ng-if="emailData.length>0" ng-repeat="arrEmails in emailData | filter:searchKeyword">
+            <table cellpadding="0" class="EmailTable">
+                <tbody class="int-mail-list">
+                <tr class="EmailList" ng-show="Listing == true">
+
+                    <!-- check boxes -->
+                    <td style="width: 3%;">
+
+                        <input type="checkbox" class="checkboxes" ng-click="selectedItem()" ng-value="arrEmails.id"
+                               ng-model="arrEmails.Selected"/>
+
+                    </td>
+
+                    <!-- check boxes -->
+
+                    <td style="width:28%;" ng-click="showHide(arrEmails)">
+                        <div class="ib email-from text-left"><b>{{arrEmails.senderName}}</b></div>
+                        <!-- <div class="ib">{{arrEmails.email_address_from}}</div> -->
+                        <div class="ib"><i class="ib">to</i>
+                            <div class="email-to-many">{{arrEmails.email_address_to}}</div>
+                            <b
+                                    ng-if="arrEmails.reply.length>0">({{arrEmails.reply
+                                .length}})</b>
+                        </div>
+                    </td>
+                    <td style="width:47%;" ng-click="showHide(arrEmails)">
+                        <div class="ib email-subject"><b>{{arrEmails.email_subject}} - </b></div>
+                        <div class="short-sent-message ib">{{arrEmails.email_body | removeHTMLTags }}</div>
+                    </td>
+                    <td style="width: 88px;display: inline-block;white-space: nowrap  !important;overflow: hidden;">
+                        <div class="if-replied-icon" ng-show="arrEmails.reply != undefined">Replied</div>
+                    </td>
+                    <td style="width: 40px;white-space: nowrap !important;overflow: hidden;">
+                        <div class="if-attachment"><i ng-show="arrEmails.attach_flag==1" class="fa fa-paperclip"></i>
+                        </div>
+                    </td>
+                    <td class="text-right" style="width: 12%;">
+                        <div class="email-date-rec">{{arrEmails.date_time}}</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!----------------------------------------Message Detail --------------------------------->
+        <div ng-show="MessageDetail==true">
+
+            <div class="col-md-12">
+                <div class="email-box">
+
+                    <!-- Email Sent Area -->
+                    <div class="email-box-subject">Subject : {{detailEmails.email_subject}}</div>
+                    <div class="email-isent me-sent">
+                        <div class="email-avatar">
+                            <img src="https://ssl.gstatic.com/ui/v1/icons/mail/profile_mask_2x.png"
+                                 style="width: 29px;background: #afafaf;">
+                        </div>
+                        <div class="email-box-from">
+                            <b>{{detailEmails.senderName}}</b> ({{detailEmails.email_address_from}}) <br>
+                            <b>To:</b>
+                            {{detailEmails.email_address_to}}
+                        </div>
+                        <div class="dateandattach ib pull-right">
+                            <!--<div class="frm-attach"><a title="Reply"><i class="fa fa-reply"></i></a></div>-->
+                            <div class="frm-attach"
+                                 ng-if="listingType=='draft'"><a title="Send Email" data-toggle="collapse"
+                                                                 data-target="#draftMail{{detailEmails.id}}"
+                                                                 ng-click="DraftMailer(detailEmails)">
+                                                                 <i
+                                    class="fa fa-paper-plane-o"></i></a></div>
+                            <div class="frm-attach" ng-if="detailEmails.attach_flag==1"><i class="fa fa-paperclip"></i>
+                            </div>
+                            <div class="frm-date">{{detailEmails.date_time}}</div>
+                        </div>
+                        <div class="email-cc" ng-if="detailEmails.cc!=''">
+                            <b>Cc:</b> {{detailEmails.cc}}
+                        </div>
+                        <div class="email-cc" ng-if="detailEmails.bcc!=''">
+                            <b>Bcc:</b> {{detailEmails.bcc}}
+                        </div>
+
+                        <div class="actual-mail" ng-bind-html="renderHtml(detailEmails.email_body)">
+
+                        </div>
+                        <div class="email-attachment" ng-if="detailEmails.attach_flag==1">
+                          <span ng-repeat="attach in detailEmails.attachments" title="{{attach.old_name}}">
+                            <a class="attach12" ng-href="{{mailAttachmentPath}}{{attach.new_name}}" target="_blank">{{attach.old_name}}</a>
+                            <div class="email-download">
+                              <div class="downloadnview">
+                                   <a ng-href="{{mailAttachmentPath}}{{attach.new_name}}" download target="_self"><i
+                                           class="fa fa-download"></i></a>
+                                <a ng-href="{{mailAttachmentPath}}{{attach.new_name}}" target="_blank"><i class="fa fa-eye"></i></a>
+
+
+                              </div>
+                            </div>
+                          </span>
+                        </div>
+                    </div>
+                    <!-- Email Sent Area End -->
+
+
+                    <!---------------------------------------Send Draft Message------------------------------>
+                    <div id="draftMail{{detailEmails.id}}" ng-if="listingType=='draft' && viewDraft==true"
+                         class="collapse replywitheditor">
+                        <div style="    margin-bottom: 16px;">
+                            <div class="ib"><i class="replyto"> <b>Send Draft</b> </i>
+                            </div>
+                            <div class="ib pull-right ccandbcc">
+                                <a data-toggle="collapse" data-target="#dopenCC{{$index}}">Cc</a>
+                                <a data-toggle="collapse" data-target="#dopenBCC{{$index}}">Bcc</a></div>
+                        </div>
+                        <div>
+                            <div class="ib" style="width:6%;position:relative;top:-13px"><b>To</b></div>
+                            <div class="ib" style="width: 89%;">
+                                <ui-select multiple tagging-tokens="SPACE|,|/"
+                                           ng-model="draftdMail.to"
+                                           ng-disabled="disabled">
+                                    <ui-select-match>{{$item.first_name}}
+                                        &lt;{{$item.email}}&gt;</ui-select-match>
+                                    <ui-select-choices
+                                            repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                        <div ng-if="persons.isTag"
+                                             ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                        <div ng-if="!person.isTag"
+                                             ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                        <small>
+                                            email: {{persons.email}}
+
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <div id="dopenCC{{$index}}" class="collapse">
+                            <div class="ib" style="width: 6%;    position: relative;top: -13px;"><b>Cc</b>
+                            </div>
+                            <div class="ib" style="width: 89%;">
+                                <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                           ng-model="draftdMail.cc"
+                                           ng-disabled="disabled">
+                                    <ui-select-match>{{$item.first_name}}
+                                        &lt;{{$item.email}}&gt;</ui-select-match>
+                                    <ui-select-choices
+                                            repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                        <div ng-if="persons.isTag"
+                                             ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                        <div ng-if="!person.isTag"
+                                             ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                        <small>
+                                            email: {{persons.email}}
+
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <!--<input type="text" ng-model="replyMail.cc" class="form-control">-->
+                            </div>
+                        </div>
+                        <div id="dopenBCC{{$index}}" class="collapse">
+                            <div class="ib" style="width: 6%; position: relative;top: -13px;"><b>Bcc</b>
+                            </div>
+                            <div class="ib" style="width: 89%;">
+                                <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                           ng-model="draftdMail.bcc"
+                                           ng-disabled="disabled">
+                                    <ui-select-match >{{$item.first_name}}
+                                        &lt;{{$item.email}}&gt;</ui-select-match>
+                                    <ui-select-choices
+                                            repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                        <div ng-if="persons.isTag"
+                                             ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                        <div ng-if="!person.isTag"
+                                             ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                        <small>
+                                            email: {{persons.email}}
+
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <!--<input type="text" ng-model="replyMail.bcc" class="form-control">-->
+                            </div>
+
+                        </div>
+                        <div style="margin-bottom: 9px;">
+                            <div class="ib" style="width: 6%;    position: relative;top: -1px;"><b>Subject</b>
+                            </div>
+                            <div class="ib" style="width: 89%;">
+                                  <input type="text" ng-model="draftdMail.subject"  id="inputPassword1" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <summernote id="dsummernote{{ReferenceData.module_id}}-{{detailEmails.id}}" config="options"
+                                    class="summernotes"
+                                    ng-model="draftdMail.message"></summernote>
+
+                        <button type="button" ng-click="replyInternalEmail(draftdMail)"
+                                class="btn btn-submit pull-left"
+                                style="background:
+                #4CAF50;color: white;">Send
+                        </button>
+
+                        <div class="fileUpload pull-left ng-scope">
+                            <div class="fileUpload btn btn-link" style="padding: 0px 0px
+                    !important;" ng-controller="MailAttachmentController">
+                                <form enctype="multipart/form-data" action="" method="post"
+                                      class="ng-pristine ng-valid">
+                                                <span class="ng-scope attach" title="Attachment"><i
+                                                        class="fa fa-paperclip" aria-hidden="true"></i></span>
+                                    <input type="file" ngf-select="uploadFiles($file)" name="file[]"
+                                           multiple="" accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+                                           class="upload" ngf-max-height="1000" ngf-max-size="2MB">
+                                    <input type="hidden" ng-model="mailAttachment.fileName"
+                                           class="ng-pristine ng-untouched ng-valid">
+                                    <input type="hidden" ng-model="mailAttachment.newFileName"
+                                           class="ng-pristine ng-untouched ng-valid">
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                        <div class="showAttachments ib">
+                  <span ng-repeat="attachments in attachment"><a
+                          ng-href="{{mailAttachmentPath}}{{attachments.newFileName}}"
+                          target="_blank">
+                {{attachments.fileName}}</a><div class="del-attach" ng-click="removeAttachment(attachments)"><i
+                          class="fa fa-close"></i></div></span>
+                        </div>
+                        <div class="pull-right">
+                            <a class="discard" title="Discard">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                            <!--ng-click="closeReply($index)"-->
+                            <a class="discard" data-toggle="collapse"
+                               data-target="#draftdMail"
+                               title="Close">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <!----------------------------------------Message Replies --------------------------------->
+
+                    <div ng-show="detailEmails.reply != undefined">
+                        <div ng-repeat="reply in detailEmails.reply">
+                            <!-- Email Replied Area -->
+                            <div class="email-isent"
+                                 ng-class="{'me-sent': reply.status==4, 'me-reply': reply.status==3}">
+                                <div class="email-avatar">
+                                    <img src="https://ssl.gstatic.com/ui/v1/icons/mail/profile_mask_2x.png"
+                                         style="width: 29px;background: #afafaf;">
+                                </div>
+                                <div class="email-box-from">
+                                    <b>{{reply.email_address_from}}</b> ({{reply.email_address_from}}) <br>
+                                    <i class="replyto"><b>reply</b></i> to {{reply.email_address_to}}
+                                </div>
+                                <div class="dateandattach ib pull-right">
+                                    <div class="frm-attach">
+                                        <a title="Reply All" ng-if="reply.status==3" data-toggle="collapse"
+                                           data-target="#replyMail{{$index}}"
+                                           ng-click="replyMailer(detailEmails, reply, $index,1)"    class="replythismail"><i class="fa fa-reply-all"></i></a>
+                                    </div>
+                                    <div class="frm-attach">
+                                        <a title="Reply" ng-if="reply.status==3" data-toggle="collapse"
+                                           data-target="#replyMail{{$index}}"
+                                           ng-click="replyMailer(detailEmails, reply, $index,0)" class="replythismail"><i
+                                                class="fa fa-reply"></i></a>
+                                    </div>
+                                    <div class="frm-attach"><a title="Forward" data-toggle="collapse"
+                                                               data-target="#forwardMail{{$index}}"
+                                                               ng-click="forwardMailer(detailEmails, reply, $index)"><i
+                                            class="fa fa-share"></i></a></div>
+                                    <div class="frm-attach" ng-if="reply.attach_flag==1"><i class="fa fa-paperclip"></i>
+                                    </div>
+                                    <div class="frm-date">{{reply.date_time}}</div>
+                                </div>
+
+                                <div class="email-cc" ng-if="reply.cc!=''">
+                                    <b>Cc:</b> {{reply.cc}}
+                                </div>
+                                <div class="actual-mail" ng-bind-html="renderHtml(reply.email_body)">
+
+                                </div>
+                                <div class="email-attachment" ng-if="reply.attach_flag==1">
+
+                                <span ng-repeat="attachr in reply.attachments">
+
+                                <a ng-href="{{mailAttachmentPath}}{{attachr.new_name}}" target="_blank">{{attachr.old_name}}</a></span>
+
+                                </div>
+
+
+                                <!----------------------------------------Message Reply Editor --------------------------------->
+                                <div id="replyMail{{$index}}" class="collapse replywitheditor">
+                                    <div style="    margin-bottom: 16px;">
+                                        <div class="ib"><i class="replyto"> <b>Reply to</b> </i>
+                                            {{reply.email_address_from}}
+                                        </div>
+                                        <div class="ib pull-right ccandbcc">
+                                            <a data-toggle="collapse" data-target="#openCC{{$index}}">Cc</a>
+                                            <a data-toggle="collapse" data-target="#openBCC{{$index}}">Bcc</a></div>
+                                    </div>
+
+                                    <div id="openCC{{$index}}" class="collapse">
+                                        <div class="ib" style="width: 6%;    position: relative;top: -13px;"><b>Cc</b>
+                                        </div>
+                                        <div class="ib" style="width: 89%;">
+                                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                                       ng-model="replyMail.cc"
+                                                       ng-disabled="disabled">
+                                                <ui-select-match  >{{$item.first_name}}
+                                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                                <ui-select-choices   repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}"  >
+                                                    <div ng-if="persons.isTag"
+                                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                                    <div ng-if="!person.isTag"
+                                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                                    <small>
+                                                        email: {{persons.email}}
+
+                                                    </small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <!--<input type="text" ng-model="replyMail.cc" class="form-control">-->
+                                        </div>
+                                    </div>
+                                    <div id="openBCC{{$index}}" class="collapse">
+                                        <div class="ib" style="width: 6%; position: relative;top: -13px;"><b>Bcc</b>
+                                        </div>
+                                        <div class="ib" style="width: 89%;">
+                                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                                       ng-model="replyMail.bcc"
+                                                       ng-disabled="disabled">
+                                                <ui-select-match >{{$item.first_name}}
+                                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                                <ui-select-choices
+                                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                                    <div ng-if="persons.isTag"
+                                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                                    <div ng-if="!person.isTag"
+                                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                                    <small>
+                                                        email: {{persons.email}}
+
+                                                    </small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <!--<input type="text" ng-model="replyMail.bcc" class="form-control">-->
+                                        </div>
+                                    </div>
+
+                                    <summernote id="summernote{{ReferenceData.module_id}}-{{$index}}" config="options"
+                                                class="summernotes"
+                                                ng-model="replyMail.message"></summernote>
+
+                                    <button type="button" ng-click="replyInternalEmail(replyMail)"
+                                            class="btn btn-submit pull-left"
+                                            style="background:
+                #4CAF50;color: white;">Send
+                                    </button>
+
+                                    <div class="fileUpload pull-left ng-scope">
+                                        <div class="fileUpload btn btn-link" style="padding: 0px 0px
+                    !important;" ng-controller="MailAttachmentController">
+                                            <form enctype="multipart/form-data" action="" method="post"
+                                                  class="ng-pristine ng-valid">
+                                                <span class="ng-scope attach" title="Attachment"><i
+                                                        class="fa fa-paperclip" aria-hidden="true"></i></span>
+                                                <input type="file" ngf-select="uploadFiles($file)" name="file[]"
+                                                       multiple="" accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+                                                       class="upload" ngf-max-height="1000" ngf-max-size="2MB">
+                                                <input type="hidden" ng-model="mailAttachment.fileName"
+                                                       class="ng-pristine ng-untouched ng-valid">
+                                                <input type="hidden" ng-model="mailAttachment.newFileName"
+                                                       class="ng-pristine ng-untouched ng-valid">
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="showAttachments ib">
+                  <span ng-repeat="attachments in attachment"><a
+                          ng-href="{{mailAttachmentPath}}{{attachments.newFileName}}"
+                          target="_blank">
+                {{attachments.fileName}}</a><div class="del-attach" ng-click="removeAttachment(attachments)"><i
+                          class="fa fa-close"></i></div></span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a class="discard" title="Discard">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                        <!--ng-click="closeReply($index)"-->
+                                        <a class="discard" data-toggle="collapse"
+                                           data-target="#replyMail{{$index}}"
+                                           title="Close">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!---------------------------------------Message Forward -------------------->
+                                <div id="forwardMail{{$index}}" class="collapse replywitheditor">
+                                    <div style="    margin-bottom: 16px;">
+                                        <div class="ib"><i class="replyto"> <b>Forward</b> </i>
+                                        </div>
+                                        <div class="ib pull-right ccandbcc">
+                                            <a data-toggle="collapse" data-target="#fopenCC{{$index}}">Cc</a>
+                                            <a data-toggle="collapse" data-target="#fopenBCC{{$index}}">Bcc</a></div>
+                                    </div>
+                                    <div>
+                                        <div class="ib" style="width:6%;position:relative;top:-13px"><b>To</b></div>
+                                        <div class="ib" style="width: 89%;">
+                                            <ui-select multiple tagging-tokens="SPACE|,|/"
+                                                       ng-model="forwardMail.to"
+                                                       ng-disabled="disabled">
+                                                <ui-select-match >{{$item.first_name}}
+                                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                                <ui-select-choices
+                                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                                    <div ng-if="persons.isTag"
+                                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                                    <div ng-if="!person.isTag"
+                                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                                    <small>
+                                                        email: {{persons.email}}
+
+                                                    </small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                    <div id="fopenCC{{$index}}" class="collapse">
+                                        <div class="ib" style="width: 6%;    position: relative;top: -13px;"><b>Cc</b>
+                                        </div>
+                                        <div class="ib" style="width: 89%;">
+                                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                                       ng-model="forwardMail.cc"
+                                                       ng-disabled="disabled">
+                                                <ui-select-match >{{$item.first_name}}
+                                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                                <ui-select-choices
+                                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                                    <div ng-if="persons.isTag"
+                                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                                    <div ng-if="!person.isTag"
+                                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                                    <small>
+                                                        email: {{persons.email}}
+
+                                                    </small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <!--<input type="text" ng-model="replyMail.cc" class="form-control">-->
+                                        </div>
+                                    </div>
+                                    <div id="fopenBCC{{$index}}" class="collapse">
+                                        <div class="ib" style="width: 6%; position: relative;top: -13px;"><b>Bcc</b>
+                                        </div>
+                                        <div class="ib" style="width: 89%;">
+                                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                                       ng-model="forwardMail.bcc"
+                                                       ng-disabled="disabled">
+                                                <ui-select-match >{{$item.first_name}}
+                                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                                <ui-select-choices
+                                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                                    <div ng-if="persons.isTag"
+                                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                                    <div ng-if="!person.isTag"
+                                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                                    <small>
+                                                        email: {{persons.email}}
+
+                                                    </small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <!--<input type="text" ng-model="replyMail.bcc" class="form-control">-->
+                                        </div>
+                                    </div>
+
+                                    <summernote id="fsummernote{{ReferenceData.module_id}}-{{$index}}" config="options"
+                                                class="summernotes"
+                                                ng-model="forwardMail.message"></summernote>
+
+                                    <button type="button" ng-click="replyInternalEmail(forwardMail)"
+                                            class="btn btn-submit pull-left"
+                                            style="background:
+                #4CAF50;color: white;">Send
+                                    </button>
+
+                                    <div class="fileUpload pull-left ng-scope">
+                                        <div class="fileUpload btn btn-link" style="padding: 0px 0px
+                    !important;" ng-controller="MailAttachmentController">
+                                            <form enctype="multipart/form-data" action="" method="post"
+                                                  class="ng-pristine ng-valid">
+                                                <span class="ng-scope attach" title="Attachment"><i
+                                                        class="fa fa-paperclip" aria-hidden="true"></i></span>
+                                                <input type="file" ngf-select="uploadFiles($file)" name="file[]"
+                                                       multiple="" accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+                                                       class="upload" ngf-max-height="1000" ngf-max-size="2MB">
+                                                <input type="hidden" ng-model="mailAttachment.fileName"
+                                                       class="ng-pristine ng-untouched ng-valid">
+                                                <input type="hidden" ng-model="mailAttachment.newFileName"
+                                                       class="ng-pristine ng-untouched ng-valid">
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="showAttachments ib">
+                  <span ng-repeat="attachments in attachment"><a
+                          ng-href="{{mailAttachmentPath}}{{attachments.newFileName}}"
+                          target="_blank">
+                {{attachments.fileName}}</a><div class="del-attach" ng-click="removeAttachment(attachments)"><i
+                          class="fa fa-close"></i></div></span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a class="discard" title="Discard">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                        <!--ng-click="closeReply($index)"-->
+                                        <a class="discard" data-toggle="collapse"
+                                           data-target="#forwardMail{{$index}}"
+                                           title="Close">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

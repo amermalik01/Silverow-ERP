@@ -1,0 +1,71 @@
+<div class="modal fade" id="modalPriceListModal">
+    <div class="modal-dialog" style="width:50% !important;" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Price Listing</h4>
+            </div>
+            <div class="modal-body">
+
+                <div style="  overflow-y: scroll; max-height: 325px;">
+                    <!-- START table-responsive-->
+                    <div class="table-responsive">
+                        <table ng-table="table.tableParams5" class="table table-bordered table-striped"
+                               show-filter="true" ng-show="record.length > 0">
+                            <thead>
+                            <tr class="bg-col">
+                                <!--  <th class="sortable sort-asc">Offered By</th> -->
+                                <th class="sortable sort-asc">Item Code</th>
+                                <th class="sortable sort-asc">Item Description</th>
+                                <!-- <th class="sortable sort-asc">List Price On</th>
+                                <th class="sortable sort-asc">List Date</th>
+                                <th class="sortable sort-asc">Start Date</th>
+                                <th class="sortable sort-asc">End Date</th>
+                                <th class="sortable sort-asc">Type</th> -->
+                                <th class="sortable sort-asc" ng-show="$data.length > 0" style="width: 127px;">Action
+                                </th>
+                            </tr>
+                            <!-- <tr>
+                              <th ng-repeat="column in columns" ng-if="column.field != 'One_Four_Pallet' && column.field != 'Half_Load' && column.field != 'Full_Load' && column.field != 'Primary' " ng-show="column.visible" class="sortable">
+                              <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title] "/>
+                              </th>
+                              <th class="sortable">
+                              <input type="text" class="form-control"/>
+                              </th>
+                            </tr> -->
+                            </thead>
+                            <tbody class="table-body">
+                            <tr ng-repeat="rec in record" ng-click="addPriceListing(rec)">
+                                <!-- <td>{{rec['Offered By']}}</td> -->
+                                <td>{{rec['Item Code']}}</td>
+                                <td>{{rec['Item Description']}}</td>
+                                <!-- <td>
+                                    <span>
+                                      <ul>
+                                          <li ng-show="rec['Volume 1'] != null">{{rec['Volume 1']}}&nbsp;@&nbsp;{{rec.volume_1_price}}</li>
+                                          <li ng-show="rec['Volume 2'] != null">{{rec['Volume 2']}}&nbsp;@&nbsp;{{rec.volume_2_price}}</li>
+                                          <li ng-show="rec['Volume 3'] != null">{{rec['Volume 3']}}&nbsp;@&nbsp;{{rec.volume_3_price}}</li>
+                                      </ul>
+                                    </span>
+                                </td>
+                                <td>{{rec['Offer Date'] | date: dateFormats[defaultDateFormat]}}</td>
+                                <td>{{rec['Start Date'] | date: dateFormats[defaultDateFormat]}}</td>
+                                <td>{{rec['End Date'] | date: dateFormats[defaultDateFormat]}}</td>
+                                <td>
+                                  <span>
+                                      <span ng-if="rec['Type'] == 1">Item</span>
+                                      <span ng-if="rec['Type'] == 2">Service</span>
+                                    </span>
+                                </td> -->
+                            </tr>
+                            <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

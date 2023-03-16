@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="widget">
+      <div class="widget-body animated fadeIn">
+        <div class="row" >
+          <input type="hidden"   ng-model="formData.roles_id" />
+          <input type="hidden"   ng-model="rec_id" />
+          <input type="hidden"   ng-model="roles_id" />
+          <input type="hidden"   ng-model="formData.eid" />
+          <input type="hidden"   ng-model="formData.employee_id" />
+          <input type="hidden"   ng-model="formData.tab_id_2"   value="4"/>
+
+          <div class="col-md-12">
+            <div class="col-md-6 col-md-6">
+              <div class="form-group">
+                <label class="col-md-3 control-label ">Role</label>
+                <div class="col-md-7">
+                  <button type="button" id="model_role_pop" class="btn btn_blue pull-left margin_bottom"
+            data-toggle="modal" data-target="#model_pop_role" style="display:none"  > Add New </button>
+                  <select  ng-disabled="check_hrvalues_readonly"
+                  ng-model="formData.emp_role"  ng-options="opt as opt.role for opt in role_list"
+              class="select2me form-control"  ng-change="onChangRoletype(roles_id)"  >
+
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-md-6">
+              <div class="form-group">
+                <label class="col-md-3 control-label ">Status <span class="required">*</span></label>
+                <div class="col-md-7">
+                  <select   ng-disabled="check_hrvalues_readonly"  required  ng-model="formData.emp_role_status" ng-options="opt as opt.label for opt in status_data"
+      			 class="select2me form-control" >
+
+                  </select>
+                </div>
+              </div>
+            </div>
+            <input type="hidden"   ng-model="formData.module_idd" id="module_idd" />
+            <input type="hidden"   ng-model="formData.per_id" id="per_id" />
+            <div class="col-md-8">
+              <!--   <div data-ng-app="" data-ng-init="products=['soda','beer','water','milk','wine','cognac']" class="container">
+                <div ng-repeat="product in products" ng-if="$index % 3 == 0" class="row">
+                  <div class="col-md-4">{{products[$index]}}</div>
+                  <div class="col-md-4">{{products[$index + 1]}}</div>
+                  <div class="col-md-4">{{products[$index + 2]}}</div>
+                </div>
+              </div>-->
+              <div class="form-group">
+                <label class="col-md-2 control-label "> &nbsp;Permissions </label>
+                <div class="col-md-10" >
+                  <div ng-repeat="namesList in childdata"  ng-if="$index<=2" class="col-md-4 no-margin ">
+                    <input type="checkbox"  ng-model="namesList.checked"
+                     value="option1"    name="formData.list_values[]"   />
+                    &nbsp; {{namesList.name}} </div>
+                  <div ng-repeat="namesList in childdata"  ng-if="$index>2  &&$index<=5" class="col-md-4   " style="
+    margin-top: 5px;
+">
+                    <input type="checkbox"  ng-model="namesList.checked"
+                     value="option1"    name="formData.list_values[]"   />
+                    &nbsp; {{namesList.name}} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+              <div class="col-md-12">
+                <div class="pull-right">
+                  <button class="btn btn-submit" type="submit" ng-show="!check_hrvalues_readonly">  Save</button>
+                  <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly">  Edit</button>
+                  <button class="btn btn-cancel type="button" ng-click="getRoles()">  Cancel</button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

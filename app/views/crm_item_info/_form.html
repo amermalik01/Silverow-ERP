@@ -1,0 +1,211 @@
+<div class="row">
+    <!--<input type="hidden" ng-model="rec.crm_id"/>-->
+
+    <div class="col-lg-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <!-- <div class="widget-header">
+              <div class="title">
+                Add Company General Information
+              </div>
+
+            </div> -->
+            <div class="widget-body" style="background:none;">
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <input type="hidden" ng-model="rec.product_id"/>
+                            <label class="col-md-4 control-label">Item Code<span
+                                    class="required">*</span></label>
+                            <div class="col-md-8" style="    margin-top: 7px;">
+                                <input type="text" ng-model="rec.Item_Code"
+                                       ng-click="getproducts(formData);"
+                                       class="form-control input_text" required
+                                       ng-disabled="check_readonly"
+                                       /><!--ng-readonly="check_item_readonly_purchase"-->
+                            </div>
+                        </div>
+                        <div class="form-group"><!--ng-show="form_before_edit"-->
+                            <label class="col-md-4 control-label">
+                                <!--<span ng-bind="price_sale_user"> </span>-->
+
+                                Item Name <span class="required">*</span> </label>
+                            <div class="col-md-8">
+                                <input type="text" ng-model="rec.Item_Description"
+                                       class="form-control " required readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Unit Of Measure<span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <select ng-model="rec.unit_of_measures"
+                                        ng-options="opt as opt.name for opt in arr_unit_of_measure"
+                                        class="select2me form-control" ng-disabled="check_readonly" required>
+                                    <option style="display:none;" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Currency <span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <div class="input-symbol">
+                                    <select ng-model="rec.currencys"
+                                            ng-options="opt as opt.code +' - '+ opt.name for opt in arr_currency"
+                                            class="select2me form-control" ng-disabled="check_readonly"
+                                            ng-change="addNewCurrencyPopup(rec); onCurrencyChange()" tabindex="26"
+                                            ng-class="{'not-click-allow':disableClass > 0}"> </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Price <span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.price_offered" id="price_offered"
+                                       ng-blur="chkPrice(rec.price_offered)" class="form-control"
+                                       ng-readonly="check_readonly" required="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Converted Price <span
+                                    class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <div class="input-symbol">
+                                    <input type="text" ng-model="rec.converted_price" class="form-control"
+                                           ng-readonly="1">
+                                    <span>{{defaultCurrencyCode}} </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label class="col-lg-4 control-label">Last SO Date</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.last_so_date" class="form-control" readonly="readonly">
+                            </div>
+                        </div>-->
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Offered By <span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.offered_by" id="offered_by" class="form-control"
+                                       ng-disabled="check_readonly" tabindex="1" ng-click="getOffer(formData)"
+                                       required/>
+                                <input type="hidden" ng-model="rec.offered_by_id" id="offered_by_id"
+                                       class="form-control"/>
+                                <input type="hidden" ng-model="rec.id" id="update_id" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Offer Method <span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <select ng-model="rec.offer_method_ids"
+                                        ng-options="opt as opt.title for opt in arr_OfferMethod"
+                                        class="select2me form-control"
+                                        ng-change="addNewPredefinedPopup(rec.offer_method_ids,'OFFER_METHOD','Offer Method')"
+                                        ng-disabled="check_readonly" required tabindex="5">
+                                    <option style="display:none;" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Min. Order Qty.<span class="required">*</span></label>
+                            <div class="col-lg-8"><!-- ng-blur="checkQty('min');" -->
+                                <div class="input-symbol">
+                                    <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup"
+                                           id="min_quantity" ng-model="rec.min_order_qty" ng-blur="checkQty('min')"
+                                           required
+                                           class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse"
+                                           data-parsley-minlength-message="Invalid Value"
+                                           data-parsley-type-message="Invalid Value"
+                                           data-parsley-error-message="Invalid Value"
+                                           data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                                    <span>{{rec.unit_of_measures.name}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Max. Order Qty.<span class="required">*</span></label>
+                            <div class="col-lg-8"><!-- ng-blur="checkQty('max');" -->
+                                <div class="input-symbol">
+                                    <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup"
+                                           id="max_quantity" ng-model="rec.max_order_qty" ng-blur="checkQty('max')"
+                                           required
+                                           class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse"
+                                           data-parsley-minlength-message="Invalid Value"
+                                           data-parsley-type-message="Invalid Value"
+                                           data-parsley-error-message="Invalid Value"
+                                           data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                                    <span>{{rec.unit_of_measures.name}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Start Date<span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_date"
+                                       ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_date')" required
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">End Date<span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_valid_date"
+                                       ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_valid_date')"
+                                       required readonly>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <label class="col-lg-4 control-label">Location <span class="required">*</span></label>
+                            <div class="col-lg-8">
+                                <select ng-model="rec.location_ids"
+                                        ng-options="opt as opt.title for opt in arr_location"
+                                        class="select2me form-control"
+                                        ng-disabled="check_readonly" required>
+                                    <option style="display:none;" value=""></option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <!--<div class="form-group">
+                            <label class="col-lg-4 control-label">Message</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="rec.message" class="form-control">
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hr_line2"></div>
+                        <div class="pull-right">
+                            <button class="btn btn-info btn_blue"
+                                    ng-class="{'btn-info btn_blue':!isAdded,'default dont-click':isAdded}" type="submit"
+                                    ng-show="!check_readonly"><i class="fa fa-check"></i> Submit
+                            </button>
+                            <button class="btn btn-info btn_blue" type="button" ng-click="showCRMItemInfoEditForm()"
+                                    ng-show="check_readonly"><i class="fa fa-edit"></i> Edit
+                            </button>
+                            <button class="btn default" type="button" ng-click="showCRMItemInfoListing()"><i
+                                    class="fa fa-undo"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/sale_item_info/_customer_popup.html'"></div>
+    <div ng-include="'app/views/sale_item_info/_customer_popup_for_groups.html'"></div>
+    <div ng-include="'app/views/sale_item_info/_customer_popup2.html'"></div>
+    <div ng-include="'app/views/sale_item_info/_customer_groups_popup.html'"></div>
+    <div ng-include="'app/views/sale_item_info/_alt_locations_popup.html'"></div>
+    <div ng-include="'app/views/_listing_modal_2.html'"></div>
+    <div ng-include="'app/views/crm/add_volume.html'"></div>
+
+

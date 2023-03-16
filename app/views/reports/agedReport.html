@@ -1,0 +1,246 @@
+<div ng-controller="AgedReportController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title"
+         style="width: 120px">Date as at<span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="upToDate"
+               readonly
+               ng-model="filterReport.upToDate"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate"
+                type="button"
+                ng-click="showPdfModal('html')"
+                ng-if="module !='customerStatement' && module !='supplierStatement' && module !='customerLabelsList'">Generate Report</button>
+        <!-- <button class="btn btn-submit2"
+                                                type="button"
+                                                ng-click="generateReport()"
+                                                ng-if="module !='customerStatement'">Generate Report</button> -->
+        <button class="btn report-generate"
+                type="button"
+                ng-click="showPdfModal('html')"
+                ng-if="module =='customerStatement' || module =='supplierStatement'">Generate Report</button>
+        <button class="btn report-generate"
+                type="button"
+                ng-click="generateCustomerListingReport()"
+                ng-if="module =='customerLabelsList'">Generate Report</button>
+
+        <button class="btn report-clearfilter collapsed"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <!-- <button class="btn report-default"
+                type="button"
+                ng-hide="module=='customerLabelsList'"
+                ng-click="showPdfModal('pdf')"
+                ng-if="module !='customerStatement' && module !='supplierStatement'  && module !='customerLabelsList'"> Print Preview</button> -->
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-if=" module !='customerLabelsList'"><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box"
+           style="margin-bottom: -1px;"
+           ng-if="module=='supplier' || module=='supplier2' || module=='creditors' || module=='creditorsAgingDetail' || module=='supplierAgingDetail' || module =='supplierStatement'">
+        <b class="a-title a-title-relative"
+           style="width: 120px">Select Supplier(s)</b>
+        <div class="a-form-control">
+          <div title="{{SelsuppliersTooltip}}">
+            <div class="panel-info pi2 a-form-control"
+                 style="width: 334px"
+                 ng-click="clearFiltersAndSelectSuppliers()">
+              <div class="panel-body"
+                   style="background-color: white;">
+                <span ng-repeat="sp in suppliers track by $index">
+                  <span ng-if="suppliers.length == 1">{{sp.title}}</span>
+                  <span ng-if="suppliers.length > 1">{{sp.title}}<span
+                          ng-if="$index < suppliers.length && $index!=0">;&nbsp;</span></span>
+                </span>
+                <aside></aside>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           style="margin-bottom: -1px;"
+           ng-if="module=='customer' || module=='customer2' || module=='customerAgingDetail' || module=='customerStatement' || module=='customerLabelsList'">
+        <b class="a-title a-title-relative"
+           style="width: 120px">
+          Select Customer(s)</b>
+
+        <div class="a-form-control ">
+          <div title="{{SelcustomersTooltip}}">
+            <div class="panel-info pi2 a-form-control"
+                 style="width: 334px"
+                 ng-click="clearFiltersAndSelectCustomer()">
+              <!-- clearFiltersAndSelectCustomer -->
+              <div class="panel-body"
+                   style="background-color: white;">
+                <span ng-repeat="sp in customers track by $index">
+                  <span ng-if="customers.length == 1">{{sp.title}}</span>
+                  <span ng-if="customers.length > 1">{{sp.title}}<span
+                          ng-if="$index < customers.length && $index!=0">;&nbsp;</span></span>
+                </span>
+                <aside></aside>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="report-box" style="    margin-top: 7px;"
+           ng-if="module=='customerLabelsList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Filter by</b>
+        <div class="a-form-control"
+             style="width: 334px;">
+          <label style="margin-right: 3px;">
+            <input type="checkbox"
+                   name="active_customer"
+                   ng-model="filterReport.active_customer"
+                   id="active_customer"
+                   ng-true-value="1">
+            Active
+          </label>
+          <label style="margin-right: 3px;">
+            <input type="checkbox"
+                   name="finance_charges"
+                   ng-model="filterReport.finance_charges"
+                   id="finance_charges"
+                   ng-true-value="1">
+            Finance Charges
+          </label>
+          <label style="margin-right: 3px;">
+            <input type="checkbox"
+                   name="insurance_charges"
+                   ng-model="filterReport.insurance_charges"
+                   id="insurance_charges"
+                   ng-true-value="1">
+            Insurance Charges
+          </label>
+        </div>
+      </div>
+
+      <div class="report-box" style="    margin-top: 7px;"
+           ng-if="module=='customerLabelsList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;"></b>
+        <div class="a-form-control"
+             style="width: 334px;">
+             <label style="margin-right: 3px;">
+              <input type="checkbox"
+                   name="show_address"
+                   ng-model="filterReport.show_address"
+                   id="show_address"
+                   ng-true-value="1">
+              Show Addresses
+            </label>
+
+            <label style="margin-right: 3px;">
+                <input type="checkbox"
+                     name="other_location"
+                     ng-model="filterReport.other_location"
+                     id="other_location"
+                     ng-click = "checkAddress(filterReport.other_location);"
+                     ng-true-value="1">
+                Show Other Locations
+            </label>
+        </div>
+      </div> 
+      <div class="report-box"
+           ng-if="module=='customer2' || module=='customerAgingDetail'"><!--  || module=='supplierAgingDetail' -->
+        <b class="a-title"
+           style="width: 120px">Finance</b>
+        <select class="select2me form-control a-form-control"
+                ng-model="filterReport.finance"
+                ng-options="opt as opt.title for opt in financeArr">
+          <option value=""
+                  disabled
+                  selected>Select Finance</option>
+        </select>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='customer2' || module=='customerAgingDetail'">
+        <b class="a-title"
+           style="width: 120px">Insurance</b>
+        <select class="select2me form-control a-form-control"
+                ng-model="filterReport.insurance"
+                ng-options="opt as opt.title for opt in insuranceArr">
+          <option value=""
+                  disabled
+                  selected>Select Insurance</option>
+        </select>
+      </div>
+                   
+      <div class="report-box" 
+        ng-if="module=='customer2' || module=='customerAgingDetail' || 
+               module=='supplier' || module=='supplier2' || 
+               module=='creditors' || module=='supplierAgingDetail'">
+        <label style="margin-right: 10px;">
+            <input ng-model="filterReport.reporttype"
+                value="summary"
+                ng-checked="filterReport.reporttype=='summary'"
+                type="radio" /> Summary
+        </label>
+        <label style="margin-right: 10px;">
+            <input ng-model="filterReport.reporttype"
+                value="detail"
+                ng-checked="filterReport.reporttype=='detail'"
+                type="radio" /> Detailed
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="customerAgingReportHtml">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.upToDate}}</small>
+    <div ng-bind-html="customerAgingReportHtml"></div>
+  </div>
+
+  <div class="row">
+  </div>
+
+  <!-- <div ng-include="'app/views/reports/_listingCustomerModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierModal.html'"></div> -->
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

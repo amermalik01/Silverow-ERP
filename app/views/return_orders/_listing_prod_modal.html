@@ -1,0 +1,208 @@
+<div id="productModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable
+         style="width: 91%;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Item(s)</h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="filterOrderItem.search">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <ui-select ng-model="filterOrderItem.category">
+                            <ui-select-match placeholder="Select Category">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2">
+                        <ui-select ng-model="filterOrderItem.brand">
+                            <ui-select-match placeholder="Select Brand">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in brand_prodcut_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2">
+                        <ui-select ng-model="filterOrderItem.units">
+                            <ui-select-match placeholder="Select Unit">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        
+                    </div>
+                    <div class="col-md-1">
+                        <a type="button" class="btn clear-filter pull-left" ng-click="filterOrderItem = {};" ng-model="strict"></a>
+                    </div> -->
+                    <!-- Filter End -->
+                </div>
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <!-- {{tempProdArr}} -->
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th style="width: 5%;text-align: center;">
+                                        <input type="checkbox"
+                                               ng-model="selectedAllOrderItem"
+                                               ng-click="checkAllOrderItem(selectedAllOrderItem,filterOrderItem.category.id,filterOrderItem.brand.id,filterOrderItem.units.id)"
+                                               ng-checked="selectedAllOrderItem">
+                                    </th>
+                                    <th style="width: 7%;">No.</th>
+                                    <th style="width: 12%;">Description</th>
+                                    <th style="width: 6%;"
+                                        class="text-right">Qty.</th>
+                                    <th style="width: 6%;">U.O.M</th>
+                                    <th style="width: 15%;">Warehouse</th>
+                                    <th style="width: 8%;"
+                                        class="text-right">Unit Price<span
+                                              ng-if="tempProdArr.length>0"><br />({{tempProdArr[0].currency_code}})</span>
+                                    </th>
+                                    <th style="width: 8%;"
+                                        class="text-right">Discount Type</th>
+                                    <th style="width: 10%;"
+                                        class="text-right">Discount <br />({{tempProdArr[0].currency_code}})</th>
+                                    <th style="width: 12%;"
+                                        class="text-right">Original Amount<span
+                                              ng-if="tempProdArr.length>0"><br />({{tempProdArr[0].currency_code}})
+                                        </span>
+                                    </th>
+                                    <th style="width: 12%;"
+                                        class="text-right">Discount Amount<span
+                                              ng-if="tempProdArr.length>0"><br />({{tempProdArr[0].currency_code}})</span>
+                                    </th>
+                                    <th style="width: 12%;   padding-right: 18px !important;"
+                                        class="text-right">Total Amount<span
+                                              ng-if="tempProdArr.length>0"><br />({{tempProdArr[0].currency_code}})
+                                        </span>
+                                    </th>
+                                    <!-- (!disableFilter || '') && { unit_name: filterOrderItem.units.name }  -->
+                                </tr>
+                            </thead>
+
+                            <tbody class="fixit">
+                                <tr
+                                    ng-repeat="prod in tempProdArr | filter:filterOrderItem.search | filter:filterOrderItem.brand.name | filter:filterOrderItem.units.name | filter:filterOrderItem.category.name">
+                                    <td style="width: 5%;text-align: center;">
+                                        <input type="checkbox"
+                                               name="item {{$index}}"
+                                               id="item {{$index}}"
+                                               ng-click="selectProd(prod.id)"
+                                               ng-checked="prod.chk>0"
+                                               ng-model="prod.chk"
+                                               ng-disabled="prod.disableCheck>0">
+                                    </td>
+                                    <!-- selectProd -->
+                                    <td style="width: 7%;">{{prod.product_code}}</td>
+                                    <td style="width: 12%;"
+                                        title="{{prod.description}}">{{prod.description}}</td>
+                                    <td style="width: 6%;"
+                                        class="text-right">{{prod.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                    <td style="width: 6%;">{{prod.unit_measure}}</td>
+                                    <td style="width: 15%;"
+                                        title="{{prod.warehouse}}">{{prod.warehouse}}</td>
+                                    <td style="width: 8%;"
+                                        class="text-right">{{prod.unit_price | unitPriceFilter}}</td>
+                                    <td style="width: 8%;"
+                                        class="text-right">
+                                        <span ng-if="prod.discount_type.length > 0">
+                                            {{prod.discount_type}}
+                                        </span>
+                                        <span ng-if="prod.discount_type.length == 0">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="width: 10%;"
+                                        class="text-right">
+                                        <span ng-if="prod.discount> 0">
+                                            {{prod.discount}}
+                                        </span>
+                                        <span ng-if="prod.discount == 0">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="width: 12%;"
+                                        class="text-right">
+                                        {{prod.qty * prod.unit_price | currency:""}}
+
+                                    </td>
+                                    <td style="width: 12%;"
+                                        class="text-right">
+                                        <span ng-if="prod.discount_type == 'Value'">
+                                            {{ prod.discount | currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == 'Percentage'">
+                                            {{ ((prod.qty * prod.unit_price)*prod.discount)/100 |
+                                            currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == 'Unit'">
+                                            {{ (prod.qty *prod.discount) | currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == ''">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="width: 12%;  padding-right: 18px !important;"
+                                        class="text-right">
+                                        <span ng-if="prod.discount_type == 'Value'">
+                                            {{ (prod.qty * prod.unit_price)-prod.discount | currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == 'Percentage'">
+                                            {{ (prod.qty * prod.unit_price) - ((prod.qty *
+                                            prod.unit_price)*prod.discount)/100 | currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == 'Unit'">
+                                            {{ (prod.qty * prod.unit_price) - (prod.qty * prod.discount) |
+                                            currency:""}}
+                                        </span>
+                                        <span ng-if="prod.discount_type == ''">
+                                            {{prod.qty * prod.unit_price | currency:""}}
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+                                <tr ng-if="tempProdArr.length == 0">
+                                    <td colspan="7"
+                                        class="text-center">No record found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(tempProdArr| filter: {chk: true}).length}}</span>
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-disabled="!(order_id>0) || (tempProdArr| filter: {chk: true}).length == 0"
+                            ng-click="addProduct()">Add</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="clearPendingOrderItems()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

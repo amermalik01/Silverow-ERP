@@ -1,0 +1,358 @@
+<div ng-controller="UnPostedOrderReportController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+
+    <style>
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+        }
+    </style>
+
+    <div class="a-content">
+        <div class="a-label-container">
+            <b class="a-title" style="width:120px">Date <span class="required"> *</span></b>
+            <div class="input-symbol a-date">
+                <input jqdatepicker
+                       class="form-control"
+                       id="dateFrom"
+                       readonly
+                       placeholder="From"
+                       ng-model="filterReport.dateFrom"
+                       style="background-color: white;">
+                <span>
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+            <div class="input-symbol a-date">
+                <input jqdatepicker
+                       class="form-control"
+                       id="dateTo"
+                       placeholder="To"
+                       readonly
+                       ng-model="filterReport.dateTo"
+                       style="background-color: white;">
+                <span>
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+
+            <b class="ib a-margin-left add-filter collapsed"
+               data-toggle="collapse"
+               data-target="#demo">Add Filter(s)</b>
+
+            <div class="pull-right">
+                <button class="btn report-generate no-margin"
+                        type="button"
+                        ng-click="generateSalespersonReport()">Generate Report
+                </button>
+                <button class="btn report-clearfilter"
+                        type="button"
+                        ng-click="clearReport()">Clear Filter
+                </button>
+                <button class="btn report-default"
+                        type="button"
+                        ng-click="salespersonActivityshowPdfModal()">
+                    Print Preview</button>
+                <div class="dropdown report-excel">
+                    <button class="btn report-default dropdown-toggle"
+                            type="button"
+                            data-toggle="dropdown">Export As
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="salespersonActivityshowPdfModal('xlsx')">Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-filter-panel collapse in"
+             id="demo">
+
+            <div class="report-box">
+                <b class="a-title a-title-relative"
+                   style="width: 120px">Select Salesperson(s)</b>
+                <div class="panel-info pi2 a-form-control" style="width: 334px"
+                     ng-click="selectSaleperson()">
+                    <div class="panel-body"
+                         style="background-color: #fff;">
+                        <span ng-repeat="sp in salepersons track by $index">
+                            <span ng-if="salepersons.length == 1">{{sp.name}}</span>
+                            <span ng-if="salepersons.length > 1">{{sp.name}}
+                                <span ng-if="$index < salepersons.length && $index!=0">;&nbsp;</span>
+                            </span>
+                        </span>
+                        <aside></aside>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="a-table" ng-if="reportsDataArr.length > 0">
+        <h5 class="a-report-title">{{reportTitle}}</h5>
+        <small ng-if="filterReport.dateFrom"
+               class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+        </small>
+        <div class="white_bg2"
+             ng-repeat="record in reportsDataArr">
+            <h5 style="margin: 4px 0 12px;">
+                <b>Salesperson:</b> {{record.summary.name}}
+
+                <small>({{filterReport.dateFrom}} - {{filterReport.dateTo}})</small>
+            </h5>
+            <table class="table table-condensed table-striped table-hover report-spacing">
+                <thead>
+                    <tr>
+                        <th style="    width: 160px;" >
+                            Date & Time Created
+                            <!-- <a href="javascript:void(0)"
+                                                       ng-click="orderByField='AddedTimestamp'; reverseSort = !reverseSort"> Date & Time Created
+                                                        <div ng-show="orderByField == 'AddedTimestamp'"
+                                                             class="ib">
+                                                            <span class="fa fa-angle-down"
+                                                                  ng-show="!reverseSort"></span>
+                                                            <span class="fa fa-angle-up"
+                                                                  ng-show="reverseSort"></span>
+                                                        </div>
+                                                    </a> -->
+                        </th>
+                        <th style="    width: 80px;"
+                            class="text-center">Notes</th>
+                        <th style="    width: 150px;"
+                            class="text-center">Added CRM</th>
+                        <th style="    width: 150px;"
+                            class="text-center">Converted to Customer</th>
+                        <th style="width: 80px;"
+                            class="text-center">Tasks</th>
+                        <th >No.</th>
+                        <th >Name</th>
+
+                    </tr>
+                </thead>
+                <tbody ng-repeat="salesperson in record.customers | orderBy:'AddedTimestamp':reverseSort">
+                    <tr ng-if="salesperson.listtype=='notes'">
+                        <td style="    width: 160px;">{{salesperson.AddedOn}}</td>
+                        <td class="text-center" style="    width: 80px;">
+                            <span class="fa"
+                                  style="font-size: 7px;">&#xf111;</span>
+                            <a title="View Notes"
+                               ng-click="showNotes(salesperson)">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                        <td style="    width: 150px;" ></td>
+                        <td style="    width: 150px;"></td>
+                        <td style="width: 80px;"></td>
+                        <td ng-if="salesperson.ctype==1">{{salesperson.crm_code}}</td>
+                        <td ng-if="salesperson.ctype==2 || salesperson.ctype==3">{{salesperson.customer_code}}</td>
+                        <td>{{salesperson.name}}</td>
+
+                    </tr>
+                    <tr ng-if="salesperson.listtype=='crm'">
+                        <!-- salesperson.AddedOn * 1000 | date:'dd/MM/yyyy HH:mm:ss' -->
+                        <td style="    width: 160px;">{{salesperson.AddedOn}}</td>
+                        <td style="    width: 80px;"></td>
+                        <td class="text-center" style="    width: 150px;">
+                            <span class="fa"
+                                  style="font-size: 7px;">&#xf111;</span>
+                        </td>
+                        <td style="    width: 150px;"></td>
+                        <td style="width: 80px;"></td>
+                        <td>{{salesperson.crm_code}}</td>
+                        <td>{{salesperson.name}}</td>
+
+                    </tr>
+                    <tr ng-if="salesperson.listtype=='customer'">
+                        <td style="    width: 160px;">{{salesperson.AddedOn}}</td>
+                        <td style="    width: 80px;"></td>
+                        <td style="    width: 150px;"></td>
+                        <td class="text-center"style="    width: 150px;">
+                            <span class="fa"
+                                  style="font-size: 7px;">&#xf111;</span>
+                        </td>
+                        <td style="width: 80px;"></td>
+                        <td>{{salesperson.customer_code}}</td>
+                        <td>{{salesperson.name}}</td>
+                    </tr>
+                    <tr ng-if="salesperson.listtype=='tasks'">
+                        <td style="    width: 160px;">{{salesperson.AddedOn}}</td>
+                        <td style="    width: 80px;"></td>
+                        <td style="    width: 150px;"></td>
+                        <td style="    width: 150px;"></td>
+                        <td class="text-center" style="width: 80px;">
+                            <span class="fa"
+                                  title="Completed"
+                                  ng-if="salesperson.taskStatus=='Completed'"
+                                  style="font-size: 7px;color: green">&#xf111;</span>
+                            <span class="fa"
+                                  title="Future"
+                                  ng-if="salesperson.taskStatus=='Future'"
+                                  style="font-size: 7px;color:orange">&#xf111;</span>
+                            <span class="fa"
+                                  title="Overdue"
+                                  ng-if="salesperson.taskStatus=='Overdue'"
+                                  style="font-size: 7px;color:red;">&#xf111;</span>
+                            <a title="View Tasks"
+                               ng-click="showNotes(salesperson)">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                        <td ng-if="salesperson.ctype==1">{{salesperson.crm_code}}</td>
+                        <td ng-if="salesperson.ctype==2 || salesperson.ctype==3">{{salesperson.customer_code}}</td>
+                        <td>{{salesperson.name}}</td>
+
+                    </tr>
+
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td style="    width: 160px;">
+                            <b>Total</b>
+                        </td>
+                        <td class="text-center" style="    width: 80px;">
+                            <b>{{record.summary.totalNotes}}</b>
+                        </td>
+                        <td class="text-center" style="    width: 150px;">
+                            <b>{{record.summary.totalCrm}}</b>
+                        </td>
+                        <td class="text-center" style="    width: 150px;">
+                            <b>{{record.summary.totalCustomer}}</b>
+                        </td>
+                        <td class="text-center" style="width: 80px;">
+                            <b>{{record.summary.totalTask}}</b>
+                        </td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="white_bg2"
+             ng-if="grandTotalArray">
+            <table style="width: 100%;"
+                   class="table table-condensed table-striped table-hover report-spacing">
+                <thead>
+                    <tr style="background-color: #f7f7f7;">
+                        <th style="    width: 160px;">
+                            &nbsp;
+                        </th>
+                        <th style="    width: 80px;"
+                            class="text-center">Notes</th>
+                        <th  style="    width: 150px;"
+                            class="text-center">Added CRM</th>
+                        <th style="    width: 150px;"
+                            class="text-center">Converted to Customer</th>
+                        <th 
+                            class="text-center" style="width: 80px;">Tasks</th>
+                        <th >&nbsp;</th>
+                        <th >&nbsp;</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="    width: 160px;">
+                            <b>Grand Total</b>
+                        </td>
+                        <td style="    width: 80px;"
+                            class="text-center">
+                            <b>{{grandTotalArray.totalNotes}}</b>
+                        </td>
+                        <td style="    width: 150px;"
+                            class="text-center">
+                            <b>{{grandTotalArray.totalCrm}}</b>
+                        </td>
+                        <td style="    width: 150px;"
+                            class="text-center">
+                            <b>{{grandTotalArray.totalCustomer}}</b>
+                        </td>
+                        <td style="width: 80px;"
+                            class="text-center">
+                            <b>{{grandTotalArray.totalTask}}</b>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="salepersonNotes"
+         class="modal fade"
+         role="dialog">
+        <div class="modal-dialog"
+             style="    width: 35%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal">&times;</button>
+                    <h4 ng-if="salenote.ctype==1"
+                        class="modal-title">{{salenote.name}} ({{salenote.crm_code}})</h4>
+                    <h4 ng-if="salenote.ctype==2 || salenote.ctype==3"
+                        class="modal-title">{{salenote.name}} ({{salenote.customer_code}})
+                    </h4>
+
+                </div>
+                <div class="modal-body">
+                    <div ng-if="salenote.listtype=='tasks'"
+                         class="form-group"
+                         style="display: inline-block;width: 100%;">
+                        <label class="control-label col-md-3">Status:</label>
+                        <div class="col-md-9">
+                            <div ng-if="salenote.taskStatus=='Completed'">
+                                <!-- Completed on {{salenote.dueDate}} -->
+                                Completed on {{salenote.datetime * 1000 | date:'dd/MM/yyyy h:mm a'}}
+                            </div>
+                            <div ng-if="salenote.taskStatus=='Overdue'">
+                                <!-- Overdue since {{salenote.dueDate}} -->
+                                Overdue since {{salenote.datetime * 1000 | date:'dd/MM/yyyy h:mm a'}}
+                            </div>
+                            <div ng-if="salenote.taskStatus=='Future'">
+                                Due On {{salenote.datetime * 1000 | date:'dd/MM/yyyy h:mm a'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         style="display: inline-block;width: 100%;">
+                        <label class="control-label col-md-3">Subject:</label>
+                        <div class="col-md-9">
+                            <div>
+                                {{salenote.subject}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         style="display: inline-block;width: 100%;">
+                        <label class="control-label col-md-3">Description:</label>
+                        <div class="col-md-9">
+                            <div>
+                                {{salenote.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-default2"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-include="'app/views/reports/_listingSalepersonModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

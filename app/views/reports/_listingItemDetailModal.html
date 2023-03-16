@@ -1,0 +1,58 @@
+<div id="productModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" draggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Item(s)</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row" style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <!-- <div ng-if="tempProdArr2.ack">
+                            <div class="flexiTable makeModalFixed" 
+                                x-generate-table2 
+                                x-data="tempProdArr2" 
+                                x-table-name="itemDetailModal"
+                                x-select-flexi-chk-box="false" 
+                                x-updated-object-arr="PendingSelectedItems"
+                                x-filter-function="getCUSTlist()"  
+                                x-filter-object="searchKeyword">
+                            </div>
+                        </div> -->
+
+                        <div ng-if="moduleType == 'ItemDetail' && itemModalCond != 'endItems' && itemModalCond != 'rawMaterialItems'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" 
+                            x-controller-initiate 
+                                 x-forget-filters="true"
+                            x-table-name="itemDetailModal" x-filter-function="selectItem()"
+                                x-checked-records="selectedRecFromModalsItem" x-selected-record-preview="product_code" x-filter-object="searchKeywordItem"></div>
+                        </div>
+
+                        <div ng-if="moduleType == 'ItemDetail' && itemModalCond == 'endItems'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" 
+                            x-controller-initiate 
+                                 x-forget-filters="true"
+                            x-table-name="itemDetailModal" x-filter-function="selectItem()"
+                                x-checked-records="selectedRecFromModalsEndItem" x-selected-record-preview="product_code" x-filter-object="searchKeywordEndItem"></div>
+                        </div>
+
+                        <div ng-if="moduleType == 'ItemDetail' && itemModalCond == 'rawMaterialItems'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" 
+                                x-controller-initiate x-forget-filters="true"
+                                x-table-name="itemDetailModal" x-filter-function="selectRawMaterialItem()"
+                                x-checked-records="selectedRecFromModalsRawMaterialItem" x-selected-record-preview="product_code" x-filter-object="searchKeywordRawMaterialItem"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left"><!-- Selected:&nbsp;{{PendingSelectedItems.length}} --></span>
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" ng-click="addRawMaterialItem()" ng-if="itemModalCond == 'rawMaterialItems'">Add</button>
+                    <button class="btn btn_add" type="button" ng-click="addProduct()" ng-if="itemModalCond != 'rawMaterialItems'">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearPendingPurchaseItems()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

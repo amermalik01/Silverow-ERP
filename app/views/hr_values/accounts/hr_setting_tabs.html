@@ -1,0 +1,62 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row" ng-init="setModuleId()">
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">{{show_tab_holiday}}
+            <tabset>
+                <tab ng-controller="edithrvalues" heading="Holidays" class="holidays"
+                     ng-click="itemselectPage(1);getHoliday();" ng-if="hr_holidays_module" ng-show="show_tab_holiday">
+                    <div ng-include="'app/views/hr_values/holidays.html'" ng-show="showHolidaylist"></div>
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form"
+                          ng-submit="add_holiday(formData)"
+                          name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+                        <div ng-include="'app/views/hr_values/add_holiday_form.html'" ng-show="showHoliday"></div>
+                    </form>
+                </tab>
+                <!-- <tab ng-controller="edithrvalues" heading="Expenses" class="expenses"
+                     ng-click="itemselectPage(1);getexpenses()" ng-if="hr_expenses_module" ng-show="show_tab_expense">
+                    <div ng-include="'app/views/hr_values/expenses.html'" ng-show="showexpenseslist"></div>
+                    <!--small_fields-->
+                    <form autocomplete="off" class="form-horizontal no-margin " role="form" validate-form=""
+                          novalidate="" ng-submit="addexpenses(formData)" ng-hide="showLoader">
+                        <div ng-include="'app/views/hr_values/expenses_form.html'" ng-show="showexpenses"></div>
+                    </form>
+                    <tabset ng-show="row_sub_list_expenses">
+                        <tab heading="Normal Expense" class="normalexpense"
+                             ng-click="getsubexpenses_final_list(formData.expense_id)">
+                            <div ng-include="'app/views/hr_values/sub_expense_row.html'"></div>
+                        </tab>
+                        <tab heading="Mileage" class="mileage" ng-click="chkVT();">
+                            <tabset>
+                                <tab heading="Personel Vehicle" class="personelVehicle dont-click" ng-hide="vt==2"
+                                     ng-click="getPersonaexpenses_final_list(formData.expense_id)">
+                                    <div ng-include="'app/views/hr_values/personel_vehicle.html'"></div>
+                                </tab>
+                                <tab heading="Company Vehicle" class="companyVehicle dont-click" ng-hide="vt==1"
+                                     ng-click="getCompanyexpenses_final_list(formData.expense_id)">
+                                    <div ng-include="'app/views/hr_values/company_vehicle.html'"></div>
+                                </tab>
+                            </tabset>
+                        </tab>
+                    </tabset>
+                </tab> -->
+                <!-- <tab ng-controller="edithrvalues" heading="Fuel Cost Deduction" class="deduction"
+                     ng-click="itemselectPage(1);getDeduction(); "
+                     ng-if="hr_fuel_cost_module" ng-show="show_tab_fuel_cost">
+                    <div ng-include="'app/views/hr_values/fuel_cost_deduction.html'" ng-show="showDeductionlist"></div>
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form"
+                          ng-submit="add_deduction(formData)"
+                          name="addForm" validate-form="" novalidate="">
+                        <div ng-include="'app/views/hr_values/add_fuel_cost_deduction_form.html'"
+                             ng-show="showDeduction"></div>
+                    </form>
+                    <div ng-include="'app/views/hr_values/fuel_cost_deduction_detail.html'"
+                         ng-show="showDeductionDetail"></div>
+                </tab> -->
+            </tabset>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/hr_values/document_internal.html'" ng-show="list_internal_document"></div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/hr_values/hr_history_modal.html'"></div>
+<div ng-include="'app/views/hr_values/_benefits_pop.html'"></div>

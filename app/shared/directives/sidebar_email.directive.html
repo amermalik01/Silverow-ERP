@@ -1,0 +1,746 @@
+<style>
+    .letter12 {
+        font-size: 18px;
+        color: white;
+    }
+    
+    .recform .form-control {
+        position: relative !important;
+        height: 29px;
+    }
+    
+    .modal-email .table>tbody>tr>td {
+        border: 1px solid #d6d6d6;
+    }
+    
+    .email-area b {
+        width: 14%;
+    }
+</style>
+
+<toaster-container toaster-options="{'toaster-id': 1,'position-class': 'toast-top-right', 'close-button':true}">
+</toaster-container>
+
+<span class="mbri-letter letter12 comm-btn" ng-click="openEmailModal()"> </span>
+<!-- Email -->
+
+<div id="sidebar-mail" class="modal fade recform" role="dialog">
+    <div class="modal-dialog modal-lg3 modal-email leftsidebar-container leftsidebar-email" style="    margin-top: 40px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" ng-click="clearEmailVars(1)" class="close" data-dismiss="modal">&times;</button>
+                <a class="btn btn-default2 pull-left" style="margin: -4px 0 !important;" ng-click="clearEmailVars();" ng-show="composeEmail">
+                    <i style="font-size: 14px;" class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <h4 class="modal-title">Email <span ng-if="user_type == 1">- This account cannot send Email.</span>
+                    <span ng-if="composeEmail" style="border-left: 1px solid;margin-left: 5px;padding-left: 7px;">{{config.senderEmail.username}}</span>
+                </h4>
+            </div>
+            <div class="modal-body" ng-class="{'enableOverflow':composeEmail}" style="    padding-bottom: 8px;">
+                <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader || showLoader}"></div>
+
+                <div ng-hide="composeEmail">
+                    <div class="row" style="margin-bottom: 0 !important;">
+                        <div class="col-md-2">
+                            <b>Email Accounts</b>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" ng-model="localSearch" placeholder="Search" class="form-control pull-left" style="    width: calc(100% - 83px);" ng-class="{'width100':user_type == 1}" />
+                            <a ng-hide="user_type == 1" ng-click="showComposeEmail(); bringNames(moduleTracker.module.name); " class="pull-right btn btn_add2">
+                                Compose
+                            </a>
+                        </div>
+                        <div class="col-md-7 ipwe" style="height: 31px;padding-left: 0;">
+                            <div class="pull-left">
+                                <div ng-show="user_type != 1 && focused && focused.id && focused.type != 3" style="margin-top: -5px;">
+                                    <div class="btn-group">
+                                        <!-- <button ng-click="replyThis(focused)"
+                                                type="button"
+                                                title="Reply"
+                                                class="btn btn-default2 no-margin"><i class="fa fa-reply"></i></button> -->
+                                        <button ng-click="forwardThis(focused)" type="button" title="Forward" class="btn btn-default2"><i class="fa fa-share"></i></button>
+                                        <!-- <button type="button"
+                                                title="Unread"
+                                                ng-show="focused.unreadStatus == 0 && focused.type == 2"
+                                                ng-click="focused.unreadStatus = 1;unreadStatusUpdate(focused.id, 1);"
+                                                class="btn btn-default2"><i class="fa fa-envelope"></i></button> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div ng-show="focused.association.length" class="pull-right" style="color: #607D8B;">
+                                <span ng-hide="editModule">{{focused.association[0].assName}}{{focused.association.length>1?"...":""}}</span>
+                            </div>
+                            <div ng-show="focused.id" class="pull-right" style="margin-top: -5px;">
+                                <div class="ib assignTo" style="margin: 6px 10px 2px;color: black;float: left;">
+                                    <span ng-click="toggleShowAssign($event, focused.id)" ng-class="{'fa-angle-right':showAssignto,'fa-link':!showAssignto}" class="fa"></span>
+                                    <div class="assignTo__show" ng-show="showAssignto">
+                                        <h4 style="font-size: 14px;margin-top: 4px;color: #9a9a9a;">Link this email to:</h4>
+                                        <div style="overflow: auto;max-height: 60vh;">
+                                            <table class="table table-condensed table-striped table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Module</th>
+                                                        <th>Record</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr style="    cursor: default !important;">
+                                                        <td>
+                                                            <select ng-model="inboxEmailModule" style="width: 91px;" ng-change="bringingNamesForInbox = true; bringNames(inboxEmailModule)" name="" id="" class="form-control">
+                                                                <option selected
+                                                                        disabled
+                                                                        value="">Select Module</option>
+                                                                <option ng-repeat="m in associationModules"
+                                                                        ng-value="m.value">{{m.name}}</option>
+                                                            </select>
+                                                        </td>
+                                                        <td style="overflow: visible;">
+                                                            <ui-select style="float: left;width: 200px;" ng-model="selectedInboxRecord.record" ng-change="updateInboxRecord();" ng-class="{'noAssign':!inboxEmailModule}">
+                                                                <ui-select-match placeholder="Select Record">
+                                                                    {{$select.selected.name}}
+                                                                </ui-select-match>
+                                                                <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                                                    <div ng-bind-html="opt.name| highlight: $select.search">
+                                                                    </div>
+                                                                </ui-select-choices>
+                                                            </ui-select>
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr x-rrr="{{r}}" style="    cursor: default !important;" ng-repeat="r in focused.association">
+                                                        <td>{{r.assModule}}</td>
+                                                        <td>{{r.assName}}</td>
+                                                        <td ng-class="{'disable-el': focused.association.length == 1}">
+                                                            <i ng-click="removeAssociation(r)" class="fa fa-times" aria-hidden="true"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div ng-hide="composeEmail">
+                    <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader}"></div>
+                    <div class="row" style="margin-bottom: 0 !important;">
+                        <div class="col-md-2 pr0">
+                            <ul class="emailBox" ng-class="{'activeEmailArea':(selectedBox[1].outbox || selectedBox[1].inbox || selectedBox[1].draft)}">
+                                <li aria-expanded="false" aria-controls="sideBarEmailCollapse_1">
+                                    <b ng-class="{'activeEmailAccount':(selectedBox[1].outbox || selectedBox[1].inbox || selectedBox[1].draft)}">
+                                        All Emails</b>
+                                </li>
+                                <style>
+                                    .emailBox li i.fa-chevron-right,
+                                    .emailBox li i.fa-chevron-down {
+                                        margin-right: 3px;
+                                        width: 12px;
+                                    }
+                                    
+                                    li[aria-expanded=true] .fa-chevron-right {
+                                        display: none;
+                                    }
+                                    
+                                    li[aria-expanded=false] .fa-chevron-down {
+                                        display: none;
+                                    }
+                                    
+                                    .activeEmailArea .fa-chevron-right,
+                                    .activeEmailArea .fa-chevron-down {
+                                        color: #0186ef !important;
+                                    }
+                                </style>
+                                <ul class="collapse in sideBarEmailCollapse" style="padding-left: 16px !important">
+                                    <!-- <li ng-click="selectThisBox(1, 'inbox');isAll = 1;getInboxEmails(1);"
+                                        ng-class="{'activeInbox': selectedBox[1].inbox}">
+                                        <span><i class="fa fa-inbox"></i>Inbox</span>
+                                    </li> -->
+                                    <li ng-click="selectThisBox(1, 'outbox');isAll = 1;getModuleEmails()" ng-class="{'activeInbox':selectedBox[1].outbox}">
+                                        <span><i class="fa fa-send"></i>Sent</span>
+                                    </li>
+                                    <li ng-click="selectThisBox(1, 'draft');isAll = 1;getDraftEmails(1);" ng-class="{'activeInbox': selectedBox[1].draft}">
+                                        <span><i class="fa fa-pencil-square-o"
+                                               aria-hidden="true"></i>Draft</span>
+                                    </li>
+                                </ul>
+                            </ul>
+                            <ul class="emailBox" ng-class="{'activeEmailArea':(selectedBox[0].outbox || selectedBox[0].inbox || selectedBox[0].draft)}">
+                                <li data-toggle="collapse" class="hoverMailIt cursorPointer" aria-expanded="false" aria-controls="sideBarEmailCollapse_0" data-target="#sideBarEmailCollapse_0">
+                                    <i class="fa fa-chevron-right"></i>
+                                    <i class="fa fa-chevron-down"></i>
+                                    <b ng-class="{'activeEmailAccount':(selectedBox[0].outbox || selectedBox[0].inbox || selectedBox[0].draft)}">{{currentUser}}</b>
+                                </li>
+                                <ul id="sideBarEmailCollapse_0" class="collapse sideBarEmailCollapse" style="padding-left: 16px !important">
+                                    <!-- <li ng-click="selectThisBox(0, 'inbox');getInboxEmails(0);"
+                                        ng-class="{'activeInbox': selectedBox[0].inbox}">
+                                        <span><i class="fa fa-inbox"></i>Inbox</span>
+                                    </li> -->
+                                    <li ng-click="selectThisBox(0, 'outbox');getModuleEmails()" ng-class="{'activeInbox':selectedBox[0].outbox}">
+                                        <span><i class="fa fa-send"></i>Sent</span>
+                                    </li>
+                                    <li ng-click="selectThisBox(0, 'draft');getDraftEmails(0);" ng-class="{'activeInbox': selectedBox[0].draft}">
+                                        <span><i class="fa fa-pencil-square-o"
+                                               aria-hidden="true"></i>Draft</span>
+                                    </li>
+                                </ul>
+                            </ul>
+                            <ul class="emailBox" ng-class="{'activeEmailArea':(selectedBox[$index+2].outbox || selectedBox[$index+2].inbox || selectedBox[$index+2].draft)}" ng-repeat="acc in virtualAccounts track by $index">
+                                <li data-toggle="collapse" data-target="#sideBarEmailCollapse_{{acc.id}}" class="hoverMailIt cursorPointer" aria-expanded="false" aria-controls="#sideBarEmailCollapse_{{acc.id}}">
+                                    <i class="fa fa-chevron-right"></i>
+                                    <i class="fa fa-chevron-down"></i>
+                                    <b ng-class="{'activeEmailAccount':(selectedBox[$index+2].outbox || selectedBox[$index+2].inbox || selectedBox[$index+2].draft)}">{{acc.virtualEmail}}</b>
+                                </li>
+                                <ul id="sideBarEmailCollapse_{{acc.id}}" class="collapse sideBarEmailCollapse" style="padding-left: 16px !important;">
+                                    <!-- <li ng-click="selectThisBox(($index+2), 'inbox');getInboxEmails(acc.id);"
+                                        ng-class="{'activeInbox':selectedBox[$index+2].inbox}">
+                                        <span><i class="fa fa-inbox"></i>Inbox</span>
+                                    </li> -->
+                                    <li ng-click="selectThisBox(($index+2), 'outbox');getModuleEmails();" ng-class="{'activeInbox':selectedBox[$index+2].outbox}">
+                                        <span><i class="fa fa-send"></i>Sent</span>
+                                    </li>
+                                    <!-- <li ng-click="selectThisBox(($index+2), 'draft');getDraftEmails(acc.id);"
+                                        ng-class="{'activeInbox':selectedBox[$index+2].draft}">
+                                        <span><i class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i>Draft</span>
+                                    </li> -->
+                                </ul>
+                            </ul>
+                        </div>
+                        <div ng-if="ifInboxEmails" class="col-md-3 righttoleft">
+                            <tabset class="modaltabs">
+                                <tab active="bringingLimitedRecords" ng-click="getInboxEmails(1,null)" ng-if="moduleTracker.module.record" heading="{{moduleTracker.module.recordName}}">
+                                    <div class="taskListing" ng-repeat="email in inboxEmails | filter: localSearch ">
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == email.id, 'focused.typeemailUnreadSubject': email.unreadStatus == 1 && email.type == 2}" ng-click="focusIt(email)">
+                                            <i ng-if="email.unreadStatus == 1 && email.type == 2" class="fa fa-circle"></i>
+                                            <div ng-if="email.type == 1" class="mailfrom">
+                                                <b>To: {{email.receiver_name}} </b>({{email.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.type == 2" class="mailfrom">
+                                                {{email.email_address_to}}
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{email.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="email.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{email.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="email.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="email.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{email.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(email)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(email)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                                <tab ng-click="getInboxEmails(1,1)" heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                    <div class="taskListing" ng-repeat="email in inboxEmails | filter: localSearch ">
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == email.id, 'emailUnreadSubject': email.unreadStatus == 1 && email.type == 2}" ng-click="focusIt(email)">
+                                            <i ng-if="email.unreadStatus == 1 && email.type == 2" class="fa fa-circle"></i>
+                                            <div ng-if="email.type == 1" class="mailfrom">
+                                                <b>To: {{email.receiver_name}} </b>({{email.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.type == 2" class="mailfrom">
+                                                {{email.email_address_to}}
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{email.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="email.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{email.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="email.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="email.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{email.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(email)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(email)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                            </tabset>
+                            <div class="text-center norecordmessage" ng-if="inboxEmails.length == 0">
+                                <span class="mbri-letter"></span>
+                                <div>You have no mail.</div>
+                            </div>
+                            <div ng-if="inboxEmails.length" style="margin-top: 8px;">{{(inboxEmails | filter:localSearch).length}} Record(s)</div>
+                        </div>
+                        <div ng-if="ifSentEmails" class="col-md-3 righttoleft">
+                            <tabset class="modaltabs">
+                                <tab active="bringingLimitedRecords" ng-click="getModuleEmails(1,null,null,null)" ng-if="moduleTracker.module.record" heading="{{moduleTracker.module.recordName}}">
+                                    <div class="taskListing" ng-repeat="email in moduleEmails | filter: localSearch ">
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == email.id}" ng-click="focusIt(email)">
+                                            <div class="mailfrom">
+                                                <b>To: {{email.receiver_name}} </b>({{email.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{email.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="email.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{email.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="email.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="email.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{email.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(email)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(email)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                                <tab ng-click="getModuleEmails(1,null,null,1)" ng-if="!moduleTracker.module.record" heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                    <div class="taskListing" ng-repeat="(key, value) in moduleEmails | filter: localSearch" ng-if="key != 'tbl_meta_data'">
+
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == value.id}" ng-click="focusIt(value)">
+
+                                            <div class="mailfrom">
+                                                <b>To: {{value.receiver_name}} </b>({{value.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{value.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="value.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{value.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="value.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="value.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{value.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(value)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(value)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                            </tabset>
+                            <div ng-if="moduleEmails.length" style="margin-top: 8px;">{{(moduleEmails | filter:localSearch).length}} Record(s)</div>
+                            <div class="text-center norecordmessage" ng-if="moduleEmails.length == 0">
+                                <span class="mbri-letter"></span>
+                                <div>No sent messages! Send one now!</div>
+                            </div>
+                        </div>
+                        <div ng-if="ifDraftEmails" class="col-md-3 righttoleft">
+                            <tabset class="modaltabs">
+                                <tab active="bringingLimitedRecords" ng-click="getDraftEmails(1,null)" ng-if="moduleTracker.module.record" heading="{{moduleTracker.module.recordName}}">
+                                    <div class="taskListing" ng-repeat="email in draftEmails | filter: localSearch ">
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == email.id, 'focused.typeemailUnreadSubject': email.unreadStatus == 1 && email.type == 2}" ng-click="focusIt(email)">
+                                            <i ng-if="email.unreadStatus == 1 && email.type == 2" class="fa fa-circle"></i>
+                                            <div ng-if="email.type == 1" class="mailfrom">
+                                                <b>To: {{email.receiver_name}} </b>({{email.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.type == 2" class="mailfrom">
+                                                {{email.email_address_to}}
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{email.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="email.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{email.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="email.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="email.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{email.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(email)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(email)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                                <tab ng-click="getDraftEmails(1,1)" ng-if="!moduleTracker.module.record" heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                    <div class="taskListing" ng-repeat="email in draftEmails | filter: localSearch ">
+                                        <div class="emaildata emaildata2" ng-class="{'emaildataactive': focused.id == email.id, 'emailUnreadSubject': email.unreadStatus == 1 && email.type == 2}" ng-click="focusIt(email)">
+                                            <i ng-if="email.unreadStatus == 1 && email.type == 2" class="fa fa-circle"></i>
+                                            <div ng-if="email.type == 1" class="mailfrom">
+                                                <b>To: {{email.receiver_name}} </b>({{email.email_address_to}})
+                                            </div>
+                                            <div ng-if="email.type == 2" class="mailfrom">
+                                                {{email.email_address_to}}
+                                            </div>
+                                            <div ng-if="email.sender_name.length == 0">
+                                                <b>Undefined Name</b>
+                                            </div>
+                                            <div class="emailsub">
+                                                {{email.email_subject}}
+                                            </div>
+                                            <div class="emailsub" ng-if="email.email_subject.length == 0">
+                                                No Subject
+                                            </div>
+                                            <div class="emailbo">
+                                                {{email.email_body_trimmed}}
+                                            </div>
+                                            <div class="emailbo" ng-if="email.email_body_trimmed.length == 0">
+                                                No Email Body
+                                            </div>
+                                            <div class="modattach" ng-if="email.attachments.length">
+                                                <i class="fa fa-paperclip"></i>
+                                            </div>
+                                            <span class="emailda">{{email.date_added}}</span>
+                                            <div class="emailmod" title="{{getAssociatedModuleName(email)}}">
+                                                <span class="emailmods">{{getAssociatedModuleName(email)}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                            </tabset>
+                            <div class="text-center norecordmessage" ng-if="draftEmails.length == 0">
+                                <span class="mbri-letter"></span>
+                                <div>You have no mail.</div>
+                            </div>
+                            <div ng-if="draftEmails.length" style="margin-top: 8px;">{{(draftEmails | filter:localSearch).length}} Record(s)</div>
+                        </div>
+                        <div class="col-md-7 righttoleft" ondragstart="return false;" ondrop="return false;" ng-show="focused.id" style="padding-left: 0;">
+                            <div class="clearfix" style="    margin-top: 3px;">
+
+                                <div class="moduleEmails_sender" ng-class="{'pull-left':focused.attachments.length}">
+                                    <div class="moduleEmails_sender_avatar">
+                                        {{focused.sender_name.split(' ')[0].charAt(0)}}{{focused.sender_name.split(' ')[1].charAt(0)}}
+                                    </div>
+                                    <div class="moduleEmails_sender_info" ng-class="{'move-up':user_type == 1}">
+                                        <div ng-show="focused.type != 3" class="moduleEmails_sender_from">
+                                            <b>From:
+                                                <span ng-show="focused.type == 1"
+                                                      style="font-weight: normal;
+                                                    margin-left: 4px;">
+                                                    {{focused.sender_name}}
+                                                    ({{focused.email_address_from}})
+                                                </span>
+                                                <span ng-show="focused.type == 2"
+                                                      style="font-weight: normal;margin-left: 4px;">
+                                                    {{focused.email_address_from}}
+                                                </span>
+                                            </b>
+                                        </div>
+                                        <div ng-show="focused.email_address_to">
+                                            <span class="pull-left">
+                                                <b>To:</b>
+                                            </span>
+                                            <span style="margin-left: 30px;
+                                                    display: block;
+                                                    width: 369px;
+                                                    word-break: break-all;" ng-class="{'breakemail':!focused.attachments.length}">{{focused.email_address_to}}</span>
+                                        </div>
+                                        <div ng-show="focused.cc">
+                                            <span class="pull-left">
+                                                <b>Cc:</b>
+                                            </span>
+                                            <span style="margin-left: 30px;
+                                                                                            display: block;
+                                                                                            width: 369px;
+                                                                                            word-break: break-all;" ng-class="{'breakemail':!focused.attachments.length}">{{focused.cc}}</span>
+                                        </div>
+                                        <div class="moduleEmails_sender_time">
+                                            <span>
+                                                <b>On:</b>
+                                            </span>{{focused.date_added}}
+                                        </div>
+                                        <b>Subject:
+                                            <span style="font-weight: normal;
+                                            margin-left: 4px;">{{focused.email_subject}}</span>
+                                        </b>
+                                    </div>
+                                </div>
+                                <!-- attachment.path -->
+                                <div ng-show="focused.attachments.length" class="sidebarEmailAttach pull-right">
+
+                                    <a type="button" href ng-click="downloadFileSecure(attachment.alias, attachment.path, attachment.fileType)" download="{{attachment.alias + '.' + attachment.fileType}}" ng-repeat="attachment in focused.attachments">
+                                        <span class="attachmentExtension">{{attachment.fileType}}</span>
+                                        <span> {{attachment.alias}}</span>
+                                    </a>
+
+                                </div>
+                                <a id='dwnldLnk' download='{{focused.email_subject.split(" ").join("_")}}.pdf' style="display:none;" />
+
+                                <!-- disabled the bulk pdf download until zip solution -->
+                                <!-- <button ng-show="focused.attachments.length"
+                                        style="    position: absolute;
+                                                    right: 18px;
+                                                    top: 19px;
+                                                    padding: 4px 11px;"
+                                        class="btn btn-default2 no-margin pull-right"
+                                        title="Download {{focused.attachments.length}} attachment(s)"
+                                        ng-click="downloadPDF()">
+                                    <i class="fa fa-download"
+                                       aria-hidden="true"></i>
+                                </button> -->
+                            </div>
+                            <div class="moduleEmails_body disableNoteEditable" ondragstart="return false;" ondrop="return false;">
+                                <summernote id="summernote_email" ng-model="focused.email_body"></summernote>
+                                <script>
+                                    $('#summernote_email').summernote({
+                                        disableDragAndDrop: true
+                                    });
+
+                                    setTimeout(function() {
+                                        $('#summernote_email').next().find(".note-editable").attr("contenteditable", false)
+                                    }, 100);
+                                </script>
+                            </div>
+                            <div ng-show="focused.type == 3" class="pull-right" style="margin-top: 10px;">
+                                <button type="button" class="btn btn-default2" ng-click="draftCompose(focused);">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-show="composeEmail">
+
+                    <!-- <div class="email-area"
+                         style="margin-bottom: 0;">
+                        <b>From</b>
+                        <div class="email-input">
+                            {{config.senderEmail.username}}
+                        </div>
+                    </div> -->
+
+                    <div ng-show="!reply" class="email-area">
+                        <b>Module <span class="required">*</span></b>
+                        <div class="email-input">
+                            <select style="width: 12%;float: left;margin-right: 6px;" ng-model="selectedEmailModule" ng-init="moduleTracker.module.name?(bringNames()):'0'" style="width: 91px;" ng-change="bringNames()" name="" id="" class="form-control">
+                                    <option
+                                        selected
+                                        disabled
+                                        value=""
+                                    >Select Module</option>
+                                    <option
+                                        ng-selected="selectedEmailModule == m.value"
+                                        ng-repeat="m in associationModules"
+                                        ng-value="m.value"
+                                    >{{m.name}}</option>
+                                </select>
+
+                            <ui-select style="width: 30%;float:left;" ng-change="updateEmailRecord(selectedRecord);bringEmails(selectedRecord.id)" ng-model="selectedRecord" ng-if="!reply && allNames.length">
+                                <ui-select-match placeholder="Select Record">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                    <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <div ng-hide="forward">
+                                <div class="fileUpload btn btn-default2 pull-right" style="margin: 0;
+                                            box-shadow: none;
+                                            border-color: #008eff;
+                                            color: #008eff;
+                                            cursor: pointer;">
+                                    <span style="cursor: pointer;"><i class="fa fa-paperclip"
+                                           style="margin-right: 5px;font-size: 14px;"></i>Attach File(s)</span>
+                                    <input type="file" style="color: rgba(0, 0, 0, 0); width: 100px;" ngf-select="onFileSelect($files, $invalidFiles)" ngf-max-files="20" name="file" multiple="" class="upload" accept=".xlsx, .xls, .ppt, .pptx, .doc,.mp4, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff,.zip"
+                                        ngf-max-size="5MB">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="email-area"
+                         >
+                        <b>Record</b>
+                        <div class="email-input">
+                            <ui-select style="width: 30%;"
+                                       ng-change="updateEmailRecord(selectedRecord);bringEmails(selectedRecord.id)"
+                                       ng-model="selectedRecord"
+                                       ng-show="!reply && allNames.length">
+                                <ui-select-match placeholder="Select Record">{{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                    <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="email-area" ng-show="moduleTracker.module.name">
+                        <b>To</b>
+                        <div class="email-input">
+                            <input type="text" ng-model="config.to" class="form-control" placeholder="To : Recipients">
+                        </div>
+                    </div> -->
+
+                    <div class="email-area" ng-show="!reply && allEmails.length">
+                        <b>To <span class="required">*</span></b>
+                        <div class="email-input">
+                            <ui-select multiple tagging="tagTransform" tagging-tokens="ENTER|TAB|," tagging-label="false" ng-model="config.to">
+                                <ui-select-match placeholder="Select To">{{$item.username}}</ui-select-match>
+                                <ui-select-choices repeat="opt in allEmails | filter: $select.search">
+                                    <span style="font-weight: bold" ng-bind-html="opt.type| highlight: $select.search"></span>:
+                                    <span ng-bind-html="opt.username| highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="email-area" ng-show="!reply && allEmails.length">
+                        <b>Cc</b>
+                        <div class="email-input">
+                            <ui-select multiple tagging="tagTransform" tagging-tokens="ENTER|TAB|," tagging-label="false" ng-if="allEmails.length" ng-model="config.cc">
+                                <ui-select-match placeholder="Select Cc">{{$item.username}}</ui-select-match>
+                                <ui-select-choices repeat="opt in allEmails | filter: $select.search">
+                                    <span style="font-weight: bold" ng-bind-html="opt.type| highlight: $select.search"></span>:
+                                    <span ng-bind-html="opt.username| highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="email-area" ng-show="reply">
+                        <b>To</b>
+                        <div class="email-input" style="    margin-top: 5px;">
+                            {{config.to}}
+                        </div>
+                    </div>
+                    <div class="email-area" ng-show="reply">
+                        <b>Cc</b>
+                        <div class="email-input">
+                            {{config.cc}}
+                        </div>
+                    </div>
+
+                    <!-- <div class="email-area">
+                        <b>Additional To</b>
+                        <div class="email-input">
+                            <ui-select multiple
+                                       tagging="tagTransform"
+                                       tagging-tokens="ENTER|TAB|,"
+                                       tagging-label="false"
+                                       ng-if="employeeEmailAddresses.length"
+                                       ng-model="config.additionalTo">
+                                <ui-select-match>{{$item.user_email}}</ui-select-match>
+                                <ui-select-choices repeat="opt in employeeEmailAddresses | filter: $select.search">
+                                    <div ng-bind-html="opt.user_email| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="email-area"
+                         ng-show="!reply && allEmails.length">
+                        <b>CC</b>
+                        <div class="email-input">
+                            <ui-select multiple
+                                       ng-if="allEmails.length"
+                                       ng-model="config.cc">
+                                <ui-select-match>{{$item.email}}</ui-select-match>
+                                <ui-select-choices repeat="opt in allEmails | filter: $select.search">
+                                    <div ng-bind-html="opt.email| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="email-area">
+                        <b>Additional CC</b>
+                        <div class="email-input">
+                            <ui-select multiple
+                                       tagging="tagTransform"
+                                       tagging-tokens="ENTER|TAB|,"
+                                       tagging-label="false"
+                                       ng-if="employeeEmailAddresses.length"
+                                       ng-model="config.additionalCC">
+                                <ui-select-match>{{$item.user_email}}</ui-select-match>
+                                <ui-select-choices repeat="opt in employeeEmailAddresses | filter: $select.search">
+                                    <div ng-bind-html="opt.user_email| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>-->
+
+                    <div class="email-area">
+                        <b>Subject <span class="required">*</span></b>
+                        <div class="email-input">
+                            <input type="text" class="form-control" ng-model="config.templateSubject">
+                        </div>
+
+                    </div>
+                    <div class="email-area" ng-if="artificialFiles.length">
+                        <b ng-if="getTotalSize()" style="margin: 0 !important;line-height: 15px;">Total size: {{getTotalSize()}} Kb
+                            <br /> Files: {{artificialFiles.length}}
+                        </b>
+                        <!-- <div ng-if="getTotalSize()" class="sidebar-email-attach-size2">{{getTotalSize()}} Kb - {{artificialFiles.length}}</div> -->
+                        <div class="sidebar-email-attachments-container">
+                            <div class="sidebar-email-attach" title="{{file.name}} - {{(file.size/1000).toFixed(2)}} Kb" ng-repeat="file in artificialFiles">
+                                <a ng-hide="forward" class="sidebar-email-attach-remove" ng-click="removeAttachment(file.name)">x</a>
+                                <div class="sidebar-email-attach-name">{{file.name}}</div>
+                                <div class="sidebar-email-attach-size">{{(file.size/1000).toFixed(2)}} Kb</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem1" ondragstart="return false;" ondrop="return false;">
+                        <summernote ng-model="config.templateBody" config="summernoteEmailBodyConfig" id="internalEmail"></summernote>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix" style="border-top: 1px solid #eaeaea;">
+                <a class="btn btn_add2 " ng-click="saveAsDraft()" ng-show="composeEmail">Save as Draft</a>
+                <a class="btn btn-submit2" ng-show="config.templateSubject && config.templateBody && config.to.length && config.senderEmail.username" ng-click="sendEmail()" ng-show="composeEmail">Send</a>
+                <!-- <button type="button"
+                        ng-click="clearEmailVars()"
+                        class="btn btn-default"
+                        data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+{
+        "tblMeta": {
+                "autoAdjust": true,
+                "hideSetup": true
+        },
+        "colMeta": [
+                {
+                        "title": "Price Offer Name",
+                        "field_name": "name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Offered By",
+                        "field_name": "offered_by1",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Currency",
+                        "field_name": "Code",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Created Date",
+                        "field_name": "AddedOn",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                },
+                {
+                        "title": "Start Date",
+                        "field_name": "start_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                },
+                {
+                        "title": "End Date",
+                        "field_name": "end_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                }
+        ]
+}

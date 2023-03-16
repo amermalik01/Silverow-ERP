@@ -1,0 +1,153 @@
+<div ng-controller="PromotionProductsController as table">
+<form class="form-horizontal no-margin">
+  <div class="row">
+        <div class="col-md-6 col-md-6">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <select ng-model="category" ng-options="opt as opt.name for opt in arr_categories"  class="form-control"><option value="">All Category</option> </select>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" ng-model="search_data"  class="form-control"  />                
+              </div>
+              <a id="prompt" ng-click="getProducts()" class="btn btn_blue margin_bottom width_80"><i class="fa fa-search fa_display"></i>Search</a>
+              <a id="prompt" ng-click="getProducts('all')" class="btn btn_blue margin_bottom width_80">Show All</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                  <button type="button" class="btn btn_blue pull-right width_80" ng-click="backPromo()" tabindex="18"><em class="fa fa-chevron-left fa_display"></em> Back</button>
+              </div>
+            </div>
+        </div>
+  </div>
+</form>
+
+ <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Additional Address(es)
+          </div>
+          
+        </div> -->
+         <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+
+    <h4>Items ({{promotion_name}})</h4>
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+        <th check-all="check-all">
+               </th>
+        <!-- <th check-all="check-all"><em class="fa icon-basket-loaded" title="Existed products in {{promotion_name}}"></em>
+               </th> -->
+          <th ng-repeat="column in columns" ng-show="column.visible"
+                    class="sortable" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <!-- <tr>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+          <th ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody>
+        <tr ng-repeat="prodcut in $data" ng-init="chkDisabled = selection.indexOf(prodcut.id) == -1">
+            <td>
+              <input type="checkbox" id="{{prodcut.id}}" value="{{prodcut.id}}" ng-checked="!chkDisabled" ng-click="select_deselect_prod(prod,promotion_id,prodcut.id,promotion_name,chkDisabled,discount_type,discount_value)" />
+           </td>
+           <!-- <td>
+              <input type="checkbox" id="{{prodcut.id}}" value="{{prodcut.id}}" ng-disabled="chkDisabled" ng-checked="!chkDisabled" ng-click="deleteProd(promotion_name,promotion_id,prodcut.id)" />
+           </td> -->
+          <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field"> {{prodcut[column.title]}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+         <label class="col-md-4 control-label">&nbsp;</label>
+          <div class="col-md-offset-2 col-md-10">
+             <button type="button" class="btn btn-info btn_blue" ng-click="backPromo()" tabindex="18"><em class="fa fa-chevron-left"></em> Back</button>
+          </div>
+      </div>
+   </div>
+</div> --> 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!--ng-controller="PromotionSelectedProductsController as table"-->
+<!--<div class="panel panel-default" ng-controller="PromotionProductsController as table">
+    <h4>Products ({{promotion_name}})</h4>
+    <table ng-table="table.tableParams6" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+        <th check-all="check-all">
+                  <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                     <label>
+                        <input type="checkbox" />
+                        <span class="fa fa-check"></span>
+                     </label>
+                  </div>
+               </th>
+          <th ng-repeat="column in columns" ng-show="column.visible"
+                    class="sortable" ng-class="{
+                    'sort-asc': table.tableParams6.isSortBy(column.field, 'asc'),
+                    'sort-desc': table.tableParams6.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams6.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <tr>
+        <th>&nbsp;</th>
+          <th ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr ng-repeat="user in $data" ng-if="selection.indexOf(user.id) != -1">
+            <td>
+              <div class="checkbox c-checkbox">
+                 <label>
+                    <input type="checkbox" />
+                    <span class="fa fa-check"></span>
+                 </label>
+              </div>
+           </td>
+          <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field"> {{user[column.title]}} </td>
+        </tr>
+      </tbody>
+    </table>
+<div class="row">
+    <div class="col-md-12 panel-footer">
+        <div class="form-group">
+         <label class="col-md-4 control-label">&nbsp;</label>
+          <div class="col-md-offset-2 col-md-10">
+             <button type="submit" class="btn btn-sm btn-success" tabindex="18">Submit</button>&nbsp;
+          </div>
+      </div>
+   </div>
+</div>
+</div>-->
+  

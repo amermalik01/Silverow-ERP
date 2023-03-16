@@ -1,0 +1,158 @@
+<div class="modal fade" id="salesPersonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow-x:hidden">
+                <!-- Filter -->
+
+
+                <div class="row">
+
+                    <!--</div>ng-submit="getSalePersons()"-->
+                    <div class="col-md-4">
+                        <form class="form-horizontal no-margin">
+                            <div>
+                                <div class="input-symbol">
+                                    <input type="text" Placeholder="Search" class="form-control"
+                                           ng-model="rec.searchKeywordsl" style="padding-left:4px;">
+                                    <!--
+                  ng-keyup="getSalePerson_oop()"-->
+                                    <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <!--<div class="form-group">-->
+                        <!--<select ng-model="searchKeywordhr.department"-->
+                        <!--ng-options="opt as opt.name for opt in deprtment_arr" class="form-control"-->
+                        <!--ng-change="getSalePersons()">-->
+                        <!--<option value="" disabled selected>Select Department</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="col-md-4">
+                        <!--<button type="button" title="Clear Fields" class="btn btn-default m0auto"-->
+                        <!--ng-click="getSalePersons(1, 0, 1, 77)" ng-model="strict"-->
+                        <!--style="padding-top:5px;padding-bottom:5px;"><i class="fa fa-refresh"-->
+                        <!--aria-hidden="true"></i></button>-->
+                    </div>
+
+                </div>
+
+
+                <!-- Filter End -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--paging options start-->
+                        <div class="page-options" style="margin-top: -8px;">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label class="col-md-6 show_record">Show Entries </label>
+
+                                    <div class="col-md-4">
+                                        <select ng-model="item_paging.pagination_limit"
+                                                ng-options="opt as opt.label for opt in pagination_arry"
+                                                class="form-control" ng-change="getSalePersons()">
+                                            <option style="display:block" value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-center total_paging_center" ng-if="salepersons.length > 0">
+                                    {{total_paging_record}}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-right total_paging_record" ng-if="salepersons.length > 0">Total:
+                                    {{total}}
+                                </div>
+                            </div>
+                        </div>
+                        <!--paging options end-->
+                    </div>
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered table-hover"
+                                       ng-if="columns.length > 0">
+                                    <thead class="fixit">
+                                    <tr class="bg-col">
+                                        <th style="width:31px;">
+                                            <input type="checkbox" class="checkAllSalesperson">
+                                        </th>
+                                        <th style="width:63px;">Primary</th>
+                                        <th>Bucket</th>
+                                        <th>Name</th>
+                                        <th>Job Title</th>
+                                        <th>Department</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="courser table-body fixit">
+                                    <tr ng-repeat="sp in salepersons  | filter:rec.searchKeywordsl">
+                                        <td style="width:31px;">
+                                            <input type="checkbox" ng-checked="sp.chk" name="testc {{$index}}"
+                                                   id="testc {{$index}}" data-parsley-multiple="checkbox"
+                                                   ng-click="selectSaleperson(sp, 0)">
+                                        </td>
+                                        <td style="width:63px;">
+                                            <input type="radio" ng-checked="sp.isPrimary" id="cc{{$index}}"
+                                                   value="cc{{$index}}" data-parsley-multiple="checkbox"
+                                                   ng-click="selectSaleperson(sp, 1)">
+                                        </td>
+                                        <td>{{sp.bucket_name}}</td>
+                                        <td ng-class="{'hight_light_sorting':sort_column == column.field}">
+                                            {{sp.name}}
+                                        </td>
+                                        <td> {{sp.job_title}}</td>
+                                        <td> {{sp.dep_name}}</td>
+                                        <!--<td ng-repeat="column in columns"   ng-if="column.title != 'Id' &&
+                                        column.field!= 'group_name' && column.field != 'Isprimary'" >{{sp[column.field]}}</td>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" ng-show="item_paging.total_pages > 1">
+                        <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                                <li ng-class="{'disabled': item_paging.cpage == 1}" class="">
+                                    <a ng-click="itemselectPage(item_paging.ppage);getSalePersons();"
+                                       href="javascript: void(0);" class="">�</a>
+                                </li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}">
+                                    <a ng-click="itemselectPage(value);getSalePersons();" href="javascript: void(0);">
+                                        <span ng-bind="value"></span>
+                                    </a>
+                                </li>
+                                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}">
+                                    <a ng-click="itemselectPage(item_paging.npage);getSalePersons();"
+                                       href="javascript: void(0);">�</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row ends -->
+                <!--</form>-->
+            </div>
+            <div class="modal-footer">
+                <!-- {{selectedCustomers}} -->
+                <!-- <button type="button" class="btn btn-default btn_blue"_blue>Add</button> -->
+                <!--  -->
+                <span class="pull-left">Selected:&nbsp;{{(salepersons| filter: {chk: true}).length}}</span>
+                <button class="btn btn_add2" data-dismiss="modal" type="button">Add</button>
+                <button type="button" class="btn btn-cancel2" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<!--<div data-ng-class="whirl no-overlay:column.length==0"></div>-->

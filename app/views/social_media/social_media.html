@@ -1,0 +1,50 @@
+<div ng-controller="SocialMediaTitleController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div class="row" style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs" style="padding:8px;">
+            <div class="col-md-6">
+              <div class="search-wrapper">
+                  <input type="text" Placeholder="Search in Social Media" class="form-control" ng-model="searchKeyword.search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+                <a id="prompt" ui-sref="app.addcrm-social-media" class="btn btn_add pull-right">Add</a>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  <!-- Row starts -->
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="row">
+      <div class="col-md-2" ng-repeat="rec in res_socialmedia | filter:searchKeyword.search">
+        <div class="box-container" >
+          <!-- <a ui-sref="app.view-crm-social-media({id:rec.id})"><i class="fa fa-edit"></i></a> -->
+          <i ng-if="rec.name.toLowerCase()=='facebook'" class="fa fa-facebook"></i>
+          <i ng-if="rec.name.toLowerCase()=='skype'" class="fa fa-skype"></i>
+          <i ng-if="rec.name.toLowerCase()=='instagram'" class="fa fa-instagram"></i>
+          <i ng-if="rec.name.toLowerCase()=='linkedin'" class="fa fa-linkedin"></i>
+          <i ng-if="rec.name.toLowerCase()=='twitter'" class="fa fa-twitter"></i>
+          <i ng-if="rec.name.toLowerCase()=='pinterest'" class="fa fa-pinterest"></i>
+          <i ng-if="rec.name.toLowerCase()=='youtube'" class="fa fa-youtube-play"></i>
+          <i ng-if="rec.name.toLowerCase()=='yahoo'" class="fa fa-yahoo"></i>
+          <i ng-if="rec.name.toLowerCase()=='vimeo'" class="fa fa-vimeo "></i>
+          <i ng-if="rec.name.toLowerCase()=='whatsapp'" class="fa fa-whatsapp"></i>
+          <i ng-if="rec.name.toLowerCase()=='tumblr'" class="fa fa-tumblr"></i>
+          <i ng-if="rec.name.toLowerCase()=='gmail'" class="fa fa-google"></i>
+          <i ng-if="rec.name.toLowerCase()=='google plus'" class="fa fa-google-plus-official"></i>
+          <i ng-if="rec.name.toLowerCase()=='flickr'" class="fa fa-flickr"></i>
+          <i ng-if="rec.name.toLowerCase()=='outlook' || rec.name.toLowerCase()=='hotmail' || rec.name.toLowerCase()=='live'" 
+          class="fa fa-windows"></i>
+          <!-- <i ng-if="rec.name.toLowerCase()=='pinterest'" class="fa fa-pinterest"></i> -->
+          <div class="SocialMediaName"> {{rec.name}} </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,32 @@
+<script type="text/ng-template" id="modalCustDialogId">
+<div class="row">
+<div class="col-lg-12" style="padding-left: 3px !important; padding-right: 3px !important;">
+      <!-- START panel-->
+      <div class="panel panel-default no-padding no-border no-margin">
+         <div class="modal-header"><h4 class="modal-title">{{title}}</h4></div>
+         <div class="panel-body">
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover no-margin">
+                  <thead>
+                     <tr class="bg-col">
+                        <th ng-repeat="column in columns" ng-hide="column.field == 'id'">{{column.title}}</th>
+                     </tr>
+                  </thead>
+                  <tbody class="courser table-body">
+                     <tr ng-repeat="rec in record" ng-click="confirm(rec)">
+                        <td ng-repeat="column in columns" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- END table-responsive-->
+         </div>
+         <div class="modal-footer"> 
+            <button type="button" class="btn default width_80" data-dismiss="modal" ng-click="closeThisDialog();"><i class="fa fa-undo fa_display"></i> Cancel</button>
+        </div>
+      </div>   
+      <!-- END panel-->
+   </div>
+</div>
+</script>

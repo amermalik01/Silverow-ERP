@@ -1,0 +1,22 @@
+<div ng-controller="SRMInvoiceController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example" class="example_alt_pagination">
+                        <div style="padding-top: 30px;">
+                            <div class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="PurchaseInvoice" x-filter-function="getSrmInvoiceListing()" x-checked-records="selectedRecBulkEmail" x-filter-object="searchKeyword" x-bulk-email-function="bulkEmailOption()"
+                                x-selected-record-preview="invoice_code"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <!-- <div 
+        ng-include="'app/views/srm_order/_saleOrdersModal.html'"></div> -->
+    <div ng-include="'app/views/_bulkOptionsModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

@@ -1,0 +1,72 @@
+
+<div class="modal fade"   id="model_pop_role"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Role </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label ">Modules</label>
+                      <div class="col-sm-7">
+                        <select  ng-disabled="check_hrvalues_readonly"
+                             ng-model="formData.module_id"  ng-options="opt as opt.name for opt in module_list"
+                          class="select2me form-control"     ng-change="onChangeModule()" >
+
+                        </select>
+                      </div>
+                    </div>
+                    <!-- <input type="hidden"   ng-model="formData.module_id" id="module_id" />
+                   -->
+                    <input type="hidden"   ng-model="formData.per_id" id="per_id" />
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> &nbsp; Permissions</label>
+                      <div class="col-sm-7" > <!--  {{final_list}}-->
+
+                        <span ng-repeat="namesList in childdata" >
+                        <input type="checkbox" ng-model="namesList.checked"
+                     value="option1"    name="formData.list_values[]"
+                   />
+                        &nbsp;  {{namesList.name}}</span>
+
+                        <!--<label class="checkbox-inline" ng-repeat="list_single in childdata">
+                <input type="checkbox"   ng-checked="list_single.check_status"
+                value="option1"
+                 name="formData.list_values[]"
+                ng-model="formData.list_values[list_single.id]"
+                >  {{list_single.name}} </label>-->
+
+                        <!--   <div ng-if="list_single.check_status==1">
+                        <label><input type="checkbox"    ng-checked="checkbox == check_status"
+                        name="formData.list_values[]"  ng-model="formData.list_values[list_single.id]"
+                        >{{list_single.name}} </label>
+                        </div>
+                        <div ng-if="list_single.check_status==2">
+                        <label><input type="checkbox"
+                        name="formData.list_values[]"  ng-model="formData.list_values[list_single.id]"
+                        >{{list_single.name}} </label>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-submit" type="submit" ng-show="!check_hrvalues_readonly">  Save</button>
+        <button type="button" class="btn btn-cancel"ng-click="getRoles()" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<script type="text/ng-template" id="historyDialogId">
+<div class="row">
+<div class="col-lg-12">
+      <!-- START panel-->
+      <div class="panel panel-default">
+         <center><div class="panel-heading" style="font-weight:bold;">{{title}}</div></center>
+         <div class="panel-body">
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr class="bg-col">
+                        <th>Exchange Rate</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Created By</th>
+                        <th>Created Date</th>
+                     </tr>
+                  </thead>
+                  <tbody class="courser table-body">
+                     <tr ng-repeat="data in histData">
+                        <td>{{data.conversion_rate}}</td>
+                        <td>{{data.start_date}}</td>
+                        <td>{{data.end_date}}</td>
+                        <td ng-if="data.status == 1">Active</td>
+                        <td ng-if="data.status == 0">Inactive</td>
+                        <td>{{data.emp_name}}</td>
+                        <td>{{data.action_date}}</td>
+                     </tr>
+                  </tbody>
+               </table><br>
+               <div><strong>Average Rate since time begin : &nbsp;&nbsp;</strong>{{histData[0].total_avg_rate | number:decimal_range }}</div>
+               <div><strong>Average Rate in current year  : &nbsp;&nbsp;</strong>{{histData[0].annual_avg_rate | number:decimal_range }}</div>
+            </div>
+            <!-- END table-responsive-->
+         </div>
+      </div>   
+      <!-- END panel-->
+   </div>
+</div>
+</script>

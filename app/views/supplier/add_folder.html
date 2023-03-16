@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>Add Folder</h4>
+    <div class="hr_line2"></div>
+  </div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="form-group">
+          <label class="col-sm-4 control-label "> Folder </label>
+          <div class="col-sm-8">
+            <select  ng-disabled="check_readonly"   ng-model="folder.folders"
+                     ng-options="opt as opt.name for opt in arr_folders" 
+                  
+                class="select2me form-control"    
+                 id="case_folder">
+              <option style="display:none" ></option>
+            </select>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="form-group">
+          <label class="col-lg-4 control-label">Title <span class="required">*</span></label>
+          <div class="col-lg-8">
+            <input type="text" ng-model="folder.title" id="title" class="form-control"  required/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="hr_line2"></div>
+        <div class="pull-right">
+          <button class="btn btn_blue width_80" type="button" ng-click="confirm(folder)"><i class="fa fa-check fa_display"></i> Submit</button>
+          <button class="btn default width_80" type="button" id="close-modal" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

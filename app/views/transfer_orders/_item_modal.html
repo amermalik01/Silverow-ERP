@@ -1,0 +1,80 @@
+<div class="modal fade"
+     id="transfer_order_items_popup">
+    <div class="modal-dialog" style="width: 65%">
+        <!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Items</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row"
+                     ng-init=""
+                     style="    margin-bottom: 0 !important;">
+                    <!-- Filter Start -->
+                    <div>
+                        <div>
+                            <form class="form-horizontal no-margin"
+                                  ng-submit="">
+                                <div>
+                                    <div class="col-lg-5 col-md-5"
+                                         style="    margin-bottom: 7px;">
+                                        <div class="input-symbol">
+                                            <input type="text"
+                                                   ng-model="Serachkeyword"
+                                                   placeholder="Search"
+                                                   class="form-control" />
+                                            <!-- <input type="submit"  style="display:none"   />-->
+                                            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Filter End -->
+
+                </div>
+                <div class="row"
+                     style="margin-bottom: 0 !important;">
+
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th>Item No.</th>
+                                                <th style="    width: 400px;">Description</th>
+                                                <th>U.O.M</th>
+                                                <th class="text-right padright19">Available Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="item in warehouse_items | limitedFilter:Serachkeyword:['code','name']"
+                                                ng-click="assignCodes(item);">
+                                                <td>{{item.code}}</td>
+                                                <td style="    width: 400px;">{{item.name}}</td>
+                                                <td>{{item.uom_name}}</td>
+                                                <td class="text-right padright19">
+                                                    {{item.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn  pull-right btn-cancel2"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

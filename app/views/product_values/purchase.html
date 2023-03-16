@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12"> <a id="prompt" ng-click="fn_purchase_Form()"
+   class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"> </i> Add New</a> </div>
+</div>
+<!--show_purchase_edit_form(record_p.id)-->
+
+<div class="row" ng-show="columns_p.length > 0">
+  <div class="col-md-12 col-md-12" >
+    <div class="widget">
+      <div class="widget-body ">
+        <button type="button" id="model_btn_purchase_id" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_btn_purchase"   style="display:none" > Add New </button>
+        <div id="dt_example" class="example_alt_pagination">
+          <table  class="table table-condensed table-striped table-hover table-bordered" id="data-table" >
+            <thead >
+              <tr class="bg-col" ng-show="columns_p.length > 0" >
+                <th ng-repeat="column in columns_p"   
+                ng-if="column.title != 'Id'"  > {{column.title}} </th>
+                <th    style="width: 7%" >Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body ">
+            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+            <tr  ng-repeat="record in purchase_list" ng-show="columns_p.length > 0">
+              <td ng-repeat="column in columns_p"   ng-click="purchase_pop(record.id)"  
+                ng-if="column.title != 'Id'"
+                  ><span ng-if="column.field != 'start_date' && column.field != 'end_date'"> {{record[column.field]}}</span> <span ng-if="column.field == 'start_date' || column.field == 'end_date'"> <span ng-if=" record[column.field] != 0 "> {{convert_unix_date_to_angular(record[column.field])}} </span></span>
+                  </td>
+              <td   ><a title="Edit"  ng-click="purchase_pop(record.id)"   
+              class="tooltips_clsss btn " > <i class="fa fa-edit"> </i></a> <a  title="Delete" ng-click="delete_sp(record.id,$index,purchase_list)"
+                   class="tooltips_clsss btn "><i class="fa fa-times"> </i></a></td>
+            </tr>
+            
+            <!--  <tr ng-show="columns_p.length == 0 && !showLoader">
+              <td>No Record found agaist this entity! Please add.</td>
+            </tr>-->
+            
+              </tbody>
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

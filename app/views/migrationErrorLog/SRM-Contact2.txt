@@ -1,0 +1,6 @@
+Array
+(
+    [(I64) Telephone] => "01884 840959/07875 170581" is too long
+    [(I160) Telephone] => "+ 44 (0) 1202 331 668" is too long
+)
+

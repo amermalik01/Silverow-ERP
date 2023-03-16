@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Posting Group<span class="required">*</span></label>
+            <div class="col-md-8">
+              <select ng-model="rec.posting_grp" ng-options="opt as opt.posting_group for opt in postingGroup" class="select2me form-control" required
+                ng-disabled="rec.id>0">
+                <option  value="" disabled selected>Select Posting Group</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">VAT Name<span class="required">*</span></label>
+            <div class="col-md-8">
+              <select ng-model="rec.vat_rate" ng-options="opt as opt.VAT_RATE for opt in vatRate" class="select2me form-control" required
+                ng-disabled="check_readonly" id="status">
+                <option  value="" disabled selected>Select VAT Name</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">VAT Rate%<span class="required">*</span></label>
+            <div class="col-md-8">
+              <div class="input-symbol">
+                <input type="number" ng-model="rec.vat" id="vat" max="100" name="vat" class="form-control" step="any" ng-readonly="check_readonly" required/>
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

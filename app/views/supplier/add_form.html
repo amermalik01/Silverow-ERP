@@ -1,0 +1,66 @@
+<!--<div ng-controller="pr_add_values_controller as table">-->
+
+<div ng-include="'app/views/_breadcrumb.html'" ></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<!--<div ng-app ng-controller="TabsController">    -->
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+      <tabset> <tab heading="General" class="general_information"  ng-click="generalInformation()" >
+        <div >
+          <div class="vertical_space"></div>
+          <form autocomplete="off"class="form-horizontal no-margin" role="form" validate-form="" 
+                novalidate="" ng-submit="add_general_srm(rec,drp)" name="addForm" ng-hide="showLoader" ng-init="getCode(rec);generate_unique_id()" >
+            <div ng-include="'app/views/supplier/general_form.html'"  ></div>
+          </form>
+          <form autocomplete="off"  class="form-horizontal no-margin" role="form"  ng-submit="add_employee_pop(rec)"
+                name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+            <div ng-include="'app/views/srm/sale_list_get.html'" ></div>
+          </form>
+        </div>
+        </tab> <tab heading="Finance" class="finance_customer dont-click" ng-click="general_finance()"  >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Other Contact(s) " class="contact_information dont-click"  ng-click="general_contact()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Other Location(s) " class="alt_depot dont-click"  ng-click="general_location()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Area Coverd" class="shipping_agent dont-click"  ng-click="general_shipping_agent()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Item Information " class="p_offer dont-click"  ng-click="general_p_offer()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Price " class="p_offer dont-click"  ng-click="general_p_offer()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Documents" class="documents dont-click"  ng-click="general_documents()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> <tab heading="Images" class="image dont-click" >
+    <div >
+      <div class="vertical_space"></div>
+    </div>
+    </tab><tab heading="Comments" class="comments dont-click" ng-click="itemselectPage(1);getComments()" >
+        <div >
+          <div class="vertical_space"></div>
+        </div>
+        </tab> </tabset>
+    </div>
+  </div>
+</div>
+<!--   </div>-->
+
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal_sales.html'" ></div>

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-12"> <a id="prompt" ng-click="document_add_Form()" class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"></i> Add New</a> </div>
+</div>
+
+<!-- Row starts -->
+<div class="row"  ng-show="columns_doc.length > 0">
+  <div class="col-lg-12 col-md-12" >
+    <div class="widget">
+      <div class="widget-body ">
+        <div id="dt_example" class="example_alt_pagination">
+          <div class="panel panel-default">
+            <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+              <thead>
+                <tr class="bg-col" ng-show="columns_doc.length > 0">
+                  <th ng-repeat="column in columns_doc"   
+                ng-if="	column.title != 'Id' && column.title != 'Image' "  > {{column.title}} </th>
+                  <th     style="width: 11%;" >Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr ng-repeat="record in data_doc" ng-show="columns_doc.length > 0">
+                  <td ng-repeat="column in columns_doc" ng-click="editdocumentForm(record.id)" 
+                      ng-if="column.title != 'Id' && column.title != 'Image'"  > {{record[column.field]}} </td>
+                  <td><span   ng-if=" record.image !='' "  > <a title="View"  target="_blank" 
+              href="{{imagePath+record.image}}"  download="{{record.image}}"
+              class="tooltips_clss btn "> <i class="fa fa-eye"> </i></a> </span> <a title="Edit" ng-click="editdocumentForm(record.id)" 
+              class="tooltips_clss btn "> <i class="fa fa-edit"> </i></a> <a title="Delete" ng-click="deletedocument(record.id,$index,data_doc)"
+                   class="tooltips_clss btn "><i class="fa fa-times"> </i></a></td>
+                </tr>
+                
+                <!--
+                <tr ng-show="columns_doc.length == 0">
+                  <td>No record found!</td>
+                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<style>
+.hoverthis:hover {
+    border-bottom-color: #cccccc !important;
+    box-shadow: inset 2px 0px 0px 0px #49aefc;
+}
+</style>
+<div ng-controller="ModuleCodeController as table">
+    <div>
+        <div ng-include="'app/views/_breadcrumb.html'"></div>
+    </div>
+    <div class="row"
+         style="margin-bottom: 0 !important;">
+        <div class="col-md-12">
+            <div class="nav nav-tabs"
+                 style="padding:8px;">
+                <div class="col-md-6">
+                    <div class="search-wrapper">
+                        <input type="text"
+                               ng-model="Serachkeyword"
+                               placeholder="Search in Module Codes"
+                               class="form-control" />
+                        <i class="fa fa-search search-icon"
+                           aria-hidden="true"></i>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <a id="add_module_code" ui-sref="app.addModuleCode()" class="btn btn_add pull-right margin_bottom">Add</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example"
+                         class="example_alt_pagination">
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table"
+                               show-filter="true">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th> Module </th>
+                                    <th> Type </th>
+                                    <th> Prefix </th>
+                                    <th> Range From </th>
+                                    <th> Range To </th>
+                                    <th> <!-- Last Code Used --> Last No. Used </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit" style="max-height: 75vh;">
+                                <tr ng-repeat="(cat, codes) in module_codes_arr track by $index"style="border-bottom:0">
+                                    <td class="hoverthis" style="border-bottom: 1px solid #dddddd;background-color: white !important;padding-bottom: 0;cursor: default;"> 
+                                        <strong style="color: black;font-size: 12px;padding-bottom: 2px !important;display: block;">{{cat}}</strong>
+                                        <table class="table table-condensed table-striped table-hover table-bordered"
+                                               id="data-table"
+                                               style="border:none;"
+                                               show-filter="true">
+                                            <tr ng-repeat="code in codes | filter: Serachkeyword"
+                                                ui-sref="app.editModuleCode({id:code.id})">
+                                                <td style="padding-left: 0 !important;">{{code.module}}</td>
+                                                <td> {{code.type}} </td>
+                                                <td> {{code.prefix}} </td>
+                                                <td> {{code.range_from}} </td>
+                                                <td> {{code.range_to}} </td>
+                                                <td ng-if="code.type != 'External'"> {{code.last_code}} </td>
+                                                <td ng-if="code.type == 'External'"> &nbsp; </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,33 @@
+<div id="_bankListModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" draggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Bank(s) </h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div ng-if="tempBankArr2.ack">
+                            <div class="flexiTable" 
+                                x-generate-table2 
+                                x-data="tempBankArr2" 
+                                x-table-name="Supp"
+                                x-select-flexi-chk-box="false" 
+                                x-updated-object-arr="PendingSelectedBanks"
+                                x-filter-function="getCUSTlist()"  
+                                x-filter-object="searchKeyword"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{PendingSelectedBanks.length}}</span>
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" ng-click="addBank()">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearBank()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

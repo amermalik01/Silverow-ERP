@@ -1,0 +1,359 @@
+<style>
+  .rpad .col-md-8 {
+    padding: 0;
+    width: 100%;
+  }
+</style>
+
+<div class="modal fade"
+     id="product_dilter_pop"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true"
+     style=" overflow: visible !important;">
+  <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog modal-lg"
+       dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body" style="    overflow: auto;
+    max-height: 70vh;">
+
+        <!-- Filter  start  -->
+        <div class="row"
+             style="    margin-bottom: 0 !important;">
+          <div class="col-md-12">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr class="bg-col">
+                  <th style="    width: 22%;">Filter</th>
+                  <th style="    width: 22%;">Operator</th>
+                  <th style="    width: 36%;">Search</th>
+                  <th>Logical</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="rpad"
+                    data-ng-repeat="formDataExpense in array_dynamic_filter_product  | orderBy:'sort_id' track by $index ">
+                  <td>
+                    <select class="form-control"
+                            ng-model="formDataExpense.normal_filter"
+                            ng-change="resetFilterValue(formDataExpense)"
+                            ng-options="opt as opt.name for opt in arr_filter_product">
+                      <option disabled
+                              selected
+                              default
+                              value="">Filter Field</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select ng-disabled="!formDataExpense.normal_filter"
+                            ng-if="bucketFilterData[moduleName][formDataExpense.normal_filter.name].meta.limitedFields"
+                            class="form-control"
+                            ng-model="formDataExpense.operator_filter"
+                            ng-options="opt as opt.name for opt in arr_operator_limited track by opt.id ">
+                      <option disabled
+                              selected
+                              default
+                              value="">Operator</option>
+                    </select>
+                    <select ng-disabled="!formDataExpense.normal_filter"
+                            ng-if="!bucketFilterData[moduleName][formDataExpense.normal_filter.name].meta.limitedFields"
+                            class="form-control"
+                            ng-model="formDataExpense.operator_filter"
+                            ng-change="resetFilterValue(formDataExpense)"
+                            ng-options="opt as opt.name for opt in arr_operator">
+                      <option disabled
+                              selected
+                              default
+                              value="">Operator</option>
+                    </select>
+                  </td>
+                  <td style="overflow: visible;">
+                    <!-- For Categories Include/Exclude -->
+                    <input ng-disabled="!formDataExpense.operator_filter"
+                           ng-if="(formDataExpense.operator_filter.id != '3' || formDataExpense.operator_filter.id != '4' || formDataExpense.operator_filter.id != '5' || formDataExpense.operator_filter.id != '6' || formDataExpense.operator_filter.id != '7') && !bucketFilterData[moduleName][formDataExpense.normal_filter.name].data && formDataExpense.normal_filter.is_numeric == 0"
+                           type="text"
+                           ng-model="formDataExpense.operator_search"
+                           class="form-control" />
+                    <input ng-disabled="!formDataExpense.operator_filter"
+                           ng-if="(formDataExpense.operator_filter.id != '3' || formDataExpense.operator_filter.id != '4' || formDataExpense.operator_filter.id != '5' || formDataExpense.operator_filter.id != '6' || formDataExpense.operator_filter.id != '7') && !bucketFilterData[moduleName][formDataExpense.normal_filter.name].data && formDataExpense.normal_filter.is_numeric == 1"
+                           type="number"
+                           ng-model="formDataExpense.operator_search"
+                           class="form-control" />
+
+                    <x-flexi-select ng-disabled="!formDataExpense.operator_filter"
+                                    ng-if="(formDataExpense.operator_filter.id == 1 || formDataExpense.operator_filter.id == 8) && bucketFilterData[moduleName][formDataExpense.normal_filter.name].data"
+                                    x-flexi-select-title="formDataExpense.normal_filter.name"
+                                    x-flexi-select-modal-id="moduleName.split(' ').join('_').split('/').join('_')+formDataExpense.normal_filter.name.split(' ').join('_').split('/').join('_').split('.').join('_')+formDataExpense.sort_id"
+                                    x-flexi-select-output='formDataExpense.operator_search'
+                                    x-flexi-select-data="bucketFilterData[moduleName][formDataExpense.normal_filter.name].data"
+                                    x-flexi-select-modal-width="70%">
+                    </x-flexi-select>
+
+
+                    <ui-select ng-disabled="!formDataExpense.operator_filter"
+                               tagging="newItemInList"
+                               tagging-label="false"
+                               ng-if="(formDataExpense.operator_filter.id != '1' && formDataExpense.operator_filter.id != '3' && formDataExpense.operator_filter.id != '4' && formDataExpense.operator_filter.id != '5' && formDataExpense.operator_filter.id != '6' && formDataExpense.operator_filter.id != '7' && formDataExpense.operator_filter.id != 8) && bucketFilterData[moduleName][formDataExpense.normal_filter.name].data"
+                               ng-model="formDataExpense.operator_search">
+                      <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices
+                                         repeat="sp.name as sp in bucketFilterData[moduleName][formDataExpense.normal_filter.name].data | filter: $select.search">
+                        <div ng-bind-html="sp.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+
+
+                    <input ng-disabled="!formDataExpense.operator_filter"
+                           ng-if="(formDataExpense.operator_filter.id == '3' || formDataExpense.operator_filter.id == '4' || formDataExpense.operator_filter.id == '5' || formDataExpense.operator_filter.id == '6' || formDataExpense.operator_filter.id == '7') && bucketFilterData[moduleName][formDataExpense.normal_filter.name].data && formDataExpense.normal_filter.is_numeric == 0"
+                           type="text"
+                           ng-model="formDataExpense.operator_search"
+                           class="form-control" />
+                    <input ng-disabled="!formDataExpense.operator_filter"
+                            ng-if="(formDataExpense.operator_filter.id == '3' || formDataExpense.operator_filter.id == '4' || formDataExpense.operator_filter.id == '5' || formDataExpense.operator_filter.id == '6' || formDataExpense.operator_filter.id == '7') && bucketFilterData[moduleName][formDataExpense.normal_filter.name].data && formDataExpense.normal_filter.is_numeric == 1"
+                            type="number"
+                            ng-model="formDataExpense.operator_search"
+                            class="form-control" />
+
+
+                  </td>
+
+                  <td>
+                    <select ng-disabled="!formDataExpense.operator_search || (formDataExpense.operator_search.id && formDataExpense.operator_search.id == '')"
+                            class="form-control"
+                            ng-if="$index < 9"
+                            ng-model="formDataExpense.logical_filter"
+                            ng-change="addNewIndexProduct(formDataExpense, $index)"
+                            ng-options="opt as opt.name for opt in arr_logic_operator">
+                      <option disabled
+                              selected
+                              default
+                              value="">Logical Operator</option>
+                    </select>
+
+                    <!-- <ui-select ng-if="$index < 9" ng-model="formDataExpense.logical_filter" ng-change="addNewIndexProduct(formDataExpense, $index)">
+                      <ui-select-match placeholder="Select Logical">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="opt in arr_logic_operator | filter: $select.search">
+                        <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select> -->
+
+                  </td>
+                  <td style="overflow: visible;">
+                    <a title="Delete"
+                       ng-if="$index>0"
+                       ng-click="removeIndexProduct(formDataExpense,$index)"
+                       class="tooltips_cls btn ">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-12"
+               style="margin-top:10px;">
+            <span class="pull-right"
+                  style="margin-bottom: 7px;">
+              <button type="submit"
+                      ng-disabled="ifShowSearchBtn()"
+                      class="btn btn-default"
+                      ng-click="getFilterSearchResults(1); ">Search </button>
+              <button type="button"
+                      class="btn btn-default"
+                      ng-click="clear_search_product()"
+                      ng-model="strict"
+                      title="Clear Fields">
+                Clear Filter
+              </button>
+
+              <!-- <button style="margin-left:10px;" type="button" class="btn btn-default"
+					ng-click="show_all_search_product()"   ng-model="strict" > Show All </button>-->
+            </span>
+          </div>
+
+          <!-- Filter  end  -->
+          <div class="col-lg-12"
+               ng-if="columns.length > 0">
+            <table class="table table-striped table-bordered table-hover"
+                   ng-if="columns.length > 0">
+              <thead class="fixit">
+                <tr class="bg-col">
+                  </th>
+                  <th ng-repeat="column in columns"
+                      ng-if="column.title != 'id'  && column.title!= 'Action' && column.title!= 'Type' && column.title!= 'Location'">
+                    {{column.title}} </th>
+                  <!--  <th>Location </th>-->
+                </tr>
+              </thead>
+              <tbody class="fixit">
+                <!--| filter:searchKeyword:strict -->
+                <tr
+                    ng-repeat="cust in tableData | startPaginationFrom:localResultsPagination.currentPage * localResultsPagination.pageSize | limitTo:localResultsPagination.pageSize track by $index  ">
+                  <!-- <td><input type="checkbox" ng-checked="cust.chk" ng-click="selectProduct_bucket(cust)"></td>-->
+                  <td ng-repeat="column in columns"
+                      ng-if="column.title != 'id'  && column.title!= 'Action' && column.title!= 'Type' && column.title!= 'Location'">
+                    {{cust[column.field]}}</td>
+                  <!--  <td ng-if="cust.location=='Yes'"><a title="Open "
+               ng-click="get_customer_loc(cust.id)" class="tooltips_cls btn "> <i style="  font-size: 20px;
+    position: relative;
+    top: 3px;" class="material-icons">&#xE89D;</i> </a></td>-->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-12"
+               ng-if="arr_all_product.length > 1">
+            <div class="form-group"
+                 style="text-align: left;">
+              <ul class="pagination"
+                  style="margin: 0px !important;"
+                  ng-show="item_paging.total_pages > 1">
+                <li ng-class="{'disabled': item_paging.cpage == 1}"
+                    class="">
+                  <a ng-click="itemselectPage(item_paging.ppage); getproduct_filter();"
+                     href="javascript: void(0);"
+                     class="">«</a>
+                </li>
+                <li ng-repeat="(key,value) in item_paging.pages"
+                    ng-class="{'active': value == item_paging.cpage}">
+                  <a ng-click="itemselectPage(value); getproduct_filter();"
+                     href="javascript: void(0);">
+                    <span ng-bind="value"></span>
+                  </a>
+                </li>
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}">
+                  <a ng-click="itemselectPage(item_paging.npage); getproduct_filter();"
+                     href="javascript: void(0);">»</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span class="pull-left"
+              style="margin: 5px 10px 0 0;"
+              ng-show="tableData.length">
+          <b class="ib"
+             style="    border-right: 1px solid #cecece;
+                        margin-right: 6px;
+                        padding-right: 6px;">{{tableData.length}} Total Records</b>
+          Showing {{localResultsPagination.currentPage+1}} of {{localResultsPagination.numberOfPages() + Records}}
+        </span>
+        <span ng-show="tableData.length"
+              class="pull-left">
+          <button ng-disabled="localResultsPagination.currentPage == 0"
+                  ng-hide="localResultsPagination.currentPage == 0"
+                  class="ib btn btn-default2"
+                  ng-click="localResultsPagination.currentPage=localResultsPagination.currentPage-1">
+            <i class="fa fa-caret-left"></i>
+          </button>
+          <button class="ib btn btn-default2"
+                  ng-hide="localResultsPagination.currentPage >= tableData.length/localResultsPagination.pageSize - 1"
+                  ng-disabled="localResultsPagination.currentPage >= tableData.length/localResultsPagination.pageSize - 1"
+                  ng-click="localResultsPagination.currentPage=localResultsPagination.currentPage+1">
+            <i class="fa fa-caret-right"></i>
+          </button>
+        </span>
+        <div class="pull-right">
+          <button class="btn btn-submit2 "
+                  style="    width: auto;"
+                  ng-click="rec.id>0 && add_bucket_product(rec.id,1)"
+                  type="button">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade"
+     id="nested_popup_product"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog "
+       dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Select {{title2}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div>
+            <label class="  control-label"> </label>
+            <div class="col-md-6">
+              <div class="input-symbol">
+                <input type="text"
+                       Placeholder="Search"
+                       class="form-control"
+                       ng-model="rec.searchKeywordpop2">
+                <span id="date_msg_4">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <button style="margin-left:10px; height:34px;" type="button" class="btn btn-default" ng-click="searchKeywordpop2=''" ng-model="strict" title="Clear Fields"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+            </div> -->
+          </div>
+          <div class="col-md-12 col-md-12"
+               style="margin-top:10px;">
+            <div class="bs-example bs-example-tabs"
+                 data-example-id="togglable-tabs">
+              <div>
+                <table class="table table-striped table-bordered table-hover">
+                  <thead class="fixit">
+                    <tr>
+                      <th> Name </th>
+                    </tr>
+                  </thead>
+                  <tbody class="fixit">
+                    <tr ng-show="type==3"
+                        ng-repeat="sp in cat_prodcut_arr | filter:rec.searchKeywordpop2 track by $index "
+                        ng-click="confirm_product(sp,array_dynamic_filter_product,main_index,type)">
+                      <td style="display:none !important">{{sp.id}}</td>
+                      <td>{{sp.name}}</td>
+                    </tr>
+                    <tr ng-show="type==4"
+                        ng-repeat="sp in brand_prodcut_arr | filter:rec.searchKeywordpop2 track by $index "
+                        ng-click="confirm_product(sp,array_dynamic_filter_product,main_index,type)">
+                      <td style="display:none !important">{{sp.id}}</td>
+                      <td>{{sp.name}}</td>
+                    </tr>
+                    <tr ng-show="type==5"
+                        ng-repeat="sp in uni_prooduct_arr | filter:rec.searchKeywordpop2 track by $index "
+                        ng-click="confirm_product(sp,array_dynamic_filter_product,main_index,type)">
+                      <td style="display:none !important">{{sp.id}}</td>
+                      <td>{{sp.title}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-cancel"
+                data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

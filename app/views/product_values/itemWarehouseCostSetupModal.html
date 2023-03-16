@@ -1,0 +1,111 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade" id="itemWarehouseCostSetupModal" role="dialog">
+    <div class="modal-dialog modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Item Warehouse Additional Costs Setup</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style=" margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div class="col-md-12 col-md-12">
+                            <div>
+                                <div>
+                                    <div class="vertical_space"></div>
+                                    <div class="row form-horizontal">
+                                        <div class="col-md-3 padr6">
+                                            <label class="control-label">Title <span class="required">*</span></label>
+                                            <ui-select ng-model="rec3.title" required ng-change="onChange_additional_cost_title()" ng-disabled="check_add_modal_readonly">
+                                                <ui-select-match placeholder="Select Title">{{$select.selected.title}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in additional_cost_title | filter: $select.search">
+                                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <!-- <input type="hidden" id="warehouse_loc_id" ng-model="warehouse_loc_id" value="">
+                                                <input type="hidden" id="prod_id" ng-model="prod_id" value="">
+                                                <input type="hidden" ng-model="rec3.id" value=""> -->
+                                        </div>
+                                        <div class="col-md-3 padr6 padl6">
+                                            <label class="control-label">Cost <span class="required">*</span></label>
+
+                                            <div class="input-symbol">
+                                                <input type="number" id="cost" required class="form-control" ng-model="rec3.cost" ng-disabled="check_add_modal_readonly" />
+                                                <span>{{rec2.currency.code}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 padr6 padl6">
+                                            <label class="control-label">Unit of Measure <span class="required">*</span></label>
+                                            <input type="text" readonly class="form-control" ng-model="rec2.dimension.title" />
+                                            <!-- <ui-select 
+                                                ng-model="rec3.dimension" required >
+                                                <ui-select-match placeholder="Select Unit of Measure">{{$select.selected.title}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select> -->
+                                        </div>
+                                        <div class="col-md-3 padr6 padl6">
+                                            <label class="control-label">Cost Frequency<span class="required">*</span></label>
+                                            <input type="text" readonly class="form-control" ng-model="rec2.cost_type.title" />
+                                            <!-- <ui-select 
+                                                ng-model="rec3.cost_type" required >
+                                                <ui-select-match placeholder="Select Cost Frequency">{{$select.selected.title}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in cost_types | filter: $select.search">
+                                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select> -->
+                                        </div>
+                                        <!-- <div class="col-md-2 padr6 padl6">
+                                            <label class="control-label">Start Date <span class="required">*</span></label>
+                                            <input class=" form-control 2date-picker " jqdatepicker id="additional_cost_sdate"
+                                                ng-model="rec3.additional_cost_sdate" readonly
+                                                ng-change="testdate_by_id('warehouse_sdate','additional_cost_sdate','date_msg');"
+                                                required>
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="    right: -24px;
+                                            top: 33px;"></span>
+                                            <span id="date_msg" style="color:#F00; display: none;">Additional Cost Date is earlier than Warehouse Start Date</span>
+                                        </div>  -->
+                                    </div>
+                                    <div class="row form-horizontal">
+                                        <div class="col-md-4 padr6">
+                                            <label class="control-label">Comments </label>
+                                            <input type="text" ng-model="rec3.description" class="form-control" maxlength="100" ng-disabled="check_add_modal_readonly" />
+                                            <!-- <input type="text" disabled ng-model="rec3.description" class="form-control"
+                                                maxlength="100"/> -->
+                                                <!-- title.Description -->
+                                        </div>
+                                        <!-- <div class="col-md-2 padr6 padl6">
+                                            <label class="control-label">Status<span class="required">*</span></label>
+                                            <ui-select 
+                                                ng-model="rec3.status_ids" required >
+                                                <ui-select-match placeholder="Select Status">{{$select.selected.value}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in warehouse_status_list | filter: $select.search">
+                                                    <div ng-bind-html="opt.value | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-include="'app/views/warehouse/add_additional_cost_title_modal.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-delete" type="button" ng-click="delete_warehouse_loc_add_cost(rec3.id,$index,prod_warehouse_loc_add_cost_data)()" ng-if="!check_add_modal_readonly && allowdeleteitem_warehouse_location_cost && rec3.id > 0"> Delete</button>
+                <button class="btn btn-submit " type="button" ng-click="add_warehouse_loc_add_cost(rec3)" ng-if="!check_add_modal_readonly">Save</button>
+                <button class="btn btn-edit" type="button" ng-click="showAddModalEditForm()" ng-if="check_add_modal_readonly && allowedititem_warehouse_location_cost"> Edit</button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

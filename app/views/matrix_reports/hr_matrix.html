@@ -1,0 +1,146 @@
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<style>
+    body {
+        /* background-image: url(app/css/matrixbg2.jpg);
+        background-size: cover;
+        background-attachment: fixed; */
+        padding-bottom: 4px;
+    }
+</style>
+<div class="row"
+     style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+        <div class="col-md-12"
+             style="margin-bottom: 0px !important;">
+            <div class="matrixcontainer3">
+                <div class="col-md-4 pl0">
+                    <style>
+                        .matrixcontainer3 .col-md-8 {
+                            padding: 0;
+                            width: 200px;
+                            background-color: #fff;
+                        }
+                    </style>
+                    <div class="ib"
+                         style="margin-right: 14px;color: #404146;"><b class="a-title-relative">Department(s)</b>
+                    </div>
+                    <div class="panel-info pi2 ib"
+                         style="border: 0;">
+                        <x-flexi-select x-flexi-select-title="'Department'"
+                                        x-flexi-select-modal-id="'DeptSelectModal'"
+                                        x-flexi-select-output='rec.departments'
+                                        x-flexi-select-data="deprtment_arr">
+                        </x-flexi-select>
+                    </div>
+
+                    <!-- <br />
+                    <div class="ib"
+                         style="margin-right:32px;color: #404146;"><b class="a-title-relative">Leave Type</b>
+                    </div>
+                    <div class="panel-info pi2 ib"
+                         style="width: 200px">
+                        <div class="panel-body"
+                             style="background-color: #fff;">
+                            <aside></aside>
+                        </div>
+                    </div> -->
+                    <br />
+                    <div class="ib"
+                         style="margin-right: 58px;color: #404146;"><b>Name</b>
+                    </div>
+                    <input type="text"
+                           style="width: 200px"
+                           ng-model="rec.emp_name"
+                           class="form-control ib" />
+                    <br />
+                    <br />
+                    <!-- <label>Employees on period of leave <input type="checkbox" /></label> -->
+                    <a class="btn btn-submit2 matrixSearch" style="vertical-align: bottom;
+                    margin: 9px 0 0 0;
+                    width: 89px;"
+                       ng-click="getHRMatrix(1);"
+                       style="vertical-align: bottom;">Search</a>
+
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="no-margin"
+                        style="color: #404146;position: relative;top: 4px;">
+                        HR Matrix <img src="app/css/SilverowBirdSmall.png"
+                             style="width: 17px;margin-top: -7px;" /></h3>
+                </div>
+                <div class="col-md-4 pr0">
+                    <!-- <div class="dropdown report-excel pull-right">
+                        <button class="btn report-default dropdown-toggle"
+                                type="button"
+                                data-toggle="dropdown">Export As
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a>PDF</a></li>
+                            <li><a>Excel</a></li>
+                        </ul>
+                    </div> -->
+                    <select ng-model="rec.month"
+                            style="width: auto;margin-right: 5px;"
+                            ng-change="onChangeMonth();"
+                            ng-options="opt as opt.label for opt in arrMonths"
+                            class="form-control pull-right">
+                        <option style="display:none"
+                                value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12"
+     style="margin-top: 13px;">
+    <div class="table-responsive"
+         style="border: 1px solid #20242d !important;background: white;">
+        <table class="table table-condensed table-striped table-hover hr_martix_container">
+            <thead>
+                <tr>
+                    <th style="min-width: 93px;border-bottom-color: #1f232c !important;">Employee No.</th>
+                    <th style="min-width: 180px;border-bottom-color: #1f232c !important;">Name</th>
+                    <th style="min-width: 120px;border-bottom-color: #1f232c !important;">Department</th>
+                    <th class="hr_matrix_cal "
+                        ng-class="{'hr_matrix_weekend':day.day == 'S'}"
+                        style="border-bottom-color: #1f232c !important;"
+                        ng-repeat="day in arr_duration">
+                        <div class="hr_matrix_date">{{day.date}}</div>
+                        <div class="hr_matrix_mon">
+                            {{day.day}}
+                        </div>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in rec.employees">
+                    <td>
+                        <a ui-sref="app.edithrvalues({id:emp.emp_id})"
+                           class="tooltips_clsshilight"
+                           target="_blank">{{emp.emp_code}}</a>
+                    </td>
+                    <td>{{emp.emp_name}}</td>
+                    <td>{{emp.department}}</td>
+                    <td ng-repeat="day in emp.days track by $index"
+                        ng-class="{'hr_matrix_weekend':day.day == 'S'}"
+                        colspan="{{day.colspan}}"
+                        style="text-align: center;">
+                        <span ng-if="day.text.length > 0">
+                            <a ui-sref="app.edithrvalues({id:emp.emp_id, isTab:1})"
+                               class="hr_leave-highlight"
+                               tooltip="{{day.text}} {{day.holiday_nature}} for {{emp.emp_name}}"
+                               target="_blank">{{day.text}}
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div ng-include="'app/views/general_ledger/show_details_pop.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="row">
+          <input type="hidden"   ng-model="formData.post_id" />
+          <input type="hidden"   ng-model="formData.gl_id" />
+          <input type="hidden"   ng-model="formData.tab_id_2"   value="2"/>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Gen. Posting Type </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  
+                   ng-model="formData.g_posting_types" ng-options="opt as opt.name for opt in g_posting_type_list"
+                    
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Gen. Bus. Posting Group </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.gen_bus_postings" 
+       
+            ng-options="opt as opt.name for opt in gen_bus_posting_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Gen. Prod. Posting Group </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  
+                   ng-model="formData.gen_prod_postings"  ng-options="opt as opt.name for opt in gen_prod_posting_list"
+                    
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">VAT Bus. Posting Group </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.vat_bus_postings" 
+       
+            ng-options="opt as opt.name for opt in vat_bus_posting_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">VAT Prod. Posting Group </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.vat_prod_postings" 
+       
+            ng-options="opt as opt.name for opt in vat_prod_posting_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+              <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_gl_readonly"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

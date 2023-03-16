@@ -1,0 +1,557 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+
+                    <!-- ng-model="formData.telephone"-->
+                    <!-- <input type="hidden" ng-model="open_tab_tabs" id="open_tab_tabs" name="open_tab_tabs" class="form-control" />
+                    <input type="hidden" ng-model="formData.eid" />
+                    <input type="hidden" ng-model="formData.employee_id" />
+                    <input type="hidden" ng-model="formData.tab_id_2" value="3" /> -->
+
+                    <div class="col-md-12">
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover">Company Car  
+                                    <input type="checkbox" ng-model="formData.company_car" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"/>
+                                </label>
+                                <a ng-if="formData.company_car == '1'" class="ib add-dis-btn col-md-5 control-label" title="Add Car" style="padding-right: 0px; margin-left:16px;">
+                                    <i class="material-icons pull-right"
+                                        ng-class="{'disable-el dont-click':check_hrvalues_readonly}"
+                                        ng-click="benefit_history('car')">&#xE147;</i>
+                                </a>
+                            </div>
+                            <div ng-if="formData.company_car == '1'" class="animated fadeIn">                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input ng-readonly="check_hrvalues_readonly" required type="text" ng-model="formData.company_car_make" class="form-control">
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input ng-readonly="check_hrvalues_readonly" required type="text" ng-model="formData.car_model" class="form-control  ng-pristine ng-untouched ng-valid"
+                                            g-init="formData[formFields.id]=formData.value">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> VIN / Reg No
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input ng-readonly="check_hrvalues_readonly" required type="text" ng-model="formData.car_vin" class="form-control ng-pristine ng-untouched ng-valid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> CO2 Emissions
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input ng-readonly="check_hrvalues_readonly" required type="text" ng-model="formData.car_emisions" class="form-control" />
+                                            <span>g/km</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Market Value
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input ng-readonly="check_hrvalues_readonly" ng-model="formData.car_marked_value" required class="form-control" type="text"
+                                                x-validity="regx.number">
+                                            <span class="ng-binding">{{defaultCurrencyCode}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Fuel Type
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <select ng-disabled="check_hrvalues_readonly" ng-model="formData.car_fuel_type" ng-options="opt.value as opt.label for opt in arr_car_fuel_type"
+                                            class="select2me form-control" ng-change="selectEngineSize()" required>
+                                            <option value="" disabled selected>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Engine Size {{formData.car_enngine}}
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <!--  ng-options="opt.value as opt.label for opt in arr_car_enngine" -->
+                                        <select ng-disabled="check_hrvalues_readonly" ng-model="formData.car_enngine"
+                                            required class="select2me form-control">
+                                            <option value="" disabled selected>Select</option>
+                                            <option ng-repeat="val in arr_car_enngine  | filter:{type: formData.car_fuel_type}"                                                    
+                                                    value="{{val.value}}">{{val.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="car_date_assign" ng-disabled="check_hrvalues_readonly" ng-model="formData.car_date_assign"
+                                                ng-change="testdate_by_id('car_date_assign','car_date_return','date_msg_car_date')"
+                                                required readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="    right: -24px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="car_date_return" ng-disabled="check_hrvalues_readonly" ng-model="formData.car_date_return"
+                                                ng-change="testdate_by_id('car_date_assign','car_date_return','date_msg_car_date')"
+                                                readonly ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_car_date" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 padl6 col-md-offset-10">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(1)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover"> Fuel Card 
+                                        <input type="checkbox" ng-model="formData.car_fuel_card" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"/>
+                                </label>
+
+                                <a ng-if="formData.car_fuel_card == '1'" class="ib add-dis-btn col-md-5 control-label" title="Add Fuel Card" style="padding-right: 0px; margin-left:16px;">
+                                    <i class="material-icons pull-right"
+                                        ng-class="{'disable-el dont-click':check_hrvalues_readonly}"
+                                        ng-click="benefit_history('fuel')">&#xE147;</i>
+                                </a>
+                                
+                            </div>
+                            <div ng-if="formData.car_fuel_card == '1'">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Fuel Card Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-6">
+                                        <input required ng-readonly="check_hrvalues_readonly" ng-model="formData.car_fuel_card_num" class="form-control" type="text"
+                                            data-parsley-trigger="keyup" data-parsley-type="number">
+                                    </div>
+                                    <div class="col-md-2 padl6">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(2)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-4">
+                                        <label style="margin-top: 10px;">
+                                            <input type="checkbox" ng-model="formData.fuel_cost_deduction" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"
+                                            />Fuel Cost Deductions for Personal Mileage
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover ">Company Laptop
+                                        <input type="checkbox" ng-model="formData.company_laptop_model" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"/>
+                                </label>
+
+                                <a ng-if="formData.company_laptop_model=='1'" class="ib add-dis-btn col-md-5 control-label" title="Add Laptop" style="padding-right: 0px; margin-left:16px;">
+                                    <i class="material-icons pull-right"
+                                        ng-class="{'disable-el dont-click':check_hrvalues_readonly}"
+                                        ng-click="benefit_history('laptop')">&#xE147;</i>
+                                </a>
+                            </div>
+
+                            <div ng-if="formData.company_laptop_model=='1'">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.laptop_make" required class="form-control" />
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.laptop_model" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Serial Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input ng-readonly="check_hrvalues_readonly" required type="text" ng-model="formData.company_laptop_serial" class="form-control ng-pristine ng-untouched ng-valid"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="laptop_date_assign" ng-model="formData.laptop_date_assign" ng-disabled="check_hrvalues_readonly"
+                                                ng-change="testdate_by_id('laptop_date_assign','laptop_return_date_assign','date_msg_laptop_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padl6 ">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="laptop_return_date_assign" ng-model="formData.laptop_return_date_assign"
+                                                ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('laptop_date_assign','laptop_return_date_assign','date_msg_laptop_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_laptop_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-2 padl6 col-md-offset-10">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(3)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-md-offset-2">
+
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover ">Company Tablet / Ipad 
+                                        <input type="checkbox" style="    margin-right: 41px;" ng-model="formData.tablet_status_id" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"/>
+                                </label>
+                                <a ng-if="formData.tablet_status_id == '1'" class="ib add-dis-btn col-md-5 control-label" title="Add Tablet / Ipad" style="padding-right: 0px; margin-left:16px;">
+                                    <i class="material-icons pull-right"
+                                        ng-class="{'disable-el dont-click':check_hrvalues_readonly}"
+                                        ng-click="benefit_history('tablet')">&#xE147;</i>
+                                </a>
+                                    <!--<select ng-disabled="check_hrvalues_readonly"
+                                                                  ng-model="formData.tablet_status_id"
+                                                                  ng-options="opt as opt.label for opt in tablet_status"
+                                                                  ng-change="onChange_tablet_list()" id="laptop_list_id"
+                                                                  class="select2me form-control">
+                                                          </select>-->
+                                    <!-- <label ng-repeat="tablet_chk in tablet_status" style="margin-right: 5px; margin-top:7px;">
+                                                              <input type="radio" name="tablet_status_id" ng-model="formData.tablet_status_id" ng-value="tablet_chk.value" ng-change="onChange_tablet_list()"
+                                                                  ng-disabled="check_hrvalues_readonly" /> {{tablet_chk.label}} </label> -->
+                            </div>
+                            <div ng-if="formData.tablet_status_id == '1'" class="animated fadeIn">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.tablet_make" class="form-control" />
+                                    </div>
+
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.tablet_model" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Serial Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.company_tablet_serial" class="form-control ng-pristine ng-untouched ng-valid"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="tablet_date_assign" ng-model="formData.tablet_date_assign" ng-disabled="check_hrvalues_readonly"
+                                                ng-change="testdate_by_id('tablet_date_assign','tablet_return_date_assign','date_msg_tablet_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="tablet_return_date_assign" ng-model="formData.tablet_return_date_assign"
+                                                ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('tablet_date_assign','tablet_return_date_assign','date_msg_tablet_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+
+                                        <span id="date_msg_tablet_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-2 padl6 col-md-offset-10">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(4)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover "> Company Mobile
+                                        <input type="checkbox" style="    margin-right: 41px;" ng-model="formData.company_mobile_model" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"
+                                        />
+                                </label>
+
+                                <a ng-if="formData.company_mobile_model == '1'" class="ib add-dis-btn col-md-5 control-label" title="Add Mobile" style="padding-right: 0px; margin-left:16px;">
+                                    <i class="material-icons pull-right"
+                                        ng-class="{'disable-el dont-click':check_hrvalues_readonly}"
+                                        ng-click="benefit_history('mobile')">&#xE147;</i>
+                                </a>
+                                
+                                    <!-- <input  ng-readonly="check_hrvalues_readonly"  style="  " type="text" ng-model="formData.company_mobile_model"
+                                        class="form-control ng-pristine ng-untouched ng-valid"   >
+                                        -->
+                                    <!--<select ng-disabled="check_hrvalues_readonly"
+                                                                  ng-model="formData.company_mobile_model"
+                                                                  ng-options="opt as opt.label for opt in mobile_status"
+                                                                  ng-change="onChange_mobile_list()" id="mobile_list_id"
+                                                                  class="select2me form-control">
+                                                          </select>-->
+                                    <!-- <label ng-repeat="mobile_chk in mobile_status" style="margin-right: 5px; margin-top:7px;">
+                                                              <input type="radio" name="company_mobile_model" ng-model="formData.company_mobile_model" ng-value="mobile_chk.value" ng-change="onChange_mobile_list()"
+                                                                  ng-disabled="check_hrvalues_readonly" /> {{mobile_chk.label}} </label> -->
+
+                                
+                            </div>
+                            <div ng-if="formData.company_mobile_model == '1'" class="animated fadeIn">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.mobile_make" required class="form-control" />
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.mobile_model" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> IMEI
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.company_mobile_serial" required class="form-control ng-pristine ng-untouched ng-valid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="mobile_date_assign" ng-model="formData.mobile_date_assign" ng-disabled="check_hrvalues_readonly"
+                                                ng-change="testdate_by_id('mobile_date_assign','mobile_return_date_assign','date_msg_mobile_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="mobile_return_date_assign" ng-model="formData.mobile_return_date_assign"
+                                                ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('mobile_date_assign','mobile_return_date_assign','date_msg_mobile_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_mobile_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 padl6 col-md-offset-10">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(5)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Other Benefits </label>
+
+                                <div class="col-md-8">
+                                    <!-- <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.other_benifits" class="form-control"
+                                                      />-->
+                                    <div class="col-md-7" style="    padding-left: 0px;">
+                                        <!-- <input type="checkbox" ng-model="formData.other_benifits" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="check_hrvalues_readonly"
+                                        /> -->
+                                        <a class="btn btn-default2" type="button" ng-disabled="check_hrvalues_readonly" style="margin-left:0;"
+                                            ng-class="{'setshow3':showdatac==1,'highlight-focus2':formData.other_benifits=='1', 'ending_benifits':show_benifits_ending==1}"
+                                            ng-click="!check_hrvalues_readonly && show_popup_benefits()">
+                                            <i class="fa fa-bars" aria-hidden="true"></i> Benefits
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 padl6">                                
+                                        <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                            ng-click="getBefitsHistory(6)"
+                                            ng-disabled="check_hrvalues_readonly"><!-- Commission -->History
+                                        </a>
+                                    </div>
+                                    <!--ng-class=""-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">P11D</label>
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.piid" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" style="height:20px;">
+                        </div>
+                        <div class="col-md-12">
+                            <div>
+                                <div class="pull-right">
+
+                                    <div class="dropdown ib" ng-show="formData.id>0 &&  hr_benifit_module>0">
+                                        <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <i class="dte-ico"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dte animated fadeIn">
+                                            <span nng-click="set_document_internal(hr_benifit_module,' - Benefit Information')">
+                                                <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                            <span>
+                                                <i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                            <span>
+                                                <i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-submit" type="submit" ng-if="!check_hrvalues_readonly && allowedithr_benifit==1">
+                                        <i class="fa fa-check fa_display"></i>
+                                        Save
+                                    </button>
+                                    <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-if="check_hrvalues_readonly && allowedithr_benifit && formData.id != userId">
+                                        <i class="fa fa-edit fa_display"></i>
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}"> Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="formData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{formData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="formData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input ng-disabled="check_hrvalues_readonly" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                        name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
+                </div>
+
+            </div>
+            <i ng-if="!formData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="formData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+formData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            <span class="name">
+                {{formData.first_name + ' ' + formData.last_name}}
+            </span>
+            <span class="job">
+                {{formData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="formData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{formData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="formData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{formData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
+
+
+    <div ng-include="'app/views/hr_values/hr_benefit_history_modal.html'"></div> 

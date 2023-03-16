@@ -1,0 +1,245 @@
+{
+  "tblMeta": {
+    "autoAdjust": false
+  },
+  "colMeta": [
+    {
+      "title": "CRM No.",
+      "field_name": "crm_code",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "90",
+      "data_type": "string"
+    },
+    {
+      "title": "Name",
+      "field_name": "name",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "180",
+      "data_type": "string"
+    },
+    {
+      "title": "Address Line 1",
+      "field_name": "address_1",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "180",
+      "data_type": "string"
+    },
+    {
+      "title": "Address Line 2",
+      "field_name": "address_2",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "180",
+      "data_type": "string"
+    },
+    {
+      "title": "City",
+      "field_name": "primary_city",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "110",
+      "data_type": "string"
+    },
+    {
+      "title": "County",
+      "field_name": "primary_county",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "data_type": "string"
+    },
+    {
+      "title": "Postcode",
+      "field_name": "primary_postcode",
+      "visible": "0",
+      "custom_classes": "text-uppercase",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "data_type": "string"
+    },
+    {
+      "title": "Country",
+      "field_name": "primary_country",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "data_type": "string"
+    },
+    {
+      "title": "Website",
+      "field_name": "web_address",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "data_type": "string"
+    },
+    {
+      "title": "Email",
+      "field_name": "company_email",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "180",
+      "data_type": "string"
+    },
+    {
+      "title": "Primary Contact",
+      "field_name": "primaryc_name",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "string"
+    },
+    {
+      "title": "Primary Contact Email",
+      "field_name": "primaryc_email",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "180",
+      "data_type": "string"
+    },
+    {
+      "title": "Telephone",
+      "field_name": "phone",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "string"
+    },
+    {
+      "title": "Company Reg. No.",
+      "field_name": "company_reg_no",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "string"
+    },
+    {
+      "title": "Primary Salesperson",
+      "field_name": "salesperson_name",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "db_table": "sr_sel_emp_sale_dept",
+      "db_field": "name",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Sales Status",
+      "field_name": "region",
+      "db_table": "crm_region",
+      "db_where": " status = 1 AND region_type IN (1, 12)",
+      "db_field": "title",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Segment",
+      "field_name": "segment",
+      "db_table": "crm_segment",
+      "db_where": " segment_type = 1 ",
+      "db_field": "title",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Classification",
+      "field_name": "crm_classification",
+      "db_table": "ref_classification",
+      "db_where": " type IN (1,2,12) ",
+      "db_field": "name",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Buying Group",
+      "field_name": "buying_group",
+      "db_table": "crm_buying_group",
+      "db_where": " crm_buying_group_type = 1 ",
+      "db_field": "title",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Status",
+      "field_name": "statusp",
+      "default_filter": true,
+      "filter_type": "Exact",
+      "filter_value": "Active",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Verified",
+      "field_name": "verifiedStatus",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "100",
+      "conditional_classes": "'onHoldRed': value.verifiedStatus =='False','greencolorImp': value.verifiedStatus =='True'",
+      "data_type": "string"
+    },
+    {
+      "title": "Source of CRM",
+      "field_name": "source_of_crm",
+      "db_table": "site_constants",
+      "db_where": " status = 1 AND type= 'SOURCES_OF_CRM'",
+      "db_field": "title",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "drop_down"
+    },
+    {
+      "title": "Currency",
+      "field_name": "currency",
+      "visible": "1",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "string"
+    },
+    {
+      "title": "Social Media",
+      "field_name": "social_media_name",
+      "visible": "0",
+      "pinned": "0",
+      "color": "#ffffff",
+      "width": "150",
+      "data_type": "string"
+    }
+  ]
+}

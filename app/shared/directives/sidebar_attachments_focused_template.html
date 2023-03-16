@@ -1,0 +1,41 @@
+<div ng-show="focused.name.length && !uploadDocument">
+    <div class="col-md-6 righttoleft"
+         style="margin-top: 5px;padding-left: 0;">
+        <div style="max-height: 48vh;
+                            overflow: auto;
+                            border: 1px solid #e6e6e6;
+                            border-radius: 4px;
+                            padding: 3px;">
+
+            <div class="text-center myfiletype"
+                 ng-if="focused.fileType != 'png' && focused.fileType != 'jpg' && focused.fileType != 'jpeg' && focused.fileType != 'tiff' && focused.fileType != 'gif'">
+                <div class="myfiletypeinner">{{focused.fileType}}</div>
+            </div>
+
+            <img class="img-responsive desc4"
+                 data-toggle="modal"
+                 data-target="#PreviewImage_{{$stateParams.id}}_{{fileData.subTypeId}}"
+                 ng-if="focused.fileType == 'png' || focused.fileType == 'jpg' || focused.fileType == 'jpeg' || focused.fileType == 'tiff' || focused.fileType == 'gif'"
+                 ng-src="{{focused.path}}" />
+        </div>
+    </div>
+    <div class="col-md-2 righttoleft pl0">
+        <div class="desc1">
+            <div class="desc2">File Size</div>
+            <div class="desc3">{{focused.size}} Kbs</div>
+        </div>
+        <div class="desc1">
+            <div class="desc2">File Type</div>
+            <div class="desc3">{{focused.fileType | uppercase}}</div>
+        </div>
+        <div class="desc1">
+            <div class="desc2">Uploaded On</div>
+            <div class="desc3">{{focused.date_uploaded}}</div>
+        </div>
+        <div class="desc1">
+            <div class="desc2">Uploaded By</div>
+            <div class="desc3">{{focused.user_name}}</div>
+        </div>
+
+    </div>
+</div>

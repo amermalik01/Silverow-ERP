@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-12">
+          <h4>Add Folder</4>
+          <div class="hr_line2"></div>
+            
+        </div>
+<div class="col-md-12">   
+    <form autocomplete="off" class="form-horizontal" ng-controller="CrmDocumentsAddController" role="form" ng-submit="addNewFolder(folder)" name="crm_documents" >
+                
+             <div class="row">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                <label class="col-sm-4 control-label "> Folder </label>
+                <div class="col-sm-8">
+                  <select  ng-disabled="check_readonly"   ng-model="folder.folders"
+                     ng-options="opt as opt.name for opt in arr_folders" 
+                  
+                class="select2me form-control"    
+                 id="case_folder">
+                    <option style="display:none" ></option>
+                  </select>
+                </div>
+              </div>
+                  </div>
+                  <!-- <div class="col-lg-10">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Folder<span class="required">*</span></label>
+                      <div class="col-lg-8">
+                        <div class="multi-level-dropdown">
+                          <div class="dropdown-title">{{selected.title}}<span class="fa fa-sort-desc pull-right"></span></div>
+                          <div class="dropdown-content" ng-if= "arr_folders.length > 0" ng-include="'app/views/crm_documents/multi_level_dropdown.html'" ng-init="sub = arr_folders;"></div>
+                        </div>
+                        <ul class="parsley-errors-list filled" ng-show="isSelect"><li class="parsley-required">This field is required.</li></ul>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Title <span class="required">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="folder.title" id="title" class="form-control"  required/>
+
+                      </div>
+                  </div>
+                  </div>
+                  
+                </div>
+        <div class="row">
+                <div class="col-lg-12">
+                  <div class="hr_line2"></div>
+                      <div class="pull-right">
+                      <button class="btn btn-info btn_blue" type="button" ng-click="confirm(folder)"><i class="fa fa-check"></i> Submit</button>
+                      <button class="btn default" type="button" id="close-modal" ng-click="closeThisDialog()"><i class="fa fa-undo"></i> Cancel</button>
+                      </div>
+                </div>
+                </div>                
+                
+</form>
+</div>
+</div>
+

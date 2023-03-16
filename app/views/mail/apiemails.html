@@ -1,0 +1,242 @@
+
+<style>
+    .email_body .note-toolbar {
+        display: none;
+        pointer-events: none;
+
+
+    }
+    .email_body .note-editor {
+        pointer-events: none;
+    }
+    .email_view .note-toolbar {
+        display: none;
+    }
+    .note-editor.note-frame {
+        border: 1px solid white !important;
+        height: auto !important;
+    }
+
+    .note-toolbar {
+        background: #f7f7f7 !important;
+        padding: 0px 0 5px !important;
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #cecece;
+    }
+
+    .note-editor .btn-default2 {
+        background: transparent;
+        border: 0;
+    }
+
+    .note-editor .btn-default2:hover {
+        border: 0;
+        background: #efefef;
+    }
+
+    .note-editable {
+        line-height: initial !important;
+    }
+    .email_compose_btn {
+    display: block;
+    font-size: 13px;
+    float: left;
+    padding: 10px 11px;
+    color: #2196F3;
+    }
+    .email_compose_btn:hover {
+        color:black;
+        cursor: pointer;
+    }
+    .email_message_counter {
+        margin-right: 62px;
+    color: #ffffff !important;
+    font-weight: bold;
+    background: #52a3f9;
+    padding: 2px 7px;
+    font-size: 10px;
+    border-radius: 2px;
+    margin-left: 16px;
+    }
+</style>
+
+<div class="email_new bbg">
+        <h5 class="ib">Silverow<i><b>Mail</i></b></h5>
+        <a ng-click="composeEmail= 1" class="email_compose_btn2" ng-hide="composeEmail > 0" 
+            style="    color: #2196F3;">
+                <i class="material-icons">&#xE145;</i>
+        </a>
+</div>
+<div class="email_options">
+    <b>
+        demo@silverow.com
+    </b>
+    <ul class="categories collapse in" id="demo">
+        <li>
+            <a>
+                <span>Inbox</span>
+                <span class="email_message_counter">1</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span>Sent</span>
+            </a>
+        </li>
+        <li>
+                <a>
+                    <span>Unread</span>
+                </a>
+            </li>
+        <li>
+            <a>
+                <span>Trash</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span>Archive</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span>All Mail</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="email_search bbg" ng-hide="composeEmail > 0">
+    <input type="text" ng-model="searchKeyword1.search" class="form-control" 
+    placeholder="Search Inbox" ng-class="'adjustwidth':api_emails.length > 0">
+    
+    <a ng-click="getAllEmails()" class="getAllEmails" ng-if="api_emails.length > 0">
+
+        <i class="fa fa-refresh"></i>
+    </a>
+</div>
+
+<div class="email_lists" ng-class="{'email_lists2':!api_emails.length > 0}" ng-hide="composeEmail > 0">
+    <div ng-repeat="rec in api_emails | filter:searchKeyword1.search" class="email_box" ng-click="showbody(rec)" ng-class="{'activeEmail':rec.active}">
+        <div class="sender_name">
+            {{rec.sender_name}}
+            <!-- <span>{{rec.email_id_from}}</span> -->
+        </div>
+        <div class="sender_subject">{{rec.subject}}</div>
+        <div class="sender_body">{{rec.body}}</div>
+    </div>
+    <div ng-if="!api_emails.length > 0" class="mail-refresh" ng-click="getAllEmails()">
+        Click here to fetch all updated emails.
+        <img src="app/img/mail-refresh.jpg" style="width: 15%;
+            display: block;
+            margin:11px auto 0px;">
+    </div>
+
+</div>
+
+
+<div class="email_body_header bbg">
+    <ul class="options">
+        <li>
+            <a><span class="mbri-trash"></span></a>
+            <a><span class="mbri-folder"></span></a>
+            <a><span class="mbri-extension"></span></a>
+            <a><span class="mbri-print"></span></a>
+        </li>
+    </ul>
+</div>
+
+<div class="email_subject">
+    <div class="clearfix">
+            <div class="pull-left">
+                    <h5>{{email_subject}}</h5>
+                </div>
+                <div class="pull-right">
+                        <i class="material-icons" style="  color: #2196F3;">&#xE5C4;</i>
+                        <i class="material-icons" style="color: #4CAF50;">&#xE5C8;</i>
+                </div>
+    </div>
+</div>
+<div class="email_body" ng-hide="composeEmail > 0">
+    <summernote config="options" class="summernotes email_view" ng-model="email_description" id="redactor_content"></summernote>
+</div>
+
+<div class="email_compose" ng-show="composeEmail > 0">
+    <div class="email_header clearfix">
+        <h5  class="ib">New Message <div ng-if="emailMeta.emailSubject" class="ib"> - <b>{{emailMeta.emailSubject}}</b></div></h5>
+        <div class="pull-right">
+            <a ng-click="composeEmail = 0">
+                <i class="material-icons" style="color: #9c9c9c;
+                        font-size: 19px !important;
+                        padding: 3px;
+                        cursor: pointer;">&#xE14C;</i>
+            </a>
+        </div>
+    </div>
+    <div class="sptt">
+        <div class="clearfix">
+                <div class="ib pull-left" style="    margin-top: 1px;">To:</div>
+                <div class="pull-right" style="width: 98%">
+                        <ui-select tagging="newEmailInList" multiple theme="bootstrap" ng-model="emailMeta.emailTo"  autofocus="true">
+                                <ui-select-match placeholder="Recipients"><b>{{$item.name}}</b> ({{$item.email}})</ui-select-match>
+                                <ui-select-choices repeat="person in userEmailData | filter: $select.search">
+                                    <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                    <small>
+                                        {{person.email}}
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                </div>
+        </div>
+    </div>
+    <div class="sptt">
+        <div class="clearfix">
+                <div class="ib pull-left" style="    margin-top: 1px;">Cc:</div>
+                <div class="pull-right" style="width: 98%">
+                        <ui-select tagging="newEmailInList" multiple theme="bootstrap" ng-model="emailMeta.emailCC">
+                                <ui-select-match placeholder="Recipients"><b>{{$item.name}}</b> ({{$item.email}})</ui-select-match>
+                                <ui-select-choices repeat="person in userEmailData | filter: $select.search">
+                                    <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                    <small>
+                                        {{person.email}}
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                </div>
+        </div>
+    </div>
+    <div class="sptt">
+            <input type="text" ng-model="emailMeta.emailSubject" placeholder="Subject"style="width: 100%;border: 0;    padding-left: 0;" class="form-control"/>
+    </div>
+    <div>
+        <summernote config="options" class="summernotes" ng-model="newemail"></summernote>
+    </div>
+
+    <div style="
+    position: fixed;
+    bottom: 12px;
+    width: 100%;
+    border-top: 1px solid whitesmoke;
+    padding-top: 12px;">
+
+            <a ng-click="sendMail()" 
+            style="        background-color: #4285f4;
+            color: #fff;
+            padding: 7px 14px;
+            text-align: center;
+            box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 2px;
+            margin-left: 12px;
+            cursor: pointer;">Send</a>
+    </div>
+</div>
+</div>
+
+<div class="email_footer" ng-if="api_emails.length > 0">
+    <div class="pull-left">All folders are up to date.</div>
+    <div class="pull-left" style="margin-left: 47px;">Items: {{api_emails.length}}</div>
+    Connected to: {{defaultUserName}}
+</div>

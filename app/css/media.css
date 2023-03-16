@@ -1,0 +1,184 @@
+@media (max-width: 768px) {
+  .navbar-brand img {
+    width: 42%;
+    position: relative;
+    top: -15px;
+    left: 24px;
+  }
+
+  .plusbtn {
+    display: none !important;
+  }
+
+  .left-sidebar {
+    top: 50px;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .flexi_media_ipad {
+    width: 60% !important;
+  }
+  #product_dilter_pop .modal-dialog {
+    position: fixed !important;
+    left: 6% !important;
+  }
+  .increase_width {
+    width: 86% !important;
+  }
+
+  .per-line .tab_name {
+    width: 109px !important;
+  }
+  /* .left_media_ipad {
+    display: block !important;
+  } */
+
+  .template-design.modal.in .modal-dialog {
+    margin-top: 51px !important;
+    width: 91% !important;
+  }
+
+  a.refreshbtn,
+  .logo_media_ipad,
+  .dropdown-backdrop {
+    display: none !important;
+  }
+
+  .form-group {
+    margin-bottom: 5px;
+  }
+
+  .container {
+    width: 994px;
+    padding-right: 0;
+  }
+
+  .search_media_ipad {
+        width: 20% !important;
+  }
+
+  .modaltabs .tab-pane {
+    max-height: 39vh;
+  }
+
+  .table-responsive {
+    width: 100%;
+  }
+
+  .form-horizontal .control-label {
+    white-space: normal;
+    line-height: 13px;
+    font-size: 9px;
+  }
+
+  .klip-small,
+  .klip-medium,
+  .klip-large {
+    width: 50%;
+  }
+
+  .left-sidebar {
+    top: 50px;
+  }
+
+  body,
+  .flexiTable td span,
+  .flexiTable th span,
+  .table>thead>tr>th {
+    font-size: 10px !important;
+  }
+
+  .adj-btn {
+    padding-left: 4px;
+  }
+
+  .ui-select-container .btn {
+    font-size: 10px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  tbody.fixit3 {
+    overflow: scroll;
+  }
+
+  .nomarleft {
+    margin-left: -7px !important;
+  }
+
+  .widget_media_ipad .col-md-3 {
+    width: 33.33333333%;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+
+  .klip-small,
+  .klip-medium,
+  .klip-large {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .icon-holder {
+    display: inline-block;
+    margin-right: 4px !important;
+  }
+
+  .container_por_ipad {
+    margin-top: 68px !important;
+  }
+
+  a.refreshbtn,
+  .logo_media_ipad,
+  .dropdown-backdrop {
+    display: none !important;
+  }
+
+  .navbar-brand img {
+    width: 81%;
+    position: relative;
+    top: -15px;
+    left: 7px;
+  }
+
+  .ipadUsermessage {
+    display: block;
+    border: 1px solid #FFC107;
+    padding: 5px;
+    border-radius: 2px;
+    color: #e28700;
+  }
+
+  .klip-small,
+  .klip-medium,
+  .klip-large {
+    width: 100%;
+  }
+
+  tbody.fixit3 {
+    overflow: scroll;
+  }
+
+  .feature-panel {
+    width: 400px !important;
+  }
+
+  .main-panel {
+    margin-left: 400px !important;
+  }
+
+  .dashboardheader {
+    top: 101px;
+  }
+
+  #simpleList {
+    top: 146px;
+  }
+
+  .navbar_media_ipad {
+    margin-left: 30px;
+  }
+}

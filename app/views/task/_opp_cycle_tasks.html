@@ -1,0 +1,129 @@
+<div>
+
+ <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="panel panel-default">
+        <div class="panel-heading"> 
+            <h3 class="panel-title">Tasks</h3> 
+        </div> 
+        <div class="col-md-12" ng-controller="CrmOpportunityCycleAddController">
+          <a id="model_btn_cs_id" class="btn btn-info btn_blue pull-right margin_bottom" style="margin-top:10px;" ng-show="rec.id > 0" ng-click="add_tasks()"><i class="fa fa-plus"></i> Add Task</a>
+        </div>
+
+       <!--  <button ng-controller="CrmOpportunityCycleAddController" type="button" id="model_btn_cs_id" class="btn btn-info btn_blue pull-right" style="margin:16px;" ng-show="rec.id > 0" ng-click="add_tasks()" > Add Task </button> -->
+
+        <div class="panel-body" style="clear:both;" >
+            <div id="dt_example" class="example_alt_pagination">
+
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr class="bg-col">
+        <!-- <th check-all="check-all"><em class="fa icon-basket-loaded" title="Existed products in {{promotion_name}}"></em>
+               </th> -->
+          <th>Title</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        <!-- <tr>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+          <th ng-repeat="column in columnss"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody>
+        <tr ng-repeat="task in opp_task_data" >
+          <td>{{task.name}}</td>
+          <td>{{task.t_description | limitStr:true:20}}</td>
+          <td>{{convert_unix_date_to_angular(task.t_date) }}</td>
+          <td>{{task.t_time}}</td>
+          <td><span ng-if="task.t_status == 1">Flag</span><span ng-if="task.t_status == 2">Schedule</span></td>
+          <td>
+            <a ng-click="edit_task(task.id,'popup')"  title="Edit" class="btn btn-primary icon_square"><i class="fa fa-edit"></i></a>
+
+            <a ng-click="delete(task.id,$index,opp_task_data)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a>
+            <a target="_blank" ng-if="task.t_image"   target="_blank"     download="{{task.t_image}}" href="{{imagePath+task.t_image}}" title="View" class="btn btn-primary icon_square"><em class="fa fa-eye"></em></a>
+          </td>
+          
+        
+          <!-- ng-class="{'testclass':$index/2 == 0}" -->
+        </tr>
+        <tr ng-show="!opp_task_data"><td class="text-center" colspan="6">No record found!</td></tr>
+      </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--ng-controller="PromotionSelectedProductsController as table"-->
+<!--<div class="panel panel-default" ng-controller="PromotionProductsController as table">
+    <h4>Products ({{promotion_name}})</h4>
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+        <th check-all="check-all">
+                  <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                     <label>
+                        <input type="checkbox" />
+                        <span class="fa fa-check"></span>
+                     </label>
+                  </div>
+               </th>
+          <th ng-repeat="column in columnss" ng-show="column.visible"
+                    class="sortable" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <tr>
+        <th>&nbsp;</th>
+          <th ng-repeat="column in columnss"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr ng-repeat="user in $data" ng-if="selection.indexOf(user.id) != -1">
+            <td>
+              <div class="checkbox c-checkbox">
+                 <label>
+                    <input type="checkbox" />
+                    <span class="fa fa-check"></span>
+                 </label>
+              </div>
+           </td>
+          <td ng-repeat="column in columnss" ng-show="column.visible" sortable="column.field"> {{user[column.title]}} </td>
+        </tr>
+      </tbody>
+    </table>
+<div class="row">
+    <div class="col-md-12 panel-footer">
+        <div class="form-group">
+         <label class="col-md-4 control-label">&nbsp;</label>
+          <div class="col-md-offset-2 col-md-10">
+             <button type="submit" class="btn btn-sm btn-success" tabindex="18">Submit</button>&nbsp;
+          </div>
+      </div>
+   </div>
+</div>
+</div>-->
+  

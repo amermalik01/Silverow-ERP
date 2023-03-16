@@ -1,0 +1,213 @@
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<style>
+    #ui-datepicker-div {
+        width: 220px;
+        z-index: 5 !important;
+    }
+
+        .exportFile {
+    color: #808080;
+    box-shadow: inset 0 0 0 1px #37393d;
+    }
+
+    .exportFile:hover {
+    background-color: #9d9d9d !important;
+    }
+    .flexiTable tbody tr:nth-child(odd) td {
+        box-shadow: inset 0 0 0 13px white;
+    }
+
+    .panel-info .panel-body span {
+        float: left;
+        font-weight: normal;
+        color: black;
+    }
+
+    .flexiTable:last-child td,
+    .flexiTable:last-child th {
+        padding-right: 9px !important;
+    }
+
+    .flexi_search_btn {
+        color: #494a4e !important;
+        box-shadow: inset 0 0 0 1px rgb(55, 57, 61) !important;
+    }
+
+    .flexi_search_btn:hover {
+        background-color: #9d9d9d !important;
+        color: white !important;
+    }
+
+    .tableSettings {
+        box-shadow: inset 0 0px 0px 1px rgb(55, 57, 61);
+    }
+
+    .new-pagination select {
+        color: black;
+    }
+
+    .tableSettings i,
+    a.widthcontainer i,
+    .exportExcel {
+        color: #7f7f7f;
+    }
+
+    a.widthcontainer,
+    a.exportExcel {
+        box-shadow: inset 0 0px 0px 1px rgb(30, 34, 44) !important;
+    }
+
+    /* Selected Period */
+    .highlightColBoth {
+        box-shadow: inset 0px 0px 0px 12px #e3e1e2 !important;
+    }
+
+    /* Prior Period */
+    .highlightColBoth2 {
+        box-shadow: inset 0px 0px 0px 12px #ede7e7 !important;
+    }
+
+    .tooltips_clsshilight {
+        color: #0078d6 !important;
+        width: 100%;
+        text-overflow: ellipsis;
+    }
+
+    /* body {
+        background-image: url(app/css/matrixbg2.jpg);
+        background-size: cover;
+    } */
+
+    body {
+        padding-bottom: 5px;
+    }
+
+    .flexiTable .bodyContainer td.flexiCol {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        border-right: 1px solid #20242d;
+        background: #f8f8f8 !important;
+        color: black;
+        border-color: #ffffff !important;
+    }
+
+    .highlightTh {
+        color: #ffffff !important;
+        background: #222222 !important;
+        box-shadow: none !important;
+    }
+
+    .flexiTable .headerContainer th.flexiCol:last-child,
+    .flexiTable .bodyContainer td.flexiCol:last-child {
+        border-right: 0 !important;
+    }
+
+    .flexiTable .headerContainer th.flexiCol {
+        color: #ffffff;
+        border-right: 1px solid #20242d !important;
+        border-color: #1f232c;
+        background-color: #444444;
+        position: relative;
+    }
+
+    .total-records {
+        color: #ffffff;
+    }
+
+    .new-pagination {
+        padding: 7px 6px;
+        position: relative;
+        border-color: #1f232c;
+        background: #444444;
+    }
+
+    .flexiTable {
+        border: 1px solid #1f232c;
+    }
+    .nonPinnedHeader,
+    .nonPinnedHeader table {
+    background-color: #444444 !important;
+    }
+
+
+    .flexiTable tbody {
+        background: white;
+    }
+
+    .tableCustomize tbody {
+        background-color: white !important;
+    }
+</style>
+<div class="row"
+     style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+        <div class="col-md-12"
+             style="margin-bottom: 0px !important;">
+            <div class="matrixcontainer3">
+                <div class="col-md-4 pl0 dateHighlighter">
+                    <div class="ib"
+                         style="margin-right: 7px;color: #404146;"><b>Date</b></div>
+                    <div class="input-symbol matrixDate2">
+                        <input jqdatepicker
+                               class="2date-picker form-control pickdate"
+                               id="start_date"
+                               ng-model="rec.start_date"
+                               readonly="">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <div class="ib">-</div>
+                    <div class="input-symbol matrixDate">
+                        <input jqdatepicker
+                               class="2date-picker form-control pickdate"
+                               id="end_date"
+                               ng-model="rec.end_date"
+                               readonly="">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <a class="btn btn-submit2 matrixSearch "
+                       ng-click="getSalesMatrix(1);">Search</a>
+
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="no-margin"
+                        style="color: #404146;position: relative;top: 4px;">
+                        Sales Matrix <img src="app/css/SilverowBirdSmall.png"
+                             style="width: 17px;margin-top: -7px;" /></h3>
+                </div>
+                <div class="col-md-4 pr0">
+                    <div class="dropdown report-excel pull-right">
+                        <button class="btn report-default dropdown-toggle"
+                                type="button"
+                                data-toggle="dropdown">Export As
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="exportMatrix('pdf')">PDF</a></li>
+                            <!-- <li><a ng-click="exportMatrix('xlsx')">Excel</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-12 col-md-12">
+        <div ng-if="tableData_sales.data.ack">
+            <div class="flexiTable matrixContainer"
+                 x-generate-table
+                 style="margin-top: 26px;"
+                 x-data="tableData_sales.data"
+                 x-table-name="SalesMatrix"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-filter-function="getSalesMatrix()"
+                 x-filter-object="searchKeywordSales"></div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/matrix_reports/sales_matrix_details.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

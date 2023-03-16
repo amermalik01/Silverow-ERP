@@ -1,0 +1,59 @@
+<!--<script type="text/ng-template" id="modalDialogId_cus"> -->
+<style type="text/css">
+  .ngdialog-content {
+    padding: 0px !important;
+  }
+</style>
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+</div>
+<div class="clearfix"></div><br/>
+<div class="row" style="padding-left: 20px !important; padding-right: 20px !important;">
+  <div class="col-md-12">
+    <!-- START panel-->
+    <div class="panel panel-default">
+      <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr class="bg-col">
+                <!-- <th ng-repeat="column in columns_invoice" ng-hide="column.field == 'id'">{{column.title}}</th>-->
+                <th>Code</th>
+                <th>Name</th>
+                <th>Address </th>
+                <th>City</th>
+                <th>Contact Person</th>
+                <th>Postcode</th>
+                <th>Telephone</th>
+              </tr>
+            </thead>
+            <tbody class="courser table-body">
+              <tr ng-repeat="rec in record_invoice" ng-click="confirm(rec)">
+                <!-- <td ng-repeat="column in columns_invoice" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>-->
+
+                <td>{{rec.code}}</td>
+                <td>{{rec.name}}</td>
+                <td>{{rec.address_1}}</td>
+                <td>{{rec.city}}</td>
+                <td>{{rec.postcode}}</td>
+                <td>{{rec.contact_person}}</td>
+                <td>{{rec.phone}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END table-responsive-->
+      </div>
+    </div>
+    <!-- END panel-->
+  </div>
+</div>
+<div class="clearfix"></div><br/>
+<div class="modal-footer">
+
+</div>
+<!--
+</script>-->

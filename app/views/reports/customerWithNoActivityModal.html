@@ -1,0 +1,124 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="customerWithNoActivityModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+                 <!--ng-if="printPdfVals.report_type == 'summary'"  -->
+
+                <div 
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <!-- <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                Rebate Type : {{printPdfVals.rebateType}}
+                            </div> -->
+                            <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                Date Since {{printPdfVals.upToDate}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="width: 85%;margin: 0 auto">
+                        <table style="width: 100%;margin-top: 33px;float: left;">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="column in printPdfVals.columns"
+                                        x-col={{column.title}}
+                                        ng-if="column.title != 'Custid' && column.title != 'Salepersonid' && column.title != 'Nooforders' && column.title != 'User Code'">
+                                        <span ng-if="column.title == 'Custno'">Customer No.</span>                                        
+                                        <span ng-if="column.title == 'Custname'">Name</span>
+                                        <span ng-if="column.title == 'Lastinvoicedate'">Last Invoice Date</span>
+                                        <span ng-if="column.title == 'Lastorderdate'">Last Order Date</span>
+                                        <span ng-if="column.title == 'Lastinvoiceno'">Last Invoice No.</span>
+                                        <span ng-if="column.title == 'Lastorderno'">Last Order No.</span>
+                                        <!-- <span ng-if="column.title == 'User Code'">Saleperson No.</span> -->
+                                        <span
+                                            ng-if="column.title != 'Custno' && column.title != 'Custname' && column.title != 'Lastinvoicedate' && column.title != 'Lastorderdate' && column.title != 'Lastinvoiceno' && column.title != 'Lastorderno'">{{column.title}}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index" ng-class="{'makeBold':rec['custName'] == 'Grand Total'}">
+                                    <td ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Custid' && column.title != 'Salepersonid' && column.title != 'Nooforders' && column.title != 'User Code'">
+                                        <span>
+                                            {{rec[column.field]}}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('customerWithNoActivityModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button-->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading && printPdfVals.module == 'customerWithNoOrders'"
+                       title="Download PDF"
+                       ng-click="downloadReportCustomerWithNoActivity(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

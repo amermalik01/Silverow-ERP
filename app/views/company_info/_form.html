@@ -1,0 +1,200 @@
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Company Name</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.name" id="name" class="form-control" ng-readonly="check_readonly" tabindex="1" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Address </label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.address" id="address" class="form-control" ng-readonly="check_readonly" tabindex="2" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Address 2</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-readonly="check_readonly" tabindex="3" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">City</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.city" id="city" class="form-control" ng-readonly="check_readonly" tabindex="4" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">County</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.county" id="county" class="form-control" ng-readonly="check_readonly" tabindex="5" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Postcode</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.postcode" id="postcode" class="form-control" ng-readonly="check_readonly" tabindex="6" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Country</label>
+      <div class="col-lg-6">
+        <select ng-model="country" ng-options="opt as opt.label for opt in countries" class="select2me form-control" ng-readonly="check_readonly" 
+        tabindex="7"   ng-class="{'not-click-allow':disableClass > 0}">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Telephone</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.telephone" id="telephone" class="form-control" ng-readonly="check_readonly" tabindex="8" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.email" id="email" class="form-control" ng-readonly="check_readonly" tabindex="9" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Fax</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.fax" id="fax" class="form-control" ng-readonly="check_readonly" tabindex="10" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Web address</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.url" id="url" class="form-control" ng-readonly="check_readonly" tabindex="11" required />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Currency Code</label>
+      <div class="col-lg-6">
+        <select ng-model="rec.currency_id" ng-options="opt as opt.label for opt in currency" class="select2me form-control" ng-readonly="check_readonly" ng-class="{'not-click-allow':disableClass > 0}" tabindex="12">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Time Zone</label>
+      <div class="col-lg-6">
+        <select ng-model="rec.timezones" ng-options="opt as opt.label for opt in timezone" class="select2me form-control" ng-readonly="check_readonly" ng-class="{'not-click-allow':disableClass > 0}" tabindex="12">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Date Format </label>
+    <div class="col-sm-10">
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.date_format" value="1" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'yyyy/MM/dd'}} </label>
+      </div>
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.date_format" value="2" checked="" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'MM/yyyy/dd'}}</label>
+      </div>
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.date_format" value="3" checked="" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'dd/MM/yyyy'}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Time Format </label>
+    <div class="col-sm-10">
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.time_format" value="1" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'h:m:s a'}}</label>
+      </div>
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.time_format" value="2" checked="" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'h:m: a'}}</label>
+      </div>
+      <div class="radio c-radio">
+        <label>
+          <input type="radio" name="rec.time_format" value="3" checked="" />
+          <span class="fa fa-circle"></span> &nbsp; {{date | date:'h:m'}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Theme</label>
+      <div class="col-lg-6">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Change Logo</label>
+      <div class="col-lg-6">
+      </div>
+    </div>
+  </div>
+</div>
+

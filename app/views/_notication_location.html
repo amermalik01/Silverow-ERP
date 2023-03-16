@@ -1,0 +1,13 @@
+<script type="text/ng-template" id="noticationloc">
+    <div class="ngdialog-message"><h3>Sorry</h3>{{messageType}}
+        <p ng-if="messageType == 'contact'"> There is no contact assigned</p>
+        <p ng-if="messageType == 'location'"> There is no location assigned</p>
+        <button type="button" ng-click="confirm(1)" class="btn btn-delete">Okay</button>
+    </div>
+</script>
+<style type="text/css">
+    .ngdialog-content {
+        background: #FFF !important;
+        padding: 10px !important;
+    }
+</style>

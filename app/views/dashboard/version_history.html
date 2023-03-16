@@ -1,0 +1,145 @@
+<div id="versionHistory"
+     class="modal fade"
+     role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a class="btn btn-default2 pull-left"
+				   style="margin: -4px 0 !important;"
+				   ng-click="cancelVersionModal()"
+				   ng-if="showAddForm">
+					<i style="font-size: 14px;"
+					   class="fa fa-angle-left"
+					   aria-hidden="true"></i>
+				</a>
+				<button type="button"
+				        class="close"
+				        data-dismiss="modal"
+				        ng-click="cancelVersionModal();">&times;</button>
+				<h4 class="modal-title">Version History</h4>
+			</div>
+			<div class="modal-body">
+				<!-- <button type="button"
+				        class="btn btn_add2"
+				        ng-click="addVersion();"
+				        ng-hide="showAddForm"
+				        style="position: absolute;right: 16px;z-index: 9999;">Add</button> -->
+
+				<div class="row"
+				     style="margin-bottom: 0 !important;"
+				     ng-if="!showAddForm">
+					<div class="col-md-12 form-horizontal">
+						<div class="form-group">
+							<label class="control-label2 col-md-2">Version</label>
+							<div class="col-md-5">
+								<select class="form-control">
+									<!-- <option selected> {{versions[0].version}} - {{versions[0].date * 1000 | date:'dd MMMM yyyy'}}</option> -->
+									<option selected>1.0.7 - 22nd Feb 2019</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-12 no-padding featuresandbugs">
+							<tabset>
+								<tab heading="Bugs">
+									<ul>
+										<li>Total Balance in Customer and Supplier will now match with actual values,</li>
+										<li>Total in chart of Accounts will show correct values now,</li>
+										<li>Customer statement is showing record of all customers,</li>
+										<li>Margin Analysis calculations are working fine,</li>
+										<li>No CSI errors will appear, in any module i.e. Setup, HR, Inventory, Sales and Purchases,</li>
+										<li>In Sales Order and Purchase Order, data appearing will be permission based,</li>
+										<li>Sequence of message is according to visual display,</li>
+										<li>Search box is working in module codes,</li>
+										<li>Approval buttons will not appear, if its setup is not done,</li>
+										<li>Transfer stock is made roles and permission based,</li>
+										<li>Warehouse tab of Item is also made permission based,</li>
+										<li>Check applied on overlapping of quantities in rebate.</li>
+										<!-- ng-repeat="version in versions" -->
+										<!-- <li ng-if="version.devtype == 'Bug'">{{version.description}}</li> -->
+									</ul>
+								</tab>
+								<tab heading="Features">
+										<li>Rebates added in Sales Figure by Customer and Sales Figure by Salesperson report,</li>
+										<li>Flexi tables added in Customer, Supplier and Item activity,</li>
+										<li>Documents can be linked with multiple modules.</li>
+									<!-- ng-repeat="version in versions" -->
+									<!-- <li ng-if="version.devtype == 'Feature'">{{version.description}}</li> -->
+									</ul>
+								</tab>
+							</tabset>
+						</div>
+					</div>
+				</div>
+				<div class="row"
+				     ng-if="showAddForm">
+					<form>
+						<div class="col-md-12 form-horizontal">
+							<div class="form-group">
+								<label class="control-label2 col-md-2">Version</label>
+								<div class="col-md-4">
+									<input type="text"
+									       class="form-control"
+									       placeholder="Current Version {{versions[0].version}}"
+									       ng-model="versionAdd.newVersion"
+									       required />
+								</div>
+								<label class="control-label2 col-md-2">Date</label>
+								<div class="col-md-4">
+									<input jqdatepicker
+									       class="2date-picker form-control"
+									       id="start_date"
+									       ng-model="versionAdd.date"
+									       required>
+									<span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+								</div>
+							</div>
+
+							<div class="col-md-12 no-padding featuresandbugs">
+								<tabset>
+									<tab heading="Bugs">
+										<a ng-click="addBugToArray();"
+										   style=" margin-left: -8px;"
+										   class="ib add-dis-btn addbtn2"
+										   id="bugsTab">
+											<i class="material-icons"></i>
+										</a>
+										<input type="text"
+										       class="form-control"
+										       placeholder="Enter bug title and press +"
+										       ng-model="versionAdd.bugs"
+										       required />
+										<div ng-repeat="bug in bugs track by $index"> &#x25AA &nbsp; {{bug}}</div>
+									</tab>
+									<tab heading="Features">
+										<a ng-click="addFeatureToArray();"
+										   style=" margin-left: -8px;"
+										   class="ib add-dis-btn addbtn2"
+										   id="featuresTab">
+											<i class="material-icons"></i>
+										</a>
+										<input type="text"
+										       placeholder="Enter feature title and press +"
+										       class="form-control"
+										       ng-model="versionAdd.features"
+										       required />
+										<div ng-repeat="feature in features track by $index"> &#x25AA &nbsp; {{feature}}</div>
+									</tab>
+								</tabset>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button"
+				        class="btn btn-submit2"
+				        ng-if="showAddForm"
+				        ng-click="updateVersionData();">Save</button>
+				<button type="button"
+				        class="btn btn-default2"
+				        data-dismiss="modal"
+				        ng-click="cancelVersionModal();">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

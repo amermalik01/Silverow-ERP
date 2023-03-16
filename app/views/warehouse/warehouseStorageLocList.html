@@ -1,0 +1,149 @@
+<!-- Row starts -->
+<div class="row">
+    <!--ng-show="columns.length > 0"-->
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body ">
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control ng-valid ng-dirty"
+                                   ng-model="searchKeyword2">
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <select ng-model="searchKeyword.status_ids"
+                                    ng-options="opt as opt.value for opt in status_list"
+                                    class="select2me form-control"
+                                    ng-change="general_bin_location(searchKeyword.status_ids.id)">
+                                <option value=""
+                                        disabled
+                                        selected>Select Status</option>
+                            </select>
+                        </div> -->
+                        <div class="col-md-4 pull-right">
+                            <a id="prompt"
+                               ng-click="bin_loc_add_Form()"
+                               class="btn btn_add pull-right ">Add</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="dt_example"
+                         class="table-responsive example_alt_pagination">
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table">
+                            <thead>
+                                <tr class="bg-col"
+                                    ng-show="columns.length > 0">
+                                    <th ng-repeat="column in columns"
+                                        x-name="{{column.title}}"
+                                        ng-if="	column.title != 'Id' && column.title != 'Status' && column.title != 'Add Cost' && column.title != 'Parent' && column.title != 'Cost History'  && column.title != 'Item Assign'  ">
+                                        <!--{{column.title}}&& column.title != 'Add Cost'-->
+                                        <span ng-if="column.title != 'Add Cost'"> {{column.title}}</span>
+                                        <!-- <span ng-if="column.title == 'Add Cost'"> Additional Cost
+                                            <br>
+                                            <sub>(if Applicable)
+                                            </sub>
+                                        </span> -->
+                                    </th>
+                                    <th style="width: 11%;"
+                                        class="ShowHideAction">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body courser ">
+                                <span us-spinner="{radius:30, width:8, length: 16}"
+                                      spinner-key="spinner-1"></span>
+                                <tr ng-repeat="rec in bin_loc_data | filter: searchKeyword2"
+                                    ng-show="columns.length > 0">
+                                    <td ng-repeat="column in columns"
+                                        ng-click="edit_bin_location_Form(rec.id,0)"
+                                        ng-if="column.title == 'Storage Location'"
+                                        sortable="column.title">
+                                        <!--ng-click="edit_bin_location_Form(rec.id)"-->
+                                        <span
+                                              ng-if="rec['parent']==1 || rec['parent']==2 || rec['parent']==3 || rec['parent']==4">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span
+                                              ng-if="rec['parent']==2 || rec['parent']==3 || rec['parent']==4">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span
+                                              ng-if="rec['parent']==3 || rec['parent']==4">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span ng-if="rec['parent']==4">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span>{{rec[column.field]}}</span>
+                                    </td>
+                                    <td ng-repeat="column in columns"
+                                        ng-if="column.title != 'Id' && column.title != 'Parent' && column.title != 'Status' && column.title != 'Add Cost' && column.title != 'Storage Location' && column.title != 'Item Assign' && column.title != 'Cost History' "
+                                        ng-click="edit_bin_location_Form(rec.id,0)">
+                                        <span ng-if="column.title != 'Add Cost'"
+                                              style="padding: 0 0;width: 100%;float: left;">
+                                            {{rec[column.field]}}</span>
+                                    </td>
+                                    <!-- <td ng-repeat="column in columns"
+                                        ng-if="column.title == 'Add Cost'">
+                                        <span ng-click="show_add_cost_pop(rec.id,rec.Storage_location)">
+                                            <a title="Show Additional Cost"
+                                               style="font-size: 11px;
+                                                   padding: 0 0 !important;
+                                                    width: 100%;
+                                                    float: left;
+                                                    text-align: left;
+                                                    box-shadow: none;"
+                                               class="tooltips_clss btn hilight "
+                                               ng-if="rec['add_cost']>0">
+                                                Yes
+                                            </a>
+                                        </span>
+                                    </td> -->
+                                    <!-- <td ng-repeat="column in columns"
+                                        ng-if="column.title == 'Status'"
+                                        ng-click="edit_bin_location_Form(rec.id,0)">
+                                        <span style="padding: 0 0;width: 100%;float: left;">
+                                            {{rec[column.field]}}</span>
+                                    </td> -->
+
+                                    <!-- <td class="ShowHideAction"
+                                        ng-show="columns.length > 0">
+
+                                        <a ng-click="warehouse_loc_History_modal(rec.id,rec.Storage_location)"
+                                           title="Location History"
+                                           class="btn"
+                                           ng-if="rec['cost_history']>0">
+                                            <i class="fa fa-history"
+                                               aria-hidden="true"></i>
+                                        </a>
+
+                                        <a ng-click="chk_item_assigned_modal(rec.id,rec.Storage_location)"
+                                           title="Items Assigned to Storage Location"
+                                           class="btn"
+                                           ng-if="rec['item_assign']>0">
+                                            <i class="fa fa-cubes"
+                                               aria-hidden="true"></i>
+                                        </a>
+
+                                        <a ng-click="edit_bin_location_Form(rec.id,1)"
+                                           title="Edit"
+                                           class="btn ">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a ng-click="delete_bin_location(rec.id,$index,bin_loc_data)"
+                                           title="Delete"
+                                           class="btn "
+                                           ng-if="!rec['item_assign']>0">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </td> -->
+                                </tr>
+                                <div ng-show="!columns.length > 0 && !showLoader"
+                                     class="no-record"></div>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/warehouse/cost_modal.html'"></div>

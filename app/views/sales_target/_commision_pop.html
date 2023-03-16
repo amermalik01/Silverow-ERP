@@ -1,0 +1,207 @@
+<div class="modal fade" id="comision_pop">
+  <div class="modal-dialog modal-lg" dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="">
+          <div class="row">
+            <!-- <input type="hidden" ng-model="array_submit_comision.id" class="form-control" ng-readonly="check_readonly" /> -->
+            <div class="col-md-4">
+              <label class="control-label">Target Type </label>
+              <div class="">
+                <select disabled class="form-control"
+                  ng-model="array_submit_comision.sale_type" 
+                  ng-options="opt as opt.name for opt in sale_type_array">
+                  <option style="display:block" value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4" 
+              ng-show="comsion_target_type">
+              <label class="control-label ">From</label>
+              <div class="input-symbol">
+                <input type="number" step="any" class="form-control input_text" 
+                  ng-readonly="check_readonly" 
+                  ng-if="rec.fix_target_type.id==1"
+                  ng-change="change_values()" 
+                  ng-model="array_submit_comision.value_from"
+                  data-parsley-trigger="keyup"                   
+                  data-parsley-minlength-message="Invalid Value" 
+                  data-parsley-type-message="Invalid Value"
+                  data-parsley-error-message="Invalid Value" 
+                  data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                <input type="number" class="form-control input_text" 
+                  ng-readonly="check_readonly"
+                  ng-if="rec.fix_target_type.id==2" 
+                  ng-change="change_values()" 
+                  ng-model="array_submit_comision.value_from"
+                  data-parsley-trigger="keyup"                   
+                  data-parsley-minlength-message="Invalid Value" 
+                  data-parsley-type-message="Invalid Value"
+                  data-parsley-error-message="Invalid Value" 
+                  data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                <span ng-if="rec.fix_target_type.id==1">{{rec.currency_id.code}}</span>
+                <span ng-if="rec.fix_target_type.id==2">{{rec.target_uom.title}}</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="control-label"> 
+                <span ng-show="comsion_target_type">To</span> 
+                <span ng-show="bonus_target_type">Greater Than</span> 
+                <span class="required">*</span>
+              </label>
+              <div class="input-symbol">
+                <input required type="number" step="any" class="form-control input_text"
+                  ng-readonly="check_readonly" 
+                  ng-if="rec.fix_target_type.id==1"                
+                  ng-model="array_submit_comision.value_to"
+                  ng-change="change_values()"
+                  data-parsley-trigger="keyup"                
+                  data-parsley-minlength-message="Invalid Value"
+                  data-parsley-type-message="Invalid Value" 
+                  data-parsley-error-message="Invalid Value" 
+                  data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                <input required type="number" class="form-control input_text"
+                  ng-readonly="check_readonly"
+                  ng-if="rec.fix_target_type.id==2"                 
+                  ng-model="array_submit_comision.value_to"
+                  ng-change="change_values()"
+                  data-parsley-trigger="keyup"                
+                  data-parsley-minlength-message="Invalid Value"
+                  data-parsley-type-message="Invalid Value" 
+                  data-parsley-error-message="Invalid Value" 
+                  data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                <span ng-if="rec.fix_target_type.id==1">{{rec.currency_id.code}}</span>
+                <span ng-if="rec.fix_target_type.id==2">{{rec.target_uom.title}}</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="control-label"> 
+                <span ng-show="comsion_target_type">Commission</span> 
+                <span ng-show="bonus_target_type">Bonus</span> Type</label>
+              <div class="">
+                <select class="form-control"
+                  ng-model="array_submit_comision.discount_type" 
+                  ng-options="opt as opt.name for opt in discount_type_array" 
+                  ng-disabled="disable_pre_data">
+                  <option style="display:block" value=""></option>
+                </select>
+              </div>
+            </div>
+            <!-- <div class="col-md-4" ng-show="comsion_target_type">
+              <label class="  control-label"> Type </label>
+              <div class="">
+                <select ng-model="array_submit_comision.target_type_comsion"
+                   ng-options="opt as opt.name for opt in target_type_array_commison"
+                    class="form-control"  ng-disabled="disable_pre_data"   >
+                  <option style="display:block" value=""></option>
+                </select>
+              </div>
+            </div> -->
+            <div class="col-md-4">
+              <label class="control-label">Value<span class="required">*</span></label>
+              <div class="input-symbol">
+                <input required type="text" class="form-control input_text" 
+                  ng-readonly="check_readonly"  
+                  ng-model="array_submit_comision.discount_value"                  
+                  data-parsley-minlength-message="Invalid Value"
+                  data-parsley-trigger="keyup" 
+                  data-parsley-type-message="Invalid Value"
+                  data-parsley-error-message="Invalid Value" 
+                  data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                <span ng-if="array_submit_comision.discount_type.value==2">&#37;</span> 
+                <span ng-if="array_submit_comision.discount_type.value==1">{{defaultCurrencyCode}}</span>                </div>
+            </div>
+            <div class="col-md-4" ng-show="comsion_target_type">
+              <label class="control-label"> Check Accumlative </label>
+              <div class="">
+                <input type="checkbox" id="chk_accumlative" class=""
+                  ng-model="array_submit_comision.chk_accumlative" 
+                  ng-checked="array_submit_comision.chk_accumlative>0">
+              </div>
+            </div>
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+              <div class="pull-right">
+                <button class="btn btn_add pull-right check_frm_to" type="submit" style="margin-top:5px;"
+                  ng-click="submit_commision()" >
+                  <i class="fa fa-check fa_display"></i> Add</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="panel panel-default no-padding no-border no-margin">
+              <div class="panel-body" style="overflow-y: scroll; max-height: 325px;">
+                <table class="table table-striped table-bordered narrow_table small_fields">
+                  <thead>
+                    <tr ng-show="array_commision.length>0">
+                      <th style="width:15% !important;">Target Type</th>
+                      <th style="width:15% !important;" 
+                        ng-show="comsion_target_type">From</th>
+                      <th style="width:15% !important;" 
+                        ng-show="comsion_target_type">To</th>
+                      <th style="width:15% !important;" 
+                        ng-show="bonus_target_type">Greater Than </th>
+                      <th style="width:15% !important;">
+                        <span ng-show="comsion_target_type">Commission</span> 
+                        <span ng-show="bonus_target_type">Bonus</span>Type</th>
+                      <th style="width:1% !important;">Value</th>
+                      <th style="width:15% !important;" 
+                        ng-show="comsion_target_type">Type</th>
+                      <th style="width:10% !important;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr 
+                      ng-repeat="formDataExpense in array_commision track by $index" 
+                      ng-show="array_commision.length>0">
+                      <td>{{formDataExpense.sale_type}} </td>
+                      <td style="width:14%" 
+                        ng-show="comsion_target_type">{{formDataExpense.value_from | number:decimal_range}} 
+                        <span ng-show="formDataExpense.dtype==1">{{defaultCurrencyCode}} </span>
+                      </td>
+                      <td style="width:14%">{{formDataExpense.value_to | number:decimal_range}} 
+                        <span ng-show="formDataExpense.dtype==1">{{defaultCurrencyCode}} </span>
+                      </td>
+                      <td style="width:17%"> {{formDataExpense.discount_type}} </td>
+                      <td style="width:14%"> {{formDataExpense.discount_value | number:decimal_range}} 
+                        <span ng-show="formDataExpense.dtype==2">&#37;</span>                        
+                        <span ng-show="formDataExpense.dtype==1"> {{defaultCurrencyCode}} </span>
+                      </td>
+                      <td style="width:17%" 
+                        ng-show="comsion_target_type"> {{formDataExpense.target_type}} </td>
+                      <td>
+                        <a title="Edit" class="tooltips_cls btn "
+                          ng-click="edit_sale_comision(formDataExpense.id)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a title="Delete" class="tooltips_clss btn"
+                          ng-show="formDataExpense.id > 0" 
+                          ng-click="delete_sale_comision(formDataExpense.id,$index,array_commision,formDataExpense.discount_value)">
+                          <i class="fa fa-times"> </i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<input type="text" value="{{net_total_amount() | number:2}}" ng-model="total_grand"  class="form-control" aria-describedby="basic-addon1" readonly="">-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

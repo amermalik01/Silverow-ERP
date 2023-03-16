@@ -1,0 +1,48 @@
+<div id="custModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+  <!-- <div class="form-group"><a id="prompt"  class="btn btn-info btn_blue margin_bottom"><i class="fa fa-search"></i>Search</a>
+    <div class="col-sm-7">
+      <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+    </div>
+  </div> -->
+  <div class="col-lg-12"> 
+    <!-- START panel-->
+    <div class="panel panel-default">
+      <div class="panel-body"> 
+        <div class="row"
+             style="    margin-bottom: 0px !important;">
+          <div class="col-md-12">
+            <div class="flexiTable"
+                 x-report-modal="'true'"
+                 x-generate-table
+                 x-data="customerTableData.data"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-table-name="CustomerModal"
+                 x-filter-function="getCustomer()"
+                 x-row-click="confirmCustomer(file)"
+                 x-filter-object="searchKeyword_cust"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END panel--> 
+  </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

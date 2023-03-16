@@ -1,0 +1,196 @@
+[{
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Item No.",
+        "field_name": "item_no",
+        "event": {
+            "name": "openItemLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Description",
+        "field_name": "item_desc",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Document Type",
+        "field_name": "docType",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Order No.",
+        "field_name": "order_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Consignment No.",
+        "field_name": "consignment_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "130",
+        "data_type": "string"
+    },
+    {
+        "title": "Ref. No.",
+        "field_name": "ref_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Batch No.",
+        "field_name": "batch_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Warehouse",
+        "field_name": "warehouse",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "U.O.M",
+        "field_name": "unit_measure",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Quantity",
+        "field_name": "quantity",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Sales Amount",
+        "field_name": "sale_price",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Cost Amount",
+        "field_name": "cost_price",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Unit Sales Price",
+        "field_name": "unit_sale_price",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Unit Cost",
+        "field_name": "unit_cost_price",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Stock Out",
+        "field_name": "invoiced_qty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Remaining Stock",
+        "field_name": "remaining_qty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Open",
+        "field_name": "open_close",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "60",
+        "data_type": "string"
+    }
+]

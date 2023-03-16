@@ -1,0 +1,281 @@
+<div ng-if="recnew.supplier_id > 0">
+    <tabset>
+        <tab heading="General"
+             class="general_information"
+             ng-click="generalInformation()"
+             ng-if="supplier_general_tab_module">
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <form autocomplete="off"
+                  class="form-horizontal no-margin"
+                  role="form"
+                  validate-form=""
+                  novalidate=""
+                  name="addForm"
+                  ng-submit="add_general_srm(rec, drp)">
+                <div ng-include="'app/views/supplier/general_form.html'"></div>
+            </form>
+            <div ng-include="'app/views/crm/primaryAssignedlocmodal.html'"></div>
+        </tab>
+        <div ng-controller="CommonSrmSupplierController">
+            <tab heading="Finance"
+                 class="finance_customer"
+                 ng-click="general_finance()"
+                 ng-if="supplier_finance_tab_module">
+                <form autocomplete="off"
+                      class="form-horizontal no-margin parsley-validate"
+                      role="form"
+                      validate-form=""
+                      novalidate=""
+                      name="addForm"
+                      ng-submit="add_finance(rec_finance, drp)">
+                    <div ng-include="'app/views/supplier/finance_form.html'"></div>
+                </form>
+                <div ng-include="'app/views/supplier/_finance_account_modal.html'"></div>
+            </tab>
+        </div>
+        <tab heading="Activity"
+             class="blance_payment"
+             ng-click="get_balance_info(rec.id);itemselectPage(1)"
+             ng-if="supp_activity">
+            <div ng-include="'app/views/supplier/get_balance_result.html'"></div>
+        </tab>
+        <div ng-controller="CommonSrmSupplierController">
+
+            <tab heading="Other Contacts "
+                 class="contact_information"
+                 ng-if="supplier_contact_tab"
+                 ng-click="getAltContacts()">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-include="'app/views/srm/contact_listing.html'"
+                     ng-show="altContacListingShow"></div>
+                <form autocomplete="off"
+                      class="form-horizontal no-margin parsley-validate"
+                      id="alt_contact"
+                      data-validate="parsley"
+                      role="form"
+                      name="addForm"
+                      validate-form=""
+                      novalidate=""
+                      ng-submit="add_contact(rec_contact, drp)">
+                    <div ng-include="'app/views/srm/contact_form.html'"
+                         ng-show="altContacFormShow"></div>
+                </form>
+                <div ng-include="'app/views/crm/add_locationinternal.html'"></div>
+            </tab>
+            <tab heading="Other Locations"
+                 class="alt_depot"
+                 ng-if="supplier_location_tab"
+                 ng-click="getAltLocation() ">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div ng-include="'app/views/srm/location_listing.html'"
+                     ng-show="altDepotListingShow"></div>
+                <form autocomplete="off"
+                      class="form-horizontal no-margin"
+                      id="alt_location"
+                      role="form"
+                      name="addForm"
+                      ng-submit="add_location(rec_loc, drp)">
+                    <div ng-include="'app/views/srm/location_form.html'"
+                         ng-show="altDepotFormShow"></div>
+                </form>
+                <div ng-include="'app/views/crm/_add_contactinertnal.html'"></div>
+            </tab>
+            <!-- <tab heading="Area Coverd" class="shipping_agent" 
+                ng-if="supplier_area_tab_module" 
+                ng-click="setShipCountrySelectPage(1);  get_shipping_countries()">
+                <div 
+                    ng-class="{'whirl no-overlay':showLoader}"></div>
+                <div 
+                    ng-include="'app/views/srm/shiping_listing.html'" 
+                    ng-show="shipinglistingShow"></div>
+            </tab> -->
+            <tab heading="Price"
+                 class="p_offer"
+                 active="isPriceOffer"
+                 ng-init="getPriceOfferList(2)"
+                 ng-click="getPriceOfferList(2)"
+                 ng-if="supplier_price_tab_module">
+                <tabset>
+                    <tab heading="Price Offer"
+                         ng-click="getPriceOffer()">
+                        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <div ng-if="SRMPriceInfoFormShow">
+                            <form autocomplete="off"
+                                  id="SrmPriceInfoForm"
+                                  class="form-horizontal"
+                                  name="SrmPriceInfoForm"
+                                  role="form"
+                                  validate-form=""
+                                  novalidate="">
+                                <!-- ng-submit="addPriceOffer(PriceOffer_rec,1,1)" -->
+                                <div ng-include="'app/views/price/PriceInfoForm.html'"></div>
+                            </form>
+                        </div>
+                        <div class="tab-btt"
+                             ng-include="'app/views/price/PriceInfoListing.html'"
+                             ng-if="SRMPriceInfoListingShow"></div>
+                    </tab><!-- isPriceOffer>0 -->
+                    <tab heading="Price List"
+                         active="isPriceOffer"
+                         ng-click="getPriceOfferList(2)">
+                        <!-- ng-init="getPriceOfferList(2)"  -->
+                        <!-- ng-init="(isPriceOffer>0)? getPriceOfferList(2) : ''" -->
+                        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <!-- get_price_list();itemselectPage(1); -->
+                        <div ng-if="SRMPricelistInfoFormShow">
+                            <form autocomplete="off"
+                                  class="form-horizontal no-margin"
+                                  name="addForm"
+                                  role="form"
+                                  validate-form=""
+                                  novalidate="">
+                                <!-- ng-submit="addPriceList(PriceOffer_rec,1,1)" -->
+                                <!-- ng-submit="add_srm_price_list(rec)" -->
+                                <div ng-include="'app/views/price/PriceInfoForm.html'"></div>
+                            </form>
+                        </div>
+                        <div class="tab-btt"
+                             ng-include="'app/views/price/PriceListlisting.html'"
+                             ng-if="SRMPricelistInfoListingShow"></div>
+                    </tab>
+                    <div ng-include="'app/views/price/PriceInfoEmployee_modal.html'"></div>
+                    <!--   ===========For SRM/Supplier Price Items Modal===========  -->
+                    <div ng-include="'app/views/price/PriceItemsModal.html'"></div>
+                    <!-- 
+                    <tab heading="Area Coverd" class="shipping_agent" 
+                        ng-click="itemselectPage(1);get_area()">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" name="addForm" validate-form="" novalidate=""
+                            ng-submit="add_area(rec)" >
+                            <div ng-include="'app/views/srm/area_list_form.html'" ng-show="arealistingShowForm"></div>
+                        </form>
+                        <div 
+                            ng-include="'app/views/srm/area_list.html'" 
+                            ng-show="arealistingShow"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin" name="addForm" role="form"  validate-form="" novalidate=""
+                            ng-submit="add_method_pop(formData6)">
+                            <div 
+                                ng-include="'app/views/srm/add_method_pop.html'"></div>
+                        </form>
+                        <form autocomplete="off" name="addForm" class="form-horizontal no-margin" role="form" validate-form="" novalidate=""
+                            ng-submit="add_shipping_pop(formData6)">
+                            <div 
+                                ng-include="'app/views/srm/add_shipping_pop.html'"></div>
+                        </form>
+                    </tab> -->
+                    <tab heading="Rebates"
+                         ng-click="getRebate()">
+                         <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                        <div ng-if="rebateFormShow">
+                            <form autocomplete="off"
+                                  id="rebate"
+                                  name="rebate"
+                                  class="form-horizontal"
+                                  validate-form=""
+                                  novalidate="">
+                                <div ng-include="'app/views/customer/_form_rebate.html'"></div>
+                            </form>
+                            <div ng-include="'app/views/customer/_item_rebate_popup.html'"></div>
+                            <!-- <div ng-include="'app/views/customer/_rebateCategoryModal.html'"></div> -->
+
+                            <!--        For CRM/Customer Rebate Volume and Revenue History Popup        -->
+                            <!-- <div ng-include="'app/views/customer/_CustRebateVolRevHistory_modal.html'"
+                                 ng-if="(Rebate_rec.universal_types.id == 2 || Rebate_rec.universal_types.id == 3 ) && Rebate_rec.types.id == 1">
+                            </div> -->
+
+                        </div>
+                        <div class="tab-btt"
+                             ng-include="'app/views/customer/_listing_rebate.html'"
+                             ng-if="rebateListingShow">
+                        </div>
+                    </tab>
+                    <!--
+                      For SRM/Supplier Rebate history Popup        
+                    <div 
+                        ng-include="'app/views/supplier/_CustRebateHistory_modal.html'"></div>
+
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" 
+                        ng-submit="add_vol1_type(formData_vol_1)" >
+                        <div 
+                            ng-include="'app/views/product_values/add_vol_1.html'"></div>
+                    </form> -->
+                </tabset>
+            </tab>
+
+            <tab heading="Haulier Database"
+                    class="shipping_agent"
+                    ng-if="supplier_haulier_tab_module"
+                    ng-click="getHaulierListing()">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                <form autocomplete="off"
+                        class="form-horizontal no-margin"
+                        name="addHaulierForm">
+                    <div ng-include="'app/views/srm/haulier_add_form.html'"
+                            ng-show="arealistingShowForm"></div>
+                </form>
+                 <div ng-include="'app/views/srm/area_list.html'"
+                        ng-show="arealistingShow"></div> 
+            </tab>
+        </div>
+
+
+        <div class="pull-right recordSummary">
+            <!-- <span class="no-margin no-border">Last PO 10/10/2019</span>
+            <a class="no-border">
+                PO0019
+                <i class="fa fa-external-link"
+                   aria-hidden="true"></i>
+            </a> -->
+            <b class="no-border">Balance: {{supplier_balance | currency:""}} {{defaultCurrencyCode}}
+            <span ng-if="balanceInSupplierCurrency != '0'" style="border: none;">/ {{balanceInSupplierCurrency | currency:""}} {{supplierCurrencyCode}}</span></b>
+        </div>
+    </tabset>
+</div>
+
+<div ng-if="recnew.supplier_id == 0">
+    <tabset id="quotes_tabs">
+        <tab heading="General"
+             class="general_information">
+             <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <form autocomplete="off"
+                  name="addForm"
+                  class="form-horizontal no-margin"
+                  role="form"
+                  validate-form=""
+                  novalidate=""
+                  ng-submit="add_general_srm(rec, drp)">
+                <div ng-include="'app/views/supplier/general_form.html'"></div>
+            </form>
+        </tab>
+        <tab heading="Finance"
+             class="finance_customer dont-click"
+             ng-if="supplier_finance_tab_module"></tab>
+        <tab heading="Activity"
+             class="blance_payment dont-click"
+             ng-if="allowviewsupp_activity"></tab>
+        <tab heading="Other Contacts"
+             class="alt_contact dont-click"
+             ng-if="srm_contact_tab_module"></tab>
+        <tab heading="Other Locations"
+             class="alt_depot dont-click"
+             ng-if="srm_location_tab_module"></tab>
+        <tab heading="Price"
+             class="p_offer dont-click"
+             ng-if="srm_price_tab_module"></tab>        
+        <tab heading="Haulier Database"
+             class="shipping_agent dont-click"
+             ng-if="supplier_haulier_tab_module"></tab>
+    </tabset>
+</div>
+<div ng-include="'app/views/popup_email_compose.html'"></div>
+<div ng-include="'app/views/hr_values/document_internal.html'"
+     ng-show="list_internal_document"></div>
+<div ng-include="'app/views/srm/_listing_product_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal_cust.html'"></div>
+<!-- <div ng-include="'app/views/_listing_modal_2.html'"></div> -->
+<div ng-include="'app/views/srm/_SrmEmployee_modal.html'"></div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<!-- <div ng-include="'app/views/_listing_modal.html'"></div> -->
+<!-- <div ng-include="'app/views/_listing_modal_sales.html'"></div> -->
+<!-- <div ng-include="'app/views/srm/_item_services_cats_popup.html'"></div> -->
+<!-- <div ng-include="'app/views/srm/_item_services_popup.html'"></div> -->
+<!-- <div ng-include="'app/views/_confirm_modal.html'"></div> -->

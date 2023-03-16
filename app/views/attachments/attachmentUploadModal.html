@@ -1,0 +1,28 @@
+<div class="modal fade overflow-visible" id="attachmentUploadModal" tabindex="-1" role="dialog" aria-labelledby="Upload Attachment"
+    aria-hidden="true">
+    <div class="modal-dialog" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Upload Attachment</h4>
+            </div>
+            <div class="modal-body">
+                {{currentFile}}
+                <label for="">Name
+                    <input type="text" ng-value="currentFile.name" />
+                </label>
+                <label for="">Size
+                    <input type="text" ng-value="currentFile.size" />
+                </label>
+                <label for="">Type
+                    <input type="text" ng-value="currentFile.type" />
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="saveChanges(currentFile)" class="btn btn_add2" type="button">Add
+                </button>
+                <button ng-click="revertChanges()" type="button" class="btn btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

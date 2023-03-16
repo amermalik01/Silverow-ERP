@@ -1,0 +1,47 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <tabset>
+                <tab heading="General" class="general_information" ng-click="generalInformation()">
+                    <div class="vertical_space"></div>
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form=""
+                            novalidate="" ng-submit="add_general_warehouse(rec,drp)" name="addForm" ng-hide="showLoader">
+                        <div ng-include="'app/views/warehouse/general_form.html'"></div>
+                    </form>
+                    <div ng-include="'app/views/warehouse/add_storage_type_modal.html'"></div>
+                </tab>
+                <tab heading="Other Contacts" class="contact_information dont-click">
+                    <div>
+                        <div class="vertical_space"></div>
+                    </div>
+                </tab>
+                <tab heading="Storage Location" class="bin_location_information dont-click" >
+                    <div >
+                        <div class="vertical_space"></div>
+                    </div>
+                </tab>
+                <!-- <tab heading="Attachments">
+                    <tabset>
+                        <tab heading="Documents" class="documents dont-click">
+                            <div >
+                                <div class="vertical_space"></div>
+                            </div>
+                        </tab>
+                        <tab heading="Images" class="image dont-click">
+                            <div >
+                                <div class="vertical_space"></div>
+                            </div>
+                        </tab>
+                    </tabset>
+                </tab>
+                <tab heading="Comments" class="comments dont-click">
+                    <div >
+                        <div class="vertical_space"></div>
+                    </div>
+                </tab> -->
+            </tabset>
+        </div>
+    </div>
+</div>

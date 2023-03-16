@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body animated fadeIn">
+        <div class="row">
+          <input type="hidden" ng-model="coment_data.coment_id" />
+          <div class="col-md-12 ">
+            <div class="panel-title2">Notes</div>
+            <div class="col-md-12" style=" margin-top: -8px;margin-bottom: 7px;">
+              <div class="current-user pull-left">
+                <b>Created By :</b>{{currentUser | capitalize }} ({{company_name | capitalize }}) </div>
+              <div class="posted pull-right">{{coment_data.create_date}}</div>
+              <input type="text" required ng-readonly="check_doc_readonly" ng-model="coment_data.subject" class="form-control" placeholder="Subject / Title *"
+              />
+            </div>
+            <div class="col-md-12">
+              <div>
+                <input required type="hidden" ng-model="coment_data.create_date" class="form-control" />
+                <textarea class="form-control" type="text" required placeholder="Write Note " style="    resize: none;" ng-disabled="check_doc_readonly" ng-model="coment_data.description" class="form-control" rows="4" cols="30" id="redactor_content" ng-change="showWordsLimits()" maxlength="1000">{{coment_data.description}}</textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="pull-right">
+                <button class="btn btn-submit" type="submit" ng-show="!check_doc_readonly"> Save</button>
+                <button class="btn btn-edit" ng-if="editPerm" type="button" ng-click="showEditForm_document_general()" ng-show="check_doc_readonly"> Edit</button>
+                <button class="btn btn-cancel" type="button" ng-click="getComments()"> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

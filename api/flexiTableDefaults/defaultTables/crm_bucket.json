@@ -1,0 +1,80 @@
+[
+        {
+                
+                "title": "CRM No.",
+                "field_name": "crm_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "Name",
+                "field_name": "name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+    
+        {
+                
+                "title": "City",
+                "field_name": "primary_city",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "Postcode",
+                "custom_classes": "text-uppercase",
+                "field_name": "primary_postcode",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "string"
+                
+        },
+        {
+                
+                "title": "Territory",
+                "field_name": "region",
+                "db_table": "crm_region",
+                "db_field": "title",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "drop_down"
+                
+        },
+        {
+                
+                "title": "Classification",
+                "field_name": "crm_classification",
+                "db_table": "ref_classification",
+                "db_field": "name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                
+                "data_type": "drop_down"
+                
+        }
+]

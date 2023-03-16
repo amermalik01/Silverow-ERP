@@ -1,0 +1,324 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-symbol">
+      <input type="text"
+             Placeholder="Search"
+             class="form-control"
+             ng-model="searchKeyword">
+      <span id="date_msg_4">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <a id="prompt"
+       data-toggle="modal"
+       data-target="#mail_form"
+       class="btn btn_add2 pull-right margin_bottom">Add</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div>
+      <div>
+        <div id="dt_example"
+             class="example_alt_pagination">
+
+          <!--    view    permision for Company User /superadmin -->
+
+          <table ng-if="mails.length"
+                 class="table table-condensed table-striped table-hover table-bordered">
+            <thead class="fixit">
+              <tr class="bg-col">
+                <!--<th ng-repeat="column in columns"
+             ng-if="column.title != 'Id' "  sortable="column.title"  > {{column.title}} </th>-->
+                <th>Domain</th>
+                <!-- <th>Password</th> -->
+                <th>IMAP Server</th>
+                <th>POP3 Server</th>
+                <th>SMTP Server</th>
+              </tr>
+            </thead>
+            <tbody class="fixit">
+              <span us-spinner="{radius:30, width:8, length: 16}"
+                    spinner-key="spinner-1"></span>
+              <tr ng-repeat="mail in mails | filter:searchKeyword"
+                  data-toggle="modal"
+                  data-target="#mail_form"
+                  ng-click="showmailEditForm(mail)">
+                <td ng-bind="mail.mailDomain"></td>
+                <td ng-bind="mail.imapserver"></td>
+                <td ng-bind="mail.pop3server"></td>
+                <td ng-bind="mail.smtpserver"></td>
+                <!--<td class="text-left " ng-show="columns.length > 0"><a ng-click="add_sub_expense(record.id)"
+                  class="tooltips_clss btn"> <i class="fa fa-eye"><span>Details</span></i></a></td>-->
+              </tr>
+            </tbody>
+
+          </table>
+          <div ng-if="mails.length == 0"
+               class="no-record"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal -->
+<div id="mail_form"
+     class="modal fade"
+     role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                ng-click="clearConfigForm();"
+                class="close"
+                data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{mailFormData.id ? "Edit":"Add"}} Configuration</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <div ng-class="{'whirl no-overlay':showLoader}"></div> -->
+        <form autocomplete="off"
+              class="form-horizontal no-margin"
+              role="form"
+              validate-form=""
+              novalidate=""
+              ng-submit="submitMail()">
+          <div class="col-md-12 no-padding">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label class="col-md-4 control-label ">Primary
+                </label>
+                <div class="col-md-8">
+                  <input ng-disabled="editMailReadonly"
+                         ng-true-value="'1'"
+                         ng-false-value="'0'"
+                         ng-model="mailFormData.primaryConfiguration"
+                         type="checkbox"
+                         style="margin-top: 10px;" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label  ">Domain
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                  <div style="position: relative;">
+                    <span style="position: absolute;
+                                                          z-index: 9;
+                                                          color: #929292;
+                                                          padding: 5px 0px 2px 6px;">@</span>
+                    <input type="text"
+                           style="padding-left: 17px;"
+                           ng-model="mailFormData.mailDomain"
+                           class="form-control"
+                           data-parsley-required="true"
+                           ng-readonly="editMailReadonly" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label  ">IMAP Server
+                </label>
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="mailFormData.imapserver"
+                         class="form-control"
+                         data-parsley-required="true"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">IMAP Port
+                </label>
+                <div class="col-md-8">
+                  <input type="number"
+                  min="1"
+                  step="1"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                         ng-model="mailFormData.imapport"
+                         class="form-control"
+                         data-parsley-required="true"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label  ">IMAP SSL
+                </label>
+                <div class="col-md-8">
+                  <select class="form-control"
+                          ng-model="mailFormData.imapssl"
+                          data-parsley-required="true"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">IMAP SPA
+                </label>
+                <div class="col-md-8">
+                  <select ng-model="mailFormData.imapspa"
+                          class="form-control"
+                          data-parsley-required="true"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">POP3 Server </label>
+                <div class="col-md-8">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="mailFormData.pop3server"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2 no-padding">
+              <div class="form-group">
+                <label class="col-md-4 control-label ">POP3 Port</label>
+                <div class="col-md-8">
+                  <input type="number"
+                  min="1"
+                  step="1"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                         ng-model="mailFormData.pop3port"
+                         class="form-control"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">POP3 SSL </label>
+                <div class="col-md-8">
+                  <select class="form-control"
+                          ng-model="mailFormData.pop3ssl"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">POP3 SPA</label>
+                <div class="col-md-8">
+                  <select ng-model="mailFormData.pop3spa"
+                          class="form-control"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">SMTP Server </label>
+                <div class="col-md-8">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="mailFormData.smtpserver"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">SMTP Port</label>
+                <div class="col-md-8">
+                  <input type="number"
+                  min="1"
+                  step="1"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                         ng-model="mailFormData.smtpport"
+                         class="form-control"
+                         ng-readonly="editMailReadonly" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">SMTP SSL </label>
+                <div class="col-md-8">
+                  <select class="form-control"
+                          ng-model="mailFormData.smtpssl"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">SMTP SPA</label>
+                <div class="col-md-8">
+                  <select ng-model="mailFormData.smtpspa"
+                          class="form-control"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label ">SMTP Auth </label>
+                <div class="col-md-8">
+                  <select class="form-control"
+                          ng-model="mailFormData.smtpauth"
+                          ng-disabled="editMailReadonly">
+                    <option value=""
+                            disabled
+                            selected>Select</option>
+                    <option value="On">On</option>
+                    <option value="Off">Off</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer clearfix">
+        <button class="btn btn-delete active-btns"
+                type="button"
+                ng-show="!editMailReadonly && mailFormData.id"
+                ng-click="deleteMailConfig(mailFormData)">
+          Delete
+        </button>
+        <button class="btn btn-submit"
+                type="submit"
+                ng-hide="editMailReadonly"
+                ng-click="submitMail()"
+                ng-show="addmailFlag">Save</button>
+        <button class="btn btn-edit"
+                type="button"
+                ng-show="editMailReadonly"
+                ng-click="enableEditMailForm();">Edit</button>
+        <button type="button"
+                class="btn btn-cancel2"
+                ng-click="clearConfigForm()"
+                data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

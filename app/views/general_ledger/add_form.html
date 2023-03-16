@@ -1,0 +1,32 @@
+<!--<div ng-include="'app/views/_breadcrumb.html'"></div>-->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- Row starts -->
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <tabset>
+                <tab heading="General" class="general_information" ng-click="generalInformation()">
+                    <div >
+                        <div class="vertical_space"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form=""
+                              novalidate="" ng-submit="addGeneral(formData)" name="addForm" ng-hide="showLoader">
+                            <div ng-include="'app/views/general_ledger/general_form.html'"></div>
+                        </form>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+
+<!--<tab heading="Posting" class="personal_setting dont-click"  ng-click="getposting()">
+       <div >
+         <div class="vertical_space"></div>
+         <form autocomplete="off"class="form-horizontal no-margin" role="form"
+               ng-submit="addposting(formData)" name="addpostingForm" validate-form="" novalidate="" ng-hide="showLoader">
+           <div ng-include="'app/views/general_ledger/add_posting.html'"></div>
+         </form>
+       </div>
+       </tab>-->

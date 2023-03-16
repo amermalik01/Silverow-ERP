@@ -1,0 +1,410 @@
+[
+    {
+        "title": "Invoice Date",
+        "field_name": "invoice_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Order Date",
+        "field_name": "order_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Order No.",
+        "field_name": "order_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Suppl. Invoice No.",
+        "field_name": "supp_order_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "130",
+        "data_type": "string"
+    },
+    {
+        "title": "Prev. Code",
+        "field_name": "prev_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Current Stage",
+        "field_name": "current_stage",
+        "db_table": "ref_crm_order_stages",
+        "db_field": "name",
+        "db_where": " module_id = 2 ",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Supplier No.",
+        "field_name": "sell_to_cust_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "sell_to_cust_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 1",
+        "field_name": "sell_to_address",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 2",
+        "field_name": "sell_to_address2",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "City",
+        "field_name": "sell_to_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "County",
+        "field_name": "sell_to_county",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Postcode",
+        "field_name": "sell_to_post_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Country Code",
+        "field_name": "country",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Contact Person",
+        "field_name": "sell_to_contact_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Telephone",
+        "field_name": "cust_phone",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Email",
+        "field_name": "cust_email",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Purchaser",
+        "field_name": "srm_purchase_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "posting_grp",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Currency",
+        "field_name": "crcode",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "net_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "VAT",
+        "field_name": "tax_amount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Due Date",
+        "field_name": "due_date",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Req. Rcpt. Date",
+        "field_name": "requested_delivery_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "date"
+    },
+    {
+        "title": "Receipt Date",
+        "field_name": "receiptDate",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Shipping Agent",
+        "field_name": "shipping_agent",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Method",
+        "field_name": "shipment_method",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Address 1",
+        "field_name": "ship_to_address",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Address 2",
+        "field_name": "ship_to_address2",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping City",
+        "field_name": "ship_to_city",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping County",
+        "field_name": "ship_to_county",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Postcode",
+        "field_name": "ship_to_post_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Contact",
+        "field_name": "book_in_contact",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Tel. No.",
+        "field_name": "book_in_tel",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Book In Email",
+        "field_name": "book_in_email",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "W/H Book Ref.",
+        "field_name": "warehouse_booking_ref",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Cons. No.",
+        "field_name": "consignmentNo",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Linked SO",
+        "field_name": "LinkToSo",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Docs. Attached",
+        "field_name": "documentPOCount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Emails Sent",
+        "field_name": "emailCount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Suppl. Order No.",
+        "field_name": "cust_order_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "130",
+        "data_type": "string"
+    },
+    {
+        "title": "Level 1 Approval Status",
+        "field_name": "l1_approval_status",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "210",
+        "data_type": "string"
+    },
+    {
+        "title": "Level 2 Approval Status",
+        "field_name": "l2_approval_status",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "210",
+        "data_type": "string"
+    }
+]

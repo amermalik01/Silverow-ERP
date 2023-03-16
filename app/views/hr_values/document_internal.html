@@ -1,0 +1,37 @@
+
+<div class="modal fade" id="dcoument_internal_popup"   >
+    <div class="modal-dialog modal-lg"   >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{document_title_new}} </h4>
+            </div>
+            <div class="modal-body ">
+                <div class="row" ng-controller="ImgUploadController">
+                    <div class="col-md-12">
+                        <button  style="visibility:hidden"id="reclickdoc" type="button" ng-click="itemselectPage(1);
+                                    getDocuments()">clickdoc</button>
+
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="adddocument(formData)"
+                              validate-form="" novalidate="" >
+                            <div ng-include="'app/views/hr_values/document_form.html'" ng-show="showdoc"></div>
+                        </form>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder(formData2)"
+                              validate-form=""   novalidate=""      >
+                            <div ng-include="'app/views/hr_values/add_folder.html'"  ></div>
+                        </form>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_folder_edit(formData22)"
+                              validate-form=""   novalidate=""      >
+                            <div ng-include="'app/views/hr_values/add_folder_edit.html'"  ></div>
+                        </form>
+                        <div ng-include="'app/views/hr_values/document.html'" ng-show="showdocumentlist"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel"data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "sales_quote_no": "sale_quote_code"
+    },
+    "fileName": "SQ.[[sales_quote_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

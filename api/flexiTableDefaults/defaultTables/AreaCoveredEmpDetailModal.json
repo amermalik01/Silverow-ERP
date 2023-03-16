@@ -1,0 +1,52 @@
+{
+    "tblMeta": {
+        "autoAdjust": false
+    },
+    "colMeta": [
+    {
+        "title": "Employee No.",
+        "field_name": "user_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Job Title",
+        "field_name": "job_title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Employment Type",
+        "field_name": "emp_type",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Department",
+        "field_name": "dname",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    }
+]
+}

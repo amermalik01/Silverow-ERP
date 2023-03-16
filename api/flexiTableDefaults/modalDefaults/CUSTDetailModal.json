@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Select",
+        "field_name": "checkbox",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "select"
+    },
+    {
+        "title": "Customer No.",
+        "field_name": "customer_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Territory",
+        "field_name": "region",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Buying Group",
+        "field_name": "buying_group",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "postingGrp",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    }
+]

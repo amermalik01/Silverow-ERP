@@ -1,0 +1,87 @@
+
+                    <div class="modal fade" id="custInfoModal3">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{modal_title}}</h4>
+                          </div>
+                          
+                          <div class="modal-body">
+                           <!-- Filter -->
+                           <div class="col-lg-12">
+                            <!-- <form class="form-horizontal no-margin">
+                              <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                          <div class="col-sm-4">
+                                            <select ng-model="cust_types" ng-options="opt as opt.title for opt in arr_cust_prod_types"  class="form-control"><option value="">All Types</option> </select>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <input type="text" ng-model="search_data" ng-show="cust_types.id > 0"  class="form-control"  /> 
+                                            <div class="form-group " ng-show="!cust_types.id">
+                                            <div class="input-symbol">
+                                            <input type="text" 
+                                              Placeholder="Search" class="form-control ng-valid ng-dirty"  id="searchKeyword" ng-model="searchKeyword">
+                                            <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+                                            </div>               
+                                          </div>
+                                          <a id="prompt" ng-click="getExcCustomers(promo_id,2,cust_types,search_data)" ng-show="cust_types.id > 0" class="btn btn_blue margin_bottom width_80"><i class="fa fa-search fa_display"></i>Search</a>
+                                          <a id="prompt" ng-click="getExcCustomers(promo_id,'all',cust_types,search_data)" ng-show="cust_types.id > 0" class="btn btn_blue margin_bottom width_80">Show All</a>
+                                        </div>
+                                    </div>
+                              </div>
+                            </form> -->
+                            <form class="form-horizontal no-margin" >
+                              <div class="col-sm-6 ">
+                                <div class="form-group ">
+                                <div class="input-symbol">
+                                <input type="text" 
+                                  Placeholder="Search" class="form-control ng-valid ng-dirty"  id="searchKeyword"ng-model="searchKeyword">
+                                <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+                                </div>
+                              </div>
+                              </form>
+                            </div>
+                            <!-- Filter End -->
+
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12">
+                                    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                                        <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                                            <table class="table table-striped table-bordered table-hover" ng-class="{'whirl no-overlay':arr_customers.length == 0}">
+                                                <thead>
+                                                    <tr class="bg-col">
+                                                      <th ng-repeat="column in columns" ng-show="column.field != 'id' && column.field != 'Status'">{{column.title}}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="courser table-body">
+                                                   <tr     ng-repeat="cust in arr_customers | filter:searchKeyword" ng-click="addCustomer(cust)">
+                                                      <td ng-repeat="column in columns" ng-show="column.field != 'id' && column.field != 'Status'">{{cust[column.field]}}</td>
+                                                    </tr>
+                                                </tbody>
+                                             </table>
+                                            </div>
+                                          
+                                    </div>
+                                    
+                                    
+                                  </div>
+                                  
+                                </div>
+                              <!-- Row ends -->
+                            
+                          </div>
+                            
+                          <div class="modal-footer">
+                            <!-- {{selectedCustomers}} -->
+                            <!-- <button type="button" class="btn btn-default btn_blue"_blue>Add</button> -->
+                            <!--  -->
+                            <!-- <span class="pull-left">Selected:&nbsp;{{(customers | filter: {chk: true}).length}}</span> -->
+                            <!-- <button ng-show="rec.universal_types.id != 2" class="btn btn-info btn_blue" data-dismiss="modal" style="margin:10px;" type="button">Add</button> -->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal Ends

@@ -1,0 +1,118 @@
+[
+    {
+        "title": "G/L No.",
+        "field_name": "gl_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "73",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "gl_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Category",
+        "field_name": "category",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "gl_account",
+        "db_field": "displayName",
+        "db_where": " accountType IN (1) ",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Sub-Category",
+        "field_name": "subcategory",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "gl_account",
+        "db_field": "displayName",
+        "db_where": " accountType IN (2) ",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Net Movement - YTD",
+        "field_name": "accouting_year",
+        "classes": "tooltips_clsshilight padright10 ",
+        "event": {
+            "name": "show_detail_pop",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:2",
+                "title:Net Movement - YTD"
+            ]
+        },
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Net Movement - Selected Period",
+        "field_name": "selected_period",
+        "classes": "tooltips_clsshilight padright10 ",
+        "event": {
+            "name": "show_detail_pop",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:3",
+                "title:Net Movement - Selected Period"
+            ]
+        },
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "200",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "data_type": "number"
+    },
+    {
+        "title": "Net Movement - Prior Period",
+        "field_name": "previouse_selected_period",
+        "classes": "tooltips_clsshilight padright10 ",
+        "event": {
+            "name": "show_detail_pop",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:4",
+                "title:Net Movement - Prior Period"
+            ]
+        },
+        "visible": "0",
+        "pinned": "0",
+        "custom_classes": "highlightColBoth2",
+        "custom_classesHeader": "highlightTh",
+        "color": "#ffffff",
+        "width": "194",
+        "data_type": "number"
+    },
+    {
+        "title": "Status",
+        "field_name": "status",
+        "default_filter": true,
+        "filter_type": "Exact",
+        "filter_value": "Active",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "data_type": "drop_down"
+    }    
+]

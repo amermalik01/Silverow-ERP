@@ -1,0 +1,115 @@
+<div class="row">
+    <script>
+            $("a").click(function () {
+                $(".parsley-errors-list").hide();
+                $(".form-control").removeClass("parsley-error");
+            });
+            $(".btn-submit").click(function () {
+                $(".parsley-errors-list").show();
+            });
+    </script>
+    <div class="col-md-12 col-md-12">
+        <div class="widget animated fadeIn">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="panel-title2">Currency</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Currency Name <span class="required">*</span></label>
+                                <div class="col-md-6 padr6">
+                                    <ui-select ng-model="currency.currency" ng-readonly="check_currency_readonly" ng-disabled="currency.id > 0"
+                                    id="currency_name" ng-change="setStartDate()" required>
+                                      <ui-select-match placeholder="Select Currency">{{$select.selected.name}}</ui-select-match>
+                                      <ui-select-choices repeat="opt in ref_currency_list | filter: $select.search">
+                                        <div ng-bind-html="opt.name+' ('+opt.code+')' | highlight: $select.search"></div>
+                                      </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-2 padl6">
+                                    <input type="text" ng-model="currency.currency.code" id="code" name="code"
+                                            class="form-control"  required="1"
+                                            ng-readonly="1"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Exchange Rate <span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" id="exchange_rate" name="exchange_rate" class="form-control" 
+                                        required="1" data-parsley-type="number"
+                                        ng-readonly="check_currency_readonly"
+                                        ng-change="updateExchangeRate(currency.exchange_rate,1)"
+                                        ng-model="currency.exchange_rate"/>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Inverted Exchange Rate<span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" id="conversion_rate" name="conversion_rate"
+                                        class="form-control" required="1" data-parsley-type="number" ng-readonly="check_currency_readonly"
+                                        ng-model="currency.conversion_rate"
+                                        ng-change="updateExchangeRate(currency.conversion_rate,2)"/>
+                                </div>
+                            </div>                      
+                            <div class="form-group">
+                                    <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+    
+                                    <div class="col-md-8">
+                                        <input jqdatepicker id="ck11_sdate2" class="2date-picker form-control ck_sdate"
+                                            ng-model="currency.start_date" 
+                                            ng-class="{'pickdate':!check_currency_readonly}"
+                                            ng-disabled="check_currency_readonly"> 
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>   
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                        <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+        
+                                        <div class="col-md-8">
+                                            <ui-select ng-model="currency.c_status" ng-readonly="check_currency_readonly"
+                                            id="status" required>
+                                              <ui-select-match placeholder="Select Status">{{$select.selected.label}}</ui-select-match>
+                                              <ui-select-choices repeat="opt in arr_status | filter: $select.search">
+                                                <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                                              </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div> -->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <!--<button class="btn btn_blue" type="button" ng-click="currencyConvRateHistory(currency.id)" ng-show="check_currency_readonly">Conversion Rate History</button>-->
+                                <!-- <button class="btn btn-info btn_blue" type="button" ng-click="conversionRate(currency.id)" ng-show="check_currency_readonly">Set Conversion Rate </button> -->
+                                <a class="btn btn-default2" 
+                                    ng-if="currency.id > 0 && general.currency.code != currency.currency.code"
+                                    ng-click="currencyConvRateHistory(currency.id,currency.currency.code)">Conversion History
+                                </a>
+                                <button class="btn btn-submit" type="submit" ng-show="!check_currency_readonly">Save
+                                </button>
+                                <!-- <button class="btn btn-delete" type="button" ng-click="deleteCurrency(currency.id)"
+                                        ng-if="currency.code!=defaultCurrencyCode"
+                                        ng-show="check_currency_readonly">Delete
+                                </button> -->
+                                <button class="btn btn-edit" type="button" ng-click="showCurrencyEditForm()"
+                                        ng-if="check_currency_readonly && general.currency.code != currency.currency.code">Edit
+                                </button>                            
+                                <button class="btn btn-cancel" type="button" ng-click="getCurrencies()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

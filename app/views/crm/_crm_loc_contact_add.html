@@ -1,0 +1,60 @@
+<div class="modal fade" id="testloctimegeneral">
+  <div class="modal-dialog" style="width:65% !important;">
+    <!--modal-lg-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title">Delivery Time(s)</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div>
+          <div>
+            <div>
+              <label class="col-md-2 pr0" style="    margin-bottom: 14px;"><b>Days</b></label>
+              <label class="col-md-3 pr0"><b>Opening Times</b></label>
+              <label class="col-md-3 pr0"><b>Closing Times</b></label>
+              <label class="col-md-4 pr0"><b>Comments</b></label>
+
+              <div class="animated fadeIn" style="    display: inline-block;    width: 100%;" ng-repeat="mailloc in rec.loccaiontiming track by $index">
+
+                <div class="col-md-2 pr0">
+                  <select ng-model="mailloc.day_limit" ng-options="opt as opt.label for opt in arr_days" class="form-control" readonly ng-disabled="true" ng-class="{'not-click-allow':true}"><!--disableClass-->
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                  <!--="check_alt_depot_readonly"-->
+                </div>
+                <div class="col-md-3  pr0">
+                  <input type="text" ng-model="mailloc.booking_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control {{$index}}" readonly>
+                  <span class="fa fa-clock-o   new_ca  form-control-feedback" aria-hidden="true" style="right: -28px;"></span>
+                </div>
+                <div class="col-md-3  pr0">
+                  <input type="text" ng-model="mailloc.booking_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control {{$index}}" readonly>
+
+                  <span class="fa fa-clock-o new_ca form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-4 pr0">
+                  <input type="text" ng-model="mailloc.notes" ng-disabled="check_alt_depot_readonly" class="form-control   {{$index}}">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+
+        <a class="btn btn-submit2" data-dismiss="modal" ng-click="rec.alt_loc_id>0 && addloccaiontiming_general(rec.alt_loc_id)"><i
+                       class="fa fa-check fa_display"></i> Save
+                </a>
+
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

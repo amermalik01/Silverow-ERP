@@ -1,0 +1,150 @@
+[
+        {
+                "title": "Order Date",
+                "field_name": "order_date",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "date"
+        },
+        {
+                "title": "Req. Rcpt. Date",
+                "field_name": "requested_delivery_date",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "date"
+        },
+        {
+                "title": "Order No.",
+                "field_name": "order_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Supp. Order No.",
+                "field_name": "supp_order_no",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Supplier No.",
+                "field_name": "sell_to_cust_no",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Name",
+                "field_name": "sell_to_cust_name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "City",
+                "field_name": "sell_to_city",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Current Stage",
+                "field_name": "current_stage",
+                "db_table": "ref_crm_order_stages",
+                "db_field": "name",
+                "db_where": " module_id = 2 ",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "drop_down"
+        },
+        {
+                "title": "Purchaser",
+                "field_name": "srm_purchase_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Currency",
+                "field_name": "crcode",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Amount",
+                "field_name": "net_amount",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "number"
+        },
+        {
+                "title": "Contact Person",
+                "field_name": "sell_to_contact_no",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Address Line 1",
+                "field_name": "sell_to_address",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Postcode",
+                "field_name": "sell_to_post_code",
+                "visible": "0",
+                "pinned": "0",
+                "custom_classes": "text-uppercase",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Linked SO",
+                "field_name": "LinkToSo",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        },
+        {
+                "title": "Prev. Code",
+                "field_name": "prev_code",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "0",
+                "data_type": "string"
+        }
+]

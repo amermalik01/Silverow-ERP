@@ -1,0 +1,75 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+ <!-- Row starts -->
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+
+		  	<tabset>
+	            <tab ng-repeat="tab in arrTabs" heading="{{tab.name}}" ng-click="getTabForm(tab.id,tab.module_id,$index)"  class="{{tab.name}}" >
+	            	<div ng-class="{'whirl no-overlay':showFormLoader}">
+	            	<form class="form-horizontal no-margin" role="form" ng-submit="add(formData,$index)" name="addForm" validate-form="" novalidate="">
+	            	<div class="row">
+	            		<div class="col-lg-6">
+							<div class="form-group" ng-repeat="field in arrFields" ng-if="field.column == 'Left'">
+							  <label class="col-lg-4 control-label">{{field.label}}<span ng-if="field.is_required == 1" class="required">*</span></label>
+							  <div class="col-lg-8">
+							     <input type="{{field.type}}" ng-if="field.type == 'text'" ng-model="formData[field.id].value" name="{{field.name}}" class="form-control" ng-readonly="check_readonly" ng-required="field.is_required == 1" tabindex="1"/>
+							     <div ng-if="field.type == 'select'" ng-class="{'whirl no-overlay':showLoader2 && field.type == 'select'}">
+							     <select ng-model="formData[field.id].value" ng-init="fillCombo(field.module_id,field.id)" ng-options="opt as opt.name for opt in arr_combo[field.id]" class="select2me form-control" ng-change="getComboValue(field.id)" ng-disabled="check_readonly" ng-required="field.is_required == 1"  tabindex="1" > </select>
+							     </div>
+							  </div>
+							  </div>
+							 
+						  </div>
+						  <div class="col-lg-6">
+							<div class="form-group" ng-repeat="field in arrFields" ng-if="field.column == 'Right'">
+							  <label class="col-lg-4 control-label">{{field.label}}<span ng-if="field.is_required == 1" class="required">*</span></label>
+							  <div class="col-lg-8">
+							     <input type="{{field.type}}" ng-if="field.type == 'text'" ng-model="formData[field.id].value" name="{{field.name}}" class="form-control" ng-readonly="check_readonly" ng-required="field.is_required==1" tabindex="1"/>
+							     <div ng-if="field.type == 'select'" ng-class="{'whirl no-overlay':showLoader2 && field.type == 'select'}">
+							     <select ng-model="formData[field.id].value" ng-init="fillCombo(field.module_id,field.id)" ng-options="opt as opt.name for opt in arr_combo[field.id]" class="select2me form-control" ng-change="getComboValue(field.id)" ng-disabled="check_readonly" ng-required="field.is_required == 1"  tabindex="1" > </select>
+							     </div>
+							  </div>
+							  </div>
+						  </div>
+					  </div>
+
+							<div class="col-md-12" ng-show="!showFormLoader">
+	                    	<div class="hr_line2"></div>
+	                        <div class="pull-right">
+	                        	<input type="text" class="hdn_id" ng-value="rec.id" />
+	                        <button class="btn btn-info btn_blue" ng-if="check_readonly" type="button" ng-click="gotoEdit()"><i class="fa fa-edit"></i> Edit</button>
+                        	<!-- <button class="btn btn-info btn_blue" type="button" ng-if="check_readonly" ng-click="delete({id:id})"><i class="fa fa-times"></i> Delete</button> -->	
+	                        <button class="btn btn-info btn_blue" type="submit"><i class="fa fa-check"></i> Submit</button>
+	                        <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+	                        </div>
+	                    </div>
+                
+		    </form> 
+		    </div>
+		    {{formData}}
+	              <div class="clearfix"></div>
+	            </tab>
+        	</tabset>
+
+		    <!-- <form class="form-horizontal no-margin" role="form" ng-submit="addForm.$valid && add(rec)" name="addForm" validate-form="" novalidate="">
+				<div class="form-group">
+				  <label class="col-lg-2 control-label">Description <span class="required">*</span></label>
+				  <div class="col-lg-6">
+				     <input type="text" ng-model="rec.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1"/>
+				  </div>
+				  </div>
+						<div class="col-md-12">
+                    	<div class="hr_line2"></div>
+                        <div class="pull-right">
+                        <button class="btn btn-info btn_blue" type="submit"><i class="fa fa-check"></i> Submit</button>
+                        <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+                        </div>
+                    </div>
+                
+		    </form> -->
+		 </div>
+		</div>
+</div>
+<div ng-include="'app/views/_listing_modal.html'" ></div>

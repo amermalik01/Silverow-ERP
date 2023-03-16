@@ -1,0 +1,15 @@
+<div ng-controller="Gl_AddController as table">
+    <div class="row">
+        <div ng-include="'app/views/_breadcrumb.html'" ></div>
+    </div>
+
+    <!-- Row starts -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div ng-app ng-controller="GlTabsController">
+                <div ng-include="'app/views/general_ledger/add_form.html'"></div>
+            </div>
+
+        </div>
+    </div>
+</div>

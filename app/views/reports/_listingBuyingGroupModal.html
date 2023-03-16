@@ -1,0 +1,42 @@
+<div class="modal fade" id="_BuyingGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg" dragable style="    width: 80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Buying Group(s)</h4>
+            </div>
+
+            <div class="modal-body">                
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                         <!-- {{tempSalepersonsArr2 | json}}    -->
+                        <!-- <div ng-if="tempSalepersonsArr2.ack">
+                            <div class="flexiTable makeModalFixed" 
+                                x-generate-table2 
+                                x-data="tempSalepersonsArr2" 
+                                x-table-name="SalePersonsDetailModal"
+                                x-select-flexi-chk-box="false" 
+                                x-updated-object-arr="PendingSelectedSalepersons"
+                                x-filter-function="getCUSTlist()"  
+                                x-filter-object="searchKeyword"></div>
+                        </div> -->
+
+                        <div ng-if="moduleType == 'SPDetail'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" x-table-name="BuyingGroupDetailModal"
+                            x-forget-filters="true"
+                                 x-controller-initiate 
+                                x-filter-function="selectBuyingGroup()" x-selected-record-preview="title" x-checked-records="selectedRecFromModalsBg" x-filter-object="searchKeywordBg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" ng-click="addBuyingGroups()">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearBuyingGroups()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

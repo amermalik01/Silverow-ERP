@@ -1,0 +1,451 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12  no-padding"></div>
+<!--<style>
+
+/*
+body, a {
+    color: #3B4C56;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}*/
+#pgtitle
+{
+	margin: 0px 0px 20px;
+	font-size: 18pt;
+	text-align: center;
+}
+a{
+	cursor:pointer!important;
+}
+.tree ul {
+    list-style: none outside none !important;
+}
+.tree li a {
+    line-height: 25px!important;
+}
+.tree > ul > li > a {
+    color: #3B4C56!important;
+    display: block!important;
+    font-weight: normal!important;
+    position: relative!important;
+    text-decoration: none!important;
+}
+.tree li.parent > a {
+    padding: 0 0 0 28px!important;
+}
+.tree li.parent > a:before {
+    background-image: url("app/img/plus_minus_icons.png")!important;
+    background-position: 25px center!important;
+     content: ""!important; 
+    display: block!important;
+    height: 21px!important;
+    left: 0!important;
+    position: absolute!important;
+    top: 2px!important;
+    vertical-align: middle!important;
+    width: 23px!important;
+}
+.tree ul li.active > a:before {
+    background-position: 0 center!important;
+}
+.tree ul li ul {
+    border-left: 1px solid #D9DADB;
+    display: none;
+    margin: 0 0 0 12px;
+    overflow: hidden;
+    padding: 0 0 0 25px;
+}
+.tree ul li ul li {
+    position: relative;
+}
+.tree ul li ul li:before {
+    border-bottom: 1px dashed #E2E2E3;
+    content: "";
+    left: -20px;
+    position: absolute;
+    top: 12px;
+    width: 15px;
+}
+#wrapper {
+    margin: 0 auto;
+    width: 300px;
+}
+
+.tree {
+    list-style: none;
+}
+
+.tree ,.child {
+    margin: 10px;
+}
+
+.spanchild {
+    cursor: pointer;
+}
+</style>-->
+
+   <!--  <button  type="button"id="all">Toggle All</button>-->
+              <!--<ul>
+                <li><a>First Level</a>
+                  <ul>
+                    <li><a>Second Level</a></li>
+                    <li><a>Second Level</a></li>
+                    <li><a>Second Level</a></li>
+                  </ul>
+                </li>
+                <li><a>First Level</a>
+                  <ul>
+                    <li><a>Second Level</a>
+                      <ul>
+                        <li><a>Third Level</a></li>
+                        <li><a>Third Level</a></li>
+                        <li><a>Third Level</a>
+                          <ul>
+                            <li><a>Fourth Level</a></li>
+                            <li><a>Fourth Level</a></li>
+                            <li><a>Fourth Level</a>
+                              <ul>
+                                <li><a>Fifth Level</a></li>
+                                <li><a>Fifth Level</a></li>
+                                <li><a>Fifth Level</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a>Second Level</a></li>
+                  </ul>
+                </li>
+                <li><a>First Level</a>
+                  <ul>
+                    <li><a>Second Level</a></li>
+                    <li><a>Second Level</a></li>
+                  </ul>
+                </li>
+              </ul>-->
+             
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+    <div class="row">
+        
+          <div class="col-lg-12">
+        	  <div class="tree" ng-init="counter_parent = 0">
+          <!--    ng-click="toggleVisibility(formFields)"-->
+        	  <!--	Category -->         
+                
+        	 <div ng-repeat="formFields in category_list"  >
+        <!--  {{counter_parent}}  {{counter_parent=counter_parent++}}
+          ng-class="mySelectClass"      ng-click="updateTag(formFields.id,formFields.name)" -->
+             <div class="tree-item "   > 
+             <i class="fa fa-minus pls_mins_sign"   id="pls_mins_sign_{{formFields.name}}_{{formFields.id}}"
+       
+              href="#demo_{{formFields.id}}" data-toggle="collapse"></i>
+             &nbsp; {{formFields.name}}
+             </div>
+                     <!-- Sub category -->
+                 <div id="demo_{{formFields.id}}" class="collapse in" 
+                  style="padding-left: 10px;" 
+          		  ng-repeat="formSelData in category_sub" 
+                 ng-if="formSelData.parent_id == formFields.id"   >
+          		 <div class="tree-item">     
+                    <i class="fa fa-minus pls_mins_sign_second"  
+                    href="#demo_{{formSelData.parent_id+'_'+formSelData.id}}" data-toggle="collapse"></i> 
+                    &nbsp; {{formSelData.name}}   
+                       <div class="pull-right">
+<!--<a ng-click="show_add_pop(formFields.id,formSelData.id,0,0,1,'','')">
+                       &nbsp;  <i class="fa fa-plus"></i>   </a>
+  
+  <a ng-click="show_add_pop(formFields.id,formSelData.id,0,0,1,'','')">
+                       &nbsp;  <i class="fa fa-edit"></i>   </a>
+  -->
+  <a ng-click="show_add_pop(formFields.id,formSelData.id,0,0,1,'','')">
+                       &nbsp;  <i class="fa fa-plus"></i>   </a>   &nbsp; 
+  </div>
+                  </div>
+                 <!-- Level One-->
+                      <div  id="demo_{{formSelData.parent_id+'_'+formSelData.id}}" class="collapse in" 
+                       style="padding-left: 11px;"
+                      ng-repeat="formSelone in category_list_data_one" 
+                       ng-if="formSelone.parent_id == formSelData.id">
+                  
+                     <div class="tree-item">   
+                 <i class="fa fa-minus pls_mins_sign_third"
+                   href="#demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}" data-toggle="collapse"></i> 
+                 &nbsp; {{formSelone.name}} 
+                    <div class="pull-right">
+<a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,0,2,'','')">
+                       &nbsp;  <i class="fa fa-plus"></i>   </a>
+  
+  <a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,0,2,formSelone.id,'')">
+                       &nbsp;  <i class="fa fa-edit"></i>   </a>
+  
+  <a ng-click="delete(formSelone.id)">
+                       &nbsp;  <i class="fa fa-trash"></i>   </a>   &nbsp; 
+  </div>
+                      </div>
+                   <!-- Level Two-->
+                             <div  id="demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}" class="collapse in" 
+                               style="padding-left: 11px;"
+                          ng-repeat="formSec in category_list_data_second" 
+                           ng-if="formSec.parent_id == formSelone.id">
+                         <div class="tree-item">   
+                            <i class="fa fa-minus pls_mins_sign_fourth"
+                              href="#demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" data-toggle="collapse"></i> 
+                            &nbsp; {{formSec.name}}
+                            <div class="pull-right">
+<a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,formSec.id,3,'','')">
+                       &nbsp;  <i class="fa fa-plus"></i>   </a>
+  
+  <a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,formSec.id,3,formSec.id,'')">
+                       &nbsp;  <i class="fa fa-edit"></i>   </a>
+  
+  <a ng-click="delete(formSec.id)">
+                       &nbsp;  <i class="fa fa-trash"></i>   </a>   &nbsp; 
+  </div>
+                            </div> 
+            		
+                          <!-- Level Three--> 
+                         <div  id="demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" class="collapse in" 		  style="padding-left: 11px;"
+                          ng-repeat="formthird in category_list_data_third" 
+                           ng-if="formthird.parent_id == formSec.id">
+                         <div class="tree-item">   
+                              
+                            &nbsp; {{formthird.name}}
+                             <div class="pull-right">
+<!--<a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,formSec.id,3,'','')">
+                       &nbsp;  <i class="fa fa-plus"></i>   </a>-->
+  
+  <a ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,formthird.id,33,formthird.id,formthird.id)">
+                       &nbsp;  <i class="fa fa-edit"></i>   </a>
+  
+  <a ng-click="delete(formthird.id)">
+       &nbsp;  <i class="fa fa-trash"></i>   </a>   &nbsp; 
+  </div>
+                            </div>
+           					
+                </div>
+                         
+                         
+                
+                 </div>
+                 
+                  
+           		 </div>
+          
+           		 </div>
+   			 </div>
+             
+             
+             
+         </div>
+         
+         
+         
+         
+         
+         
+         
+         <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true">
+              <thead >
+                <tr>
+                  <th  >G/L Code</th>
+                  <th  >Desription</th>
+                  <th  >Category</th>
+                  <th  >Sub-category</th>
+                  <th  >VAT Rate</th>
+                  <th  >Net change</th>
+                  <th  >Date Balance</th>
+                  <th  > Balance</th>
+                  <th    style="width: 7%;">Action</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr     ng-repeat="rec in category_list "  >
+                  <td ng-repeat="column in columns" ng-show="column.visible" 
+            ng-click="supplier_pop(rec.id)"  
+          ng-if="column.title != 'Id'  && column.title != 'Number'  "  sortable="column.title"> {{rec[column.field]}} </td>
+                  <td  ><a title="Edit" 
+              ui-sref="app.edit_gl({id:rec.id})" 
+                class="tooltips_clss btn btn-primary icon_square"><i class="fa fa-edit"> </i></a> <a title="Delete" ng-click="delete(rec.id,$index,$data)" class="tooltips_clss btn btn-primary icon_square"><i class="fa fa-times"> </i></a></td>
+                </tr>
+              </tbody>
+            </table>
+            
+            
+            
+          </div>
+            
+            
+            
+            
+            
+            
+          <div class="col-lg-6 col-md-6">
+          
+          
+           <!-- <div class="form-group">
+              <label class="col-sm-3 control-label ">Category </label>
+              <div class="col-sm-7"> 
+               
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.gl_category_ids" 
+       
+            ng-options="opt as opt.name for opt in category_list"   ng-change="get_parent()"
+                class="select2me form-control"  required  >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Sub Category <span class="required">*</span></label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.category_ids" 
+        ng-change="get_list_one(11)"
+            ng-options="opt as opt.name for opt in category_sub_list" 
+                class="select2me form-control"  required  >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Select Level 1</label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.level_ones" 
+    			   ng-change="get_list_one(1)"
+            ng-options="opt as opt.name for opt in category_list_one" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Select Level 2</label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.level_seconds" 
+    			    ng-change="get_list_one(2)"
+            ng-options="opt as opt.name for opt in category_list_second" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Select Level 3</label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.level_thirds" 
+    			    ng-change="get_list_one(3)"
+            ng-options="opt as opt.name for opt in category_list_third" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>-->
+          </div>
+          
+          
+          <div class="col-lg-6 col-md-6">
+        <!--    <div class="form-group">
+              <label class="col-sm-3 control-label ">Name<span class="required">*</span> </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_gl_readonly" type="text"  ng-model="formData.name" 
+           required class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Account Number<span class="required">*</span> </label>
+              <div class="col-sm-7">
+                <input ng-readonly="check_gl_readonly" type="text"  placeholder="0"     min="1"  step="100"   data-parsley-trigger="keyup"   
+           data-parsley-minlength="1"  ng-model="formData.number"  id="number"  
+           class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"     >
+              </div>
+              
+              <!--<div class="form-group">
+              <label class="col-sm-3 control-label ">Account Type </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  
+                   ng-model="formData.account_types" ng-options="opt as opt.name for opt in account_type_list"
+                   
+            ng-change="onChangeAccounttype()"  
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+         </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">VAT Rate </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.vat_list_ids" 
+       
+            ng-options="opt as opt.name for opt in vat_gl_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Transaction </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.transcation_types" 
+        
+              ng-options="opt as opt.name for opt in transcation_list"  
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>-->
+            
+            
+            <!--  <div class="form-group">
+              <label class="col-sm-3 control-label ">Posting Type </label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"  ng-model="formData.posting_types" 
+            
+             ng-options="opt as opt.name for opt in posting_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> G/L Category <span class="required">*</span></label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly" required ng-model="formData.gl_category_ids" 
+       
+            ng-options="opt as opt.name for opt in category_main_list" 
+                class="select2me form-control"    >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Status<span class="required">*</span></label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_gl_readonly"   required
+         ng-model="formData.statuss" ng-options="opt as opt.name for opt in status_data"
+      			 class="select2me form-control"   >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div>-->
+          </div>
+          <!--<div class="col-md-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+              <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_gl_readonly"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+            </div>
+          </div>-->
+        </div>
+    </div>
+  </div>
+</div>
+
+ <form autocomplete="off"class="form-horizontal no-margin" role="form" validate-form="" 
+ novalidate="" ng-submit="addGeneral(formData)">
+<div ng-include="'app/views/general_ledger/add_record_pop.html'"></div>
+  </form>

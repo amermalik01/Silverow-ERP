@@ -1,0 +1,285 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<form autocomplete="off"
+      class="form-horizontal">
+    <div class="row"
+         style="    margin-top: 11px;">
+
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Transfer Stock No. <span
+                                              class="required">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text"
+                                               class="form-control"
+                                               ng-disabled="1"
+                                               ng-model="rec.code">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Warehouse From <span
+                                              class="required">*</span></label>
+                                    <div class="col-md-8">
+                                        <ui-select ng-model="rec.warehouse_from"
+                                                   ng-disabled="transfer_orders_readonly || rec.items.length > 0"
+                                                   ng-change="OnChangeWarehouse(1)">
+                                            <ui-select-match placeholder="Select Warehouse From">
+                                                {{$select.selected.warehouse_name}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in predata | filter: $select.search">
+                                                <div ng-bind-html="opt.warehouse_name | highlight: $select.search">
+                                                </div>
+                                            </ui-select-choices>
+                                        </ui-select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Warehouse To <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <ui-select ng-model="rec.warehouse_to"
+                                                   ng-disabled="transfer_orders_readonly || rec.items.length > 0"
+                                                   ng-change="OnChangeWarehouse(2)">
+                                            <ui-select-match placeholder="Select Warehouse To">
+                                                {{$select.selected.warehouse_name}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in predata | filter: $select.search">
+                                                <div ng-bind-html="opt.warehouse_name | highlight: $select.search">
+                                                </div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">In-transit Code <span
+                                              class="required">*</span></label>
+                                    <div class="col-md-8">
+                                        <ui-select ng-model="rec.in_transit_codes"
+                                                   ng-disabled="transfer_orders_readonly">
+                                            <ui-select-match placeholder="Select Code">{{$select.selected.value}}
+                                            </ui-select-match>
+                                            <ui-select-choices
+                                                               repeat="opt in arr_transit_codes | filter: $select.search">
+                                                <div ng-bind-html="opt.value | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-2 col-md-5">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Transfer Stock Date</label>
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input jqdatepicker
+                                                   class="2date-picker form-control "
+                                                   ng-model="rec.order_date"
+                                                   ng-disabled="transfer_orders_readonly"
+                                                   ng-class="{'pickdate':!transfer_orders_readonly}"
+                                                   readonly="check_crm_readonly">
+                                            <span>
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">P.O No.</label>
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="text"
+                                                   readonly
+                                                   class="form-control cursorPointer"
+                                                   ng-model="rec.purchase_order_code"
+                                                   ng-click="getPurchaseOrderList($index)"
+                                                   ng-class="{'white_bg':!transfer_orders_readonly}"
+                                                   ng-disabled="transfer_orders_readonly">
+                                            <span class="fa fa-external-link"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Shipping Agent Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text"
+                                               class="form-control"
+                                               ng-disabled="1"
+                                               ng-model="rec.shipping_agent_name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Shipping Charge</label>
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="number"
+                                                   step="0.01"
+                                                   class="form-control"
+                                                   ng-disabled="1"
+                                                   ng-model="rec.shipping_charges" />
+                                            <span>{{rec.currency_code}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12"
+                                 style="margin-top: 18px;">
+                                <table class="table table-condensed table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th> Item No.</th>
+                                            <th style="    width: 20%;"> Description</th>
+                                            <th class="text-right">Qty.</th>
+                                            <th> U.O.M </th>
+                                            <th> From Location</th>
+                                            <th> To Location</th>
+                                            <th class="text-center">
+                                                <a class="ib add-dis-btn"
+                                                   ng-click="AddNewItem()"
+                                                   ng-class="{'disable-el dont-click': transfer_orders_readonly || rec.warehouse_from.warehouse_id == undefined || rec.warehouse_to.warehouse_id == undefined }">
+                                                    <i class="material-icons"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in rec.items track by $index"
+                                            ng-if="rec.items.length > 0">
+                                            <td>
+                                                <div class="input-symbol"
+                                                     ng-class="{'dont-click':transfer_orders_readonly || item.allocated_stock > 0}"
+                                                     ng-click="getItems($index)">
+                                                    <input type="text"
+                                                           ng-class="{'white_bg':!transfer_orders_readonly}"
+                                                           required
+                                                           class="form-control"
+                                                           ng-model="item.item_code"
+                                                           readonly />
+                                                    <span><i class="fa fa-external-link"></i></span>
+                                                </div>
+                                            </td>
+                                            <td style="width: 20%;">{{item.item_name}}</td>
+                                            <td>
+                                                <input type="number"
+                                                       ng-model="item.qty"
+                                                       class="form-control text-right"
+                                                       ng-if="!transfer_orders_readonly"
+                                                       ng-blur="OnBlurItemQty($index)"
+                                                       ng-disabled="transfer_orders_readonly || item.allocated_stock > 0" />
+
+                                                <span class="form-control readonlydiv text-right"
+                                                      ng-if="transfer_orders_readonly">{{item.qty | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                            </td>
+                                            <td>{{item.uom_name}}</td>
+                                            <td>
+                                                <select ng-model="item.location_from" ng-if="item.stock_check == 1"
+                                                        ng-options="opt as opt.location_name for opt in rec.warehouse_from.location_arr"
+                                                        ng-change="OnChangeLocation(1, item)"
+                                                        class="form-control"
+                                                        ng-disabled="transfer_orders_readonly || item.allocated_stock > 0">
+                                                    <option style="display:none"
+                                                            value="">Select From Location</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select ng-model="item.location_to" ng-if="item.stock_check == 1"
+                                                        ng-options="opt as opt.location_name for opt in rec.warehouse_to.location_arr"
+                                                        ng-change="OnChangeLocation(2, item)"
+                                                        class="form-control"
+                                                        ng-disabled="transfer_orders_readonly || item.allocated_stock > 0">
+                                                    <option style="display:none"
+                                                            value="">Select From Location</option>
+                                                </select> </td>
+
+                                            <td class="text-center">
+                                                <a ng-class="{'dont-click ':transfer_orders_readonly && rec.type==0}"
+                                                   title="Allocate"
+                                                   class="btn ng-scope"
+                                                   ng-if="rec.id > 0 && item.stock_check == 1"
+                                                   ng-click="get_stock_allocation(item, $index)">
+                                                    <i class="fa fa-cubes"
+                                                       ng-class="{
+                                                                    'in-comp-alloc' : item.journal_status = 1 && item.allocated_stock > 0 && item.allocated_stock < item.qty, 
+                                                                    'item-dispatch' : rec.type == 1,
+                                                                    'comp-alloc': (item.journal_status = 1 && item.remainig_qty == 0 && item.qty>0) || (item.allocated_stock == item.qty && item.qty>0),
+                                                                    }"></i>
+                                                </a>
+                                                <a ng-class="{'dont-click ':transfer_orders_readonly}"
+                                                   title="Delete"
+                                                   class="btn ng-scope"
+                                                   ng-click="DeleteItem(item, $index)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="rec.items.length == 0">
+                                            <td colspan="7"
+                                                style="text-align:center;">No items added</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-2 col-md-offset-10"
+                                 id="total-amout" ng-if="showVolumeWeight>0">
+                                <table class="invoice_total">
+                                    <tr ng-if="volume !=0">
+                                        <td class="text-left">Total Volume</td>
+                                        <td class="text-right">{{volume | numberNoDecimalsIfZeroFilter:2:''}} <span
+                                                  ng-if="volume_unit == 'cm3'">cm&sup3;</span><span
+                                                  ng-if="volume_unit != 'cm3'">{{volume_unit}}</span></td>
+                                    </tr>
+                                    <tr ng-if="weight !=0">
+                                        <td class="text-left">Total Weight</td>
+                                        <td class="text-right">{{weight | numberNoDecimalsIfZeroFilter:2:''}} {{weightunit}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="pull-right">
+                                    <a class="btn btn-cancel"
+                                       type="button"
+                                       ng-if="rec.id > 0 && transfer_orders_readonly && rec.type == 0 && rec.items.length > 0 && allowpostitem_transferstock"
+                                       ng-click="PostTransferOrder()">Post </a>
+                                    <a class="btn btn-default"
+                                       type="button"
+                                       ng-click="viewTransferOrderPDF()"
+                                       ng-if="allowviewitem_transferstock && transfer_orders_readonly">View Transfer</a>
+                                    <a class="btn btn-cancel"
+                                       type="button"
+                                       ng-if="transfer_orders_readonly && rec.type == 0 && allowedititem_transferstock"
+                                       ng-click="showEditForm()">Edit</a>
+                                    <a class="btn btn-submit2"
+                                       type="button"
+                                       ng-if="!transfer_orders_readonly && rec.type == 0"
+                                       ng-click="add(rec)">Save</a>
+                                    <a class="btn btn-cancel"
+                                       ng-if="rec.type == 0"
+                                       ui-sref="app.transfer-orders"
+                                       type="button">Cancel</a>
+                                    <a class="btn btn-cancel"
+                                       ng-if="rec.type == 1"
+                                       ui-sref="app.transfer-orders-posted"
+                                       type="button">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/transfer_orders/_item_modal.html'"></div>
+<div ng-include="'app/views/transfer_orders/_purchase_order_listing.html'"></div>
+<div ng-include="'app/views/transfer_orders/_transfer_order_pdf.html'"></div>
+<div ng-include="'app/views/orders/_stock_allocation_modal.html'"></div>
+<div ng-include="'app/views/orders/order_trail_modal.html'"></div>

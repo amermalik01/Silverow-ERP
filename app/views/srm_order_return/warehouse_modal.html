@@ -1,0 +1,209 @@
+<style>
+    .smallwidget {
+        width: 24%;
+        margin-top: 5px;
+    }
+
+    .smallwidget span{
+        font-weight: normal;
+            font-size: 11px;
+    }
+</style>    
+<div class="modal fade" id="ware_modal">
+    <div class="modal-dialog modal-lg" style="width:90%" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Stock ReAllocation - Debit Note ({{rec.debitNoteCode}})</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Item</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.product_code}} - {{formData.product_name}}<!-- {{formData.product_name}} --></label>
+                        </div>                        
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Supplier </label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal;">{{rec.supplierNo}} - {{rec.supplierName}}</label>
+                        </div>
+                        <!-- <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label" title="Consignment No.">Cons. No.</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.bl_shipment_no}}</label>
+                        </div> -->
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Warehouse</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.warehouses_name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-8 pl0">
+                            <div class="smallwidget">
+                                <div>
+                                   Order Qty. 
+                                </div>
+                                <div>
+                                    {{formData.item_qty}}<!--  | number:decimal_range -->
+                                        <span>{{formData.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                            <div class="smallwidget" ng-class="{'belowzero2':total_remaing>0}">
+                                <div>
+                                    Qty. To Allocate
+                                </div>
+                                <div>
+                                    {{total_remaing}}
+                                        <span>{{formData.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                            <div class="smallwidget"  ng-class="{'StkAllocated':total_remaing==0}">
+                                <div>
+                                    Allocated Stock
+                                </div>
+                                <div>
+                                    {{(formData.item_qty - total_remaing)}} <span>{{formData.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                            <div class="smallwidget currentStock">
+                                <div>
+                                    Current Stock
+                                </div>
+                                <div>
+                                    {{formData.currentStock}} <span>{{formData.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <hr style="margin: 14px 0 13px 0;">
+
+                <div class="row">
+                    <div class="col-md-3" style="margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text" Placeholder="Search" class="form-control"
+                                ng-model="stockAllocationSearch">
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12" ng-show="stockAllocationcolumns.length > 0">
+                        <div>
+                            <div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr 
+                                                ng-show="stockAllocationcolumns.length > 0">
+                                                <th>Date Received</th>
+                                                <th title="Production Date">Prod. Date</th>                                                
+                                                <th>Use By Date</th>
+                                                <th style="width: 15%;">Location</th>
+                                                <th title="Reference No.">Cons. No.</th>
+                                                <th title="Reference No.">Ref. No.</th>
+                                                <th>Batch No.</th>
+                                                <th class=" text-center">Total Qty.</th>
+                                                <th class=" text-center">Allocated Qty.</th>
+                                                <th class=" text-center">Available Qty.</th>
+                                                <th title="Currently Allocated">Current Alloc.</th>                                                 
+                                                <!-- 
+                                            <th ng-if="!check_sr_readonly && stock_item.sale_status !=2">Quantity</th>-->                                                
+                                                <th class="text-center"  
+                                                    ng-if="!check_sr_readonly && !show_recieve_list">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr 
+                                                ng-repeat="rec in stockAllocationRecord track by $index | filter:stockAllocationSearch" 
+                                                ng-show="stockAllocationcolumns.length > 0">
+                                                <td>{{rec.date_received}}</td>                                                
+                                                <td>{{rec.prod_date}}</td>
+                                                <td>{{rec.use_by_date}}</td>                                                
+                                                <td style="width: 15%;">{{rec.storage_location.Storage_location}}</td>
+                                                <td>{{rec.consignment}}</td>
+                                                <td>{{rec.container_no}}</td>
+                                                <td>{{rec.batch_no}}</td>                                                    
+                                                <td class=" text-center">
+                                                    {{rec.stock_qty}} {{formData.unit_of_measure_name}}
+                                                </td> 
+                                                <td class=" text-center" >
+                                                    {{rec.debitQty}} {{formData.unit_of_measure_name}}
+                                                </td>
+                                                <td class=" text-center" ng-class="{'avail_stock': (rec.stock_qty - rec.debitQty) > 0}">
+                                                   {{rec.stock_qty - rec.debitQty}} {{formData.unit_of_measure_name}}
+                                                <td>
+                                                    <div class="input-symbol">
+                                                        <input type="text" required id="quantity" class="form-control input_text" 
+                                                            ng-change="check_min_max_war(formData)" 
+                                                            ng-model="rec.stock_qty2"
+                                                            ng-readonly="(!(rec.editchk>0) || check_sr_readonly) && show_recieve_list"
+                                                            data-parsley-trigger="keyup" 
+                                                            data-parsley-minlength-message="Invalid Value" 
+                                                            data-parsley-type-message="Invalid Value"
+                                                            data-parsley-error-message="Invalid Value" 
+                                                            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                        <span>{{formData.unit_of_measure_name}}</span>
+                                                    </div>
+                                                </td> 
+                                                <!-- <td class=" text-center">{{rec.total_qty}}</td>                                              
+                                                </td>
+                                                <td ng-class="{'stock-done': rec.currently_allocated_qty> 0}" class=" text-center">            
+                                                    <span>{{rec.currently_allocated_qty}}</span>
+                                                </td> -->
+                                                <!-- <td  ng-if="!check_sr_readonly && stock_item.sale_status !=2">
+                                                    <div class="input-symbol">
+                                                      <input type="text" required id="quantity" class="form-control input_text" 
+                                                            ng-change="check_min_max_war(formData)" 
+                                                            ng-model="rec.stock_qty"
+                                                            ng-readonly="(!(rec.editchk>0) || check_sr_readonly) && show_recieve_list"
+                                                            data-parsley-trigger="keyup" 
+                                                            data-parsley-minlength-message="Invalid Value" 
+                                                            data-parsley-type-message="Invalid Value"
+                                                            data-parsley-error-message="Invalid Value" 
+                                                            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">                                                        
+                                                        <span>{{stock_item.units.name}}</span>
+                                                    </div>
+                                                </td>
+                                                <input type="number" step="any" 
+                                                        ng-model="rec.req_qty" style="width:100%;" class="form-control" 
+                                                            ng-class="{'readonly dont-click':!(rec.avail_qty>0) || check_sr_readonly || stock_item.sale_status ==2}"> -->
+                                                <td class="text-center allo" ng-if="!check_sr_readonly && !show_recieve_list">
+                                                    <!-- <i class="fa fa-retweet" title="Update" 
+                                                        ng-click="allocateQty(rec,1)"
+                                                        ng-if="rec.id>0 && rec.editchk>0"></i> -->
+                                                        <!--Re-Allocate <i class="fa fa-retweet" aria-hidden="true"></i> -->
+
+                                                    <i class="fa fa-plus" title="Allocate" 
+                                                        ng-click="allocateQty(rec,0)"></i><!-- !(rec.editchk>0) || check_sr_readonly -->
+                                                        <!-- ng-if="!(rec.id>0)" -->
+
+                                                    <!-- <i class="fa fa-edit" title="Edit" 
+                                                        ng-click="editModeAllocation(rec)"
+                                                        ng-if="rec.id>0 && (!(rec.editchk>0) || check_sr_readonly)"></i> -->
+                                                
+                                                    <!-- <i class="fa fa-minus" title="Un-Allocate"
+                                                        ng-click="delete_ware(rec.id,$index,stockAllocationRecord)"
+                                                        ng-if="rec.id>0 && (!(rec.editchk>0) || check_sr_readonly)" ></i> -->
+                                                </td>                                              
+                                            </tr>
+                                            <tr 
+                                                ng-show="stockAllocationcolumns.length == 0">
+                                                <td>No Record found agaist this entity! Please add.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

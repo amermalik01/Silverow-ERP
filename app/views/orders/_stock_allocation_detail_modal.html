@@ -1,0 +1,112 @@
+<div id="stockAllocationDetailModal" class="modal fade" role="dialog">
+		<div class="modal-dialog"  style="width:90% !important;"> 
+				
+				<!-- Modal content-->
+				<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Stock Allocation Detail</h4>
+						</div>
+						<div class="modal-body"> 
+								
+								<!--           <form id="stock_all_modal">
+            <div class="row">
+              <div class="col-md-4 col-md-4">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Item No.</label>
+                        <div class="col-md-8">
+                          {{stock_item.product_code}}
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4 col-md-4">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Description</label>
+                        <div class="col-md-8">
+                          {{stock_item.description}}
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4 col-md-4">
+                      <div class="form-group">
+                        <label class="col-md-6 control-label">Unit Of Measure</label>
+                        <div class="col-md-6">
+                          {{stock_item.units.title}}
+                        </div>
+                      </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 col-md-4">
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Location</label>
+                          <div class="col-md-8">
+                            {{stock_item.warehouses.name}}
+                          </div>
+                        </div>
+                  </div>
+                  <div class="col-md-4 col-md-4">
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Order Qty.</label>
+                          <div class="col-md-8">
+                            {{stock_item.qty}}
+                          </div>
+                        </div>
+                  </div>
+                  <div class="col-md-4 col-md-4">
+                        <div class="form-group">
+                          <label class="col-md-6 control-label">Remaining Qty.</label>
+                          <div class="col-md-6">
+                            {{remainig_qty}}
+                          </div>
+                        </div>
+                  </div>
+              </div>
+        </form>
+      <hr> -->
+								
+								<div class="row">
+										<div class="col-md-12">
+												<div class="panel"  >
+														<div class="panel-body" style="  overflow-y: scroll;    max-height: 174px;">
+																<div class="table-responsive">
+																		<table class="table table-striped table-bordered table-hover1">
+																				<thead>
+																						<tr class="bg-col">
+																								<th width="10%">Consignment No.</th>
+																								<th width="10%">Batch No.</th>
+																								<th width="10%">Item Date</th>
+																								<th width="10%">Date Received</th>
+																								<th width="10%">Use By Date</th>
+																								<th width="4%">Quantity</th>
+																								<th width="1%">Action</th>
+																						</tr>
+																				</thead>
+																				<tbody class="courser table-body">
+																						<tr ng-repeat="ostk in all_order_stock">
+																								<td>{{ostk.container_no}}</td>
+																								<td>{{ostk.batch_no}}</td>
+																								<td>{{convert_numeric_date_to_string(ostk.prod_date)}}</td>
+																								<td>{{convert_numeric_date_to_string(ostk.date_received)}}</td>
+																								<td>{{convert_numeric_date_to_string(ostk.use_by_date)}}</td>
+																								<td>{{ostk.quantity}}</td>
+																								<td class="text-center"><button class="btn btn-info btn_blue pull-right"  ng-if="ostk.quantity>0" style="padding:0 2px;" type="button" ng-click="delStockItem(ostk)"><i class="fa fa-times"></i></button></td>
+																						</tr>
+																						<tr ng-if="all_order_stock.length == 0">
+																								<td colspan="8" class="text-center" >No record found!</td>
+																						</tr>
+																				</tbody>
+																		</table>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+						</div>
+				</div>
+		</div>
+</div>
+

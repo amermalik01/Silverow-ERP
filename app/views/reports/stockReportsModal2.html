@@ -1,0 +1,84 @@
+<div class="modal fade template-design" id="stockReportModal">
+    <div class="modal-dialog modal-md" style=" width: 28cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body" id="{{printPdfVals.reportName}}" style="max-height: 80vh;overflow: auto;padding: 1.5cm;">
+
+
+                <htmlpageheader name='MyCustomHeader'>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'>Stock Availability by Warehouse</div>
+                            <div class='reportHeading__left__reportfilter'>
+                                From
+                                <span ng-if='!(printPdfVals.dateFrom.length > 0)'>--</span>
+                                <span ng-if='printPdfVals.dateFrom.length > 0'>{{printPdfVals.dateFrom}}</span>
+                                To {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}' class='reportHeading__right__img ' ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+                <sethtmlpageheader name='MyCustomHeader' page='ALL' value='on' show-this-page='1' />
+                <pagefooter name='MyFooter3' content-right='{DATE j-m-Y}' content-center='Page {PAGENO} of {nb}' content-left='{{known_as}}'
+                    footer-style='color:#00000;font-size: 11px' footer-style-left='font-weight:bold;' />
+                <setpagefooter name='MyFooter3' page='ALL' value='on' show-this-page='1' />
+                <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+                <!-- posted Sale Order -->
+                <table style="width: 100%;" class="tabletopmargin">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in printPdfVals.columns" ng-class="{'nameWidth':column.title == 'Name'}">
+                                <span ng-if="column.title == 'Requested Delivery_date'">Req. Delivery Date</span>
+                                <span ng-if="column.title == 'Amount Incl. Vat'">Amount Incl. VAT</span>
+                                <span ng-if="column.title == 'Vat Amount'">VAT Amount</span>
+                                <span ng-if="column.title == 'Purchasepriceaverage'">Purchase Price Average</span>
+                                <span ng-if="column.title == 'Purchaseaddcostaverage'">Additional Cost Average</span>
+                                <span ng-if="column.title == 'Salepriceaverage'">Sale Price Average</span>
+                                <span ng-if="column.title != 'Vat Amount' && column.title != 'Amount Incl. Vat' && 
+                                             column.title != 'Requested Delivery_date' && column.title != 'Purchasepriceaverage' && 
+                                             column.title != 'Purchaseaddcostaverage' && column.title != 'Salepriceaverage'">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr">
+                            <td ng-repeat="column in printPdfVals.columns" ng-class="{'nameWidth':column.title == 'Name'}">
+
+                                <span ng-if="column.title != 'Allocated Stock Value' && column.title != 'Avail Stock Value' && 
+                                             column.title != 'Purchasepriceaverage' && column.title != 'Purchaseaddcostaverage' && 
+                                             column.title != 'Salepriceaverage'">{{rec[column.field]}}</span>
+
+                                <span ng-if="column.title == 'Allocated Stock Value' || column.title == 'Avail Stock Value' || 
+                                             column.title == 'Purchasepriceaverage' || column.title == 'Purchaseaddcostaverage' || 
+                                             column.title == 'Salepriceaverage'">{{rec[column.field] | currency : "" : decimal_range }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-cancel pull-right" ng-click="destroyPdfModal('stockReportModal')">Close</button><!-- data-dismiss="modal" -->
+                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                        <span class='generatingPDF' ng-if="generatingPDF"><i class='fa-spin fa fa-spinner'></i>Generating PDF</span>
+                        <button type="button" class="btn btn-default2" title="Download PDF" ng-disabled="generatingPDF" ng-click="generatePdf(printPdfVals.reportName)">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i>
+                        </button>
+                        <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf" target="_blank" class="btn btn-default2" title="Download PDF"
+                            id="displayPdf" style="display:none">
+                            <!-- ng-if="printinvoiceFlag" -->
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+      <tabset>
+        <tab heading="General" class="general_information" ng-click="generalInformation()">
+            <div class="vertical_space"></div>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)"
+              ng-init="generate_unique_id()" ng-hide="showLoader">
+              <div ng-include="'app/views/product_values/general_form.html'"></div>
+            </form>
+            <!-- <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_cat_type(formData2)" validate-form=""
+              novalidate="" name="addForm" ng-hide="showLoader">
+              <div ng-include="'app/views/product_values/add_cat_type.html'"></div>
+            </form>
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_brand_type(formData3)" validate-form=""
+              novalidate="" name="addForm" ng-hide="showLoader">
+              <div ng-include="'app/views/product_values/add_brand.html'"></div>
+            </form> -->
+            <!-- <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_unit_type(formData4)" validate-form=""
+              novalidate="" name="addForm" ng-hide="showLoader">
+              <div ng-include="'app/views/product_values/add_unit.html'"></div>
+            </form> -->
+            <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_unit_setup(unit_measures_category_record)"
+              validate-form="" novalidate="" ng-hide="showLoader">
+              <div ng-include="'app/views/product_values/add_unit_setup.html'"> </div>
+            </form>
+        </tab>
+        <tab heading="Details" class="contact_setting dont-click" ng-click="getdetail()"> </tab>
+        <tab heading="Purchase Information" class="supplier_setting dont-click" ng-click="getsupplier()"> </tab>
+        <tab heading="Sales Information" class="cust_item_info dont-click" ng-click="getCustItemInfo()">
+          <tabset>
+            <tab heading="Sales Promotion" class="supplier_setting" ng-click="get_sale()"> </tab>
+            <tab heading="Sales Volume Discount" class="supplier_setting" ng-click="getsupplier()"> </tab>
+          </tabset>
+        </tab>
+        <tab heading="Document" class="document dont-click" ng-click="general_document()">
+          <div>
+            <div class="vertical_space"></div>
+          </div>
+        </tab>
+        <tab heading="Images" class="image dont-click">
+          <div>
+            <div class="vertical_space"></div>
+          </div>
+        </tab>
+        <tab heading="Comments" class="comments  dont-click" ng-click="itemselectPage(1);getComments()">
+          <div>
+            <div class="vertical_space"></div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>

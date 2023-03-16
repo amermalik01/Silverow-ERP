@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="navson">
+
+<head>
+    <style>
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+            input[type=range] {
+                height: 20px !important;
+                padding: 0 !important;
+                line-height: 20px !important;
+            }
+        }
+    </style>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="app/img/apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon-16x16.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon-16x16.ico" type="image/ico" />
+    <link rel="manifest" href="app/img/manifest.json">
+    <link rel="mask-icon" href="app/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE, NO-STORE">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="{{app.description}}">
+    <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+
+    <title data-ng-bind="pageTitle()">Silverow</title>
+    <link rel="stylesheet" href="app/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/css/custom.css">
+    <link rel="stylesheet" href="app/css/summernote.css">
+    <link rel="stylesheet" href="app/css/jquery-ui.css">
+    <link rel="stylesheet" href="app/css/new.css">
+
+    <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="app/js/html5shiv.js"></script>
+    <script src="app/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Style -->
+    <link rel="stylesheet" href="vendor/ngDialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="vendor/ngDialog/css/ngDialog-theme-default.min.css">
+</head>
+
+<body data-ng-class="{  'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'body-bg-color':app.layout.isBodyColor}"
+    spellcheck="true">
+
+    <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+
+    <!--Module Files -->
+
+    <input type="text" ng-value="dateFormats[defaultDateFormat]" id="date_format" ng-hide="1">
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+
+    <!--AngularJS Files Start-->
+    <!-- Configuration -->
+
+    <script src="app/js/base.js"></script>
+    <script src="app/js/app.js?v=123"></script>
+    <script src="app/js/services.js"></script>
+    <script src="app/js/select.js"></script>
+    <script src="api/libraries/angular-modal-service-master/src/angular-modal-service.js"></script>
+    <script src="vendor/jsreport.min.js"></script>
+
+
+    <script src="vendor/angularjs-toaster/toaster.js"></script>
+
+    <script src="app/js/summernote.min.js"></script>
+    <script src="app/js/angular-summernote.min.js"></script>
+
+    <!-- SETUP MODULES -->
+    <!-- <script src="https://psergus.github.io/ngWYSIWYG/js/wysiwyg.js"></script> -->
+    <script src="app/views/company/company.js"></script>
+    <!-- <script src="app/views/company_info/company_info.js"></script> -->
+    <script src="app/views/bank/bank.js"></script>
+    <script src="app/views/currency/currency.js"></script>
+    <script src="app/views/modules_codes/modules_codes.js"></script>
+    <!-- <script src="app/views/coverage_areas/coverage.js"></script> -->
+    <!-- <script src="app/views/shipping_measurment/shipping-measurment.js"></script> -->
+    <script src="app/views/cause_of_inactivity/cause_of_inactivity.js"></script>
+    <script src="app/views/job_title/job_title.js"></script>
+    <!-- <script src="app/views/department_category/department_category.js"></script> -->
+    <script src="app/views/department/department.js"></script>
+    <script src="app/views/vat_setup/vat_setup.js"></script>
+    <script src="app/views/postingGroup/postingGroup.js"></script>
+    <script src="app/views/posting_setup/posting_setup.js"></script>
+    <script src="app/views/vatPostingGroupSetup/vatPostingGroupSetup.js"></script>
+    <script src="app/views/inventorySetup/inventorySetup.js"></script>
+    <script src="app/views/shipment_methods/shipment_methods.js"></script>
+    <script src="app/views/srm_shipment_methods/srm_shipment_methods.js"></script>
+    <script src="app/views/payment_methods/payment_methods.js"></script>
+    <script src="app/views/payment_terms/payment_terms.js"></script>
+    <script src="app/views/profit_margin_analysis/profit_margin_analysis.js"></script>
+    <script src="app/views/haulier_target/haulier_target.js"></script>
+
+    <!-- <script src="app/views/overrider/overrider.js"></script> -->
+    <!-- <script src="app/views/sales_pipeline_target/sales_pipeline_target.js"></script> -->
+    <script src="app/views/currency_movement/currency_movement.js"></script>
+    <script src="app/views/posting_date_range/posting_date_range.js"></script>
+    <!-- <script src="app/views/invoice_template/invoice_template.js"></script> -->
+    <script src="app/views/glAccountsSetupOpeningBalnc/glAccountsSetupOpeningBalnc.js"></script>
+
+    <!-- <script src="app/views/turnover/turnover.js"></script> -->
+    <script src="app/views/segment/segment.js"></script>
+    <script src="app/views/offer_method/offer_method.js"></script>
+    <script src="app/views/srmsegment/srmsegment.js"></script>
+    <script src="app/views/buying_group/buying_group.js"></script>
+    <script src="app/views/salling_group/salling_group.js"></script>
+    <script src="app/views/source_of_crm/source_of_crm.js"></script>
+    <script src="app/views/opp_cycle_tabs/opp_cycle_tabs.js"></script>
+    <!-- <script src="app/views/gl_category/gl_category.js"></script> -->
+    <!-- <script src="app/views/predefines/predefines.js"></script> -->
+    <!-- <script src="app/views/pricing_strategy/pricing_strategy.js"></script> -->
+    <!-- <script src="app/views/price_offer_volume/price_offer_volume.js"></script>
+  <script src="app/views/rebate_volume/rebate_volume.js"></script>
+  <script src="app/views/purchase_offer_volume/purchase_offer_volume.js"></script> -->
+
+    <script src="app/views/employee_type/employee_type.js"></script>
+    <script src="app/views/process_of_decision/process_of_decision.js"></script>
+    <script src="app/views/srm_payment_method/srm_payment_method.js"></script>
+    <script src="app/views/srm_payment_term/srm_payment_term.js"></script>
+
+    <script src="app/views/crm_order_stages/crm_order_stages.js"></script>
+    <script src="app/views/credit_note_order_stages/credit_note_order_stages.js"></script>
+    <script src="app/views/purchaseOrderStages/purchaseOrderStages.js"></script>
+    <script src="app/views/debitNoteStages/debitNoteStages.js"></script>
+
+    <script src="app/views/warehouse/warehouse.js"></script>
+    <script src="app/views/otherCompanies/otherCompanies.js"></script>
+    <script src="app/views/gl_units_of_measure/gl_units_of_measure.js"></script>
+    <!-- <script src="app/views/crm_status/crm_status.js"></script>
+  <script src="app/views/srm_status/srm_status.js"></script>
+  <script src="app/views/hr_status/hr_status.js"></script>
+  <script src="app/views/item_status/item_status.js"></script>
+  <script src="app/views/customer_status/customer_status.js"></script>
+  <script src="app/views/supplier_status/supplier_status.js"></script>
+  <script src="app/views/social_media/social_media.js"></script>-->
+    <script src="app/views/itemAdditionalCost/itemAdditionalCost.js"></script>
+    <script src="app/views/item_marginal_analysis/item_marginal_analysis.js"></script>
+
+    <script src="app/views/setup/setup.js"></script>
+    <script src="app/views/vatAccountSelection/vatAccountSelection.js"></script>
+    <script src="app/views/approvals_setup/approvals_setup.js"></script>
+    <script src="app/views/approvals/approvals.js"></script>
+    <script src="app/views/show_hide_add_btn/show_hide_add_btn.js"></script>
+    <script src="app/views/matrix_reports/matrix_reports.js"></script>
+
+    <!-- Sale MODULES -->
+    <script src="app/views/crm/crm.js"></script>
+    <script src="app/views/customer/customer.js"></script>
+    <!-- <script src="app/views/quotes/quotes.js"></script> -->
+    <script src="app/views/orders/orders.js"></script>
+    <script src="app/views/return_orders/return_orders.js"></script>
+    <script src="app/views/sale_promotion/sale_promotion.js"></script>
+    <!-- <script src="app/views/price_adjustment/price_adjustment.js"></script> -->
+    <!-- <script src="app/views/sales_target/sales_target.js"></script> -->
+    <script src="app/views/sales_forcast/sales_forcast.js"></script>
+    <!-- <script src="app/views/sales_group/sales_group.js"></script> -->
+    <script src="app/views/sales_bucket/sales_bucket.js"></script>
+    <script src="app/views/region/region.js"></script>
+    <script src="app/views/crm_credit_rating/crm_credit_rating.js"></script>
+    <script src="app/views/crm_ownership_type/crm_ownership_type.js"></script>
+    <script src="app/views/financeInsuranceCharges/financeInsuranceCharges.js"></script>
+
+    <!-- Purchase MODULES  -->
+    <script src="app/views/srm/srm.js"></script>
+    <script src="app/views/supplier/supplier.js"></script>
+    <script src="app/views/srm_order/srm_order.js"></script>
+    <script src="app/views/srm_order_return/srm_order_return.js"></script>
+    <script src="app/views/srm_region/srm_region.js"></script>
+    <script src="app/views/crmClassification/crmClassification.js"></script>
+    <!-- <script src="app/views/customerClassification/customerClassification.js"></script> -->
+    <!-- <script src="app/views/supplierClassification/supplierClassification.js"></script> -->
+    <script src="app/views/srmClassification/srmClassification.js"></script>
+
+    <!-- COMPETITOR MODULES -->
+    <script src="app/views/competitor_brand/competitor_brand.js"></script>
+    <script src="app/views/competitor_name/competitor_name.js"></script>
+    <script src="app/views/competitor_item/competitor_item.js"></script>
+    <script src="app/views/competitor_volume/competitor_volume.js"></script>
+
+    <!-- STOCK MODULES -->
+    <script src="app/views/category/category.js"></script>
+    <script src="app/views/brands/brands.js"></script>
+    <script src="app/views/units_of_measure/units_of_measure.js"></script>
+    <!-- <script src="app/views/dimensions/dimensions.js"></script> -->
+    <script src="app/views/items-weight-volume/items_weight.js"></script>
+    <script src="app/views/items-cost-description/items_cost.js"></script>
+
+    <!-- <script src="app/views/sale_item_info/sale_item_info.js"></script> -->
+    <script src="app/views/product_values/product_values.js"></script>
+    <script src="app/views/stock_sheet/stock_sheet.js"></script>
+    <script src="app/views/batch_for_additional_cost/batch_for_additional_cost.js"></script>
+    <!-- <script src="app/views/bank_reconciliation/bank_reconciliation.js"></script> -->
+    <script src="app/views/expenses_setup/expenses_setup.js"></script>
+    <script src="app/views/transfer_orders/transfer_orders.js"></script>
+    <script src="app/views/items_activity/items_activity.js"></script>
+
+    <!-- Reports MODULES -->
+    <script src="app/views/reports/reports.js"></script>
+    <!--  ng-if="userForPortal != 1" -->
+
+
+    <!-- HR MODULES -->
+    <script src="app/views/roles/roles.js"></script>
+    <script src="app/views/hr_values/hr_values.js"></script>
+    <!-- <script src="app/views/holiday/holiday.js"></script> -->
+    <script src="app/views/hr_territories/territories.js"></script>
+    <script src="app/views/goodsReceivedAccount/goodsReceivedAccount.js"></script>
+
+    <!-- GL MODULES  -->
+    <script src="app/views/general_ledger/gl.js"></script>
+    <!-- <script src="app/views/gl_template/gl_template.js"></script> -->
+
+    <!-- Email Setup -->
+    <script src="app/views/auto_email_setup/auto_email_setup.js"></script>
+
+    <!-- Directive -->
+    <script src="app/js/math.js"></script>
+    <script src="app/shared/directives/flexi_table_options.directive.js"></script>
+    <script src="app/shared/directives/flexi_table_generator.directive.js"></script>
+    <script src="app/shared/directives/flexi_table_data_type_manager.directive.js"></script>
+    <script src="app/shared/directives/expression_eval.directive.js"></script>
+    <script src="app/shared/directives/dynamic_select.directive.js"></script>
+
+    <script src="app/shared/directives/flexi_select.directive.js"></script>
+
+    <script src="app/shared/directives/flexi_history.directive.js"></script>
+
+    <script src="app/shared/directives/item_uom_details.directive.js"></script>
+
+    <script src="app/shared/directives/price_offer.directive.js"></script>
+
+    <script src="app/shared/directives/flexi_stage.directive.js"></script>
+
+    <!-- <script src="app/shared/directives/validity.directive.js"></script> -->
+    <!-- <script src="app/shared/directives/upload_attachments.directive.js"></script>
+  <script src="app/shared/directives/view_attachments.directive.js"></script> -->
+
+    <script src="app/shared/directives/emailer.directive.js"></script>
+
+    <!-- <script src="app/shared/directives/widgets.directive.js"></script> -->
+
+    <script src="app/shared/directives/roles.directive.js"></script>
+
+    <script src="app/shared/directives/pagination.directive.js"></script>
+
+
+    <!-- Test Directives -->
+    <script src="app/shared/directives/_modalFlexiTable/flexi_table_options.directive.js"></script>
+    <script src="app/shared/directives/_modalFlexiTable/flexi_table_generator.directive.js"></script>
+    <!-- <script src="app/shared/directives/_modalFlexiTable/flexi_table_data_type_manager.directive.js"></script> -->
+
+    <script src="app/js/angular-unsavedChanges/dist/unsavedChanges.js"></script>
+
+
+    <script src="vendor/ngDialog/js/ngDialog.min.js"></script>
+
+
+    <!-- Comunication MODULES  -->
+    <!-- <script src="app/views/calendar/calendar.js"></script> -->
+    <script src="app/views/mail/mail.js"></script>
+    <!-- <script src="app/views/contact/contact.js"></script>
+  <script src="app/views/help/help.js"></script> -->
+    <script src="app/views/dashboard/dashboard.js"></script>
+    <script src="app/views/task/task.js"></script>
+    <script src="app/views/documents/document.js"></script>
+
+    <!-- File Uploading -->
+    <script src="app/js/ng-file-upload-shim.js"></script>
+    <script src="app/js/ng-file-upload.js"></script>
+    <script src="app/js/angular-endless-scroll.js"></script>
+
+    <!-- Attachments (by Ahmad) -->
+    <script src="app/views/attachments/attachments.js"></script>
+    <!-- End of Attachments (by Ahmad) -->
+
+    <!-- Module Emails (by Ahmad) -->
+    <script src="app/views/moduleEmails/moduleEmails.js"></script>
+    <!-- End of Module Emails (by Ahmad) -->
+
+    <!-- COMMENTS MODULE -->
+    <script src="app/views/comments/comments.js"></script>
+
+    <!-- JQuery Files-->
+    <script src="app/vendor/menu.js"></script>
+    <script src="app/vendor/bootstrap.min.js"></script>
+    <script src="app/vendor/jquery.scrollUp.js"></script>
+    <script src="app/vendor/timepicker/include/ui-1.10.0/jquery.ui.position.min.js"></script>
+    <script src="app/vendor/timepicker/jquery.ui.timepicker.js"></script>
+    <script src="app/vendor/jquery-ui-draging.js"></script>
+
+    <!-- Custom Jquery Js -->
+    <script src="app/js/custom_js.js?v=123"></script>
+    <script src="vendor/scrollsync.js"></script>
+
+    <!-- Left Sidebar Directive -->
+    <script src="app/shared/directives/sidebar_directive.js"></script>
+
+    <!-- Left Sidebar Email -->
+    <!-- <script src="app/shared/directives/sidebar_email.directive.js"></script> -->
+
+    <!-- Left Sidebar Attachments -->
+    <!-- <script src="app/shared/directives/sidebar_attachment.directive.js"></script> -->
+
+    <!-- Left Sidebar Notes -->
+    <!-- <script src="app/shared/directives/sidebar_notes.directive.js"></script> -->
+
+    <!-- Left Sidebar Tasks -->
+    <!-- <script src="app/shared/directives/sidebar_tasks.directive.js"></script> -->
+
+    <!-- Last script file, no file should include below this -->
+    <!-- <script src="app/js/last_js.js"></script> -->
+
+
+    <!-- Chart.js -->
+    <script src="app/vendor/chart.js/dist/Chart.js"></script>
+    <script src="app/vendor/chart.js/dist/angular-chart.min.js"></script>
+    <script src="app/vendor/silverow/angular_extensions/merge.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+    <script src="app/js/chart.funnel.bundled.js"></script>
+    <script src="app/js/chartjs-plugin-labels.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</body>
+
+</html>

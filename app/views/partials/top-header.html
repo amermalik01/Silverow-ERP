@@ -1,0 +1,835 @@
+<style>
+    .compname {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        color: black;
+    }
+    
+    .loggedinas {
+        color: grey;
+        display: block;
+        text-align: center;
+    }
+    
+    .dropdown-menu .divider {
+        background-color: #3c3c3c;
+    }
+    
+    .navbar-default .navbar-nav>li>a {
+        color: white !important;
+        font-size: 12.5px;
+        letter-spacing: 0.4px;
+    }
+    
+    .dropdown-menu>li>a {
+        letter-spacing: 0.4px;
+    }
+    
+    .navbar-default .navbar-nav>li>a:hover {
+        color: white !important;
+        cursor: pointer;
+        background-color: #000 !important;
+    }
+    
+    .navbar-default .navbar-nav>li>a:hover .fa-caret-down {
+        visibility: visible;
+    }
+    
+    .dropdown-menu>li>a:hover {
+        color: #ffffff;
+        cursor: pointer;
+        background: #2f2f2f;
+    }
+    
+    .dropdown-menu>li>a:active {
+        color: #2196F3;
+    }
+    
+    .navbar-default .navbar-nav>.open>:not(:hover) {
+        background: #000 !important;
+    }
+    
+    .fa-caret-down {
+        position: absolute;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        text-align: center;
+        transition: none !important;
+        bottom: 3px;
+    }
+    
+    ul.dropdown-menu li a {
+        color: #ffffff;
+        /* text-transform: capitalize; */
+        font-size: 12px;
+        padding: 7px 0 7px 15px;
+    }
+    
+    .dropdown-submenu {
+        position: relative;
+    }
+    
+    .dropdown-submenu:hover {
+        background: #2f2f2f;
+    }
+    
+    .dropdown-submenu>.dropdown-menu {
+        top: -3px;
+        background: #000000;
+        left: 183px;
+        box-shadow: none;
+        border-top-left-radius: 0;
+    }
+    
+    .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+    
+    .dropdown-toggle2 span {
+        position: absolute;
+        right: 11px;
+        top: 8px;
+    }
+    
+    .dropdown-submenu.pull-left>.dropdown-menu {
+        left: -100%;
+        margin-left: 10px;
+        -webkit-border-radius: 6px 0 6px 6px;
+        -moz-border-radius: 6px 0 6px 6px;
+        border-radius: 6px 0 6px 6px;
+    }
+    
+    .navbar-nav>li>.dropdown-menu {
+        background: #000000;
+        min-width: 184px;
+        box-shadow: none;
+    }
+</style>
+
+<div class="navbar navbar-fixed-top silverbg navbar-default" role="navigation" id="gre">
+
+    <!-- Assign  & check permision for Company User /Super Admin -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            <a class="navbar-brand" ui-sref="app.dashboard()" ng-if="userForPortal != 1" style="color:white;">
+                <img src="app/img/silverow-svg.svg" /> </a>
+
+            <a class="navbar-brand" ui-sref="app.customerPortal()" ng-if="userForPortal == 1" style="color:white;">
+                <img src="app/img/silverow-svg.svg" /> </a>
+
+            <div class="bubble-wrap" style="display:none;">
+                <div class="bar first"></div>
+                <div class="bar second"></div>
+                <div class="bar third"></div>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right adminprofile">
+                <li class="someyourContainer" ng-controller="SetupController" ng-if="userForPortal != 1">
+                    <span ng-if="animateGlobal" style="   
+						    color: #ffffff;
+								position: absolute;
+								right: 44px;
+								width: 149px;
+								top: 1px;
+								background: black;
+								PADDING: 15PX 13PX;">Fetching
+						Global Data</span>
+
+                    <a ng-click="refreshGlobalData()" class="refreshbtn" ng-if="!animateBulkEmail" ng-class="{'animateGlobalClass': animateGlobal}" style="
+							padding: 15px 9px 10px;
+							position: absolute;
+							right: 42px;
+							background-color: transparent;">
+                        <i class="material-icons" style="font-size: 19px;">&#xE863;</i>
+                    </a>
+
+                    <span ng-if="animateBulkEmail" style="    color: #ffffff;
+    position: absolute;
+    right: 41px;
+    width: 166px;
+    top: 0px;
+    background: #5286af;
+    PADDING: 15.3PX 13PX;
+    padding-right: 40px;">{{animateBulkEmailText}}
+						<!-- Sending Email(s) -->
+					</span>
+
+                    <a ng-if="animateBulkEmail" class="refreshbtn" ng-class="{'animateGlobalClass': animateBulkEmail}" style="
+							padding: 15px 9px 10px;
+							position: absolute;
+							right: 42px;
+							background-color: transparent;">
+                        <i class="material-icons" style="font-size: 19px;">&#xE863;</i>
+                    </a>
+
+                    <a class="dropdown-toggle plusbtn" data-toggle="dropdown" style="padding: 9px;">
+                        <i class="material-icons" style="margin-top:3px;">&#xE145;</i>
+                    </a>
+                    <ul class="dropdown-menu multi-level add-quick tello" style="line-height: 27px;left: -142px;    padding-bottom: 7px !important;">
+                        <li>
+                            <div ng-click="showMoreoptions = 1" class="showingmore" style="position: absolute;
+										right: 4px;
+										top: -3px;" ng-hide="showMoreoptions  > 0">
+                                <i class="fa fa-cog" ng-click="GetShortCuts(shortcuts)"></i>
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" ng-click="showMoreoptions = 0" class="showingmore">
+                                <i class="fa fa-caret-left"></i>
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" style="color: #8a8a8a;
+									font-size: 12px;
+									margin-top: -27px;
+									margin-left: 57px;
+									font-weight: bold;">
+                                Show/Hide
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" class="showingmore" style="top: 2px;
+										position: absolute;
+										right: 5px;
+										display: inline-block;
+										font-size: 13px;
+										padding: 5px 4px;
+										line-height: 0;">
+                                <i class="fa fa-check" ng-click="SaveShortCuts(shortcuts); showMoreoptions = 0"></i>
+                            </div>
+                        </li>
+                        <script>
+                            $(document).on('click', '.someyourContainer .dropdown-menu', function(e) {
+                                e.stopPropagation();
+                            });
+                        </script>
+
+                        <div ng-show="showMoreoptions" class="showMoreoptions">
+                            <li ng-show="allowadd_sale_qoute_module">
+                                <input type="checkbox" ng-model="shortcuts.sale_quote" id="checkquote" ng-checked="shortcuts.sale_quote>0">
+                                <label ng-show="allowadd_sale_qoute_module" for="checkquote">Sales Quote
+							</li>
+							<li ng-show="allowadd_sale_order_module">
+								<input type="checkbox"
+									   ng-model="shortcuts.sale_order"
+									   id="checksaleorder"
+									   ng-checked="shortcuts.sale_order>0">
+								<label ng-show="allowadd_sale_order_module"
+									   for="checksaleorder">Sales Order
+							</li>
+							<!-- <li ng-show="allowadd_customer_module">
+								<input type="checkbox"
+								       ng-model="shortcuts.customer"
+								       id="checkcustomer"
+								       ng-checked="shortcuts.customer>0">
+								<label ng-show="allowadd_customer_module"
+								       for="checkcustomer">Customer
+							</li> -->
+							<li ng-show="allowadd_prucase_order">
+								<input type="checkbox"
+									   ng-model="shortcuts.purchase_order"
+									   id="checkpurchase"
+									   ng-checked="shortcuts.purchase_order>0">
+								<label ng-show="allowadd_prucase_order"
+									   for="checkpurchase">Purchase Order
+							</li>
+							<li ng-show="allowadd_supplier">
+								<input type="checkbox"
+									   ng-model="shortcuts.supplier"
+									   ng-checked="shortcuts.supplier>0"
+									   id="checksupplier">
+								<label ng-show="allowadd_supplier"
+									   for="checksupplier">Supplier
+							</li>
+							<li ng-show="allowadd_item">
+								<input type="checkbox"
+									   ng-model="shortcuts.item"
+									   id="checkitem"
+									   ng-checked="shortcuts.item>0">
+								<label for="checkitem"
+									   ng-show="allowadd_item">Item
+								</label>
+                            </li>
+                            <li ng-show="allowadd_crm_module">
+                                <input type="checkbox" ng-model="shortcuts.crm" ng-checked="shortcuts.crm>0" id="checkcrm">
+                                <label for="checkcrm" ng-show="allowadd_crm_module">CRM
+								</label>
+                            </li>
+                            <li ng-show="allowadd_srm">
+                                <input type="checkbox" ng-model="shortcuts.srm" ng-checked="shortcuts.srm>0" id="checksrm">
+                                <label ng-show="allowadd_srm" for="checksrm">SRM
+								</label>
+                            </li>
+                            <li ng-show="allowaddhr_employee">
+                                <input type="checkbox" ng-model="shortcuts.employee" id="checkemployees">
+                                <label ng-show="allowaddhr_employee" for="checkemployee">Employees
+							</li>
+							<li ng-show="user_type != 1">
+								<input type="checkbox"
+									   ng-model="shortcuts.holiday"
+									   id="checkemployeesHoliday">
+								<label for="checkemployeesHoliday">Holiday
+							</li>
+							<li ng-show="user_type != 1">
+								<input type="checkbox"
+									   ng-model="shortcuts.expense"
+									   id="checkemployeesExpense">
+								<label for="checkemployeesExpense">Expense
+							</li>
+
+						</div>
+						<div class="showLessoptions"
+							 style="    padding-top: 8px;"
+							 ng-hide="showMoreoptions  > 0"
+							 ng-class="{'animated slideInRight':showMoreoptions  > 0}">
+							<div style="    color: #b3b3b3;
+											font-size: 11px;
+											padding: 21px 13px 9px 13px;
+											line-height: 15px;
+											text-align: center;"
+								 ng-show="!shortcuts.sale_quote && !shortcuts.sale_order && !shortcuts.customer && !shortcuts.purchase_order && !shortcuts.supplier && !shortcuts.item && !shortcuts.crm && !shortcuts.srm && !shortcuts.employee">
+								Add shorcuts by clicking on settings icon
+							</div>
+							<li ng-show="shortcuts.sale_quote >0"
+								ng-if="allowadd_sale_qoute_module && sales_crm_module && customer_module">
+								<a ui-sref="app.addSaleQuote">Sales Quote</a>
+							</li>
+							<li ng-show="shortcuts.sale_order >0"
+								ng-if="allowadd_sale_order_module && sales_crm_module && customer_module">
+								<a ui-sref="app.addOrder"
+								   ui-sref="app.addSaleQuote">Sales Order</a>
+							</li>
+							<li ng-show="shortcuts.customer >0"
+								ng-if="allowadd_customer_module && sales_crm_module">
+								<a id="prompt"
+								   ui-sref="app.add-customer">Customer</a>
+							</li>
+							<li ng-show="shortcuts.purchase_order >0"
+								ng-if="allowadd_prucase_order && purchase_module && supplier_module">
+								<a ui-sref="app.addsrmorder">Purchase Order</a>
+							</li>
+							<li ng-show="shortcuts.supplier >0"
+								ng-if="allowadd_supplier && purchase_module ">
+								<a ui-sref="app.add-supplier">Supplier</a>
+							</li>
+							<li ng-show="shortcuts.item >0"
+								ng-if="allowadd_item && inventry_module">
+								<a id="prompt"
+								   ui-sref="app.add-item">Item</a>
+							</li>
+							<li ng-show="shortcuts.crm >0"
+								ng-if="allowadd_crm_module && sales_crm_module">
+								<a ng-if="allowadd_crm_module"
+								   id="prompt"
+								   ui-sref="app.add-crm">CRM</a>
+							</li>
+							<li ng-show="shortcuts.srm >0"
+								ng-if="allowadd_srm && purchase_module">
+								<a id="prompt"
+								   ui-sref="app.add-srm">SRM</a>
+							</li>
+							<li ng-show="shortcuts.employee >0"
+								ng-if="allowaddhr_employee && hr_module">
+								<a id="prompt"
+								   ui-sref="app.add_hr_values">Employees</a>
+							</li>
+							<li ng-show="shortcuts.holiday >0 && user_type != 1">
+								<a id="prompt" 
+									ui-sref="app.edit_account_setting({id:userId, tab:1})">Holiday</a>
+							</li><!-- ui-sref="app.edithrvalues({id:userId, isTab:1})" -->
+							<li ng-show="shortcuts.expense >0 && user_type != 1">
+								<a id="prompt"
+								   ui-sref="app.edit_account_setting({id:userId, tab:2})">Expense</a>
+							</li><!-- ui-sref="app.edithrvalues({id:userId, isTab:2})" -->
+						</div>
+					</ul>
+				</li>
+				<li ng-controller="LoginFormController"
+					class="animateLogo">
+					<a class="dropdown-toggle circle-top-name"
+					   data-toggle="dropdown"
+					   ng-click="getCompanies()"
+					   style="padding-left: 11px !important;">
+						<div class="clearfix">
+							<div class="ib pull-left" ng-if="userForPortal !=1">
+								<div ng-class="{'centercompany':!(known_as.length>1)}"
+									 style="font-size: 11px">{{company_name}}</div>
+								<div style="text-align: right;font-size: 11px" >{{known_as}}</div>
+							</div>
+
+							<div class="ib pull-left" ng-if="userForPortal == 1" style="padding-top: 10px;">
+								<div ng-class="{'centercompany':!(known_as.length>1)}"
+									 style="font-size: 16px" >{{company_name}}</div>
+							</div>
+
+							<div class="pull-right ifnologo logo_media_ipad"
+								 ng-if="!defaultLogo.length > 0">
+								<i class="fa fa-building-o"
+								   style="    padding: 11px;
+								font-size: 20px;"></i>
+							</div>
+							<div class="pull-right logo_media_ipad"
+								 ng-if="defaultLogo.length > 0" style=" background: #fff; padding: 0px 10px 0px 0px; margin-left: 10px;">
+								<div class="img-circles"
+									 style="min-width: 120px;height: 40px;display: inline-block;"
+									 ng-style="{'background-image':'url('+ imagePath+defaultLogo +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '0px'}">
+									 </div>
+							</div>
+						</div>
+					</a>
+
+					<ul class="dropdown-menu multi-level com-info">
+						<div class="loginAction"
+							 style="    padding: 0px 4px 0px;">
+							<ul>
+								<li ui-sref="app.edit_account_setting({id:userId})" ng-if="userForPortal !=1"
+									style="    border-bottom: 1px solid #2b2b2b;margin-bottom: 4px;padding-bottom: 0px;">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">settings</i>
+									<span style="top: -3px;">Account</span>
+									<span style="    margin-left: 24px;
+													color: gray;
+													font-size: 11px;
+													display: block;
+													top: -5px;width: auto !important;">{{currentUser}}</span>
+								</li>
+								<li ng-if="userForPortal != 1"
+									ui-sref="app.pending-approvals({id:userId})">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">done_outline</i> <span style="top: -3px;">Awaiting Approvals</span>
+								</li>
+								<li ng-if="userForPortal !=1"
+									ui-sref="app.awaiting-approvals({id:userId})">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">notifications</i> <span style="top: -3px;">Queued Approvals</span>
+								</li>
+								<li ng-if="setup_main && allowviewsetup_gen && userForPortal !=1"
+									ui-sref="app.viewCompany({id:defaultCompany})">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">domain</i> <span style="top: -3px;">Company</span>
+								</li>
+								<!-- <li ng-show="user_type != 1"
+									ng-if="userForPortal !=1"
+									ui-sref="app.edithrvalues({id:userId})">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">person</i><span style="top: -3px;left: 4px;">Profile</span>
+								</li> -->
+								<!-- <li ui-sref="app.subscriptions()">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">work_outline</i> <span style="top: -3px;">View
+										Subscriptions</span>
+								</li> -->
+								<li ng-click="logout()">
+									<i class="material-icons"
+									   style="font-size: 14px;margin: 5px 4px;"
+									   aria-hidden="true">exit_to_app</i> <span style="top: -3px;">Logout</span>
+								</li>
+							</ul>
+						</div>
+						<!-- <div class="scroll-bar" ng-if="user_type==1">
+							<a ng-repeat="comp in arrCompanies" ng-click="setCompany(comp.id)">
+								<img ng-if="comp.logo != ''" ng-src="{{imagePath+comp.logo}}" />
+								<span style="position: relative;top: 7px;">{{comp.name}}</span>
+							</a>
+						</div> -->
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar_media_ipad" ng-if="userForPortal !=1">
+				<!-- 
+				<li class="left_media_ipad">
+					<sidebar-attachment></sidebar-attachment>
+				</li>
+				<li ng-controller="TaskController" style="height: 44px;" class="noselect" ng-if="noRoleAssigned !=1">
+					<span class="left-tooltip">Tasks</span>
+					<sidebar-tasks name="Task" modules="sidebarModules" submit="addTask(formData)" delete="deleteTask(id)" get-records="tasks(q)" add-template="app/shared/directives/sidebar_tasks.add.html" focused-template="app/shared/directives/sidebar_tasks.focused.html"></sidebar-tasks>
+				</li>-->
+				<!-- <li><a ui-sref="app.dashboard()"><span class="mbri-home dropdown-toggle"></span></a></li> -->
+				<li ng-if="gl_module">
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">
+						Finance
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level gl "
+						ng-if="charts_of_account || allowviewgen_journal">
+
+						
+						<li ng-if="charts_of_account">
+							<a ui-sref="app.general_ledger_list()"
+							   ui-sref-opts="{reload:true}">Chart of Accounts</a>
+						</li>
+						<!--   <li><a ui-sref="app.general_ledger_tree()"> Chart of Accounts Tree </a></li>-->
+						<!--<li ng-if="charts_of_account"><a ui-sref="app.add-journal-gl()">General Journal</a></li> -->
+						<li ng-if="allowviewgen_journal">
+							<a ui-sref="app.receipt-journal-gl()"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(0)"
+							   ui-sref-opts="{reload:true}">General Journal</a>
+						</li>
+						<li ng-if="((allowviewgen_journal && defaultCompany !=131) || (allowviewposted_gen_journal && defaultCompany ==131))">
+							<a ui-sref="app.receipt-journal-gl-posted({isPosted:1})"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(0)"
+							   ui-sref-opts="{reload:true}">Posted General Journal</a>
+						</li>
+						<!-- <li ng-if="charts_of_account">
+							<a ui-sref="app.opening-balance-gl()">Opening Balance</a>
+						</li> -->
+						<li ng-if="user_type < 3 || allowviewfinance_matrix">
+							<a ui-sref="app.finance-matrix()"
+							   ui-sref-opts="{reload:true}">Finance Matrix
+
+								<img src="https://i.ibb.co/qjLzVgB/bird-20x33px.png"
+									 alt="bird-20x33px"
+									 border="0"
+									 style="
+								    width: 14px;
+								    float: right;
+								    margin: -3px 13px 0 0;
+								"></a>
+						</li>
+					</ul>
+				</li>
+				<li ng-if="sales_crm_module">
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">
+						<i class="fa fa-bookmark-o ibn"
+						   aria-hidden="true"></i> Sales
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level salesdd "
+						ng-if="crm_module || customer_module || allowviewcust_journal">
+						<li ng-if="crm_module" class="dropdown-submenu">
+							<a ui-sref="app.crm()"
+								ui-sref-opts="{reload:true}"
+								class="dropdown-toggle dropdown-toggle2"
+								data-toggle="dropdown">CRM
+								<span class="fa fa-angle-right"></span></a>
+
+								<ul class="dropdown-menu">
+								<li>
+									<a ui-sref="app.crm_retailer()"
+									   ui-sref-opts="{reload:true}">Retailer CRM</a>
+								</li>
+								</ul>
+						</li>
+						<li ng-if="customer_module"
+							class="dropdown-submenu">
+							<a ui-sref="app.customer()"
+							   class="dropdown-toggle dropdown-toggle2"
+							   data-toggle="dropdown">
+								Customers
+								<span class="fa fa-angle-right"
+									  ng-if="sale_target_module || sale_forcast_module || 
+								sale_qoute_module || sale_order_module || sale_invoice_module || 
+								sale_or_return_module || posted_credit_notes || sale_promotion_module 
+								|| sale_price_adjustment_module"></span>
+							</a>
+
+							<ul class="dropdown-menu"
+								ng-if="sale_target_module || sale_forcast_module || 
+															 sale_qoute_module || sale_order_module || sale_invoice_module || 
+															 sale_or_return_module || posted_credit_notes || sale_promotion_module 
+															 || sale_price_adjustment_module">
+								<!-- <li ng-if="sale_target_module">
+									<a ui-sref="app.sales-target()" ui-sref-opts="{reload:true}">Sales Target</a>
+								</li> -->
+								<!-- <li ng-if="sale_qoute_module">
+									<a ui-sref="app.quotes()">Quotes</a>
+								</li> -->
+								<li ng-if="sale_qoute_module">
+									<a ui-sref="app.salesQuotes()"
+									   ui-sref-opts="{reload:true}">Sales Quotes</a>
+								</li>
+								<li ng-if="sale_order_module">
+									<a ui-sref="app.orders()"
+									   ui-sref-opts="{reload:true}"> Sales Orders</a>
+								</li>
+								<li ng-if="sale_invoice_module">
+									<a ui-sref="app.sale-invoice()"
+									   ui-sref-opts="{reload:true}">Sales Invoices</a>
+								</li>
+								<li ng-if="sale_or_return_module">
+									<a ui-sref="app.return-orders()"
+									   ui-sref-opts="{reload:true}">Credit Notes</a>
+								</li>
+								<li ng-if="posted_credit_notes">
+									<a ui-sref="app.sale-return-invoice()"
+									   ui-sref-opts="{reload:true}">Posted Credit Notes</a>
+								</li>
+								<!-- <li ng-if="sale_promotion_module">
+									<a ui-sref="app.salePromotion()"
+									   ui-sref-opts="{reload:true}">Sales Promotion</a>
+								</li> -->
+								<!-- <li ng-if="sale_price_adjustment_module">
+									<a ui-sref="app.priceAdjustment()">Price Adjustment
+									</a>
+								</li> -->
+							</ul>
+						</li>
+						<li ng-if="allowviewcust_journal">
+							<a ui-sref="app.receipt-journal-gl-cust()"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(1)"
+							   ui-sref-opts="{reload:true}">Customer Journal</a>
+						</li>
+						<li ng-if="allowviewcust_journal">
+							<a ui-sref="app.receipt-journal-gl-cust-posted({isPosted: 1})"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(4)"
+							   ui-sref-opts="{reload:true}">Posted Customer Journal</a>
+						</li>
+						<li> <!-- ng-if="sale_forcast_module" -->
+							<a ui-sref="app.sales-forcast()">Sales Forecast</a>
+						</li>
+						<li ng-if="user_type < 3 || allowviewsales_matrix">
+							<a ui-sref="app.sales-matrix()"
+							   ui-sref-opts="{reload:true}">Sales Matrix <img
+									 src="https://i.ibb.co/qjLzVgB/bird-20x33px.png"
+									 alt="bird-20x33px"
+									 border="0"
+									 style="
+								    width: 14px;
+								    float: right;
+								    margin: -3px 13px 0 0;
+								"></a>
+						</li>
+					</ul>
+				</li>
+
+				<li ng-if="purchase_module">
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">
+						<i class="fa fa-credit-card ibn"
+						   aria-hidden="true"></i> Purchases
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level purchasedd ">
+						<li ng-if="srm_module">
+							<a ui-sref="app.srm()"
+							   ui-sref-opts="{reload:true}">SRM</a>
+						</li>
+						<li ng-if="supplier_module"
+							class="dropdown-submenu">
+							<a ui-sref="app.supplier()"
+							   ui-sref-opts="{reload:true}"
+							   class="dropdown-toggle dropdown-toggle2"
+							   data-toggle="dropdown">Suppliers
+								<span class="fa fa-angle-right"
+									  ng-if="prucase_order_module || prucase_invoice_module || prucase_order_return_module || posted_debit_notes "></span>
+							</a>
+
+							<ul class="dropdown-menu"
+								ng-if="prucase_order_module || prucase_invoice_module || prucase_order_return_module || posted_debit_notes ">
+								<li ng-if="prucase_order_module">
+									<a ui-sref="app.srmorder()"
+									   ui-sref-opts="{reload:true}">Purchase Orders</a>
+								</li>
+								<li ng-if="prucase_invoice_module">
+									<a ui-sref="app.srminvoice()"
+									   ui-sref-opts="{reload:true}">Purchase Invoices</a>
+								</li>
+								<li ng-if="prucase_order_return_module">
+									<a ui-sref="app.srm_order_return()"
+									   ui-sref-opts="{reload:true}"> Debit Notes </a>
+								</li>
+								<li ng-if="posted_debit_notes">
+									<a ui-sref="app.purchase-return-invoice()"
+									   ui-sref-opts="{reload:true}">Posted Debit Notes</a>
+								</li>
+							</ul>
+						</li>
+						<li ng-if="allowviewsupp_journal">
+							<a ui-sref="app.receipt-journal-gl-supp()"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(2)"
+							   ui-sref-opts="{reload:true}">Supplier Journal</a>
+						</li>
+						<li ng-if="allowviewsupp_journal">
+							<a ui-sref="app.receipt-journal-gl-supp-posted({isPosted: 1})"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(5)"
+							   ui-sref-opts="{reload:true}">Posted Supplier Journal</a>
+						</li>
+						<li ng-if="user_type < 3 || allowviewpurchase_matrix">
+							<a ui-sref="app.purchase-matrix()"
+							   ui-sref-opts="{reload:true}">Purchase Matrix <img
+									 src="https://i.ibb.co/qjLzVgB/bird-20x33px.png"
+									 alt="bird-20x33px"
+									 border="0"
+									 style="
+								    width: 14px;
+								    float: right;
+								    margin: -3px 13px 0 0;
+								"></a>
+						</li>
+						<li ng-if="purchase_haulier_database_tab_module">
+							<a ui-sref="app.searchHaulierDatabase({module:'search'})"
+							   ui-sref-opts="{reload:true}">Haulier Database</a>
+						</li>
+					</ul>
+				</li>
+				<li ng-if="inventry_module">
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">
+						<i class="fa fa-clone ibn"
+						   aria-hidden="true"></i> Inventory
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level inventorydd "
+						ng-if="item_module || stock_sheet_module || allowviewitem_journal">
+						<li ng-if="item_module">
+							<a ui-sref="app.item()">Items </a>
+						</li>
+						<li ng-if="stock_sheet_module">
+							<a ui-sref="app.stock-sheet()">Stock Sheet </a>
+						</li>
+						<li>
+							<a ui-sref="app.items-activity()">Items Activity </a>
+						</li>
+						<li ng-if="allowviewitem_transferstock">
+							<a ui-sref="app.transfer-orders"
+							   ui-sref-opts="{reload:true}">Transfer Stock</a>
+						</li>
+						<li ng-if="allowviewitem_transferstock">
+							<a ui-sref="app.transfer-orders-posted"
+							   ui-sref-opts="{reload:true}">Posted Transfer Stock</a>
+						</li>
+						<li ng-if="allowviewitem_journal">
+							<a ui-sref="app.receipt-journal-gl-item()"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(3)"
+							   ui-sref-opts="{reload:true}">Item Journal</a>
+						</li>
+						<li ng-if="allowviewitem_journal">
+							<a ui-sref="app.receipt-journal-gl-item-posted({isPosted: 1})"
+							   ng-controller="journalcustomerapply"
+							   ng-click="open_customer(6)"
+							   ui-sref-opts="{reload:true}">Posted Item Journal</a>
+						</li>
+						<li ng-if="user_type < 3 || allowviewinventory_matrix">
+							<a ui-sref="app.inventory-matrix()"
+							   ui-sref-opts="{reload:true}">Inventory Matrix <img
+									 src="https://i.ibb.co/qjLzVgB/bird-20x33px.png"
+									 alt="bird-20x33px"
+									 border="0"
+									 style="
+								    width: 14px;
+								    float: right;
+								    margin: -3px 13px 0 0;
+								"></a>
+						</li>
+					</ul>
+				</li>
+				<li ng-if="hr_module">
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">
+						<i class="fa fa-user-o ibn"
+						   aria-hidden="true"
+						   style="position: relative;top: -1px;"></i> Human Resources
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level hrdd"
+						ng-if="hr_module || allowviewsetup_hr">
+						<!-- <li ng-if="hr_holidays_module">
+							<a ui-sref="app.hr_setting({id:userId,tab:'holidays'})">Holidays </a>
+						</li>
+						<li ng-if="hr_expenses_module">
+							<a ui-sref="app.hr_setting({id:userId,tab:'expenses'})">Expenses </a>
+						</li>
+						<li ng-if="hr_fuel_cost_module">
+							<a ui-sref="app.hr_setting({id:userId,tab:'deduction'})">Fuel Cost Deduction </a>
+						</li> -->
+						<li ng-if="allowviewhr_employee">
+							<a ui-sref="app.hr_listing()"
+							   ui-sref-opts="{reload:true}">Employees </a>
+						</li>
+						<li ng-if="setup_hr">
+							<a ui-sref="app.sales-bucket()"
+							   ui-sref-opts="{reload:true}">View Bucket</a>
+						</li>
+						<li ng-show="user_type != 1">
+							<a ui-sref="app.edithrvalues({id:userId, isTab: 1})"
+							   ui-sref-opts="{reload:true}">Holidays</a>
+						</li>
+						<li ng-show="user_type != 1">
+							<a ui-sref="app.edithrvalues({id:userId, isTab: 2})"
+							   ui-sref-opts="{reload:true}">Expenses</a>
+						</li>
+						<li ng-if="user_type < 3 || allowviewhr_matrix">
+							<a ui-sref="app.hr-matrix()"
+							   ui-sref-opts="{reload:true}">HR Matrix
+								<img src="https://i.ibb.co/qjLzVgB/bird-20x33px.png"
+									 alt="bird-20x33px"
+									 border="0"
+									 style="
+								    width: 14px;
+								    float: right;
+								    margin: -3px 13px 0 0;
+								"></a>
+						</li>
+					</ul>
+				</li>
+				<li ng-if="userForPortal != 1 && noRoleAssigned !=1">
+					<!--  reports_module-->
+					<a class="dropdown-toggle"
+					   data-toggle="dropdown">Reports
+						<i class="fa fa-caret-down"
+						   aria-hidden="true"></i>
+					</a>
+					<ul class="dropdown-menu multi-level inventorydd ">
+						<li>
+							<a ui-sref="app.allReports()">All Reports</a>
+						</li>
+						<li class="dropdown-header text-uppercase"
+							style="padding: 5px 14px;font-size: 10px;letter-spacing: 0.8px;border-bottom: 1px solid #404040;"
+							ng-if="FAV_REPORTS_LIST.length > 0"><i class="fa fa-star"></i> Favourites</li>
+						<li ng-if="FAV_REPORTS_LIST.length > 0"
+							ng-repeat="_fav_rep in FAV_REPORTS_LIST">
+							<a ui-sref="{{_fav_rep.state}}"
+							   style="padding-right: 12px;"> {{_fav_rep.title}} </a>
+						</li>
+						<!-- <li>
+							<a ui-sref="app.getAgedReport({module:'customer2'})">Customer Ageing Report </a>
+						</li>
+						<li>
+							<a ui-sref="app.getAgedReport({module:'supplier2'})">Supplier Ageing Report </a>
+						</li>
+						<li>
+							<a ui-sref="app.getVATReport({module:'summary'})">Vat Report </a>
+						</li>
+						<li>
+							<a ui-sref="app.getReport({module:'Purchase'})">Purchase Report</a>
+						</li> -->
+					</ul>
+				</li>
+
+				<!-- <li title="Setup">
+						<a ui-sref="app.setup" ng-show="setup_main">
+					  <span class="mbri-setting3"></span>
+				  </a>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+</div>

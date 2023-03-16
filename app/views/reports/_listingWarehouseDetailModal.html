@@ -1,0 +1,38 @@
+<div id="_WarehouseModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" draggable><!--  modal-lg -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Warehouse(s)</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <!-- <div ng-if="tempWarehouseArr2.ack">
+                            <div class="flexiTable makeModalFixed" 
+                                x-generate-table2 x-data="tempWarehouseArr2" 
+                                x-table-name="warehouseModal" 
+                                x-select-flexi-chk-box="false"
+                                x-updated-object-arr="PendingSelectedWarehouse" 
+                                x-filter-function="getCUSTlist()" 
+                                x-filter-object="searchKeyword"></div>
+                        </div> -->
+                        <div ng-if="moduleType == 'WHDetail'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="warehouseTableData.data" x-table-name="warehouseModal" 
+                            x-forget-filters="true"
+                                 x-controller-initiate x-filter-function="selectWarehouse()" x-selected-record-preview="wrh_code"
+                                x-checked-records="selectedRecFromModalsWH" x-filter-object="searchKeywordWH"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left"><!-- Selected:&nbsp;{{PendingSelectedWarehouse.length}} --></span>
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" ng-click="addWarehouse()">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearWarehouse()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

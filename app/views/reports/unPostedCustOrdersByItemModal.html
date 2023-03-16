@@ -1,0 +1,363 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="unPostedCustOrdersByItemModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr"
+                     ng-if="printPdfVals.report_type == 'detail'"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+
+                    <htmlpageheader name='MyCustomHeader{{$index}}' >
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                </div>
+                                <div class="font10">
+                                    <b ng-if="rec.itemCode">Item No. : </b>
+                                    <span ng-if="rec.itemCode">{{rec.itemCode}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b ng-if="rec.itemDesc!='Grand Total'">Description :</b>
+                                    <span ng-if="rec.itemDesc && rec.itemDesc!='Grand Total'">{{rec.itemDesc}}</span>
+                                </div>
+                                <div class="font10" ng-if="rec.itemDesc!='Grand Total'">
+                                    <b>Unit of Measure :</b>
+                                    <span ng-if="rec.uom">{{rec.uom}}</span>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                     <span ng-if="printPdfVals.report_type1 == 1">Order Date</span> <span ng-if="printPdfVals.report_type1 == 2">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                    <h4 ng-if="rec.saleQuote.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Sales Quotes </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.saleQuote.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Cust. No.</th>
+                                <th> Cust. Name</th>
+                                <th ng-if="printPdfVals.reportOrderByID == '2'"> Posting Date</th>
+                                <th ng-if="!(printPdfVals.reportOrderByID == '2')"> Order Date</th>
+                                <th> Sales Quote No.</th>
+                                <th style="text-align: right;"> Qty.</th>
+                                <th style="text-align: right;"> Alloc. Qty.</th>
+                                <th style="text-align: right;"> Unalloc. Qty.</th>
+                                <th style="text-align: right;"> Unit Price</th>
+                                <th style="text-align: right;"> Discount (Excl.VAT)</th>
+                                <th style="text-align: right;"> Total Amount (Excl.VAT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.saleQuote.invoices">
+
+                                <td ng-if="inv.docRank == 2"> {{inv.custNo}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.custName}}</td>
+                                <td ng-if="printPdfVals.reportOrderByID == '2' && inv.docRank == 2"> {{inv.posting_date}}</td>
+                                <td ng-if="!(printPdfVals.reportOrderByID == '2') && inv.docRank == 2"> {{inv.order_date}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.document_no}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.item_converted_price | currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.total_price| currency:""}} </td>
+
+                                <!-- <td colspan="3" ng-if="inv.docRank == 3" style="background: #f9f9f9;"></td>
+                                <td colspan="2" ng-if="inv.docRank == 3" style="background: #f9f9f9;">Total</td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.total_price| currency:""}} </td> -->
+
+                                <td colspan="2" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;"></td>
+                                <td colspan="2" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;">Total Sales Quote</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"></td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.total_price| currency:""}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 ng-if="rec.saleOrder.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Sales Orders </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.saleOrder.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Cust. No.</th>
+                                <th> Cust. Name</th>
+                                <th ng-if="printPdfVals.reportOrderByID == '2'"> Posting Date</th>
+                                <th ng-if="!(printPdfVals.reportOrderByID == '2')"> Order Date</th>
+                                <th> Order No.</th>
+                                <th> Warehouse</th>
+                                <th style="text-align: right;"> Qty.</th>
+                                <th style="text-align: right;"> Alloc. Qty.</th>
+                                <th style="text-align: right;"> Unalloc. Qty.</th>
+                                <th style="text-align: right;"> Unit Price</th>
+                                <th style="text-align: right;"> Discount (Excl.VAT)</th>
+                                <th style="text-align: right;"> Total Amount (Excl.VAT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.saleOrder.invoices">
+                                
+
+                                <td ng-if="inv.docRank == 2"> {{inv.custNo}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.custName}}</td>
+                                <td ng-if="printPdfVals.reportOrderByID == '2' && inv.docRank == 2"> {{inv.posting_date}}</td>
+                                <td ng-if="!(printPdfVals.reportOrderByID == '2') && inv.docRank == 2"> {{inv.order_date}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.document_no}} </td>
+                                <td ng-if="inv.docRank == 2"> {{inv.warehouse}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.item_converted_price | currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.total_price| currency:""}} </td>
+
+                                <!-- <td colspan="3" ng-if="inv.docRank == 3" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="background: #f9f9f9;">Total</td>
+                                <td ng-if="inv.docRank == 3" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.total_price| currency:""}} </td> -->
+
+                                <td colspan="3" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;"></td>
+                                <td colspan="2" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;">Total Sales Order</td>
+                                <!-- <td ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;"></td> -->
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"></td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.total_price| currency:""}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 ng-if="rec.creditNote.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Credit Notes </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.creditNote.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Cust. No.</th>
+                                <th> Cust. Name</th>
+                                <th ng-if="printPdfVals.reportOrderByID == '2'"> Posting Date</th>
+                                <th ng-if="!(printPdfVals.reportOrderByID == '2')"> Order Date</th>
+                                <th> Credit Note No.</th>
+                                <th> Warehouse</th>
+                                <th style="text-align: right;"> Qty.</th>
+                                <th style="text-align: right;"> Alloc. Qty.</th>
+                                <th style="text-align: right;"> Unalloc. Qty.</th>
+                                <th style="text-align: right;"> Unit Price</th>
+                                <th style="text-align: right;"> Discount (Excl.VAT)</th>
+                                <th style="text-align: right;"> Total Amount (Excl.VAT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.creditNote.invoices">
+
+                                <td ng-if="inv.docRank == 2"> {{inv.custNo}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.custName}}</td>
+                                <td ng-if="printPdfVals.reportOrderByID == '2' && inv.docRank == 2"> {{inv.posting_date}}</td>
+                                <td ng-if="!(printPdfVals.reportOrderByID == '2') && inv.docRank == 2"> {{inv.order_date}}</td>
+                                <td ng-if="inv.docRank == 2"> {{inv.document_no}} </td>
+                                <td ng-if="inv.docRank == 2"> {{inv.warehouse}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.item_converted_price | currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 2" style="text-align: right;"> {{inv.total_price| currency:""}} </td>
+
+                                <!-- <td colspan="3" ng-if="inv.docRank == 3" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="background: #f9f9f9;">Total</td>
+                                <td ng-if="inv.docRank == 3" style="background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"></td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 3" style="text-align: right; background: #f9f9f9;"> {{inv.total_price| currency:""}} </td> -->
+
+                                <td colspan="3" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;"></td>
+                                <td colspan="2" ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;">Total Credit Notes</td>
+                                <!-- <td ng-if="inv.docRank == 4" style="background: #f9f9f9;font-weight: 600;"></td> -->
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.qty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.allocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;">{{inv.unallocQty}}</td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"></td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.discount_price| currency:""}} </td>
+                                <td ng-if="inv.docRank == 4" style="text-align: right; background: #f9f9f9;font-weight: 600;"> {{inv.total_price| currency:""}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;" ng-if="rec.itemCode">Total For {{rec.itemDesc}}</b>
+                    <table style="width:100%;" ng-if="rec.itemCode" >
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;" ng-if="printPdfVals.reportOrderTypeID == '1'"><b>Sales Quote</b></td>
+                            <td style="text-align: right;width:20%;"><b>Sales Orders</b></td>
+                            <td style="text-align: right;width:20%;"><b>Credit Notes</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total Amount (Excl.VAT)</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;" ng-if="printPdfVals.reportOrderTypeID == '1'">
+                                <span
+                                      ng-if="rec.saleQuote.invoices.length > 0">{{rec.saleQuote.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.saleQuote.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.saleOrder.invoices.length > 0">{{rec.saleOrder.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.saleOrder.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.creditNote.invoices.length > 0">{{rec.creditNote.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.creditNote.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{(rec.saleOrder.total_amount_ex_vat + rec.saleQuote.total_amount_ex_vat) - rec.creditNote.total_amount_ex_vat | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table> 
+
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div>
+                </div>
+
+                <div ng-if="printPdfVals.report_type == 'detail' && printPdfVals.reportsDataArr.grandtotal.itemDesc == 'Grand Total'">
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b>
+                    <table style="width:100%;">
+                        <tr style="background-color: whitesmoke;">
+                            <th style="width:20%;"><b>Doc. Type</b></th>
+                            <th style="text-align: right;"> Discount (Excl.VAT)</th>
+                            <th style="text-align: right;"> Total Amount (Excl.VAT)</th>
+                        </tr>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr.grandtotal track by $index" ng-if="rec.orderType">
+                            <td style="width:20%;">
+                                <span>{{rec.orderType}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.discount_price.length > 0">{{rec.discount_price | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.discount_price.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.total_price.length > 0">{{rec.total_price | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.total_price.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('unPostedCustOrdersByItemModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportunPostedCustOrdersByItemModal(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

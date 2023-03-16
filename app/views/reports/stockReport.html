@@ -1,0 +1,809 @@
+<div ng-controller="StockReportController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title" ng-if="module !='RawMaterialInventory'"
+         style="width: 120px">Date <span class="required"> *</span></b>
+
+      <div class="input-symbol a-date" ng-if="module !='RawMaterialInventory'">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               placeholder="To"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+      <b class="a-title" ng-if="module =='RawMaterialInventory'"
+         style="width: 120px;">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date" ng-if="module =='RawMaterialInventory'">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               placeholder="From"
+               readonly
+               ng-model="filterReport.dateFrom"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date" ng-if="module =='RawMaterialInventory'">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               placeholder="To"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate"
+                type="button"
+                ng-if="module == 'CostPrice' || module =='RawMaterialInventory'"
+                ng-click="generateReport()">Generate Report</button> 
+
+        <button class="btn report-generate"
+                type="button"
+                ng-if="module != 'CostPrice' && module !='RawMaterialInventory'"
+                ng-click="showPdfModal()">Generate Report</button>
+
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <!-- <button class="btn report-default"
+                type="button"
+                ng-if="module != 'CostPrice' && module !='RawMaterialInventory'"
+                ng-click="showPdfModal()"> Print
+          Preview</button> -->
+
+        <button class="btn report-default"
+                type="button"
+                ng-if="module =='RawMaterialInventory'"
+                ng-click="showPdfModal()"> Print
+          Preview</button>
+
+        <div class="dropdown report-excel"
+             ng-if="showCSVBtn">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="{{CSVfilePath}}">Excel</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown report-excel"
+             ng-if="!showCSVBtn">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu"><!--  && module != 'RawMaterialInventory' -->
+            <li ng-if="module != 'CostPrice'"><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+            <li ng-if="module == 'CostPrice'"><a ng-click="generateReport('xlsx')">Excel</a></li>
+          </ul><!--  || module == 'RawMaterialInventory' -->
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box" ng-if="module =='RawMaterialInventory'">
+        <b class="a-title a-title-relative"
+           style="width: 120px;top: 4px;">Select Raw Material Item(s)</b>
+        <div title="{{SelItemsTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectRawMaterialItems()">
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in rawMaterialItems track by $index">
+                <span ng-if="rawMaterialItems.length == 1">{{sp.title}}</span>
+                <span ng-if="rawMaterialItems.length > 1">{{sp.title}}<span
+                        ng-if="$index < rawMaterialItems.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box" ng-if="module !='RawMaterialInventory'">
+        <b class="a-title a-title-relative"
+           style="width: 120px">Select Item(s)</b>
+        <div title="{{SelItemsTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectItems()">
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in items track by $index">
+                <span ng-if="items.length == 1">{{sp.title}}</span>
+                <span ng-if="items.length > 1">{{sp.title}}<span
+                        ng-if="$index < items.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='CostPrice2'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Category(s)</b>
+        <style>
+          .acg .col-md-8 {
+            padding: 0;
+            width: 334px;
+          }
+
+          .acg .col-md-8 .panel-info {
+            width: 334px;
+            background: white;
+            max-height: 29px !important;
+            overflow: hidden;
+          }
+        </style>
+        <div class="acg  a-form-control">
+          <x-flexi-select x-flexi-select-title="'Categories'"
+                          x-flexi-select-modal-id="'CategoryModal'"
+                          x-flexi-select-output='filterReport.categories'
+                          x-flexi-select-data="tableDataCats">
+          </x-flexi-select>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='CostPrice2'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Brand(s)</b>
+        <style>
+          .acg .col-md-8 {
+            padding: 0;
+            width: 334px;
+          }
+
+          .acg .col-md-8 .panel-info {
+            width: 334px;
+            background: white;
+            max-height: 29px !important;
+            overflow: hidden;
+          }
+        </style>
+        <div class="acg  a-form-control">
+          <x-flexi-select x-flexi-select-title="'Brands'"
+                          x-flexi-select-modal-id="'BrandModal'"
+                          x-flexi-select-output='filterReport.brands'
+                          x-flexi-select-data="tableDataBrands">
+          </x-flexi-select>
+        </div>
+      </div>
+
+
+
+      <div class="report-box"
+           ng-if="module != 'CostPrice' && module !='RawMaterialInventory'">
+        <b class="a-title a-title-relative"
+           style="width: 120px">Select Warehouse</b>
+        <div title="{{SelwarehouseTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectWarehouse()">
+            <div class="panel-body"
+                 style="background-color: white">
+              <span ng-repeat="sp in warehouse track by $index">
+                <span ng-if="warehouse.length == 1">{{sp.name}}</span>
+                <span ng-if="warehouse.length > 1">{{sp.name}}<span
+                        ng-if="$index < warehouse.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+        ng-if="module != 'CostPrice' && module !='RawMaterialInventory'">
+        <b class="a-title"
+           style="width: 120px;">Show Results By</b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.reportResultType">
+          <option value="1">By Item</option>
+          <option value="2">By Warehouse</option>
+        </select>
+      </div>
+
+      <div class="report-box"
+           ng-if="module != 'CostPrice' && module !='RawMaterialInventory'">
+        <label>
+          <input type="checkbox"
+                 ng-model="filterReport.byvalue"
+                 ng-checked="filterReport.byvalue">
+          Stock Availability By Value
+        </label>
+      </div>
+
+      <div class="report-box"
+           ng-if="module =='RawMaterialInventory'">
+        <label>
+          <input type="checkbox"
+                 ng-model="filterReport.byvalue"
+                 ng-checked="filterReport.byvalue">
+          By Value
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0 && module != 'CostPrice' && module !='RawMaterialInventory'">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.dateTo}}</small>
+    <table class="table table-condensed table-striped table-hover report-spacing"
+           id="data-table"
+           style="margin-top: 8px;margin-bottom: 10px;">
+      <thead class="fixit">
+        <tr class="bg-col">
+          <th>Item No.</th>
+          <th>Description</th>
+          <th>Unit of Measure</th>
+          <th class="text-right">Available Quantity</th>
+          <th ng-if="filterReport.byvalue == 1"
+              class="text-right">Available Stock Value ({{defaultCurrencyCode}})</th>
+          <th class="text-right">Allocated Quantity</th>
+          <th ng-if="filterReport.byvalue == 1"
+              class="text-right">Allocated Stock Value ({{defaultCurrencyCode}})</th>
+          <th class="text-right padright19">Current Quantity</th>
+          <th ng-if="filterReport.byvalue == 1"
+              class="text-right padright19">Current Stock Value
+            ({{defaultCurrencyCode}})</th>
+        </tr>
+      </thead>
+      <tbody class="fixit">
+        <tr ng-repeat="rec in reportsDataArr"
+            ng-if="columns.length > 0">
+          <td ng-if="rec.RecordType == 'Head1'"
+              colspan="4">
+            <b>{{rec.warehouse}} <!-- ({{rec.wrh_code}}) --></b>
+          </td>
+
+          <td ng-if="rec.RecordType == 'Head1' && filterReport.byvalue == 1">&nbsp;</td>
+
+          <td ng-if="rec.RecordType == 'Head2'"
+              colspan="4"
+              style="padding-left: 25px;">
+            <b ng-if="rec.location">{{rec.warehouse}} <!-- ({{rec.wrh_code}}) --> - {{rec.location}}</b>
+            <!-- <b ng-if="!rec.location">{{rec.warehouse}}</b> -->
+          </td>
+          <td ng-if="rec.RecordType == 'Head2' && filterReport.byvalue == 1">&nbsp;</td>
+
+          <td ng-if="rec.RecordType == 'Detail'"
+              style="padding-left: 25px;">{{rec.product_code}}</td>
+          <td ng-if="rec.RecordType == 'Detail'">{{rec.description}}</td>
+          <td ng-if="rec.RecordType == 'Detail'">{{rec.Unit_of_measure}}</td>
+          <td ng-if="rec.RecordType == 'Detail'"
+              class="text-right">{{rec.Qunatity | numberNoDecimalsIfZeroFilter:2:''}}
+          </td>
+          <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+              class="text-right">
+            <span ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</span>
+          </td>
+          <td ng-if="rec.RecordType == 'Detail'"
+              class="text-right">
+            {{rec.allocatedQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+          <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+              class="text-right">
+            <span ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                            decimal_range}}</span>
+          </td>
+          <td ng-if="rec.RecordType == 'Detail'"
+              class="text-right padright19">
+            {{rec.currentQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+          <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+              class="text-right padright19">
+            <span ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+            </span>
+          </td>
+
+          <td ng-if="rec.RecordType == 'total'"></td>
+          <td ng-if="rec.RecordType == 'total'"><b>Total ({{defaultCurrencyCode}})</b></td>
+          <td ng-if="rec.RecordType == 'total'"></td>
+          <td ng-if="rec.RecordType == 'total'"></td>
+          <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+              class="text-right">
+            <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</b>
+          </td>
+          <td ng-if="rec.RecordType == 'total'"></td>
+          <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+              class="text-right">
+            <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                            decimal_range}}</b>
+          </td>
+          <td ng-if="rec.RecordType == 'total'"></td>
+          <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+              class="text-right padright19">
+            <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+            </b>
+          </td>
+
+          <td ng-if="rec.RecordType == 'grand'"></td>
+          <td ng-if="rec.RecordType == 'grand'"><b>Grand Total ({{defaultCurrencyCode}})</b></td>
+          <td ng-if="rec.RecordType == 'grand'"></td>
+          <td ng-if="rec.RecordType == 'grand'"></td>
+          <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+              class="text-right">
+            <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</b>
+          </td>
+          <td ng-if="rec.RecordType == 'grand'">
+          </td>
+          <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+              class="text-right">
+            <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                            decimal_range}}</b>
+          </td>
+          <td ng-if="rec.RecordType == 'grand'">
+          </td>
+          <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+              class="text-right padright19">
+            <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+            </b>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0 && module =='RawMaterialInventory'">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.dateTo}}</small>
+    <table class="table table-condensed table-striped table-hover report-spacing"
+           id="data-table"
+           style="margin-top: 8px;margin-bottom: 10px;">
+      <thead>
+        <tr>
+            <th style="width: 10%;">Item No.</th>
+            <th style="width: 25%;">Description</th>
+            <th style="text-align: right">Opening Stock Qty.</th>
+            <th ng-if="printPdfVals.byvalue == 1"
+                style="text-align: right">Opening Stock Value ({{defaultCurrencyCode}})</th>
+
+            <th style="text-align: right">Stock In Qty.</th>
+            <th ng-if="printPdfVals.byvalue == 1"
+                style="text-align: right">Stock In Value ({{defaultCurrencyCode}})</th>
+
+            <th style="text-align: right">Stock Out Qty.</th>
+            <th ng-if="printPdfVals.byvalue == 1"
+                style="text-align: right">Stock Out Value ({{defaultCurrencyCode}})</th>
+
+            <th style="text-align: right">Closing Stock Qty.</th>
+            <th ng-if="printPdfVals.byvalue == 1"
+                style="text-align: right">Closing Stock Value ({{defaultCurrencyCode}})</th> 
+        </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="inv in printPdfVals.reportsDataArr" ng-if="(printPdfVals.byvalue != 1 && inv.description !='Total') || (printPdfVals.byvalue == 1)">
+          <td style="width: 10%;">{{inv.product_code}}</td>
+          <td >{{inv.description}}</td>
+          <td style="text-align: right">
+            <!-- <span >{{(inv.openingStock!=0) ? (inv.openingStock | numberNoDecimalsIfZeroFilter:5:'') : ''}}</span> -->
+            <span ng-if="inv.description !='Total'" >{{inv.openingStock | currency : "" : decimal_range}}</span>
+          </td>
+          <td style="text-align: right" ng-if="printPdfVals.byvalue == 1">
+            <span>{{(inv.openingStock_price) ? (inv.openingStock_price | currency : "" : decimal_range) : ''}}</span>            
+          </td> 
+          <td style="text-align: right">
+              <!-- <span >{{(inv.currentInStock!=0) ? (inv.currentInStock | numberNoDecimalsIfZeroFilter:5:'') : ''}}</span> -->
+              <span ng-if="inv.description !='Total'" >{{inv.currentInStock | currency : "" : decimal_range}}</span>
+              <a title="View Activity"
+                ng-click="openStockActivity(inv.id,1)"
+                ng-if="inv.currentInStock !=0">
+                <i class="fa fa-eye"></i>
+              </a>
+          </td>
+          <td style="text-align: right" ng-if="printPdfVals.byvalue == 1">
+            <span ng-if="inv.currentInStock_price.length >0">{{(inv.currentInStock_price) ? (inv.currentInStock_price | currency : "" : decimal_range) : ''}}</span>
+          </td>
+          <td style="text-align: right">
+            <!-- <span >{{(inv.currentOutStock!=0) ? (inv.currentOutStock | numberNoDecimalsIfZeroFilter:5:'') : ''}}</span> -->
+            <span ng-if="inv.description !='Total'" >{{inv.currentOutStock | currency : "" : decimal_range}}</span>
+            <a title="View Activity"
+              ng-click="openStockActivity(inv.id,2)"
+              ng-if="inv.currentOutStock !=0">
+              <i class="fa fa-eye"></i>
+            </a>
+          </td>
+          <td style="text-align: right" ng-if="printPdfVals.byvalue == 1">
+            <span ng-if="inv.currentOutStock_price.length >0">{{(inv.currentOutStock_price) ? (inv.currentOutStock_price | currency : "" : decimal_range) : ''}}</span>
+          </td> 
+          <td style="text-align: right">
+              <!-- <span >{{(inv.closingStock!=0) ? (inv.closingStock | numberNoDecimalsIfZeroFilter:2:'') : ''}}</span> -->
+              <span ng-if="inv.description !='Total'" >{{inv.closingStock | currency : "" : decimal_range}}</span>
+          </td>
+          <td style="text-align: right" ng-if="printPdfVals.byvalue == 1">
+            <span ng-if="inv.closingStock_price.length >0">{{(inv.closingStock_price) ? (inv.closingStock_price | currency : "" : decimal_range) : ''}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <!-- <div class="row"
+       style="margin-bottom: 0 !important;">
+    <div class="col-md-12"
+         style="margin-top: 8px;">
+      <form>
+        <div class="widget">
+          <div class="widget-body"
+               style="padding-top: 0 !important;">
+
+            <div class="row ng-scope">
+
+              <div class="col-md-12">
+
+                <div class="form-group">
+                  <b class="bit"
+                     style="background: white; border: 0; text-align: center; font-weight: bold; font-size: 13px; padding: 9px 2px; border-bottom: 1px solid #dddddd !important; margin-bottom: 20px;">{{reportTitle}}</b>
+                </div>
+              </div>
+
+              <div class="col-md-12"
+                   style="margin-bottom: 10px;">
+                <div ng-if="module == 'location'">
+                  <label class="control-label col-md-1"
+                         style="padding-top: 4px;">Date<span class="required"> *</span></label>
+
+                  <div class="col-md-2">
+                    <div class="input-symbol">
+                      <input jqdatepicker
+                             class="form-control"
+                             id="dateTo"
+                             readonly
+                             ng-model="filterReport.dateTo"
+                             style="background-color: white;">
+                      <span>
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div ng-if="module == 'CostPrice'">
+                  <label class="control-label col-md-1"
+                         style="padding-top: 4px;">Date From<span class="required"> *</span></label>
+
+                  <div class="col-md-2">
+                    <div class="input-symbol">
+                      <input jqdatepicker
+                             class="form-control"
+                             id="dateFrom"
+                             readonly
+                             ng-model="filterReport.dateFrom"
+                             style="background-color: white;">
+                      <span>
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <label class="control-label col-md-1"
+                         style="padding-top: 4px;">Date To<span class="required"> *</span></label>
+
+                  <div class="col-md-2">
+                    <div class="input-symbol">
+                      <input jqdatepicker
+                             class="form-control"
+                             id="dateTo"
+                             readonly
+                             ng-model="filterReport.dateTo"
+                             style="background-color: white;">
+                      <span>
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-if="module == 'SaleOrderDetail'  || module == 'PurchaseOrderDetail'">
+                  <label class="control-label col-md-1"
+                         style="padding-top: 4px;">As At<span class="required"> *</span></label>
+
+                  <div class="col-md-2">
+                    <div class="input-symbol">
+                      <input jqdatepicker
+                             class="form-control"
+                             id="dateTo"
+                             readonly
+                             ng-model="filterReport.dateTo"
+                             style="background-color: white;">
+                      <span>
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <label class="control-label col-md-1"
+                       style="padding-top: 4px;">
+                  Items
+                </label>
+
+                <div class="col-md-2">
+                  <div title="{{SelItemsTooltip}}">
+                    <div class="panel-info pi2"
+                         ng-click="selectItem()">
+                      <div class="panel-body">
+                        <span ng-repeat="sp in items track by $index">
+                          <span ng-if="items.length == 1">{{sp.title}}</span>
+                          <span ng-if="items.length > 1">{{sp.title}}<span
+                                  ng-if="$index < items.length && $index!=0">;&nbsp;</span></span>
+                        </span>
+                        <aside></aside>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-if="module == 'location'">
+
+                  <label class="control-label col-md-1"
+                         style="padding-top: 4px;">
+                    Warehouse</label>
+                  <div class="col-md-2">
+                    <div title="{{SelwarehouseTooltip}}">
+                      <div class="panel-info pi2"
+                           ng-click="selectWarehouse()">
+                        <div class="panel-body">
+                          <span ng-repeat="sp in warehouse track by $index">
+                            <span ng-if="warehouse.length == 1">{{sp.name}}</span>
+                            <span ng-if="warehouse.length > 1">{{sp.name}}<span
+                                    ng-if="$index < warehouse.length && $index!=0">;&nbsp;</span></span>
+                          </span>
+                          <aside></aside>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div ng-if="module == 'location'">
+
+
+
+                  <label class="control-label col-md-2"
+                         style="padding-top: 4px;">
+                                        <input type="checkbox"
+                                               class="pull-left"
+                                               ng-model="filterReport.byvalue"
+                                               ng-checked="filterReport.byvalue">
+                    Stock Availability By Value</label>
+
+                  <div class="col-md-1 pl0 "
+                       style="margin-top: 5px;">
+                    <input type="checkbox"
+                           class="pull-left"
+                           ng-model="filterReport.byvalue"
+                           ng-checked="filterReport.byvalue">
+                  </div>
+                </div>
+
+
+                <div class="col-md-12">
+                  <div class="col-md-4"
+                       style=" margin-top: 14px; margin-left: -3px;">
+                    <div class="pull-left">
+                      <button class="btn btn-submit2"
+                              type="button"
+                              ng-click="generateReport()">Generate Report</button>
+                      <button class="btn report-clearfilter"
+                              type="button"
+                              ng-click="clearReport()">Clear Filter</button>
+                      <button class="btn btn-default2"
+                              type="button"
+                              ng-click="showPdfModal()"> Print Preview</button>
+                    </div>
+                  </div>
+                  <div class="col-md-5"></div>
+                  <div class="col-md-3"
+                       style=" margin-top: 14px; margin-left: -3px;">
+                    <div class="btn-group btn-export">
+                      <button type="button"
+                              class="btn btn-silverow"
+                              data-toggle="dropdown">Download</button>
+                      <button type="button"
+                              class="btn btn-silverow dropdown-toggle"
+                              data-toggle="dropdown"
+                              aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu"
+                          role="menu">
+                        <li><a type="button"
+                             ng-click="showPdfModal('xlsx')"> <i class="fa fa-file-excel-o"
+                               aria-hidden="true"></i> Excel</a></li>
+
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+  <!-- <div class="row">
+
+    <div class="col-md-12 col-md-12"
+         ng-if="columns.length > 0">
+      <div id="dt_example"
+           class="example_alt_pagination">
+        <table class="table table-condensed table-striped table-hover table-bordered"
+               id="data-table"
+               style="margin-top: 8px;margin-bottom: 10px;">
+          <thead class="fixit"
+                 style="    width: 99%;">
+            <tr class="bg-col">
+              <th>Item No.</th>
+              <th>Description</th>
+              <th>Unit of Measure</th>
+              <th class="text-right">Available Quantity</th>
+              <th ng-if="filterReport.byvalue == 1"
+                  class="text-right">Available Stock Value ({{defaultCurrencyCode}})</th>
+              <th class="text-right">Allocated Quantity</th>
+              <th ng-if="filterReport.byvalue == 1"
+                  class="text-right">Allocated Stock Value ({{defaultCurrencyCode}})</th>
+              <th class="text-right">Current Quantity</th>
+              <th ng-if="filterReport.byvalue == 1"
+                  class="text-right">Current Stock Value ({{defaultCurrencyCode}})</th>
+            </tr>
+          </thead>
+          <tbody class="fixit2">
+            <tr ng-repeat="rec in reportsDataArr"
+                ng-if="columns.length > 0">
+              <td ng-if="rec.RecordType == 'Head1'"
+                  colspan="4">
+                <b>{{rec.warehouse}} ({{rec.wrh_code}})</b>
+              </td>
+
+              <td ng-if="rec.RecordType == 'Head1' && filterReport.byvalue == 1">&nbsp;</td>
+
+              <td ng-if="rec.RecordType == 'Head2'"
+                  colspan="4"
+                  style="padding-left: 25px;">
+                <b ng-if="rec.location">{{rec.warehouse}} ({{rec.wrh_code}}) - {{rec.location}}</b>
+                <b ng-if="!rec.location">{{rec.warehouse}} ({{rec.wrh_code}})</b>
+              </td>
+              <td ng-if="rec.RecordType == 'Head2' && filterReport.byvalue == 1">&nbsp;</td>
+
+              <td ng-if="rec.RecordType == 'Detail'"
+                  style="padding-left: 25px;">{{rec.product_code}}</td>
+              <td ng-if="rec.RecordType == 'Detail'">{{rec.description}}</td>
+              <td ng-if="rec.RecordType == 'Detail'">{{rec.Unit_of_measure}}</td>
+              <td ng-if="rec.RecordType == 'Detail'"
+                  class="text-right">{{rec.Qunatity}}</td>
+              <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+                  class="text-right">
+                <span ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</span>
+              </td>
+              <td ng-if="rec.RecordType == 'Detail'"
+                  class="text-right">{{rec.allocatedQty}}</td>
+              <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+                  class="text-right">
+                <span ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                  decimal_range}}</span>
+              </td>
+              <td ng-if="rec.RecordType == 'Detail'"
+                  class="text-right">{{rec.currentQty}}</td>
+              <td ng-if="rec.RecordType == 'Detail' &&  filterReport.byvalue == 1"
+                  class="text-right">
+                <span ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+                </span>
+              </td>
+
+              <td ng-if="rec.RecordType == 'total'"></td>
+              <td ng-if="rec.RecordType == 'total'"><b>Total ({{defaultCurrencyCode}})</b></td>
+              <td ng-if="rec.RecordType == 'total'"></td>
+              <td ng-if="rec.RecordType == 'total'"></td>
+              <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</b>
+              </td>
+              <td ng-if="rec.RecordType == 'total'"></td>
+              <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                  decimal_range}}</b>
+              </td>
+              <td ng-if="rec.RecordType == 'total'"></td>
+              <td ng-if="rec.RecordType == 'total' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+                </b>
+              </td>
+
+              <td ng-if="rec.RecordType == 'grand'"></td>
+              <td ng-if="rec.RecordType == 'grand'"><b>Grand Total ({{defaultCurrencyCode}})</b></td>
+              <td ng-if="rec.RecordType == 'grand'"></td>
+              <td ng-if="rec.RecordType == 'grand'"></td>
+              <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.Value.length >0">{{rec.Value | currency : "" : decimal_range}}</b>
+              </td>
+              <td ng-if="rec.RecordType == 'grand'">
+              </td>
+              <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.allocatedStockValue.length >0">{{rec.allocatedStockValue | currency : "" :
+                  decimal_range}}</b>
+              </td>
+              <td ng-if="rec.RecordType == 'grand'">
+              </td>
+              <td ng-if="rec.RecordType == 'grand' && filterReport.byvalue == 1"
+                  class="text-right">
+                <b ng-if="rec.currentStockValue.length >0">{{rec.currentStockValue | currency : "" : decimal_range}}
+                </b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div ng-include="'app/views/srm_order/_listing_prod_modal.html'"></div> -->
+  <!-- <div ng-include="'app/views/reports/_listingRawMaterialItemDetailModal.html'"></div> -->
+  <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingWarehouseDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingStorageLocDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/stockActivityforReportModal.html'" 
+    ng-if="module =='RawMaterialInventory'"></div>
+  <!-- <div ng-include="'app/views/reports/_listingBrandModal.html'"></div> -->
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

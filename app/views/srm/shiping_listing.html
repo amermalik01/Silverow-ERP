@@ -1,0 +1,324 @@
+<style type="text/css">
+    #data-table tr td {
+        cursor: default !important;
+    }
+</style>
+
+<form class="form-horizontal no-margin" ng-submit="get_search_shipping_agent('listing')">
+    <div class="row">
+        <div class="col-md-5 col-md-5">
+            <div class="form-group">
+                <div class="col-sm-7">
+                    <div class="input-symbol">
+                        <input type="text" ng-model="search_sale_data" class="in-t-1" id="search_sale_listing_data">
+                        <!-- <input type="submit"  style="display:none"   />-->
+                        <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                </div>
+                <!--<a id="prompt" ng-click="getItem()" class="btn btn_blue margin_bottom margin-right width_80"><i class="fa fa-search fa_display"></i>Search</a>-->
+                <div class="col-md-3">
+                    <a id="prompt" ng-click="unset_search_shipping_agent('listing')" class="in-t-2"><i
+                            class="fa fa-check fa_display"></i>Show All</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-md-7">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!--   Add   permision for Company User /superadmin -->
+                    <a id="prompt" ng-if="allowadd_srm_area_tab==1 || allowadd_supplier_area_tab==1" ng-click="setCountrySelectPage(1);get_countries_shipping_agent();showAreas();"
+                       class="btn btn_add pull-right"><i class="fa fa-plus fa_display"> </i> Add New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<div class="row">
+    <div class="col-md-12" style="padding-left: 3px !important; padding-right: 3px !important;">
+        <div class="panel panel-default no-padding no-border no-margin">
+            <div class="panel-body">
+                <div class="table-responsive" style="  overflow-y: scroll;    max-height: 325px;" ng-show="ship_sale_column.length > 0">
+                    <table class="table table-striped table-bordered table-hover no-margin">
+                        <thead>
+                            <tr class="bg-col">
+                                <th ng-repeat="column in ship_sale_column"
+                                        ng-if="	column.title != 'Id'"  > {{column.title}} </th>
+                                <th style="width: 11%;" >Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="courser table-body">
+                            <tr ng-repeat="rec in ship_sale_data" ng-show="ship_sale_column.length > 0" >
+                                <td ng-repeat="column in ship_sale_column" ng-if="column.title != 'Id'"   ng-click="editlocationForm(rec.id)" sortable="column.title"> {{rec[column.field]}} </td>
+                                <td class="text-left" ng-show="ship_sale_column.length > 0"><a ng-click="deleteSaleArea(rec.id);get_sale_shipping_agent();" title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" ng-show="ship_sale_column.length > 0">
+                    <div class="col-md-12" >
+                        <ul class="pagination remove-left-pad">
+                            <li ng-class="{'disabled': sale_area.cpage == 1}" class="">
+                                <a ng-click="setSaleSelectPage(sale_area.ppage); get_sale_shipping_agent();" href="javascript: void(0);" class="">«</a>
+                            </li>
+
+                            <li ng-repeat="(key,value) in sale_area.pages" ng-class="{'active': value == sale_area.cpage}">
+                                <a ng-click="setSaleSelectPage(value); get_sale_shipping_agent();" href="javascript: void(0);"><span ng-bind="value"></span></a>
+                            </li>
+
+                            <li ng-class="{'disabled': sale_area.cpage == sale_area.total_pages}">
+                                <a ng-click="setSaleSelectPage(sale_area.npage); get_sale_shipping_agent();" href="javascript: void(0);" >»</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="clearfix"></div>
+<br/>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <tabset>
+                <tab heading="Countries"
+                     ng-click="resetSearch('search_sale_listing_data');setShipCountrySelectPage(1);get_shipping_countries();">
+                    <div class="">
+                        <div class="">
+                            <div class="table-responsive" style="overflow-x: hidden;">
+                                <div style="  overflow-y: scroll; max-height: 300px;  ">
+                                    <table class="table table-striped table-bordered table-hover no-margin">
+                                        <thead>
+                                        <tr class="bg-col">
+                                            <th ng-repeat="column in ship_column_countries"
+                                                ng-if="	column.title != 'Id'"> {{column.title}}
+                                            </th>
+                                            <th style="width: 30px;" ng-show="ship_column_countries.length > 0">Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="rec in ship_data_countries"
+                                            ng-show="ship_column_countries.length > 0">
+                                            <td ng-repeat="column in ship_column_countries" ng-if="column.title != 'Id'"
+                                                sortable="column.title"> {{rec[column.field]}}
+                                            </td>
+                                            <td class="text-left" ng-show="ship_column_countries.length > 0"><a
+                                                    ng-click="deleteSaleArea(rec.id);get_shipping_countries();"
+                                                    title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                        <tr ng-show="ship_column_countries.length == 0">
+                                            <td colspan="2">No Countries Found!</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" style="text-align: left;">
+                                            <ul class="pagination" style="margin: 0px !important;"
+                                                ng-show="areas_shipping_country.total_pages > 1">
+                                                <li ng-class="{'disabled': areas_shipping_country.cpage == 1}" class="">
+                                                    <a ng-click="setShipCountrySelectPage(areas_shipping_country.ppage); get_shipping_countries();"
+                                                       href="javascript: void(0);" class="">«</a></li>
+                                                <li ng-repeat="(key,value) in areas_shipping_country.pages"
+                                                    ng-class="{'active': value == areas_shipping_country.cpage}"><a
+                                                        ng-click="setShipCountrySelectPage(value);
+                                                            get_shipping_countries();" href="javascript: void(0);"><span
+                                                        ng-bind="value"></span></a></li>
+                                                <li ng-class="{'disabled': areas_shipping_country.cpage == areas_shipping_country.total_pages}">
+                                                    <a ng-click="setShipCountrySelectPage(areas_shipping_country.npage);
+                                                        get_shipping_countries();" href="javascript: void(0);">»</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Regions"
+                     ng-click="resetSearch('search_sale_listing_data');setShipRegionSelectPage(1);get_shipping_regions()">
+                    <div class="">
+                        <div class="">
+                            <div class="table-responsive" style="overflow-x: hidden;">
+                                <div style="  overflow-y: scroll;  max-height: 300px;  ">
+                                    <table class="table table-striped table-bordered table-hover no-margin">
+                                        <thead>
+                                        <tr class="bg-col">
+                                            <th ng-repeat="column in ship_column_regions"
+                                                ng-if="	column.title != 'Id'"> {{column.title}}
+                                            </th>
+                                            <th style="width: 30px;" ng-show="ship_column_regions.length > 0">Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="rec in ship_data_regions"
+                                            ng-show="ship_column_regions.length > 0">
+                                            <td ng-repeat="column in ship_column_regions" ng-if="column.title != 'Id'"
+                                                sortable="column.title"> {{rec[column.field]}}
+                                            </td>
+                                            <td class="text-left" ng-show="ship_column_regions.length > 0"><a
+                                                    ng-click="deleteSaleArea(rec.id);get_shipping_regions();"
+                                                    title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                        <tr ng-show="ship_column_regions.length == 0">
+                                            <td colspan="2">No Regions Found!</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" style="text-align: left;">
+                                            <ul class="pagination" style="margin: 0px !important;"
+                                                ng-show="areas_shipping_region.total_pages > 1">
+                                                <li ng-class="{'disabled': areas_shipping_region.cpage == 1}" class="">
+                                                    <a ng-click="setShipRegionSelectPage(areas_shipping_region.ppage); get_shipping_regions();"
+                                                       href="javascript: void(0);" class="">«</a></li>
+                                                <li ng-repeat="(key,value) in areas_shipping_region.pages"
+                                                    ng-class="{'active': value == areas_shipping_region.cpage}"><a
+                                                        ng-click="setShipRegionSelectPage(value); get_shipping_regions();"
+                                                        href="javascript: void(0);"><span ng-bind="value"></span></a>
+                                                </li>
+                                                <li ng-class="{'disabled': areas_shipping_region.cpage == areas_shipping_region.total_pages}">
+                                                    <a ng-click="setShipRegionSelectPage(areas_shipping_region.npage); get_shipping_regions();"
+                                                       href="javascript: void(0);">»</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Counties"
+                     ng-click="resetSearch('search_sale_listing_data');setShipCountySelectPage(1);get_shipping_counties()">
+                    <div class="">
+                        <div class="">
+                            <div class="table-responsive" style="overflow-x: hidden;">
+                                <div style="  overflow-y: scroll;  max-height: 300px; ">
+                                    <table class="table table-striped table-bordered table-hover no-margin">
+                                        <thead>
+                                        <tr class="bg-col">
+                                            <th ng-repeat="column in ship_column_counties"
+                                                ng-if="column.title != 'Id'"> {{column.title}}
+                                            </th>
+                                            <th style="width: 30px;" ng-show="ship_column_counties.length > 0">Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="rec in ship_data_counties"
+                                            ng-show="ship_column_counties.length > 0">
+                                            <td ng-repeat="column in ship_column_counties" ng-if="column.title != 'Id'"
+                                                sortable="column.title"> {{rec[column.field]}}
+                                            </td>
+                                            <td class="text-left" ng-show="ship_column_counties.length > 0"><a
+                                                    ng-click="deleteSaleArea(rec.id);get_shipping_counties();"
+                                                    title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                        <tr ng-show="ship_column_counties.length == 0">
+                                            <td colspan="2">No Counties Found!</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" style="text-align: left;">
+                                            <ul class="pagination" style="margin: 0px !important;"
+                                                ng-show="areas_shipping_county.total_pages > 1">
+                                                <li ng-class="{'disabled': areas_shipping_county.cpage == 1}" class="">
+                                                    <a ng-click="setShipCountySelectPage(areas_shipping_county.ppage); get_shipping_counties();"
+                                                       href="javascript: void(0);" class="">«</a></li>
+                                                <li ng-repeat="(key,value) in areas_shipping_county.pages"
+                                                    ng-class="{'active': value == areas_shipping_county.cpage}"><a
+                                                        ng-click="setShipCountySelectPage(value); get_shipping_counties();"
+                                                        href="javascript: void(0);"><span ng-bind="value"></span></a>
+                                                </li>
+                                                <li ng-class="{'disabled': areas_shipping_county.cpage == areas_shipping_county.total_pages}">
+                                                    <a ng-click="setShipCountySelectPage(areas_shipping_county.npage); get_shipping_counties();"
+                                                       href="javascript: void(0);">»</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Areas"
+                     ng-click="resetSearch('search_sale_listing_data');setShipAreaSelectPage(1);get_shipping_areas();">
+                    <div class="">
+                        <div class="">
+                            <div class="table-responsive" style="overflow-x: hidden;">
+                                <div style="  overflow-y: scroll;  max-height: 300px; ">
+                                    <table class="table table-striped table-bordered table-hover no-margin">
+                                        <thead>
+                                        <tr class="bg-col">
+                                            <th ng-repeat="column in ship_column_areas"
+                                                ng-if="	column.title != 'Id'"> {{column.title}}
+                                            </th>
+                                            <th style="width: 30px;" ng-show="ship_column_areas.length > 0">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="rec in ship_data_areas" ng-show="ship_column_areas.length > 0">
+                                            <td ng-repeat="column in ship_column_areas" ng-if="column.title != 'Id'"
+                                                sortable="column.title"> {{rec[column.field]}}
+                                            </td>
+                                            <td class="text-left" ng-show="ship_column_areas.length > 0"><a
+                                                    ng-click="deleteSaleArea(rec.id);get_shipping_areas();"
+                                                    title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                        <tr ng-show="ship_column_areas.length == 0">
+                                            <td colspan="2">No Areas Found!</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" style="text-align: left;">
+                                            <ul class="pagination" style="margin: 0px !important;"
+                                                ng-show="areas_shipping_area.total_pages > 1">
+                                                <li ng-class="{'disabled': areas_shipping_area.cpage == 1}" class=""><a
+                                                        ng-click="setShipAreaSelectPage(areas_shipping_area.ppage);
+                                                        get_shipping_areas();" href="javascript: void(0);"
+                                                        class="">«</a></li>
+                                                <li ng-repeat="(key,value) in areas_shipping_area.pages"
+                                                    ng-class="{'active': value == areas_shipping_area.cpage}"><a
+                                                        ng-click="setShipAreaSelectPage(value);
+                                                            get_shipping_areas();" href="javascript: void(0);"><span
+                                                        ng-bind="value"></span></a></li>
+                                                <li ng-class="{'disabled': areas_shipping_area.cpage == areas_shipping_area.total_pages}">
+                                                    <a ng-click="setShipAreaSelectPage(areas_shipping_area.npage); get_shipping_areas();"
+                                                       href="javascript: void(0);">»</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

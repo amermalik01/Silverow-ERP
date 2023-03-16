@@ -1,0 +1,84 @@
+<div class="modal fade" id="model_btn_supplier_price">
+  <div class="modal-dialog modal-lg">
+    <!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <input type="hidden" ng-model="formData_price_data.sp_id" />
+            <div class="form-group">
+              <label class="col-sm-4 control-label "> Volume </label>
+              <div class="col-sm-8" ng-if="formData_price_data.volume_1==1">
+                <select ng-model="formData_price_data.volume_id" disabled ng-options="opt as opt.name for opt in arr_volume_1" class="select2me form-control">
+                  
+                </select>
+              </div>
+              <div class="col-sm-8" ng-if="formData_price_data.volume_2==2">
+                <select ng-model="formData_price_data.volume_id" ng-options="opt as opt.name for opt in arr_volume_2" class="select2me form-control"
+                  disabled>
+                  
+                </select>
+              </div>
+              <div class="col-sm-8" ng-if="formData_price_data.volume_3==3">
+                <select ng-model="formData_price_data.volume_id" ng-options="opt as opt.name for opt in arr_volume_3" class="select2me form-control"
+                  disabled>
+                  
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label "> Standard  Price </label>
+              <div class="col-sm-8 ">
+
+                <input ng-model="formData_price_data.purchase_price_11" id="purchase_price_1" type="text" placeholder="0" min="1" max="1000000"
+                  step="100" data-parsley-trigger="keyup" data-parsley-minlength="1" class="form-control input_text" data-parsley-minlength-message="only Decimal"
+                  data-parsley-type="number" ng-change="show_price_one_pop()" data-parsley-type-message="only Decimal">
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label "> Discount Type<span class="required">*</span></label>
+              <div class="col-sm-8">
+                <select ng-disabled="check_item_readonly" ng-model="formData_price_data.supplier_type_11" ng-options="opt as opt.name for opt in list_type"
+                  ng-change="setSymbol_pop(1); show_price_one_pop()" class="select2me form-control" required>
+                  
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-4 control-label"> Discount </label>
+              <div class="col-sm-8">
+                <div class="input-symbol">
+                  <input ng-readonly="check_item_readonly" type="text" placeholder="0" min="1" max="1000" step="100" data-parsley-trigger="keyup"
+                    ng-change="show_price_one_pop()" data-parsley-minlength="1" ng-model="formData_price_data.discount_value_11"
+                    id="discount_value_11" class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number"
+                    data-parsley-type-message="only Decimal">
+                  <!--ng-show="show_symbol"-->
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label"> Discounted  Price </label>
+              <div class="col-sm-8 ">
+                <input data-parsley-required="true" class="form-control input_text" data-parsley-trigger="keyup" readonly ng-model="formData_price_data.discount_price_11"
+                  data-parsley-type="number" min="1" data-parsley-error-message="This value  must  be greater than  0." type="text"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info btn_blue width_80  " type="submit" ng-show="!check_item_readonly"><i class="fa fa-check   fa_display"></i> Submit</button>
+        <button class="btn btn-info btn_blue width_80  " type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit   fa_display"></i> Edit</button>
+        <button type="button" class="btn btn-default width_80  " data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>

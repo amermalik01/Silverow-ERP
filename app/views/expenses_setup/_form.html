@@ -1,0 +1,178 @@
+<div ng-include="'app/views/_breadcrumb.html'">
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget animated fadeIn">
+      <div class="widget-body nobg-widget-body"
+           style="    margin-top: 10px;">
+
+        <div class="row">
+          <form autocomplete="off"
+                class="form-horizontal no-margin"
+                role="form"
+                ng-submit="add(rec)"
+                name="addForm"
+                validate-form=""
+                novalidate="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Select Supplier<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="get_supplier();"><!-- getSupplierList -->
+                          <input type="text"
+                                 class="form-control "
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 ng-model="rec.supplier_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Accommodation<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(1);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 ng-model="rec.accomodation_gl_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Travel<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(2);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-model="rec.travel_gl_display_name"
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Communication<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(3);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 ng-model="rec.communication_gl_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Entertainment<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(4);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 ng-model="rec.entertainment_gl_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Food<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(5);">
+                          <input type="text"
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 class="form-control "
+                                 ng-model="rec.food_gl_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Misc<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(6);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 ng-model="rec.misc_gl_display_name"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Millage<span class="required"> *</span></label>
+                      <div class="col-md-8">
+                        <div class="input-symbol" ng-class="{'dont-click':setup_expense_readonly}"
+                             ng-click="getGLcode(7);">
+                          <input type="text"
+                                 class="form-control "
+                                 ng-model="rec.millage_gl_display_name"
+                                 ng-class="{'pickdate':!setup_expense_readonly}"
+                                 readonly />
+                          <!-- required -->
+                          <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-12">
+                <div class="pull-right">
+                  <button class="btn btn-submit  date_block"
+                          ng-class="{'whirl line back-and-forth dont-click':isSubmitting}"
+                          ng-if="!setup_expense_readonly"
+                          type="submit">Save</button>
+
+                  <button class="btn btn-cancel width_80"
+                          type="button"
+                          ng-if="setup_expense_readonly"
+                          ng-click="showEditForm()">Edit</button>
+                  <button class="btn btn-cancel width_80"
+                          type="button"
+                          ui-sref="{{btnCancelUrl}}">Cancel</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div ng-include="'app/views/expenses_setup/_gl_account_modal.html'"></div>
+<div ng-include="'app/views/_listing_supplier_single.html'"></div>

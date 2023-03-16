@@ -1,0 +1,57 @@
+<div ng-controller="ShowHideAddBtnController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div style="    background: #fff !important;
+        padding: 10px 15px 40px !important;
+        border-radius: 4px;
+        border: 1px solid !important;
+        border-color: #e5e6e9 #dfe0e4 #d0d1d5 !important;    margin-top: 4px !important;">
+      
+    <table ng-table="table.tableParams5">
+      <thead>
+        <tr>
+          <th style="padding: 5px 26px;text-align: left;">Description</th>
+          <th class="text-center"
+              style="padding: 5px 26px;"> Show</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 5px 26px;">
+            Sales Order
+          </td>
+          <td style="padding: 5px 26px;"
+              class="text-center">
+            <input type="checkbox" ng-model="rec.show_sales_add_btn" ng-disabled="check_readonly" ng-checked="rec.show_sales_add_btn" />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 5px 26px;">
+            Customer
+          </td>
+          <td style="padding: 5px 26px;"
+              class="text-center">
+            <input type="checkbox" ng-model="rec.show_customer_add_btn" ng-disabled="check_readonly" ng-checked="rec.show_customer_add_btn" />
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 5px 26px;">
+            Supplier
+          </td>
+          <td style="padding: 5px 26px;"
+              class="text-center">
+            <input type="checkbox" ng-model="rec.show_supplier_add_btn" ng-disabled="check_readonly" ng-checked="rec.show_supplier_add_btn"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pull-right">
+      
+      <a class="btn btn-edit" ng-click="change_passwords()" ng-if="0"> Change All Passwords </a>
+      <a class="btn btn-submit2" ng-if="!check_readonly" ng-click="add()"> Save</a>
+      <a class="btn btn-edit" ng-if="check_readonly" ng-click="ShowEditForm()"> Edit</a>
+      <a class="btn btn-cancel" ui-sref="app.setup"> Cancel</a>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

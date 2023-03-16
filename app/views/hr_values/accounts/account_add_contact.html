@@ -1,0 +1,139 @@
+<div class="row">
+<div class="col-md-12 col-md-12">
+<div class="widget">
+  <div class="widget-body">
+    <div class="row"> 
+      
+      <!-- ng-model="formData.telephone"-->
+      <input type="hidden" ng-model="open_tab_tabs" id="open_tab_tabs" name="open_tab_tabs" class="form-control" />
+      <input type="hidden"   ng-model="formData.eid" />
+      <input type="hidden"   ng-model="formData.employee_id" />
+      <input type="hidden"   ng-model="formData.tab_id_2"   value="22"/>
+      <div class="col-md-6 col-md-6">
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Address  </label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"     type="text" ng-model="formData.address_1" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Address 2 </label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"     type="text" ng-model="formData.address_2" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label "> City</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"    type="text" ng-model="formData.city" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">County </label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.country" 
+           class="form-control" />
+            
+            <!--    <select   ng-model="formData.country"  ng-options="opt as opt.name for opt in country_type_arr"
+              class="select2me form-control">
+                     </select>--> 
+            
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Postcode</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.post_code" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Country</label>
+          <div class="col-sm-7"> 
+            <!--   <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.post_code_country" 
+           class="form-control" />-->
+            
+            <select  ng-disabled="check_hrvalues_readonly"   
+         ng-model="formData.post_code_country" ng-options="opt as opt.name for opt in country_type_arr track by opt.id"
+      			 class="select2me form-control"  >
+              
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Internal Extension</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.internal_extention" 
+           class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-6">
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Work Telephone</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.work_phone" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Mobile Phone </label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"   type="text" ng-model="formData.mobile_phone" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Home Telephone</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.home_phone" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Personal Email</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.personal_email" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Work Email </label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"   type="text" ng-model="formData.work_email" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">Skype ID</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.skype_id" 
+           class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label ">LinkedIn ID</label>
+          <div class="col-sm-7">
+            <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.linked_id" 
+           class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="hr_line2"></div>
+        <div class="pull-right">
+        <button class="btn  btn-default" type="button" 
+            ng-show="hr_contact_module>0" ng-click="set_document_internal(hr_contact_module)"  > {{document_title}} </button>
+          <button class="btn btn_blue width_80" type="submit" ng-show="!check_hrvalues_readonly">  Save</button>
+          <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly">  Edit</button>
+          
+         
+          <button class="btn default width_80" type="button" ui-sref="{{btnCancelUrl}}">  Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

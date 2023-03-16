@@ -1,0 +1,134 @@
+<div ng-controller="PriceAdjustmentController as table">
+   
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12"></div>
+   
+  <div class="row">
+          <div class="col-lg-12"> <a  ng-if="allowadd_sale_price_adjustment_module"id="prompt" ui-sref="app.addPriceAdjustment" class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"></i> Add New</a> </div>
+        </div>
+        
+        
+  <!-- <div class="panel panel-default" ng-if="lstPromotion">
+  
+  <div class="panel-heading">
+      <h4 class="panel-title">{{lstPromotion.promotion_name}}</h4>
+    </div>
+  
+  <div class="panel-body">
+    <form class="form-horizontal no-margin">
+      <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <!-- <div class="form-group">
+                  <label class="col-lg-4 control-label"><strong>Price Adjustment Type:</strong></label>
+                  <div class="col-lg-8 control-label">
+                    {{lstPromotion.promotion_type}}
+                  </div>
+              </div> --
+              <div class="form-group">
+                  <label class="col-lg-6 control-label"><strong>Price Adjustment Type:</strong></label>
+                  <div class="col-lg-4 control-label">
+                    <span ng-if="lstPromotion.discount_type == 1">Percentage</span>
+                    <span ng-if="lstPromotion.discount_type == 2">Value</span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-6 control-label"><strong>Price Adjustment On:</strong></label>
+                  <div class="col-lg-4 control-label">
+                    <span ng-if="lstPromotion.product_promotion_type_id == 1">Category</span>
+                    <span ng-if="lstPromotion.product_promotion_type_id == 2">Brand</span>
+                    <span ng-if="lstPromotion.product_promotion_type_id == 3">Product</span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-6 control-label"><strong>Price Adjustment Applied On:</strong></label>
+                  <div class="col-lg-4 control-label">
+                    <span ng-if="lstPromotion.customer_product_type_id == 1">Customer Specific</span>
+                    <span ng-if="lstPromotion.customer_product_type_id == 2">Customer Location</span>
+                    <span ng-if="lstPromotion.customer_product_type_id == 3">Region</span>
+                    <span ng-if="lstPromotion.customer_product_type_id == 4">Segment</span>
+                    <span ng-if="lstPromotion.customer_product_type_id == 5">Buying Group</span>
+                  </div>
+              </div>
+              
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group">
+                  <label class="col-lg-4 control-label"><strong>Value:</strong></label>
+                  <div class="col-lg-8 control-label">
+                    <span ng-if="lstPromotion.discount_type == 1">{{lstPromotion.discount}}%&nbsp;&nbsp;{{increase_decrease}}</span>
+                    <span ng-if="lstPromotion.discount_type == 2">{{lstPromotion.discount}}{{lstPromotion.currency_code}}&nbsp;&nbsp;{{increase_decrease}}</span>
+                      
+                  </div>
+              </div>
+               
+              <div class="form-group">
+                  <label class="col-lg-4 control-label"><strong>Start Date:</strong></label>
+                  <div class="col-lg-8 control-label">
+                      {{convert_numeric_date_to_string(lstPromotion.start_date)}}
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-4 control-label"><strong>End Date:</strong></label>
+                  <div class="col-lg-8 control-label">
+                      {{convert_numeric_date_to_string(lstPromotion.end_date)}}
+                  </div>
+              </div>
+            </div>
+      </div>
+    </form>
+  </div>
+</div> --> 
+   
+  <div class="row">
+    <div class="col-lg-12 col-md-12" >
+      <div class="widget"> 
+       
+        <div class="widget-body1 ">
+          <div id="dt_example" class="example_alt_pagination"> 
+            
+             
+            
+         	<!--    View    permision for Company User /superadmin -->  
+        <table class="table table-condensed table-striped table-hover table-bordered" 
+        id="data-table" ng-table="table.tableParams5"show-filter="true"  ng-if="allowview_sale_price_adjustment_module==1">
+          <thead >
+                <tr class="bg-col">
+                  <th>promotion_name</th>
+                  <th>Price Adjustment Type</th>
+                  <th>Price Adjustment On</th>
+                  <th>Price Adjustment Applied On</th>
+                  <th>Value</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Action</th>
+              </thead>
+              <tbody class="table-body">
+                <!-- <tr ng-repeat-start="rec in $data" ng-class="{'bg-white':$index % 2 == 1}"> -->
+                <tr ng-repeat="rec in $data">
+                  <td >{{rec.promotion_name}}</td>
+                  <td ><span ng-if="rec.discount_type == 1">Percentage</span> <span ng-if="rec.discount_type == 2">Value</span></td>
+                  <td ><span ng-if="rec.product_promotion_type_id == 1">Category</span> <span ng-if="rec.product_promotion_type_id == 2">Brand</span> <span ng-if="rec.product_promotion_type_id == 3">Product</span></td>
+                  <td ><span ng-if="rec.customer_product_type_id == 1">Customer Specific</span> <span ng-if="rec.customer_product_type_id == 2">Customer Location</span> <span ng-if="rec.customer_product_type_id == 3">Region</span> <span ng-if="rec.customer_product_type_id == 4">Segment</span> <span ng-if="rec.customer_product_type_id == 5">Buying Group</span></td>
+                  <td><span ng-if="rec.discount_type == 1">{{rec.discount}}%&nbsp;&nbsp;</span> <span ng-if="rec.discount_type == 2">{{rec.discount}}{{rec.currency_code}}&nbsp;&nbsp;</span> <span ng-if="rec.increase_decrease == 1">Increase</span> <span ng-if="rec.increase_decrease == 2">Decrease</span></td>
+                  <td>{{convert_numeric_date_to_string(rec.start_date)}}</td>
+                  <td >{{convert_numeric_date_to_string(rec.end_date)}}</td>
+                   <!--   Edit    permision for Company User /superadmin -->  
+              <a title="Edit"   
+               ng-class="{'dont-click':allowedit_sale_price_adjustment_module==0}"
+               ui-sref="app.addPriceAdjustment({id:rec.id})"  class="btn"><i class="fa fa-edit"></i></a>
+               
+               
+               <!--    Delete   permision for Company User /superadmin -->  
+                 <a title="Delete" ng-if="allowdelete_sale_price_adjustment_module==1"  ng-click="delete(rec,$index,$data)" title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/sale_item_info/_customer_popup3.html'"></div>
+  <div ng-include="'app/views/sale_promotion/_exlude_product_popup.html'"></div>
+  <div ng-include="'app/views/price_adjustment/_detail_popup.html'"></div>
+</div>

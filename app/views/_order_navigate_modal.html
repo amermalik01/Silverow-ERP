@@ -1,0 +1,117 @@
+<div class="modal fade"
+     id="order_navigate_modal">
+    <div class="modal-dialog modal-md"
+         style="width:90%">
+        <!-- dragable -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"> Accounting Entries for {{navigate_title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row mb0">
+                    <div class="col-md-3"
+                         style="    margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search"
+                                   ng-model="searchKeyword.navigate_search">
+                            <span>
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div class="example_alt_pagination">
+                                    <table
+                                           class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table dont-wrap">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th> Posting Date </th>
+                                                <th> Document Type </th>
+                                                <th> Document Number </th>
+                                                <th> G/L No. </th>
+                                                <th> Name </th>
+                                                <th> Source No. </th>
+                                                <!-- <th ng-if="navigate_type == 1 || navigate_type == 2"> Finance Charges </th> -->
+                                                <!-- <th ng-if="navigate_type == 1 || navigate_type == 2"> External Document No. </th> -->
+                                                <th style="text-align: right"> Debit</th>
+                                                <th style="text-align: right"> Credit</th>
+                                                <th style="text-align: right;    padding-right: 16px;"> Amount<br />LCY
+                                                </th>
+                                                <!-- <th> Bal Account Type </th>
+                                                <th> Bal Account No. </th> -->
+                                                <th> User ID </th>
+                                                <th> Entry No. </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit ">
+                                            <tr
+                                                ng-repeat="entry in navigate_data | filter:searchKeyword.navigate_search">
+
+                                                <td>{{entry.posting_date}}</td>
+                                                <td>{{entry.document_type}}</td>
+                                                <td>{{entry.document_no}}</td>
+                                                <td>{{entry.gl_account_code}}</td>
+                                                <td>{{entry.description}}</td>
+                                                <td>{{entry.source_no}}</td>
+                                                <!-- <td ng-if="navigate_type == 1 || navigate_type == 2">{{entry.finance_charges}}</td> -->
+                                                <!-- <td ng-if="navigate_type == 1 || navigate_type == 2">{{entry.external_doc_no}}</td> -->
+                                                <td style="text-align: right">
+                                                    <span
+                                                          ng-if="entry.debit_amount != 0">{{entry.debit_amount | currency:"" }}
+                                                    </span>
+                                                    <span
+                                                          ng-if="entry.debit_amount == 0 && entry.DebitorCreditSign == 'D' && !(entry.credit_amount > 0)">0.00</span>
+                                                </td>
+                                                <td style="text-align: right">
+                                                    <span
+                                                          ng-if="entry.credit_amount > 0">{{entry.credit_amount | currency:"" }}
+                                                    </span>
+                                                    <span
+                                                          ng-if="entry.credit_amount == 0 && entry.DebitorCreditSign == 'C' && !(entry.debit_amount > 0)">0.00</span>
+                                                </td>
+                                                <td style="text-align: right;    padding-right: 14px;">
+                                                    {{entry.amount | currency:"" }}</td>
+                                                <!-- <td>{{entry.balancing_acc_type}}</td>
+                                                <td>{{entry.balancing_acc_no}}</td> -->
+                                                <td>{{entry.user_id}}</td>
+                                                <td>{{entry.transaction_id}}</td>
+
+                                            </tr>
+                                            <tr ng-if="navigate_data.length == 0">
+                                                <td colspan="10"
+                                                    class="text-center">No record found!</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                    <span
+                        ng-if="navigatePostingByName.length>0">Posted By {{navigatePostingByName}} On {{navigatePostingDate}}</span>
+                </div>
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

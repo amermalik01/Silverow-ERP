@@ -1,0 +1,137 @@
+<div class="widget">
+    <div class="widget-body widget_media_ipad">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h5 class="sales_heading">Debit Note</h5> -->
+                <h5 class="sales_heading" ng-if="show_order">Debit Note</h5>
+                <h5 class="sales_heading" ng-if="show_invoiceLabel">Posted Debit Note
+                    <!-- Debit Note Invoice -->
+                </h5>
+                <div class="col-md-3 col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Pay to Suppl. No.
+							
+						</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly}">
+                                <input type="text" id="billToSupplierNo" class="form-control" ng-disabled="check_sr_readonly" ng-model="rec.billToSupplierNo" ng-class="{'white_bg':!check_sr_readonly }" ng-click="!check_sr_readonly && get_suppliers_invoicing(1)" />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Name</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierName" class="form-control" ng-model="rec.billToSupplierName" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 1</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierAddress" class="form-control" ng-model="rec.billToSupplierAddress" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 2</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierAddress2" class="form-control" ng-model="rec.billToSupplierAddress2" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">City</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierCity" class="form-control" ng-model="rec.billToSupplierCity" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">County</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierCounty" class="form-control" ng-model="rec.billToSupplierCounty" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
+                        <div class="col-md-4 pr0">
+                            <input type="text" id="billToSupplierPostCode" class="form-control text-uppercase" ng-model="rec.billToSupplierPostCode" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                        <div class="col-md-4" style="padding-left: 5px;">
+                            <!-- <select class="form-control" disabled
+                                ng-model="rec.billToSupplierCountry" 
+                                ng-options="opt as opt.name for opt in country_type_arr">
+							</select> -->
+                            <input type="text" value="{{rec.billToSupplierCountry.code}}" class="form-control" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person </label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" style="padding-right: 29px;" class="form-control" id="billToSupplierContact" ng-model="rec.billToSupplierContact" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly }" ng-click="(!check_sr_readonly || check_pi_readonly) && getAltContact(2)"
+                                    readonly />
+                                <!-- <input type="hidden" id="billToSupplierContactID" class="form-control"
+									ng-model="rec.billToSupplierContactID" /> -->
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Telephone</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierTelephone" class="form-control" ng-model="rec.billToSupplierTelephone" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input type="text" id="billToSupplierEmail" class="form-control" ng-model="rec.billToSupplierEmail" ng-readonly="(bill_anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Payable Bank</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_srm_readonly || !allowedit_supplier_finance_tab }">
+                                <input type="text" readonly id="bank_name" class="form-control" ng-model="rec.payable_bank" ng-click="getBankAccount()" style="padding-right: 29px;" ng-disabled="(check_sr_readonly && !check_pi_readonly) || !allowedit_supplier_finance_tab" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly && allowedit_supplier_finance_tab }"
+                                />
+                                <input type="hidden" ng-model="rec.bank_account_id" id="bank_account_id" class="form-control" />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Payment Terms</label>
+                        <div class="col-md-8">
+                            <select class="form-control" ng-model="rec.payment_terms_codes" ng-disabled="(check_sr_readonly && !check_pi_readonly) || !allowedit_supplier_finance_tab" ng-options="opt.name for opt in arr_srm_payment_terms track by opt.id">
+								<option value="" disabled selected>Select Payment Terms</option>
+							</select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Payment Method</label>
+                        <div class="col-md-8">
+                            <select class="form-control" ng-model="rec.payment_method_ids" ng-disabled="(check_sr_readonly && !check_pi_readonly) || !allowedit_supplier_finance_tab" ng-options="opt.name for opt in arr_srm_payment_methods track by opt.id">
+								<option value="" disabled selected>Select Payment Method</option>
+							</select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label ">Currency </label>
+                        <div class="col-md-8">
+                            <select class="form-control" ng-model="rec.currency_id" ng-disabled="bill_anonymousSupplierFlag || check_sr_readonly" ng-options="opt as opt.code +' - '+ opt.name for opt in arr_currency track by opt.id">
+								<option style="display:block" value=""></option>
+							</select>
+                            <!-- ng-disabled="check_sr_readonly" -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/orders/_listing_modal_bank_order.html'"></div>

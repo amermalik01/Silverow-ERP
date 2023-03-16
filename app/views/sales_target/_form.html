@@ -1,0 +1,303 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}">
+</toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="">
+      <div class="widget" style="    margin-top: 10px;">
+        <div class="widget-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Sales Target No.</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" ng-readonly="product_type" ng-model="rec.sale_code" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Salesperson
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <div class="input-symbol" ng-class="{'dont-click':saleTargetReadonly}">
+                      <input type="text" class="form-control " ng-model="rec.sale_person_name" ng-click="getSalePerson_single()"
+                       ng-class="{'white_bg':!saleTargetReadonly}" readonly ng-disabled="saleTargetReadonly"
+                      />
+                      <span>
+                        <i class="fa fa-external-link"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Start Date
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <input jqdatepicker ng-class="{'pickdate':!saleTargetReadonly}" ng-disabled="saleTargetReadonly" class="form-control" id="ck_sdate" required readonly ng-model="rec.starting_date">
+                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Data Type
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-8">
+                    <select class=" form-control" required ng-disabled="saleTargetReadonly" ng-model="rec.data_type" ng-change="clearDataTypeArray(rec.data_type.id)"
+                      ng-options="opt as opt.name for opt in arrDataType">
+                      <option selected="selected" disabled value="">Select Data Type</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label class="col-md-4 control-label">Status </label>
+                  <div class="col-md-7">
+                    <select class="form-control" 
+                      ng-model="rec.status" 
+                      ng-options="opt as opt.label for opt in arr_status" 
+                      ng-disabled="saleTargetReadonly">
+                      <option style="display:block" value=""></option>
+                    </select>
+                  </div>
+                </div> -->
+
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Increase Revenue </label>
+                  <div class="col-md-8">
+                    <div class="input-symbol">
+                      <input type="number" min="0" class="form-control" ng-readonly="saleTargetReadonly" ng-model="rec.increment" />
+                      <span>&#37;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 col-md-offset-2">
+                <div ng-if="rec.data_type.id>0">
+                  <div ng-if="rec.data_type.id!=1">
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Customer Type </label>
+                      <div class="col-md-8">
+                        <select class=" form-control" ng-model="rec.target_type" ng-options="opt as opt.name for opt in arr_sale_type" ng-change="onChangeType(rec.target_type.id)"
+                          ng-disabled="saleTargetReadonly">
+                          <option selected="selected" disabled value="">Select Customer Type</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-if="rec.target_type.id>0">
+                      <label class="col-md-4 control-label ">{{rec.target_type.name}} (s) </label>
+                      <div class="col-md-8">
+                        <div title="{{selectedCustomerGroupTooltip}}" ng-if="rec.target_type.id == 7">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedGroups.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getGroups()">
+                              <aside>
+                              </aside>
+                              <span ng-repeat="prod in selectedGroups track by $index">
+                                {{prod.name + "(" + prod.customer_code + "); "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div title="{{selectedCustomerGroupTooltip}}" ng-if="rec.target_type.id != 7">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedGroups.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getGroups()">
+                              <aside>
+                              </aside>
+                              <span ng-repeat="prod in selectedGroups track by $index">
+                                {{prod.title + "; "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-if="rec.target_type.id==4 || rec.target_type.id==5 || rec.target_type.id==6">
+                      <label class="col-md-4 control-label ">Excluded Customer(s)</label>
+                      <div class="col-md-8">
+                        <div title="{{selectedExcludedCUSTTooltip}}">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedExcludedCUST.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getExcludedCust()">
+                              <aside>
+                              </aside>
+                              <span ng-repeat="prod in selectedExcludedCUST track by $index">
+                                {{prod.name + "(" + prod.customer_code + "); "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div ng-if="rec.data_type.id!=2">
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Product Type </label>
+                      <div class="col-md-8">
+                        <select class=" form-control" ng-model="rec.product_promotion_type_id" ng-options="opt as opt.name for opt in arr_prod_promo_type"
+                          ng-change="onProdChangeType(rec.product_promotion_type_id.id)" ng-disabled="saleTargetReadonly">
+                          <option selected="selected" disabled value="">Select Product Type</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-if="rec.product_promotion_type_id.id>0">
+                      <label class="col-md-4 control-label ">{{rec.product_promotion_type_id.name}} (s) </label>
+                      <div class="col-md-8" ng-if="rec.product_promotion_type_id.id==3">
+                        <div title="{{selectedProductsTooltip}}">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedProducts.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getProducts()">
+                              <aside>
+                              </aside>
+                              <!-- {{selectedProducts.description + "(" + selectedProducts.product_code + "); "}} -->
+                              <span ng-repeat="prod in selectedProducts track by $index">
+                                {{prod.description + "(" + prod.product_code + "); "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8" ng-if="rec.product_promotion_type_id.id==1 || rec.product_promotion_type_id.id==2">
+                        <div title="{{selectedSaleTargetItemsTooltip}}">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedProducts.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getProducts()">
+                              <aside>
+                              </aside>
+                              <span ng-repeat="prod in selectedProducts track by $index">
+                                {{prod.title + "; "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-if="rec.product_promotion_type_id.id==1 || rec.product_promotion_type_id.id==2">
+                      <label class="col-md-4 control-label ">Excluded Product (s)</label>
+                      <div class="col-md-8">
+                        <div title="{{selectedExcludedProdTooltip}}">
+                          <div class="panel-info pi2" ng-class="{'dont-click readonly':saleTargetReadonly,'max-height':selectedExcludedProd.length>5 }">
+                            <div class="panel-body " ng-click="!saleTargetReadonly && getExcludedProd()">
+                              <aside>
+                              </aside>
+                              <span ng-repeat="prod2 in selectedExcludedProd track by $index">
+                                {{prod2.description + "(" + prod2.product_code + "); "}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group" ng-if="rec.product_promotion_type_id.id==3">
+                      <label class="col-md-4 control-label">Target Type
+                        <span class="required">*</span>
+                      </label>
+                      <div class="col-md-8">
+                        <select class=" form-control" required ng-disabled="saleTargetReadonly" ng-model="rec.fix_target_type" ng-options="opt as opt.name for opt in arr_fix_target_type">
+                          <option selected="selected" disabled value="">Select Target Type</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 clearfix" style="    margin-top: 20px;">
+                <div class="pull-left">
+                  <button style="margin-left: 0;" class="btn btn-default2" type="button" id="equalSpread" ng-disabled="saleTargetReadonly" ng-click="generateTarget(rec)">Generate Target</button>
+                  <button class="btn btn-default2" type="button" id="equalSpread" ng-disabled="saleTargetReadonly" ng-click="generateTargetGraph()">Generate Graph</button>
+                </div>
+                <div class="pull-right">
+                  <button class="btn btn-delete active-btns" type="button" ng-show="formData.id>0 &&  allowdelete_sale_forcast_module==1 && !saleTargetReadonly"
+                    ng-click="delete()"> Delete </button>
+                  <button class="btn btn-submit date_block pic_block cur_block" type="submit" ng-show="!saleTargetReadonly && allowadd_sale_target_module==1 && allowview_sale_target_module==1 && allowedit_sale_target_module==1"
+                    ng-click="update_main()">
+                    <i class="fa fa-check fa_display"></i> Save </button>
+                  <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="saleTargetReadonly && allowadd_sale_target_module==1 && allowview_sale_target_module==1 &&  allowedit_sale_target_module==1">
+                    <i class="fa fa-edit fa_display"></i> Edit </button>
+                  <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">
+                    <i class="fa fa-undo fa_display"></i> Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row" style="margin-top: -5px;">
+  <div class="col-md-12">      
+        <div ng-show="targetsChk" class="widget-body2">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-9">
+                <canvas id="myChartJs" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-series="series"
+                  chart-colors="colorsBorders" chart-dataset-override="datasetOverride">
+                </canvas>
+              </div>
+              <div class="col-md-3">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="color: black;">Targets</th>
+                      <!-- <th style="color: black;">Target</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="monthId in monthSeries track by $index">
+                      <td style="padding-right: 20px;">
+                        <b>{{monthLookup[monthId]}}</b>
+                      </td>
+                      <td>
+                        <input style="border-top-right-radius: 0; border-bottom-right-radius: 0;" id="{{'monthId'+$index}}" type="number" ng-model="dataSets[0].data[$index]" 
+                        ng-blur="updateChart();" class="form-control" />
+                      </td>
+                      <!-- <td>
+                        <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;margin-left: -1px;" type="number" class="form-control" />
+                      </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- <tab heading="Quarterly">
+        <div class="widget-body2">
+          Quarterly Graph
+        </div>
+      </tab>
+      <tab heading="Annually">
+        <div class="widget-body2">
+          Annually Graph
+        </div>
+      </tab> -->
+  </div>
+</div>
+<div ng-include="'app/views/srm/_SrmEmployee_modal.html'"></div>
+<div ng-include="'app/views/srm_order/_listing_prod_modal.html'"></div>
+<div ng-include="'app/views/sales_target/_excludedProdModal.html'"></div>
+<div ng-include="'app/views/sales_target/_promotion_type_pop.html'"></div>
+<div ng-include="'app/views/sales_target/_customerTypeModal.html'"></div>
+<div ng-include="'app/views/sales_target/_excludedCustModal.html'"></div>
+<div ng-include="'app/views/sales_target/_commision_pop.html'"></div>
+<div ng-include="'app/views/sales_target/_saleTargetFrequencyModal.html'"></div>
+
+
+<div ng-include="'app/views/sales_target/_level_popup.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>
+<div ng-include="'app/views/sales_target/_link_to_popup.html'"></div>
+<div ng-include="'app/views/_conform_to_continue.html'"></div>
+
+
+
+<!-- <div class="row" ng-repeat="monthId in monthSeries track by $index">
+                  <label for="{{'monthId'+$index}}" class="col-md-3">{{monthLookup[monthId]}}</label>
+                  <div class="col-md-3">
+                    <input id="{{'monthId'+$index}}" type="number" 
+                      ng-model="dataSets[0].data[$index]" 
+                      ng-blur="updateChart();"/>
+                  </div>
+                </div> -->

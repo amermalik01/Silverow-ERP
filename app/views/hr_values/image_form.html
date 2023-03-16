@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body animated fadeIn">
+                <div class="row" >
+                    <div class="col-md-12">
+                      <div class="panel-title2">Images</div>
+                      <div class="col-md-5" style="border-right: 1px solid #e8e8e8;">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> Code </label>
+                            <div class="col-sm-6">
+                                <input readonly type="text" ng-model="formData_images.document_code" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Name <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                <input ng-readonly="check_doc_readonly" type="text" ng-model="formData_images.document_title" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label "> Folder </label>
+                            <div class="col-sm-6">
+                                <select ng-disabled="check_doc_readonly" ng-model="formData_images.folder_id" ng-options="opt as opt.name for opt in list_folder" class=" form-control" ng-change="onChange_folder_image()" id="case_folder">
+                     <option value="" disabled selected>Select</option>
+                  </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-5">
+                      <div class="form-group">
+                          <div class="col-sm-2">
+                              <div class="fileUpload col-sm-7" style="width: 113px !important;color: #2196F3;"> <span>Upload Image</span>
+                                  <input type="file" ng-required="display_error" ngf-select="uploadFiles($file, $invalidFiles)" name="file" accept=".gif, .jpg, .png, .doc, .docx,.pdf" class="upload" ngf-max-size="2MB" />
+                                  <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size & Format JPG, Word or PDF</span> </div>
+                          </div>
+                          <div ng-if="formData_images_data">
+                              <div class="col-md-12 col-sm-6 col-md-offset-3">
+                                  <div>
+                                      <div>
+                                          <div> <span ng-repeat="attachment in formData_images_data">
+
+                       <a class="defaultimage"> <img src="{{imagePath+attachment.response}}" class="d1img" />
+                          <!-- <span class="animated fadeIn"> <img src="{{imagePath+attachment.response}}"/> </span> </a> -->
+                                              </span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="col-md-12">
+                      <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-submit" type="submit" ng-show="!check_doc_readonly"> Save</button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditForm_document_general()" ng-show="check_doc_readonly"> Edit</button>
+                            <button class="btn btn-cancel" type="button" ng-click="get_image()"> Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

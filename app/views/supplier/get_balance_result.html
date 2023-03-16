@@ -1,0 +1,32 @@
+<style>
+    table .longwidth th {
+        min-width: 130px;
+    }
+</style>
+<div class="row">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+        <div class="col-md-12">
+            <div ng-if="supplierActivitytableData.data.ack"
+                 style="margin-top: 18px;">
+                <div class="flexiTable"
+                     x-generate-table
+                     x-forget-filters="true"
+                     x-data="supplierActivitytableData.data"
+                     x-table-name="SupplierActivity"
+                     x-filter-function="get_balance_info()"
+                     x-filter-object="searchKeyword">
+                </div>
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<div ng-include="'app/views/general_ledger/payment_invoice_list.html'"></div>
+<div ng-include="'app/views/general_ledger/get_invoice_payed_list.html'"></div>
+<div ng-include="'app/views/general_ledger/_invoice_for_payment_list.html'"></div>
+<div ng-include="'app/views/general_ledger/_invoice_for_allocated_list.html'"></div>
+<div ng-include="'app/views/_on_hold_comment.html'"></div>

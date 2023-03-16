@@ -1,0 +1,276 @@
+
+<div ng-include="'app/views/_breadcrumb.html'"  ></div>
+<div class="row" ng-show="journal_list">
+  <div class="col-md-12">
+    <form class="form-horizontal no-margin" ng-submit="get_main_journal()"  >
+      <div class="col-md-5 col-md-5">
+        <div class="form-group">
+          <div class="col-sm-7">
+            <div class="input-symbol">
+              <input type="text" ng-model="rec.serachkeyword" placeholder="Code" class="in-t-1"  />
+              <!-- <input type="submit"  style="display:none"   />--> 
+              <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+          </div>
+          <div class="col-sm-4">
+            <select    ng-model="rec.status"
+            ng-options="opt as opt.name for opt in acc_basic_type"  ng-change="get_main_journal();"
+                   class="in-t-1">
+              <option style="display:none" value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="col-md-7 col-md-7"> <a id="prompt" ng-click="show_add_main_journal()"   class="btn btn_add pull-right">Add</a> </div>
+  </div>
+  <div class="col-md-12" style="    margin-top: 16px;">
+    <table class="table table-striped table-bordered narrow_table small_fields">
+      <thead>
+        <tr class="bg-col">
+          <th ng-repeat="column in columns_main" ng-if="column.field != 'id'  "   ng-show="columns_main.length > 0"> {{column.title}}</th>
+          <th style=" width:10% !important; ">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="recmian in array_main  track by $index"       ng-show="columns_main.length > 0">
+          <td ng-repeat="column in columns_main" ng-if="column.field != 'id' "> {{recmian[column.field]}} </td>
+          <td><a ng-show="rec.status.id ==1" title="Edit"  ng-click="show_edit_main_journal(recmian.id)"  class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a> <a  ng-show="rec.status.id ==1"  title="Delete" ng-click="delete_gl_journal(recmian.id,$index,array_main,recmian.discount_value)"
+                          class="tooltips_clss btn"><i class="fa fa-times"> </i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" ng-show="journal_form">
+  <div class="col-md-12 "  >
+    <div class="nav nav-tabs" style="padding-bottom: 21px !important;">
+      <form class="form-horizontal no-margin" autocomplete="off"   ng-submit="add_main_journal()"   role="form" validate-form="" novalidate="">
+        <input type="hidden" ng-model="array_journal_form.id"  class="in-t-1" />
+        <div >
+          <div class="col-md-3">
+            <label class="control-label ">Code<span class="required">*</span> </label>
+            <input ng-readonly="product_type" type="text" ng-model="array_journal_form.acc_code" 
+              required class="form-control"/>
+            <input type="hidden" ng-model="array_journal_form.code_type"/>
+            <input type="hidden" ng-model="array_journal_form.acc_no"/>
+          </div>
+          <div class="col-md-3">
+            <label class="  control-label "> Journal Name </label>
+            <input ng-readonly="readonly_journal"   
+              type="text"    
+            ng-model="array_journal_form.acc_description"
+           class="in-t-1 input_text"   >
+          </div>
+          <div class="col-md-2">
+            <label class="  control-label"> Date </label>
+            <div class="">
+              <input jqdatepicker class="2date-picker in-t-1"     ng-model="array_journal_form.journal_date"  ng-disabled="readonly_journal"
+              readonly="">
+              <!--<span class="fa fa-calendar  new_ca  in-t-1-feedback"></span>--> </div>
+          </div>
+          <div class="col-md-2">
+            <label class=" control-label ">Save as Template </label>
+            <div class=""><!--ng-change="get_temp_data(array_journal_form.template_id.id)";-->
+              <select ng-disabled="readonly_journal "  ng-model="array_journal_form.template_id"
+
+                 ng-options="opt as opt.name for opt in template_arr"   class="in-t-1">
+                <option style="display:block" value=""></option>
+              </select>
+            </div>
+          </div>
+          
+          <!--<div class="col-md-1">
+            <label class=" control-label ">Repeater </label>
+            <div class=""> 
+              <select ng-disabled="readonly_journal "  ng-model="array_journal_form.repeat_type"
+             
+                 ng-options="opt as opt.name for opt in repeat_arr"   class="in-t-1">
+                <option style="display:block" value=""></option>
+              </select>
+            </div>
+          </div>-->
+          <div class="col-md-2">
+            <div class="pull-right">
+              <button class="btn btn_add" type="submit"  
+     style="margin-top:27px;"><i class="fa fa-check fa_display"></i> {{main_title}} </button>
+              <button class="btn btn-cancel" type="button" 
+      style="margin-top:27px;"   ng-click="get_main_journal(1)" ><i   class="fa fa-undo fa_display"></i> Cancel </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div ng-show="array_journal_form.id>0">
+    <div class="col-md-12 " style="margin-top:20px;">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Journal Details </h3>
+          <!--<a ng-click="addNewChoice(rec_data,$index)" class="btn btn_add" style="position: absolute;right: 17px;top: 28px;">Add</a>--> </div>
+        <div class="panel-body"   >
+          <table class="table table-striped table-bordered narrow_table small_fields">
+            <thead>
+              <tr>
+                <th style=" width:15% !important; ">Account Type </th>
+                <th >Account Number</th>
+                <th >Description </th>
+                <th >Debit </th>
+                <th >Credit </th>
+               
+                <!-- <th >Currency</th>
+                <th >Converted Price</th-->
+                <th style=" width:10% !important; ">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--ng-show="array_jl_journal.length>0" -->
+              <tr   data-ng-repeat="formDataExpense in array_jl_journal 
+              track by $index"  >
+                <td     ><select   ng-model="formDataExpense.module_type"  ng-options="opt as opt.name for opt in sale_type_array"
+                  class="in-t-1"    required   ng-change="addNewChoice(formDataExpense,$index)"
+                   >
+                    <option style="display:block" value=""></option>
+                  </select></td>
+                <td  ><input type="text" ng-model="formDataExpense.account_code" required
+               class="  in-t-1" ng-click="getpurchaseGL(formDataExpense,$index)"     />
+                  <input type="hidden" ng-model="formDataExpense.account_id"  /></td>
+                <td   ><input  
+              type="text"   
+            ng-model="formDataExpense.acc_description"    
+           class="in-t-1 input_text"  ></td>
+                <td   ><input  
+              type="text"   data-parsley-trigger="keyup" 
+            ng-model="formDataExpense.debit_amount"   ng-blur="validatePrice(formDataExpense,'lev2')"
+           class="in-t-1 input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" ></td>
+                <td  ><!--<select      ng-model="formDataExpense.tran_type"  ng-options="opt as opt.name for opt in discount_type_array" class="in-t-1"   >
+                    <option style="display:block" value=""></option>
+                  </select>-->
+                  
+                  <input  
+              type="text"   data-parsley-trigger="keyup" 
+            ng-model="formDataExpense.credit_amount"   ng-blur="validatePrice(formDataExpense,'lev1')"
+           class="in-t-1 input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" ></td>
+                
+                <!--  <td   ><select   ng-model="formDataExpense.currency_id"
+                ng-change=" validatePrice(formDataExpense,'loop',$index)"
+                 ng-options="opt as opt.code +' - '+ opt.name for opt in arr_currency"   class="in-t-1">
+                    <option style="display:block" value=""></option>
+                  </select></td>
+                <td><div class=" input-symbol">
+                    <input type="text" ng-model="formDataExpense.converted_price"   class="form-control "
+                     readonly />
+                    <span  > {{defaultCurrencyCode}} </span></div></td>-->
+                
+                <td style=" width:10% !important; "><!--<a title="Edit"  ng-click="edit_gl_journal(formDataExpense.id)"
+                       class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a>--> 
+                  
+                  <a ng-click="delete_gl_journal(formDataExpense.id,$index,array_jl_journal)"
+                      title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+              </tr>
+              <tr     >
+                <td  colspan="2"></td>
+                <td  colspan="1">Total</td>
+                <td style=" width:10% !important; "><div style="font-size: 14px;font-weight: 600;"> {{debit_total | number:decimal_range}} </div></td>
+                <td style=" width:10% !important; "><div style="font-size: 14px;font-weight: 600;"> {{credit_total | number:decimal_range}} </div></td>
+                <td  colspan="2"></td>
+              </tr>
+              <tr     >
+                <td  colspan="2"></td>
+                <td  colspan="1">Difference</td>
+                <td  colspan="2"   ><div style="font-size: 14px;font-weight: 600;"> {{netBalance() | number:decimal_range}} <span ng-if="netBalance()>0" >Dr</span> <span ng-if="netBalance()<0" >Cr</span> </div></td>
+                <td  colspan="2"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-md-12 no-padding">
+            <hr/>
+            <div class="pull-right "  ng-show="array_jl_journal.length > 0">
+              <button class="btn btn-default " type="submit" 
+               ng-class="{'dont-click setshow':netBalance()!=0}" 
+                ng-click="(netBalance()==0 && backend_data==1) && convert_posting(array_submit_jurnal)" style="margin-left:5px;"> <i class="fa fa-check fa_display"></i> Posting</button>
+              <button class="btn btn-cancel" type="button" 
+         ng-click="get_main_journal(1)" style="margin-left:5px;"> <i   class="fa fa-undo fa_display"></i> Cancel </button>
+              <button class="btn btn-submit cur_block  " type="button" ng-click="add_gl_journal()">Save </button>
+              <!--<button type="button" class="btn btn-default" ng-click="clear_search()"     > Clear </button>--> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/_conform_to_continue.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div id="financePurchase" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{$scope.formDataExpense.module_type.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty"
+                                       ng-model="searchKeyword">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-body" style="    max-height:400px;">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered table-hover1">
+                    <thead>
+                      <tr class="">
+                        <th width="50%"> Code</th>
+                        <th width="50%">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="courser table-body">
+                      <tr ng-repeat="record in category_list  | filter: searchKeyword"  ng-click="assignCodes(record);">
+                        <td>{{record.code}}</td>
+                        <td>{{record.name}}</td>
+                      </tr>
+                      <tr ng-if="category_list.length == 0">
+                        <td colspan="2" class="text-center">No record found!</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12" ng-show="item_paging.total_pages > 1">
+            <div class="form-group" style="text-align: left;">
+              <ul class="pagination" style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                        ng-click="itemselectPage(item_paging.ppage); getpurchaseGL();"
+                                        href="javascript: void(0);" class="">&#xab;</a></li>
+                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}"><a
+                                        ng-click="itemselectPage(value); getpurchaseGL();"
+                                        href="javascript: void(0);"><span
+                                        ng-bind="value"></span></a></li>
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                        ng-click="itemselectPage(item_paging.npage); getpurchaseGL();"
+                                        href="javascript: void(0);">&#xbb;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

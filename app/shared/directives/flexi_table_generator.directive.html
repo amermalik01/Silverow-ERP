@@ -1,0 +1,768 @@
+<style>
+    .flexiTable .form-control {
+        position: initial;
+    }
+
+    .flexi_search_btn {
+        margin-left: 3px;
+        padding-bottom: 0;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-right: -4px;
+        padding: 3px 11px;
+        color: #1d9622;
+        background: #ffffff;
+        font-weight: bold;
+        box-shadow: 0 5px 14px 0 rgba(50, 50, 93, .1), 0 1px 6px 0 rgba(0, 0, 0, .07);
+    }
+
+    .flexi_clear_btn:hover {
+        cursor: pointer;
+        background: #929292;
+        color: white;
+    }
+
+    .flexi_search_btn:hover {
+        cursor: pointer;
+        background: #4fb354;
+        color: white;
+    }
+
+    .flexi_clear_btn {
+        margin-left: 7px;
+        padding-bottom: 0;
+        border-radius: 10px;
+        font-size: 11px;
+        margin-right: -4px;
+        padding: 3px 11px;
+        color: #4a4a4a;
+        background: #ffffff;
+        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+
+<div>
+    <div class="tableSettings"
+         ng-init="showFilters=((reportModal && tableName != 'haulierLoc') || 1 )? true:false">
+        <a data-toggle="modal"
+           ng-click="copySettings();"
+           ng-if="!(reportModal || data.response.tbl_meta_data.response.tblMeta.hideSetup)"
+           title="Table Customisation"
+           data-target="#flexiSettingsModal_{{tableName}}">
+            <i class="fa fa-cog"></i>
+        </a>
+        <a ng-click="showFilters = !showFilters"
+           ng-class="{'no-margin':(reportModal || data.response.tbl_meta_data.response.tblMeta.hideSetup)}"
+           title="Filter(s)"
+           
+           ng-class="{'activebtn':showFilters == 1}"
+           style="margin-left: 5px;"
+           ng-hide="!isEmpty(filterObject) && tableName != 'haulierLoc'">
+            <i class="fa fa-filter"></i>
+        </a><!-- ng-if="tableName != 'haulierLoc'" -->
+
+        <a ng-click="clearFilterObject()"
+           ng-class="{'no-margin':(reportModal || data.response.tbl_meta_data.response.tblMeta.hideSetup)}"
+           ng-show="!isEmpty(filterObject) && tableName != 'haulierLoc'"
+           style="margin-left: 5px;"
+           title="Clear Filter(s)">
+            <i class="fa fa-times"
+               style="color:black;"
+               aria-hidden="true"></i>
+        </a>
+
+        <input type="checkbox"
+               ng-disabled="readOnly == 1"
+               ng-if="checkedRecords"
+               ng-init="checkboxColumn = true;toggleCheckboxColumn()"
+               ng-checked="checkboxColumn"
+               style="visibility: hidden;width: 0px;position: absolute;left: 43px;top: 4px;">
+        <!-- ng-click="toggleCheckboxColumn()" -->
+    </div>
+
+    <a data-toggle="popover"
+       data-html="true"
+       class="exportFile"
+       style="left: 52px;padding: 1px 9px;"
+       title="Help"
+       tabindex="0"
+       ng-class="{'move-left-help':(reportModal || data.response.tbl_meta_data.response.tblMeta.hideSetup)}"
+       class="widthcontainer"
+       ng-if="!reportModal"
+       data-trigger="focus"
+       data-content="   <ol style='font-size: 11px;'><li>Press <b>Enter</b> to perform a search after inserting the query.</li>
+                             <li>By default Autosize Columns is disabled.</i></li>
+                             <li>Type <b>NULL</b> to search for empty fields.</li>
+                             <li>Click <i class='fa fa-cog'></i> to customize table.</li>
+                        </ol> <span style='font-size: 10px;color: gray;text-align: right;display: block;margin-top: 3px;'>Click anywhere to dismiss this popover.</span>">
+        <i class="fa fa-question"
+           aria-hidden="true"></i>
+
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
+    </a>
+    <a ng-click="exportAsCSV();"
+       class="exportFile"
+       ng-class="{'move-left-excel':(reportModal || data.response.tbl_meta_data.response.tblMeta.hideSetup)}"
+       ng-if="!reportModal && allowviewcsv_export"
+       title="Export as CSV">
+        <i class="fa fa-file-excel-o"
+           aria-hidden="true"></i>
+    </a>
+<!-- bulkEmailFunction() -->
+    <a ng-click="checkbulkEmailFunction()"
+       class="exportFile"
+       ng-if="checkedRecords && !reportModal"
+       style="margin-left: 30px;padding-bottom: 1px;"
+       title="More Options">
+        <i class="fa fa-external-link"
+           aria-hidden="true"></i>
+    </a>
+
+    <!-- ng-if="!reportModal" -->
+    <div class="tableSettings2"
+         ng-show="!isEmpty(filterObject)"
+         ng-class="{'tableSettings3': reportModal,'move-left-search':(!reportModal && data.response.tbl_meta_data.response.tblMeta.hideSetup),
+                     'move-right-search': checkedRecords && !reportModal,'tableSettings4': !allowviewcsv_export}">
+        <a ng-click="addToConfig(1, $event)"
+           class="flexi_search_btn"
+           ng-if="tableName != 'haulierLoc'"
+           ng-show="!isEmpty(filterObject)">
+            Search
+        </a>
+    </div>
+
+    <div ng-if="!isEmpty(filterObject)"
+         class="flexiTagHolder">
+        <h5 style="    margin: 1px 0 7px 0;">
+            <i class="fa fa-tag"
+               aria-hidden="true"></i> Filtering by : </h4>
+            <span style="    margin-left: 15px;
+        display: block;">
+                <span ng-if="value.trim() != '' && filterType(key) == 'string'"
+                      ng-repeat="(key,value) in filterObject">
+                    <span class="flexiTableTag">
+                        <strong>{{getColumnName(key)}}: </strong>{{value}}
+                        <a ng-click="filterObject[key]=''; addToConfig()"
+                           class="flexiTagDel">x</a>
+                    </span>
+                </span>
+
+                <span ng-if="value.trim() != '' && filterType(key) == 'object'"
+                      ng-repeat="(key,value) in filterObject">
+                    <span ng-if="value2.trim() != ''"
+                          ng-repeat="(key2,value2) in value">
+                        <span class="flexiTableTag">
+                            <span ng-if="key2 == 'lowerLimit'">
+                                <strong>{{getColumnName(key)}} (Low): </strong>{{value2}}</span>
+                            <span ng-if="key2 == 'upperLimit'">
+                                <strong>{{getColumnName(key)}} (Up): </strong>{{value2}}</span>
+                            <a ng-click="filterObject[key][key2] = ''; addToConfig()"
+                               class="flexiTagDel">x</a>
+                        </span>
+                    </span>
+                </span>
+            </span>
+            <a ng-click="clearFilterObject()"
+               ng-show="!isEmpty(filterObject)"
+               class="btn btn-default2">Clear all</a>
+    </div>
+
+
+
+    <!-- <div ng-if="orderArr.length" style="margin-top: 15px; margin-bottom: 5px;">
+        <span style="" ng-repeat="orderItem in orderArr track by $index">
+            <span style="background: white; border: 1px solid rgb(212, 212, 212); padding: 2px 5px; margin-right: 5px;">
+                {{getColumnName(orderItem)}} - {{getOrderIcon(orderItem)}}
+                <i ng-if="getOrderIcon(orderItem) == 'a'" class="fa fa-angle-down" aria-hidden="true"></i>
+                <i ng-if="getOrderIcon(orderItem) == 'd'" class="fa fa-angle-up" aria-hidden="true"></i>
+                <a style="cursor: pointer" ng-click="orderArr.splice($index,1);">x</a>
+            </span>
+        </span>
+    </div> -->
+
+    <div class="headerContainer horizontal1 scrollme_{{tableName}}">
+        <div class="pinnedHeader"
+             ng-if="pinnedCols.length"
+             ng-style="{'z-index': 1,'width': calculateWidth([pinnedCols],'pinnedHeader') }">
+            <table class="pinned"
+                   width="">
+                <thead>
+                    <tr>
+                        <th ng-show="checkboxColumn"
+                            class="flexiCheckbox">
+                            <input type="checkbox"
+                            ng-disabled="data2.response == undefined || data2.response.length == 0 || !data2.response[0].id || readOnly == 1"                            
+                                   ng-click="toggleAllRecordCheck()"
+                                   ng-checked="checkAllRecordChecked()"
+                                   name=""
+                                   id="">
+                        </th>
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title), 'text-align': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? 'right' : 'left'}"
+                            ng-if="header.visible == '1'"
+                            class="flexiCol {{header.custom_classes}} {{header.custom_classesHeader}} pinnedCol "
+                            ng-repeat="header in pinnedCols">
+                            <span ng-style="{'padding-right': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? '10px' : '0'}"
+                                style="cursor: pointer;"
+                                ng-class="{'relocateHeaderUp':!(calculateSum(header)),'relocateHeaderDown':showFilters && !(calculateSum(header))}"
+                                  title="{{header.title}}"
+                                  ng-click="!(header.disableSearch) && updateOrder(header)">
+                                {{header.title}}
+                                <i ng-if="getOrderIcon(header.field_name) == 'a'"
+                                   class="fa fa-sort-asc"
+                                   aria-hidden="true"></i>
+                                <i ng-if="getOrderIcon(header.field_name) == 'd'"
+                                   class="fa fa-sort-desc "
+                                   aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="totalHeader" ng-if="calculateSum(header)">{{calculateSum(header) | currency:""}}</span>
+                                <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'"
+                                ng-init="filterObject[header.field_name].type='drop_down'"
+                                                x-flexi-select-data-title="true"
+                                                x-flexi-select-title="header.title"
+                                                x-flexi-select-modal-id="tableName+'_'+header.field_name"
+                                                x-flexi-select-readonly="header.disableSearch"
+                                                x-flexi-select-output='filterObject[header.field_name].value'
+                                                x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                                x-flexi-select-string-return="name">
+                                </x-flexi-select>
+
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'string' && tableName != 'haulierLoc'"
+                                       ng-disabled="header.field_name.indexOf('button') > -1 || header.disableSearch"
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'checkbox'"
+                                       disabled
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       placeholder="From"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_start_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}','From field is greater than To field', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+                                <input ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       placeholder="To"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_end_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}',' field is lesser than From field', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}','From field is greater than  field', header.data_type)"
+                                       class="2date-picker form-control form-control-stack"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_start_date"
+                                       ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       ng-disabled="header.disableSearch"
+                                       placeholder="From"
+                                       readonly="">
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}',' field is lesser than From field', header.data_type)"
+                                       class="2date-picker form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_end_date"
+                                       ng-disabled="header.disableSearch"
+                                       ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       placeholder="To"
+                                       readonly="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="nonPinnedHeader"
+             ng-style="{'width': calculateWidth([pinnedCols,nonPinnedCols],'nonPinnedHeader')}">
+            <table class="nonPinned">
+                <thead>
+                    <tr>
+                        <th ng-show="checkboxColumn"
+                            class="flexiCheckbox">
+                            <input type="checkbox"
+                            ng-disabled="data2.response == undefined || data2.response.length == 0 || !data2.response[0].id || readOnly == 1"
+                                   ng-click="toggleAllRecordCheck()"
+                                   ng-checked="checkAllRecordChecked()"
+                                   name=""
+                                   id="">
+                        </th>
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title), 'text-align': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? 'right' : 'left'}"
+                            ng-if="header.visible == '1'"
+                            class="flexiCol {{header.custom_classes}} {{header.custom_classesHeader}} pinnedCol "
+                            ng-repeat="header in pinnedCols">
+                            <span ng-style="{'padding-right': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? '10px' : '0'}"
+                                  style="cursor: pointer;"
+                                  ng-class="{'relocateHeaderUp':!(calculateSum(header)),'relocateHeaderDown':showFilters && !(calculateSum(header))}"
+                                  title="{{header.title}}"
+                                  ng-click="!(header.disableSearch) && updateOrder(header)">
+                                {{header.title}}
+                                <i ng-if="getOrderIcon(header.field_name) == 'a'"
+                                   class="fa fa-sort-asc"
+                                   aria-hidden="true"></i>
+                                <i ng-if="getOrderIcon(header.field_name) == 'd'"
+                                   class="fa fa-sort-desc "
+                                   aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="totalHeader" ng-if="calculateSum(header)">{{calculateSum(header) | currency:""}}</span>
+                                <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'"
+                                ng-init="filterObject[header.field_name].type='drop_down'"
+                                                x-flexi-select-data-title="true"
+                                                x-flexi-select-title="header.title"
+                                                x-flexi-select-modal-id="tableName+'_'+header.field_name"
+                                                x-flexi-select-readonly="header.disableSearch"
+                                                x-flexi-select-output='filterObject[header.field_name].value'
+                                                x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                                x-flexi-select-string-return="name">
+                                </x-flexi-select>
+
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'string' && tableName != 'haulierLoc'"
+                                       ng-disabled="header.field_name.indexOf('button') > -1 || header.disableSearch"
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'checkbox'"
+                                       disabled
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       placeholder="From"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_start_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}','From field is greater than To field', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+                                <input ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       placeholder="To"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_end_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}',' field is lesser than From field', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}','From field is greater than  field', header.data_type)"
+                                       class="2date-picker form-control form-control-stack"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_start_date"
+                                       ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       ng-disabled="header.disableSearch"
+                                       placeholder="From"
+                                       readonly="">
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}',' field is lesser than From field', header.data_type)"
+                                       class="2date-picker form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_end_date"
+                                       ng-disabled="header.disableSearch"
+                                       ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       placeholder="To"
+                                       readonly="">
+                            </div>
+                        </th>
+
+                        <th ng-style="{'width':checkHeaderInfo('width', header.title), 'text-align': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? 'right' : 'left'}"
+                            ng-if="header.visible == '1'"
+                            class="flexiCol {{header.custom_classes}} {{header.custom_classesHeader}} nonPinnedCol"
+                            ng-repeat="header in nonPinnedCols">
+                            <span ng-style="{'padding-right': (header.data_type == 'number' || header.data_type == 'number2' || header.data_type == 'numberWithCommaRightAlign') ? '10px' : '0'}"
+                                  style="cursor: pointer;"
+                                  title="{{header.title}}"
+                                  ng-class="{'relocateHeaderUp':!(calculateSum(header)),'relocateHeaderDown':showFilters && !(calculateSum(header))}"
+                                  ng-click="!(header.disableSearch) && updateOrder(header)">
+                                {{header.title}}
+                                <i ng-if="getOrderIcon(header.field_name) == 'a'"
+                                   class="fa fa-sort-asc"
+                                   aria-hidden="true"></i>
+                                <i ng-if="getOrderIcon(header.field_name) == 'd'"
+                                   class="fa fa-sort-desc "
+                                   aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="totalHeader" ng-if="calculateSum(header)">{{calculateSum(header) | currency:""}}</span>
+                                <x-flexi-select ng-if="showFilters && header.data_type == 'drop_down'"
+                                ng-init="filterObject[header.field_name].type='drop_down'"
+                                                x-flexi-select-data-title="true"
+                                                x-flexi-select-title="header.title"
+                                                x-flexi-select-modal-id="tableName+'_'+header.field_name"
+                                                x-flexi-select-readonly="header.disableSearch"
+                                                x-flexi-select-output='filterObject[header.field_name].value'
+                                                x-flexi-select-data="header.drop_down_list[header.field_name]"
+                                                x-flexi-select-string-return="name">
+                                </x-flexi-select>
+
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'string' && tableName != 'haulierLoc'"
+                                       ng-disabled="header.field_name.indexOf('button') > -1 || header.disableSearch"
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name]"
+                                       title="{{filterObject[header.field_name] ? filterObject[header.field_name]: ''}}"
+                                       ng-if="showFilters && header.data_type == 'checkbox'"
+                                       disabled
+                                       class="flexiSearch form-control"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="text" />
+                                <input ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_start_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}','Lower limit is higher than Upper limit', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       placeholder="From"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+                                <input ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       ng-model-options="{ debounce: 1250 }"
+                                       placeholder="To"
+                                       ng-if="showFilters && (header.data_type == 'number' || header.data_type == 'number2'|| header.data_type == 'numberWithCommaRightAlign')"
+                                       id="{{header.field_name}}_end_num"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_num'}}','{{header.field_name + '_end_num'}}','Upper limit is lesser than Lower limit', header.data_type)"
+                                       ng-disabled="header.disableSearch"
+                                       class="flexiSearch form-control form-control-stack text-right"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       type="number" />
+
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}','Lower limit is higher than Upper limit', header.data_type)"
+                                       class="2date-picker form-control form-control-stack"
+                                       placeholder="From"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_start_date"
+                                       ng-disabled="header.disableSearch"
+                                       ng-model="filterObject[header.field_name].lowerLimit"
+                                       title="{{filterObject[header.field_name].lowerLimit ? filterObject[header.field_name].lowerLimit : ''}}"
+                                       readonly="">
+                                <input ng-if="showFilters && header.data_type == 'date'"
+                                       jqdatepicker
+                                       placeholder="To"
+                                       ng-change="verifyRangeFilters('{{header.field_name + '_start_date'}}','{{header.field_name + '_end_date'}}','Upper limit is lesser than Lower limit', header.data_type)"
+                                       class="2date-picker form-control form-control-stack"
+                                       ng-keydown="$event.keyCode === 13 && addToConfig(1, $event)"
+                                       id="{{header.field_name}}_end_date"
+                                       ng-disabled="header.disableSearch"
+                                       ng-model="filterObject[header.field_name].upperLimit"
+                                       title="{{filterObject[header.field_name].upperLimit ? filterObject[header.field_name].upperLimit: ''}}"
+                                       readonly="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="bodyContainer horizontal2 vertical2 scrollme_{{tableName}}">
+        <div class="pinnedBody vertical1 scrollme_{{tableName}}"
+             ng-style="{'width': calculateWidth([pinnedCols],'pinnedBody')}">
+            <table>
+                <tr ng-repeat="value in data2.response track by $index"
+                    ng-if="value.length != 0"
+                    ng-click="editRecord(value, $event)">
+                    <td ng-show="checkboxColumn && pinnedCols.length"
+                        class="flexiCheckbox"
+                        ng-click="$event.stopPropagation();toggleCheckRecord(value.id,value[selectedRecordPreview],value)">    
+                               <input type="checkbox" ng-disabled="readOnly == 1 || value.disabled == 1"
+                            ng-checked="checkChecked(value.id, value[selectedRecordPreview]) > -1"
+                            >
+                    </td>
+                    <!-- Key: {{key}}, Value: {{value}} -->
+                    <td ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                    'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                    'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                    'borderred':checkHeaderInfo('color', col.title) == '#fff5f2','borderwhite':checkHeaderInfo('color', col.title) == '#ffffff', {{col.conditional_classes}}}"
+                        ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}"
+                        ng-if="checkHeaderInfo('visible', col.title) == '1'"
+                        class="flexiCol {{col.custom_classes}} pinnedCol"
+                        x-data-type-manager
+                        x-cell-conf="col"
+                        x-cell-data="value"
+                        ng-repeat="col in pinnedCols">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <style>
+            td.flexiCheckbox {
+                width: 10px;
+                text-align: center;
+                border: 0 !important;
+                box-shadow: inset 0 -1px 0px 0px #ececec;
+                padding-left: 10px;
+
+            }
+
+            th.flexiCheckbox {
+                box-shadow: inset 0 -1px 0px 0px #ececec;
+                padding: 8px 10px;
+                width: 10px;
+            }
+
+            .flexiCheckbox input {
+                vertical-align: middle;
+                margin: 0 auto;
+            }
+        </style>
+        <div class="nonPinnedBody"
+             ng-style="{'width': calculateWidth([pinnedCols,nonPinnedCols],'nonPinnedBody')}">
+            <table>
+                <tr ng-repeat="value in data2.response track by $index"
+                    ng-if="value.length != 0"
+                    ng-click="editRecord(value, $event)">
+                    <td ng-show="checkboxColumn"
+                        class="flexiCheckbox"
+                        ng-click="$event.stopPropagation();toggleCheckRecord(value.id,value[selectedRecordPreview],value)">    
+                               <input type="checkbox" ng-disabled="readOnly == 1 || value.disabled == 1"
+                            ng-checked="checkChecked(value.id, value[selectedRecordPreview]) > -1"
+                            >
+                    </td>
+                    <td ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}"
+                        ng-if="checkHeaderInfo('visible', col.title) == '1'"
+                        ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                    'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                    'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                    'borderred':checkHeaderInfo('color', col.title) == '#fff5f2','borderwhite':checkHeaderInfo('color', col.title) == '#ffffff', {{col.conditional_classes}}}"
+                        class="flexiCol {{col.custom_classes}} pinnedCol"
+                        x-data-type-manager
+                        x-cell-conf="col"
+                        x-cell-data="value"
+                        ng-repeat="col in pinnedCols">{{tableRow[col.title]}}
+                    </td>
+                    <td ng-style="{'width':checkHeaderInfo('width', col.title), 'background-color': checkHeaderInfo('color', col.title)}"
+                        ng-if="checkHeaderInfo('visible', col.title) == '1'"
+                        ng-class="{'borderblue':checkHeaderInfo('color', col.title) == '#f1f9ff',
+                    'bordergreen':checkHeaderInfo('color', col.title) == '#e7f7eb', 
+                    'borderyellow':checkHeaderInfo('color', col.title) == '#fffbdb',
+                    'borderred':checkHeaderInfo('color', col.title) == '#fff5f2','borderwhite':checkHeaderInfo('color', col.title) == '#ffffff', {{col.conditional_classes}}}"
+                        class="flexiCol {{col.custom_classes}} nonPinnedCol"
+                        x-data-type-manager
+                        x-cell-conf="col"
+                        x-cell-data="value"
+                        ng-repeat="col in nonPinnedCols">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="flexiSettingsModal_{{tableName}}"
+         class="modal fade"
+         role="dialog">
+        <div class="modal-dialog"
+             style="margin-top: 90px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header"
+                     style="    background: rgb(247, 247, 247);">
+                    <button type="button"
+                            class="close"
+                            style=" color: #b5b5b5 !important;"
+                            ng-click="restoreSettings();dismissThis();">&times;</button>
+                    <h4 class="modal-title"
+                        style="color:black;">Table Customisation</h4>
+                </div>
+                <div class="modal-body"
+                     style="    overflow: auto;
+                max-height: 300px;background: white;">
+                    <table class="tableCustomize">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <b>Name</b>
+                            </td>
+                            <td class="text-center">
+                                <b>Visible</b>
+                            </td>
+                            <td class="text-center">
+                                <b>Pinned</b>
+                            </td>
+                            <td>
+                                <b>Colour</b>
+                            </td>
+                            <td style="padding-right: 0 !important;width: 131px;">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-disabled="readOnly == 1"
+                                           ng-change="updateDefaultWidth()"
+                                           ng-model="defaultWidth">
+                                    <b>Autosize Columns</b>
+                                </label>
+                                <!-- <input title="Auto Adjust Table" type="checkbox" ng-checked="defaultWidth" ng-click="updateDefaultWidth()" /> -->
+
+                            </td>
+                        </tr>
+                        <tr ng-repeat="header in data.response.tbl_meta_data.response.colMeta"
+                            output-func="output()"
+                            header="header"
+                            x-handle-radio="pinHandler(header)"
+                            ng-droppable
+                            x-default-width="defaultWidth"
+                            x-width-updater="widthSlider(header)"
+                            x-all-headers="data.response.tbl_meta_data.response.colMeta"
+                            d-index="{{$index}}"
+                            handle-drop="dirFunc(s,d)">
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer clearfix"
+                     style="background-color: white;">
+                    <button type="button"
+                            ng-click="getDefaultTableMeta(tableName, data.response.tbl_meta_data.response.colMeta);"
+                            class="btn btn-default2 pull-left">Default</button>
+                    <button type="button"
+                            class="btn btn-submit"
+                            ng-click="SaveTableMetaData(data.response.tbl_meta_data.response); dismissThis();">Save</button>
+                    <button type="button"
+                            class="btn btn-cancel2"
+                            ng-click="restoreSettings(); dismissThis()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="new-pagination"
+     style="margin-top:-1px;"
+     ng-show="data.response.tbl_meta_data.response.colMeta.length > 0">
+    <div class="ib items-per-page">
+        <!-- <select ng-model="item_paging.pagination_limit" ng-options="opt as opt.label+' items per page' for opt in pagination_arry"
+            class="form-control">
+        </select> -->
+    </div>
+    <div class="ib total-records"
+         ng-show="data2.response.length > 0">
+
+        <div class="dropup ib checkedCounter"
+             ng-if="checkedRecords.length">
+            <span class="dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">{{checkedRecords.length}} Selected
+                <span class="caret"></span></span>
+            <ul class="dropdown-menu selectedRecordDropup">
+                <li ng-repeat="r in checkedRecords"><a>{{r.value}}
+                        <span ng-click="toggleCheckRecord(r.key,r.value,r); $event.preventDefault();  $event.stopPropagation()"
+                              class="pull-right clearSelectedrecord">
+                            <i class="material-icons">clear</i>
+                        </span></a></li>
+            </ul>
+        </div>
+        {{total}} 
+        <span ng-if="data2.response.length == 1 && !total">0</span> Total Records <span ng-if="data2.response.length > 0"
+              style="padding-top: 9px;
+                     padding-bottom: 10px;
+                     border-left: 1px solid #ececec;
+                     margin-left: 11px;
+                     padding-left: 12px;">{{total_paging_record}}</span>
+        <select ng-model="totalRecords"
+                style="border: 1px solid #e0e0e0;
+                       padding: 2px 3px;
+                       border-radius: 3px;
+                       margin: -3px 0 0 4px;
+                       background-color: white;"
+                ng-change="selectTotal(totalRecords); addToConfig();"
+                name="paginationTotal"
+                id="">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+
+    </div>
+
+    <ul class="pagination"
+        ng-show="item_paging.total_pages > 1">
+        <li>
+            <a ng-click="filterObject.selectedPage = 1; addToConfig();"
+               href="javascript: void(0);"
+               ng-class="{'disable-el dont-click': item_paging.cpage == 1}">
+                <i class="fa fa-angle-left"
+                   aria-hidden="true"></i><i class="fa fa-angle-left"
+                   aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a ng-click="filterObject.selectedPage = item_paging.ppage; addToConfig();"
+               href="javascript: void(0);"
+               ng-class="{'disable-el dont-click': item_paging.cpage == 1}"
+               class="">
+                <i class="fa fa-angle-left"
+                   aria-hidden="true"></i></a>
+        </li>
+        <li ng-repeat="(key,value) in item_paging.pages"
+            ng-class="{'active': value == item_paging.cpage}">
+            <a ng-click="filterObject.selectedPage = value; addToConfig();"
+               href="javascript: void(0);">
+                <span ng-bind="value"></span>
+            </a>
+        </li>
+        <li>
+            <a ng-click="filterObject.selectedPage = item_paging.npage; addToConfig();"
+               href="javascript: void(0);"
+               ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+                   class="fa fa-angle-right"
+                   aria-hidden="true"></i></a>
+        </li>
+        <li>
+            <a ng-click="filterObject.selectedPage = item_paging.total_pages; addToConfig();"
+               href="javascript: void(0);"
+               ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+                   class="fa fa-angle-right"
+                   aria-hidden="true"></i><i class="fa fa-angle-right"
+                   aria-hidden="true"></i></a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,36 @@
+<div ng-controller="ReturnOrdersController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <a ng-if="allowadd_sale_or_return_module" id="prompt" ui-sref="app.addReturnOrder" class="btn btn_add pull-right oval ">
+        <i class="fa fa-plus"></i>
+    </a>
+
+    <style>
+            .hideAdd {
+        margin-top: 35px;
+    }</style>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example" class="example_alt_pagination">
+                        <div style="margin-top: -13px;">
+                            <div class="flexiTable" 
+                                ng-class="{'hideAdd':!allowadd_sale_or_return_module}" 
+                                x-generate-table 
+                                x-data="tableData.data" 
+                                x-table-name="CreditNotes" 
+                                x-filter-function="getReturnOrdersListing()"
+                                x-checked-records = "selectedRecBulkEmail" 
+                                x-filter-object="searchKeyword" 
+                                x-selected-record-preview="return_order_code"
+                                x-bulk-email-function = "bulkEmailOption()"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <div ng-include="'app/views/_bulkOptionsModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

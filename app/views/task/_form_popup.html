@@ -1,0 +1,188 @@
+<style>
+.redactor_editor, .redactor_editor:focus {
+	min-height: 180px !important;
+}
+</style>
+<div class="panel panel-default"  id="model_btn_cs"> 
+  <!--<div class="panel-heading">
+    <h4 class="panel-title text-center"> 4 NOVEMBER 2015 </h4>
+  </div>-->
+  <div class="panel-heading">
+    <h4 class="panel-title pull-left"> {{titile}}</h4>
+    <div class="clearfix"></div>
+    <!-- <span ng-if="formData.id" class="tools pull-right"> <a  ng-click="delete(formData.id)" class="no-margin" href="#"> <i title="Delete" data-original-title=""   class="fa fa-trash text-danger" style="font-size: 16px;"></i></a> </span>
+    --> 
+  </div>
+  <div class="panel-body" style="min-height: 600px;">
+    <div class="row">
+      <div class="col-md-6 col-md-6">
+        <input   type="hidden"  ng-model="formData.id">
+        <div class="form-group">
+          <label>Title<span class="required">*</span></label>
+          <input  ng-readonly="check_task_readonly"  required type="text" 
+          class="form-control" ng-model="formData.t_title"  >
+        </div>
+      </div>
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label>Date</label>
+          <p class="input-group">
+            <input readonly="readonly" type="text" class="form-control" required
+                    ng-model="formData.t_date"       
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['t_date']" 
+             close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+            <span class="input-group-btn">
+            <button type="button"  ng-disabled="check_task_readonly"
+            class="btn btn-default" ng-click="datePicker.open($event, 't_date')"><i class="fa fa-calendar"></i></button>
+            </span> </p>
+        </div>
+      </div>
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label>Time</label>
+          <input type="text"  ng-readonly="check_task_readonly" ng-model="formData.t_time" id="t_time"
+           class="form-control"    />
+          <!--  <label for="t_time">Start time :</label>
+          <input type="text" style="width: 70px" id="t_time"  />
+          <label for="timepicker_end">end time :</label>
+          <input type="text" style="width: 70px" id="timepicker_end"   />--> 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-6">
+        <div class="form-group">
+          <label>Task Status</label>
+          <select  ng-disabled="check_task_readonly"   
+         ng-model="formData.t_status" ng-options="opt as opt.label for opt in task_status"
+      			 class="select2me form-control" >
+            
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-6">
+        <div class="form-group">
+          <label>Status</label>
+          <select  ng-disabled="check_task_readonly"   
+         ng-model="formData.status" ng-options="opt as opt.label for opt in status_data"
+      			 class="select2me form-control" >
+            
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-6">
+        <div class="form-group" ng-controller="TaskuploadController">
+          <label class="col-md-5 control-label  " for="userName">Upload Document</label>
+          <div class="col-md-7">
+            <div class="fileUpload btn btn_blue col-md-8"  > <span ng-if="!formData.t_image">Upload Document</span><span ng-if="formData.t_image">Upload Document</span> 
+              <!--       accept="image/*" -->
+              <input  type="file" 
+        ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+         accept=".gif, .jpg, .png, .doc, .docx,.pdf"    multiple class="upload" ngf-max-size="2MB"  />
+              <input type="hidden"  ng-model="formData.FileType">
+              <input type="hidden"  ng-model="formData.t_image">
+              <input type="hidden"  ng-init="formData.t_image = formData.t_image"    
+           ng-model="formData.t_image">
+              <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span> </div>
+            <div class="form-group col-md-4" ng-if="formData.t_image">
+              <div class="col-md-7"> <span   ng-if=" formData.t_image !='' "  > <a target="_blank" href="{{imagePath+formData.t_image}}"><em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Description</label>
+          <textarea type="text"   id="redactor_content"    ng-disabled="check_task_readonly"    ng-model="formData.t_description"class="form-control" >{{formData.t_description}}</textarea>
+          
+      
+        </div>
+      </div>
+    </div>
+   
+    <div class="hr_line2"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="pull-right">
+          <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+          <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_task_readonly"><i class="fa fa-edit"></i> Edit</button>
+          <button ng-click="hide_add_task()" class="btn default" type="button"><i class="fa fa-undo"></i> Cancel</button>
+          <span ng-if="formData.id"  > <a ng-click="delete(formData.id)" title="Delete"
+           class="btn btn-primary bg_blue"><i class="fa fa-trash"> Delete</i></a> 
+       
+          </span> </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div ng-include="'../navson/index.html'" ></div>--> 
+
+<!--<script type="text/javascript" src="../navson/app/vendor/redactor-js-master/redactor/lib/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" href="../navson/app/vendor/redactor-js-master/redactor/redactor.css" />
+<script src="../navson/app/vendor/redactor-js-master/redactor/redactor.min.js"></script> 
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function($) {
+        $('#redactor_content').redactor({
+//  imageUpload: '../navson/app/vendor/redactor-js-master/redactor/redactor-js-master/demo/scripts/image_upload.php"',
+// fileUpload: '<?php //echo base_url("asset/redactor-js-master/demo/scripts/file_upload.php")  ?>',
+
+// imageGetJson: '<?php // echo base_url("asset/redactor-js-master/demo/json/data.json")  ?>'
+});
+    }
+    ); 
+</script>-->
+<link rel="stylesheet" href="../navson/app/vendor/timepicker/include/ui-1.10.0/ui-lightness/jquery-ui-1.10.0.custom.min.css" type="text/css" />
+<link rel="stylesheet" href="../navson/app/vendor/timepicker/jquery.ui.timepicker.css">
+<script type="text/javascript" src="../navson/app/vendor/timepicker/include/ui-1.10.0/jquery.ui.position.min.js"></script> 
+<script src="../navson/app/vendor/timepicker/jquery.ui.timepicker.js"></script> 
+<script type="text/javascript">
+//            jQuery(document).ready(function(jQuery) {
+//                jQuery('#t_time').timepicker({
+//                    showLeadingZero: true,
+//                    showPeriod: true,
+//                  //  onSelect: tpStartSelect,
+//                    maxTime: {
+//                        hour: 16, minute: 30
+//                    }
+//                });
+//                jQuery('#timepicker_end').timepicker({
+//                    showLeadingZero: true,
+//                    showPeriod: true,
+//                    onSelect: tpEndSelect,
+//                    minTime: {
+//                        hour: 9, minute: 15
+//                    }
+//                });
+//            });
+//
+//            // when start time change, update minimum for end timepicker
+//            function tpStartSelect( time, endTimePickerInst ) {
+//             //   console.log('here in start');
+//                jQuery('#timepicker_end').timepicker('option', {
+//                    minTime: {
+//                        hour: endTimePickerInst.hours,
+//                        minute: endTimePickerInst.minutes
+//                    }
+//                });
+//            }
+//
+//            // when end time change, update maximum for start timepicker
+//            function tpEndSelect( time, startTimePickerInst ) {
+//            //    console.log('here in end');
+//                jQuery('#t_time').timepicker('option', {
+//                    maxTime: {
+//                        hour: startTimePickerInst.hours,
+//                        minute: startTimePickerInst.minutes
+//                    }
+//                });
+//            }
+        </script> 

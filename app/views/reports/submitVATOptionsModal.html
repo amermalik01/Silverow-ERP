@@ -1,0 +1,66 @@
+<div class="modal fade"
+     id="submitVATOptionsModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+          Submit VAT Return Options
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row text-center"><!-- 
+             style="margin-top: 18px;" -->
+          <div class="col-md-12">
+            <div class="a-content" style="width: 100%;">
+              <div class="a-label-container">
+                <b class="a-title">Posting Date<span class="required"> *</span></b>
+
+                <div class="input-symbol a-date">
+                  <input jqdatepicker
+                        class="form-control"
+                        id="VATPostingDate"
+                        readonly
+                        ng-model="filterReport.VATPostingDate"
+                        ng-change="changeVATPostingDate(filterReport.VATPostingDate)"
+                        style="background-color: white;">
+                  <span>
+                    <i class="fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" style="margin-top: 18px;">
+            <!-- <h4>Select Submit Options</h4> -->
+            <label ng-repeat="n in submitVATOptions"
+                   class="ib saveAsDesign"
+                   style="font-weight: normal; margin-right: 15px; width: 221px;">
+              <div>
+                <i class="material-icons" style="font-size: 47px;color: #5794d5;">assignment</i>
+              </div>
+              <div>
+                {{n.name}}
+              </div>
+              <input type="radio"
+                     name="VATOption"
+                     ng-model="VATOption"
+                     ng-click="chkOption(VATOption)"
+                     ng-value="n" />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-submit width_80 "
+                ng-click="selectSubmitVATOptions()">Submit</button>
+        <button type="button"
+                class="btn btn-cancel width_80"
+                data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

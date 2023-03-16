@@ -1,0 +1,21 @@
+Array
+(
+    [(B2) Use by Date] => " " is not a valid excel date
+    [(B3) Use by Date] => " " is not a valid excel date
+    [(U2) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U3) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U4) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U5) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U6) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U7) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U8) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U9) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U10) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U11) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U12) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U13) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U14) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U15) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+    [(U16) Storage Location*] => "Bikes(GBP 3.5, Pcs, )" is not found. Please check instructions in your migration file
+)
+

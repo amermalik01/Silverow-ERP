@@ -1,0 +1,324 @@
+
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+
+                    <!-- ng-model="formData.Phone"-->
+                    <!-- <input type="hidden" ng-model="open_tab_tabs" id="open_tab_tabs" name="open_tab_tabs"
+                           class="form-control"/>
+                    <input type="hidden" ng-model="formData.eid"/>
+                    <input type="hidden" ng-model="formData.employee_id"/>
+                    <input type="hidden" ng-model="formData.tab_id_2" value="22"/> -->
+
+                    <div class="col-md-12">
+                      <div class="panel-title2">Contact Information</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Address Line 1</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.address_1"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Address Line 2</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.address_2"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.city"
+                                           class="form-control" placeholder="City"/>
+                                </div>
+
+                                <div class="col-md-4 padl6">
+                                    <input ng-readonly="check_hrvalues_readonly" value="" type="text" ng-model="formData.country"
+                                           class="form-control" placeholder="County"/>
+
+                                    <!--    <select   ng-model="formData.country"  ng-options="opt as opt.name for opt in country_type_arr"
+                                      class="select2me form-control">
+                                             </select>-->
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.post_code" placeholder="Postcode"
+                                           class="form-control crm-postcode"/>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <!--   <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.post_code_country"
+                                   class="form-control" />-->
+                                    <ui-select ng-disabled="check_hrvalues_readonly"
+                                    ng-model="formData.post_code_country">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                          <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                      </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Work Telephone</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.work_phone"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-md-4 control-label ">Home Telephone</label>
+    
+                                    <div class="col-md-8">
+                                        <input ng-readonly="check_hrvalues_readonly" type="text"
+                                               ng-model="formData.home_phone"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label ">Internal Extension</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.internal_extention"
+                                           class="form-control"/>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Mobile</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text"
+                                           ng-model="formData.mobile_phone"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Personal Email</label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="text" x-validity="regx.multiEmail"
+                                           ng-model="formData.personal_email"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Work Email </label>
+
+                                <div class="col-md-8">
+                                    <input ng-readonly="check_hrvalues_readonly" type="email"
+                                           ng-model="formData.work_email"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Social Media</label>
+
+                                <div class="col-md-4 padr6">
+                                        <div class="input-symbol">
+                                                <input ng-readonly="check_hrvalues_readonly" type="text"
+                                                ng-model="formData.skype_id" style="    padding-right: 24px;"
+                                                class="form-control"/>
+                                                <span><i class="fa fa-skype" style="    color: #2196F3;"></i></span>       
+                                         </div>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                        <div class="input-symbol">
+                                                <input ng-readonly="check_hrvalues_readonly" type="text"
+                                                ng-model="formData.linked_id" style="    padding-right: 24px;"
+                                                class="form-control"/>
+                                                <span><i class="fa fa-linkedin" style="    color: #1f6b8e;"></i></span>       
+                                         </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <!--<div class="col-md-12">
+                            <div role="tablist" class="panel-group">
+                                <div class="panel">
+                                    <div id="collapseListGroupHeading1" role="tab" class="">
+                                        <h4 class="panel-title">
+                                            <button aria-controls="collapseListGroup1" aria-expanded="false"
+                                                    href="#collapseListGroup1" data-toggle="collapse"
+                                                    class="collapsed btn btn-link no-padding"> Employee Bank Account
+                                                Details <i class="fa fa-chevron-down"></i></button>
+                                        </h4>
+                                    </div>
+                                    <div aria-labelledby="collapseListGroupHeading1" role="tabpanel"
+                                         class="panel-collapse collapse" id="collapseListGroup1"
+                                         aria-expanded="false" style="height: 0px;">
+                                        <div class="row" style="margin-top:25px;">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Account Name</label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_account_name"
+                                                               id="account_name" class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Sort Code</label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_sort_code"
+                                                               id="sort_code" class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Account No.</label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_account_no"
+                                                               id="account_no" class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Bank Name</label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_bill_bank_name"
+                                                               id="bill_bank_name" class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Swift/BIC </label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_swift_no"
+                                                               id="swift_no" class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">IBAN</label>
+
+                                                    <div class="col-md-7">
+                                                        <input type="text" ng-model="formData.hr_iban" id="iban"
+                                                               class="form-control"
+                                                               ng-disabled="check_hrvalues_readonly"
+                                                                />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="col-md-12">
+                            <div class="pull-right">
+
+
+                                        <div class="dropdown ib" ng-show="formData.id>0 &&  hr_contact_module>0">
+                                          <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                                          <ul class="dropdown-menu dte animated fadeIn">
+                                            <span ng-click="set_document_internal(hr_contact_module,' - Contact Information')"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                            <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                          </ul>
+                                        </div>
+
+
+                                <!-- <button class="btn btn-delete active-btns" type="button"
+                                        ng-if="formData.id>0 &&  allowdeletehr_contact==1  && formData.id != userId && !check_hrvalues_readonly"
+                                        ng-click="deletehrvalues()">
+                                    Delete
+                                </button> -->
+                                <button class="btn btn-submit " type="submit" ng-if="!check_hrvalues_readonly
+&&  allowviewhr_contact==1  &&  allowedithr_contact==1  && formData.id != userId"><i
+                                        class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-if="check_hrvalues_readonly && allowedithr_contact==1 && formData.id != userId"><i class="fa fa-edit fa_display"></i>
+                                    Edit
+                                </button>
+
+
+                                <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}"> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="formData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{formData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="formData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input ng-disabled="check_hrvalues_readonly" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                        name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                        
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
+                </div>
+
+            </div>
+
+            <i ng-if="!formData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="formData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+formData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+
+            <span class="name">
+                {{formData.first_name + ' ' + formData.last_name}}
+            </span>
+            <span class="job">
+                {{formData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="formData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{formData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="formData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{formData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
+
+    

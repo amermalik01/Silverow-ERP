@@ -1,0 +1,216 @@
+<div id="myModal"
+     class="modal fade"
+     role="dialog">
+	<div class="modal-dialog"
+	     style="margin-top: 50px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button"
+				        class="close"
+				        data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add / Remove Widget</h4>
+			</div>
+			<div class="modal-body"
+			     style="margin-bottom: 15px !important;">
+				<span ng-if="!allWidgets"
+				      style="display: block;text-align: center;margin: 66px 0 auto;font-size: 16px;color: gray;">You don't have any
+					Widgets. Contact your admin!</span>
+				<tabset class="modaltabs2"
+				        ng-if="activeWidgets">
+					<tab heading="Sales"
+					     ng-if="salesWidgets.length > 0">
+						<ul class="clearfix"
+						    style="border: 1px solid #d0d0d0;border-radius: 3px;height: 300px;overflow: auto;">
+
+							<li class="widget-options clearfix"
+							    ng-class="{'selectedWidget':widget.active == 1,'loadthis':loadingWidget && $index == loadingWidget_index}"
+							    ng-repeat="widget in salesWidgets">
+
+								<div style="width:50%;float: left;">
+									<h5 class="widget-name">{{widget.title}}</h5>
+									<span class="widget-desp">{{widget.description}}</span>
+									<i class="add-w-icon"
+									   ng-if="widget.active == 0"
+									   ng-click="addRemoveWidgetToDashboard(widget,1,$index)">
+										<b>Add
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+
+									<i class="add-w-icon"
+									   ng-if="widget.active == 1"
+									   ng-click="addRemoveWidgetToDashboard(widget,0,$index)">
+										<b>Remove
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+								</div>
+								<div ng-if="widget.id==1"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Top_customers.jpg"
+									     alt="">
+								</div>
+								<div ng-if="widget.id==2"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Top_item_sales.jpg"
+									     alt="">
+								</div>
+								<div ng-if="widget.id==3"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Outstanding_SO.jpg"
+									     alt="">
+								</div>
+								<div ng-if="widget.id==4"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Opportunity_cycle.jpg"
+									     alt="">
+								</div>
+								<div ng-if="widget.id==5"
+								     class="widgetimage">
+									<img src="https://via.placeholder.com/350x150"
+									     alt="">
+								</div>
+								<div ng-if="widget.id==6"
+								     class="widgetimage">
+									<img src="https://via.placeholder.com/350x150"
+									     alt="">
+								</div>
+							</li>
+						</ul>
+					</tab>
+					<tab heading="Purchase"
+					     ng-if="purchaseWidgets.length > 0">
+						<ul class="clearfix"
+						    style="border: 1px solid #d0d0d0;border-radius: 3px;height: 300px;overflow: auto;">
+
+							<li class="widget-options clearfix"
+							    ng-class="{'selectedWidget':widget.active == 1,'loadthis':loadingWidget && $index == loadingWidget_index}"
+							    ng-repeat="widget in purchaseWidgets">
+
+								<div style="width:50%;float: left;">
+									<h5 class="widget-name">{{widget.title}}</h5>
+									<span class="widget-desp">{{widget.description}}</span>
+									<i class="add-w-icon"
+									   ng-if="widget.active == 0"
+									   ng-click="addRemoveWidgetToDashboard(widget,1,$index)">
+										<b>Add
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+
+									<i class="add-w-icon"
+									   ng-if="widget.active == 1"
+									   ng-click="addRemoveWidgetToDashboard(widget,0,$index)">
+										<b>Remove
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+								</div>
+								<div ng-if="widget.id==9"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Outstanding_PO.jpg"
+									     alt="">
+								</div>
+
+								<div ng-if="widget.id==10"
+								     class="widgetimage">
+									<img src="app/img/tps.png"
+									     alt="">
+								</div>
+							</li>
+						</ul>
+					</tab>
+					<tab heading="Management"
+					     ng-if="managementWidget.length > 0">
+						<ul class="clearfix"
+						    style="border: 1px solid #d0d0d0;border-radius: 3px;height: 300px;overflow: auto;">
+
+							<li class="widget-options clearfix"
+							    ng-class="{'selectedWidget':widget.active == 1,'loadthis':loadingWidget && $index == loadingWidget_index}"
+							    ng-repeat="widget in managementWidget">
+
+								<div style="width:50%;float: left;">
+									<h5 class="widget-name">{{widget.title}}</h5>
+									<span class="widget-desp">{{widget.description}}</span>
+									<i class="add-w-icon"
+									   ng-if="widget.active == 0"
+									   ng-click="addRemoveWidgetToDashboard(widget,1,$index)">
+										<b>Add
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+
+									<i class="add-w-icon"
+									   ng-if="widget.active == 1"
+									   ng-click="addRemoveWidgetToDashboard(widget,0,$index)">
+										<b>Remove
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+								</div>
+								<div ng-if="widget.id==7"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Tasks.jpg"
+									     alt="">
+								</div>
+							</li>
+						</ul>
+					</tab>
+					<tab heading="Human Resources"
+					     ng-if="humanResources.length > 0">
+						<ul class="clearfix"
+						    style="border: 1px solid #d0d0d0;border-radius: 3px;height: 300px;overflow: auto;">
+
+							<li class="widget-options clearfix"
+							    ng-class="{'selectedWidget':widget.active == 1,'loadthis':loadingWidget && $index == loadingWidget_index}"
+							    ng-repeat="widget in humanResources">
+
+								<div style="width:50%;float: left;">
+									<h5 class="widget-name">{{widget.title}}</h5>
+									<span class="widget-desp">{{widget.description}}</span>
+									<i class="add-w-icon"
+									   ng-if="widget.active == 0"
+									   ng-click="addRemoveWidgetToDashboard(widget,1,$index)">
+										<b>Add
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+
+									<i class="add-w-icon"
+									   ng-if="widget.active == 1"
+									   ng-click="addRemoveWidgetToDashboard(widget,0,$index)">
+										<b>Remove
+											<span class="fa fa-spinner fa-pulse"
+											      ng-if="loadingWidget && $index == loadingWidget_index"></span>
+										</b>
+									</i>
+								</div>
+								<div ng-if="widget.id==8"
+								     class="widgetimage">
+									<img src="app/img/widgetsoptions/Approvals.jpg"
+									     alt="">
+								</div>
+							</li>
+						</ul>
+					</tab>
+				</tabset>
+			</div>
+			<div class="modal-footer"
+			     style="    border-top: 1px solid #e4e4e4;">
+				<div class="pull-left"
+				     ng-if="activeWidgets">{{activeWidgets.length}} selected</div>
+
+				<button type="button"
+				        class="btn btn-default"
+				        data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

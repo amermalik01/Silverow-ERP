@@ -1,0 +1,347 @@
+<style>
+    #inventoryStatisticsModal .modal-body {
+        max-height: 80vh;
+        overflow: auto;
+        padding: 1.5cm;
+
+    }
+</style>
+<div class="modal fade template-design"
+     id="inventoryStatisticsModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 30cm !important;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}">
+
+                <div ng-if="printPdfVals.report_type ==1" ng-repeat="rec in printPdfVals.reportsDataArr.records track by $index" style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                    page='ALL'
+                                    value='on'
+                                    show-this-page='1' />
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                page='ALL'
+                                value='on'
+                                show-this-page='1' />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <htmlpageheader name='MyCustomHeader{{$index}}' >
+                        <div class='reportHeading' ng-if="printPdfVals.report_type == 1">
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                        style="margin-bottom: 12px;">Inventory Statistics Report
+                                </div>
+                                <!-- Territory -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 1 && printPdfVals.division_1 == 1 ">
+                                    <b>Territory: </b>
+                                    <span ng-if="rec.custName">{{rec.custName}}</span>
+                                </div>
+                                <!-- buying grp -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 1 && printPdfVals.division_1 == 2 ">
+                                    <b>Buying Group: </b>
+                                    <span ng-if="rec.custName">{{rec.custName}}</span>
+                                </div>
+                                 <!--segment -->
+                                 <div class="font10" ng-if="printPdfVals.report_by == 1 && printPdfVals.division_1 == 3 ">
+                                    <b>Segment: </b>
+                                    <span ng-if="rec.custName">{{rec.custName}}</span>
+                                </div>
+                                <!-- customer -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 1 && printPdfVals.division_1 == 4 ">
+                                    <b>Customer No.: </b>
+                                    <span ng-if="rec.custNo">{{rec.custNo}}</span>
+                                </div>
+                                <div class="font10" ng-if="printPdfVals.report_by == 1 && printPdfVals.division_1 == 4 ">
+                                    <b>Name : </b>
+                                    <b ng-if="rec.custName">{{rec.custName}}</b>
+                                </div>
+
+                                <!-- brand -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 2 && printPdfVals.division_2 == 1 ">
+                                    <b>Brand : </b>
+                                    <span>{{rec.description}}</span>
+                                </div>
+                                <!-- category -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 2 && printPdfVals.division_2 == 2 ">
+                                    <b>Category : </b>
+                                    <span>{{rec.description}}</span>
+                                </div>
+                                <!-- item -->
+                                <div class="font10" ng-if="printPdfVals.report_by == 2 && printPdfVals.division_2 == 3 ">
+                                    <b ng-if="rec.product_code">Item No. : </b>
+                                    <span ng-if="rec.product_code">{{rec.product_code}}</span>
+                                </div> 
+                                <div class="font10" ng-if="printPdfVals.report_by == 2 && printPdfVals.division_2 == 3 ">
+                                    <b>Description : </b>
+                                    <span>{{rec.description}}</span>
+                                </div>
+
+                                <div class="font10" ng-if="printPdfVals.report_by == 2">
+                                    <b ng-if="rec.Unit_of_measure">Unit of Measure : </b>
+                                    <span ng-if="rec.Unit_of_measure">{{rec.Unit_of_measure}}</span>
+                                </div>
+
+                                <div class='reportHeading__left__reportfilter' style="width: 100%;margin-bottom: 5px;">
+                                    From
+                                    <span ng-if='!(printPdfVals.dateFrom.length > 0)'>--</span>
+                                    <span ng-if='printPdfVals.dateFrom.length > 0'>{{printPdfVals.dateFrom}}</span>
+                                    To {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                        class='reportHeading__right__img '
+                                        ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+                    <!-- for detail report -->
+                    <table style="width: 100%;float: left; margin-bottom: 80px;"
+                        class="tabletopmargin report-spacing-table"
+                        ng-if="printPdfVals.report_by == 1">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Invoice No.</th>
+                                <th style="width: 5%;">Item No.</th>
+                                <th style="width: 10%;">Description</th>
+                                <th style="text-align: right">Unit Sales Price</th>
+                                <th style="text-align: right">Promotion</th>
+                                <th style="text-align: right">Total Unit Sale Price</th>
+                                <th style="text-align: right" ng-repeat="pc in printPdfVals.cost_data track by $index">{{pc.title}}</th>
+                                <th style="text-align: right">Purchase Cost</th>
+                                <th style="text-align: right">Profit</th>
+                                <th style="text-align: right">Qty</th>
+                                <th style="text-align: right">Profit %</th>
+                                <th style="text-align: right">Sales Amount</th>
+                                <th style="text-align: right">Average</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.items" ng-if="inv.Rank !=3">   
+                                <td style="padding-left: 17px !important;width: 5%;">{{inv.order_no}}</td> 
+                                <td style="padding-left: 17px !important;width: 5%;">{{inv.product_code}}</td>
+                                <td ng-if="inv.Rank==1" style="width: 10%;">{{inv.description}}</td>
+                                <td ng-if="inv.Rank==2" style="width: 10%;"><b>{{inv.description}}</b></td>
+                                <td style="text-align: right">{{inv.sale_price | currency : "" : decimal_range}}</td>               
+                                <td style="text-align: right">{{inv.promotion | currency : "" : decimal_range}}</td>
+                                <td style="text-align: right">{{inv.Value | currency : "" : decimal_range}}</td>
+                                <td ng-if="inv.Rank==1" style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index">{{pf}}</td> 
+                                <td ng-if="inv.Rank==2" style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index"></td>   
+                                <td style="text-align: right">{{inv.purchase_cost | currency : "" : decimal_range}}</td>
+                                <td style="text-align: right">{{inv.profit | currency : "" : decimal_range}}</td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.Rank==2" style="text-align: right"><b>{{inv.qty | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.profit_perc | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.Rank==2" style="text-align: right"></td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.sales_amount | currency : "" : decimal_range}}</td>  
+                                <td ng-if="inv.Rank==2" style="text-align: right"><b>{{inv.sales_amount | currency : "" : decimal_range}}</b></td>                              
+                                <td style="text-align: right"><span ng-if="inv.Rank==2"><b>{{inv.average | numberNoDecimalsIfZeroFilter:2:''}}</b></span></td>
+                            </tr>
+                            
+                            <tr ng-repeat="inv in rec.items" ng-if="inv.Rank ==3">   
+                                <td style="padding-left: 17px !important;width: 20%;" colspan="3"><b>{{inv.description}}</b></td>
+                                <td style="text-align: right"></td>               
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index"></td>   
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"><b>{{inv.sales_amount | currency : "" : decimal_range}}</b></td>                                
+                                <td style="text-align: right"></td>
+                            </tr>
+
+                            
+                        </tbody>
+                    </table>
+
+                    <table style="width: 100%;float: left; margin-bottom: 80px;"
+                        class="tabletopmargin report-spacing-table"
+                        ng-if="printPdfVals.report_by == 2">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Invoice No.</th>
+                                <th style="width: 10%;">Customer No.</th>
+                                <th style="width: 10%;">Name</th>
+                                <th style="text-align: right">Unit Sales Price</th>
+                                <th style="text-align: right">Promotion</th>
+                                <th style="text-align: right">Total Unit Sale Price</th>
+                                <th style="text-align: right" ng-repeat="pc in printPdfVals.cost_data track by $index">{{pc.title}}</th>
+                                <th style="text-align: right">Purchase Cost</th>
+                                <th style="text-align: right">Profit</th>
+                                <th style="text-align: right">Qty</th>
+                                <th style="text-align: right">Profit %</th>
+                                <th style="text-align: right">Sales Amount</th>
+                                <th style="text-align: right">Average</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.customer" ng-if="inv.Rank !=3">
+                                <td style="padding-left: 17px !important;width: 10%;">{{inv.order_no}}</td>
+                                <td style="padding-left: 17px !important;width: 10%;">{{inv.custNo}}</td>
+                                <td ng-if="inv.Rank==1"  style="width: 10%;">{{inv.custName}}</td>   
+                                <td ng-if="inv.Rank==2"  style="width: 10%;"><b>{{inv.custName}}</b></td>                           
+                                <td style="text-align: right">{{inv.sale_price | currency : "" : decimal_range}}</td>               
+                                <td style="text-align: right">{{inv.promotion | currency : "" : decimal_range}}</td>
+                                <td style="text-align: right">{{inv.Value | currency : "" : decimal_range}}</td>
+                                <td ng-if="inv.Rank==1" style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index">{{pf}}</td>
+                                <td ng-if="inv.Rank==2" style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index"></td>    
+                                <td style="text-align: right">{{inv.purchase_cost | currency : "" : decimal_range}}</td>
+                                <td style="text-align: right">{{inv.profit | currency : "" : decimal_range}}</td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.Rank==2" style="text-align: right"><b>{{inv.qty | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.profit_perc | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                <td ng-if="inv.Rank==2" style="text-align: right"></td>
+                                <td ng-if="inv.Rank==1" style="text-align: right">{{inv.sales_amount | currency : "" : decimal_range}}</td>  
+                                <td ng-if="inv.Rank==2" style="text-align: right"><b>{{inv.sales_amount | currency : "" : decimal_range}}</b></td>                              
+                                <td style="text-align: right"><span ng-if="inv.Rank==2"><b>{{inv.average | numberNoDecimalsIfZeroFilter:2:''}}</b></span></td>
+                            </tr>
+                            <tr ng-repeat="inv in rec.customer" ng-if="inv.Rank ==3">
+                                <td style="padding-left: 17px !important;width: 20%;" colspan="3"><b>{{inv.custName}}</b></td>                              
+                                <td style="text-align: right"></td>               
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right" ng-repeat="pf in inv.purchase_fields track by $index"></td>  
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"></td>
+                                <td style="text-align: right"><b>{{inv.sales_amount | currency : "" : decimal_range}}</b></td>                                
+                                <td style="text-align: right"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div ng-if="printPdfVals.report_type ==2" style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                    page='ALL'
+                                    value='on'
+                                    show-this-page='1' />
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                page='ALL'
+                                value='on'
+                                show-this-page='1' />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <htmlpageheader name='MyCustomHeader{{$index}}' >
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                        style="margin-bottom: 12px;">Inventory Statistics Summary Report
+                                </div>                                
+                                <div class='reportHeading__left__reportfilter' style="width: 100%;margin-bottom: 5px;">
+                                    From
+                                    <span ng-if='!(printPdfVals.dateFrom.length > 0)'>--</span>
+                                    <span ng-if='printPdfVals.dateFrom.length > 0'>{{printPdfVals.dateFrom}}</span>
+                                    To {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                        class='reportHeading__right__img '
+                                        ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+                    <!-- for summary report -->
+                    <table style="width: 100%;float: left; margin-bottom: 80px;"
+                    class="tabletopmargin report-spacing-table"
+                    >
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in printPdfVals.columns" style="width: 10%;">{{column.title}}</th>
+                            <!-- <th style="width: 10%;">Customer No.</th>
+                            <th style="width: 25%;" >Name</th>
+                            <th style="width: 10%;">Item No.</th>
+                            <th style="width: 25%;">Description</th>
+                            <th style="text-align: right">Qty</th>
+                            <th style="text-align: right">Sales Amount</th>
+                            <th style="text-align: right">Average</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="inv in printPdfVals.reportsDataArr.records">  
+                            <td ng-repeat="column in printPdfVals.columns" style="width: 10%;">{{inv[column.field]}}</td>  
+                            <!-- <td style="padding-left: 17px !important;width: 10%;">{{inv.custNo}}</td>
+                            <td style="width: 25%;">{{inv.custName}}</td>
+                            <td style="width: 10%;">{{inv.itemCode}}</td>
+                            <td style="width: 25%;">{{inv.itemDesc}}</td>       
+                            <td style="text-align: right">{{inv.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            <td style="text-align: right">{{inv.sales_amount | currency : "" : decimal_range}}</td>                                
+                            <td style="text-align: right">{{inv.average | numberNoDecimalsIfZeroFilter:2:''}}</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModal('inventoryStatisticsModal')">Cancel</button>
+
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-if="!jsreportLoading"
+                       ng-click="downloadInventoryStatistics(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

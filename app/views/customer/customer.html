@@ -1,0 +1,32 @@
+<div ng-controller="CustomerController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div class="row">
+
+        <style>
+            .control-label {
+                margin-top: 7px !important;
+            }
+        </style>
+
+        <a ng-if="allowadd_customer_module && show_customer_add_btn == 1" id="prompt" ui-sref="app.add-customer" class="btn pull-right btn_add oval">
+            <i class="fa fa-plus"></i></a>
+
+            <style>
+                .hideAdd {
+                        margin-top: -20px;
+                }
+            </style>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-md-12" ng-class="{'whirl no-overlay':showLoader22}">
+            <div id="dt_example" class="example_alt_pagination">
+                <div>
+                    <div class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="Customer" x-filter-function="getcrm_list()"
+                        x-filter-object="searchKeyword" ng-class="{'hideAdd': allowadd_customer_module && show_customer_add_btn == 1}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

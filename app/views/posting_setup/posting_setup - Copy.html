@@ -1,0 +1,38 @@
+<div ng-controller="PostingSetupController as table" class="container-fluid">
+
+<div  class="breadcrumb_wraper">
+    <div ng-include="'app/views/_breadcrumb.html'" class="{{class}}"></div>
+    <div ng-include="'app/views/posting_setup/_type_dropdown.html'" class="dfilter" style="width:50%;"></div>
+    <button type="button" class="btn btn-primary btn-sm ng-scope btn-button pull-right" ui-sref="app.addPostingSetup"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Posting Setup</button>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"> </div>
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+          <th ng-repeat="column in columns" ng-show="column.visible"
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <tr>
+          <th ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title]"  />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="record in $data">
+         <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.title" ui-sref="app.viewPostingSetup({id:record.id})" > {{record[column.title]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_confirm_modal.html'" class="{{class}}"></div>

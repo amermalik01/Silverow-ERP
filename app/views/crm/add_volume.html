@@ -1,0 +1,45 @@
+<div class="modal fade add_volume_disc" id="add_volume_disc">
+    <div class="modal-dialog" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{title_type}}</h4>
+            </div>
+            <div class="modal-body" style="margin: 21px 0 0px auto;width: 87%;">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label "> From Quantity <span class="required">*</span></label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input_text" ng-readonly="check_sub_readonly" data-parsley-trigger="keyup" ng-model="formData_vol_1.quantity_from"
+                            id="quantity_from" data-parsley-type="number" type="text" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label "> To Quantity <span class="required">*</span></label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input_text" ng-readonly="check_sub_readonly" data-parsley-trigger="keyup" ng-model="formData_vol_1.quantity_to"
+                            id="quantity_to" data-parsley-type="number" type="text" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label "> Unit Of Measure <span class="required">*</span></label>
+
+                    <div class="col-sm-7">
+                        <select ng-disabled="1" ng-model="formData_vol_1.unit_category" ng-options="opt as opt.name for opt in list_unit_category"
+                            class=" form-control">
+                            <option value="" style="display: none;"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-submit pic_block" type="button">Save
+                </button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

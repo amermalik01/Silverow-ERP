@@ -1,0 +1,62 @@
+<div ng-controller="postingGroupController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <div class="nav nav-tabs" style="padding:8px;">
+          <div class="col-md-6">
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search in Posting Groups" class="form-control" 
+                ng-model="rec.Serachkeyword" />
+              <i class="fa fa-search search-icon" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <a id="prompt" ui-sref="app.add-posting-group" class="btn btn_add pull-right">Add</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <div id="dt_example" class="example_alt_pagination">
+            <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+              show-filter="true">
+              <thead>
+                <tr class="bg-col">
+                  <th
+                    ng-repeat="column in columns" >
+                    <span><span ng-if='column.title != "Posting Group"' >{{column.title}} </span>
+                    <span ng-if='column.title == "Posting Group"'>Name</span></span>
+                  </th>
+                  <th class="active-listing" style="width: 150px;">Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body courser ">
+                <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                <tr ng-repeat="rec in $data | filter:rec.Serachkeyword">
+                  <td ng-repeat="column in columns" sortable="column.title" ui-sref="app.view-posting-group({id:rec.id})">
+                    {{rec[column.field]}}
+                  </td>
+                  <td class="active-listing ">
+                    <a ui-sref="app.view-posting-group({id:rec.id})" class="btn btn-primary icon_square">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a ng-click="delete(rec.id,rec,$data)" class="btn btn-primary icon_square">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+                <div ng-show="!columns.length > 0" class="no-record"></div>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

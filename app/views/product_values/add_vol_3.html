@@ -1,0 +1,49 @@
+
+<div class="modal fade" id="model_vol_3"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="reload_popup(9,'model_vol_3')" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Price Offer Volume 3 </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label "> Name <span class="required">*</span></label>
+                      <div class="col-md-7">
+                        <input  ng-readonly="check_sub_readonly" required id="name"  type="text" 
+                        ng-model="formData_vol_3.name"  class="form-control" />
+                         
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                      <label class="col-md-3 control-label "> Description <span class="required">*</span></label>
+                      <div class="col-md-7">
+                        <input  ng-readonly="check_sub_readonly" required id="description"  type="text" 
+                        ng-model="formData_vol_3.description"  class="form-control" />
+                         
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info btn_blue width_80  " type="submit" ng-show="!check_item_readonly">  Submit</button>
+         
+        <button type="button" class="btn btn-default width_80  " ng-click="reload_popup(9,'model_vol_3')" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>

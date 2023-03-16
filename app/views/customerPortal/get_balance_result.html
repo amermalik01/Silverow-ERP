@@ -1,0 +1,164 @@
+<div ng-include="'app/views/partials/portal-sidebar.html'"></div> 
+<style>
+    table .longwidth th {
+        min-width: 130px;
+    }
+
+    .tableSettings {
+        display: none !important;
+    }
+
+    .flexiTable a:nth-child(2) {
+        display: none !important;
+    }
+    /* .flexiTable a:nth-child(3) {
+        margin-left: -60px !important;
+    }
+
+    .flexiTable a:nth-child(4) {
+        margin-left: -30px !important;
+    } */
+
+    .flexi_search_btn {
+        display: none !important;
+    }
+
+    .flexiTable a:nth-child(3) {
+        margin-left: -80px !important;
+        width: 95px;
+        border-radius: 4px;
+        top: -35px;
+        /* left: 75px; */
+        font-size: 11px !important;
+        border-color: #c5c5c5;
+        border-width: 1px;
+        border-style: solid;
+        font-weight: bold;
+        color: #444444;
+        background-color: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        display: none;
+        /* inline-block;*/
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        /* line-height: 1.42857143; */
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        /* border: 1px solid transparent; */
+        line-height: 25px;
+        height: 30px;
+    }
+
+    .flexiTable a:nth-child(3):hover {
+        border-color: #969696;
+        color: #018fff;
+        background-color: white;
+    }
+
+    .flexiTable a:nth-child(3)::before {
+        content: "Export as CSV";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .flexiTable a:nth-child(3) i {
+        opacity: 0;
+        display: block;
+    }
+    /* .right-sidebar {
+        margin: 0px !important;
+    } */
+
+    .container {
+        width: 100% !important;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    .a-content {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    /* .a-content {
+        width: auto !important;
+    } */
+</style>
+
+<div class="col-md-10 col-md-offset-1" style="margin-top: 10px;">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+        <div class="col-md-12">
+            <div class="a-content">
+                <div class="a-label-container">
+                    <b class="a-title" style="width: 120px">Date <!-- <span class="required"> *</span> --></b>
+                    <div class="input-symbol a-date">
+                        <input jqdatepicker
+                                class="form-control"
+                                id="dateFrom"
+                                readonly
+                                placeholder="From"
+                                style="background-color: white;"
+                                ng-model="filterReport.dateFrom"
+                                ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <div class="input-symbol a-date">
+                        <input jqdatepicker
+                                class="form-control"
+                                id="dateTo"
+                                readonly
+                                placeholder="To"
+                                style="background-color: white;"
+                                ng-model="filterReport.dateTo"
+                                ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <span id="date_msg" 
+                            style="color:#F00; display: none;top: 38px !IMPORTANT;">Date To is earlier than Date From</span>
+                    </div>
+                    
+                    <div class="pull-right">
+                        <button class="btn report-generate no-margin"
+                                type="button"
+                                ng-click="get_balance_info()">Generate</button>
+                        <button class="btn report-clearfilter"
+                                type="button"
+                                ng-click="clearReport()">Clear
+                            Filter</button>
+                        <button class="btn report-default"
+                                type="button"
+                                ng-click="exportAsCSV();">Export as CSV</button>
+                    </div>
+                </div>
+            </div>
+            <div 
+                style="margin-top: 18px;">
+                <div class="flexiTable"                    
+                    x-generate-table
+                    x-data="tableData.data"
+                    x-table-name="CustomerActivityPortal"
+                    x-filter-function="get_balance_info()"
+                    x-filter-object="searchKeyword">
+                </div> 
+                <!-- x-report-modal="'true'"  -->
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/_on_hold_comment.html'"></div>

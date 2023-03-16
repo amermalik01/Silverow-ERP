@@ -1,0 +1,70 @@
+<div class="modal fade" id="_CustRebateHistory_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{history_title}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="panel-body" style="  overflow-y: scroll;    max-height:200px;">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed table-bordered table-hover no-margin">
+                            <thead>
+                            <tr class="bg-col">
+                                <th>Rebate Type</th>
+                                <th>Rebate Offered</th>
+                                <th>Rebate</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                            </thead>
+                            <tbody class="courser table-body">
+                            <tr ng-repeat="rec in Rebate_rec_history">
+                                <td data-title="'Rebate Type'" sortable="'type'">
+                                    <span>{{rec.rebate_type_name}}</span>
+                                </td>
+                                <td data-title="'Rebate Offered '">
+                                    <span ng-if="rec.rebate_type == 1">{{rec.universal_type_name}}</span>
+                                        <span ng-if="rec.rebate_type == 2" class="tooltips_cls">
+                                            <span ng-repeat="cat in rec.offer_to track by $index" ng-if="$index ==0">{{cat.cat_name}}....</span>
+                                            <ul ng-if="rec.offer_to.length > 0">
+                                                <li ng-repeat="cat in rec.offer_to">{{cat.cat_name}}</li>
+                                            </ul>
+                                        </span>
+                                        <span ng-if="rec.rebate_type == 3">
+                                            <span ng-repeat="item in rec.offer_to" ng-if="$index ==0">{{item.item_description}}...</span>
+                                            <ul ng-if="rec.offer_to.length > 1">
+                                                <li ng-repeat="item in rec.offer_to">{{item.item_description}}</li>
+
+                                            </ul>
+                                        </span>
+                                </td>
+                                <td data-title="'Rebate'" sortable="'price_offered'">
+                                    <span ng-if="rec.rebate_type == 2 || rec.rebate_type == 3 || rec.universal_type == 1"><!--{{rec.rebate}}-->
+                                        <!--&nbsp;&#37;-->
+                                        <span ng-if="rec.rebate_price_type==1">{{rec.rebate| numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                        <span ng-if="rec.rebate_price_type==2">{{rec.rebate| numberNoDecimalsIfZeroFilter:2:''}} <span> {{drp.currency.code}} </span></span>
+                                        <span ng-if="rec.rebate_price_type==1">&#37;</span>
+                                    </span>
+                                </td>
+
+                                <td data-title="'Start Date'" sortable="'offer_date'">
+                                    {{rec.start_date | date: dateFormats[defaultDateFormat]}}
+                                </td>
+                                <td data-title="'End Date'" sortable="'offer_valid_date'">
+                                    {{rec.end_date | date: dateFormats[defaultDateFormat]}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

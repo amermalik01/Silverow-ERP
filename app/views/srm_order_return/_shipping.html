@@ -1,0 +1,168 @@
+<div class="widget">
+    <div class="widget-body widget_media_ipad">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h5 class="sales_heading">Debit Note</h5> -->
+                <h5 class="sales_heading" ng-if="show_order">Debit Note</h5>
+                <h5 class="sales_heading" ng-if="show_invoiceLabel">Posted Debit Note
+                    <!-- Debit Note Invoice -->
+                </h5>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Location Name</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" style="padding-right: 29px;" id="shipToSupplierLocName" class="form-control" ng-model="rec.shipToSupplierLocName" ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly }" ng-click="(!check_sr_readonly || check_pi_readonly) && getAltDepot()"
+                                    readonly/>
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 1</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shipToSupplierLocAddress" class="form-control" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" ng-model="rec.shipToSupplierLocAddress" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 2</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shipToSupplierLocAaddress2" class="form-control" ng-model="rec.shipToSupplierLocAaddress2" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">City</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shipToSupplierLocCity" class="form-control" ng-model="rec.shipToSupplierLocCity" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">County</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shipToSupplierLocCounty" class="form-control" ng-model="rec.shipToSupplierLocCounty" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
+                        <div class="col-md-4 pr0">
+                            <input type="text" id="shipToSupplierLocPostCode" class="form-control text-uppercase" ng-model="rec.shipToSupplierLocPostCode" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                        <div class="col-md-4" style="padding-left: 5px;">
+                            <!-- <select class="form-control" disabled
+                            ng-model="rec.shipToSupplierLocCountry" 
+                            ng-options="opt as opt.name for opt in country_type_arr">
+                            ng-attr-title="{{rec.shipToSupplierLocCountry.name}}"
+                        </select> -->
+                            <input type="text" value="{{rec.shipToSupplierLocCountry.code}}" class="form-control" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact </label>
+                        <div class="col-md-8">
+                            <input type="text" id="shipToSupplierLocContact" class="form-control" ng-model="rec.shipToSupplierLocContact" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Book In Tel No.</label>
+                        <div class="col-md-8">
+                            <input type="text" id="book_in_tel" class="form-control" ng-model="rec.book_in_tel" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Book In Contact</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.book_in_contact" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" id="book_in_contact" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Book In Email</label>
+                        <div class="col-md-8">
+                            <input type="text" id="book_in_email" class="form-control" ng-model="rec.book_in_email" ng-readonly="(anonymousSupplierFlag || check_sr_readonly) && !check_pi_readonly" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Shipping Method">Shipt. Method</label>
+                        <div class="col-md-8">
+                            <select class="form-control" ng-model="rec.shipment_method_code" ng-disabled="check_sr_readonly && !check_pi_readonly" ng-options="opt.name for opt in srm_shippment_methods_arr">
+                              <option value="" disabled selected>Select Shipt. Method</option>
+                            </select>
+                            <!-- anonymousSupplierFlag || -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Shipping Agent</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_sr_readonly && !check_pi_readonly}">
+                                <input type="text" id="shipping_agent_code" class="form-control" style="padding-right: 29px;" ng-model="rec.shipping_agent_code" ng-click="(!check_sr_readonly || check_pi_readonly) && selectshippingAgent();" ng-readonly="check_sr_readonly && !check_pi_readonly"
+                                    ng-class="{'white_bg':!check_sr_readonly && check_pi_readonly }" />
+                                <span><i class="fa fa-external-link"></i></span>
+                                <!-- get_supplier 1,1 -->
+                            </div>
+                            <!-- anonymousSupplierFlag || required-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Shipping Agent Reference Number">Shipt. Agent Ref.</label>
+                        <div class="col-md-8">
+                            <input type="text" id="shippingAgentRefNo" class="form-control" ng-model="rec.shippingAgentRefNo" ng-readonly="check_sr_readonly && !check_pi_readonly" />
+                        </div>
+                        <!-- anonymousSupplierFlag || -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Freight Charges</label>
+                        <div class="col-md-8">
+                            <input type="number" id="freight_charges" class="form-control" ng-model="rec.freight_charges" ng-readonly="check_sr_readonly && !check_pi_readonly" />
+                        </div>
+                        <!-- anonymousSupplierFlag || -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Shipment Date</label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="form-control" readonly ng-model="rec.shipment_date" ng-class="{'pickdate':!check_sr_readonly && check_pi_readonly }" ng-disabled="check_sr_readonly && !check_pi_readonly">
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                        </div>
+                        <!-- anonymousSupplierFlag ||  || !anonymousSupplierFlag-->
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Delivery Date</label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="form-control" readonly ng-disabled="check_sr_readonly && !check_pi_readonly" ng-class="{'pickdate':!check_sr_readonly && check_pi_readonly }" ng-model="rec.deliveryDate">
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            <!-- anonymousSupplierFlag || || !anonymousSupplierFlag -->
+                            <!--<span id="date_msg_leave_118" style="color:#F00; display: none;">End Date is earlier than Start Date</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Delivery Time</label>
+                        <div class="col-md-8">
+                            <input jqtimepicker class="form-control" readonly ng-disabled="check_sr_readonly && !check_pi_readonly" ng-model="rec.ship_delivery_time" ng-class="{'pickdate':!check_sr_readonly && check_pi_readonly  }">
+                            <span class="fa fa-clock-o new_ca form-control-feedback new-time"></span>
+                        </div>
+                        <!-- anonymousSupplierFlag || || !anonymousSupplierFlag-->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Warehouse Booking Ref.">W/H Book. Ref.</label>
+                        <div class="col-md-8">
+                            <input type="text" id="warehouse_booking_ref" class="form-control" ng-model="rec.warehouse_booking_ref" ng-readonly="check_sr_readonly && !check_pi_readonly" />
+                        </div>
+                        <!-- anonymousSupplierFlag || -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Supplier Warehouse Ref.">Suppl. W/H Ref.</label>
+                        <div class="col-md-8">
+                            <input type="text" id="customer_warehouse_ref" class="form-control" ng-model="rec.customer_warehouse_ref" ng-readonly="check_sr_readonly && !check_pi_readonly" />
+                        </div>
+                        <!-- anonymousSupplierFlag || -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,236 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <div class="panel-title2">Price List</div>
+                <div class="">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <input type="hidden" ng-model="PriceOffer_rec.product_id"/>
+                            <label class="col-md-4 control-label">Item Code<span
+                                    class="required">*</span></label>
+
+                            <div class="col-md-8" style="margin-top: 7px;">
+                                <div class="input-symbol">
+                                        <input type="text" ng-model="PriceOffer_rec.Item_Code"
+                                        ng-click="itemselectPage(1);getproductsPriceOffer(77);"
+                                        class="form-control input_text" required
+                                        ng-disabled="PriceList_check_readonly"/>
+                                        <span><i class="fa fa-external-link"></i></span>
+                                </div>
+
+                                <!--getproducts-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"> Item Name <span class="required">*</span> </label>
+
+                            <div class="col-md-8">
+                                <input type="text" ng-model="PriceOffer_rec.Item_Description"
+                                       class="form-control " required readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Unit Of Measure<span class="required">*</span></label>
+
+                            <div class="col-lg-8">
+
+                                <ui-select ng-model="PriceOffer_rec.unit_of_measures" ng-disabled="PriceList_check_readonly"
+                                ng-change="PriceOffer_validatePrice(PriceOffer_rec.price_offered)" required>
+                                        <ui-select-match placeholder="Select Unit Of Measure">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_unit_of_measure | filter: $select.search">
+                                          <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                      </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Price<span class="required">*</span></label>
+                            <div class="col-lg-4 padr6">
+                                    <div class="input-symbol">
+                                        <input type="number" ng-model="PriceOffer_rec.price_offered" id="price_offered"
+                                               ng-blur="PriceOffer_validatePrice(PriceOffer_rec.price_offered)"
+                                               class="form-control"
+                                               ng-readonly="PriceList_check_readonly" required="1">
+                                        <!-- <span>{{PriceOffer_rec.currencys.code}}</span> -->
+                                    </div>
+                                    <!--chkPrice_PriceOffer-->
+                                </div>
+                            <div class="col-lg-4 padl6">
+                                    <ui-select ng-model="PriceOffer_rec.currencys"  ng-disabled="PriceList_check_readonly"
+                                    ng-change="PriceOffer_validatePrice(PriceOffer_rec.price_offered)"
+                                    tabindex="26"
+                                    ng-class="{'not-click-allow':disableClass > 0}">
+                                    <ui-select-match placeholder="Select Currency">{{$select.selected.code}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                                        <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Local Currency <span class="required">*</span></label>
+                            <div class="col-lg-4 padr6">
+                                    <div class="input-symbol">
+                                        <input type="text" ng-model="PriceOffer_rec.converted_price" class="form-control"
+                                               ng-readonly="1">
+                                        <span>{{defaultCurrencyCode}} / {{arr_unit_of_measure[0].name}}</span>
+                                    </div>
+                                    <!--{{PriceOffer_rec.unit_of_measures.name}}-->
+                                </div>
+                            <div class="col-md-3">
+                                <label for="">                               
+                                 <input type="checkbox" ng-model="PriceOffer_rec.vat_chk"
+                                ng-checked="PriceOffer_rec.vat_chk>0" id="vat_chk" style="margin-top: 13px;">
+                                Incl. VAT 
+                            </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Offered By <!-- <span class="required">*</span> --></label>
+
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="PriceOffer_rec.offered_by" id="offered_by"
+                                       class="form-control" ng-disabled="PriceList_check_readonly" tabindex="1"
+                                       ng-click="itemselectPage(1);getOffer_PriceOffer(77,1)" required/>
+                                <input type="hidden" ng-model="PriceOffer_rec.offeredByID" id="offeredByID"
+                                       class="form-control"/>
+                                <input type="hidden" ng-model="PriceOffer_rec.id" id="update_id" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Offer Method</label>
+
+                            <div class="col-lg-8">
+                                <select ng-model="PriceOffer_rec.offer_method_ids"
+                                        ng-options="opt as opt.title for opt in arr_OfferMethod"
+                                        class="select2me form-control"
+                                        ng-disabled="PriceList_check_readonly" tabindex="5">
+                                    <option style="display:none;" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Order Qty.</label>
+                            <div class="col-lg-4 padr6">
+                            <div class="input-label input-fax">
+                                <div class="input-label-name   ">
+                                    Min:
+                                </div>
+                                <div class="input-symbol">
+                                        <input ng-readonly="PriceList_check_readonly" type="number"
+                                               data-parsley-trigger="keyup" id="min_quantity"
+                                               ng-model="PriceOffer_rec.minOrderQty"
+                                               ng-blur="checkQty_PriceOffer('min')"
+                                               class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse"
+                                               data-parsley-minlength-message="Invalid Value"
+                                               data-parsley-type-message="Invalid Value"
+                                               data-parsley-error-message="Invalid Value"
+                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                                        <span>{{PriceOffer_rec.unit_of_measures.name}} </span>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 padl6">
+                                <div class="input-label input-fax">
+                                    <div class="input-label-name   ">
+                                        Max:
+                                    </div>
+                                    <div class="input-symbol">
+                                            <input ng-readonly="PriceList_check_readonly" type="number"
+                                                   data-parsley-trigger="keyup"
+                                                   id="max_quantity" ng-model="PriceOffer_rec.maxOrderQty"
+                                                   ng-blur="checkQty_PriceOffer('max')"
+                                                   class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse"
+                                                   data-parsley-minlength-message="Invalid Value"
+                                                   data-parsley-type-message="Invalid Value"
+                                                   data-parsley-error-message="Invalid Value"
+                                                   data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                                            <span>{{PriceOffer_rec.unit_of_measures.name}} </span><!--required-->
+                                        </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Start Date<span class="required">*</span></label>
+
+                            <div class="col-lg-8">
+                                <input jqdatepicker class="2date-picker form-control" id="ck_sdate" required
+                                       ng-disabled="PriceOffer_check_readonly"
+                                       ng-model="PriceOffer_rec.offer_date" readonly
+                                       ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end')"
+                                       ng-click="load_date_picker('load');">
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">End Date<span class="required">*</span></label>
+
+                            <div class="col-lg-8">
+                                <input jqdatepicker class="2date-picker form-control" id="ck_edate" required
+                                       ng-disabled="PriceOffer_check_readonly"
+                                       ng-model="PriceOffer_rec.offer_valid_date" readonly
+                                       ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end')"
+                                       ng-click="load_date_picker('load');">
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                <span id="date_msg_end" style="color:#F00; display: none;">End Date is earlier then Start Date</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Location(s) </label>
+
+                            <div class="col-md-8">
+                                <div title="{{selCRMLocTooltip}}">
+                                    <div class="panel-info pi2"
+                                         ng-class="{'dont-click readonly':PriceList_check_readonly}">
+                                        <div class="panel-body" ng-click="getLocPriceOffer();">
+
+                                            <span ng-repeat="loc in selectedCRMLoc track by $index">
+                                                <span ng-if="$index == 0">
+                                                    <span>{{loc.title}}</span>
+                                                </span>
+                                                <span ng-if="$index >0 && $index < 5">;&nbsp;<span>{{loc.title}}</span></span>
+                                                <span ng-if="$index ==5">
+                                                    <span>...</span>
+                                                </span>
+                                            </span>
+                                            <aside></aside>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                            <div class="col-lg-12" style="margin-top: 16px;">
+                        <div class="pull-right">
+                            <button class="btn btn-submit"
+                                    ng-class="{'btn-submit':!isAdded,'default dont-click':isAdded}" type="submit"
+                                    ng-show="!PriceList_check_readonly"> Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="showCRMPricelistEditForm()"
+                                    ng-show="PriceList_check_readonly"> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="getPriceOfferList()">
+                                Cancel
+                            </button>
+                            <!--showCRMPricelistInfoListing()-->
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div ng-include="'app/views/customer_price_list_info/_listing_model_employee_info.html'"></div>
+<div ng-include="'app/views/customer_price_list_info/_price_listing_modal.html'"></div>-->

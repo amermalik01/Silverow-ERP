@@ -1,0 +1,151 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <input type="hidden" ng-model="formData.gl_id"/>
+                    <input type="hidden" ng-model="formData.tab_id_2" value="1"/>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group"><!-- ng-show="parent_show"-->
+                            <label class="col-sm-3 control-label ">Category </label>
+
+                            <div class="col-sm-7">
+                                <!--                <input   type="text"  ng-model="formData.gl_category_id"  readonly
+                           required class="form-control" />-->
+
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.gl_category_id"
+
+                                        ng-options="opt as opt.name for opt in category_list" ng-change="get_parent()"
+                                        class="select2me form-control" required>
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Sub Category <span class="required">*</span></label>
+
+                            <div class="col-sm-7"> <!--ng-change="get_parent()"-->
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.category_ids"
+
+                                        ng-options="opt as opt.name for opt in category_list"
+                                        class="select2me form-control" required>
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Name<span class="required">*</span> </label>
+
+                            <div class="col-sm-7">
+                                <input ng-readonly="check_gl_readonly" type="text" ng-model="formData.name"
+                                       required class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Account Number<span class="required">*</span>
+                            </label>
+
+                            <div class="col-sm-7">
+                                <input ng-readonly="check_gl_readonly" type="text" placeholder="0" min="1" step="100"
+                                       data-parsley-trigger="keyup"
+                                       data-parsley-minlength="1" ng-model="formData.number" id="number"
+                                       class="form-control input_text" data-parsley-minlength-message="only Decimal"
+                                       data-parsley-type="number"
+                                       data-parsley-type-message="only Decimal">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                          <label class="col-sm-3 control-label ">Account Type </label>
+                          <div class="col-sm-7">
+                            <select  ng-disabled="check_gl_readonly"
+                               ng-model="formData.account_types" ng-options="opt as opt.name for opt in account_type_list"
+
+                        ng-change="onChangeAccounttype()"
+                            class="select2me form-control"    >
+                              <option style="display:none" ></option>
+                            </select>
+                          </div>
+                        </div>
+                        <div  ng-show="show_cat">-->
+
+                        <!--  </div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">VAT Rate </label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.vat_list_ids"
+
+                                        ng-options="opt as opt.name for opt in vat_gl_list"
+                                        class="select2me form-control">
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Transaction </label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" ng-model="formData.transcation_types"
+
+                                        ng-options="opt as opt.name for opt in transcation_list"
+                                        class="select2me form-control">
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--  <div class="form-group">
+                          <label class="col-sm-3 control-label ">Posting Type </label>
+                          <div class="col-sm-7">
+                            <select  ng-disabled="check_gl_readonly"  ng-model="formData.posting_types"
+
+                         ng-options="opt as opt.name for opt in posting_list"
+                            class="select2me form-control"    >
+                              <option style="display:none" ></option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label "> G/L Category <span class="required">*</span></label>
+                          <div class="col-sm-7">
+                            <select  ng-disabled="check_gl_readonly" required ng-model="formData.gl_category_ids"
+
+                        ng-options="opt as opt.name for opt in category_main_list"
+                            class="select2me form-control"    >
+                              <option style="display:none" ></option>
+                            </select>
+                          </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ">Status<span class="required">*</span></label>
+
+                            <div class="col-sm-7">
+                                <select ng-disabled="check_gl_readonly" required
+                                        ng-model="formData.statuss" ng-options="opt as opt.name for opt in status_data"
+                                        class="select2me form-control">
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="hr_line2"></div>
+                        <div class="pull-right">
+                            <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i
+                                    class="fa fa-check"></i> Submit
+                            </button>
+                            <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()"
+                                    ng-show="check_gl_readonly"><i class="fa fa-edit"></i> Edit
+                            </button>
+                            <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i
+                                    class="fa fa-undo"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

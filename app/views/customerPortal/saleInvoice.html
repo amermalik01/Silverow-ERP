@@ -1,0 +1,112 @@
+
+<tabset id="orders_tabs">
+    <tab heading="General">
+        <form name="company" class="form-horizontal small_fields"             
+                role="form" validate-form="" novalidate="">
+            <div ng-include="'app/views/orders/_general.html'"></div>
+        </form>
+    </tab>
+    <tab heading="Invoicing" class="finance_order " ng-if="rec.id>0">
+        <form name="finance" autocomplete="off"              
+              validate-form="" novalidate="" class="form-horizontal small_fields" role="form">
+            <div ng-include="'app/views/orders/_form_finance.html'"></div>
+            <div ng-include="'app/views/orders/_customer_modal_single_finance.html'"></div>
+        </form>
+        </div>
+    </tab>
+    <tab heading="Shipping" class=" shiping_information " ng-click="shiping_information()" ng-if="rec.id>0">
+        <form name="company"  class="form-horizontal small_fields" role="form"
+              validate-form="" novalidate="">
+            <div ng-include="'app/views/orders/_shipping.html'"></div>
+        </form>
+    </tab>
+    
+    <tab heading="Margin Analysis" class=" shiping_information " ng-click="stats_information()" ng-if="rec.id>0 && rec.sell_to_cust_no">
+        <form name="company"  class="form-horizontal small_fields" role="form"
+              validate-form="" novalidate="">
+            <div ng-include="'app/views/orders/_stats.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Invoicing" class="contact_information dont-click"
+        ng-if="!(rec.id>0)">
+            <div class="vertical_space"></div>
+    </tab>
+    <tab heading="Shipping" class="shiping_information dont-click"
+        ng-if="!(rec.id>0)">
+            <div class="vertical_space"></div>
+    </tab>  
+    <tab heading="Margin Analysis" class="shiping_information dont-click"
+        ng-if="!(rec.id>0) || !(rec.sell_to_cust_no)">
+            <div class="vertical_space"></div>
+    </tab>  
+    <span ng-if="rec.type2 !=0">
+        <span ng-if="rec.id > 0">
+            <x-stage-status-bar x-none-sequencial x-stages="order_stages_array" x-read-only="check_so_readonly"></x-stage-status-bar>
+        </span>
+        <span ng-if="!(rec.id > 0)">
+            <x-stage-status-bar x-none-sequencial x-stages="order_stages_array" x-read-only="1"></x-stage-status-bar>
+        </span>
+    </span>
+</tabset>
+<div 
+    style="position: absolute;
+        z-index: 3;
+        top: 87px;
+        width: auto;
+        right: 41px;">
+        <div ng-include="'app/views/orders/_order_status.html'"></div>
+    </div>
+
+<!-- <div 
+    ng-include="'app/views/orders/_PurchaseOrdersModal.html'"></div>
+<div 
+    ng-include="'app/views/orders/_contactModal.html'"></div>
+<div 
+    ng-include="'app/views/orders/_orderSalesPersonModal.html'"></div>
+
+<div class="clearfix" style="margin-top:14px;"></div>
+
+<div 
+    ng-include="'app/views/orders/_locationModal.html'"></div>
+<div 
+    ng-include="'app/views/_listing_supplier_single.html'"></div> -->
+    
+<div>
+    <div class="panel panel-default" ng-controller="OrderTabController" 
+        style=" padding-bottom: 0;
+                margin-top: -41px;
+                border-top: 0;
+                border-top-right-radius: 0;
+                border-top-left-radius: 0;">
+        <div class="panel-heading hidden">
+            <h3 class="panel-title">Order Details</h3>
+        </div>
+        <div class="panel-body" style=" padding-bottom: 0;padding-top: 0;">
+            <div id="dt_example" class="example_alt_pagination">
+                <form name="Order_Tab" class="form-horizontal small_fields" role="form"
+                      validate-form="" novalidate="">
+                    <div ng-include="'app/views/customerPortal/_order_tab.html'"></div>
+                </form> 
+                <!-- <div ng-include="'app/views/_confirm_modal.html'"></div>
+                <div ng-include="'app/views/orders/_account_modal.html'"></div>
+                <div ng-include="'app/views/orders/_listing_prod_modal.html'"></div>
+                <div ng-include="'app/views/orders/_listing_service_modal.html'"></div>
+                
+                <div ng-include="'app/views/orders/order_trail_modal.html'"></div>
+                <div ng-include="'app/views/_order_navigate_modal.html'"></div>
+                <div ng-include="'app/views/srm_order/location_modal.html'"></div>
+                <div ng-include="'app/views/invoice_templates/sales_order_modal.html'"></div>
+                <div ng-include="'app/views/_approvals_history.html'"></div> -->
+                <div ng-include="'app/views/orders/_stock_allocation_modal.html'"></div>
+                <div ng-include="'app/views/orders/_stock_allocation_detail_modal.html'"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/orders/_check_cridit_modal.html'"></div>
+<div ng-include="'app/views/orders/_customer_listing_modal.html'"></div>
+<div ng-include="'app/views/_customer_modal_single.html'"></div>
+<div ng-include="'app/views/orders/_customer_modal_single_finance.html'"></div> -->

@@ -1,0 +1,281 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Salary Information</div>
+                        <div class="col-md-5 ">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Salary
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-3 padr6">
+                                    <input required readonly x-validity="regx.number"type="text" ng-model="empAccountData.salary" class="form-control"
+                                    />
+                                </div>
+                                <div class="col-md-2 padl6 padr6">
+                                    <select ng-model="empAccountData.salary_currency" ng-options="opt as opt.code for opt in currency_list" class=" form-control" disabled
+                                        required>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 padl6">
+                                    <div ng-show="salary_type_one">
+                                        <select disabled ng-model="empAccountData.salary_type" ng-options="opt as opt.label for opt in salary_type_list_final_one"
+                                            class="select2me form-control">
+                                        </select>
+                                    </div>
+                                    <div ng-show="salary_type_two">
+                                        <select disabled ng-model="empAccountData.salary_type" ng-options="opt.value as opt.label for opt in salary_type_list_final_two"
+                                            class="select2me form-control" required>
+                                            <option value="" disabled selected>Salary Type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Commission</label>
+                                
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" class="form-control" max="100" min="0"
+                                            readonly
+                                            ng-model="empAccountData.commission" x-validity="regx.float"/>
+                                        <span class="ng-binding">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Commission Effective Date<span ng-if="empAccountData.commission && empAccountData.commission != 0" class="required">*</span> 
+                                </label>
+
+                                <div class="col-md-6 padr6">
+                                    <input jqdatepicker class="2date-picker form-control" id="commissionEffect_date" 
+                                        ng-model="empAccountData.commission_effective_date" 
+                                        disabled
+                                        readonly="" 
+                                        ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                                </div>
+
+                                <div class="col-md-2 padl6">                                
+                                    <a class="btn btn-default2" style="width: 100%; margin-left: 0px; padding: 6px 0px;"                                    
+                                        ng-click="getCommissionRateHistory()"
+                                        disabled>History
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Overtime Rate</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="number" step="any" ng-model="empAccountData.over_time_rate" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Company Bonus </label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="number" ng-model="empAccountData.bonus" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Salary Effective Date
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+
+                                    <input jqdatepicker class="2date-picker form-control" id="salary_date" ng-model="empAccountData.salary_date" disabled
+                                        ng-change="testdate_by_id('salary_date','salary_date_review','date_msg_salary')" required=""
+                                        readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Salary Review Date</label>
+
+                                <div class="col-md-8">
+
+                                    <input jqdatepicker class="2date-picker form-control" id="salary_date_review" ng-model="empAccountData.salary_date_review" disabled
+                                        ng-change="testdate_by_id('salary_date','salary_date_review','date_msg_salary')" readonly=""
+                                        ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="date_msg_salary" style="color:#F00; display: none;">Salary Review is earlier than Start Date</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Entitled Holidays <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text" ng-model="empAccountData.entitle_holiday" class="form-control" min="{{minEntitledHolidays?minEntitledHolidays:0}}" ng-required="minEntitledHolidays?'true':'false'"
+                                        max="365" step="100" data-parsley-trigger="keyup" data-parsley-minlength="1" data-parsley-minlength-message="only Decimal"
+                                        data-parsley-type="number" data-parsley-type-message="only Decimal" />
+                                    <span class="place-gbp3">Days</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                                <h5 style="margin: 0 0 2px 0;">
+                                        <b class="text-capitalize">Employee Pension Contribution</b>
+                                    </h5>
+                                    <hr style="    margin: 10px 0 18px 0;">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label " title="Employee Pensions Contributions">Percentage</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input readonly type="text" x-validity="regx.float" ng-model="empAccountData.er_pention" class="form-control" max="100"
+                                        />
+                                        <span class="ng-binding"> %</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date
+                                    <span ng-if="empAccountData.er_pention.length" class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input ng-required="empAccountData.er_pention.length" jqdatepicker class="2date-picker form-control" id="ee_start_date" ng-model="empAccountData.ee_start_date"
+                                        disabled  readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Pension Change Date</label>
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control" id="ee_change_date" ng-model="empAccountData.ee_change_date" disabled
+                                         readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="date_msg_ee_change" style="color:#F00; display: none;">EE Date Percentage Change is earlier than Start Date</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> End Date
+                                    <input title="Put leaving date here" ng-if="empAccountData.cause_of_inactivity.id == 999" type="checkbox" ng-checked="empAccountData.leave_date == empAccountData.ee_end_date"
+                                        ng-click="checkEEEndDate()" disabled />
+                                </label>
+
+                                <div class="col-md-8">
+
+                                    <input jqdatepicker class="2date-picker form-control" id="ee_end_date" ng-model="empAccountData.ee_end_date" disabled
+                                         readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="date_msg_ee_end" style="color:#F00; display: none;">EE End Date is earlier than Start Date</span>
+                                    <span id="date_msg_ee_endchnage" style="color:#F00; display: none;">EE End Date is earlier than Date Percentage Change</span>
+                                </div>
+                            </div>
+                            <h5 style="margin: 23px 0 2px 0;"><b class="text-capitalize">Employer Pension Contribution</b></h5>
+                            <hr style="margin: 10px 0 18px 0;">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Employer Pensions Contributions">Percentage</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input readonly x-validity="regx.float" type="text" ng-model="empAccountData.ee_pention" class="form-control" max="100"
+                                        />
+                                        <span class="ng-binding">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Start Date
+                                    <span ng-if="empAccountData.ee_pention.length" class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+
+                                    <input jqdatepicker ng-required="empAccountData.ee_pention.length" class="2date-picker form-control" id="er_start_date" ng-model="empAccountData.er_start_date"
+                                        disabled ng-change="testdate_by_id('er_start_date','er_change_date','date_msg_er_pension')"
+                                        readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Pension Change Date</label>
+
+                                <div class="col-md-8">
+
+                                    <input jqdatepicker class="2date-picker form-control" id="er_change_date" ng-model="empAccountData.er_change_date" disabled
+                                        ng-change="testdate_by_id('er_start_date','er_change_date','date_msg_er_pension')" readonly=""
+                                        ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="date_msg_er_pension" style="color:#F00; display: none;">ER Date Percentage Change is earlier than Start Date</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">End Date
+                                    <input title="Put leaving date here" ng-if="empAccountData.cause_of_inactivity.id == 999" type="checkbox" ng-checked="empAccountData.leave_date == empAccountData.er_end_date"
+                                        ng-click="checkEREndDate()" disabled />
+                                </label>
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control " id="er_end_date" ng-model="empAccountData.er_end_date" disabled
+                                        ng-change="testdate_by_id('er_start_date','er_end_date','date_msg_er_end');testdate_by_id('er_change_date','er_end_date','date_msg_er_endchnage');" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        <span id="date_msg_er_end" style="color:#F00; display: none;">ER End Date is earlier than Start Date</span>
+                                        <span id="date_msg_er_endchnage" style="color:#F00; display: none;">ER End Date is earlier than Date Percentage Change</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="empAccountData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{empAccountData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="empAccountData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                    name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input readonly type="hidden" ng-model="empAccountData.emp_picture">
+                    <input readonly type="hidden" ng-init="empAccountData.emp_picture = empAccountData.emp_picture" ng-model="empAccountData.emp_picture">
+                </div>
+            </div>
+
+            <i ng-if="!empAccountData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="empAccountData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+empAccountData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            
+
+            <span class="name">
+                {{empAccountData.first_name + ' ' + empAccountData.last_name}}
+            </span>
+            <span class="job">
+                {{empAccountData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{empAccountData.user_email}}">{{empAccountData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="empAccountData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{empAccountData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="empAccountData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{empAccountData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
+     <div ng-include="'app/views/hr_values/hr_commission_modal.html'"></div> 
+</div>
+<!-- <div ng-include="'app/views/hr_values/salesTargetPopup.html'"></div> -->

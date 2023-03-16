@@ -1,0 +1,75 @@
+<style>
+    .paginationDirectivePages.active{
+            cursor: pointer !important;
+            color: white !important;
+            background-color: #2196F3 !important;
+            border-color: #2196F3 !important;
+    }
+    .paginationDirectivePages.active a {
+        color:white !important;
+    }
+</style>
+<div class="paginationWrapper"><!-- {{cPage}}=##={{cpage}}== -->
+    <ul class="paginationDirective ib">
+        <li ng-click="goToPage(1)"
+            ng-disabled="cPage == 1">
+            <a>
+                <i class="fa fa-angle-left"
+                   aria-hidden="true"></i>
+                <i class="fa fa-angle-left"
+                   aria-hidden="true"></i>
+            </a>
+        </li>
+        <li ng-click="goToPage(pPage)"
+            ng-disabled="cPage == 1">
+            <a>
+                <i class="fa fa-angle-left"
+                   aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="paginationDirectivePages"
+            ng-repeat="(key,value) in allPagesArray.data"
+            ng-class="{'active': value == cPage}"
+            ng-click="goToPage(value);">
+            <a href="javascript: void(0);">
+                <span ng-bind="value"></span>
+            </a>
+        </li>
+        <li ng-click="goToPage(nPage)"
+            ng-disabled="cPage == totalPages">
+            <a>
+                <i class="fa fa-angle-right"
+                   aria-hidden="true"></i>
+            </a>
+        </li>
+        <li ng-click="goToPage(totalPages)"
+            ng-disabled="cPage == totalPages">
+            <a>
+                <i class="fa fa-angle-right"
+                   aria-hidden="true"></i>
+                <i class="fa fa-angle-right"
+                   aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+    <ul class="ib paginationDirectiveForm">
+        <li>
+            Page
+            <input type="number"
+                   minlength="{{totalPages}}"
+                   id="PageInput"
+                   ng-model="pageInput.data"
+                   class="paginationControl" />
+            <div class="ib">/</div>
+            <div class="ib"><b>{{totalPages}}</b></div>
+        </li>
+    </ul> <!-- == {{pageInput}} -->
+    <i class='fa-spin fa fa-spinner'
+       ng-if="showLoader10"
+       class="ib"
+       style="position: absolute;
+                margin-left: 9px;
+                margin-top: 3px;
+                font-size: 19px;
+                color: #00b0ff;"></i>
+</div>

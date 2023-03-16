@@ -1,0 +1,56 @@
+[
+    {
+        "title": "CRM No.",
+        "field_name": "crm_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Territory",
+        "field_name": "region",
+        "db_table": "crm_region",
+        "db_where": " status = 1 AND region_type IN (2, 12)",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "123",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Buying Group",
+        "field_name": "buying_group",
+        "db_table": "crm_buying_group",
+        "db_where": " crm_buying_group_type = 1 ",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "db_table": "crm_segment",
+        "db_where": " segment_type = 1 ",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    }
+]

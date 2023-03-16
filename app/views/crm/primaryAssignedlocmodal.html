@@ -1,0 +1,87 @@
+<div class="modal fade"
+     id="primaryAssignedlocmodal">
+    <div class="modal-dialog modal-lg " style="width: 90%;"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{page_title}} </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="searchKeyword.search">
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+
+                        <table class="table table-condensed table-striped table-hover table-bordered table-condensed"
+                               id="data-table"
+                               ng-show="loc_columns.length > 0">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th style=" width: 7%;text-align: center;">
+                                        &nbsp;
+                                    </th>
+                                    <th ng-repeat=" column in loc_columns "
+                                        x-col="{{column.title}}"
+                                        ng-if="column.title != 'Id' && column.title != 'Is Default' && column.field != 'is_primary' ">
+
+                                        <span ng-if="column.title != 'Address 2' && column.title != 'Address'">{{column.title}}</span>
+                                        <span ng-if="column.title == 'Address'">Address Line 1</span>
+                                        <span ng-if="column.title == 'Address 2'">Address Line 2</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec3 in locationRecord | filter:searchKeyword.search track by $index ">
+
+                                    <td style="width: 7%;text-align: center;">
+                                        <div class="pure-checkbox"
+                                             style="margin: 4px 5px;padding-top: 6px;">
+                                            <input type="checkbox"
+                                                   ng-model="rec3.chk"
+                                                   ng-disabled="true"
+                                                   ng-checked="rec3.chk"
+                                                   data-parsley-multiple="checkbox"
+                                                   name="conttest {{$index}}"
+                                                   id="conttest {{$index}}" />
+                                            <!-- ng-click="selectloccontact(rec3,0,2)" -->
+                                            <label for="conttest {{$index}}"></label>
+                                        </div>
+                                    </td>
+                                    <td ng-repeat="column in loc_columns"
+                                        ng-if="column.title != 'Id' && column.title != 'Is Default' && column.field != 'is_primary'">
+                                        <span ng-if="rec3.is_primary == 1  && column.field == 'location' "
+                                              title="General Location">
+                                            <i class="fa fa-flag"
+                                               aria-hidden="true"></i>
+                                        </span> {{rec3[column.field]}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(locationRecord | filter: {chk: 1}).length}}</span>
+                <button type="button"
+                        class="btn btn-cancel"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

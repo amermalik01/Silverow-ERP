@@ -1,0 +1,41 @@
+<div class="row">
+<div class="col-lg-6">
+<div class="form-group">
+  <label class="col-lg-3 control-label">Code<span class="required">*</span></label>
+  <div class="col-lg-8">
+     <input type="text" ng-model="rec.code" class="form-control" ng-readonly="check_readonly" required tabindex="1"/>
+  </div>
+  </div>
+ </div>
+ <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Start Period<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" id="ck_sdate" ng-model="rec.start_period" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_start_sales_pipeline_target')"
+                                                               required readonly>
+                            <span id="date_msg_start_sales_pipeline_target" style="color:#F00; display: none;"  >Start Date Required</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+ <div class="col-lg-6">
+  <div class="form-group">
+  <label class="col-lg-3 control-label">Description <span class="required">*</span></label>
+  <div class="col-lg-8">
+     <input type="text" ng-model="rec.description" id="description" name="description" class="form-control" ng-readonly="check_readonly" required tabindex="2"/>
+  </div>
+  </div>
+</div>
+ <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">End Period<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" id="ck_edate" ng-model="rec.end_period" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end_sales_pipeline_target')" required readonly >
+        <span id="date_msg_end_sales_pipeline_target" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+

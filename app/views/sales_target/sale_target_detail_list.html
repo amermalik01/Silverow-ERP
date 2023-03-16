@@ -1,0 +1,268 @@
+
+<div   > 
+  <!--ng-show=" rec.id>0  &&rec.sale_type.id==2  "  -->
+  <div class="panel-heading">
+    <h3 class="panel-title">Individual Sales Target (s) </h3>
+  </div>
+  <div class="col-md-12" ng-show="total_grand_show" > <a  ng-if="allowadd_sale_target_module"id="prompt" ng-click="showAltContactMediaForm()" class="btn btn_add pull-right" style=" margin-top: -35px;">Add</a> </div>
+  <div class="row">
+    <div class="col-md-12" ng-show="alt_contact_media_form" style="    margin-top: 31px;">
+      <form autocomplete="off"  class="form-horizontal no-margin" role="form"
+ validate-form="" novalidate="">
+        <input type="hidden" ng-model="altContactMediaForm.id"    />
+        <div class="widget">
+          <div class="widget-body animated fadeIn">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6">
+                  <div class="form-group" ><!--ng-show="altContactMediaForm.sale_type.id==1"-->
+                    <label class="col-md-4 control-label">Salesperson<span class="required">*</span></label>
+                    <div class="col-md-7">
+                      <input type="text" ng-model="altContactMediaForm.sale_person_name"  class="form-control "
+       ng-show="check_sale_target_ind"  >
+                      <input type="text" ng-model="altContactMediaForm.sale_person_name"  class="form-control "
+        ng-show="check_sale_target_grp"      ng-click=" !check_sale_target_readonly  && getSalePerson_single_detail()"   >
+                      <input type="hidden" ng-model="altContactMediaForm.sale_person_id" />
+                    </div>
+                    <!--ng-disabled="read_type2"  required ng-readonly="read_type2"--> 
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label ">Target <span ng-show="rec.fix_target_type.id==1">Amount</span> <span ng-show="rec.fix_target_type.id==2">Quantity</span> <span class="required">*</span> </label>
+                    <div class="col-md-5">
+                      <input  required ng-readonly="check_sale_target_readonly"
+              type="text"   data-parsley-trigger="keyup"
+            ng-model="altContactMediaForm.target_amount"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" >
+                    </div>
+                    <span  ng-show="rec.fix_target_type.id==1"class="ng-binding" style="   position: relative;    right: 40px;    top: 9px;"> {{defaultCurrencyCode}} </span>
+                    <div class="col-md-2" ng-show="rec.fix_target_type.id==2">
+                      <select ng-model="altContactMediaForm.target_uom" ng-options="opt as opt.title for opt in arr_target_uom" class=" form-control"     disabled   >
+                      </select>
+                    </div>
+                  </div>
+                  <!--<div class="form-group">
+                  <label class="col-md-4 control-label">Product Type </label>
+                  <div class="col-md-7">
+                    <select ng-model="altContactMediaForm.product_promotion_type_id" ng-options="opt as opt.name for opt in arr_prod_promo_type" class=" form-control"       disabled  >
+                      <option style="display:block" value=""></option>
+                    </select>
+                  </div>
+                </div>-->
+                  <div class="form-group"  ng-if="altContactMediaForm.product_promotion_type_id.id>0">
+                    <label class="col-md-4 control-label "> {{rec.product_promotion_type_id.name}} 
+                      
+                      <!--  {{altContactMediaForm.product_promotion_type_id.name}} -->(s) </label>
+                    <div class="col-md-7">
+                      <div class="panel-info no-margin"
+                        ng-class="{'dont-click readonly':check_sale_target_readonly}"
+                        >
+                        <div class="panel-body" ng-click="!check_sale_target_readonly && getProducts_detail()"
+   style="height:30px; overflow-y:auto;"> <span ng-repeat="prod in selectedProducts_detail track by $index"> <span ng-if="$index == 0"> {{prod.name}} </span> <span ng-if="$index > 0">,&nbsp;{{prod.name}}</span> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="form-group">
+                  <label class="col-md-4 control-label">Target Type </label>
+                  <div class="col-md-7">
+                    <select ng-model="altContactMediaForm.target_type" ng-options="opt as opt.name for opt in arr_sale_type" class=" form-control"     disabled  >
+                      <option style="display:block" value=""></option>
+                    </select>
+                  </div>
+                </div>-->
+                  <div class="form-group"  ng-if="altContactMediaForm.target_type.id >0">
+                    <label class="col-md-4 control-label "> {{rec.target_type.name}} 
+                      
+                      <!--            {{altContactMediaForm.target_type.name}}-->(s) </label>
+                    <div class="col-md-7">
+                      <div class="panel-info no-margin"
+                         ng-class="{'dont-click readonly':check_sale_target_readonly}" >
+                        <div class="panel-body" ng-click="!check_sale_target_readonly && getGroups_detail()"
+
+
+                        style="height:30px; overflow-y:auto;"> <span ng-repeat="cust in selectedGroups_detail track by $index"> <span ng-if="$index == 0">{{cust.name}}</span> <span ng-if="$index > 0">,&nbsp;{{cust.name}}</span> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Additional Commission </label>
+                    <div class="col-md-3"> 
+                      <!-- <select ng-model="altContactMediaForm.commission_type" ng-options="opt as opt.name for opt in arr_type_commision" class=" form-control"
+         >
+              </select>-->
+                      
+                      <label ng-repeat="choice in arr_type_commision" style="    margin-right: 5px;  margin-top:7px;">
+                        <input type="radio" name="commission_typed" ng-model="altContactMediaForm.commission_type"
+                  ng-value="choice.id"  ng-disabled="check_sale_target_readonly" />
+                        {{choice.name}} </label>
+                    </div>
+                    <div class="col-md-4  "  ng-show="altContactMediaForm.commission_type==1 "> <span class="highlight-focus btn  pull-right animated fadeInLeft"  style="height: 30px;" type="button"
+                      ng-class="{'setshow':showdata_detailc==1}"
+                    ng-click="!check_sale_target_readonly && show_popup_commision(3,rec.fix_target_type.id)"> <i class="material-icons a-t-l">&#xE8EF;</i> <em class="icon-name">Commission</em> </span> </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Additional Bonus </label>
+                    <div class="col-md-3"> 
+                      <!--<select ng-model="altContactMediaForm.bonus_type" ng-options="opt as opt.name for opt in arr_type_bonus" class=" form-control"     >    </select>-->
+                      
+                      <label ng-repeat="choice in arr_type_bonus" style="    margin-right: 5px; margin-top:7px;">
+                        <input type="radio" name="bonus_typed" ng-model="altContactMediaForm.bonus_type"
+                  ng-value="choice.id" ng-disabled="check_sale_target_readonly"/>
+                        {{choice.name}} </label>
+                    </div>
+                    <div class="col-md-4  " ng-show="altContactMediaForm.bonus_type==1 "> <span class="highlight-focus btn pull-right animated fadeInLeft" type="button" style="height: 30px;"
+              ng-class="{'setshow':showdata_detailb==1}"
+               ng-click="!check_sale_target_readonly && show_popup_commision(4,rec.fix_target_type.id)"> <i class="material-icons a-t-l">&#xE896;</i> <em class="icon-name">Bonus</em> </span> </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+                    <div class="col-md-7">
+                      <input jqdatepicker class="2date-picker  form-control "   id="sdate"
+                  ng-model="altContactMediaForm.start_date"
+ng-change="testdate_by_id('sdate','edate','date_msg_leave_sdate');
+testdate_between_two_dates_by_id('ck_sdate','ck_edate','sdate','date_blocks')"
+                required readonly="" >
+                      <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span    id="date_msg_leave_sdate" style="color:#F00; display: none;"  >start Date is earlier  then Start Date</span> <span id="date_blocks"
+                  style="color:#F00; display: none;"  > Date Must be between Start and End Date of Target</span> </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">End Date <span class="required">*</span></label>
+                    <div class="col-md-7">
+                      <input jqdatepicker class="2date-picker form-control "  id="edate"
+                  ng-model="altContactMediaForm.end_date"
+ng-change="testdate_by_id('sdate','edate','date_msg_leave_sdate');
+testdate_between_two_dates_by_id('ck_sdate','ck_edate','edate','date_blocke')"
+                  required readonly="" >
+                      <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span    id="date_msg_leave_sdate" style="color:#F00; display: none;"  >start Date is earlier  then Start Date</span> <span id="date_blocke"  style="color:#F00; display: none;"  > Date Must be between Start and End Date of Target</span> </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Created Date </label>
+                    <div class="col-md-7">
+                      <input class=" form-control "
+                  ng-model="altContactMediaForm.created_date"
+                    readonly="" >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Status </label>
+                    <div class="col-md-7">
+                      <select ng-model="altContactMediaForm.status" ng-options="opt as opt.label for opt in arr_status" class=" form-control"  ng-disabled="check_sale_target_readonly" id="status"  >
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12"ng-show="alt_contact_media_form">
+                <div class="pull-right">
+                  <button class="btn btn-submit  _date_blockboth  b_date_blocks b_date_blocke " type="submit"
+      ng-show="!check_sale_target_readonly"ng-click="add_sale_detail();" > Save </button>
+                  <button class="btn btn-edit" type="button"  ng-click="showEditForm()"
+      ng-show="check_sale_target_readonly">Edit</button>
+                  <button class="btn btn-cancel" type="button" ng-click="hideAltContactMediaForm();">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="clearfix" style="margin-top:40px;"></div>
+  <div  ng-show="alt_contact_media_list" >
+    <div class="row">
+      <div class="col-md-12" >
+        <div class="col-md-4" >
+          <label class="  control-label">Search </label>
+          <div class=" ">
+            <div class="input-symbol">
+              <input type="text"    Placeholder="Search"  class="in-t-1"ng-model="searchKeyword.sale_person_name">
+              <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+          </div>
+        </div>
+        <div class="col-md-2" >
+          <label class="  control-label">Start Date </label>
+          <div class=" ">
+            <input jqdatepicker class="2date-picker in-t-1 "
+                  ng-model="searchKeyword.start_date"
+                  required readonly="" >
+          </div>
+        </div>
+        <div class="col-md-2" >
+          <label class="  control-label">End Date </label>
+          <div class=" ">
+            <input jqdatepicker class="2date-picker in-t-1 "
+                  ng-model="searchKeyword.ending_date"
+                  required readonly="" >
+          </div>
+        </div>
+        <div class="col-md-2" >
+          <label class="  control-label"> </label>
+          <div class=" "> <a type="button" class="ct1a1" ng-click="searchKeyword=''" style="    position: relative;
+    top: 10px;"
+               ng-model="strict" >Clear</a> </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive"> 
+          <!--    View    permision for Company User /superadmin      -->
+          <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" ng-if="allowview_sale_target_module==1" >
+            <thead >
+              <tr   ng-show="columns_alt_sale_detail.length > 0" > 
+                <!--   <th ng-repeat="column in columns_alt_sale_detail"
+  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }"
+    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+
+      ng-if="column.title!= 'Id' && column.title!= 'Action'&& column.title!= 'Sid'"  sortable="column.title"
+      > {{column.title}} </th>-->
+                
+                <th style=" width:15% !important; ">Sale Person </th>
+                <th style=" width:15% !important; ">Amount </th>
+                <th style=" width:15% !important; " >Commission</th>
+                <th style=" width:15% !important; " >Bonus</th>
+                <th style=" width:15% !important; " >Start date</th>
+                <th style=" width:15% !important; " >End date</th>
+                <th    style="width: 7%;">Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body courser ">
+              <!--<tr ng-repeat="rec in alt_sale_detail  | filter:searchKeyword:strict  track by $index "> ng-show="columns_alt_sale_detail.length > 0" >
+              <td ng-repeat="column in columns_alt_sale_detail"
+
+                 ng-if="column.title!= 'Id' && column.title!= 'Action' && column.title!= 'Sid'"
+                 ><span ng-if="column.field != 'start_date' && column.field != 'end_date'"> {{rec[column.field]}}</span> <span ng-if="column.field == 'start_date' || column.field == 'end_date'"> <span ng-if=" rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span></span></td>
+              <td    ><a title="Open "
+               ng-click="open_level_pop(rec)" class="tooltips_cls btn "> <i class="fa fa-eye"></i> </a> <a title="Edit"  ng-click="edit_sale_detail(rec.id)" class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a> <a title="Delete"   ng-click="delete_alt_sale_detail(rec.id,$index,alt_sale_detail)" class="tooltips_cls btn "> <i class="fa fa-times"></i> </a></td>
+            </tr>-->
+              
+              <tr   data-ng-repeat="formDataExpense in alt_sale_detail  | filter:searchKeyword:strict  track by $index "
+                      ng-show="columns_alt_sale_detail.length>0"  >
+                <td     > {{formDataExpense.sale_person_name}} </td>
+                <td     > {{formDataExpense.target_amount}} {{formDataExpense.unit}} </td>
+                <td style="width:14%"  > {{formDataExpense.commission}} </td>
+                <td style="width:14%"  > {{formDataExpense.bonus}} </td>
+                <td style="width:17%"> {{formDataExpense.start_date}} </td>
+                <td style="width:14%"  > {{formDataExpense.end_date}} </td>
+                <td    ><a title="Open Level 3"
+               ng-click="open_level_pop(formDataExpense)" class="tooltips_cls btn "> <i style="  font-size: 20px;
+    position: relative;
+    top: 3px;" class="material-icons">&#xE89D;</i> </a> 
+                  
+                  <!--   Edit    permision for Company User /superadmin --> 
+                  <a title="Edit"    ng-class="{'dont-click':allowedit_sale_target_module==0}" 
+                   ng-click="edit_sale_detail(formDataExpense.id)" class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a> 
+                  
+                  <!--    Delete   permision for Company User /superadmin --> 
+                  <a title="Delete" ng-if="allowdelete_sale_target_module==1"   ng-click="delete_alt_sale_detail(formDataExpense.id,$index,alt_sale_detail)" class="tooltips_cls btn "> <i class="fa fa-times"></i> </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

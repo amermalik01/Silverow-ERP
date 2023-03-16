@@ -1,0 +1,771 @@
+<div class="row" id="setup-view">
+    <div class="col-lg-12">
+        <div class="panel-title2 pl0">Setup</div>
+        <div class=" ng-scope" ng-controller="SetupController">
+            <div id="tabs" class="c-tabs no-js">
+                <div class="c-tabs-nav">
+                    <h3 style="padding: 0px 28px;
+                    margin-top: 20px;
+                    font-size: 16px;
+                    margin-left: -15px;
+                    color: #4c4c4c;
+                    font-weight: bold;    margin-bottom: 19p">Setup</h3>
+                    <a ng-show="setup_gen" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 1 ? 'is-active' : ''" ng-click="currentSetupTab = 1">
+                        <span class="mbri-layers" style="font-size: 16px;width: 25px;"></span>
+                        <span>General</span>
+                    </a>
+                    <a ng-show="setup_fin  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 2 ? 'is-active' : ''" ng-click="currentSetupTab = 2">
+                        <span class="mbri-growing-chart" style="font-size: 16px;width: 25px;"></span>
+                        <span>Finance</span>
+                    </a>
+                    <a ng-show="setup_salescrm  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 3 ? 'is-active' : ''" ng-click="currentSetupTab = 3">
+                        <span class="mbri-sale" style="font-size: 16px;width: 25px;"></span>
+                        <span>Sales</span>
+                    </a>
+                    <a ng-show="setup_purc  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 4 ? 'is-active' : ''" ng-click="currentSetupTab = 4">
+                        <span class="mbri-shopping-bag" style="font-size: 16px;width: 25px;"></span>
+                        <span>Purchases</span>
+                    </a>
+                    <a ng-show="setup_ware  && defaultCompany != 11" href="#" ui-sref="app.warehouse" class="c-tabs-nav__link" ng-class="currentSetupTab == 5 ? 'is-active' : ''" ng-click="currentSetupTab = 5">
+                        <span class="mbri-database" style="font-size: 16px;width: 25px;"></span>
+                        <span>Warehouse</span>
+                    </a>
+                    <a ng-show="setup_inven  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 6 ? 'is-active' : ''" ng-click="currentSetupTab = 6">
+                        <span class="mbri-extension" style="font-size: 16px;width: 25px;"></span>
+                        <span>Inventory</span>
+                    </a>
+                    <a ng-show="setup_hr  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 7 ? 'is-active' : ''" ng-click="currentSetupTab = 7">
+                        <span class="mbri-user" style="font-size: 16px;width: 25px;"></span>
+                        <span>Human Resources</span>
+                    </a>
+                    <a ng-show="setup_data  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 8 ? 'is-active' : ''" ng-click="currentSetupTab = 8">
+                        <span class="mbri-up-down" style="font-size: 16px;width: 25px;"></span>
+                        <span>Data Migration</span>
+                    </a>
+                    <a ng-show="setup_email_config && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 9 ? 'is-active' : ''" ng-click="currentSetupTab = 9">
+                        <span class="mbri-letter" style="font-size: 16px;width: 25px;"></span>
+                        <span>Auto-email Templates</span>
+                    </a>
+                    <a ng-show="defaultCompany == 11" href="#" ui-sref="app.otherCompanies" class="c-tabs-nav__link" ng-class="currentSetupTab == 10 ? 'is-active' : ''" ng-click="currentSetupTab = 10">
+                        <span class="mbri-bookmark" style="font-size: 16px;width: 25px;"></span>
+                        <span>Other Companies</span>
+                    </a>
+                </div>
+                <div class="c-tab" ng-if="setup_gen" ng-class="currentSetupTab == 1 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">General</div>
+                        </ul>
+                        <ul class="col-md-2">
+                            <li>
+                                <a ui-sref="app.viewCompany({id:defaultCompany})">Company</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.editCompany({id:defaultCompany,tab:'currencies'})">Currency Setup</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.modules-codes()">Module Codes</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.widgetRoles({type:1})">Widget Roles</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.widgetRoles({type:2})">Reports Roles</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-grey-name">General</div>
+                    </div>
+                </div>
+                <div class="c-tab" ng-if="setup_fin" ng-class="currentSetupTab == 2 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Finance</div>
+                        </ul>
+                        <ul class="col-md-3">
+                            <!-- <li>
+                                <a ng-click="show_glcodes_popup()">Chart of Accounts </a>
+                            </li> -->
+                            <!-- <li>
+                                <a ui-sref="app.vat-account-selection">VAT Report Posting Account</a>
+                            </li> -->
+                            <!-- <li>
+                                <a ui-sref="app.vat-setup">VAT Rates</a>
+                            </li> -->
+                            <!-- <li>
+                                <a ui-sref="app.posting-group">Posting Groups</a>
+                            </li> -->
+                            <!-- <li>
+                                <a ui-sref="app.vat-posting-grp-setup">VAT Posting Setup</a>
+                            </li> -->
+                            <li>
+                                <a ui-sref="app.inventory-setup">Inventory Setup</a>
+                            </li>
+                            <!-- <li>
+                                <a ui-sref="app.add-currency-movement">G/L Account(s) Setup for Foreign Currency
+                                    Movement</a>
+                            </li> -->
+                            <li>
+                                <a ui-sref="app.add-posting-date-range">Posting Date Range</a>
+                            </li>
+                            <!-- <li>
+                                <a ui-sref="app.batch-for-additional-cost">Batch for Additional Cost</a>
+                            </li> -->
+                        </ul>
+                        <ul class="col-md-4">
+                            <li>
+                                <a ui-sref="app.gl_units_of_measure">Unit of Measure for G/L</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.gl-accounts-setup-opening-balnc">G/L Account(s) Setup for Opening
+                                    Balances</a>
+                            </li>
+                            <!-- <li>
+                                <a ui-sref="app.goods-received-account">G/L Account for Goods Received Not Invoiced</a>
+                            </li> -->
+                            <li ng-if="currentSetupTab ==2">
+                                <a style="background: transparent !important;cursor: default; pointer-events: none;">
+                                    <strong>Opening Balances</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.openingBalances({module:'bank'})">Bank</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.openingBalances({module:'stock'})">Stock</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.openingBalances({module:'customer'})">Customer</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.openingBalances({module:'supplier'})">Supplier</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.openingBalances({module:'general_ledger'})">General
+                                                    Ledger</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--    Exchange Rate SETUP  -->
+                        <div ng-show="show_exchange_rate_setup" style="    margin-left: 21px;">
+                            <div class="col-md-12  ">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">G/L Account(s) Setup for Foreign Currency Movement
+                                    </legend>
+                                    <div class="form-group" style="height: 40px;">
+                                        <label class="col-md-3 control-label"> Realised Currency Movement </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.realised_movement_gl_ac_code}}" ng-model="finance.realised_movement_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('realised_movement_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.realised_movement_gl_ac" class="form-control" />
+                                        </div>
+                                        <label class="col-md-3 control-label"> Unrealised Currency Movement </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.unrealised_movement_gl_ac_code}}" ng-model="finance.unrealised_movement_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('unrealised_movement_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.unrealised_movement_gl_ac" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="pull-right">
+                                            <button class="btn btn-submit" type="button" ng-click="addFinancial_exchange_rate(finance)"> Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <!--    Exchange Rate SETUP  -->
+
+                        <!--    Discounts & Promotions  G/L Account(s) SETUP  -->
+                        <div ng-show="show_discount_promotion_gl" style=" margin-left: 21px;">
+                            <div class="col-md-12  ">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">G/L Account(s) Setup for Discounts & Promotions
+                                    </legend>
+                                    <div class="form-group" style="height: 40px;">
+                                        <label class="col-md-3 control-label"> G/L Account for Volume Discounts</label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.discount_gl_ac_code}}" ng-model="finance.discount_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('discount_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.discount_gl_ac" class="form-control" />
+                                        </div>
+                                        <label class="col-md-3 control-label"> G/L Account for Promotions </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.promotion_gl_ac_code}}" ng-model="finance.promotion_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('promotion_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.promotion_gl_ac" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="pull-right">
+                                            <button class="btn btn-submit" type="button" ng-click="addFinancial_exchange_rate(finance)">Save</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="tab-grey-name">Finance</div>
+                    </div>
+                </div>
+                <div class="c-tab" ng-if="setup_salescrm" ng-class="currentSetupTab == 3 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Sales & CRM</div>
+                        </ul>
+
+                        <ul class="col-md-2">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>General</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.crm-credit-rating">Credit Rating</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.segment">Segments</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.region">Territory</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.buying-group">Buying Groups</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.source-of-crm">Source Of CRM</a>
+                                            </li>
+                                            <!-- <li>
+                                                <a ui-sref="app.crm-customer-classification">Classification</a>
+                                            </li> -->
+                                            <li>
+                                                <a ui-sref="app.show_hide_btn">Manage Add Buttons</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+
+                        <ul class="col-md-2">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Competitor</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.competitor_name">Competitor Names</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.competitor_brand">Competitor Brands</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.competitor_item">Competitor Items</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.competitor_volume">Competitor Volume</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                        <ul class="col-md-2">
+
+                            <li ng-if="currentSetupTab ==3">
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Price</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.offer-method({module:'crm'})">Price Offer Method</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="col-md-3">
+                            <li ng-if="currentSetupTab ==3">
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Opportunity Cycle</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.opportunity-cycle-tabs">Opportunity Cycle Stages</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.job-title">Role In Opportunity Cycle</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.process-of-decision">Opportunity Approval Process</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Sales</strong>
+                                </a>
+                                <div>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ui-sref="app.crm-order-stages">Sales Order Stages</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.credit-note-order-stages">Credit Note Stages</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.finance-insurance-charges">Finance & Insurance
+                                                    Charges</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.payment-terms">Payment Terms
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.payment-methods">Payment Methods
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.shipment-methods">Shipment Methods</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.profit-margin-analysis">Profit Margin Analysis View</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="app.haulier-target">Haulier Target Price</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tab-grey-name">Sales</div>
+                    </div>
+                </div>
+                <div class="c-tab" ng-if="setup_purc" ng-class="currentSetupTab == 4 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Purchases</div>
+                        </ul>
+
+                        <ul class="col-md-2">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>General</strong>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a ui-sref="app.srmsegment">Segments</a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="app.srm-region">Territory</a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="app.sellinggroup">Selling Groups</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a ui-sref="app.srm-supplier-classification">Classification</a>
+                                    </li> -->
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="col-md-2">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Price</strong>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a ui-sref="app.offer-method({module:'srm'})">Price Offer Method</a>
+                                    </li>
+                                    <li ng-if="inventorySetup != 2">
+                                        <a ui-sref="app.item-additional-cost">Item Additional Cost</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="col-md-2">
+                            <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                <strong>Purchases</strong>
+                            </a>
+                            <li>
+                                <a ui-sref="app.purchase-order-stages">Purchase Order Stages</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.debit-note-order-stages">Debit Note Stages</a>
+                            </li>
+
+                            <li>
+                                <a ui-sref="app.add-expenses-setup">Expense Setup</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.srm-payment-term">Payment Terms</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.srm-payment-method">Payment Methods</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.srm-shipment-methods">Shipment Methods</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-grey-name">Purchases</div>
+                    </div>
+                </div>
+                <div class="c-tab">
+                    <div class="c-tab__content"></div>
+                </div>
+                <div class="c-tab" ng-if="setup_inven" ng-class="currentSetupTab == 6 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Inventory</div>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>
+                                <a ui-sref="app.category">Categories</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.brands">Brands</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.units_of_measure">Unit Of Measure</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.item-marginal-analysis">Item Margin Analysis</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.item-volume-weight"> Item Volume & Weight</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.item-cost-description"> Item Cost Description</a>
+                            </li>
+                        </ul>
+                        <div class="tab-grey-name">Inventory</div>
+                    </div>
+                </div>
+                <div class="c-tab" ng-if="setup_hr" ng-class="currentSetupTab == 7 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Human Resources</div>
+                        </ul>
+                        <ul class="col-md-2">
+                            <li>
+                                <a ui-sref="app.department">Departments</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.roles">Roles and Permissions</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.employee_type">Employment Type</a>
+                            </li>
+                            <!-- <li>
+                                <a ui-sref="app.cause-of-inactivity">Cause of Inactivity</a>
+                            </li> -->
+                            <li>
+                                <a ui-sref="app.sales-bucket()">View Bucket</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.approvals()">Approvals</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.holidaySettings()">Holiday Settings</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-grey-name">Human Resources</div>
+                    </div>
+                </div>
+                <div class="c-tab" ng-if="setup_data" ng-class="currentSetupTab == 8 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-12 setup-heading">
+                            <div class="panel-title2 mb19">Data Migration</div>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>CRM</strong>
+                                </a>
+
+                                <div style="padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Contact-Location-Mapping')" class="">Contact Location Mapping </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Notes')" class="">Notes</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Customer</strong>
+                                </a>
+
+                                <div style=" padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Contact-Location-Mapping')" class="">Contact Location Mapping </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Finance')" class="">Finance</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Notes')" class="">Notes</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>SRM</strong>
+                                </a>
+                                <div style=" padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('SRM-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('SRM-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('SRM-Location')" class="">Location</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Supplier</strong>
+                                </a>
+                                <div style=" padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Contact-Location-Mapping')" class="">Contact Location Mapping</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Finance')" class="">Finance</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="col-md-3">
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Inventory</strong>
+                                </a>
+                                <div style=" padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                                    <strong>Warehouses</strong>
+                                                </a>
+
+                                                <div>
+                                                    <div>
+                                                        <ul>
+                                                            <li ng-click="show_migrate_pop('Warehouses')">
+                                                                <a>Warehouses</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                                    <strong>Setup</strong>
+                                                </a>
+                                                <ul>
+                                                    <li ng-click="show_migrate_pop('Unit')">
+                                                        <a>Unit of Measure </a>
+                                                    </li>
+                                                    <li ng-click="show_migrate_pop('Category')">
+                                                        <a>Categories</a>
+                                                    </li>
+                                                    <li ng-click="show_migrate_pop('Brand')">
+                                                        <a>Brands</a>
+                                                    </li>
+                                                    <li ng-click="show_migrate_pop('BrandCategory')">
+                                                        <a>Category Brands Mapping</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                                            <strong>Item</strong>
+                                                        </a>
+                                                        <div>
+                                                            <div>
+                                                                <ul>
+                                                                    <li ng-click="show_migrate_pop('Item')">
+                                                                        <a>Item</a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Unit-of-Measure')">
+                                                                        <a>Item Hierarchy of Unit of Measure </a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Purchase-Cost')">
+                                                                        <a>Item Purchase Cost</a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Sales-Price')">
+                                                                        <a>Item Sales Price</a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Warehouse')">
+                                                                        <a>Item Warehouse</a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Marginal-Analysis')">
+                                                                        <a>Item Marginal Analysis</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+                                    <strong>Opening Balance</strong>
+                                </a>
+
+                                <div style="padding-left: 5px; border-left: 1px solid #cccccc; margin-left: 13px;">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Stock')" class="">
+                                                    Stock
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Customer')" class="">
+                                                    Customer
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Supplier')" class="">
+                                                    Supplier
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="tab-grey-name">Data Migration</div>
+                    </div>
+                </div>
+
+                <div class="c-tab" ng-class="currentSetupTab == 9 ? 'is-active' : ''">
+                    <div class="c-tab__content">
+                        <ul class="col-md-3">
+                            <li ng-if="currentSetupTab == 9">
+                                <a ui-sref="app.autoEmailSetup({module: 'Sales'})">
+                                    <strong>Sales</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.autoEmailSetup({module: 'Purchases'})">
+                                    <strong>Purchases</strong>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-grey-name">Auto-email Templates</div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/import_file.html'"></div>
+            <div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div>
+            <div ng-include="'app/views/setup/_glcodes_model.html'"></div>
+            <div ng-include="'app/views/setup/_approval_modal.html'"></div>
+            <div ng-include="'app/views/setup/_approval_employee.html'"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hoverOnApproval:hover {
+        color: #757575;
+    }
+</style>
+
+<script>
+    var myTabs = tabs({
+        el: '#tabs',
+        tabNavigationLinks: '.c-tabs-nav__link',
+        tabContentContainers: '.c-tab'
+
+    });
+    myTabs.init();
+</script>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<style type="text/css">
+    .in-t-1 {
+        padding-left: 8px !important;
+    }
+</style>

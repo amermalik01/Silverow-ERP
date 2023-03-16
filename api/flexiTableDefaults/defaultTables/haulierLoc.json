@@ -1,0 +1,35 @@
+{
+        "tblMeta": {
+                "autoAdjust": true,
+                "hideSetup": true
+        },
+        "colMeta": [
+                {
+                        "title": "Region",
+                        "field_name": "level1",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "County",
+                        "field_name": "level2",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Area",
+                        "field_name": "level3",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                }
+        ]
+}

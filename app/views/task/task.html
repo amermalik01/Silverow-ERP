@@ -1,0 +1,60 @@
+<style>
+	.add-btn {
+		float: right;
+		padding: 2px;
+		color: #8a8a8a;
+		margin-top: 3px;
+	}
+
+	.add-btn:hover {
+		cursor: pointer;
+		color: black;
+	}
+
+	.assignedto {
+		margin-left: 0px !important;
+		line-height: 22px;
+		font-weight: normal;
+		font-style: normal;
+		font-size: 11px;
+		color: gray;
+	}
+</style>
+<div ng-controller="TaskController as table">
+	<div class="d-wi2">
+		<h4 style="display:inline-block;font-size: 15px;font-weight: 600;">Tasks</h4>
+		<span>({{task_data.length}})</span>
+		<a ng-click="showAddForm()" class="add-btn">
+			<i class="material-icons">&#xE145;</i>
+		</a>
+		<div class="input-symbol" style="margin-top: 9px;">
+			<input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword.search">
+			<span>
+				<i class="fa fa-search"></i>
+			</span>
+		</div>
+		<div class="d-wi4">
+			<div ng-repeat="task in task_data | filter:searchKeyword.search">
+				<div ng-click="edit_task(task.id);" class="bbh">
+					<div class="small_cal">
+						<div>{{task.monthName}}</div>
+						<div>{{task.monthDay}}</div>
+						<div>{{task.monthDate}}</div>
+					</div>
+					<div class="small_title">
+						<div>{{task.name}}</div>
+						<div>{{task.taskStartTime}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="add_task_new">
+		<form autocomplete="off" class="no-margin" role="form" ng-submit="submit_add_task(formData)" validate-form="" novalidate="">
+			<div ng-include="'app/views/task/_form.html'"></div>
+		</form>
+		<div ng-include="'app/views/_confirm_modal.html'"></div>
+		<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	</div>
+</div>

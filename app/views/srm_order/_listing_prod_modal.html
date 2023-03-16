@@ -1,0 +1,50 @@
+<div id="productModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable
+         style="width: 87%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    Select Item
+                    <!-- (s) -->
+                </h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row" style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div ng-if="moduleType == 'ItemDetail' && tableDataItmList.data.response.tbl_meta_data">
+                            <div class="flexiTable" 
+                                x-report-modal="'true'" 
+                                x-generate-table 
+                                x-data="tableDataItmList.data" 
+                                x-controller-initiate 
+                                x-forget-filters = "true" 
+                                x-table-name="itemDetailPriceModal" 
+                                x-filter-function="selectOnlyItem()"
+                                x-selected-record-preview="product_code"
+                                x-checked-records="selectedRecFromModalsItem" 
+                                x-filter-object="searchKeywordItem"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            <div class="modal-footer">
+                <!-- <span class="pull-left">Selected:&nbsp;{{(tempProdArr| filter: {chk: true}).length}}</span> -->
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-click="addProduct()">Add</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="clearPendingPurchaseItems()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,292 @@
+<div class="row animated fadeIn" ng-class="{'whirl no-overlay':showLocationLoader}">
+  <div class="col-md-12 col-md-12">
+    <div class="widget" style="background:none;">
+      <div class="widget-body" style="background:none;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-title2">Area Covered</div>
+            <div class="col-md-5">
+              <input type="hidden" ng-model="rec_area.update_id" id="update_id" class="form-control" />
+
+              <div class="form-group">
+                <!--{{rec}}-->
+                <label class="col-md-4 control-label"> Price Received
+                  By <span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <div class="input-symbol">
+                    <input type="text" ng-model="rec_area.offered_by" id="offered_by" class="form-control"
+                      ng-disabled="check_readonly" required ng-click="selectAreaEmployees()" placeholder="Select Employee" />
+                    <!-- ng-click="getOfferCoveredArea('emp')"  -->
+                    <input type="hidden" ng-model="rec_area.offered_by_id" id="offered_by_id" />
+                    <span><i class="fa fa-external-link" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Location From <span class="required">*</span></label>
+
+                <div class="col-md-8">
+
+                  <ui-select ng-model="rec_area.valid_from" ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select Location">{{$select.selected.name +' - '+
+                                            $select.selected.code +' - '+
+                                            $select.selected.address}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in location_from | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                      <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                      <small ng-bind-html="opt.address | highlight: $select.search"></small>
+                    </ui-select-choices>
+                  </ui-select>
+                  <input type="hidden" ng-model="rec_area.valid_from_id" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Location To <span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <div class="panel-info" ng-click="get_covered_areas_location()">
+                    <div class="panel-body" style="background-color: white;">
+                      <span ng-repeat="sp in areasLoc track by $index">
+                        <span ng-if="areasLoc.length == 1">{{sp.title}}</span>
+                        <span ng-if="areasLoc.length > 1">{{sp.title}}<span
+                            ng-if="$index < areasLoc.length && $index!=0">;&nbsp;</span></span>
+                      </span>
+                      <aside></aside>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Other Location<span class="required">*</span></label>
+                <div class="col-md-8">
+                  <div class="panel-info" ng-click="get_covered_areas_other_location()">
+                    <div class="panel-body" style="background-color: white;">
+                      <span ng-repeat="sp in areas track by $index">
+                        <span ng-if="areasLoc.length == 1">{{sp.title}}</span>
+                        <span ng-if="areasLoc.length > 1">{{sp.title}}<span
+                            ng-if="$index < areasLoc.length && $index!=0">;&nbsp;</span></span>
+                      </span>
+                      <aside></aside>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Price</label>
+
+                <div class="col-md-4 padr6">
+                  <div class="input-symbol">
+
+                    <input type="text" ng-model="rec_area.price" class="form-control" ng-disabled="check_readonly"
+                      data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                      data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                      pattern="[0-9]+([\.,][0-9]+)*" ng-change="validConvrate(rec_area.price, rec_area.currency_id)" />
+                    <!--   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                    <span>{{rec_area.currency_id.code}}</span>
+                  </div>
+                </div>
+                <div class="col-md-4 padl6">
+                  <ui-select ng-model="rec_area.currency_id"
+                    ng-change="validConvrate(rec_area.price, rec_area.currency_id)" ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select Currency">{{$select.selected.code}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                      <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Shipping Quantity</label>
+
+                <div class="col-md-2 padr6">
+                  <input type="text" ng-model="rec_area.shipping_quantity" id="shipping_quantity" class="form-control"
+                    placeholder="Min" ng-disabled="check_readonly" />
+                </div>
+                <div class="col-md-2 padr6 padl6">
+                  <input type="text" placeholder="Max" ng-model="rec_area.shipping_quantity" id="shipping_quantity"
+                    class="form-control" ng-disabled="check_readonly" />
+                </div>
+                <div class="col-md-4 padl6">
+
+                  <input type="text" value="Pallet(s)" class="form-control" readonly disabled>
+                  <!-- <ui-select ng-model="rec_area.uom"
+                             ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select UOM">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select> -->
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Converted Price</label>
+
+                <div class="col-md-8">
+                  <div class="input-symbol">
+
+                    <input type="text" ng-model="rec_area.converted_price" class="form-control"
+                      data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                      data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                      pattern="[0-9]+([\.,][0-9]+)*" readonly />
+                    <!--   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                    <!--<span>{{rec_oop.currency_id.code}}</span>-->
+                    <span>{{rec_area.currency_id.code}}</span>
+                  </div>
+                  <!--{{defaultCurrencyCode}}-->
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Offer Method</label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="rec_area.offer_methods" ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select Offer Method">{{$select.selected.title}}</ui-select-match>
+                    <ui-select-choices repeat="opt in arr_offer_method | filter: $select.search">
+                      <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Shipping Method</label>
+
+                <div class="col-md-8">
+
+                  <ui-select ng-model="rec_area.shipping_methods" ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select Shipping Method">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt in srm_shippment_methods_arr | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Notes</label>
+                <a href="_form.html"></a>
+
+                <div class="col-md-8">
+                  <textarea name="notes" cols="160" rows="4" id="note" ng-model="rec_area.notes" class="form-control"
+                    ng-readonly="check_readonly" maxlength="500"
+                    style="height:100px !important;resize:none;"></textarea>
+                  <!--<span class="word-counter">   {{rec_oop.notes.length}}/500   </span>-->
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Status <span class="required">*</span></label>
+
+                <div class="col-md-8">
+
+                  <!--ng-change="show_status_date(drp.status_ids)-->
+                  <ui-select ng-model="rec_area.status">
+                    <ui-select-match placeholder="Select Status">{{$select.selected.title}}</ui-select-match>
+                    <ui-select-choices repeat="opt in status_list | filter: $select.search">
+                      <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+            </div>
+
+            <!--    <div class="form-group">
+                            <label class="col-md-4 control-label"> From </label>
+                            <div class="col-md-8">
+
+                                <p class="input-group">
+                              <input   readonly="readonly"  type="text" class="form-control" ng-model="rec_area.date_from"
+              id="date_from"
+                ng-change="testdate(rec_area.date_from,rec_area.date_to,1)"
+              datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options"
+              is-open="datePicker.instances['date_from']"
+              close-text="Close"
+              data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/"
+              /><span class="input-group-btn">
+                            <button   type="button"   ng-disabled="check_hrvalues_readonly"
+                          class="btn btn-default" ng-click="datePicker.open($event, 'date_from')"><i class="fa fa-calendar"></i></button>
+                            </span>
+              </p>
+
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label"> To </label>
+                            <div class="col-md-8">
+
+
+                             <p class="input-group">
+                              <input readonly="readonly" type="text" class="form-control"
+                                  ng-model="rec_area.date_to"
+                           ng-change="testdate(rec_area.date_from,rec_area.date_to,1)"        id="date_to"
+                          datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options"
+                          is-open="datePicker.instances['date_to']"
+                           close-text="Close"
+              data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                              <span class="invalid_date" ng-show="msg">invalid_date</span> <span class="input-group-btn">
+                              <button type="button"  ng-disabled="check_hrvalues_readonly"
+                          class="btn btn-default" ng-click="datePicker.open($event, 'date_to')"><i class="fa fa-calendar"></i></button>
+                              </span> </p>
+                            <span    id="date_msg_leave_1" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span> <span id="date_msg"  ng-show="date_msg" style="color:#F00; display: none;"></span>
+
+
+                            </div>
+                          </div>-->
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="pull-right">
+
+                <div class="dropdown ib" ng-show=" srm_price_tab_module>0">
+                  <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i class="dte-ico"></i>
+                  </button>
+                  <ul class="dropdown-menu dte animated fadeIn">
+                    <span ng-click="set_document_internal(srm_price_tab_module)">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document
+                    </span>
+                    <span>
+                      <i class="fa fa-check" aria-hidden="true"></i> Add Task
+                    </span>
+                    <span>
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email
+                    </span>
+                  </ul>
+                </div>
+                <button class="btn btn-submit" type="submit" ng-show="!check_readonly"><i
+                    class="fa fa-check fa_display"></i> Save
+                </button>
+                <button class="btn btn-edit" type="button" ng-click="gotoedit()" ng-show="check_readonly"><i
+                    class="fa fa-edit fa_display"></i> Edit
+                </button>
+                <button class="btn btn-cancel" type="button" ng-click="get_area()"><i class="fa fa-undo fa_display"></i>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div ng-include="'app/views/srm/_listing_areas.html'"></div>
+<div ng-include="'app/views/srm/_listing_employee_area_covered.html'"></div>

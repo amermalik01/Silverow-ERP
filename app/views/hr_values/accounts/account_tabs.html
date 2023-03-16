@@ -1,0 +1,169 @@
+<!-- <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12 no-padding"></div> -->
+<div id="loading-bar-container"></div>
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<ul class="breadcrumb"
+    ng-class="{'moveleft':toggleSidebarShow}">
+  <li ng-class="{'active':bc.isActive}"
+      class="ng-scope">
+    <a ui-sref="#"
+       ng-if="!bc.isActive"
+       class="ng-binding ng-scope">Human Resources</a>
+  </li>
+  <li ng-class="{'active':bc.isActive}"
+      class="ng-scope">
+    <a ui-sref="app.edit_account_setting"
+       ng-class="{'ActiveLink':bc.url != '#'}"
+       ng-if="!bc.isActive"
+       class="ng-binding ng-scope ActiveLink">Account Settings</a>
+  </li>
+</ul>
+<div style="height:24px;"></div>
+
+<style type="text/css">
+  .expenses .breadcrumb {
+    display: none;
+  }
+</style>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="bs-example bs-example-tabs"
+         data-example-id="togglable-tabs">
+      <tabset ng-controller="edithrvalues">
+        <tab heading="General Information"
+             class="general_information"
+             ng-click="generalInformation()">
+          <form autocomplete="off"
+                class="form-horizontal no-margin"
+                role="form"
+                validate-form=""
+                novalidate=""
+                ng-submit="updateAccountSetings(formData)"
+                name="addForm"
+                ng-hide="showLoader"><!-- addGeneral(formData, 1)  -->
+            <div ng-include="'app/views/hr_values/accounts/account_general_form.html'"></div>
+          </form>
+        </tab>
+
+        <tab heading="Contact" class="contact_setting"
+          ng-if="user_type != 1">
+          <form class="form-horizontal no-margin" name="addFinForm">
+            <div ng-include="'app/views/hr_values/accounts/contact_tabs.html'" class="animated fadeIn"></div>
+          </form>
+        </tab>
+        <tab heading="Personal" class="personal_setting" ng-if="user_type != 1">
+          <form class="form-horizontal no-margin" name="addFinForm">
+            <div ng-include="'app/views/hr_values/accounts/personal_tab.html'" class="animated fadeIn"></div>
+          </form>
+        </tab>
+        <tab heading="Salary, Holidays & Pensions" class="salary_setting" ng-if="user_type != 1">
+          <form class="form-horizontal no-margin" name="addFinForm">
+            <div ng-include="'app/views/hr_values/accounts/salary_tab.html'" class="animated fadeIn"></div>
+          </form>
+        </tab>
+        <tab heading="Benefits" class="benifits_setting"
+              ng-click="getBenifits();"
+              ng-if="user_type != 1">
+          <form class="form-horizontal no-margin" name="addFinForm">
+            <div ng-include="'app/views/hr_values/accounts/benefits_tab.html'" class="animated fadeIn"></div>
+          </form>
+        </tab>
+        <tab heading="Expenses" class="expenses"
+              ng-click="getexpenses();"
+              ng-init="expenseTab && getexpenses()"
+              active="expenseTab"
+              ng-if="user_type != 1">
+          <div ng-include="'app/views/hr_values/expenses.html'"
+                ng-show="showexpenseslist" class="expenses"></div>
+          <form autocomplete="off"
+                class="form-horizontal no-margin "
+                role="form"
+                validate-form=""
+                novalidate=""
+                ng-submit="addexpenses(formData)">
+            <div ng-include="'app/views/hr_values/expenses_form.html'"
+                  ng-show="showexpenses" class="expenses"></div>
+          </form>
+          <tabset ng-if="row_sub_list_expenses">
+            <tab heading="Expenses"
+                  class="normalexpense"
+                  active="true"
+                  ng-click="getsubexpenses_final_list(formData.expense_id)"
+                  >
+              <div ng-include="'app/views/hr_values/accounts/expenseDetail.html'" class="expenses"></div>
+            </tab><!-- sub_expense_row -->
+            <tab heading="Mileage" class="mileage"
+                  ng-click="chkVT();">
+              <tabset>
+                <tab heading="Personal Vehicle"
+                      class="personelVehicle"
+                      ng-click="getPersonaexpenses_final_list(formData.expense_id)">
+                  <div ng-include="'app/views/hr_values/accounts/personelVehicle_tab.html'" class="expenses"></div>
+                </tab>
+                <tab heading="Company Vehicle"
+                      class="companyVehicle"
+                      ng-click="getCompanyexpenses_final_list(formData.expense_id)">
+                  <div ng-include="'app/views/hr_values/accounts/companyVehicle_tab.html'" class="expenses"></div>
+                </tab>
+              </tabset>
+            </tab>
+          </tabset>
+        </tab>
+        <tab heading="Holidays"
+              active="holidayTab"
+              ng-if="user_type != 1"
+              ng-init="showReadonlyForm();(holidayTab && getHoliday())"
+              class="holidays"
+              ng-click="showReadonlyForm();getHoliday()">
+          <div ng-include="'app/views/hr_values/holidays.html'"
+                ng-show="showHolidaylist" class="expenses"></div>
+          <form autocomplete="off"
+                class="form-horizontal no-margin"
+                role="form"
+                ng-submit="getCode_holiday();"
+                name="addForm">
+            <div ng-include="'app/views/hr_values/add_holiday_form.html'"
+                  ng-show="showHoliday" class="expenses"></div>
+          </form>
+          <div ng-include="'app/views/hr_values/cancel_holiday.html'"></div>
+        </tab>
+        <!-- <tab ng-if="user_type == 1 || user_type == 2" heading="Email Setup"
+             class="configurations"
+             ng-click="getDomains();getMailConfigurations();">
+          <tabset>
+            <tab heading="Configuration">
+              <form autocomplete="off"
+                    class="form-horizontal no-margin"
+                    role="form"
+                    validate-form=""
+                    novalidate=""
+                    ng-hide="showLoader">
+                <div ng-include="'app/views/hr_values/mail_form.html'"
+                     ng-show="showmailform"></div>
+              </form>
+              <div ng-include="'app/views/hr_values/mail_list.html'"
+                   ng-show="showmaillist"></div>
+            </tab>
+            <tab heading="Virtual Emails"
+                 ng-click="getVirtualEmails();">
+              <form autocomplete="off"
+                    class="form-horizontal no-margin"
+                    role="form"
+                    ng-submit="addVirtualEmail(virtualEmailData);">
+                <div ng-include="'app/views/hr_values/virtual_mail_form.html'"
+                     ng-show="showvirtualform"></div>
+              </form>
+              <div ng-include="'app/views/hr_values/virtual_mail_list.html'"
+                   ng-show="showvirtuallist"></div>
+            </tab>
+          </tabset>
+        </tab> -->
+      </tabset>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/hr_values/hr_history_modal.html'"></div>
+<div ng-include="'app/views/hr_values/_benefits_pop.html'"></div>
+<div ng-include="'app/views/_approvals_history.html'"></div>

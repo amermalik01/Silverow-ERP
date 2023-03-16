@@ -1,0 +1,232 @@
+{
+        "tblMeta": {
+                "autoAdjust": false
+        },
+        "colMeta": [
+                {
+                        "title": "Employee No.",
+                        "field_name": "user_code",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "100",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Name",
+                        "field_name": "name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "180",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Preferred Name",
+                        "field_name": "preferred_name",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "180",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Job Title",
+                        "field_name": "job_title",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Assigned Role",
+                        "field_name": "roles",
+                        "db_table": "ref_roles",
+                        "db_field": "role",
+                        "db_where": " status <> 0 ",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "drop_down"
+                },
+                {
+                        "title": "Department",
+                        "field_name": "dname",
+                        "db_table": "departments",
+                        "db_field": "name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "drop_down"
+                },
+                {
+                        "title": "Email",
+                        "field_name": "user_email",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "180",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Telephone",
+                        "field_name": "work_phone",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Mobile",
+                        "field_name": "mobile_phone",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Address Line 1",
+                        "field_name": "address_1",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Address Line 2",
+                        "field_name": "address_2",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "City",
+                        "field_name": "city",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "County",
+                        "field_name": "county",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Postcode",
+                        "field_name": "post_code",
+                        "visible": "0",
+                        "pinned": "0",
+                        "custom_classes": "text-uppercase",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Country",
+                        "field_name": "country",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Allow Login",
+                        "field_name": "allow_login",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "100",
+                        "data_type": "drop_down"
+                },
+                {
+                        "title": "Employment Type",
+                        "field_name": "emp_type",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Start Date",
+                        "field_name": "start_date",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "date"
+                },
+                {
+                        "title": "Entitled Holidays",
+                        "field_name": "entitled_holidays",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "numberWithCommaRightAlign"
+                },
+                {
+                        "title": "Remaining Holidays",
+                        "field_name": "remaining_holidays",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "numberWithCommaRightAlign"
+                },
+                {
+                        "title": "Status",
+                        "field_name": "statusp",
+                        "default_filter": true,
+                        "filter_type": "Exact",
+                        "filter_value": "Active",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "100",
+                        "data_type": "drop_down"
+                },
+                {
+                        "title": "Date of Birth",
+                        "field_name": "dob",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "150",
+                        "data_type": "date"
+                },
+                {
+                        "title": "Gender",
+                        "field_name": "gender",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "100",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Marital Status",
+                        "field_name": "marital_status",
+                        "visible": "0",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "100",
+                        "data_type": "string"
+                }
+        ]
+}

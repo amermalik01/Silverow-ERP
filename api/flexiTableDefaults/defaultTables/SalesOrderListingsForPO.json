@@ -1,0 +1,99 @@
+[
+    {
+        "title": "Order No.",
+        "field_name": "sale_order_code",
+        "event": {
+            "name": "openSaleOrderLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "sale_invioce_code",
+        "event": {
+            "name": "openSaleInvoiceLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Prev No.",
+        "field_name": "prev_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Customer No.",
+        "field_name": "sell_to_cust_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Customer Name",
+        "field_name": "sell_to_cust_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "net_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Order Date",
+        "field_name": "offer_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Req. Del. Date",
+        "field_name": "requested_delivery_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "date"
+    }
+]

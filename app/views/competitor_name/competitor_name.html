@@ -1,0 +1,90 @@
+<div ng-controller="CompetitorNameController as table">
+  <!-- <div class="row">
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"> 
+      <a id="prompt" ui-sref="app.addCompetitorName()" class="btn btn-info btn_blue pull-right margin_bottom">Add New</a> </div>
+  </div> -->
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div class="row" style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs" style="padding:8px;">
+            <div class="col-md-11">
+              <div class="search-wrapper">
+                  <input type="text" Placeholder="Search in Competitor Names" class="form-control" ng-model="searchKeyword.search">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-md-1">
+                <a id="prompt" ui-sref="app.addCompetitorName()" class="btn btn_add2 pull-right">Add</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Row starts -->
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <!--<div class="widget-header">
+          <div class="title">
+            Units Of Measurement
+          </div>
+          <span class="tools">
+            <a href="#" class="no-margin"><i class="fa fa-times light-grey" data-original-title="" title=""></i></a>
+          </span>
+        </div>-->
+        <div class="widget-body">
+          <div id="dt_example" class="example_alt_pagination">
+            <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+              show-filter="true" ng-show="columns.length > 0">
+              <thead class="fixit">
+                <tr class="bg-col" >
+                  <th ng-repeat="column in columns" ng-if="column.title != 'Id'">
+                    <span ng-if="column.title != 'Title'" >{{column.title}} </span>
+                    <span ng-if="column.title == 'Title'" >Name</span>
+                  </th>
+                  <!-- <th style="width: 7%;">Action</th> -->
+                </tr>
+                <!-- <tr >
+          <th ng-repeat="column in columns"
+                    ng-show="!$first"
+                    class="sortable"
+                        > <input type="text" class="form-control"<!DOCTYPE html>
+                        <html>
+                        <head>
+                          <meta charset="utf-8" />
+                          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                          <title>Page Title</title>
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                          <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+                          <script src="main.js"></script>
+                        </head>
+                        <body>
+                          
+                        </body>
+                        </html>
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </th>
+        </tr>  -->
+              </thead>
+              <tbody class="fixit">
+                <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                <tr ng-repeat="rec in $data | filter:searchKeyword.search" ng-show="columns.length > 0">
+                  <td ng-if="column.title != 'Id'" ng-repeat="column in columns" sortable="column.title" ui-sref="app.viewCompetitorName({id:rec.id})">
+                  {{rec[column.field]}} </td>
+                  <!-- <td style="width: 7%;"><a title="Edit" ui-sref="app.viewcompetitorName({id:rec.id})" class="tooltips_cls btn "><i class="fa fa-edit"></i></a>                    <a title="Delete" ng-click="deleteUnit(rec.id,$index,$data)" class="tooltips_cls btn "><i class="fa fa-times"></i></a></td> -->
+                </tr>
+                <div ng-show="!columns.length > 0" class="no-record"></div>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,34 @@
+<div ng-controller="CompetitorleftController as table" class="container-fluid">
+  <div  class="breadcrumb_wraper">
+    <div ng-include="'app/views/_breadcrumb.html'" class="{{class}}"></div>
+    <button type="button" class="btn btn-primary pull-right" ui-sref="app.AddCompetitors"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Compititor</button>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading"> </div>
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+          <th ng-repeat="column in columns" ng-show="column.visible"
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <tr>
+          <th ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr ng-repeat="rec in $data" ui-sref="app.ViewCompetitors({id:rec.id})">
+          <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" class="courser"> {{rec[column.title]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

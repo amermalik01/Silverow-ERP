@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form class="form-horizontal" role="form" >
+      <div class="form-group">
+        <label class="col-md-2 control-label">Role <span class="required">*</span></label>
+        <div class="col-md-10">
+          <select ng-model="rec.role" ng-options="opt as opt.label for opt in role" ng-change="selectAction()"  class="select2me form-control" ng-readonly="check_readonly" >
+          </select>
+          {{rec.role}} </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-md-12"> 
+          <!-- START  AREA CODE  panel-->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div data-title="Check All" class="checkbox c-checkbox">
+                <label class="control-label">
+                  <input type="checkbox"  ng-checked="area_code" ng-init="area_code = false" ng-model="area_code"  />
+                  <span class="fa fa-check"></span> Area Code </label>
+              </div>
+            </div>
+            <div class="panel-body panel-footer">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"   ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>View All</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Create</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Submit</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Delete</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Change Status</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get Module Prefix</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get Module Id</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get Module Table</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Detail</label>
+                  <br />
+                  <br />
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Set Outlet Session</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get Table Headings</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get By Search</label>
+                  <label class="checkbox-inline c-checkbox">
+                    <input type="checkbox"  ng-checked="area_code"/>
+                    <span class="fa fa-check"></span>Get Suggestion</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Area Code  panel--> 
+        </div>
+      </div>
+      <div ng-init="location=false">
+        <select ng-model="location">
+          <option value="USA">USA</option>
+          <option value="PAKISTAN">Pakistan</option>
+          <option value="Other">None of the above</option>
+        </select>
+        <input type="checkbox" ng-model="location" ng-checked="location"/>
+      </div>
+    </form>
+  </div>
+</div>

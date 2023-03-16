@@ -1,0 +1,44 @@
+<!--Supplier listing for General order tab-->
+<div class="modal fade"
+     id="listing_sp_single_Modal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg"
+         dragable
+         style="width: 91%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Supplier Listing</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <div class="flexiTable" 
+                            x-report-modal="'true'" 
+                            x-generate-table 
+                            x-data="supplierTableData.data" 
+                            x-controller-initiate 
+                            x-forget-filters="true"
+                            x-table-name="SupplierSingleSelModal" 
+                            x-filter-function="get_supplier()" 
+                            x-row-click="confirm_supp_single(file)"
+                            x-filter-object="searchKeywordSupp"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-delete" ng-if="rec.id > 0 && removeSupp > 0" 
+                    ng-click="RemoveSupplier()">Remove Supplier</button>
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+

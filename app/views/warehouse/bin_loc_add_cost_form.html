@@ -1,0 +1,74 @@
+<div class="animated fadeIn" style="background:none;">
+    <div style="background:none;">
+        <div class="vertical_space"></div>
+        <div class="row form-horizontal" ><!-- style="height: 200px;" -->
+            <div class="col-md-12">
+                <div class="col-md-12 col-md-12">
+                    <div class="col-md-2 padr6">
+                        <label class="control-label">Title <span class="required">*</span></label>
+                        <select required class="form-control"
+                            ng-model="rec3.title"
+                            ng-disabled="check_readonly" 
+                            ng-options="opt as opt.title for opt in additional_cost_title"  
+                            ng-change="onChange_additional_cost_title()">
+                            <option style="display:block" value=""></option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-md-2 padr6 padl6">
+                        <label class="control-label">Cost <span class="required">*</span> </label>
+                        <div class="input-symbol">
+                            <input type="number" step="any" id="cost" required class="form-control"
+                                ng-model="rec3.cost"
+                                ng-readonly="check_readonly"/>
+                            <span>{{rec2.currency.code}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 padr6 padl6">
+                        <label class="control-label">Unit of Measure <span class="required">*</span></label>
+                        <select class="form-control" required
+                            ng-model="rec3.dimension" 
+                            ng-disabled="check_readonly" 
+                            ng-options="opt as opt.title for opt in arr_dimension">
+                            <option value="" selected style="display:block">Select an Option</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 padr6 padl6">
+                        <label class="control-label">Cost Frequency <span class="required">*</span></label>
+                        <select class="form-control" required
+                            ng-model="rec3.cost_type"  
+                            ng-disabled="check_readonly"
+                            ng-options="opt as opt.title for opt in cost_types">
+                            <option value="" selected style="display:block">Select an Option</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 padr6 padl6">
+                        <label class="control-label">Start Date <span class="required">*</span> </label>
+                        <input jqdatepicker class="form-control 2date-picker" readonly required id="additional_cost_sdate" placeholder="Start Date"
+                            ng-model="rec3.additional_cost_sdate" 
+                            ng-disabled="check_readonly"
+                            ng-change="testdate_by_id('warehouse_sdate','additional_cost_sdate','date_msg');">
+                        <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                        <span id="date_msg" style="color:#F00; display: none;">Additional Cost Date is earlier than Warehouse Start Date</span>
+                    </div> -->
+                    <div class="col-md-4 padr6">
+                        <label class="control-label">Comments </label>
+                        <input type="text" ng-model="rec3.description" ng-readonly="check_readonly" class="form-control" maxlength="100" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12 col-md-12">
+                    
+                    <!-- <div class="col-md-2">
+                        <label class="control-label">Status<span class="required">*</span> </label>
+                        <select required class="select2me form-control"
+                            ng-model="rec3.status_ids" 
+                            ng-disabled="check_readonly"
+                            ng-options="opt as opt.value for opt in status_list" >
+                        </select>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

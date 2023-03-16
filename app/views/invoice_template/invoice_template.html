@@ -1,0 +1,726 @@
+<html lang="en">
+
+
+
+<style>
+
+    .s_template {
+
+        width: 100%;
+
+        background-color: white;
+
+    }
+
+
+
+    .s_template td,
+
+    .s_template th {
+
+        padding: 2px 4px;
+
+    }
+
+    .s_verticle {
+
+    vertical-align: top;
+
+    }
+
+    .s_company_info {
+
+        border-right: 2px solid #e6e6e6;
+
+    }
+
+
+
+    .s_blockc tbody td:last-child {
+
+        border-bottom: 1px solid #cccccc;
+
+        text-align: right;
+
+    }
+
+
+
+    .s_blockc thead th:last-child {
+
+        text-align: right;
+
+    }
+
+
+
+    .s_total_amount td {
+
+        border: 0 !important;
+
+        font-weight: bold;
+
+    }
+
+
+
+    .s_margin {
+
+        height: 10px;
+
+    }
+
+</style>
+
+
+
+<body>
+
+
+
+    <table class="s_template s_blocka">
+
+        <tbody>
+
+            <tr>
+
+                <td class="s_logo s_verticle ">
+
+                    <img src="http://www.sy.co.uk/assets/db_folders/gen/sy_logo.svg">
+
+                    <br>
+
+                    <h4>
+
+                        <b>Sales Invoice</b>
+
+                    </h4>
+
+                </td>
+
+                <td>
+
+                    <table align="right" class="s_company_info text-right">
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>{{print_invoice_vals.name}}</b>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    {{print_invoice_vals.address_1}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    {{print_invoice_vals.address_2}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    {{print_invoice_vals.city}},{{print_invoice_vals.postcode}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    {{print_invoice_vals.county}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Telephone No.</b> +44 (0) 000 000 0000</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Fax No.</b> +44 (0) 000 000 0000</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>VAT Reg. No.</b> GB 000 000</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td colspan="12" class="s_margin"></td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <table class="s_template s_blockb">
+
+        <tbody>
+
+            <tr>
+
+                <td colspan="12" class="s_margin" style="    border-top: 1px solid #e8e8e8;">
+
+
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td class="s_box s_verticle">
+
+                    <div>Invoice To:</div>
+
+                    <div>
+
+                        <b>{{print_invoice_vals.name}}</b>
+
+                    </div>
+
+                    <div>{{print_invoice_vals.address_1}}</div>
+
+                    <div>{{print_invoice_vals.address_2}}</div>
+
+                    <div>{{print_invoice_vals.city}}, {{print_invoice_vals.postcode}}</div>
+
+                    <div>{{print_invoice_vals.country}}</div>
+
+                </td>
+
+                <td class="s_box s_verticle">
+
+                    <table>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Bill-to Customer</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.supp_cust_no}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Cust. VAT Reg. No.</b>
+
+                            </td>
+
+                            <td>000</td>
+
+                        </tr>
+
+                    </table>
+
+                </td>
+
+                <td class="s_box s_verticle">
+
+                        <table>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Bill-to Customer</b>
+
+                                </td>
+
+                                <td>000</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Cust. VAT Reg. No.</b>
+
+                                </td>
+
+                                <td>000</td>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+                <td class="s_box s_verticle">
+
+                    <table align="right">
+
+                        <tr>
+
+                            <td>
+
+                                <b>Invoice No.</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.sales_order_no}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Order No.</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.order_no}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Posting Date</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.invoice_date * 1000 | date:'dd/MM/yyyy'}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Due Date</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.delivery_date * 1000 | date:'dd/MM/yyyy'}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Sales Person</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.salesperson}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+
+                                <b>Cust. Order No.</b>
+
+                            </td>
+
+                            <td>{{print_invoice_vals.so_cust_no}}</td>
+
+                        </tr>
+
+                    </table>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <table class="s_template s_blockc">
+
+        <thead>
+
+            <tr>
+
+                <th>
+
+                    No.
+
+                </th>
+
+                <th>
+
+                    Description
+
+                </th>
+
+                <th>
+
+                    Quantity
+
+                </th>
+
+                <th>
+
+                    Unit Of Measure
+
+                </th>
+
+                <th>
+
+                    Unit Price
+
+                </th>
+
+                <th>
+
+                    Amount
+
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr ng-repeat="line in print_invoice_vals.doc_details_arr">
+
+                <td>
+
+                    {{line.number}}
+
+                </td>
+
+                <td style="width: 37%; word-break: break-word;">
+
+                    {{line.description}}                                 
+                    <span ng-if="print_invoice_vals.company_id == 3 && line.batch_no"><br><b>Frame No. </b>{{line.batch_no}} </span>
+
+                </td>
+
+                <td>
+
+                    {{line.quantity}}
+
+                </td>
+
+                <td>
+
+                    {{line.uom}}
+
+                </td>
+
+                <td>
+
+                    {{line.unit_price}}
+
+                </td>
+
+                <td>
+
+                    {{rowTotal(line) | number:decimal_range}}
+
+                </td>
+
+            </tr>
+
+
+
+            <tr class="s_total_amount">
+
+                <td colspan="5" class="text-right">
+
+                    Amount Excl. VAT
+
+                </td>
+
+                <td>{{netTotal() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</td>
+
+            </tr>
+
+            <tr class="s_total_amount">
+
+                <td colspan="5" class="text-right">
+
+                    VAT
+
+                </td>
+
+                <td>{{calcVat() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</td>
+
+            </tr>
+
+            <tr class="s_total_amount">
+
+                <td colspan="5" class="text-right">
+
+                    Amount Incl. VAT
+
+                </td>
+
+                <td>{{grandTotal() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+    <table class="s_template s_blockd">
+
+        <tbody>
+
+            <tr>
+
+                <td class="s_margin no-padding" colspan="12" style=" border-top: 1px solid #e8e8e8;height:auto;"></td>
+
+            </tr>
+
+            <tr>
+
+                <td style="width: 25%;border-right: 1px solid #e8e8e8;">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+
+                                   Payment Terms and Due Date 
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                        {{print_invoice_vals.payment_terms}}&nbsp&nbsp{{print_invoice_vals.due_date * 1000 | date:'dd/MM/yyyy'}}
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <table>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Bank</b>
+
+                                </td>
+
+                                <td>
+
+                                        {{print_invoice_vals.payable_bank}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Sort Code</b>
+
+                                </td>
+
+                                <td>
+
+                                        {{print_invoice_vals.sort_code}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>Account No.</b>
+
+                                </td>
+
+                                <td>
+
+                                        {{print_invoice_vals.account_no}}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+
+                                    <b>IBAN</b>
+
+                                </td>
+
+                                <td>
+
+                                    ABC000111222333444555666
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+
+
+                </td>
+
+                <td class="s_verticle">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Notes</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <p>
+
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Take Notice</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <p>
+
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+</body>
+
+
+
+
+
+</html>

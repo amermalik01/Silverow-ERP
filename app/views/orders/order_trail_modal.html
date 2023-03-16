@@ -1,0 +1,221 @@
+<div class="modal fade"
+     id="order_trail_modal">
+    <div class="modal-dialog modal-md"
+         style="width:90%"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{stock_activity_title}}
+                    <!-- Sale Stock Trail -->
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row mb0">
+                    <div class="col-md-3"
+                         style="    margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search"
+                                   ng-model="searchKeyword_2.search">
+                            <span>
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div class="example_alt_pagination">
+                                    <table
+                                           class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table dont-wrap">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th> Doc. Type </th>
+                                                <th> Doc. No. </th>
+                                                <th> Invoice No. </th>
+                                                <!-- <th> Name </th> -->
+                                                <!-- <th> Storage Location </th>
+                                                <th> U.O.M </th>
+                                                <th title="Reference Number"> Ref. No. </th>
+                                                <th>Batch No.</th> -->
+                                                <th class="text-right"> Original Quantity</th>
+                                                <th class="text-right"> Stock Out </th>
+                                                <th class="text-right"> Allocated </th>
+                                                <!-- <th class="text-right padright19"> Remaining Stock </th> -->
+                                                <th class="text-right padright19">Available Stock</th>
+                                                <!-- <th>Date Received </th>
+                                                <th>Dispatched Date </th>
+                                                <th>Production Date </th>
+                                                <th>Use By Date </th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit ">
+                                            <tr ng-repeat="stock in prod_warehouse_trail_data | filter:searchKeyword_2.search"
+                                                ng-class="{'comp-alloc':stock.currently_allocated_qty>0}">
+
+                                                <td title="{{stock.doctype}}">{{stock.doctype}}</td>
+                                                <td>
+                                                    <!-- SO -->
+                                                    <span ng-if="stock.trailtype == 1">
+                                                        <a title="View Sale Order"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewOrder({id:stock.order_id})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+                                                    <!-- CN -->
+                                                    <span ng-if="stock.trailtype == 2">
+                                                        <a title="View Credit Note"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewReturnOrder({id:stock.order_id})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+                                                    <!-- PO -->
+                                                    <span ng-if="stock.trailtype == 3">
+                                                        <a title="View Purchase Order"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewsrmorder({id:stock.order_id})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+                                                    <!-- DN -->
+                                                    <span ng-if="stock.trailtype == 4">
+                                                        <a title="View Debit Note"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewsrmorderreturn({id:stock.order_id})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+
+                                                    <!-- Opening Balance -->
+                                                    <!-- type = 4 coming from warehouse_allocation -->
+                                                    <span ng-if="stock.trailtype == 5">
+                                                        <a title="View Opening Balance"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.openingBalances({module:'stock'})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+                                                    <!-- Item Journal -->
+                                                    <span ng-if="stock.trailtype == 6 || stock.trailtype == 7">
+                                                        <a title="Item Journal"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.view-receipt-journal-gl-item({id:stock.order_id})"
+                                                           target="_blank">{{stock.code}}</a>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <!-- SI -->
+                                                    <span ng-if="stock.trailtype == 1">
+                                                        <a title="View Sale Invoice"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewOrder({id:stock.order_id, isInvoice:1})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span>
+                                                    <!-- CNI -->
+                                                    <span ng-if="stock.trailtype == 2">
+                                                        <a title="View Posted Credit Note"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewReturnOrder({id:stock.order_id})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span>
+                                                    <!-- PI -->
+                                                    <span ng-if="stock.trailtype == 3">
+                                                        <a title="View Purchase Invoice"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewsrminvoice({id:stock.order_id})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span><!-- DNI -->
+                                                    <span ng-if="stock.trailtype == 4">
+                                                        <a title="View Debit Note"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.viewsrmorderreturninvoice({id:stock.order_id})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span>
+                                                    <!-- Item Journal -->
+                                                    <span ng-if="stock.trailtype == 6 || stock.trailtype == 7">
+                                                        <a title="View Item Journal"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.view-receipt-journal-gl-item({id:stock.order_id})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span>
+                                                    <!-- Transfer Stock -->
+                                                    <span ng-if="stock.trailtype == 8">
+                                                        <a title="View Transfer Stock"
+                                                           class="tooltips_clss btn hilight "
+                                                           style="font-size: 11px;"
+                                                           ui-sref="app.view-transfer-order({id:stock.order_id})"
+                                                           target="_blank">{{stock.invoice_code}}</a>
+                                                    </span>
+
+                                                </td>
+                                                <!-- <td title="{{stock.user_name}} ({{stock.user_no}})"
+                                                    ng-if="stock.user_name !='-' && stock.user_no != '-'">
+                                                    <span ng-if="stock.type != 4">{{stock.user_name}}
+                                                        ({{stock.user_no}})</span>
+                                                    <span ng-if="stock.type == 4">-</span>
+                                                </td>
+                                                <td title="-"
+                                                    ng-if="stock.user_name=='-' && stock.user_no == '-'">
+                                                    <span>-</span>
+                                                </td> -->
+                                                <!-- <td title="{{stock.location_name}}">{{stock.location_name}}</td>
+                                                <td>{{stock.uom}}</td>
+                                                <td>{{stock.container_no}}</td>
+
+                                                <td>{{stock.batch_no}}</td> -->
+                                                <td class="text-right">
+                                                    <span> {{stock.quantity | numberNoDecimalsIfZeroFilter}} </span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span> {{stock.sold_qty | numberNoDecimalsIfZeroFilter}} </span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span> {{stock.allocated_qty | numberNoDecimalsIfZeroFilter}} </span>
+                                                </td>
+                                                <td class="text-right padright19">
+                                                    <!-- <span > {{stock.remaining_qty | numberNoDecimalsIfZeroFilter}} </span> -->
+                                                    <span > {{stock.available_qty | numberNoDecimalsIfZeroFilter}} </span>
+                                                </td>
+                                                <!-- <td>{{convert_numeric_date_to_string(stock.date_received)}}</td>
+                                                <td>{{convert_numeric_date_to_string(stock.dispatch_date)}}</td>
+                                                <td>{{convert_numeric_date_to_string(stock.prod_date)}}</td>
+                                                <td>{{stock.use_by_date}}</td> -->
+                                            </tr>
+                                            <tr ng-if="prod_warehouse_trail_data.length == 0">
+                                                <td colspan="10"
+                                                    class="text-center">No record found!</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

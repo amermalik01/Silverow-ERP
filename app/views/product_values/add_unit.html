@@ -1,0 +1,38 @@
+
+<div class="modal fade" id="model_unit"  >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="reload_popup(2,'model_unit')"  aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Unit of Measure</h4>
+      </div>
+      <div class="modal-body centerwidth">
+        <div class="row">
+          <div class="col-md-12">
+
+            <!--<div class="form-group">
+              <label class="col-md-3 control-label">Parent Unit</label>
+              <div class="col-md-7">
+                <select ng-model="formData4.parent_id" ng-options="opt as opt.title for opt in unit_measures" class="select2me form-control"  >
+
+                </select>
+              </div>
+            </div>-->
+
+            <div class="form-group">
+              <label class="col-md-3 control-label "> Title <span class="required">*</span></label>
+              <div class="col-md-7">
+                <input    required id="title"  type="text"   ng-model="formData4.title"  class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-submit" type="submit" ng-show="!check_item_readonly"><i class="fa fa-check fa_display"></i> Save</button>
+        <button type="button" class="btn btn-cancel"  ng-click="reload_popup(2,'model_unit')" >Cancel</button>
+      </div>
+    </div>
+    <!-- /  data-dismiss="modal"-->
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Start Date<span class="required">*</span></label>
+          <div class="col-md-8">
+            <input jqdatepicker class="2date-picker form-control s_sdate" id="s_sdate" ng-model="rec.start_date" 
+            ng-disabled="check_readonly"
+            ng-class="{'pickdate':!check_readonly}"
+              required="" readonly=""> <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+          <div class="col-md-8">
+            <input jqdatepicker class="2date-picker form-control e_sdate" id="e_sdate" 
+            ng-class="{'pickdate':!check_readonly}" ng-model="rec.end_date" ng-disabled="check_readonly"
+              required="" readonly=""> <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

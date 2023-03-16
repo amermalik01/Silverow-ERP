@@ -1,0 +1,323 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <!-- <div class="widget-header">
+        <div class="title">
+          Add Company General Information
+        </div>
+
+      </div> -->
+            <div class="widget-body" style="background:none;">
+                <div class="row animated fadeIn">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Locations</div>
+                        <div class="col-md-5">
+                            <!--  <div class="form-group">
+                    <label class="col-md-4 control-label">Contact</label>
+                    <div class="col-md-8">
+                      <select ng-model="rec.contact" ng-options="opt as opt.Contact_Name for opt in arr_contacts" class="select2me form-control"  ng-disabled ="check_alt_depot_readonly">
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Type</label>
+                    <div class="col-md-8">
+                      <select ng-model="rec.types" ng-options="opt as opt.name for opt in arr_types" class="select2me form-control"  ng-disabled ="check_alt_depot_readonly">
+                      </select>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                        <label class="col-md-4 control-label">Address Type</label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.address_types" ng-options="opt as opt.title for opt in arr_address_type" class="select2me form-control" ng-change="addNewPredefinedPopup(rec.address_types,'ADDRESS_TYPE','Address Type',rec)" ng-disabled="check_alt_depot_readonly" tabindex="23" ng-class="{'not-click-allow':disableClass > 0}"> </select>
+                        </div>
+                      </div>-->
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Location Name <span
+                                        class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.depot" id="depot" class="form-control" ng-disabled="check_alt_depot_readonly" name="depot" required/>
+                                    <input type="hidden" ng-model="rec.id" id="update_id" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address" id="address" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address 2</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">City</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.city" id="city" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">County </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Postcode <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.postcode" required id="postcode" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Country <span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="rec.depo_country_id" required ng-options="opt as opt.name for opt in countries" class="select2me form-control" ng-disabled="check_alt_depot_readonly">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Salesperson </label>
+
+                                <div class="col-md-6 pr0">
+                                    <div class="panel-info" style="overflow-x:auto;" ng-class="{'dont-click readonly':check_alt_depot_readonly}">
+                                        <div class="panel-body" ng-click="getSalePersons_dept()"><span ng-repeat="sp in selectedSalespersons_loc track by $index"> <span
+                                                    ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> <span ng-if="$index > 0">;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-icon pull-right" type="button" ng-click="historytype_dept('Salespersons')"><i class="fa fa-history"></i></button>
+                                </div>
+                            </div>
+                            <div ng-include="'app/views/alt_depot/_regions_popup.html'"></div>
+                            <div ng-include="'app/views/alt_depot/_salesperson_popup_location.html'"></div>
+
+                            <!-- <div class="form-group">
+                      <label class="col-md-4 control-label">Salesperson  </label>
+                      <div class="col-md-8">
+                        <input type="text" ng-model="rec.sales_persons" id="sales_person1" class="form-control" ng-click="getSalePerson()"  ng-readonly="check_alt_depot_readonly"  />
+                        <input type="hidden" ng-model="rec.salesperson_id"  class="form-control" />
+                      </div>
+                    </div> -->
+                            <!--  <div class="form-group">
+                        <label class="col-md-4 control-label">Region</label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.region" ng-options="opt as opt.title for opt in regions" class="select2me form-control" ng-change="addNewPredefinedPopup(rec.region,'REGION','Region',rec)" ng-disabled="check_alt_depot_readonly" tabindex="23" ng-class="{'not-click-allow':disableClass > 0}"> </select>
+                          <div style="  overflow-y: scroll; max-height: 325px;">
+                              <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':check_alt_depot_readonly}" >
+                                  <div class="panel-body" ng-click="getRegions()" style="padding:10px !important; min-height:30px;">
+                                        <span ng-repeat="cust in selectedLocRegions track by $index">
+                                          <span ng-if="$index == 0">{{cust.title}}</span>
+                                          <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                                        </span>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div> -->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group" ng-hide="rec.id > 0">
+                                <label class="col-md-4 control-label">Same As General</label>
+
+                                <div class="col-md-8">
+                                    <input ng-disabled="rec.id > 0" name="same_as_gen" type="checkbox" ng-click="sameAsGeneral()" style="    margin-top: 13px !important;">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.contact_name" id="contact_name" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Job Title</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.role" id="role" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Direct Line</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.direct_line" id="direct_line" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Mobile</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.mobile" id="mobile" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.email" id="email" class="form-control" ng-disabled="check_alt_depot_readonly" data-parsley-type="email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.Phone" id="Phone" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec.fax" id="fax" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Preferred Method Of Communication">Pref. Method Of Comm.</label>
+
+                                <div class="col-md-8">
+                                    <select ng-model="drp.pref_mthod_of_comm" ng-options="opt as opt.title for opt in arr_pref_method_comm" class="select2me form-control" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)"
+                                        ng-disabled="check_alt_depot_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tablist" class="panel-group">
+                    <div class="panel">
+                        <div id="collapseListGroupHeading2" role="tab" class="">
+                            <h4 class="panel-title">
+                                <div aria-controls="collapseListGroup1" aria-expanded="false"
+                                        href="#collapseListGroup2" data-toggle="collapse"
+                                        class="collapsed btn-collapo">
+                                    Delivery Details <i class="fa fa-caret-down"></i></div>
+                            </h4>
+                        </div>
+                        <div aria-labelledby="collapseListGroupHeading2" role="tabpanel" class="panel-collapse collapse" id="collapseListGroup2" aria-expanded="false" style="height: 0px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Contact Name </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_contact" id="book_in_contact" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Job Title</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_job_title" id="role" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Direct Line</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_direct_line" id="direct_line" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Mobile</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_mobile" id="mobile" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Email </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_email" id="email" class="form-control" ng-disabled="check_alt_depot_readonly" data-parsley-type="email" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Telephone </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_Phone" id="Phone" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Fax </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec.booking_fax" id="fax" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" title="Preferred Method Of Communication">Pref. Method Of Comm.</label>
+
+                                            <div class="col-md-8">
+                                                <select ng-model="drp.booking_pref_mthod_of_comm" ng-options="opt as opt.title for opt in arr_pref_method_comm" class="select2me form-control" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)"
+                                                    ng-disabled="check_alt_depot_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Opening Times </label>
+
+                                            <div class="col-md-3">
+                                                <input type="text" ng-model="rec.booking_start_time" id="booking_start_time" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                            <label class="col-md-2 control-label">Closing Times </label>
+
+                                            <div class="col-md-3">
+                                                <input type="text" ng-model="rec.booking_end_time" id="booking_end_time" class="form-control" ng-disabled="check_alt_depot_readonly" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Instructions</label>
+
+                                            <div class="col-md-8" style="position:relative;">
+                                                <textarea style="height:83px; resize:none;" ng-change="showWordsLimits_dept()" ng-model="rec.booking_instructions" id="booking_instructions" class="form-control" ng-disabled="check_alt_depot_readonly" maxlength="100" />
+                                                </textarea>
+                                                <span class="word-counter">{{wordsLength}}/100</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 affix">
+                        <div class="pull-right">
+                            <div class="dropdown ib" ng-if="rec.id > 0 && crm_location_tab_module > 0">
+                                <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                                <ul class="dropdown-menu dte animated fadeIn">
+                                    <span ng-click="set_document_internal(crm_general_tab_module)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                    <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                    <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                </ul>
+                            </div>
+
+                            <button class="btn btn-submit" type="submit" ng-if="!check_alt_depot_readonly">Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-if="check_alt_depot_readonly"> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="showAltDepotListing()">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-lg-12">
+      <a id="prompt" ng-click="showCrmPriceOfferListingForm()" class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"></i> Add New</a>
+    </div>
+  </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-lg-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Additional Address(es)
+          </div>
+          
+        </div> -->
+         <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+
+<div class="panel panel-default" ng-controller="CrmPriceOfferListingController as table">
+     <!-- <div class="panel-heading">
+         <div class="panel-title">Alt. Contact Listing</div>
+      </div>-->
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true" ng-show="$data.length > 0">
+      <thead>
+         <tr class="bg-col">
+         <th class="sortable sort-asc">Offered By</th>
+         <th class="sortable sort-asc">Item Code</th>
+         <th class="sortable sort-asc">Item Description</th>
+         <th class="sortable sort-asc">List Price On</th>
+         <th class="sortable sort-asc">List Date</th>
+         <th class="sortable sort-asc">Start Date</th>
+         <th class="sortable sort-asc">End Date</th>
+         <th class="sortable sort-asc">Type</th>
+         <th class="sortable sort-asc" ng-show="$data.length > 0" style="width: 127px;">Action</th>
+        </tr>
+        <!-- <tr>
+          <th ng-repeat="column in columns" ng-if="column.field != 'One_Four_Pallet' && column.field != 'Half_Load' && column.field != 'Full_Load' && column.field != 'Primary' " ng-show="column.visible" class="sortable"> 
+          <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+          <th class="sortable">  
+          <input type="text" class="form-control"/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody class="table-body">
+        <tr ng-repeat="rec in $data">
+          <td>{{rec['Offered By']}}</td>
+          <td>{{rec['Item Code']}}</td>
+          <td>{{rec['Item Description']}}</td>
+          <td>
+              <span>
+                <ul>
+                    <li ng-show="rec['Volume 1'] != null">{{rec['Volume 1']}}&nbsp;@&nbsp;{{rec.volume_1_price}}</li>
+                    <li ng-show="rec['Volume 2'] != null">{{rec['Volume 2']}}&nbsp;@&nbsp;{{rec.volume_2_price}}</li>
+                    <li ng-show="rec['Volume 3'] != null">{{rec['Volume 3']}}&nbsp;@&nbsp;{{rec.volume_3_price}}</li>
+                </ul>
+              </span>
+          </td>
+          <td>{{rec['Offer Date'] | date: dateFormats[defaultDateFormat]}}</td>
+          <td>{{rec['Start Date'] | date: dateFormats[defaultDateFormat]}}</td>
+          <td>{{rec['End Date'] | date: dateFormats[defaultDateFormat]}}</td>
+          <td>
+            <span>
+                <span ng-if="rec['Type'] == 1">Item</span>
+                <span ng-if="rec['Type'] == 2">Service</span>
+              </span>
+          </td>
+        <td class="text-left "   ng-show="$data.length > 0">
+            <a ng-click="editForm(rec.id)" title="Edit" class="btn btn-primary icon_square"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a>
+            
+          </td>
+        </tr>
+        <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>

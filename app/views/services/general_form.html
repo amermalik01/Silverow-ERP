@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div class="row">
+          <input type="hidden"   ng-model="formData.eid" />
+          <input type="hidden"   ng-model="formData.prooduct_id" />
+          <input type="hidden"   ng-model="formData.tab_id_2"   value="1"/>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Code<span class="required">*</span> </label>
+              <div class="col-sm-7">
+                <input type="hidden"   ng-model="formData.code_type" />
+                <input type="text"  ng-model="formData.srv_code" class="form-control" ng-readonly="product_type"   />
+                <input type="hidden"  ng-model="formData.srv_no" class="form-control"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label "> Description <span class="required">*</span></label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.description" 
+           required class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Category </label>
+              <div class="col-sm-7">
+                <button type="button" id="model_btn_new" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_cat" style="display:none"  > Add New </button>
+                <select  ng-disabled="check_srv_readonly"  ng-model="formData.category_id" 
+            ng-options="opt as opt.name for opt in category"  ng-change="onChangeCategorytype()"  
+                class="select2me form-control"    >
+                </select>
+              </div>
+            </div>
+            <!--<div class="form-group">
+              <label class="col-sm-3 control-label ">Brand </label>
+              <div class="col-sm-7">
+                <button type="button" id="model_btn_brand" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_brand" style="display:none"  > Add New </button>
+                <select  ng-disabled="check_srv_readonly" 
+             ng-model="formData.brand_id" ng-options="opt as opt.name for opt in brandnames"
+                class="select2me form-control" ng-change="onChangBrandtype()"     >
+                  
+                </select>
+              </div>
+            </div>--> 
+            
+          </div>
+          <div class="col-lg-6 col-md-6"> 
+            <!--    <div class="form-group">
+              <label class="col-sm-3 control-label ">Reorder Point </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.min_setup" 
+           class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Reorder Quantity </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.reorder_quality" 
+           class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Maximum Order Quantity </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.max_quality" 
+           class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Maximum Level </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.max_setup" 
+           class="form-control" />
+              </div>
+            </div>-->
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Unit of Measure </label>
+              <div class="col-sm-7">
+                <button type="button" id="model_btn_unit" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_unit" style="display:none"  > Add New </button>
+                <select  ng-disabled="check_srv_readonly"  ng-model="formData.unit_id" ng-options="opt as opt.name for opt in unit_measures" 
+                  class="select2me form-control"  ng-change="onChangUnittype()"     >
+                </select>
+              </div>
+            </div>
+            <!--<div class="form-group">
+              <label class="col-sm-3 control-label ">Current Stock </label>
+              <div class="col-sm-7">
+                <input  ng-readonly="check_srv_readonly" type="text" ng-model="formData.current_stock_level" 
+           class="form-control" />
+              </div>
+            </div>-->
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Status<span class="required">*</span></label>
+              <div class="col-sm-7">
+                <select  ng-disabled="check_srv_readonly"    
+         ng-model="formData.status"   required  ng-options="opt as opt.label for opt in status_data"
+      			 class="select2me form-control">
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-delete active-btns"  type="button"    ng-click="delete()"
+               ng-show="formData.id>0 && !check_srv_readonly"  > Delete</button>
+              <button class="btn btn-info btn_blue" type="submit" ng-show="!check_srv_readonly"> Submit</button>
+              <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_srv_readonly"> Edit</button>
+              <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"> Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

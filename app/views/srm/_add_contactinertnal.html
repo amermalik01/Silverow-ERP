@@ -1,0 +1,93 @@
+<div class="modal fade" id="popup_add_contactinternal">
+    <div class="modal-dialog modal-lg"> <!--modal-lg-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{page_title}} </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text" Placeholder="Search" class="form-control"
+                                   ng-model="searchKeyword.search">
+                            <span id="date_msg_4">
+                              <i class="fa fa-search"></i>
+                          </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table" ng-show="columns_contact.length > 0">
+                            <thead>
+                            <tr class="bg-col">
+                                <th>
+                                    <input type="checkbox" name="conttest"
+                                           ng-click="check_loc_value(selectedAll)"
+                                           ng-disabled="check_alt_depot_readonly"
+                                           ng-model="selectedAll">
+                                    <!--<input type="checkbox" class="chkallloccontactmulti" name="conttest">-->
+                                </th>
+
+                                <th ng-repeat=" column in columns_contact"
+                                    ng-if="column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication' ">
+                                    <!--{{column.title}}-->
+                                    <span ng-if="column.title == 'Phone'">Telephone</span>
+                                    <span ng-if="column.title != 'Phone'">{{column.title}}</span>
+                                </th>
+                                <!--&& column.title != 'Notes' -->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--| filter:SerachkeywordLocv-->
+                            <tr ng-repeat="rec2 in record_data_contact | filter:searchKeyword.search  track by $index  ">
+                                <!-- <tr ng-repeat="rec2 in record_AddContactLoc  track by $index  ">-->
+                                <!--ng-disabled="rec2.is_primary==1"-->
+                                <td>
+                                    <input type="checkbox" name="conttest {{$index}}"
+                                           data-parsley-multiple="checkbox"
+                                           ng-disabled="(rec2.is_primary==1 && rec_loc.is_primary==1 ) || check_alt_depot_readonly"
+                                           ng-checked="rec2.chk || (rec2.is_primary==1 && rec_loc.is_primary==1)"
+                                           ng-model="rec2.chk"
+                                           ng-click="selectloccontact(rec2,0,1)">
+                                </td>
+                                <td ng-repeat="column in columns_contact"
+                                    ng-if="column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication'">
+                            <span ng-if="rec2.is_primary == 1  && column.field == 'name' "
+                                  title="General Location">
+                                <i class="fa fa-flag" aria-hidden="true"></i>
+                            </span>
+                                    <span ng-if="column.title != 'Notes'"> {{rec2[column.field]}}</span>
+                                    <span ng-if="column.title == 'Notes' && rec2[column.field].length>0"
+                                          title="{{rec2[column.field]}}"> {{rec2[column.field] | limitTo: 10}}...</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <span class="pull-left">Selected:&nbsp;{{(record_data_contact | filter: {chk: true}).length}}</span>
+                <!--== {{(record_data_contact | filter: {chk_value: true}).length}}-->
+                <!--<a class="btn btn_add2" data-dismiss="modal" ng-disabled="check_alt_depot_readonly"
+                   ng-click="rec_contact.id>0  ">
+                    <i data-dismiss="modal" class="fa fa-check fa_display"></i>
+                    Add
+                </a>
+
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>-->
+                <button class="btn btn_add2" type="button" ng-click="submitPendingContactLoc()"
+                        ng-if="!check_alt_depot_readonly">Add
+                </button>
+                <button type="button" class="btn btn-cancel" ng-click="clearPendingContactLoc()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

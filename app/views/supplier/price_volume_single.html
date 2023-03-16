@@ -1,0 +1,415 @@
+<!--<div class="panel vv" >
+  <div id="collapseListGroupHeading1" role="tab" class="">
+    <h4 class="panel-title">
+      <button aria-controls="collapseListGroup1" aria-expanded="false" href="#collapseListGroup1" data-toggle="collapse" class="collapsed btn btn-link no-padding"> Purchase Volume Discount <i class="fa fa-chevron-down"></i> </button>
+    </h4>
+  </div>
+  <div aria-labelledby="collapseListGroupHeading1" role="tabpanel" class="panel-collapse collapse" id="collapseListGroup1" aria-expanded="false" style="height: 0px;">
+  -->
+
+<style>
+.purchase_cost {
+	width: 11% !important;
+}
+.type_cost {
+	width: 13% !important;
+}
+</style>
+
+<div class="panel vv">
+  <div id="collapseListGroupHeading1" role="tab" class="">
+    <h4 class="panel-title">
+      <button aria-controls="collapseListGroup11" aria-expanded="false" href="#collapseListGroup11" data-toggle="collapse" class="collapsed btn btn-link no-padding"> Purchase Volume Discount <i class="fa fa-chevron-down"></i> </button>
+      
+      <!-- <button button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"> Purchase Volume Discount</button>
+     --> 
+    </h4>
+  </div>
+  <div aria-labelledby="collapseListGroupHeading1" role="tabpanel" class="panel-collapse collapse out" id="collapseListGroup11" aria-expanded="false" style="height: 0px;"> 
+    <!--  <div id="demo" class="collapse out">-->
+    
+    <div class="col-md-12 no-padding">
+      <div class="pull-left"> 
+      
+        
+        <button type="button" id="buttons" aria-expanded="true"  ng-click="change_add_new()"
+          class="btn  btn_blue   width_80"  > Add New</button>
+        
+        <!-- ng-click="value_counter = value_counter + 1" ng-show="count < 4"--> 
+      </div>
+    </div>
+    <input type="hidden" ng-model="formData_price_data.product_id" >
+    <input type="hidden" ng-model="formData_price_data.product_code"    />
+    <input type="hidden" ng-model="formData_price_data.item_description"  >
+    
+    <!--<div class="row">
+        <div class="col-sm-2">
+          <div class="  form-group">
+            <label class=" control-label "> Item code </label>
+            <input type="hidden" ng-model="formData_price_data.product_id" >
+            <input type="text" ng-model="formData_price_data.product_code"    class="form-control"  readonly/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="  form-group">
+            <label class=" control-label ">Description</label>
+            <input type="text" class="form-control" ng-model="formData_price_data.item_description" readonly >
+          </div>
+        </div>
+        <div class="col-sm-8"> &nbsp; </div>
+      </div>-->
+    
+    <div class="row" ng-show="count>=1">
+      <div class="col-sm-2">
+        <div class="  form-group">
+          <label class="control-label col-sm-12 "> Volume 1 </label>
+          <div class="col-sm-12">
+            <button type="button" id="model_btn_vol_1" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_vol_1" style="display:none"  > Add New </button>
+            <select ng-model="formData_price_data.volume_1" 
+                  ng-options="opt as opt.name for opt in arr_volume_1" class="form-control" 
+                   ng-disabled ="check_item_readonly"     ng-change="onChange_volume(1,'sale')"  id="vol_1_id">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 purchase_cost"  >
+        <div class="form-group">
+          <label class="control-label col-sm-12"> Purchase Cost </label>
+          <div class="col-sm-12  ">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.purchase_price_1"   id="purchase_price_1"   ng-change="show_price_price(1);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} /   {{priceFormData.purchase_measure.name}} --> 
+              {{priceFormData.sale_currency}} </span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 type_cost">
+        <div class="form-group">
+          <label class="  control-label col-sm-12  "> Discount Type</label>
+          <div class="  col-sm-12">
+            <select  ng-disabled="check_item_readonly"   ng-model="formData_price_data.supplier_type_1"
+                               ng-options="opt as opt.name for opt in list_type" id="type_1"
+                               ng-change="setSymbol(1);show_price_price(1);change_volume_price()" 
+                          class=" form-control"    >
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discount </label>
+          <div class="  col-sm-12  ">
+            <div class=" input-symbol"> 
+              <!--  <input ng-readonly="check_item_readonly" type="text"  placeholder="0"   min="1"  max="1000" step="100"  data-parsley-trigger="keyup"     ng-change="show_price_price(1)"
+           data-parsley-minlength="1"  ng-model="formData_price_data.discount_value_1"  id="discount_value_1"  
+           class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"     >
+           -->
+              
+              <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"       ng-change="setSymbol(1);show_price_price(1);change_volume_price()"
+            ng-model="formData_price_data.discount_value_1"  id="discount_value_1" 
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              
+              <!--ng-show="show_symbol"--> <span  id="date_msg_1"  style=" display: none;" >&#37;</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group"><!--data-parsley-required="true" -->
+          <label class="  control-label col-sm-12"> Discounted  Price </label>
+          <div class="  col-sm-12">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.discount_price_1"   id="discount_price_1"   ng-change="show_price_price(1);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Start Date </label>
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.start_date_1" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['start_date_1']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_1,formData_price_data.end_date_1,201);check_dates(1)" 
+          id="start_date_1"   readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button    type="button" class="btn btn-defaul date_block_1 " ng-click="datePicker.open($event, 'start_date_1')"    ><i class="fa fa-calendar"></i ></button>
+              </span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">End Date </label>
+          <div class="col-sm-9">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.end_date_1" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date_1']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_1,formData_price_data.end_date_1,201);check_dates(1)" 
+           
+          id="end_date_1"   readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button  type="button" class="btn btn-default date_block_11 "  ng-click="datePicker.open($event, 'end_date_1')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>
+            <span    id="date_msg_leave_201" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+          <div class="col-sm-2" ng-if="formData_price_data.id_1>0">
+            <div class="form-group">
+              <div class="  col-sm-12"> <a  title="Delete" ng-click="delete_volume(formData_price_data.id_1,$index,formData_price_data.volume1)"
+                   class="tooltips_clsss btn "><i class="fa fa-times"> </i></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="col-sm-4">
+          <div class="form-group">
+            <label class=" control-label col-sm-12">Current Date </label>
+            <div class="col-sm-12">
+              <input readonly="readonly" type="text" class="form-control" ng-model="current_date">
+            </div>
+          </div>
+        </div>--> 
+      
+    </div>
+    <div class="row"ng-show="count>=2">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Volume 2 </label>
+          <div class="  col-sm-12">
+            <button type="button" id="model_btn_vol_2" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_vol_2" style="display:none"  > Add New </button>
+            <select ng-model="formData_price_data.volume_2"
+                     ng-options="opt as opt.name for opt in arr_volume_2" class="select2me form-control"  ng-disabled ="check_item_readonly"   ng-change="onChange_volume(2,'sale')"   id="vol_2_id">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1   purchase_cost">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Purchase Cost </label>
+          <div class="  col-sm-12">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.purchase_price_2"   id="purchase_price_2"   ng-change="show_price_price(2);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 type_cost  ">
+        <div class="form-group">
+          <label class=" control-label col-sm-12 "> Discount Type </label>
+          <div class=" col-sm-12">
+            <select  ng-disabled="check_item_readonly"   ng-model="formData_price_data.supplier_type_2"
+                               ng-options="opt as opt.name for opt in list_type"
+                               id="type_2"     ng-change="setSymbol(2);show_price_price(2);change_volume_price()"
+                          class="  form-control"   >
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discount </label>
+          <div class="  col-sm-12  ">
+            <div class=" input-symbol"> 
+              <!--<input ng-readonly="check_item_readonly" type="text"  placeholder="0"   min="1"  max="1000" step="100"  data-parsley-trigger="keyup"  ng-change="show_price_price(3)"
+           data-parsley-minlength="1"  ng-model="formData_price_data.discount_value_3"  id="discount_value_3"  
+           class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"     >-->
+              
+              <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"     
+            ng-model="formData_price_data.discount_value_2"   id="discount_value_2" ng-change="show_price_price(2);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span  id="date_msg_2" style=" display: none;" >&#37;</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discounted  Price </label>
+          <div class="control-label col-sm-12">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.discount_price_2"   id="discount_price_2"   ng-change="show_price_one(2);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Start Date </label>
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.start_date_2" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['start_date_2']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_2,formData_price_data.end_date_2,202);check_dates(2)"  
+           id="start_date_2"   readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button type="button"  class="btn btn-default date_block_2" ng-click="datePicker.open($event, 'start_date_2')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">End Date </label>
+          <div class="col-sm-9">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.end_date_2" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date_2']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_2,formData_price_data.end_date_2,202);check_dates(2)"  
+             id="end_date_2" readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button type="button"   class="btn btn-default date_block_22" ng-click="datePicker.open($event, 'end_date_2')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>
+            <span    id="date_msg_leave_202" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+          <div class="col-sm-2" ng-if="formData_price_data.id_2>0">
+            <div class="form-group">
+              <div class="  col-sm-12"> <a  title="Delete" ng-click="delete_volume(formData_price_data.id_2,$index,formData_price_data.volume2)"
+                   class="tooltips_clsss btn "><i class="fa fa-times"> </i></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row"ng-show="count>=3">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Volume 3 </label>
+          <div class="  col-sm-12">
+            <button type="button" id="model_btn_vol_3" class="btn btn-info btn_blue pull-left margin_bottom"  
+            data-toggle="modal" data-target="#model_vol_3" style="display:none"  > Add New </button>
+            <select ng-model="formData_price_data.volume_3"  
+                    ng-options="opt as opt.name for opt in arr_volume_3" class="select2me form-control"  ng-disabled ="check_item_readonly"   ng-change="onChange_volume(3,'sale')"  id="vol_3_id">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1   purchase_cost">
+        <div class="form-group">
+          <label class="control-label col-sm-12"> Purchase Cost </label>
+          <div class="col-sm-12  ">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"  
+            ng-model="formData_price_data.purchase_price_3"   id="purchase_price_3"   ng-change="show_price_price(3);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 type_cost  ">
+        <div class="form-group">
+          <label class=" control-label col-sm-12 "> Discount Type </label>
+          <div class="  col-sm-12">
+            <select  ng-disabled="check_item_readonly"   ng-model="formData_price_data.supplier_type_3"
+                               ng-options="opt as opt.name for opt in list_type"
+                       id="type_3"
+                           ng-change="setSymbol(3);show_price_price(3);change_volume_price()"
+                              class="select2me form-control"   >
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discount </label>
+          <div class="  col-sm-12  ">
+            <div class=" input-symbol"> 
+              <!--<input ng-readonly="check_item_readonly" type="text"  placeholder="0"   min="1"  max="1000" step="100"  data-parsley-trigger="keyup"  ng-change="show_price_price(3)"
+           data-parsley-minlength="1"  ng-model="formData_price_data.discount_value_3"  id="discount_value_3"  
+           class="form-control input_text" data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"     >-->
+              
+              <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"     
+            ng-model="formData_price_data.discount_value_3"   id="discount_value_3" ng-change="show_price_price(3);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span  id="date_msg_3" style=" display: none;" >&#37;</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12"> Discounted  Price </label>
+          <div class=" col-sm-12">
+            <div class="input-symbol">
+              <input readonly
+              type="text"   data-parsley-trigger="keyup"   
+            ng-model="formData_price_data.discount_price_3"   id="discount_price_3"  
+             ng-change="show_price_one(3);change_volume_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              <span><!--{{customerCurrencyCode}}{{defaultCurrencyCode}} --> 
+              {{priceFormData.sale_currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">Start Date </label>
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.start_date_3" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['start_date_3']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_3,formData_price_data.end_date_3,203);check_dates(3)" 
+           id="start_date_3"  readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button type="button"   class="btn btn-default date_block_3" ng-click="datePicker.open($event, 'start_date_3')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class=" control-label col-sm-12">End Date </label>
+          <div class="col-sm-9">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="formData_price_data.end_date_3" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date_3']"  close-text="Close" 
+           ng-change="testdate(formData_price_data.start_date_3,formData_price_data.end_date_3,203);check_dates(3)" 
+           id="end_date_3"  readonly data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+              <span class="input-group-btn">
+              <button type="button"  class="btn btn-default date_block_33" ng-click="datePicker.open($event, 'end_date_3')"    ><i class="fa fa-calendar"></i></button>
+              </span> </div>
+            <span    id="date_msg_leave_203" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+          <div class="col-sm-2" ng-if="formData_price_data.id_3>0">
+            <div class="form-group">
+              <div class="  col-sm-12"> <a  title="Delete" ng-click="delete_volume(formData_price_data.id_3,$index,formData_price_data.volume3)"
+                   class="tooltips_clsss btn "><i class="fa fa-times"> </i></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

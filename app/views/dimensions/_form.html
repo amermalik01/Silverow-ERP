@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <input type="hidden" ng-model="rec.id" class="form-control" ng-readonly="check_readonly" />
+  <div class="col-md-5">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Type<span class="required">*</span></label>
+      <div class="col-md-8">
+        <select required ng-model="rec.unit_id" ng-options="opt as opt.name for opt in unit_list" class="  form-control" ng-disabled="check_readonly"
+          required>
+          <option value=""
+                  disabled
+                  selected>Select Type</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label ">Name </label>
+      <div class="col-md-8">
+        <input ng-readonly="check_readonly" type="text" ng-model="rec.name" class="form-control" />
+        <!--    data-parsley-pattern="/^(?=.*[1-9])\d{0,2}}(?:\.\d{0,2})?$/"-->
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label ">Display Unit<span class="required">*</span></label>
+      <div class="col-md-8">
+        <input required type="text" class="form-control input_text" 
+          ng-readonly="check_readonly"
+          ng-model="rec.code" 
+          maxlength="3"
+          data-parsley-trigger="keyup" 
+          data-parsley-pattern="/^[0-9a-zA-Z].{0,2}$/">
+      </div>
+    </div>
+    <!-- <div class="form-group">
+      <label class="col-md-4 control-label">Status <span class="required">*</span></label>
+      <div class="col-md-8">
+        <select ng-model="rec.statuss" ng-options="opt as opt.label for opt in arr_status" class="  form-control" ng-disabled="check_readonly"
+          id="status" required>
+          </select>
+      </div>
+    </div> -->
+  </div>
+</div>

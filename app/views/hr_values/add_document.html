@@ -1,0 +1,49 @@
+<!--<input type="hidden"   ng-model="document_id" />
+<div class="row" >
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-sm-3 control-label  ">Title</label>
+      <div class="col-sm-7">
+        <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.document_title" class="form-control" 
+            />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label  ">Document Code</label>
+      <div class="col-sm-7">
+        <input  ng-readonly="check_hrvalues_readonly"  type="text" ng-model="formData.document_code" class="form-control" 
+            />
+      </div>
+    </div>
+    <div class="form-group" ng-controller="DocUploadDocument_single">
+      <label class="col-sm-3 control-label  " for="userName">Change document</label>
+      <div class="col-sm-7">
+        <div class="fileUpload btn btn-primary" tabindex="7"> <span ng-if="!formData.document_path">Select document</span><span ng-if="formData.document_path">Change document</span>
+          <input  ng-readonly="check_hrvalues_readonly"  id="" type="file" 
+            ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+            multiple accept="image/*" class="upload" 
+            ngf-max-height="1000" ngf-max-size="1MB"  />
+          <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-model="formData.document_path">
+          <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-init="formData.document_path = formData.document_path"    
+           ng-model="formData.document_path">
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-if="formData.document_path">
+      <div class="col-sm-7">  
+      
+      <a target="_blank" href="{{imagePath+formData.document_path}}"><em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a>
+      
+       </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="hr_line2"></div>
+    <div class="pull-right">
+      <button class="btn btn-info btn_blue"  id="pic_block"type="submit"> Submit</button>
+      <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_hrvalues_readonly"><i class="fa fa-edit"></i> Edit</button>
+      <button class="btn default" type="button" ng-click="list_doc()"><i class="fa fa-undo"></i> Cancel</button>
+    </div>
+  </div>
+</div>
+-->

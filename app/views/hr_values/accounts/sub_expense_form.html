@@ -1,0 +1,243 @@
+<div class="row"  >
+  <div class="col-md-12">
+    <div class="hr_line2"></div>
+    <div class="pull-left">
+      <button class="btn btn_blue" type="button" ng-click="add_option_row(formData.base_currency_expense)" > Add Details</button>
+    </div>
+  </div>
+</div>
+<br><!--{{ formData2.currency }}-->
+<div ng-show="add_row_table">  
+  <table  class="table table-condensed table-striped  table-bordered" id="data-table" >
+    <thead>
+      <tr>
+        <th> Category </th>
+        <th> Description </th>
+        <th> Currency </th>
+        <th> Amount </th>
+        <th> Exchange rate </th>
+        <th> Total Amount </th>
+        <th> Image </th>
+        <th style="width:7%"> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  ng-show="add_row_table" ><!--ng-repeat="formData in users" -->
+        
+        <td style="width:17%"  ><select       
+           ng-model="formData2.category" ng-options="opt as opt.name for opt in category_expense"
+              class="select2me form-control"   id="category" >
+            
+          </select></td>
+        <td style="width:14%"  ><input    id="exchange_description"  type="text" ng-model="formData2.exchange_description" 
+           class="form-control" /></td>
+         
+        <td style="width:10%"><select    
+           ng-model="formData2.currency" ng-options="opt as opt.name for opt in currency_list_b"
+              class="select2me form-control"  id="currency"  >
+            
+          </select></td>
+        <td   style="width:10%"><input type="text"  placeholder="0"     min="1"  max="1000" step="100"   data-parsley-trigger="keyup" 
+           data-parsley-minlength="1"  ng-model="formData2.amount"  id="amount"  class="form-control input_text"
+           data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"  required  ></td>
+        <!--  <td><input     style="width:100px" 
+                     id="base_currency"readonly="readonly"   type="text" ng-model="formData2.base_currency" 
+           class="form-control" /></td>-->
+        
+        <td style="width:17%"><input type="text"     placeholder="0"     min="1"  max="1000" step="100"   data-parsley-trigger="keyup" 
+           data-parsley-minlength="1"  ng-model="formData2.exchange_rate"  id="exchange_rate"  class="form-control input_text"
+           data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"  required  ></td>
+        
+        <!--   <td><input     style="width:60px"  id="invoice_id" type="text" ng-model="formData2.invoice_id" 
+           class="form-control" /></td>-->
+        <td style="width:16%" ><input     readonly type="text"      class="form-control" value="{{   total_sub	= 	formData2.amount *  formData2.exchange_rate | number:2 }}" /></td>
+        <td  ><div   ng-controller="DocUploadDocument_single">
+            <div class="fileUpload btn btn-primary"  > <span ng-if="!formData2.exp_image">Image</span><span ng-if="formData2.exp_image">Image</span>
+              <input     id="" type="file" 
+            ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+            multiple accept="image/*" class="upload" 
+            ngf-max-height="1000" ngf-max-size="1MB"  />
+              <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-model="formData2.exp_image">
+              <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-init="formData2.exp_image = formData2.exp_image"    
+           ng-model="formData2.exp_image">
+            </div>
+          </div>
+          <div   ng-if="formData2.exp_image">
+            <div class="col-sm-7"> <!--<img  ng-src="{{imagePath+formData2.exp_image}}" 
+      style="width: 60px; margin-top: 13px;" />--> 
+              
+              <a target="_blank" href="{{imagePath+formData2.exp_image}}"> <em  style="font-size: 20px !important;"class="fa fa-file-image-o"></em></a> </div>
+          </div></td>
+        
+        <!--
+      <td><p class="input-group" style="width:100px" >
+          <input type="text" readonly="readonly style="width:100px" class="form-control" " ng-model="formData2.event_sub_date"     
+            datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+            is-open="datePicker.instances['event_sub_date']" 
+           close-text="Close"  id="event_sub_date"
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+          <span class="input-group-btn">
+          <button type="button"  
+            class="btn btn-default" ng-click="datePicker.open($event, 'event_sub_date')"><i class="fa fa-calendar"></i></button>
+          </span> </p></td>--> 
+        <!--ng-click="submitnew(formData2)"-->
+        <td ><button  class="btn btn-info btn_blue" type="submit" > Add</button>
+          
+          <!--  <button  class="btn btn-info btn_blue" 
+      
+      ng-click="resetnew()" style="    margin-top: 10px;" 
+      
+      type="submit" > Cancel</button>-->
+          
+          <input type="hidden"   ng-model="formData2.expense_id" />
+          <input type="hidden"   ng-model="expense_id" />
+          <input type="hidden"   ng-model="formData2.eid" />
+          <input type="hidden"   ng-model="formData2.employee_id" />
+          <input type="hidden"   ng-model="sub_expense_id" id="sub_expense_id" />
+          <input type="hidden"   ng-model="exp_id" />
+          <input type="hidden"   ng-model="formData2.tab_id_2"   value="7"/></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div class="modal fade" id="modaladdevent"ng-show="showsubform" >
+  <div class="modal-dialog modal-lg"  ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add New</h4>
+      </div>
+      <div class="modal-body">  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row" >
+                  <input type="hidden"   ng-model="formData.employee_id" />
+                  <input type="hidden"   ng-model="formData.expense_id" />
+                  <input type="hidden"   ng-model="expense_id" />
+                  <input type="hidden"   ng-model="formData.eid" />
+                  <input type="hidden"   ng-model="sub_expense_id" />
+                  <input type="hidden"   ng-model="exp_id" />
+                  <input type="hidden"   ng-model="employee_id" />
+                  <input type="hidden"   ng-model="formData.tab_id_2"   value="7"/>
+                  <div class="row">
+                    <div class="col-md-6 col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Category </label>
+                        <div class="col-sm-7">
+                          <select  ng-disabled="check_sub_readonly"    
+                                               ng-model="formData.category" ng-options="opt as opt.label for opt in category_expense"
+                                                  class="select2me form-control"   >
+                            
+                          </select>
+                        </div>
+                      </div>
+                      
+                     
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Currency</label>
+                        <div class="col-sm-7">
+                          <select  ng-disabled="check_sub_readonly"     id="currency"
+                                               ng-model="formData.currency" ng-options="opt as opt.name for opt in currency_list"
+                                                  class="select2me form-control"   >
+                            
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Amount</label>
+                        <div class="col-sm-7"> 
+                         
+                          
+                          <input type="text"  ng-readonly="check_sub_readonly"  id="amount"
+                                               data-parsley-minlength="2"  ng-model="formData.amount"   class="form-control input_text"
+                                               data-parsley-minlength-message="minlength two number" data-parsley-type="digits" 
+                                               data-parsley-type-message="only numbers"   >
+                        </div>
+                      </div> 
+                    </div>
+                    <div class="col-md-6 col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Exchange Rate </label>
+                        <div class="col-sm-7">
+                          <input  ng-readonly="check_sub_readonly"   id="exchange_rate"  type="text" ng-model="formData.exchange_rate" 
+                                               class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Exchange Description</label>
+                        <div class="col-sm-7">
+                          <input  ng-readonly="check_sub_readonly"  id="exchange_description"  type="text" ng-model="formData.exchange_description" 
+                                               class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Invoice ID </label>
+                        <div class="col-sm-7">
+                          <input  ng-readonly="check_sub_readonly"   id="invoice_id"
+                             type="text" ng-model="formData.invoice_id" 
+                                               class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label ">Date </label>
+                        <div class="col-sm-7"> 
+                        
+                          <p class="input-group">
+                            <input  readonly="readonly"     id="event_sub_date"
+                                              type="text" class="form-control" ng-model="formData.event_sub_date"      
+                                    ng-init="formData[formFieldssub.id]=formData.value"  
+                                    datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+                                    is-open="datePicker.instances['event_sub_date']" 
+                                    close-text="Close" 
+                                    data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" 
+                                    />
+                            <span class="input-group-btn">
+                            <button type="button"  ng-disabled="check_hrvalues_readonly" 
+                                                class="btn btn-default" ng-click="datePicker.open($event, 'event_sub_date')"><i class="fa fa-calendar"></i></button>
+                            </span> </p>
+                        </div>
+                      </div>
+                      <div class="form-group" ng-controller="DocUploadDocument_single">
+                        <label class="col-sm-3 control-label  " for="userName">Image</label>
+                        <div class="col-sm-7">
+                          <div class="fileUpload btn btn-primary" tabindex="7"> <span ng-if="!formData.exp_image">Image</span><span ng-if="formData.exp_image">Image</span>
+                            <input  ng-readonly="check_sub_readonly"  id="" type="file" 
+                                                ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+                                                multiple accept="image/*" class="upload" 
+                                                ngf-max-height="1000" ngf-max-size="1MB"  />
+                            <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-model="formData.exp_image">
+                            <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-init="formData.exp_image = formData.exp_image"    
+                                               ng-model="formData.exp_image">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group" ng-if="formData.exp_image">
+                        <div class="col-sm-7"> <img  ng-src="{{imagePath+formData.exp_image}}" 
+                                          tabindex="13" style="width:100px; height:100px;" /> </div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      <div class="modal-footer"> <span ng-show="empty_form" style="color:#F00">Enter  Amount ,Currency and Invoice ID Please</span>
+        <button class="btn btn_blue width_80" type="submit" ng-show="!check_hrvalues_readonly">  Submit</button>
+        <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()"
+     ng-show="check_hrvalues_readonly">  Edit</button>
+        
+        
+        <button type="button" class="btn default width_80" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+    
+  </div>
+</div>--> 

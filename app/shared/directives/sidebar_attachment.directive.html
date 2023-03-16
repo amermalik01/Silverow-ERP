@@ -1,0 +1,277 @@
+<style>
+    .letter12 {
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<toaster-container toaster-options="{'toaster-id': 2,'position-class': 'toast-top-right', 'close-button':true}">
+</toaster-container>
+
+<span class="mbri-folder letter12 comm-btn" ng-click="openAttachmentModal()"></span>
+<!-- Documents -->
+<span ng-show="total > 0 && moduleTracker.module.record" ng-click="openAttachmentModal()" class="sidebarNotification">{{total}}</span>
+
+<div id="sidebar-attachment" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg2 leftsidebar-container leftsidebar-documents" style="    margin-top: 50px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" ng-click="clearAttachmentVars()" class="close" data-dismiss="modal">&times;</button>
+                <a class="btn btn-default2 pull-left" style="margin: -4px 0 !important;" ng-click="showUploadDocument()" ng-show="uploadDocument">
+                    <i style="font-size: 14px;" class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <h4 class="modal-title" ng-hide="uploadDocument">Documents</h4>
+                <h4 class="modal-title" ng-show="uploadDocument">Upload Document</h4>
+            </div>
+            <div class="modal-body" style="    min-height: 300px;">
+                <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader || showLoader}"></div>
+
+                <div class="row" style="margin-bottom: 0 !important;">
+                    <div class="col-md-4" ng-hide="uploadDocument">
+                        <input type="text" ng-model="localSearch" placeholder="Search" class="form-control pull-left" style="width: calc(100% - 53px);" />
+                        <a ng-click="bringNamesForAttachments(moduleTracker.module.name); showUploadDocument()" class="pull-right btn btn_add2">
+                            Add
+                        </a>
+                    </div>
+                    <div class="col-md-8 ipwe righttoleft" ng-show="uploadDocument" style="    margin-bottom: 13px;"><b style="font-size: 14px;">Upload File</b></div>
+                    <div class="col-md-8 ipwe" ng-show="focused.name.length" ng-hide="uploadDocument" style="padding-left: 0;padding-top: 0;color:black">
+                        {{focused.alias}}
+                        <!-- href="{{focused.path}}" -->
+                        <a class="btn btn-default2" type="button" ng-click="downloadFileSecure(focused.alias, focused.path, focused.fileType)" download="{{focused.alias}}" ng-show="focused.name.length && !uploadDocument" title="Download" style="    margin-left: 10px;
+    padding: 4px 9px;">
+                            <i class="fa fa-download"></i>
+                        </a>
+                        <div ng-if="focused.association.length" class="pull-right" style="color: black">
+                            <span ng-hide="editModule">{{focused.association[0].assName}}{{focused.association.length>1?"...":""}}</span>
+                        </div>
+                        <div ng-show="focused.id" class="pull-right" style="margin-top: -5px;">
+                            <div class="ib assignTo" style="margin: 6px 10px 2px;color: black;float: left;">
+                                <span ng-click="toggleShowAssign($event, focused.id)" ng-class="{'fa-angle-right':showAssignto,'fa-link':!showAssignto}" class="fa">
+                                </span>
+                                <div class="assignTo__show" ng-show="showAssignto">
+                                    <h4 style="font-size: 14px;margin-top: 4px;color: #9a9a9a;">Link this document to:</h4>
+                                    <div style="overflow: auto;max-height: 60vh;">
+                                        <table class="table table-condensed table-striped table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Module</th>
+                                                    <th>Record</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr style="    cursor: default !important;">
+                                                    <td>
+                                                        <select ng-model="inboxEmailModule" style="width: 91px;" ng-change="bringingNamesForInbox = true; bringNamesForAttachments(inboxEmailModule)" name="" id="" class="form-control">
+                                                            <option selected
+                                                                    disabled
+                                                                    value="">Select Module</option>
+                                                            <option ng-repeat="m in associationModules"
+                                                                    ng-value="m.value">{{m.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td style="overflow: visible !important;">
+                                                        <ui-select style="float: left;width: 200px;" ng-model="selectedInboxRecord.record" ng-change="updateInboxRecord();" ng-class="{'noAssign':!inboxEmailModule}">
+                                                            <ui-select-match placeholder="Select Record">
+                                                                {{$select.selected.name}}
+                                                            </ui-select-match>
+                                                            <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                                                <div ng-bind-html="opt.name| highlight: $select.search">
+                                                                </div>
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                    </td>
+                                                    <td>
+
+                                                    </td>
+                                                </tr>
+                                                <tr x-rrr="{{r}}" style="    cursor: default !important;" ng-repeat="r in focused.association">
+                                                    <td>{{r.assModule}}</td>
+                                                    <td>{{r.assName}}</td>
+                                                    <td ng-class="{'disable-el': focused.association.length == 1}"><i ng-class="{'disable-el': focused.association.length == 1}" ng-click="removeAssociation(r)" class="fa fa-times" aria-hidden="true"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader}"></div>
+
+                <div class="row" style="margin-bottom: 0 !important;">
+                    <div class="col-md-4 righttoleft" ng-hide="uploadDocument">
+                        <tabset class="modaltabs">
+                            <tab ignore-mt active="bringingMoreLimitedRecords && bringingLimitedRecords" ng-init="getFileListing(1,null,null,1)" ng-click="getFileListing(1,null,null,1)" ng-if="moduleTracker.module.tab" heading="Current Tab">
+                                <div class="mydocs" ng-click="updateFocusedAttachment(file)" class="{{file.fileType}}clr" ng-repeat="file in moduleAttachments | filter:localSearch" ng-if="!file.source.length" ng-class="focused.id == file.id?'highlightdoc':''">
+                                    <div class="document-item" href="test.txt" filetype="{{file.fileType}}">
+                                        <span class="fileCorner"></span>
+                                    </div>
+                                    <div class="mydocsname">{{file.receiver_name}}</div>
+                                    <div class="mydocsrecord">{{file.name}}</div>
+                                    <div class="attachmodname">{{getAssociatedModuleName(file)}}</div>
+                                    <div class="createdby"><b>{{file.user_email}}</b> on {{file.date_uploaded}} </div>
+                                </div>
+                            </tab>
+                            <tab ignore-mt active="bringingLimitedRecords && !bringingMoreLimitedRecords" ng-init="getFileListing(1,null,null,2)" ng-click="getFileListing(1,null,null,2)" ng-if="moduleTracker.module.record" heading="{{moduleTracker.module.recordName}}">
+                                <div class="mydocs" ng-click="updateFocusedAttachment(file)" class="{{file.fileType}}clr" ng-repeat="file in moduleAttachments | filter:localSearch" ng-if="!file.source.length" ng-class="focused.id == file.id?'highlightdoc':''">
+                                    <div class="document-item" href="test.txt" filetype="{{file.fileType}}">
+                                        <span class="fileCorner"></span>
+                                    </div>
+                                    <div class="mydocsname">{{file.receiver_name}}</div>
+                                    <div class="mydocsrecord">{{file.name}}</div>
+                                    <div class="attachmodname">{{getAssociatedModuleName(file)}}</div>
+                                    <div class="createdby"><b>{{file.user_email}}</b> on {{file.date_uploaded}} </div>
+                                </div>
+                            </tab>
+                            <tab ignore-mt ng-click="getFileListing(1,null,null,3)" ng-if="!moduleTracker.module.record" heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                <div class="mydocs" ng-click="updateFocusedAttachment(file)" class="{{file.fileType}}clr" ng-repeat="file in moduleAttachments | filter:localSearch" ng-if="!file.source.length" ng-class="focused.id == file.id?'highlightdoc':''">
+                                    <div class="document-item" href="test.txt" filetype="{{file.fileType}}">
+                                        <span class="fileCorner"></span>
+                                    </div>
+                                    <div class="mydocsname">{{file.receiver_name}}</div>
+                                    <div class="mydocsrecord" ng-if="file.receiver_name">{{file.name}} </div>
+                                    <div class="attachmodname" ng-if="getAssociatedModuleName(file)">{{getAssociatedModuleName(file)}}</div>
+                                    <div class="createdby"><b>{{file.user_email}}</b> on {{file.date_uploaded}} </div>
+                                </div>
+                            </tab>
+
+                        </tabset>
+
+                        <div ng-if="moduleAttachments.length" style="margin-top: 8px;">{{(moduleAttachments | filter: localSearch).length}} Record(s)</div>
+                        <div class="text-center norecordmessage" ng-if="moduleAttachments == 0">
+                            <span class="mbri-folder"></span>
+                            <div>No Documents found! Upload one now!</div>
+                        </div>
+                    </div>
+                    <div ng-show="focused.name.length && !uploadDocument">
+                        <div class="col-md-8" style="margin-top: 5px;padding-left: 0;">
+                            <div style="    height: 275px;
+                                            overflow: auto;
+                                            border-radius: 3px;
+                                            padding: 3px;
+                                            position: relative;
+                                            background: white;
+                                            border-bottom: 0;
+                                            border-bottom-left-radius: 0;">
+
+                                <div class="text-center myfiletype" ng-if="focused.fileType != 'png' && focused.fileType != 'jpg' && focused.fileType != 'jpeg' && focused.fileType != 'tiff' && focused.fileType != 'gif'">
+                                    <div class="myfiletypeinner">{{focused.fileType}}</div>
+                                </div>
+
+                                <img class="img-responsive desc55" data-toggle="modal" data-target="#PreviewImage_{{$stateParams.id}}_{{fileData.subTypeId}}" ng-if="focused.fileType == 'png' || focused.fileType == 'jpg' || focused.fileType == 'jpeg' || focused.fileType == 'tiff' || focused.fileType == 'gif'"
+                                    ng-src="{{focused.path}}" />
+                            </div>
+                        </div>
+                        <div class="col-md-offset-4">
+                            <div class="col-md-3 no-padding">
+                                <div class="desc1">
+                                    <div class="desc2">File Size</div>
+                                    <div class="desc3">{{focused.size}} Kbs</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <div class="desc1">
+                                    <div class="desc2">File Type</div>
+                                    <div class="desc3">{{focused.fileType | uppercase}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <div class="desc1">
+                                    <div class="desc2">Uploaded On</div>
+                                    <div class="desc3">{{focused.date_uploaded}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pl0">
+                                <div class="desc1" style="border: 0;">
+                                    <div class="desc2">Uploaded By</div>
+                                    <div class="desc3">{{focused.user_name}}</div>
+                                </div>
+                            </div>
+                            <a ng-click="deleteFile($event,focused.id)" style="
+                            margin: 9px 0 0 0px;
+                            float: left;
+                            color: #008bf9;
+                            font-weight: bold;
+                            cursor: pointer;"><i class="fa fa-times"></i> Delete Document</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 righttoleft" ng-show="uploadDocument">
+                        <div class="email-area">
+                            <b>Module</b>
+                            <div class="email-input">
+                                <select ng-model="selectedAttachmentModule" ng-init="moduleTracker.module.name?(bringAttachmentNames()):'0'" style="width: 30%;" ng-change="bringNamesForAttachments()" name="" id="" class="form-control">
+                                    <option ng-selected="!selectedAttachmentModule"
+                                            disabled
+                                            value="">Select Module</option>
+                                    <option ng-selected="selectedAttachmentModule == m.value"
+                                            ng-repeat="m in associationModules"
+                                            ng-value="m.value">{{m.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="email-area" ng-show="allNames.length">
+                            <b> Record</b>
+                            <div class="email-input">
+                                <ui-select style="width: 30%;" ng-model="selectedAttachmentRecord" ng-change="updateAttachmentRecord(selectedAttachmentRecord)">
+                                    <ui-select-match placeholder="Select Record Name">{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                                        <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="email-area" ng-show="attachmentSubModules.length && selectedAttachmentRecord.id">
+                            <b>Sub Modules</b>
+                            <div class="email-input">
+                                <select style="width: 30%;" ng-model="selectedAttachmentSubModule" ng-options="subModule as subModule.name for subModule in attachmentSubModules" ng-change="bringSubModuleNamesForAttachments()" name="" id="" class="form-control">
+                                    <option selected
+                                            value="">General Document</option>
+                                    <!-- <option ng-repeat="subModule in attachmentSubModules" value="{{subModule.id}}">
+                                        {{subModule.name}}
+                                    </option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="email-area" ng-show="subModuleRecordsForAttachments.length && attachmentSubModules.length && selectedAttachmentRecord.id">
+                            <b>Sub Module Record</b>
+                            <div class="email-input">
+                                <ui-select style="width: 30%;" ng-model="selectedAttachmentSubModuleRecord" ng-change="updateAttachmentSubModuleRecord(selectedAttachmentSubModuleRecord)">
+                                    <ui-select-match placeholder="Select Record Name">{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="opt in subModuleRecordsForAttachments | filter: $select.search">
+                                        <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <div class="email-area" ng-show="selectedAttachmentRecord.id">
+                            <b style="    width: 13.3%;"> Upload Document(s)</b>
+                            <div class="fileUpload btn btn-default2" style="margin: 0;">
+                                <span>Select File</span>
+                                <input type="file" ng-disabled="selectedAttachmentSubModule && !selectedAttachmentSubModuleRecord.id" ngf-select="onFileSelectFromOutside($files, $invalidFiles)" name="file" multiple="" ngf-max-files="20" class="upload" accept=".xlsx, .xls, .ppt, .pptx, .doc, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff,.zip, .mp4, .mp3"
+                                    ngf-max-size="10MB">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer clearfix" style="border-top: 1px solid #eaeaea;">
+                <!-- <button type="button"
+                        ng-click="clearAttachmentVars()"
+                        class="btn btn-default"
+                        data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

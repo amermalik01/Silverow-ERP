@@ -1,0 +1,106 @@
+<div class="modal fade" id="model_btn_task"  >
+  <div class="modal-dialog "  style="width:90%" ><!--modal-lg-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="widget">
+            <div class="widget-body">
+              <div class="row">
+                
+<div ng-controller="TaskController as table" >
+<div class="row">
+  <div class="col-md-3 col-md-3 col-sm-12 col-sx-12" >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title pull-left">TASKS</h4>
+        <span  class="tools pull-right"> <a style="    cursor: pointer;" ng-click="add_task()" class="btn btn_blue no-margin width_80"> <i class="fa fa-plus fa_display"></i> Add New</a></span>
+        <div class="clearfix"></div>
+      </div>
+      <div class="panel-body no-padding">
+        <div class="wrapper">
+          <div id="scrollbar-two">
+            <div class="scrollbar disable" style="height: 600px;">
+              <div class="track" style="height: 600px;">
+                <div class="thumb" style="top: 0px; height: 600px;">
+                  <div class="end"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="viewport" style="min-height: 600px;">
+              <div class="overview" style="top: 0px;">
+                <div class="featured-articles-container">
+                  <div class="articles tasks"> 
+                    
+                    <!-- ng-click="get_task_menu(task.id)" context-menu="myContextDiv" ng-click="shownew(task.id);"--> 
+                    
+                    <a href="#" ng-repeat="task in task_data">
+                    <div  class="checkbox no-margin" >
+                      <label class="no-padding"> 
+                        <!--    <input type="checkbox"  />--> 
+                        <i class="fa fa-angle-right"></i> &nbsp; <strong    ng-click="edit_task(task.id);" >{{task.name}}</strong> </label>
+                    </div>
+                    </a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="col-md-9 col-md-9 col-sm-12 col-sx-12 remove-left-pad"     ng-show="add_task_new" >
+      <form autocomplete="off"  class="no-margin" role="form" ng-submit="submit_add_task(formData)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+        <div ng-include="'app/views/task/_form.html'"    ></div>
+      </form>
+    </div>
+    <div class="col-md-9 col-md-9 col-sm-12 col-sx-12 remove-left-pad" ng-show="view_task">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title text-center"> 4 NOVEMBER 2015 </h4>
+        </div>
+        <div class="panel-heading gap">
+          <h4 class="panel-title"> Task: Navid Ahmed </h4>
+        </div>
+        <div class="panel-body no-padding" style="min-height: 600px;">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="vertical_space"></div>
+              <div class="vertical_space"></div>
+              Cras justo odio </li>
+            <li class="list-group-item">
+              <div class="vertical_space"></div>
+              <div class="vertical_space"></div>
+              Cras justo odio </li>
+            <li class="list-group-item">
+              <div class="vertical_space"></div>
+              <div class="vertical_space"></div>
+              Cras justo odio </li>
+            <li class="list-group-item">
+              <div class="vertical_space"></div>
+              <div class="vertical_space"></div>
+              Cras justo odio </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn_blue width_80" type="submit" ng-show="perreadonly"><i class="fa fa-check fa_display"></i> Submit</button>
+        <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()"
+       ng-show="check_hrvalues_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+        <button type="button" class="btn default width_80" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>

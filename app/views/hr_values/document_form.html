@@ -1,0 +1,228 @@
+<style>
+    /* Center the loader_pop */
+
+    .loader_pop {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+        from {
+            bottom: -100px;
+            opacity: 0
+        }
+        to {
+            bottom: 0px;
+            opacity: 1
+        }
+    }
+
+    @keyframes animatebottom {
+        from {
+            bottom: -100px;
+            opacity: 0
+        }
+        to {
+            bottom: 0;
+            opacity: 1
+        }
+    }
+</style>
+
+<div class="row">
+    <div class=" ">
+        <div class=" ">
+            <div class="row" >
+                <input type="hidden" ng-model="formData.document_id"/>
+                <input type="hidden" ng-model="document_id"/>
+                <input type="hidden" ng-model="formData.eid"/>
+                <input type="hidden" ng-model="formData.employee_id"/>
+                <input type="hidden" ng-model="formData.tab_id_2" value="4"/>
+
+                <div class="col-md-12">
+
+                    <div class="col-md-4  ">
+                        <div class="form-group">
+                            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                            <!--  <div ng-class="{'loader_pop':loader_pop}"></div>-->
+                            <label class="col-sm-4 control-label  ">Upload  </label>
+
+                            <div class="col-sm-7 form-group" ng-show="uploadConShow"
+                                 ng-controller="DocUploadControllerMulti" ng-class="{'whirl no-overlay':showLoader}">
+                                <div class="fileUpload btn btn_blue col-sm-7"><span>Select File</span>
+                                    <input type="file" ng-required="uploadConShow"
+                                           ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+                                           accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+
+                                           class="upload" ngf-max-size="2MB"/>
+                                    <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size & Format JPG, Word or PDF</span>
+                                </div>
+                                <div class="form-group col-sm-5" ng-if="formData_images_data_opp_cycle">
+                                    <div class="col-sm-7">
+                                        <div class="row"
+                                             style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                                            <div class="col-md-12" style="padding-left: 0px;">
+                                                <div class="form-group no-margin"> <span
+                                                        ng-repeat="attachment in formData_images_data_opp_cycle"
+                                                        style="margin-left: 5px;" class="tag"> <!--ng-if="formData.document_path==1"-->
+                                                        <!--<a target="_blank" href="{{imagePath}}/{{attachment.document_path}}">{{attachment.document_path}}</a>--> <a
+                                                            target="_blank" href="{{imagePath + attachment.response}}">
+                                                        <em style="font-size: 30px !important;"
+                                                            class="fa fa-file-image-o"></em></a> </span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ng-required="display_error_doc" -->
+                            <div ng-show="uploadConShow_defult" class="col-sm-7 form-group">
+                                <div class="fileUpload btn btn_blue col-sm-7"><span>Select File</span>
+                                    <input type="file" ng-required="uploadConShow_defult"
+                                           ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+                                           accept=".gif, .jpg, .png, .doc, .docx,.pdf" class="upload"
+                                           ngf-max-size="2MB"/>
+                                    <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size & Format JPG, Word or PDF</span>
+                                </div>
+                                <div class="form-group col-sm-5" ng-if="formData_images_data">
+                                    <div class="col-sm-7">
+                                        <div class="row"
+                                             style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                                            <div class="col-md-12" style="padding-left: 0px;">
+                                                <div class="form-group no-margin"> <span
+                                                        ng-repeat="attachment in formData_images_data"
+                                                        style="margin-left: 5px;" class="tag"> <!--ng-if="formData.document_path==1"-->
+                                                        <!--<a target="_blank" href="{{imagePath}}/{{attachment.document_path}}">{{attachment.document_path}}</a>--> <a
+                                                            target="_blank" href="{{imagePath + attachment.response}}">
+                                                        <em style="font-size: 30px !important;"
+                                                            class="fa fa-file-image-o"></em></a> </span></div>
+
+                                                <!--<span   ng-if=" formData.document_path !='' "  >
+                                          <a target="_blank" href="{{imagePath+formData.document_path}}">
+                                          <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span>-->
+
+                                                <!--  href="{{$rootScope.basePath}}upload/mail_attachments/{{attachment.newFileName}}" -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4  ">
+                        <!--<div class="form-group">
+                          <label class="col-sm-3 control-label"> Code </label>
+                          <div class="col-sm-7">
+                            <input  readonly type="text"   ng-model="formData.document_code" class="form-control"  />
+                          </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Description </label>
+
+                            <div class="col-sm-8">
+                                <input ng-readonly="check_doc_readonly" type="text" ng-model="formData.document_title"
+                                       class="form-control" required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="pull-right">
+                            <button class="btn btn_add" type="submit" ng-show="!check_doc_readonly"> Add</button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditForm_document_general()"
+                                    ng-show="check_doc_readonly"> Edit
+                            </button>
+                            <!--  <button class="btn btn-cancel" type="button" ng-click="getDocuments()"> Cancel</button>-->
+                        </div>
+                    </div>
+
+
+                    <!--<div class="form-group">
+                        <label class="col-sm-3 control-label "> Folder </label>
+                        <div class="col-sm-7">
+                          <button type="button" id="folder_pop" class="btn btn-info btn_blue pull-left margin_bottom"
+        
+                data-toggle="modal" data-target="#folder_pop_type" style="display:none !important"   > Add New </button>
+                        
+                          <select  ng-disabled="check_doc_readonly"   ng-model="formData.folder_id"
+                                         ng-options="opt as opt.name for opt in list_folder"   class=" form-control"
+                       ng-change="onChange_folder()"   id="case_folder"  >
+                            <option value=""></option>
+                          </select>
+                        </div>
+                      </div>-->
+
+                    <!--
+                       old single file
+                      <div class="form-group" ng-controller="DocUploadDocument_single">
+          <label class="col-sm-3 control-label  " for="userName">Upload Document</label>
+          <div class="col-sm-7">
+            <div class="fileUpload btn btn_blue col-sm-7"  >
+             <span ng-if="!formData.document_path">Select File</span><span ng-if="formData.document_path">Select File</span>
+        
+              <input  type="file"
+                ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+                 accept=".gif, .jpg, .png, .doc, .docx,.pdf"      class="upload" ngf-max-size="2MB"  />
+              <input type="hidden"  ng-model="formData.FileType">
+              <input type="hidden"  ng-model="formData.document_path">
+              <input type="hidden"  ng-init="formData.document_path = formData.document_path"
+                   ng-model="formData.document_path">
+              <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span> </div>
+            <div class="form-group col-sm-5" ng-if="formData.document_path">
+              <div class="col-sm-7"> <span   ng-if=" formData.document_path !='' "  > <a target="_blank" href="{{imagePath+formData.document_path}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+        
+        
+            </div>
+          </div>
+        </div>-->
+
+                    <!--<button ng-show="loader.loading" class="btn btn-success">Loading...
+                <i class="fa fa-spinner fa-spin"></i>
+                </button>-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

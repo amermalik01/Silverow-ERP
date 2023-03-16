@@ -1,0 +1,409 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover">Company Car  
+                                    <input type="checkbox" ng-model="empAccountData.company_car" ng-true-value="'1'" ng-false-value="'0'" disabled/>
+                                </label>
+                            </div>
+                            <div ng-if="empAccountData.company_car == '1'" class="animated fadeIn">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input readonly required type="text" ng-model="empAccountData.company_car_make" class="form-control">
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input readonly required type="text" ng-model="empAccountData.car_model" class="form-control  ng-pristine ng-untouched ng-valid"
+                                            g-init="empAccountData[formFields.id]=empAccountData.value">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> VIN / Reg No
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input readonly required type="text" ng-model="empAccountData.car_vin" class="form-control ng-pristine ng-untouched ng-valid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> CO2 Emissions
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input readonly required type="text" ng-model="empAccountData.car_emisions" class="form-control" />
+                                            <span>g/km</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Market Value
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input readonly ng-model="empAccountData.car_marked_value" required class="form-control" type="text"
+                                                x-validity="regx.number">
+                                            <span class="ng-binding">{{defaultCurrencyCode}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Fuel Type
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <select disabled ng-model="empAccountData.car_fuel_type" ng-options="opt.value as opt.label for opt in arr_car_fuel_type"
+                                            class="select2me form-control" required>
+                                            <option value="" disabled selected>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Engine Size
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <select disabled ng-model="empAccountData.car_enngine"
+                                            required class="select2me form-control">
+                                            <option value="" disabled selected>Select</option>
+                                            <option ng-repeat="val in arr_car_enngine  | filter:{type: empAccountData.car_fuel_type}"
+                                                    ng-selected="empAccountData.car_fuel_type == val.value"
+                                                    value="{{val.value}}">{{val.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="car_date_assign" disabled ng-model="empAccountData.car_date_assign"
+                                                ng-change="testdate_by_id('car_date_assign','car_date_return','date_msg_car_date')"
+                                                required readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="    right: -24px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="car_date_return" disabled ng-model="empAccountData.car_date_return"
+                                                ng-change="testdate_by_id('car_date_assign','car_date_return','date_msg_car_date')"
+                                                readonly ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_car_date" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover"> Fuel Card 
+                                        <input type="checkbox" ng-model="empAccountData.car_fuel_card" ng-true-value="'1'" ng-false-value="'0'" disabled/>
+                                </label>
+                            </div>
+                            <div ng-if="empAccountData.car_fuel_card == '1'">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Fuel Card Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input required readonly ng-model="empAccountData.car_fuel_card_num" class="form-control" type="text"
+                                            data-parsley-trigger="keyup" data-parsley-type="number">
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-4">
+                                        <label style="margin-top: 10px;">
+                                            <input type="checkbox" ng-model="empAccountData.fuel_cost_deduction" ng-true-value="'1'" ng-false-value="'0'" disabled
+                                            />Fuel Cost Deductions for Personal Mileage
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover ">Company Laptop
+                                        <input type="checkbox" ng-model="empAccountData.company_laptop_model" ng-true-value="'1'" ng-false-value="'0'" disabled/>
+                                </label>
+                            </div>
+
+                            <div ng-if="empAccountData.company_laptop_model=='1'">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input readonly type="text" ng-model="empAccountData.laptop_make" required class="form-control" />
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input required readonly type="text" ng-model="empAccountData.laptop_model" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Serial Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input readonly required type="text" ng-model="empAccountData.company_laptop_serial" class="form-control ng-pristine ng-untouched ng-valid"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="laptop_date_assign" ng-model="empAccountData.laptop_date_assign" disabled
+                                                ng-change="testdate_by_id('laptop_date_assign','laptop_return_date_assign','date_msg_laptop_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 padl6 ">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="laptop_return_date_assign" ng-model="empAccountData.laptop_return_date_assign"
+                                                disabled ng-change="testdate_by_id('laptop_date_assign','laptop_return_date_assign','date_msg_laptop_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_laptop_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover ">Company Tablet / Ipad 
+                                    <input type="checkbox" style="    margin-right: 41px;" ng-model="empAccountData.tablet_status_id" ng-true-value="'1'" ng-false-value="'0'" disabled/>
+                                </label>
+                            </div>
+                            <div ng-if="empAccountData.tablet_status_id == '1'" class="animated fadeIn">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input required readonly type="text" ng-model="empAccountData.tablet_make" class="form-control" />
+                                    </div>
+
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input required readonly type="text" ng-model="empAccountData.tablet_model" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Serial Number
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input required readonly type="text" ng-model="empAccountData.company_tablet_serial" class="form-control ng-pristine ng-untouched ng-valid"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="tablet_date_assign" ng-model="empAccountData.tablet_date_assign" disabled
+                                                ng-change="testdate_by_id('tablet_date_assign','tablet_return_date_assign','date_msg_tablet_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="tablet_return_date_assign" ng-model="empAccountData.tablet_return_date_assign"
+                                                disabled ng-change="testdate_by_id('tablet_date_assign','tablet_return_date_assign','date_msg_tablet_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+
+                                        <span id="date_msg_tablet_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label control-label-hover "> Company Mobile
+                                    <input type="checkbox" style="    margin-right: 41px;" ng-model="empAccountData.company_mobile_model" ng-true-value="'1'" ng-false-value="'0'" disabled/>
+                                </label>                                
+                            </div>
+                            <div ng-if="empAccountData.company_mobile_model == '1'" class="animated fadeIn">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Make
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padr6">
+                                        <input readonly type="text" ng-model="empAccountData.mobile_make" required class="form-control" />
+                                    </div>
+                                    <label class="col-md-2 control-label "> Model
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 padl6">
+                                        <input readonly type="text" ng-model="empAccountData.mobile_model" required class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> IMEI
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input readonly type="text" ng-model="empAccountData.company_mobile_serial" required class="form-control ng-pristine ng-untouched ng-valid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label "> Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">From:</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="mobile_date_assign" ng-model="empAccountData.mobile_date_assign" disabled
+                                                ng-change="testdate_by_id('mobile_date_assign','mobile_return_date_assign','date_msg_mobile_return')"
+                                                required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback" style="right: -24px;"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="to_date">
+                                            <div class="to_date_title">To</div>
+                                            <input jqdatepicker class="2date-picker form-control" id="mobile_return_date_assign" ng-model="empAccountData.mobile_return_date_assign"
+                                                disabled ng-change="testdate_by_id('mobile_date_assign','mobile_return_date_assign','date_msg_mobile_return')"
+                                                readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <span id="date_msg_mobile_return" style="color:#F00; display: none;">Return Date is earlier then Assign Date</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Other Benefits </label>
+
+                                <div class="col-md-8">
+                                    <div class="col-md-7" style="padding-left: 0px;">
+                                        <a class="btn btn-default2" type="button" disabled style="margin-left:0;"
+                                            ng-class="{'setshow3':showdatac==1,'highlight-focus2':empAccountData.other_benifits=='1', 'ending_benifits':show_benifits_ending==1}"
+                                            ng-click="!check_hrvalues_readonly && show_popup_benefits()">
+                                            <i class="fa fa-bars" aria-hidden="true"></i> Benefits
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">P11D</label>
+                                <div class="col-md-8">
+                                    <input readonly type="text" ng-model="empAccountData.piid" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="empAccountData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{empAccountData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="empAccountData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                    name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input readonly type="hidden" ng-model="empAccountData.emp_picture">
+                    <input readonly type="hidden" ng-init="empAccountData.emp_picture = empAccountData.emp_picture" ng-model="empAccountData.emp_picture">
+                </div>
+            </div>
+
+            <i ng-if="!empAccountData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="empAccountData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+empAccountData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            
+
+            <span class="name">
+                {{empAccountData.first_name + ' ' + empAccountData.last_name}}
+            </span>
+            <span class="job">
+                {{empAccountData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{empAccountData.user_email}}">{{empAccountData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="empAccountData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{empAccountData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="empAccountData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{empAccountData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
