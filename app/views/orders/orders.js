@@ -12370,6 +12370,8 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
     }
 
+
+
     $scope.sendforJournalPost = function() {
         $scope.showLoader = true;
         $scope.AddPaymentAllocation(1); // flag and is_post
