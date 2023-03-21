@@ -3611,9 +3611,9 @@ function OrderEditController($scope, $stateParams, $http, $state, $resource, toa
     $scope.$on('GrandTotal', function(event, data) {
         $scope.grand_total = data;
 
-        console.log('rec.currentAllocatedPayment == ', parseFloat($scope.rec.currentAllocatedPayment).toFixed(2));
-        console.log('grand_total == ', parseFloat($scope.grand_total).toFixed(2));
-        console.log('currentAllocatedPayment == ', parseFloat($scope.rec.currentAllocatedPayment).toFixed(2) < parseFloat($scope.grand_total).toFixed(2));
+        // console.log('rec.currentAllocatedPayment == ', parseFloat($scope.rec.currentAllocatedPayment).toFixed(2));
+        // console.log('grand_total == ', parseFloat($scope.grand_total).toFixed(2));
+        // console.log('currentAllocatedPayment == ', parseFloat($scope.rec.currentAllocatedPayment).toFixed(2) < parseFloat($scope.grand_total).toFixed(2));
 
         if (parseFloat($scope.rec.currentAllocatedPayment) > 0 && parseFloat($scope.rec.currentAllocatedPayment).toFixed(2) == parseFloat($scope.grand_total).toFixed(2))
             $scope.customerPaymentStatus = 'allocated';
@@ -5592,10 +5592,10 @@ function OrderEditController($scope, $stateParams, $http, $state, $resource, toa
     }
 }
 
-OrderTabController.$inject = ["$scope", "$filter", "$rootScope", "$stateParams", "$http", "$state", "$resource", "toaster", "ngDialog", "$timeout", "myService", "ModalService", "generatePdf", "moduleTracker", "jsreportService"]
+OrderTabController.$inject = ["$scope", "$filter", "$rootScope", "$stateParams", "$http", "$state", "$resource", "toaster", "ngDialog", "$timeout", "myService", "ModalService", "generatePdf", "moduleTracker", "$q", "jsreportService"]
 myApp.controller('OrderTabController', OrderTabController);
 
-function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $state, $resource, toaster, ngDialog, $timeout, myService, ModalService, generatePdf, moduleTracker, jsreportService) {
+function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $state, $resource, toaster, ngDialog, $timeout, myService, ModalService, generatePdf, moduleTracker, $q, jsreportService) {
 
     $scope.generatePdf = generatePdf;
     moduleTracker.updateName("sales");
@@ -11167,7 +11167,6 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                                                     // $scope.stats_information(1, 1, rec, rec2);
 
                                                     // $scope.add_general(rec, rec2, void 0, 1);
-                                                    // $scope.AddPaymentAllocation(2);
 
                                                     $scope.load_invoice();
 
@@ -11423,7 +11422,6 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
                     $scope.showLoader = false;
                     $scope.showInvoiceModal('salesInvoice', 2);
-                    // $scope.AddPaymentAllocation(2);
                     $scope.postJournal(1);
 
                     $timeout(function() {
@@ -12044,19 +12042,19 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
 
     $scope.searchKeywordInv = {};
+    $scope.paymentDetailRec = {};
 
-    $scope.getInvoicesForPaymentsList = function(rec) {
+    $scope.getInvoicesForPaymentsList = function(rec, index, parent_id) {
 
         $scope.disable_save = false;
 
-        // var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-refund-listings";
         var postUrl = $scope.$root.sales + "customer/order/invoice-for-refund-listings";
 
         $scope.postData = {};
 
         // $scope.postData.searchKeywordInv = {};
 
-        $scope.postData.parent_id = rec.parent_id;
+        $scope.postData.parent_id = parent_id; //rec.parent_id;
         $scope.postData.doc_type = 2;
         $scope.postData.account_id = $scope.rec.bill_to_cust_id;
         $scope.postData.posting_date = $scope.paymentData.invoice_date; // rec.invoice_date;
@@ -12066,54 +12064,106 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
         $scope.postData.more_fields = 1;
         $scope.postData.type = 1;
 
-        $scope.showLoader = true;
+        if (rec.payment_detail_id > 0) {
 
-        $scope.ReciptInvoiceModalarr = [];
+            $scope.paymentDetailRec = rec;
+            $scope.current_index = index;
 
-        $http
-            .post(postUrl, $scope.postData)
-            .then(function(res) {
+            $scope.showLoader = true;
 
-                if (res.data.ack == true) {
-                    $scope.total = res.data.total;
-                    $scope.item_paging.total_pages = res.data.total_pages;
-                    $scope.item_paging.cpage = res.data.cpage;
-                    $scope.item_paging.ppage = res.data.ppage;
-                    $scope.item_paging.npage = res.data.npage;
-                    $scope.item_paging.pages = res.data.pages;
-                    $scope.total_paging_record = res.data.total_paging_record;
+            $scope.ReciptInvoiceModalarr = [];
+
+            $http
+                .post(postUrl, $scope.postData)
+                .then(function(res) {
+
+                    if (res.data.ack == true) {
+                        $scope.total = res.data.total;
+                        $scope.item_paging.total_pages = res.data.total_pages;
+                        $scope.item_paging.cpage = res.data.cpage;
+                        $scope.item_paging.ppage = res.data.ppage;
+                        $scope.item_paging.npage = res.data.npage;
+                        $scope.item_paging.pages = res.data.pages;
+                        $scope.total_paging_record = res.data.total_paging_record;
+                        $scope.showLoader = false;
+                        $scope.ReciptInvoiceModalarr = res.data.response;
+                        $scope.currency_code = res.data.response[0].currency_code;
+
+                        angular.element('#payment_alloc_modal').modal({ show: true });
+                        //InvoicesForPayments
+                    } else {
+                        $scope.showLoader = false;
+                        $scope.paymentDetailRec = {};
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                    }
+                });
+
+        } else {
+
+            $scope.savePaymentModal(rec, 1)
+                .then(function() {
                     $scope.showLoader = false;
-                    $scope.ReciptInvoiceModalarr = res.data.response;
 
+                    $scope.paymentDetailRec = rec;
+                    $scope.current_index = index;
 
+                    $scope.showLoader = true;
 
-                    $scope.currency_code = res.data.response[0].currency_code;
-                    // angular.element('#InvoicesForPayments').modal({ show: true });
-                } else {
+                    $scope.ReciptInvoiceModalarr = [];
+
+                    $http
+                        .post(postUrl, $scope.postData)
+                        .then(function(res) {
+
+                            if (res.data.ack == true) {
+                                $scope.total = res.data.total;
+                                $scope.item_paging.total_pages = res.data.total_pages;
+                                $scope.item_paging.cpage = res.data.cpage;
+                                $scope.item_paging.ppage = res.data.ppage;
+                                $scope.item_paging.npage = res.data.npage;
+                                $scope.item_paging.pages = res.data.pages;
+                                $scope.total_paging_record = res.data.total_paging_record;
+                                $scope.showLoader = false;
+                                $scope.ReciptInvoiceModalarr = res.data.response;
+                                $scope.currency_code = res.data.response[0].currency_code;
+
+                                angular.element('#payment_alloc_modal').modal({ show: true });
+                                //InvoicesForPayments
+                            } else {
+                                $scope.showLoader = false;
+                                $scope.paymentDetailRec = {};
+                                toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                            }
+                        });
+
+                })
+                .catch(function(message) {
                     $scope.showLoader = false;
-                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
-                }
-            });
-
+                    toaster.pop('error', 'info', message);
+                });
+        }
     }
 
     // $scope.amount_total = 0;
 
-    $scope.netTotalPayment = function() {
+    $scope.netTotalPayment = function(paymentDetailRec) {
 
-        if ($scope.paymentData) {
+        if (paymentDetailRec) {
 
             var ctotal = 0;
             angular.forEach($scope.ReciptInvoiceModalarr, function(item) {
 
                 if (item.amount >= 0)
-                    ctotal += Number(item.amount);
+                    ctotal += parseFloat(item.amount);
             });
             // console.log('$scope.paymentData.credit_amount == ', $scope.paymentData.credit_amount);
+            console.log('paymentDetailRec.credit_amount == ', paymentDetailRec.credit_amount);
             // console.log('$scope.paymentData.allocated_amount == ', $scope.paymentData.allocated_amount);
-            // console.log('ctotal == ', ctotal);
+            console.log('paymentDetailRec.allocated_amount == ', paymentDetailRec.allocated_amount);
+            console.log('ctotal == ', ctotal);
 
-            $scope.amount_left = Number(Number($scope.paymentData.credit_amount).toFixed(2) - Number(ctotal).toFixed(2) - Number($scope.paymentData.allocated_amount).toFixed(2)).toFixed(2);
+            // $scope.amount_left = Number(Number($scope.paymentData.credit_amount).toFixed(2) - Number(ctotal).toFixed(2) - Number($scope.paymentData.allocated_amount).toFixed(2)).toFixed(2);
+            $scope.amount_left = parseFloat(parseFloat(paymentDetailRec.credit_amount).toFixed(2) - parseFloat(ctotal).toFixed(2) - parseFloat(paymentDetailRec.allocated_amount).toFixed(2)).toFixed(2);
             // console.log('$scope.amount_left == ', $scope.amount_left);
         } else
             $scope.amount_left = 0;
@@ -12122,7 +12172,7 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
     }
 
-    $scope.setremainingamount = function(item) {
+    $scope.setremainingamount = function(item, index) {
 
         var amount2 = 0;
 
@@ -12133,19 +12183,25 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
             else if (item.grand_total - item.paid_amount > 0)
                 item.amount = (item.grand_total - item.paid_amount);
 
-            if ($scope.amount_left < item.amount) item.amount = Number($scope.amount_left);
+            if ($scope.amount_left < item.amount) item.amount = parseFloat($scope.amount_left);
 
-        } else if (item.amount != undefined) {
+        } else if (item.amount) { //  != undefined
 
             if ((item.grand_total - item.paid_amount) == 0)
                 item.amount = 0;
             else if (item.grand_total - item.paid_amount > 0)
                 amount2 = (item.grand_total - item.paid_amount);
 
-            if (item.amount > Number(amount2)) item.amount = Number(amount2);
+            if (item.amount > parseFloat(amount2)) item.amount = parseFloat(amount2);
+            else
+                item.amount = 0;
+        } else {
+            item.amount = 0;
         }
 
         item.amount = Number(item.amount).toFixed(2);
+        $scope.ReciptInvoiceModalarr[index].amount = item.amount;
+
         // item.amount = Number(item.amount);
     }
 
@@ -12250,7 +12306,6 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     $scope.disable_save = false;
                     $scope.showLoader = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
-                    // angular.element('#payment_modal').modal('hide');
                 }
             });
         // }
@@ -12269,37 +12324,40 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
         postData.token = $scope.$root.token;
 
-        if ($scope.postData.parent_id && $scope.postData.parent_id > 0)
-            postData.payment_id = $scope.postData.parent_id;
-        else
-            postData.payment_id = $scope.paymentData.parent_id;
+        var currentRec = $scope.receipt_sub_list[$scope.current_index];
 
-        postData.payment_detail_id = $scope.paymentData.payment_detail_id;
+        postData.payment_id = currentRec.parent_id;
+        postData.payment_detail_id = currentRec.payment_detail_id;
+        postData.payment_id = currentRec.parent_id;
+        postData.payment_detail_id = currentRec.payment_detail_id;
+        postData.account_name = currentRec.customer;
 
-        if (!($scope.paymentData.balancing_account_id > 0)) {
+        postData.balancing_account_code = currentRec.balancing_account_code;
+        postData.balancing_account_name = currentRec.balancing_account_name;
+        postData.balancing_account_id = currentRec.balancing_account_id;
+        postData.document_no = currentRec.document_no;
+        postData.posting_date = currentRec.invoice_date;
+
+        if (!(currentRec.balancing_account_id > 0)) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Balancing Account']));
             $scope.showLoader = false;
             return false;
         }
 
 
-        var payData = {};
+        /* var payData = {};
 
         payData.token = $scope.$root.token;
-        if ($scope.postData.parent_id && $scope.postData.parent_id > 0)
-            payData.payment_id = $scope.postData.parent_id;
-        else
-            payData.payment_id = $scope.paymentData.parent_id;
 
-        payData.payment_detail_id = $scope.paymentData.payment_detail_id;
-        payData.account_name = $scope.paymentData.customer;
+        payData.payment_id = currentRec.parent_id;
+        payData.payment_detail_id = currentRec.payment_detail_id;
+        payData.account_name = currentRec.customer;
 
-        payData.balancing_account_code = $scope.paymentData.balancing_account_code;
-        payData.balancing_account_name = $scope.paymentData.balancing_account_name;
-        payData.balancing_account_id = $scope.paymentData.balancing_account_id;
-        payData.document_no = $scope.paymentData.document_no;
-        payData.posting_date = $scope.paymentData.invoice_date;
-
+        payData.balancing_account_code = currentRec.balancing_account_code;
+        payData.balancing_account_name = currentRec.balancing_account_name;
+        payData.balancing_account_id = currentRec.balancing_account_id;
+        payData.document_no = currentRec.document_no;
+        payData.posting_date = currentRec.invoice_date;
 
         var journalUpdateUrl = $scope.$root.sales + 'customer/order/update-customer-journal-for-invoice';
 
@@ -12308,13 +12366,12 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
             .then(function(res) {
                 if (res.data.ack == true) {
                     // $scope.showLoader = false;
+
                 } else {
                     $scope.showLoader = false;
                     return false;
                 }
-            });
-
-        // if ($scope.ReciptInvoiceModalarr) {
+            }); */
 
         var selected_items = [];
 
@@ -12342,8 +12399,9 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
             .then(function(res) {
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                    $scope.receipt_sub_list[$scope.current_index].allocated_amount = parseFloat($scope.receipt_sub_list[$scope.current_index].allocated_amount) + parseFloat(res.data.total_allocated);
 
-                    // $scope.receipt_sub_list[$scope.current_index].allocated_amount = Number($scope.receipt_sub_list[$scope.current_index].allocated_amount) + Number(res.data.total_allocated);
+
                     // $scope.paymentData.allocated_amount = Number($scope.paymentData.allocated_amount) + Number(res.data.total_allocated);
 
                     // $scope.paymentData.total_remaining = Number(Number($scope.paymentData.credit_amount) - Number($scope.paymentData.allocated_amount)).toFixed(2);
@@ -12363,7 +12421,6 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     $scope.disable_save = false;
                     $scope.showLoader = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
-                    // angular.element('#payment_modal').modal('hide');
                 }
             });
         // }
@@ -12375,6 +12432,90 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
     $scope.sendforJournalPost = function() {
         $scope.showLoader = true;
         $scope.AddPaymentAllocation(1); // flag and is_post
+    }
+
+    $scope.AddReceiptRow = function() {
+
+        var subListObj = {};
+
+        subListObj.invoice_id = $scope.rec.id;
+        subListObj.customerId = $scope.rec.bill_to_cust_id;
+        subListObj.customerCode = $scope.rec.bill_to_cust_no;
+        subListObj.posting_group_id = $rootScope.order_posting_group_id;
+
+        subListObj.doc_type = 2;
+        subListObj.module_type = 3;
+        subListObj.grand_total = $scope.rec.grand_total;
+        subListObj.currency = $scope.paymentData.currency;
+
+        subListObj.customer = $scope.rec.bill_to_name;
+        subListObj.glcode = '';
+        subListObj.acc_code = '';
+        subListObj.cnv_rate = $scope.rec.currency_rate;
+        subListObj.postedStatus = 0;
+        subListObj.invoice_date = $scope.rec.posting_date;
+        subListObj.allocation_date = $scope.rec.posting_date;
+        subListObj.credit_amount = parseFloat($scope.rec.grand_total);
+        subListObj.allocated_amount = 0;
+        subListObj.converted_price = parseFloat($scope.rec.grand_total_converted);
+        subListObj.total_remaining = 0;
+        subListObj.total_setteled_other = 0;
+        subListObj.parent_id = $scope.paymentData.parent_id;
+        subListObj.payment_detail_id = 0;
+        subListObj.paid = 0;
+        subListObj.document_no = $scope.rec.sale_order_code;
+
+        if ($scope.rec.payable_number && $scope.rec.account_payable_id) {
+
+            let accountStr = $scope.rec.payable_number.split(' - ');
+            let accountName = accountStr.slice(1, 10);
+
+            subListObj.balancing_account_code = accountStr[0];
+            subListObj.balancing_account_name = accountName.join(' - ');
+            subListObj.balancing_account_id = $scope.rec.account_payable_id;
+            subListObj.balancing_account = $scope.rec.payable_number;
+        }
+
+        $scope.receipt_sub_list.push(subListObj);
+    }
+
+
+    $scope.deletReceiptRow = function(payment_detail_id, index) {
+        if (!(payment_detail_id > 0)) {
+            $scope.receipt_sub_list.splice(index, 1);
+
+            if ($scope.receipt_sub_list.length == 0)
+                $scope.AddReceiptRow();
+
+        } else {
+
+            var delReceiptRowUrl = $scope.$root.gl + "chart-accounts/delete-jl-journal-receipt";
+
+            ngDialog.openConfirm({
+                template: 'modalDeleteDialogId',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+                $scope.showLoader = true;
+
+                $http
+                    .post(delReceiptRowUrl, { id: payment_detail_id, 'token': $scope.$root.token })
+                    .then(function(res) {
+
+                        if (res.data.ack == true) {
+                            $scope.showLoader = false;
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                            $scope.receipt_sub_list.splice(index, 1);
+                            if ($scope.receipt_sub_list.length == 0)
+                                $scope.AddReceiptRow();
+                        } else {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                        }
+                    });
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        }
     }
 
     $scope.customerPayment = function(rec) {
@@ -12389,11 +12530,27 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
 
         $scope.receipt_sub_list = [];
-        $scope.receipt_sub_list.push({ 'id': '', 'allocated_amount': 0 });
+        /* $scope.receipt_sub_list.push({ 'id': '', 'allocated_amount': 0 });
 
         $scope.receipt_sub_list[$scope.receipt_sub_list.length - 1].posting_date = rec.posting_date;
         // $scope.receipt_sub_list[$scope.receipt_sub_list.length - 1].doc_type = $scope.receipt_sub_list[$scope.receipt_sub_list.length - 2].doc_type;
-        $scope.receipt_sub_list[$scope.receipt_sub_list.length - 1].document_no = $scope.rec.sale_order_code;
+        $scope.receipt_sub_list[$scope.receipt_sub_list.length - 1].document_no = $scope.rec.sale_order_code; */
+
+        $scope.paymentData = {};
+        $scope.paymentDataSearch = {}
+
+
+        $scope.paymentData.customerId = rec.bill_to_cust_id;
+        $scope.paymentData.customerCode = rec.bill_to_cust_no;
+
+        $scope.paymentData.posting_group_id = $rootScope.order_posting_group_id;
+
+        $scope.paymentData.doc_type = 2;
+        $scope.paymentData.module_type = 3;
+        $scope.paymentData.grand_total = rec.grand_total;
+        $scope.paymentData.currency = rec.currency_id.code;
+
+        $scope.paymentData.invoice_id = rec.id;
 
 
         $http
@@ -12401,8 +12558,7 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
             .then(function(res) {
                 $scope.showLoader = false;
 
-                $scope.paymentData = {};
-                $scope.paymentDataSearch = {}
+
 
                 if (!($rootScope.order_posting_group_id > 0)) {
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer Posting Group']));
@@ -12410,29 +12566,65 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     return;
                 }
 
-                $scope.paymentData.customerId = rec.bill_to_cust_id;
-                $scope.paymentData.customerCode = rec.bill_to_cust_no;
+                $scope.receipt_sub_list = [];
 
-                $scope.paymentData.posting_group_id = $rootScope.order_posting_group_id;
 
-                $scope.paymentData.doc_type = 2;
-                $scope.paymentData.module_type = 3;
-                $scope.paymentData.grand_total = rec.grand_total;
-                $scope.paymentData.currency = rec.currency_id.code;
-
-                $scope.paymentData.invoice_id = rec.id;
 
                 if (res.data.ack == true) {
                     var resData = res.data.response;
-                    $scope.paymentData.cnv_rate = resData.cnv_rate;
-                    // $scope.paymentData.currency_id = rec.currency_id.id;
-                    // $scope.paymentData.net_amount = rec.net_amount;
 
 
-                    $scope.paymentData.customer = resData.account_name;
 
-                    $scope.rec.currentAllocatedPayment = resData.amount_allocated;
+                    angular.forEach(resData, function(element) {
 
+                        $scope.paymentData.customer = element.account_name;
+                        $scope.paymentData.parent_id = element.parent_id;
+                        $scope.rec.currentAllocatedPayment = element.amount_allocated;
+                        $scope.paymentData.acc_code = element.glcode;
+
+                        var subListObj = {};
+
+                        subListObj.invoice_id = $scope.rec.id;
+                        subListObj.customerId = $scope.rec.bill_to_cust_id;
+                        subListObj.customerCode = $scope.rec.bill_to_cust_no;
+                        subListObj.posting_group_id = $rootScope.order_posting_group_id;
+
+                        subListObj.doc_type = 2;
+                        subListObj.module_type = 3;
+                        subListObj.grand_total = $scope.paymentData.grand_total;
+                        subListObj.currency = $scope.paymentData.currency;
+
+
+
+                        subListObj.customer = element.account_name;
+                        subListObj.glcode = element.glcode;
+                        subListObj.acc_code = element.glcode;
+                        subListObj.cnv_rate = element.cnv_rate;
+                        subListObj.postedStatus = element.postedStatus;
+                        subListObj.invoice_date = element.posting_date;
+                        subListObj.allocation_date = element.allocation_date;
+                        subListObj.credit_amount = parseFloat(element.credit_amount);
+                        subListObj.allocated_amount = parseFloat(element.allocated_amount);
+                        subListObj.converted_price = parseFloat(element.converted_price);
+                        subListObj.total_remaining = parseFloat(element.credit_amount) - parseFloat(element.amount_allocated);
+                        subListObj.total_setteled_other = 0;
+                        subListObj.parent_id = element.parent_id;
+                        subListObj.payment_detail_id = element.payment_detail_id;
+                        subListObj.paid = element.paid;
+                        subListObj.document_no = element.document_no;
+
+                        subListObj.balancing_account_code = element.balancing_account_code;
+                        subListObj.balancing_account_name = element.balancing_account_name;
+                        subListObj.balancing_account_id = element.balancing_account_id;
+                        subListObj.balancing_account = element.balancing_account_code + ' - ' + element.balancing_account_name;
+
+                        // if (Number($scope.paymentData.credit_amount) == Number($scope.paymentData.credit_amount)) $scope.paymentData.allocate_full = 1;
+
+                        $scope.receipt_sub_list.push(subListObj);
+                    });
+
+
+                    /* 
                     $scope.paymentData.glcode = resData.glcode;
                     $scope.paymentData.acc_code = resData.glcode;
                     $scope.paymentData.postedStatus = resData.postedStatus;
@@ -12455,19 +12647,62 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     $scope.paymentData.balancing_account_id = resData.balancing_account_id;
                     $scope.paymentData.balancing_account = resData.balancing_account_code + ' - ' + resData.balancing_account_name;
 
-                    $scope.getInvoicesForPaymentsList($scope.paymentData);
+                    
 
-                    if (Number($scope.paymentData.credit_amount) == Number($scope.paymentData.credit_amount)) $scope.paymentData.allocate_full = 1;
+                    if (Number($scope.paymentData.credit_amount) == Number($scope.paymentData.credit_amount)) $scope.paymentData.allocate_full = 1; */
 
                 } else {
 
                     $scope.paymentData.customer = rec.bill_to_name;
+                    $scope.rec.currentAllocatedPayment = 0;
+                    $scope.paymentData.acc_code = '';
+
+                    var subListObj = {};
+
+                    subListObj.invoice_id = $scope.rec.id;
+                    subListObj.customerId = $scope.rec.bill_to_cust_id;
+                    subListObj.customerCode = $scope.rec.bill_to_cust_no;
+                    subListObj.posting_group_id = $rootScope.order_posting_group_id;
+
+                    subListObj.doc_type = 2;
+                    subListObj.module_type = 3;
+                    subListObj.grand_total = $scope.paymentData.grand_total;
+                    subListObj.currency = $scope.paymentData.currency;
+
+                    subListObj.customer = rec.bill_to_name;
+                    subListObj.glcode = '';
+                    subListObj.acc_code = '';
+                    subListObj.cnv_rate = rec.currency_rate;
+                    subListObj.postedStatus = 0;
+                    subListObj.invoice_date = rec.posting_date;
+                    subListObj.allocation_date = rec.posting_date;
+                    subListObj.credit_amount = parseFloat(rec.grand_total);
+                    subListObj.allocated_amount = 0;
+                    subListObj.converted_price = parseFloat(rec.grand_total_converted);
+                    subListObj.total_remaining = 0;
+                    subListObj.total_setteled_other = 0;
+                    subListObj.parent_id = 0;
+                    subListObj.payment_detail_id = 0;
+                    subListObj.paid = 0;
+                    subListObj.document_no = $scope.rec.sale_order_code;
+
+                    if (rec.payable_number && rec.account_payable_id) {
+
+                        let accountStr = rec.payable_number.split(' - ');
+                        let accountName = accountStr.slice(1, 10);
+
+                        subListObj.balancing_account_code = accountStr[0];
+                        subListObj.balancing_account_name = accountName.join(' - ');
+                        subListObj.balancing_account_id = rec.account_payable_id;
+                        subListObj.balancing_account = rec.payable_number;
+                    }
+
+                    $scope.receipt_sub_list.push(subListObj);
+
+                    /* $scope.paymentData.customer = rec.bill_to_name;
 
                     $scope.rec.currentAllocatedPayment = 0;
                     $scope.paymentData.cnv_rate = rec.currency_rate;
-                    // $scope.paymentData.currency_id = rec.currency_id.id;                    
-                    // $scope.paymentData.net_amount = rec.net_amount;                    
-                    // $scope.paymentData.order_date = rec.order_date;
                     $scope.paymentData.glcode = '';
                     $scope.paymentData.acc_code = '';
                     $scope.paymentData.postedStatus = 0;
@@ -12476,7 +12711,6 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     $scope.paymentData.credit_amount = rec.grand_total;
                     $scope.paymentData.allocated_amount = 0;
                     $scope.paymentData.converted_price = rec.grand_total_converted;
-                    // $scope.paymentData.total_setteled = rec.grand_total;
                     $scope.paymentData.total_remaining = 0;
                     $scope.paymentData.total_setteled_other = 0;
                     $scope.paymentData.parent_id = 0;
@@ -12494,86 +12728,132 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                         $scope.paymentData.balancing_account_name = accountName.join(' - ');
                         $scope.paymentData.balancing_account_id = rec.account_payable_id;
                         $scope.paymentData.balancing_account = rec.payable_number;
-                    }
+                    } */
                 }
+
+                // $scope.receipt_sub_list = $scope.paymentData;
                 angular.element('#payment_modal').modal({ show: true });
             });
 
-        // $scope.get_invoice_list();
     }
 
 
-    $scope.savePaymentModal = function(rec) {
+    $scope.savePaymentModal = function(rec, mode) {
+
+        var deferred = $q.defer();
 
         $scope.showLoader = true;
 
-        payData = {};
+
 
         if (!(rec.customerId > 0)) {
+
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
             $scope.showLoader = false;
-            return false;
-        }
-
-
-        if (!(rec.balancing_account_id > 0)) {
-            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Balancing Account']));
-            $scope.showLoader = false;
-            return false;
-        }
-
-
-        if (!(rec.cnv_rate > 0)) {
-            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Conversion Rate']));
-            $scope.showLoader = false;
-            return false;
-        }
-
-        if (!(rec.credit_amount > 0)) {
-            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Amount']));
-            $scope.showLoader = false;
+            if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Customer No.']));
             return false;
         }
 
         if (!($rootScope.order_posting_group_id > 0)) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer Posting Group']));
             $scope.showLoader = false;
+            if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Customer Posting Group']));
             return;
         }
 
-        payData.invoice_id = rec.invoice_id;
-        payData.account_id = rec.customerId;
-        payData.account_no = rec.customerCode;
-        payData.account_name = rec.customer;
 
-        payData.allocated_amount = rec.allocated_amount;
-        payData.temp_allocated_amount = rec.allocated_amount;
+        $errorFound = 0;
+
+        let post = {};
+        // post.selectdata = payData;
+        post.token = $scope.$root.token;
+        post.parent_id = $scope.paymentData.parent_id;
+        post.type = 1;
+
+        post.selectdata = [];
 
 
-        payData.balancing_account_code = rec.balancing_account_code;
-        payData.balancing_account_name = rec.balancing_account_name;
-        payData.balancing_account_id = rec.balancing_account_id;
+        angular.forEach($scope.receipt_sub_list, function(obj) {
 
-        payData.cnv_rate = rec.cnv_rate;
-        payData.converted_price = rec.converted_price;
-        payData.created_date = rec.invoice_date;
-        payData.transaction_type = 2;
-        payData.credit_amount = 0;
-        payData.credit_amount = rec.credit_amount;
-        payData.currency_id = $scope.rec.currency_id;
-        payData.converted_currency_id = $scope.$root.defaultCurrency;
+            if (!(obj.balancing_account_id > 0)) {
+                toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Balancing Account']));
+                $scope.showLoader = false;
+                if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Balancing Account']));
 
-        payData.document_no = rec.document_no;
-        payData.doc_type = { id: "2", name: "Payment" };
-        payData.document_type = payData.doc_type.id;
+                $errorFound = 1;
+                return false;
+            }
 
-        payData.paid = rec.paid;
-        payData.parent_id = rec.parent_id;
-        payData.payment_detail_id = rec.payment_detail_id;
 
-        payData.posting_date = rec.invoice_date;
-        payData.allocation_date = rec.allocation_date;
-        payData.posting_group_id = $rootScope.order_posting_group_id;
+            if (!(obj.cnv_rate > 0)) {
+                toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Conversion Rate']));
+                $scope.showLoader = false;
+                if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Conversion Rate']));
+
+                $errorFound = 1;
+                return false;
+            }
+
+            if (!(obj.credit_amount > 0)) {
+                toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Amount']));
+                $scope.showLoader = false;
+                if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Amount']));
+
+                $errorFound = 1;
+                return false;
+            }
+
+            var payData = {};
+
+            payData.invoice_id = rec.invoice_id;
+            payData.account_id = rec.customerId;
+            payData.account_no = rec.customerCode;
+            payData.account_name = rec.customer;
+
+            payData.allocated_amount = rec.allocated_amount;
+            payData.temp_allocated_amount = rec.allocated_amount;
+
+
+            payData.balancing_account_code = rec.balancing_account_code;
+            payData.balancing_account_name = rec.balancing_account_name;
+            payData.balancing_account_id = rec.balancing_account_id;
+
+            payData.cnv_rate = rec.cnv_rate;
+            payData.converted_price = rec.converted_price;
+            payData.created_date = rec.invoice_date;
+            payData.transaction_type = 2;
+            payData.credit_amount = 0;
+            payData.credit_amount = rec.credit_amount;
+            payData.currency_id = $scope.rec.currency_id;
+            payData.converted_currency_id = $scope.$root.defaultCurrency;
+
+            payData.document_no = rec.document_no;
+            payData.doc_type = { id: "2", name: "Payment" };
+            payData.document_type = payData.doc_type.id;
+
+            payData.paid = rec.paid;
+            payData.parent_id = $scope.paymentData.parent_id;
+            payData.payment_detail_id = rec.payment_detail_id;
+
+            payData.posting_date = rec.invoice_date;
+            payData.allocation_date = rec.allocation_date;
+            payData.posting_group_id = $rootScope.order_posting_group_id;
+
+            post.selectdata.push();
+
+        });
+
+        /* 
+        
+        
+        */
+
+        if ($errorFound > 0) return false;
+
+
+
+
+
 
         console.log('payData === ', payData);
 
@@ -12584,9 +12864,7 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
             payData.acc_code = $scope.paymentData.acc_code;
             var journalAddUrl = $scope.$root.sales + 'customer/order/add-customer-journal-for-invoice';
 
-            let post = {};
-            post.selectdata = payData;
-            post.token = $scope.$root.token;
+
 
             $http
                 .post(journalAddUrl, post)
@@ -12594,16 +12872,22 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     if (res.data.ack == true) {
                         // $scope.showLoader = false;
 
-                        toaster.pop('success', 'Add', res.data.error);
-                        $scope.paymentData.parent_id = res.data.parent_id;
-                        // angular.element('#payment_modal').modal('hide');
-                        $scope.customerPayment($scope.rec);
-                        // $scope.getInvoicesForPaymentsList($scope.paymentData);
 
-                        // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
-                        return true;
+                        $scope.paymentData.parent_id = res.data.parent_id;
+                        $scope.paymentData.payment_detail_id = res.data.payment_detail_id;
+
+                        if (mode > 0) {
+                            deferred.resolve();
+                        } else {
+                            toaster.pop('success', 'Add', res.data.error);
+                            $scope.customerPayment($scope.rec);
+
+                            // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
+                            return true;
+                        }
                     } else {
                         $scope.showLoader = false;
+                        if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Error']));
                         return false;
                     }
                 });
@@ -12638,27 +12922,31 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
                         var journalAddUrl = $scope.$root.sales + 'customer/order/add-customer-journal-for-invoice';
 
-                        let post = {};
+                        /* let post = {};
                         post.selectdata = payData;
                         post.token = $scope.$root.token;
+                        post.parent_id = $scope.paymentData.parent_id;
+                        post.type = 1; */
 
                         $http
                             .post(journalAddUrl, post)
                             .then(function(res) {
                                 if (res.data.ack == true) {
                                     // $scope.showLoader = false;
-
-                                    toaster.pop('success', 'Add', res.data.error);
                                     $scope.paymentData.parent_id = res.data.parent_id;
-                                    // angular.element('#payment_modal').modal('hide');
-                                    $scope.customerPayment($scope.rec);
-                                    // $scope.getInvoicesForPaymentsList($scope.paymentData);
 
-                                    // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
+                                    if (mode > 0) {
+                                        deferred.resolve();
+                                    } else {
+                                        toaster.pop('success', 'Add', res.data.error);
+                                        $scope.customerPayment($scope.rec);
+                                        // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
 
-                                    return true;
+                                        return true;
+                                    }
                                 } else {
                                     $scope.showLoader = false;
+                                    if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Error']));
                                     return false;
                                 }
                             });
@@ -12666,14 +12954,17 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
                     } else {
                         $scope.showLoader = false;
                         toaster.pop('error', 'info', res.data.error);
+                        if (mode > 0) deferred.reject($scope.$root.getErrorMessageByCode(230, ['Error']));
                         return false;
                     }
                 });
         }
 
+        return deferred.promise;
+
     }
 
-    $scope.getGLcode = function() {
+    $scope.getGLcode = function(index) {
 
         var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
         $scope.postData = {};
@@ -12685,6 +12976,8 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
         $scope.showLoader = true;
         $scope.showAllOption = true;
+
+        $scope.account_index = index;
 
         $http
             .post(postUrl_cat, $scope.postData)
@@ -12702,10 +12995,22 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
     $scope.assignCodes = function(gl_data) {
 
+        angular.forEach($scope.receipt_sub_list, function(obj_rec, index) {
+
+            if (index === $scope.account_index) {
+                obj_rec.balancing_account_code = gl_data.code;
+                obj_rec.balancing_account_name = gl_data.name;
+                obj_rec.balancing_account_id = gl_data.id;
+                obj_rec.balancing_account = gl_data.code + " - " + gl_data.name;
+            }
+        });
+
+        /* 
         $scope.paymentData.balancing_account_code = gl_data.code;
         $scope.paymentData.balancing_account_name = gl_data.name;
         $scope.paymentData.balancing_account_id = gl_data.id;
-        $scope.paymentData.balancing_account = gl_data.code + " - " + gl_data.name;
+        $scope.paymentData.balancing_account = gl_data.code + " - " + gl_data.name; 
+        */
 
         angular.element('#finance_set_gl_account').modal('hide');
     };
@@ -12763,6 +13068,10 @@ function OrderTabController($scope, $filter, $rootScope, $stateParams, $http, $s
 
     $scope.closePaymentModal = function() {
         angular.element('#payment_modal').modal('hide');
+    }
+
+    $scope.closePaymentAllocModal = function() {
+        angular.element('#payment_alloc_modal').modal('hide');
     }
 
 

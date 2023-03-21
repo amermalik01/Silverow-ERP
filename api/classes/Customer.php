@@ -20410,7 +20410,7 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
         return $response;
     }
 
-    function addCusJournalInvoice($attr) 
+    /* function addCusJournalInvoice($attr) 
     {
         // error_reporting(E_ERROR);
 
@@ -20583,64 +20583,64 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
 
                 $response['ack'] = 1;
 
-                /* 
-                $invoice_type = 5;
-                $module_type = 1;
-                $transaction_type = 1;
-                $document_type = 1;
-                $total_allocated = 0;
+                
+                // $invoice_type = 5;
+                // $module_type = 1;
+                // $transaction_type = 1;
+                // $document_type = 1;
+                // $total_allocated = 0;
 
-                $TRANSACTION_UNSUCCESSFUL = 0;
+                // $TRANSACTION_UNSUCCESSFUL = 0;
 
-                $del_allocation_entry = "DELETE FROM payment_allocation 
-                                         WHERE  payment_id = $parent_id AND payment_detail_id = $payment_detail_id AND invoice_id = $invoice_id AND
-                                                payment_type =1 AND invoice_type = 5 AND document_type = 1 AND module_type = 1 AND transaction_type =1 AND
-                                                company_id = ".$this->arrUser['company_id']." AND status =0";
+                // $del_allocation_entry = "DELETE FROM payment_allocation 
+                //                          WHERE  payment_id = $parent_id AND payment_detail_id = $payment_detail_id AND invoice_id = $invoice_id AND
+                //                                 payment_type =1 AND invoice_type = 5 AND document_type = 1 AND module_type = 1 AND transaction_type =1 AND
+                //                                 company_id = ".$this->arrUser['company_id']." AND status =0";
 
-                $RS = $this->objsetup->CSI($del_allocation_entry);  
+                // $RS = $this->objsetup->CSI($del_allocation_entry);  
 
-                $total_allocated += $allocated_amount;
-                $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
-                // echo $Check_Sql; 
-                $RS1 = $this->objsetup->CSI($Check_Sql);
-                if($RS1->fields['invoice_value'] < 0)
-                {
-                    $TRANSACTION_UNSUCCESSFUL = 1;
-                }
+                // $total_allocated += $allocated_amount;
+                // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
+                // // echo $Check_Sql; 
+                // $RS1 = $this->objsetup->CSI($Check_Sql);
+                // if($RS1->fields['invoice_value'] < 0)
+                // {
+                //     $TRANSACTION_UNSUCCESSFUL = 1;
+                // }
 
-                if($TRANSACTION_UNSUCCESSFUL == 0)
-                {
-                    $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
-                            VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
-                            ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
-                    $RS = $this->objsetup->CSI($Sql);
+                // if($TRANSACTION_UNSUCCESSFUL == 0)
+                // {
+                //     $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                //             VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                //             ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
+                //     $RS = $this->objsetup->CSI($Sql);
 
-                    // echo $Sql; 
-                    $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
-                    $RS = $this->objsetup->CSI($allocation_entries);
+                //     // echo $Sql; 
+                //     $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                //     $RS = $this->objsetup->CSI($allocation_entries);
 
                     
-                    $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
-                    $RS = $this->objsetup->CSI($allocation_entries);                    
-                }
-                else{
+                //     $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                //     $RS = $this->objsetup->CSI($allocation_entries);                    
+                // }
+                // else{
 
-                    $response['ack'] = 0;
-                    $response['error'] = 'Journal can not be created';
+                //     $response['ack'] = 0;
+                //     $response['error'] = 'Journal can not be created';
     
-                    $srLogTrace = array();
+                //     $srLogTrace = array();
     
-                    $srLogTrace['ErrorCode'] = '';
-                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
-                    $srLogTrace['Function'] = __FUNCTION__;
-                    $srLogTrace['CLASS'] = __CLASS__;
-                    $srLogTrace['Parameter1'] = 'Exit';
-                    $srLogTrace['Parameter2'] = 'parent:';
-                    $srLogTrace['ErrorMessage'] = 'Journal can not be created';
+                //     $srLogTrace['ErrorCode'] = '';
+                //     $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                //     $srLogTrace['Function'] = __FUNCTION__;
+                //     $srLogTrace['CLASS'] = __CLASS__;
+                //     $srLogTrace['Parameter1'] = 'Exit';
+                //     $srLogTrace['Parameter2'] = 'parent:';
+                //     $srLogTrace['ErrorMessage'] = 'Journal can not be created';
     
-                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
-                    return $response;
-                }  */
+                //     $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                //     return $response;
+                // } 
 
             }
             else{
@@ -20783,58 +20783,58 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
 
                     $response['ack'] = 1;
     
-                    /* 
-                    $invoice_type = 5;
-                    $module_type = 1;
-                    $transaction_type = 1;
-                    $document_type = 1;
-                    $total_allocated = 0;
+                    
+                    // $invoice_type = 5;
+                    // $module_type = 1;
+                    // $transaction_type = 1;
+                    // $document_type = 1;
+                    // $total_allocated = 0;
     
-                    $TRANSACTION_UNSUCCESSFUL = 0;
+                    // $TRANSACTION_UNSUCCESSFUL = 0;
     
-                    $total_allocated += $allocated_amount;
-                    // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
+                    // $total_allocated += $allocated_amount;
+                    // // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
                      
-                    $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM orders WHERE id=$invoice_id";
+                    // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM orders WHERE id=$invoice_id";
             
-                    $RS1 = $this->objsetup->CSI($Check_Sql);
-                    if($RS1->fields['invoice_value'] < 0)
-                    {
-                        $TRANSACTION_UNSUCCESSFUL = 1;
-                    }
+                    // $RS1 = $this->objsetup->CSI($Check_Sql);
+                    // if($RS1->fields['invoice_value'] < 0)
+                    // {
+                    //     $TRANSACTION_UNSUCCESSFUL = 1;
+                    // }
     
-                    if($TRANSACTION_UNSUCCESSFUL == 0)
-                    {
-                        $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
-                                VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
-                                ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
-                        $RS = $this->objsetup->CSI($Sql);
+                    // if($TRANSACTION_UNSUCCESSFUL == 0)
+                    // {
+                    //     $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                    //             VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                    //             ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
+                    //     $RS = $this->objsetup->CSI($Sql);
     
     
-                        $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
-                        $RS = $this->objsetup->CSI($allocation_entries);
+                    //     $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                    //     $RS = $this->objsetup->CSI($allocation_entries);
     
                         
-                        $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
-                        $RS = $this->objsetup->CSI($allocation_entries);                    
-                    }
-                    else{
+                    //     $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                    //     $RS = $this->objsetup->CSI($allocation_entries);                    
+                    // }
+                    // else{
     
-                        $response['ack'] = 0;
-                        $response['error'] = 'Journal can not be created 2';        
-                        $srLogTrace = array();
+                    //     $response['ack'] = 0;
+                    //     $response['error'] = 'Journal can not be created 2';        
+                    //     $srLogTrace = array();
         
-                        $srLogTrace['ErrorCode'] = '';
-                        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
-                        $srLogTrace['Function'] = __FUNCTION__;
-                        $srLogTrace['CLASS'] = __CLASS__;
-                        $srLogTrace['Parameter1'] = 'Exit';
-                        $srLogTrace['Parameter2'] = 'parent:';
-                        $srLogTrace['ErrorMessage'] = 'Journal can not be created 2';
+                    //     $srLogTrace['ErrorCode'] = '';
+                    //     $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    //     $srLogTrace['Function'] = __FUNCTION__;
+                    //     $srLogTrace['CLASS'] = __CLASS__;
+                    //     $srLogTrace['Parameter1'] = 'Exit';
+                    //     $srLogTrace['Parameter2'] = 'parent:';
+                    //     $srLogTrace['ErrorMessage'] = 'Journal can not be created 2';
         
-                        $this->objsetup->SRTraceLogsPHP($srLogTrace);
-                        return $response;
-                    } */ 
+                    //     $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    //     return $response;
+                    // } 
     
                 }
                 else{
@@ -20878,6 +20878,266 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
         $response['ack'] = 1;
         $response['error'] = 'Journal created successfully';
         $response['parent_id'] = $parent_id;
+        $response['payment_detail_id'] = $payment_detail_id;
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = 'Journal created successfully';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    } */
+
+
+    function addCusJournalInvoice($attr) 
+    {
+        // error_reporting(E_ERROR);
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;      
+        $dataArray = $attr['selectdata'];
+        // echo '<pre>'; print_r($dataArray);
+        $parent_id = $attr['parent_id'];      
+
+        $update_check = '';
+
+        if ($parent_id > 0){
+            $update_check = " AND tst.id <> '" . $parent_id . "'";            
+        }
+        else{
+            $modulePermission = sr_AddPermission;
+            // $msg = 'Inserted';
+            $Sql = "INSERT INTO gl_journal_receipt 
+                                        SET 
+                                            create_date='" . current_date . "',
+                                            acc_code='" . $acc_code . "',
+                                            company_id='" . $this->arrUser['company_id'] . "',  
+                                            user_id='" . $this->arrUser['id'] . "',
+                                            type=1,
+                                            template_id='0',
+                                            module_type= '1',
+                                            sub_module_type= '0',
+                                            invoice_id='" . $invoice_id . "',
+                                            transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2)";
+            // echo  $Sql;exit;
+            $RS = $this->objsetup->CSI($Sql, $moduleForPermission, $modulePermission);            
+            $parent_id = $this->Conn->Insert_ID();
+
+            if(!($parent_id>0)){
+
+                $this->Conn->rollbackTrans();
+                $this->Conn->autoCommit = true;
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 4 ';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 4';
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);               
+
+                return $response;
+            }
+        }
+
+        $data_pass = "  tst.acc_code='" . $dataArray->acc_code . "'  and 
+                        tst.module_type='1' and
+                        tst.status=1 and  
+                        tst.type=1  $update_check ";
+
+
+            $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
+
+            if ($total > 0) {
+
+                $this->Conn->rollbackTrans();
+                $this->Conn->autoCommit = true;
+
+                $response['ack'] = 0;
+                $response['error'] = 'Record Already Exists. ';
+                return $response; 
+            }
+
+        
+
+        // $moduleForPermission = "supplier_journal";
+
+        $modulePermission = "";
+        $invoice_id = (isset($dataArray->invoice_id) && $dataArray->invoice_id != '') ? $dataArray->invoice_id : '0';
+        $account_id = (isset($dataArray->account_id) && $dataArray->account_id != '') ? $dataArray->account_id : '0';
+        $account_no = addslashes($dataArray->account_no);
+        $account_name = addslashes($dataArray->account_name);
+
+        $acc_code = addslashes($dataArray->acc_code);
+
+        $balancing_account_id = (isset($dataArray->balancing_account_id) && $dataArray->balancing_account_id != '') ? $dataArray->balancing_account_id : '0';
+        $balancing_account_code = addslashes($dataArray->balancing_account_code);
+        $balancing_account_name = addslashes($dataArray->balancing_account_name);
+
+        $converted_price = (isset($dataArray->converted_price) && floatval($dataArray->converted_price) > 0) ? Round($dataArray->converted_price,2) : '0';
+        $credit_amount = (isset($dataArray->credit_amount) && $dataArray->credit_amount != '') ? Round($dataArray->credit_amount,2) : 'NULL';
+        $allocated_amount = (isset($dataArray->allocated_amount) && $dataArray->allocated_amount != '') ? Round($dataArray->allocated_amount,2) : 0;
+        $debit_amount = 'NULL';
+
+        $transaction_type = (isset($dataArray->transaction_type) && $dataArray->transaction_type != '') ? $dataArray->transaction_type : '0';
+        $document_type = (isset($dataArray->document_type) && $dataArray->document_type != '') ? $dataArray->document_type : '0';
+        $cnv_rate = (isset($dataArray->cnv_rate) && $dataArray->cnv_rate != '') ? $dataArray->cnv_rate : '0';
+        $converted_currency_id = (isset($dataArray->converted_currency_id) && $dataArray->converted_currency_id != '') ? $dataArray->converted_currency_id : '0';
+        $posting_date = $this->objGeneral->convert_date($dataArray->posting_date);
+        $allocation_date = $this->objGeneral->convert_date($dataArray->allocation_date);
+
+        $payment_detail_id = (isset($dataArray->payment_detail_id) && $dataArray->payment_detail_id != '') ? $dataArray->payment_detail_id : '0';
+        $posting_group_id = (isset($dataArray->posting_group_id) && $dataArray->posting_group_id != '') ? $dataArray->posting_group_id : '0';
+        $currency_id = (isset($dataArray->currency_id) && $dataArray->currency_id->id != '') ? $dataArray->currency_id->id : '0';
+        $document_no = addslashes($dataArray->document_no);   
+                        
+
+            if ($payment_detail_id == 0) {
+
+                // $modulePermission = sr_AddPermission;
+                $Sql = "INSERT INTO payment_details
+                            (parent_id,
+                            transaction_type,
+                            document_type,
+                            document_no,
+                            company_id,
+                            user_id,
+                            account_id,
+                            account_no,
+                            account_name,
+                            posting_date,
+                            created_date,
+                            currency_id,
+                            posting_group_id,
+                            debit_amount,
+                            credit_amount,
+                            converted_price,
+                            converted_currency_id,
+                            cnv_rate,
+                            balancing_account_id,
+                            balancing_account_code,
+                            balancing_account_name,
+                            invoice_id,
+                            status,
+                            posting_dateUnConv)
+                        SELECT 
+                            \"".$parent_id."\",
+                                $transaction_type,
+                                $document_type,
+                                \"$document_no\",
+                                " . $this->arrUser['company_id'] . ",
+                                " . $this->arrUser['id'] . ",
+                                $account_id,
+                                \"$account_no\",
+                                \"$account_name\",
+                                \"$posting_date\",
+                            " . current_date . " ,
+                                " . $currency_id . ",
+                                " . $posting_group_id . ",
+                                $debit_amount,
+                                $credit_amount,
+                                $converted_price,
+                            $converted_currency_id,
+                                $cnv_rate,
+                                $balancing_account_id,
+                            \"$balancing_account_code\",
+                            \"$balancing_account_name\",
+                            '".$invoice_id."',
+                            1,
+                            DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                        FROM widgetone
+                        WHERE
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                        LIMIT 1";
+
+                // echo $Sql;exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
+
+                $payment_detail_id = $this->Conn->Insert_ID();
+
+            } else {
+
+                // $modulePermission = sr_AddEditPermission;
+                $Sql = "UPDATE payment_details SET
+                            transaction_type =  $transaction_type,
+                            document_type =  $document_type,
+                            document_no =  '" . $document_no . "',
+                            account_id =  $account_id,
+                            account_no =  '" . $account_no. "',
+                            account_name =  '" . $account_name . "',
+                            posting_date =  '" . $posting_date . "',
+                            currency_id =  " . $currency_id . ",
+                            posting_group_id =  " . $posting_group_id . ",
+                            debit_amount =  $debit_amount,
+                            credit_amount =  $credit_amount,
+                            converted_price =  $converted_price,
+                            converted_currency_id = $converted_currency_id,
+                            cnv_rate =  $cnv_rate,
+                            balancing_account_id =   $balancing_account_id,
+                            balancing_account_code = '" . $balancing_account_code . "',
+                            balancing_account_name = '" . $balancing_account_name . "',
+                            posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                            invoice_id = '".$invoice_id."'
+                            WHERE id = $payment_detail_id AND status = 1 AND
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                                AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
+
+                // echo $Sql;//exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddEditPermission);
+            }
+
+            if($payment_detail_id>0){
+
+                $response['ack'] = 1;
+            }
+            else{
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 1';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 1';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }           
+
+        
+
+        $response['ack'] = 1;
+        $response['error'] = 'Journal created successfully';
+        $response['parent_id'] = $parent_id;
+        $response['payment_detail_id'] = $payment_detail_id;
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
         $srLogTrace = array();
@@ -21010,7 +21270,7 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                 }
                 $Row['allocation_date'] = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
                 $Row['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
-                $response['response'] = $Row;
+                $response['response'][] = $Row;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
