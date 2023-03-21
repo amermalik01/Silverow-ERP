@@ -20969,19 +20969,17 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                         tst.type=1  $update_check ";
 
 
-            $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
+        $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
 
-            if ($total > 0) {
+        if ($total > 0) {
 
-                $this->Conn->rollbackTrans();
-                $this->Conn->autoCommit = true;
+            $this->Conn->rollbackTrans();
+            $this->Conn->autoCommit = true;
 
-                $response['ack'] = 0;
-                $response['error'] = 'Record Already Exists. ';
-                return $response; 
-            }
-
-        
+            $response['ack'] = 0;
+            $response['error'] = 'Record Already Exists. ';
+            return $response; 
+        }        
 
         // $moduleForPermission = "supplier_journal";
 
