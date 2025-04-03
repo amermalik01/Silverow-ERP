@@ -71,7 +71,15 @@ define('CONTANTS_DROPDOWN',4);
 
 /* ***** Upload Path *** */
 // define('UPLOAD_PATH', APP_PATH."/upload/");
+<<<<<<< HEAD
 define('UPLOAD_PATH', APP_PATH."/");
+=======
+/* define('UPLOAD_PATH', APP_PATH."/");
+define('upload_limit',8500000); */
+
+define('UPLOAD_PATH', APP_PATH."/upload/");
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 define('upload_limit',8500000);
 
 /* ****** Check directory exisits of not ***** */
@@ -293,6 +301,9 @@ if (!defined('SR_TRACE_FN_OUT')) define('SR_TRACE_FN_OUT', 2);
 
 
 if (!defined('MAX_REPORT_RECORDS')) define('MAX_REPORT_RECORDS',500);
+<<<<<<< HEAD
 
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -129,7 +129,11 @@ class Customer extends Xtreme {
                 where  c.type IN (2,3) AND c.customer_code IS NOT NULL AND 
                       c.company_id=" . $this->arrUser['company_id'] . "  GROUP BY c.id ) as c WHERE 1  " . $where_clause . " ";
         //defualt Variable
+<<<<<<< HEAD
         //$Sql = $this->objsetup->whereClauseAppender($Sql, 48);
+=======
+        $Sql = $this->objsetup->whereClauseAppender($Sql, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
        // $Sql.= " ) as c ";
          //echo $Sql;exit;
@@ -652,6 +656,10 @@ class Customer extends Xtreme {
                 $result['finance_id'] = $Row['fid'];
                 $result['purchase_code_number'] = $Row['purchase_code_number'];
                 $result['account_payable_number'] = $Row['account_payable_number'];
+<<<<<<< HEAD
+=======
+                $result['account_payable_id'] = $Row['account_payable_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['femail'] = $Row['femail'];
                 $result['fphone'] = $Row['fphone'];
                 $result['ffax'] = $Row['ffax'];
@@ -800,7 +808,11 @@ class Customer extends Xtreme {
 
         //or  company.parent_id=" . $this->arrUser['company_id'] . "
         //defualt Variable
+<<<<<<< HEAD
         //$subQuery = $this->objsetup->whereClauseAppender($subQuery, 48);
+=======
+        $subQuery = $this->objsetup->whereClauseAppender($subQuery, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "Select c.* FROM 
                     sr_crm as c
@@ -1920,6 +1932,7 @@ class Customer extends Xtreme {
 
         if ($RS->RecordCount() > 0) {
             $result['customer_checksum_id'] = $RS->fields['checksum_id'];
+<<<<<<< HEAD
             /* $subQuery = "SELECT  c.id
                 from sr_crm_listing  c
                 where  c.type IN (2,3) AND
@@ -1930,6 +1943,18 @@ class Customer extends Xtreme {
             //$subQuery = $this->objsetup->whereClauseAppender($subQuery, 48);
 
             $Sql1 = "SELECT  * from SR_crm_general_sel c WHERE c.type IN (2,3) AND c.customer_code IS NOT NULL AND  c.name !='' AND c.company_id=" . $this->arrUser['company_id'] . ""; // AND c.id IN ($subQuery)
+=======
+            $subQuery = "SELECT  c.id
+                from sr_crm_listing  c
+                where  c.type IN (2,3) AND
+                       c.company_id=" . $this->arrUser['company_id'] . "  "; 
+
+            //or  company.parent_id=" . $this->arrUser['company_id'] . "
+            //defualt Variable
+            $subQuery = $this->objsetup->whereClauseAppender($subQuery, 48);
+
+            $Sql1 = "SELECT  * from SR_crm_general_sel c WHERE c.type IN (2,3) AND c.customer_code IS NOT NULL AND  c.name !='' AND c.company_id=" . $this->arrUser['company_id'] . " AND c.id IN (".$subQuery.")";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // echo $Sql1;exit;
             $RS1 = $this->objsetup->CSI($Sql1);
@@ -2050,7 +2075,11 @@ class Customer extends Xtreme {
                                 source_of_crm='$arr_attr[source_of_crm]',
                                 additionalInformation = '$arr_attr[additionalInformation]',
                                 pref_method_of_communication='$arr_attr[pref_method_of_communication]',
+<<<<<<< HEAD
                                 status='$arr_attr[status]',
+=======
+                                status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 web_address='$arr_attr[web_address]',
                                 anonymous_customer='" . $anonymous_customer . "',
                                 buying_grp='$arr_attr[buying_grp]',
@@ -2187,7 +2216,11 @@ class Customer extends Xtreme {
                                     crm_segment_id=$crm_segment_id,
                                     source_of_crm = '$arr_attr[source_of_crm]',
                                     pref_method_of_communication = '$arr_attr[pref_method_of_communication]',
+<<<<<<< HEAD
                                     STATUS = '$arr_attr[status]',
+=======
+                                    STATUS = '".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     web_address = '$arr_attr[web_address]',
                                     buying_grp = '$arr_attr[buying_grp]',
                                     region_id = '$arr_attr[region_ids]',
@@ -2298,7 +2331,11 @@ class Customer extends Xtreme {
                                 crm_segment_id=$crm_segment_id,
                                 source_of_crm = '$arr_attr[source_of_crm]',
                                 pref_method_of_communication = '$arr_attr[pref_method_of_communication]',
+<<<<<<< HEAD
                                 STATUS = '$arr_attr[status]',
+=======
+                                STATUS = '".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 web_address = '$arr_attr[web_address]',
                                 buying_grp = '$arr_attr[buying_grp]',
                                 region_id = '$arr_attr[region_ids]',
@@ -2548,7 +2585,11 @@ class Customer extends Xtreme {
         //				LEFT JOIN charges as fncharge on fncharge.id = finance.finance_charges_id
         //				LEFT JOIN charges as incharge on incharge.id = finance.insurance_charges_id
         //				LEFT JOIN crm on crm.id = finance.customer_id
+<<<<<<< HEAD
         //				WHERE customer_id='$attr[customer_id]' AND finance.type = 'customer'
+=======
+        //				WHERE customer_id='".$attr['customer_id']."' AND finance.type = 'customer'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //				LIMIT 1";
 
 
@@ -2703,7 +2744,11 @@ class Customer extends Xtreme {
 
         $Sql = "INSERT INTO finance
                                 SET 
+<<<<<<< HEAD
                                     customer_id='$attr[customer_id]',
+=======
+                                    customer_id='".$attr['customer_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     type='1',
                                     contact_person='$attr[contact_person]',
                                     phone='$attr[phone]',
@@ -2959,7 +3004,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
         // $Sql = "UPDATE finance
         // 		SET contact_person='$attr[contact_person]',phone='$attr[phone]',alt_contact_person='$attr[alt_contact_person]',alt_contact_email='$attr[alt_contact_email]',contact_id='$attr[contact_id]',fax='$attr[fax]',posting='$attr[posting]',bill_to_customer='$attr[bill_to_customer]',bill_to_customer_id='$attr[bill_to_customer_id]',payment_terms_id='$attr[payment_terms_id]',payment_method_id='$attr[payment_method_id]',email='$attr[email]',bank_account_id='$attr[bank_account_id]',generate='$attr[generate]',currency='".$attr['currency']."',gen_bus_posting_group='$attr[gen_bus_posting_group]',status='$attr[status]',vat_bus_posting_group='$attr[vat_bus_posting_group]',customer_posting_group='$attr[customer_posting_group]',company_reg_no='$attr[company_reg_no]',finance_charges_id='$attr[finance_charges_id]',insurance_charges_id='$attr[insurance_charges_id]',vat_id='$attr[vat_id]',customer_status='$attr[customer_status]',rebate='$attr[rebate]',vat_number='$attr[vat_number]',account_name='$attr[account_name]',sort_code='$attr[sort_code]',account_no='$attr[account_no]',swift_no='$attr[swift_no]',iban='$attr[iban]',bill_bank_name='$attr[bill_bank_name]'
+<<<<<<< HEAD
         // 		WHERE id = $attr[update_id] ";
+=======
+        // 		WHERE id = ".$attr['update_id']." ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE orders SET 
                 finance_customer_id= ".$attr['bill_to_cust_id'].", 
@@ -2985,7 +3034,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
         // $Sql = "UPDATE finance
         // 		SET contact_person='$attr[contact_person]',phone='$attr[phone]',alt_contact_person='$attr[alt_contact_person]',alt_contact_email='$attr[alt_contact_email]',contact_id='$attr[contact_id]',fax='$attr[fax]',posting='$attr[posting]',bill_to_customer='$attr[bill_to_customer]',bill_to_customer_id='$attr[bill_to_customer_id]',payment_terms_id='$attr[payment_terms_id]',payment_method_id='$attr[payment_method_id]',email='$attr[email]',bank_account_id='$attr[bank_account_id]',generate='$attr[generate]',currency='".$attr['currency']."',gen_bus_posting_group='$attr[gen_bus_posting_group]',status='$attr[status]',vat_bus_posting_group='$attr[vat_bus_posting_group]',customer_posting_group='$attr[customer_posting_group]',company_reg_no='$attr[company_reg_no]',finance_charges_id='$attr[finance_charges_id]',insurance_charges_id='$attr[insurance_charges_id]',vat_id='$attr[vat_id]',customer_status='$attr[customer_status]',rebate='$attr[rebate]',vat_number='$attr[vat_number]',account_name='$attr[account_name]',sort_code='$attr[sort_code]',account_no='$attr[account_no]',swift_no='$attr[swift_no]',iban='$attr[iban]',bill_bank_name='$attr[bill_bank_name]'
+<<<<<<< HEAD
         // 		WHERE id = $attr[update_id] ";
+=======
+        // 		WHERE id = ".$attr['update_id']." ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE orders SET finance_customer_id= ".$attr['bill_to_cust_id']." WHERE id = ".$attr['id']." ";
 
@@ -3102,7 +3155,11 @@ class Customer extends Xtreme {
         }
 
         $Sql = "INSERT INTO crm_alt_contact
+<<<<<<< HEAD
 				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3124,7 +3181,11 @@ class Customer extends Xtreme {
         $attr = (array) $attr;
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $data_pass = "   tst.crm_id='$attr[crm_id]'  and tst.email='$attr[email]' and tst.id='".$attr['id']."' ";
+=======
+        $data_pass = "   tst.crm_id='".$attr['crm_id']."'  and tst.email='$attr[email]' and tst.id='".$attr['id']."' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('crm_alt_contact', $data_pass, $this->arrUser['company_id']);
 
 
@@ -3230,7 +3291,11 @@ class Customer extends Xtreme {
         }
 
         $Sql = "INSERT INTO crm_alt_depot
+<<<<<<< HEAD
 				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',salesperson_id='$attr[salesperson_id]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',salesperson_id='$attr[salesperson_id]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3266,7 +3331,11 @@ class Customer extends Xtreme {
         }
 
         $Sql = "UPDATE crm_alt_depot
+<<<<<<< HEAD
 				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',salesperson_id='$attr[salesperson_id]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='$attr[crm_id]',user_id='$attr[user_id]',company_id='$attr[company_id]'
+=======
+				SET depot='$attr[depot]',contact_name='$attr[contact_name]',role='$attr[role]',address='$attr[address]',address_2='$attr[address_2]',telephone='$attr[telephone]',city='$attr[city]',fax='$attr[fax]',county='$attr[county]',country='$attr[country]',mobile='$attr[mobile]',postcode='$attr[postcode]',salesperson_id='$attr[salesperson_id]',direct_line='$attr[direct_line]',email='$attr[email]',web_add='$attr[web_add]',crm_id='".$attr['crm_id']."',user_id='$attr[user_id]',company_id='$attr[company_id]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -3451,7 +3520,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_items
+<<<<<<< HEAD
 					SET product_id = '$attr[product_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET product_id = '".$attr['product_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -3529,7 +3602,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_segment
+<<<<<<< HEAD
 					SET segment_id = '$attr[segment_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET segment_id = '$attr[segment_id]',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -3600,7 +3677,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_customer
+<<<<<<< HEAD
 					SET customer_id = '$attr[customer_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET customer_id = '".$attr['customer_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -3620,10 +3701,17 @@ class Customer extends Xtreme {
     function get_product_promotion($attr) {
 
         $Sql = "SELECT * FROM promotions
+<<<<<<< HEAD
 			LEFT JOIN promotions_customer as prmoCust ON promotions.id = prmoCust.promotion_id and prmoCust.customer_id = $attr[customer_id]
 			LEFT JOIN promotions_segment as prmoSeg ON promotions.id = prmoSeg.promotion_id and prmoSeg.segment_id = (select company_type from crm where id = $attr[customer_id] ) 
 			LEFT JOIN promotions_items as prmoItem ON promotions.id = prmoItem.promotion_id and prmoItem.product_id = $attr[product_id]
 			WHERE prmoItem.product_id = $attr[product_id]  AND  NOW() Between starting_date and ending_date AND (prmoCust.customer_id = $attr[customer_id]  OR prmoSeg.segment_id = (select company_type from crm where id = $attr[customer_id] ) OR promotions.customer_type = '3' )";
+=======
+			LEFT JOIN promotions_customer as prmoCust ON promotions.id = prmoCust.promotion_id and prmoCust.customer_id = ".$attr['customer_id']."
+			LEFT JOIN promotions_segment as prmoSeg ON promotions.id = prmoSeg.promotion_id and prmoSeg.segment_id = (select company_type from crm where id = ".$attr['customer_id']." ) 
+			LEFT JOIN promotions_items as prmoItem ON promotions.id = prmoItem.promotion_id and prmoItem.product_id = ".$attr['product_id']."
+			WHERE prmoItem.product_id = ".$attr['product_id']."  AND  NOW() Between starting_date and ending_date AND (prmoCust.customer_id = ".$attr['customer_id']."  OR prmoSeg.segment_id = (select company_type from crm where id = ".$attr['customer_id']." ) OR promotions.customer_type = '3' )";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -3706,7 +3794,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_competitor
+<<<<<<< HEAD
 				SET category_id = '$attr[category_id]',brand = '$attr[brand]',price = '$attr[price]',volume = '$attr[volume]',file = '$attr[file]',note = '$attr[note]',order_frequency = '$attr[order_frequency]',crm_id = '$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET category_id = '$attr[category_id]',brand = '$attr[brand]',price = '$attr[price]',volume = '$attr[volume]',file = '$attr[file]',note = '$attr[note]',order_frequency = '$attr[order_frequency]',crm_id = '".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3812,7 +3904,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_price_offer
+<<<<<<< HEAD
 				SET crm_id = '$attr[crm_id]',product_id = '$attr[product_id]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '".$attr['currency_id']."',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET crm_id = '".$attr['crm_id']."',product_id = '".$attr['product_id']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '".$attr['currency_id']."',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3832,7 +3928,11 @@ class Customer extends Xtreme {
     function update_price_offer($attr) {
         $this->objGeneral->mysql_clean($attr);
         $Sql = "UPDATE crm_price_offer
+<<<<<<< HEAD
 				SET product_id = '$attr[product_id]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '".$attr['currency_id']."',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]'
+=======
+				SET product_id = '".$attr['product_id']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '".$attr['currency_id']."',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -4223,7 +4323,11 @@ class Customer extends Xtreme {
             $strwhere = 'AND tst.crm_alt_location_id ='. $attr['crm_alt_location_id'];
 
         $data_pass = "  tst.crm_id='" . $attr['crm_id'] . "' AND 
+<<<<<<< HEAD
                         tst.product_id = '$attr[product_id]' AND 
+=======
+                        tst.product_id = '".$attr['product_id']."' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         tst.customer_product_type_id = '$attr[customer_product_type_id]' AND 
                         tst.end_date >= '" . $start_date . "' " . $strwhere . "";
 
@@ -4237,10 +4341,17 @@ class Customer extends Xtreme {
 
         $Sql = "INSERT INTO customer_item_info 
                                       SET
+<<<<<<< HEAD
                                           crm_id = '$attr[crm_id]',
                                           product_id = '$attr[product_id]',
                                           crm_alt_location_id ='$attr[crm_alt_location_id]',
                                           offered_by_id = '$attr[offered_by_id]',
+=======
+                                          crm_id = '".$attr['crm_id']."',
+                                          product_id = '".$attr['product_id']."',
+                                          crm_alt_location_id ='$attr[crm_alt_location_id]',
+                                          offered_by_id = '".$attr['offered_by_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                           offer_method_id = '$attr[offer_method_id]',
                                           currency_id = '".$attr['currency_id']."',
                                           is_sales_vol_disc = '$attr[is_sales_vol_disc]',
@@ -4289,8 +4400,13 @@ class Customer extends Xtreme {
 
         $Sql = "UPDATE customer_item_info 
                                      SET 
+<<<<<<< HEAD
                                           product_id = '$attr[product_id]',
                                           offered_by_id = '$attr[offered_by_id]',
+=======
+                                          product_id = '".$attr['product_id']."',
+                                          offered_by_id = '".$attr['offered_by_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                           offer_method_id = '$attr[offer_method_id]',
                                           currency_id = '".$attr['currency_id']."',
                                           is_sales_vol_disc = '$attr[is_sales_vol_disc]',
@@ -4330,7 +4446,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "UPDATE   customer_item_info Set price_offered='$attr[price_offered]'
+<<<<<<< HEAD
 				WHERE product_id = $attr[product_id]  and is_same_as_stnadard=1 ";
+=======
+				WHERE product_id = ".$attr['product_id']."  and is_same_as_stnadard=1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -4845,7 +4965,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_promotions
+<<<<<<< HEAD
 					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',crm_id = '$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',crm_id = '".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -4939,7 +5063,11 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_promotions_items
+<<<<<<< HEAD
 					SET product_id = '$attr[product_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET product_id = '".$attr['product_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -5164,7 +5292,11 @@ class Customer extends Xtreme {
     }
 
     function check_customer_limit($attr) {
+<<<<<<< HEAD
         $mSql = "SELECT * FROM `crm` WHERE `id` = $attr[crm_id]";
+=======
+        $mSql = "SELECT * FROM `crm` WHERE `id` = ".$attr['crm_id']."";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $customer = $this->objsetup->CSI($mSql)->FetchRow();
 
         $sql = 'SELECT (sum(`grand_total`) - sum(`recieved`)) as balance FROM `orders` WHERE `sell_to_cust_id` = ' . $attr['crm_id'] . ' and status <> ' . CANCEL . '';
@@ -5565,6 +5697,7 @@ class Customer extends Xtreme {
                  WHERE 1 " . $where_clause . "  ";
         //echo $Sql;exit;
           
+<<<<<<< HEAD
         // $subQueryForBuckets = "SELECT  c.id
         //                        FROM sr_crm_listing c
         //                        WHERE c.id IS NOT NULL ";
@@ -5573,6 +5706,17 @@ class Customer extends Xtreme {
         // echo $subQueryForBuckets;exit;
 
         // $Sql .= " AND (tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id IN ($subQueryForBuckets) ) ";
+=======
+        $subQueryForBuckets = "SELECT  c.id
+                               FROM sr_crm_listing c
+                               WHERE c.id IS NOT NULL ";
+
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+
+        // echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id IN ($subQueryForBuckets) ) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql .= $where_clause2;
 
@@ -5770,12 +5914,20 @@ class Customer extends Xtreme {
         if (!empty($attr['cust_id']))
             $where_clause2 = "AND tbl.sell_to_cust_id  = '".$attr['cust_id']."' ";
 
+<<<<<<< HEAD
         $Sql = "SELECT * FROM (SELECT d.*, 
                                     (SELECT GROUP_CONCAT(srm_invoice.order_code SEPARATOR ',') FROM srm_invoice, link_so_po AS link WHERE srm_invoice.id=link.purchaseOrderID AND link.saleOrderID = d.id) AS linked_pos_1,
                                     (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%quote' AND da.record_type = 'Sales') AS documentSQCount,
                                     (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%order' AND da.record_type = 'Sales') AS documentSOCount,
                                     (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%invoice' AND da.record_type = 'Sales') AS documentSICount,
                                     (SELECT COUNT(*) FROM document_association AS da, email_save as es WHERE es.id = da.module_id and es.type = 1 and da.record_id = d.id AND da.module_type='email' AND da.record_type = 'Sales') AS emailCount,
+=======
+        /* 
+        (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%quote' AND da.record_type = 'Sales') AS documentSQCount,
+                                    (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%order' AND da.record_type = 'Sales') AS documentSOCount,
+                                    (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%invoice' AND da.record_type = 'Sales') AS documentSICount,
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     (SELECT (CASE 
                                                 WHEN status = 0 THEN 
                                                     'Queued for Approval'
@@ -5809,12 +5961,35 @@ class Customer extends Xtreme {
                                             END)
                                         FROM approval_history AS ah 
                                         WHERE ah.object_id=d.id AND ah.type = 2 ORDER BY ah.id DESC LIMIT 1
+<<<<<<< HEAD
                                     ) AS cl_approval_status
                                FROM orderscache d
+=======
+                                    ) AS cl_approval_status,
+
+                                    (CASE WHEN COALESCE((SELECT gltxn.vatPosted   FROM gl_account_txn AS gltxn  
+                                    WHERE gltxn.object_id = d.id AND gltxn.company_id = d.company_id AND gltxn.type = 1 AND gltxn.vatPosted = 1 LIMIT 1),0)>0 THEN 'Yes'
+                                    ELSE 'No' END) AS vatPosted 
+
+        */
+
+        $Sql = "SELECT * FROM (SELECT d.*, 
+                                    (SELECT GROUP_CONCAT(srm_invoice.order_code SEPARATOR ',') FROM srm_invoice, link_so_po AS link WHERE srm_invoice.id=link.purchaseOrderID AND link.saleOrderID = d.id) AS linked_pos_1,
+                                    0 AS documentSQCount,
+                                    (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' and da.additional like '%order' AND da.record_type = 'Sales') AS documentSOCount,
+                                    0 AS documentSICount,
+                                    0 AS emailCount,
+                                    'Approved' AS ma_approval_status,
+                                    'Approved' AS cl_approval_status,
+                                    '' AS vatPosted 
+                               FROM orderscache d
+                               -- LEFT JOIN gl_account_txn AS gltxn On gltxn.object_id = d.id AND gltxn.company_id = d.company_id AND gltxn.type = 1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                WHERE  d.status=1 AND 
                                       d.company_id=" . $this->arrUser['company_id'] . " GROUP BY d.id ORDER BY d.id DESC, `activeDateTime` DESC) as tbl 
                  WHERE 1 " . $where_clause . "  ";
         //echo $Sql;exit;
+<<<<<<< HEAD
 
         // $subQueryForBuckets = '';
         // $subQueryForBuckets_crm = '';
@@ -5843,6 +6018,41 @@ class Customer extends Xtreme {
                             tbl.sell_to_cust_id IN ($subQueryForBuckets_crm) ) ";
         else
             $Sql .= " AND (tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id IN ($subQueryForBuckets)) "; */
+=======
+        //
+
+        // $subQueryForBuckets = '';
+        // $subQueryForBuckets_crm = '';
+        //sr_crm_listing c
+          
+        $subQueryForBuckets = "SELECT  c.id
+                               FROM crm AS c
+                               WHERE c.type IN (2,3) AND 
+                                     c.company_id=" . $this->arrUser['company_id'] . ""; 
+
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+        // echo $subQueryForBuckets;exit;
+
+        //sr_crm_listing c
+        
+        /* $subQueryForBuckets_crm = " SELECT  c.id
+                                    FROM crm 
+                                    WHERE c.id IS NOT NULL AND c.type = 1 "; 
+
+        $subQueryForBuckets_crm = $this->objsetup->whereClauseAppender($subQueryForBuckets_crm, 40);
+         OR  
+                            tbl.sell_to_cust_id IN ($subQueryForBuckets_crm) 
+ */
+        $employeeId = $this->arrUser['id'];
+
+        if ($attr['type'] == 0)
+            $Sql .= " AND ( tbl.sale_person_id = $employeeId OR  
+                            tbl.sell_to_cust_id = 0 OR 
+                            tbl.sell_to_cust_id IS NULL OR 
+                            tbl.sell_to_cust_id IN ($subQueryForBuckets)) ";
+        else
+            $Sql .= " AND (tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id IN ($subQueryForBuckets)) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql;exit;
         if ($order_clause == ""){
@@ -5880,7 +6090,12 @@ class Customer extends Xtreme {
 
         if (isset($attr['blance'])) {
 
+<<<<<<< HEAD
             $Sql_balance = "SELECT sum(jd.credit_amount+jd.debit_amount)  as balance_payed  FROM gl_journal_receipt_detail jd WHERE jd.type = 2  AND jd.account_id  = '".$attr['cust_id']."' and 	jd.company_id=" . $this->arrUser['company_id'] . " ";
+=======
+            $Sql_balance = "SELECT sum(jd.credit_amount+jd.debit_amount)  as balance_payed  FROM gl_journal_receipt_detail jd 
+                        WHERE jd.type = 2  AND jd.account_id  = '".$attr['cust_id']."' and 	jd.company_id=" . $this->arrUser['company_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RSb = $this->objsetup->CSI($Sql_balance);
             $response['balance_payed'] = $RSb->fields['balance_payed'];
         }
@@ -5936,6 +6151,10 @@ class Customer extends Xtreme {
                 $result['converted_to_so_by_name'] = $Row['converted_to_so_by_name'];
                 $result['posted_by_name'] = $Row['posted_by_name'];
                 $result['current_stage'] = $Row['current_stage'];
+<<<<<<< HEAD
+=======
+                $result['vatPosted'] = $Row['vatPosted'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $result['converted_price'] = $Row['net_amount_converted'];
                 // $result['dispatch_date'] = $this->objGeneral->convert_unix_into_date($Row['dispatch_date']);
                 // if ($Row['type'] == 0)
@@ -6041,7 +6260,15 @@ class Customer extends Xtreme {
          
         // invoices and refund
         $Sql = "SELECT  
+<<<<<<< HEAD
                 d.id, d.sale_invioce_code as code, 
+=======
+                d.id, 
+                (CASE WHEN d.type > 1 THEN d.sale_invioce_code
+                        ELSE  ''
+                        END) AS code,
+                d.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 d.posting_date, 
                 d.sell_to_cust_name as name, 
                 d.grand_total as total_amount, 
@@ -6063,7 +6290,14 @@ class Customer extends Xtreme {
                                     pa.status = 0 AND
                                     pa.invoice_id = d.id) + 
                         d.setteled_amount paid_amount,
+<<<<<<< HEAD
                 'Sales Invoice' AS payment_type,
+=======
+
+                (CASE WHEN d.type = 1 THEN 'Sales Order'
+                        ELSE 'Sales Invoice' 
+                        END) AS payment_type,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 '0' AS cust_payment_id,
                 d.on_hold,
                         (CASE
@@ -6073,7 +6307,11 @@ class Customer extends Xtreme {
                                 ''
                         END) AS on_hold_message
                 FROM orders  d
+<<<<<<< HEAD
                 WHERE d.type IN(2,3) AND 
+=======
+                WHERE d.type IN(1,2,3) AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       d.company_id=" . $this->arrUser['company_id'] . " AND 
                       d.sell_to_cust_id = ".$attr['account_id']." AND 
                       d.currency_id = $currency_id AND 
@@ -6084,6 +6322,10 @@ class Customer extends Xtreme {
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -6136,6 +6378,10 @@ class Customer extends Xtreme {
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -6187,6 +6433,10 @@ class Customer extends Xtreme {
                 
                 SELECT pd.id, 
                         pd.document_no AS code, 
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.posting_date, 
                         pd.account_name as cust_name, 
                         (CASE
@@ -6233,6 +6483,10 @@ class Customer extends Xtreme {
 
                 $result['order_id'] = $Row['id'];
                 $result['code'] = $Row['code'];
+<<<<<<< HEAD
+=======
+                $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                 $result['name'] = $Row['name'];
                 $result['grand_total'] = $Row['total_amount'];
@@ -6271,7 +6525,13 @@ class Customer extends Xtreme {
         $response = array();
         $posting_date = $this->objGeneral->convert_date($attr['posting_date']);
         
+<<<<<<< HEAD
         $Sql = "SELECT  d.id, d.return_invoice_code as code, 
+=======
+        $Sql = "SELECT  d.id, 
+                        d.return_invoice_code as code, 
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         d.posting_date, 
                         d.sell_to_cust_name as cust_name, 
                         d.grand_total as total_amount, 
@@ -6314,6 +6574,10 @@ class Customer extends Xtreme {
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -6367,6 +6631,10 @@ class Customer extends Xtreme {
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -6417,7 +6685,13 @@ class Customer extends Xtreme {
                 
                 UNION ALL
                 
+<<<<<<< HEAD
                 SELECT pd.id, pd.document_no AS code, 
+=======
+                SELECT pd.id, 
+                        pd.document_no AS code, 
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.posting_date, 
                         pd.account_name as cust_name, 
                         (CASE
@@ -6457,7 +6731,11 @@ class Customer extends Xtreme {
                     
                     
                 ORDER BY posting_date DESC
+<<<<<<< HEAD
                 "; //-- pd.parent_id <> $attr[parent_id] AND
+=======
+                "; //-- pd.parent_id <> $attr['parent_id'] AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
@@ -6465,7 +6743,12 @@ class Customer extends Xtreme {
 
                 $result = array();
                 $result['order_id'] = $Row['id'];
+<<<<<<< HEAD
                 $result['code'] = $Row['code'];
+=======
+                $result['code'] = $Row['code'];                
+                $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                 $result['name'] = $Row['cust_name'];
                 $result['grand_total'] = $Row['total_amount'];
@@ -6509,7 +6792,12 @@ class Customer extends Xtreme {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6521,7 +6809,11 @@ class Customer extends Xtreme {
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id =o.id   AND 
                                 pa.invoice_type= 1 AND
                                 pa.`document_type` = 2 AND
@@ -6531,7 +6823,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6544,7 +6841,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 2 AND
                                 pa.`document_type` = 1 AND
                                 pa.payment_type = 2
@@ -6553,7 +6854,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -6575,7 +6881,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type= 1 AND
                                 pa.payment_type = 1
@@ -6585,7 +6895,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -6607,7 +6922,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 1 AND
                                 pa.document_type= 5 AND
                                 pa.payment_type = 2
@@ -6618,7 +6937,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6633,7 +6957,11 @@ class Customer extends Xtreme {
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 1 AND
@@ -6645,7 +6973,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6662,7 +6995,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 8 AND
                                 pa.document_type= 1 AND
                                 pa.payment_type = 1
@@ -6671,7 +7008,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6686,7 +7028,11 @@ class Customer extends Xtreme {
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 1 AND
@@ -6697,7 +7043,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6714,7 +7065,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 11 AND
                                 pa.document_type= 1 AND
                                 pa.payment_type = 1
@@ -6724,7 +7079,12 @@ class Customer extends Xtreme {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6746,7 +7106,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6769,7 +7134,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -6804,7 +7174,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -6840,7 +7215,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6867,7 +7247,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6895,7 +7280,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6923,7 +7313,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6951,7 +7346,12 @@ class Customer extends Xtreme {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6965,7 +7365,11 @@ class Customer extends Xtreme {
                              
                             (
                                 pa.payment_id = o.id  AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 2 AND
                                 pa.`document_type` = 7 AND
                                 pa.payment_type = 2 
@@ -6975,7 +7379,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -6988,7 +7397,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 7 AND
                                 pa.`document_type` = 2 AND
@@ -6999,7 +7412,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7022,7 +7440,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 7
                             )                                
@@ -7034,7 +7456,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7057,7 +7484,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 7 AND
                                 pa.document_type = 5
                             )                              
@@ -7069,7 +7500,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7087,7 +7523,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id]  AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']."  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 8 AND
                                 pa.document_type= 7 AND
                                 pa.payment_type = 1
@@ -7097,7 +7537,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7113,7 +7558,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id]  AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']."  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 7 AND
@@ -7124,7 +7573,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7139,7 +7593,11 @@ class Customer extends Xtreme {
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 7 AND
@@ -7150,7 +7608,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7168,7 +7631,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 11 AND
                                 pa.document_type= 7 AND
                                 pa.payment_type = 1
@@ -7178,7 +7645,12 @@ class Customer extends Xtreme {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7191,7 +7663,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
                                 pa.payment_id = o.id  AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 2 AND
                                 pa.`document_type` = 12 AND
                                 pa.payment_type = 2 
@@ -7201,7 +7677,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.return_invoice_code AS code,
+=======
+                        o.return_invoice_code AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7214,7 +7695,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 12 AND
                                 pa.`document_type` = 2 AND
@@ -7225,7 +7710,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7248,7 +7738,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 12
                             )                                
@@ -7259,7 +7753,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7282,7 +7781,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 2) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 12 AND
                                 pa.document_type = 5
                             )                           
@@ -7294,7 +7797,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7312,7 +7820,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id]  AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']."  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 8 AND
                                 pa.document_type= 12 AND
                                 pa.payment_type = 1
@@ -7321,7 +7833,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7337,7 +7854,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id]  AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']."  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 12 AND
@@ -7348,7 +7869,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7364,7 +7890,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 12 AND
@@ -7375,7 +7905,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                        
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7393,7 +7928,11 @@ class Customer extends Xtreme {
                             (
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 11 AND
                                 pa.document_type= 12 AND
                                 pa.payment_type = 1
@@ -7410,6 +7949,10 @@ class Customer extends Xtreme {
                     $result = array();
                     $result['order_id'] = $Row['id'];
                     $result['code'] = $Row['code'];
+<<<<<<< HEAD
+=======
+                    $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['original_amount'] = $Row['original_amount'];
                     $result['paid_amount'] = $Row['paid_amount'];
                     $result['payment_type'] = $Row['payment_type'];
@@ -7436,20 +7979,35 @@ class Customer extends Xtreme {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.sale_invioce_code AS code,
+=======
+                        o.sale_invioce_code AS code,                        
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
 
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 2 AND
                                 pa.document_type= 1 AND
@@ -7461,21 +8019,36 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.sale_invioce_code AS code,
+=======
+                        o.sale_invioce_code AS code,                        
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 1 AND
                                 pa.document_type= 2 AND
                                 pa.payment_type = 2
@@ -7484,7 +8057,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7507,7 +8085,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id]  AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']."  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 6 AND
                                 pa.`document_type`=2
                             )
@@ -7518,7 +8100,12 @@ class Customer extends Xtreme {
                     SELECT 
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         pd.document_no AS code,
+=======
+                        pd.document_no AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7541,7 +8128,11 @@ class Customer extends Xtreme {
                                 pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 2 AND
                                 pa.document_type= 6
                             )
@@ -7552,7 +8143,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7568,7 +8164,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = $attr[invoice_id] AND
+=======
+				                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 7 AND
@@ -7579,7 +8179,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7595,7 +8200,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 2 AND
@@ -7606,7 +8215,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7622,7 +8236,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = $attr[invoice_id] AND
+=======
+				                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 12 AND
@@ -7633,7 +8251,12 @@ class Customer extends Xtreme {
                     SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
+<<<<<<< HEAD
                         o.invoiceNo AS code,
+=======
+                        o.invoiceNo AS code,                       
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7649,7 +8272,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 2 AND
@@ -7663,13 +8290,23 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
@@ -7686,13 +8323,23 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
@@ -7713,6 +8360,10 @@ class Customer extends Xtreme {
                          FROM payment_details AS pds 
                          WHERE pds.id =pa.invoice_id AND pds.company_id=pa.company_id 
                          LIMIT 1) AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7751,6 +8402,10 @@ class Customer extends Xtreme {
                          FROM payment_details AS pds 
                          WHERE pds.id =pa.invoice_id AND pds.company_id=pa.company_id 
                          LIMIT 1) AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7785,6 +8440,10 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7812,6 +8471,10 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7840,6 +8503,10 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7867,6 +8534,10 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7896,19 +8567,33 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type = 8 AND
                                 pa.document_type = 1 AND
@@ -7919,20 +8604,34 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type = 1 AND
                                 pa.document_type = 8 AND
                                 pa.payment_type = 2
@@ -7959,7 +8658,11 @@ class Customer extends Xtreme {
                             (
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 8 AND
                                 pa.document_type= 7 AND
                                 pa.payment_type = 1
@@ -7984,7 +8687,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 7 AND
@@ -8016,7 +8723,11 @@ class Customer extends Xtreme {
                             
                             (
 				                pd.id = `pa`.`payment_detail_id` AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
@@ -8050,7 +8761,11 @@ class Customer extends Xtreme {
                         (
                             (
                                 pd.id = `pa`.`invoice_id` AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
@@ -8081,7 +8796,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = $attr[invoice_id] AND
+=======
+				                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 12 AND
@@ -8109,7 +8828,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 8 AND
@@ -8123,19 +8846,33 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type = 11 AND
                                 pa.document_type = 1 AND
@@ -8146,20 +8883,34 @@ class Customer extends Xtreme {
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.sale_invioce_code AS code,
+<<<<<<< HEAD
+=======
+                        o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Sales Invoice' AS payment_type
+=======
+                        (CASE WHEN o.type = 1 THEN 'Sales Order'
+                                ELSE 'Sales Invoice' 
+                                END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM orders AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type = 1 AND
                                 pa.document_type = 11 AND
                                 pa.payment_type = 2
@@ -8188,7 +8939,11 @@ class Customer extends Xtreme {
                         (
                             (
 				                pd.id = `pa`.`payment_detail_id` AND
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND 
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
@@ -8222,7 +8977,11 @@ class Customer extends Xtreme {
                         (
                             (
                                 pd.id = `pa`.`invoice_id` AND
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND 
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 2 AND
@@ -8255,7 +9014,11 @@ class Customer extends Xtreme {
                             (
                                 pa.invoice_id = o.id AND
                                 o.postStatus  = 1 AND 
+<<<<<<< HEAD
                                 pa.payment_id = $attr[invoice_id] AND
+=======
+                                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 11 AND
                                 pa.document_type= 7 AND
                                 pa.payment_type = 1
@@ -8281,7 +9044,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = $attr[invoice_id] AND
+=======
+                                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND
                                 o.postStatus  = 1 AND 
                                 pa.invoice_type= 7 AND
@@ -8309,7 +9076,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = $attr[invoice_id] AND
+=======
+				                pa.invoice_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 12 AND
@@ -8336,7 +9107,11 @@ class Customer extends Xtreme {
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = $attr[invoice_id] AND
+=======
+				                pa.payment_id = ".$attr['invoice_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 o.postStatus  = 1 AND
                                 pa.invoice_type= 11 AND
@@ -8353,6 +9128,10 @@ class Customer extends Xtreme {
                     $result = array();
                     $result['order_id'] = $Row['id'];
                     $result['code'] = $Row['code'];
+<<<<<<< HEAD
+=======
+                    $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['original_amount'] = $Row['original_amount'];
                     $result['paid_amount'] = $Row['paid_amount'];
                     $result['payment_type'] = $Row['payment_type'];
@@ -9236,7 +10015,11 @@ class Customer extends Xtreme {
     }
 
     function get_e_emails($attr){
+<<<<<<< HEAD
         $EmailSql = "SELECT  fin.statement_email, fin.reminder_email, fin.invoice_email FROM (((crm c LEFT JOIN alt_contact ac ON c.id = ac.acc_id) LEFT JOIN alt_depot ad ON c.id = ad.acc_id) LEFT JOIN finance fin ON c.id = fin.customer_id) WHERE c.id = $attr[customer_id];";
+=======
+        $EmailSql = "SELECT  fin.statement_email, fin.reminder_email, fin.invoice_email FROM (((crm c LEFT JOIN alt_contact ac ON c.id = ac.acc_id) LEFT JOIN alt_depot ad ON c.id = ad.acc_id) LEFT JOIN finance fin ON c.id = fin.customer_id) WHERE c.id = ".$attr['customer_id'].";";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //echo $EmailSql;exit;
                 $RSEmails = $this->objsetup->CSI($EmailSql);
                 if ($RSEmails->RecordCount() > 0) {
@@ -9276,7 +10059,11 @@ class Customer extends Xtreme {
                     FROM (((crm c LEFT JOIN alt_contact ac ON c.id = ac.acc_id  AND ac.module_type = 1) 
                         LEFT JOIN alt_depot ad ON c.id = ad.acc_id  AND ad.module_type = 1) 
                         LEFT JOIN finance fin ON c.id = fin.customer_id) 
+<<<<<<< HEAD
                     WHERE c.id = $attr[customer_id];";
+=======
+                    WHERE c.id = ".$attr['customer_id'].";";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //echo $EmailSql;exit;
                 $RSEmails = $this->objsetup->CSI($EmailSql);
                 if ($RSEmails->RecordCount() > 0) {
@@ -9350,6 +10137,10 @@ class Customer extends Xtreme {
                 $result['id'] = $Row['id'];
                 $result['type'] = $Row['type'];
                 $result['code'] = $Row['sale_invioce_code'];
+<<<<<<< HEAD
+=======
+                $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 /* if ($attr['type'] == 1)
                   $result['code'] = $Row['sale_order_code']; */
@@ -9381,6 +10172,143 @@ class Customer extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
+=======
+    function update_posted_sale_invoice($attr) {
+        error_reporting(E_ERROR);
+        $PurchaseOrderArr = $attr['PurchaseOrderArr'];
+
+        $this->objGeneral->mysql_clean($attr);
+        $response = array();
+
+        $update_id = $attr['id'];
+
+        if ($update_id > 0)
+            $update_check = "  AND tst.id != '" . $update_id . "'";
+
+        $sell_to_contact_id = ($attr['sell_to_contact_id'] != '') ? $attr['sell_to_contact_id'] : '0';
+        $sale_person_id = ($attr['sale_person_id'] != '') ? $attr['sale_person_id'] : '0';
+        $alt_depo_id = ($attr['alt_depo_id'] != '') ? $attr['alt_depo_id'] : '0';        
+       
+        $shipment_method_id = ($attr['shipment_method_id'] != '') ? $attr['shipment_method_id'] : '0';
+        $shipment_method_code = ($attr['shipment_method_code'] != '') ? $attr['shipment_method_code']: '';
+        $shipping_agent_id = ($attr['shipping_agent_id'] != '') ? $attr['shipping_agent_id'] : '0';
+        $freight_charges = ($attr['freight_charges'] != '') ? Round($attr['freight_charges'],2) : '0';
+        $delivery_time = ($attr['ship_delivery_time'] != '') ? $attr['ship_delivery_time'] : '0';
+
+        // $bill_to_contact_id = ($attr['bill_to_contact_id'] != '') ? $attr['bill_to_contact_id'] : '0';
+        $bill_to_country_id = ($attr['bill_to_country_id'] != '') ? $attr['bill_to_country_id'] : '0';
+        $ship_to_country_id = ($attr['ship_to_country_id'] != '') ? $attr['ship_to_country_id'] : '0';
+        // $payment_discount = ($attr['payment_discount'] != '') ? Round($attr['payment_discount'],2) : '0';    
+        
+        // $sell_to_loc_id = ($attr['sell_to_loc_id'] != '') ? $attr['sell_to_loc_id'] : '0';
+        // $bill_to_location_id = ($attr['bill_to_location_id'] != '') ? $attr['bill_to_location_id'] : '0';        
+        // $bill_to_finance_charges = ($attr['bill_to_finance_charges'] != '') ? Round($attr['bill_to_finance_charges'],2) : '0';
+        // $bill_to_finance_charges_type = ($attr['bill_to_finance_charges_type'] != '') ? $attr['bill_to_finance_charges_type'] : '0';
+        // $bill_to_insurance_charges = ($attr['bill_to_insurance_charges'] != '') ? Round($attr['bill_to_insurance_charges'],2) : '0';
+        // $bill_to_insurance_charges_type = ($attr['bill_to_insurance_charges_type'] != '') ? $attr['bill_to_insurance_charges_type'] : '0';
+        $bill_to_bank_id = ($attr['bill_to_bank_id'] != '') ? $attr['bill_to_bank_id'] : '0';
+        // $ship_to_contact_id = ($attr['ship_to_contact_id'] != '') ? $attr['ship_to_contact_id'] : '0';
+        $payment_method_id = ($attr['payment_method_id'] != '') ? $attr['payment_method_id'] : '0';      
+
+        
+        // payment_discount='".$payment_discount."',
+           
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $Sql = "UPDATE orders SET 
+                                sell_to_contact_no='".$attr['sell_to_contact_no']."', 
+                                sell_to_cust_name='".$attr['sell_to_cust_name']."',
+                                sell_to_address='".$attr['sell_to_address']."',
+                                sell_to_address2='".$attr['sell_to_address2']."',
+                                sell_to_city='".$attr['sell_to_city']."',
+                                sell_to_county='".$attr['sell_to_county']."',
+                                sell_to_post_code='".$attr['sell_to_post_code']."',
+                                country_id='".$attr['country_id']."',
+                                sell_to_contact_id='".$sell_to_contact_id."',
+                                sale_person_id='".$sale_person_id."',
+                                sale_person='".$attr['sale_person']."',
+                                cust_phone='".$attr['cust_phone']."',
+                                cust_email='".$attr['cust_email']."',
+                                cust_order_no='".$attr['cust_order_no']."',
+                                
+                                bill_to_name='".$attr['bill_to_name']."',
+                                bill_to_address='".$attr['bill_to_address']."',
+                                bill_to_address2='".$attr['bill_to_address2']."',
+                                bill_to_city='".$attr['bill_to_city']."',
+                                bill_to_county='".$attr['bill_to_county']."',
+                                bill_to_post_code='".$attr['bill_to_post_code']."',
+                                bill_to_country_id='".$attr['bill_to_country_id']."',
+                                bill_to_contact='".$attr['bill_to_contact']."',
+                                bill_to_contact_phone='".$attr['bill_to_contact_phone']."',
+                                bill_to_contact_email='".$attr['bill_to_contact_email']."',
+
+                                bill_to_bank_id='".$bill_to_bank_id."',
+                                bill_to_bank_name='".$attr['bill_to_bank_name']."',
+                                payment_method_code='".$attr['payment_method_code']."',
+                                payment_terms_code='".$attr['payment_terms_code']."',
+                                payment_method_id='".$payment_method_id."',
+                                
+                                
+                                ship_to_name='".$attr['ship_to_name']."',
+                                ship_to_address='".$attr['ship_to_address']."',
+                                ship_to_address2='".$attr['ship_to_address2']."',
+                                ship_to_city='".$attr['ship_to_city']."',
+                                ship_to_county='".$attr['ship_to_county']."',
+                                ship_to_post_code='".$attr['ship_to_post_code']."', 
+                                book_in_tel='".$attr['book_in_tel']."',
+                                comm_book_in_contact='".$attr['comm_book_in_contact']."',
+                                book_in_email='".$attr['book_in_email']."',
+                                ship_to_contact='".$attr['ship_to_contact']."',
+                                alt_depo_id='".$alt_depo_id."',
+
+                                shipment_method_id='".$shipment_method_id."',
+                                shipment_method_code='".$shipment_method_code."',
+                                shipping_agent_code='".$attr['shipping_agent_code']."',
+                                shipping_agent_id='".$shipping_agent_id."',
+                                container_no='".$attr['container_no']."',
+                                freight_charges='".$freight_charges."',
+                                delivery_time='".$delivery_time."', 
+                                delivery_date='" . $this->objGeneral->convert_date($attr['delivery_date']) . "',
+                                warehouse_booking_ref='".$attr['warehouse_booking_ref']."',
+                                customer_warehouse_ref='".$attr['customer_warehouse_ref']."',                                
+                                note='".$attr['note']."',
+                                externalnote='".$attr['externalnote']."',                                
+                                ChangedOn= UNIX_TIMESTAMP (NOW()),
+                                ChangedBy='" . $this->arrUser['id'] . "'
+
+                WHERE id = '".$attr['id']."'  
+                limit 1";
+    
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+        $id = $update_id;
+
+        if(sizeof($PurchaseOrderArr)>0){
+            $response2 = $this->objSrm->addLink_SO_PO($PurchaseOrderArr, $update_id, 2);
+        }
+        else{
+            $response2 = $this->objSrm->removeLink_SO_PO($update_id,2);
+        }
+
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        if ($id > 0) {
+            $response['ack'] = 1;
+            $response['id'] = $id;
+            $response['error'] = NULL;
+        } else {
+            $response['ack'] = 1;
+            $response['id'] = $update_id;
+            $response['error'] = 'No changes!';
+        }
+
+        return $response;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function add_order($attr) {
         //echo '<pre>';print_r($attr);exit;
         $PurchaseOrderArr = $attr['PurchaseOrderArr'];
@@ -9460,6 +10388,10 @@ class Customer extends Xtreme {
         $storage_cost = ($attr['stats']->storage_cost != '') ? Round(floatval(str_replace(",","",$attr['stats']->storage_cost)),2) : '0';
         $finance_charges = ($attr['stats']->finance_charges != '') ? Round(floatval(str_replace(",","",$attr['stats']->finance_charges)),2) : '0';
         $insurance_charges = ($attr['stats']->insurance_charges != '') ? Round(floatval(str_replace(",","",$attr['stats']->insurance_charges)),2) : '0';
+<<<<<<< HEAD
+=======
+        $grand_total = ($attr['grand_total'] != '') ? $attr['grand_total'] : '0';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                    
         $purchase_cost = ($attr['stats']->purchase_cost != '') ? Round(floatval(str_replace(",","",$attr['stats']->purchase_cost)),2) : '0';
         $org_purchase_cost = ($attr['stats']->org_purchase_cost != '') ? Round(floatval(str_replace(",","",$attr['stats']->org_purchase_cost)),2) : '0';
@@ -9755,10 +10687,22 @@ class Customer extends Xtreme {
                     stats_item_additional_cost_2_name = '$stats_item_additional_cost_2_name',
                     stats_item_additional_cost_3_name = '$stats_item_additional_cost_3_name',
                     stats_item_additional_cost_4_name = '$stats_item_additional_cost_4_name',
+<<<<<<< HEAD
                     stats_item_additional_cost_5_name = '$stats_item_additional_cost_5_name'
                     WHERE id = ".$attr['id']." AND type <=1 AND company_id='" . $this->arrUser['company_id'] . "' limit 1";
         }
 
+=======
+                    stats_item_additional_cost_5_name = '$stats_item_additional_cost_5_name'                   
+                    WHERE id = ".$attr['id']." AND type <=1 AND company_id='" . $this->arrUser['company_id'] . "' limit 1";
+        }
+
+        /* 
+        remaining_amount='" . $grand_total . "', 
+                            setteled_amount='0'
+        */
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql; exit;
         // $RS = $this->objsetup->CSI($Sql);
         $module_name = "";
@@ -9837,6 +10781,24 @@ class Customer extends Xtreme {
         }
         // $response2 = $this->objSrm->addLink_SO_PO($PurchaseOrderArr, $update_id, 2);
 
+<<<<<<< HEAD
+=======
+        if($update_id > 0){
+
+            $Sql2 = "UPDATE orders SET 
+                                    remaining_amount='" . $grand_total . "', 
+                                    setteled_amount='0'
+                     WHERE id = ".$update_id." AND 
+                            type <=1 AND
+                            company_id='" . $this->arrUser['company_id'] . "' AND 
+                            (setteled_amount = 0 OR setteled_amount IS NULL)  
+                     limit 1";
+
+            // echo $Sql2;exit;
+            $this->objsetup->CSI($Sql2);
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if(sizeof($PurchaseOrderArr)>0){
             $response2 = $this->objSrm->addLink_SO_PO($PurchaseOrderArr, $update_id, 2);
         }
@@ -9896,8 +10858,13 @@ class Customer extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
 // Order Invoicing
 //-------------------------------------------
+=======
+    // Order Invoicing
+    //-------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function order_invoice($attr) {
         $this->objGeneral->mysql_clean($attr);
@@ -9953,8 +10920,19 @@ class Customer extends Xtreme {
         $this->objGeneral->mysql_clean($attr);
 
         $SqlQuote = "UPDATE orders
+<<<<<<< HEAD
 				SET  net_amount='$attr[net_amount]',grand_total='$attr[grand_total]',tax_rate='$attr[tax_rate]',tax_amount='$attr[tax_amount]'
 				WHERE id = ".$attr['id']."";
+=======
+                        SET  
+                            net_amount='$attr[net_amount]',
+                            grand_total='$attr[grand_total]',
+                            tax_rate='$attr[tax_rate]',
+                            tax_amount='$attr[tax_amount]',
+                            remaining_amount='" . $attr[grand_total] . "', 
+                            setteled_amount='0'
+                        WHERE id = ".$attr['id']."";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $SqlQuote = "UPDATE order_details
 				SET  qty='$attr[qty]',unit_price='$attr[unit_price]',vat='$attr[vat]',vat_id='$attr[vat_id]',vat_value='$attr[vat_value]',item_name='$attr[item_name]',item_id='$attr[item_id]',total_price='$attr[total_price]',unit_measure='$attr[unit_measure]',unit_measure_id='$attr[unit_measure_id]',unit_parent_id='$attr[unit_parent_id]',unit_qty='$attr[unit_qty]',cat_id='$attr[cat_id]',order_id='".$attr['id']."',conv_unit_price='$attr[conv_unit_price]'
@@ -9963,6 +10941,19 @@ class Customer extends Xtreme {
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($SqlQuote);
 
+<<<<<<< HEAD
+=======
+        $Sqldel = " DELETE FROM payment_allocation 
+                    WHERE invoice_id = '" . $attr['id']. "' AND 
+                        company_id =	'" . $this->arrUser['company_id'] . "' AND 
+                        invoice_type =5 AND 
+                        document_type = 1 AND 
+                        module_type =1 AND 
+                        transaction_type = 1 ";
+        // echo $Sqldel ;exit;
+        $RS = $this->objsetup->CSI($Sqldel);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -11163,6 +12154,7 @@ class Customer extends Xtreme {
                 WHERE 1 " . $where_clause . "  ";
         // echo $Sql;exit;
 
+<<<<<<< HEAD
         // $subQueryForBuckets = "SELECT  c.id
         //     from sr_crm_listing  c
         //     where  c.id IS NOT NULL ";
@@ -11170,6 +12162,15 @@ class Customer extends Xtreme {
         //echo $subQueryForBuckets;exit;
 
         // $Sql .= " AND (tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IN ($subQueryForBuckets) )";
+=======
+        $subQueryForBuckets = "SELECT  c.id
+            from sr_crm_listing  c
+            where  c.id IS NOT NULL ";
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IN ($subQueryForBuckets) )";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql;exit;
 
@@ -11346,20 +12347,41 @@ class Customer extends Xtreme {
                                     END)
                                 FROM approval_history AS ah 
                                 WHERE ah.object_id=d.id AND ah.type = 8 ORDER BY ah.id DESC LIMIT 1
+<<<<<<< HEAD
                             ) AS approval_status_2
+=======
+                            ) AS approval_status_2,
+                            (CASE WHEN COALESCE((SELECT gltxn.vatPosted   FROM gl_account_txn AS gltxn  
+                             WHERE gltxn.object_id = d.id AND gltxn.company_id = d.company_id AND gltxn.type = 2 AND gltxn.vatPosted = 1 LIMIT 1),0)>0 THEN 'Yes'
+                             ELSE 'No' END) AS vatPosted,
+                             (SELECT sale_order_code FROM orders AS ord 
+                              WHERE ord.id = d.sale_invoice_id AND ord.company_id = d.company_id
+                              LIMIT 1) AS sale_order_code 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 FROM sr_return_order_listing_sel d
                 WHERE  d.status = 1  AND d.company_id=" . $this->arrUser['company_id'] . ") as tbl where 1 " . $where_clause . "  ";
         //echo $Sql;exit;
         
+<<<<<<< HEAD
         /* $subQueryForBuckets = " SELECT  c.id
+=======
+        $subQueryForBuckets = " SELECT  c.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 FROM sr_crm_listing c
                                 WHERE c.type IN (2,3) AND 
                                       c.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
         //echo $subQueryForBuckets;exit;
 
         $Sql .= " AND (tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IN ($subQueryForBuckets) )"; */
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.sell_to_cust_id IS NULL OR tbl.sell_to_cust_id = 0 OR tbl.sell_to_cust_id IN ($subQueryForBuckets) )";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql;exit;
 
@@ -11387,6 +12409,10 @@ class Customer extends Xtreme {
 
                 $result = array();
                 $result['id'] = $Row['id'];
+<<<<<<< HEAD
+=======
+                $result['vatPosted'] = $Row['vatPosted'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 /* $result['code'] = $Row['return_order_code'];
                   $result['Name'] = $Row['sell_to_cust_name'];
@@ -11415,6 +12441,10 @@ class Customer extends Xtreme {
                 $result['cust_phone'] = $Row['cust_phone'];
                 $result['cust_email'] = $Row['cust_email'];
                 $result['sale_invoice'] = $Row['sale_invoice'];
+<<<<<<< HEAD
+=======
+                $result['sale_order_code'] = $Row['sale_order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 
                 $result['prev_code'] = $Row['prev_code'];
                 $result['cust_order_no'] = $Row['cust_order_no'];
@@ -11693,6 +12723,7 @@ class Customer extends Xtreme {
 
         // check duplicate customer_order_no
         if($attr['cust_order_no']!=''){
+<<<<<<< HEAD
         if($attr['id']){
             $where = " AND id != '".$attr['id']."'";
         }else{
@@ -11706,6 +12737,21 @@ class Customer extends Xtreme {
             return $response; exit;
         }
     }
+=======
+            if($attr['id']){
+                $where = " AND id != '".$attr['id']."'";
+            }else{
+                $where = '';
+            }
+            $SqlC = "SELECT id FROM return_orders WHERE company_id=".$this->arrUser['company_id']." AND cust_order_no='$attr[cust_order_no]' ".$where;
+            $RSC = $this->objsetup->CSI($SqlC);
+            if ($RSC->RecordCount() > 0) {
+                $response['ack'] = 0;
+                $response['error'] = "Claim No. is already exist!";
+                return $response; exit;
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         
         
@@ -12071,6 +13117,7 @@ class Customer extends Xtreme {
 
         $Sql = "SELECT 
                     '1' AS type,
+<<<<<<< HEAD
                     o.id, o.sale_order_code, o.sale_invioce_code, o.posting_date, o.offer_date, o.delivery_date, o.grand_total, currency.code AS currency_code
                     FROM orders o 
                     LEFT JOIN currency ON currency.id = currency_id
@@ -12082,6 +13129,19 @@ class Customer extends Xtreme {
                         LEFT JOIN currency ON currency.id = currency_id
                 WHERE
                         o.moduleID = $attr[crm_id] AND
+=======
+                    o.id, o.sale_order_code, o.sale_invioce_code, o.posting_date, o.offer_date, o.delivery_date, o.tax_amount, o.net_amount, o.grand_total, currency.code AS currency_code
+                    FROM orders o 
+                    LEFT JOIN currency ON currency.id = currency_id
+                    
+                    WHERE o.sell_to_cust_id = ".$attr['crm_id']."  AND o.type IN (2,3) AND o.status = 1 AND o.sale_invioce_code IS NOT NULL  
+               UNION
+                SELECT '2' AS type, o.id, '-' AS sale_order_code, o.invoiceNo AS sale_invioce_code, o.posting_date, '-' AS offer_date, '-' AS delivery_date, 0 AS tax_amount, o.debitAmount AS net_amount, o.debitAmount AS grand_total, currency.code AS currency_code
+                    FROM opening_balance_customer AS o
+                        LEFT JOIN currency ON currency.id = currency_id
+                WHERE
+                        o.moduleID = ".$attr['crm_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.docType = 1 AND
                         o.type = 1 AND
                         postStatus = 1   
@@ -12103,6 +13163,11 @@ class Customer extends Xtreme {
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['offer_date']);
                 $result['delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['delivery_date']);
                 $result['currency_code'] = $Row['currency_code'];
+<<<<<<< HEAD
+=======
+                $result['tax_amount'] = $Row['tax_amount'];
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['amount'] = $Row['grand_total'];
                 $result['type'] = $Row['type'];
 
@@ -16126,8 +17191,175 @@ class Customer extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
 // Order Invoicing
 //-------------------------------------------
+=======
+    // update Credit Note Invoice After Posting
+    //-------------------------------------------
+
+    function updateCreditNoteInvoice($attr) {
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $PurchaseOrderArr = $attr['PurchaseOrderArr'];
+
+        $this->objGeneral->mysql_clean($attr);
+
+        $response = array();
+
+        $update_id = $attr['id'];
+
+        $sell_to_contact_id = ($attr['sell_to_contact_id'] != '') ? $attr['sell_to_contact_id'] : '0';
+        // $delivery_time = ($attr['delivery_time'] != '') ? $attr['delivery_time'] : '0';
+        $shipment_method_id = ($attr['shipment_method_id']>0) ? $attr['shipment_method_id'] : '0';
+        $shipment_method_code = ($attr['shipment_method_code'] != '') ? $attr['shipment_method_code'] : '';
+        $shipping_agent_id = ($attr['shipping_agent_id'] >0) ? $attr['shipping_agent_id'] : '0';
+        $freight_charges = ($attr['freight_charges'] != '') ? Round($attr['freight_charges'],2) : '0';
+        $alt_depo_id = ($attr['alt_depo_id'] != '') ? $attr['alt_depo_id'] : '0';
+        $bill_to_cust_id = ($attr['bill_to_cust_id'] != '') ? $attr['bill_to_cust_id'] : '0';
+        $bill_to_contact_id = ($attr['bill_to_contact_id'] != '') ? $attr['bill_to_contact_id'] : '0';
+        // $currency_ids = ($attr['currency_ids'] != '') ? $attr['currency_ids'] : '0';
+        $sale_person_id = ($attr['sale_person_id'] != '') ? $attr['sale_person_id'] : '0';
+        $country_id = ($attr['country_id'] != '') ? $attr['country_id'] : '0';
+
+        $ship_to_contact_id = ($attr['ship_to_contact_id'] != '') ? $attr['ship_to_contact_id'] : '0';
+        $payment_method_id = ($attr['payment_method_id'] != '') ? $attr['payment_method_id'] : '0';
+        $bill_to_country_id = ($attr['bill_to_country_id'] != '') ? $attr['bill_to_country_id'] : '0';
+        $ship_to_country_id = ($attr['ship_to_country_id'] != '') ? $attr['ship_to_country_id'] : '0';       
+
+        $Sql = "UPDATE return_orders
+                    SET
+                    sell_to_contact_id='$sell_to_contact_id',
+                    sell_to_contact_no='$attr[sell_to_contact_no]',
+                    sell_to_cust_name='$attr[sell_to_cust_name]',
+                    sell_to_address='$attr[sell_to_address]',
+                    -- delivery_time='$delivery_time',
+                    sell_to_address2='$attr[sell_to_address2]',
+                    cust_order_no='$attr[cust_order_no]',
+                    sell_to_city='$attr[sell_to_city]',
+                    sell_to_county='$attr[sell_to_county]',
+                    sale_person_id='$sale_person_id',
+                    sale_person='$attr[sale_person]',
+                    cust_phone='$attr[cust_phone]',
+                    cust_fax='$attr[cust_fax]',
+                    cust_email='$attr[cust_email]',
+                    comm_book_in_no='$attr[comm_book_in_no]',
+                    book_in_email='$attr[book_in_email]',
+                    comm_book_in_contact='$attr[comm_book_in_contact]',
+                    sell_to_post_code='$attr[sell_to_post_code]',
+                    country_id='$country_id', 
+                    bill_to_country_id = '$bill_to_country_id',
+                    bill_to_contact_phone='$attr[bill_to_contact_phone]',
+                    bill_to_contact_email='$attr[bill_to_contact_email]',
+                    bill_to_contact='$attr[bill_to_contact]',               
+
+                    bill_to_name='$attr[bill_to_name]',
+                    bill_to_address='$attr[bill_to_address]', 
+                    bill_to_address2='$attr[bill_to_address2]',  
+                    bill_to_city='$attr[bill_to_city]',
+                    bill_to_county='$attr[bill_to_county]',
+                    bill_to_post_code='$attr[bill_to_post_code]',
+                    alt_depo_id='$alt_depo_id',
+                    shipment_method_id='$shipment_method_id',
+                    shipment_method_code='$shipment_method_code',
+                    shipping_agent_code='$attr[shipping_agent_code]',
+                    ship_to_name='$attr[ship_to_name]',
+                    shipping_agent_id='$shipping_agent_id',
+                    ship_to_address='$attr[ship_to_address]',
+                    ship_to_address2='$attr[ship_to_address2]',
+                    freight_charges='$freight_charges',
+                    ship_to_city='$attr[ship_to_city]',
+                    container_no='$attr[container_no]',
+                    ship_to_county='$attr[ship_to_county]',
+                    ship_to_post_code='$attr[ship_to_post_code]',
+                    ship_to_country_id = '$ship_to_country_id',
+                    ship_to_contact='$attr[ship_to_contact]',
+                    ship_delivery_time='$attr[ship_delivery_time]',
+                    book_in_tel='$attr[book_in_tel]',
+                    warehouse_booking_ref='$attr[warehouse_booking_ref]',
+                    customer_warehouse_ref='$attr[customer_warehouse_ref]',
+                    note='$attr[note]',                    
+                    ChangedBy = '" . $this->arrUser['id'] . "',
+                    ChangedOn = UNIX_TIMESTAMP (NOW()),               
+                    
+                    delivery_date='" . $this->objGeneral->convert_date($attr['delivery_date']) . "'
+
+                WHERE id = ".$attr['id']." 
+                limit 1";
+        
+
+        // echo $Sql; exit;
+        // $RS = $this->objsetup->CSI($Sql);
+
+        $RS = $this->objsetup->CSI($Sql, "sale_return", sr_AddEditPermission);
+        
+        $id = $update_id;
+
+        /* if(sizeof($PurchaseOrderArr)>0){
+            $response2 = $this->objSrm->addLink_SO_PO($PurchaseOrderArr, $update_id, 2);
+        }
+        else{
+            $response2 = $this->objSrm->removeLink_SO_PO($update_id,2);
+        } */
+
+
+        if ($id > 0) {
+            $response['ack'] = 1;
+            $response['id'] = $id;
+            $response['return_order_code'] = $return_order_code;
+            $response['error'] = NULL;
+            $this->Conn->commitTrans();
+            $this->Conn->autoCommit = true;
+
+            $srLogTrace = array();
+
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = "";
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        } else {
+            $response['ack'] = 1;
+            $response['id'] = $update_id;
+            $response['return_order_code'] = $return_order_code;
+            $response['order_date'] = '';
+            $response['error'] = 'No changes!';
+            $this->Conn->commitTrans();
+            $this->Conn->autoCommit = true;
+
+            $srLogTrace = array();
+
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = "";
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        }
+
+        return $response;
+    }
+
+    // Order Invoicing
+    //-------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function order_return_invoice($attr) {
         $this->objGeneral->mysql_clean($attr);
@@ -16625,12 +17857,21 @@ class Customer extends Xtreme {
                         prd.status NOT IN(0, -1) AND
                         od.order_id = " . $attr['invoice_id'];
             // echo $Sql;exit;
+<<<<<<< HEAD
             /* $subQueryForBuckets = "SELECT  prd.id
                                FROM productcache prd
                                WHERE prd.id IS NOT NULL  AND 
                                      prd.company_id=" . $this->arrUser['company_id'] . "";
             //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 11);
             $Sql .= " AND (prd.id IN ($subQueryForBuckets)) "; */
+=======
+            $subQueryForBuckets = "SELECT  prd.id
+                               FROM productcache prd
+                               WHERE prd.id IS NOT NULL  AND 
+                                     prd.company_id=" . $this->arrUser['company_id'] . "";
+            $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 11);
+            $Sql .= " AND (prd.id IN ($subQueryForBuckets)) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // echo $Sql;exit;
 
             $RS = $this->objsetup->CSI($Sql);
@@ -16661,7 +17902,11 @@ class Customer extends Xtreme {
             /* $Sql = "SELECT od.order_id, prd.*
               FROM order_details AS od
               LEFT JOIN sr_product_warehouse_improved AS prd ON od.item_id = prd.id
+<<<<<<< HEAD
               JOIN orders o ON o.id = od.`order_id` AND o.type IN (2,3) AND o.`sell_to_cust_id` = $attr[crm_id]
+=======
+              JOIN orders o ON o.id = od.`order_id` AND o.type IN (2,3) AND o.`sell_to_cust_id` = ".$attr['crm_id']."
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
               WHERE prd.company_id=" . $this->arrUser['company_id']; */
             /* $Sql = "SELECT od.order_id, od.qty, od.unit_measure, od.unit_price, od.discount_type, od.discount, od.warehouse, od.warehouse_id, prd.*
               FROM order_details AS od
@@ -16736,7 +17981,11 @@ class Customer extends Xtreme {
                 if ((isset($arr_attr['region_id']) && $arr_attr['region_id'] == $value->region_id) || (isset($arr_attr['segment_id']) && $arr_attr['segment_id']
                         == $value->segment_id) || (isset($arr_attr['buying_group_id']) && $arr_attr['buying_group_id'] == $value->buying_group_id)) {
                     $Sql = "INSERT INTO excluded_customer
+<<<<<<< HEAD
 						SET crm_id=" . $value->id . ",region_id='$arr_attr[region_id]',customer_item_info_id='$arr_attr[customer_item_info_id]',segment_id='$arr_attr[segment_id]',buying_group='$arr_attr[buying_group_id]',product_id='$arr_attr[product_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+						SET crm_id=" . $value->id . ",region_id='$arr_attr[region_id]',customer_item_info_id='$arr_attr[customer_item_info_id]',segment_id='$arr_attr[segment_id]',buying_group='$arr_attr[buying_group_id]',product_id='".$arr_attr['product_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $RS = $this->objsetup->CSI($Sql);
                 }
             }
@@ -17411,7 +18660,11 @@ class Customer extends Xtreme {
             $chkSql = "SELECT *
 			FROM price_adjustment as pd
 			INNER JOIN price_adjustment_detail as spd on(pd.id = spd.price_adjustment_id)
+<<<<<<< HEAD
 			WHERE spd.crm_id='$attr[crm_id]' AND spd.product_id = '$attr[product_id]' AND spd.customer_product_type_id = '$attr[customer_product_type_id]' AND spd.product_promotion_type_id = '$attr[product_promotion_type_id]' AND 
+=======
+			WHERE spd.crm_id='".$attr['crm_id']."' AND spd.product_id = '".$attr['product_id']."' AND spd.customer_product_type_id = '$attr[customer_product_type_id]' AND spd.product_promotion_type_id = '$attr[product_promotion_type_id]' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			
 			(( '" . $start_date . "' between pd.start_date and pd.end_date) or ('" . $end_date . "' between pd.start_date and pd.end_date) or ('" . $start_date . "' <= pd.start_date and '" . $end_date . "' >= pd.end_date ))  
 			
@@ -17437,7 +18690,11 @@ class Customer extends Xtreme {
 
             $prodSql = "SELECT id
 				FROM product
+<<<<<<< HEAD
 				WHERE " . $column . " = '$attr[product_id]' AND status != 0";
+=======
+				WHERE " . $column . " = '".$attr['product_id']."' AND status != 0";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 //echo $prodSql;exit;
             $prodRS = $this->objsetup->CSI($prodSql);
             $arr_ids = array();
@@ -17452,7 +18709,11 @@ class Customer extends Xtreme {
             if (!empty($strProdIds)) {
                 $chkSql = "SELECT *
 					FROM customer_item_info
+<<<<<<< HEAD
 					WHERE product_id IN (" . $strProdIds . ") AND customer_product_type_id = '$attr[customer_product_type_id]' AND crm_id = '$attr[crm_id]'";
+=======
+					WHERE product_id IN (" . $strProdIds . ") AND customer_product_type_id = '$attr[customer_product_type_id]' AND crm_id = '".$attr['crm_id']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //and (start_date <= '".strtotime($start_date)."' and end_date >= '".strtotime($end_date)."')
                 // echo $chkSql; exit;
@@ -17469,7 +18730,11 @@ class Customer extends Xtreme {
 
             /* else{ */
             $Sql = "INSERT INTO price_adjustment_detail
+<<<<<<< HEAD
 				SET price_adjustment_id = '$attr[sale_promotion_id]',crm_id = '$attr[crm_id]',product_id = '$attr[product_id]',crm_alt_location_id ='$attr[crm_alt_location_id]',product_promotion_type_id = '$attr[product_promotion_type_id]',customer_product_type_id = '$attr[customer_product_type_id]',created_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET price_adjustment_id = '$attr[sale_promotion_id]',crm_id = '".$attr['crm_id']."',product_id = '".$attr['product_id']."',crm_alt_location_id ='$attr[crm_alt_location_id]',product_promotion_type_id = '$attr[product_promotion_type_id]',customer_product_type_id = '$attr[customer_product_type_id]',created_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //}
             // echo $Sql."<hr>"; exit;
             $RS = $this->objsetup->CSI($Sql);
@@ -17559,7 +18824,11 @@ class Customer extends Xtreme {
                 if ((isset($arr_attr['region_id']) && $arr_attr['region_id'] == $value->region_id) || (isset($arr_attr['segment_id']) && $arr_attr['segment_id']
                         == $value->segment_id) || (isset($arr_attr['buying_group_id']) && $arr_attr['buying_group_id'] == $value->buying_group_id)) {
                     $Sql = "INSERT INTO price_adjustment_excluded_customer
+<<<<<<< HEAD
 					SET crm_id=" . $value->id . ",region_id='$arr_attr[region_id]',price_adjustment_id='$arr_attr[sale_promotion_id]',segment_id='$arr_attr[segment_id]',buying_group='$arr_attr[buying_group_id]',product_id='$arr_attr[product_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET crm_id=" . $value->id . ",region_id='$arr_attr[region_id]',price_adjustment_id='$arr_attr[sale_promotion_id]',segment_id='$arr_attr[segment_id]',buying_group='$arr_attr[buying_group_id]',product_id='".$arr_attr['product_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     echo $Sql . "<hr>";
                     $RS = $this->objsetup->CSI($Sql);
                 }
@@ -19163,7 +20432,11 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                 $volume_permission = $rs4->fields['volume_permission'];
             }
 
+<<<<<<< HEAD
             // $Sql = "DELETE FROM return_order_details WHERE id = $attr[update_id] ";
+=======
+            // $Sql = "DELETE FROM return_order_details WHERE id = ".$attr['update_id']." ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "DELETE FROM return_order_details 
                         WHERE id = ".$attr['update_id']."  AND 
                             company_id = " . $this->arrUser['company_id']." AND
@@ -19180,7 +20453,11 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                             SET obs.temp_allocated_qty_returned = obs.temp_allocated_qty_returned - (SELECT IFNULL(SUM(quantity), 0) 
                                                     FROM warehouse_allocation AS wa
                                                     WHERE
+<<<<<<< HEAD
                                                         wa.sale_order_detail_id = $attr[update_id] AND
+=======
+                                                        wa.sale_order_detail_id = ".$attr['update_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         wa.order_id = ".$attr['order_id']." AND 
                                                         wa.product_id = ".$attr['id']." AND 
                                                         wa.type = 2 AND
@@ -19190,7 +20467,11 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                             WHERE obs.id IN(SELECT wa.opBalncID 
                                                     FROM warehouse_allocation AS wa
                                                     WHERE
+<<<<<<< HEAD
                                                         wa.sale_order_detail_id = $attr[update_id] AND
+=======
+                                                        wa.sale_order_detail_id = ".$attr['update_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         wa.order_id = ".$attr['order_id']." AND 
                                                         wa.product_id = ".$attr['id']." AND 
                                                         wa.type = 2 AND
@@ -19366,7 +20647,11 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                         ELSE
                             posting_date
                     END) AS posting_date
+<<<<<<< HEAD
                          FROM orders WHERE company_id= ".$this->arrUser['company_id']." AND sell_to_cust_id = ". $attr[customerId] ." AND STATUS = 1 
+=======
+                         FROM orders WHERE company_id= ".$this->arrUser['company_id']." AND sell_to_cust_id = ". $attr['customerId'] ." AND STATUS = 1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     ORDER BY (CASE WHEN type = 0 THEN offer_date ELSE posting_date END) DESC, id DESC LIMIT 1";
             $RS = $this->objsetup->CSI($Sql);
 
@@ -19446,10 +20731,17 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                 where  c.type IN (".$account_type.") AND $code_check  IS NOT NULL AND  c.statusp = 'Active' AND
                       c.company_id=" . $this->arrUser['company_id'] . " GROUP BY c.id ) as c WHERE 1  " . $where_clause . " ";
         
+<<<<<<< HEAD
         /* if($account_type == "1")
             $Sql = $this->objsetup->whereClauseAppender($Sql, 40);
         else
             $Sql = $this->objsetup->whereClauseAppender($Sql, 48); */
+=======
+        if($account_type == "1")
+            $Sql = $this->objsetup->whereClauseAppender($Sql, 40);
+        else
+            $Sql = $this->objsetup->whereClauseAppender($Sql, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total_limit = pagination_limit;
 
@@ -19703,7 +20995,11 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
                 FROM sr_crm_listing  c
                 where  c.type IN (2, 3) AND c.customer_code IS NOT NULL AND c.statusp = 'Active' AND
                       c.company_id=" . $this->arrUser['company_id'] . "  GROUP BY c.id ) as c WHERE 1  " . $where_clause . " ";
+<<<<<<< HEAD
         //$Sql = $this->objsetup->whereClauseAppender($Sql, 48);
+=======
+        $Sql = $this->objsetup->whereClauseAppender($Sql, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total_limit = pagination_limit;
 
@@ -19953,6 +21249,921 @@ where   (c.qty-c.sold_qty) >0	 and c.item_id=$item->id and c.cost_type=1 order b
         return $response;
     }
 
+<<<<<<< HEAD
+=======
+    /* function addCusJournalInvoice($attr) 
+    {
+        // error_reporting(E_ERROR);
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;      
+        $dataArray = $attr['selectdata'];
+        // echo '<pre>'; print_r($dataArray);
+        $parent_id = $dataArray->parent_id;       
+
+        $update_check = '';
+
+        if ($parent_id > 0)
+            $update_check = " AND tst.id <> '" . $parent_id . "'";
+
+        $data_pass = "  tst.acc_code='" . $dataArray->acc_code . "'  and 
+                        tst.module_type='1' and
+                        tst.status=1 and  
+                        tst.type=1  $update_check ";
+
+        // echo $data_pass;
+
+        $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
+
+        if ($total > 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record Already Exists. ';
+            return $response; 
+        }
+
+        // $moduleForPermission = "supplier_journal";
+
+        $modulePermission = "";
+        $invoice_id = (isset($dataArray->invoice_id) && $dataArray->invoice_id != '') ? $dataArray->invoice_id : '0';
+        $account_id = (isset($dataArray->account_id) && $dataArray->account_id != '') ? $dataArray->account_id : '0';
+        $account_no = addslashes($dataArray->account_no);
+        $account_name = addslashes($dataArray->account_name);
+
+        $acc_code = addslashes($dataArray->acc_code);
+
+        $balancing_account_id = (isset($dataArray->balancing_account_id) && $dataArray->balancing_account_id != '') ? $dataArray->balancing_account_id : '0';
+        $balancing_account_code = addslashes($dataArray->balancing_account_code);
+        $balancing_account_name = addslashes($dataArray->balancing_account_name);
+
+        $converted_price = (isset($dataArray->converted_price) && floatval($dataArray->converted_price) > 0) ? Round($dataArray->converted_price,2) : '0';
+        $credit_amount = (isset($dataArray->credit_amount) && $dataArray->credit_amount != '') ? Round($dataArray->credit_amount,2) : 'NULL';
+        $allocated_amount = (isset($dataArray->allocated_amount) && $dataArray->allocated_amount != '') ? Round($dataArray->allocated_amount,2) : 0;
+        $debit_amount = 'NULL';
+
+        $transaction_type = (isset($dataArray->transaction_type) && $dataArray->transaction_type != '') ? $dataArray->transaction_type : '0';
+        $document_type = (isset($dataArray->document_type) && $dataArray->document_type != '') ? $dataArray->document_type : '0';
+        $cnv_rate = (isset($dataArray->cnv_rate) && $dataArray->cnv_rate != '') ? $dataArray->cnv_rate : '0';
+        $converted_currency_id = (isset($dataArray->converted_currency_id) && $dataArray->converted_currency_id != '') ? $dataArray->converted_currency_id : '0';
+        $posting_date = $this->objGeneral->convert_date($dataArray->posting_date);
+        $allocation_date = $this->objGeneral->convert_date($dataArray->allocation_date);
+
+        $payment_detail_id = (isset($dataArray->payment_detail_id) && $dataArray->payment_detail_id != '') ? $dataArray->payment_detail_id : '0';
+        $posting_group_id = (isset($dataArray->posting_group_id) && $dataArray->posting_group_id != '') ? $dataArray->posting_group_id : '0';
+        $currency_id = (isset($dataArray->currency_id) && $dataArray->currency_id->id != '') ? $dataArray->currency_id->id : '0';
+        $document_no = addslashes($dataArray->document_no);   
+
+        if($parent_id >0){
+                        
+
+            if ($payment_detail_id == 0) {
+
+                // $modulePermission = sr_AddPermission;
+                $Sql = "INSERT INTO payment_details
+                            (parent_id,
+                            transaction_type,
+                            document_type,
+                            document_no,
+                            company_id,
+                            user_id,
+                            account_id,
+                            account_no,
+                            account_name,
+                            posting_date,
+                            created_date,
+                            currency_id,
+                            posting_group_id,
+                            debit_amount,
+                            credit_amount,
+                            converted_price,
+                            converted_currency_id,
+                            cnv_rate,
+                            balancing_account_id,
+                            balancing_account_code,
+                            balancing_account_name,
+                            invoice_id,
+                            status,
+                            posting_dateUnConv)
+                        SELECT 
+                            \"".$parent_id."\",
+                                $transaction_type,
+                                $document_type,
+                                \"$document_no\",
+                                " . $this->arrUser['company_id'] . ",
+                                " . $this->arrUser['id'] . ",
+                                $account_id,
+                                \"$account_no\",
+                                \"$account_name\",
+                                \"$posting_date\",
+                            " . current_date . " ,
+                                " . $currency_id . ",
+                                " . $posting_group_id . ",
+                                $debit_amount,
+                                $credit_amount,
+                                $converted_price,
+                            $converted_currency_id,
+                                $cnv_rate,
+                                $balancing_account_id,
+                            \"$balancing_account_code\",
+                            \"$balancing_account_name\",
+                            '".$invoice_id."',
+                            1,
+                            DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                        FROM widgetone
+                        WHERE
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                        LIMIT 1";
+
+                // echo $Sql;exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
+
+                $payment_detail_id = $this->Conn->Insert_ID();
+
+            } else {
+
+                // $modulePermission = sr_AddEditPermission;
+                $Sql = "UPDATE payment_details SET
+                            transaction_type =  $transaction_type,
+                            document_type =  $document_type,
+                            document_no =  '" . $document_no . "',
+                            account_id =  $account_id,
+                            account_no =  '" . $account_no. "',
+                            account_name =  '" . $account_name . "',
+                            posting_date =  '" . $posting_date . "',
+                            currency_id =  " . $currency_id . ",
+                            posting_group_id =  " . $posting_group_id . ",
+                            debit_amount =  $debit_amount,
+                            credit_amount =  $credit_amount,
+                            converted_price =  $converted_price,
+                            converted_currency_id = $converted_currency_id,
+                            cnv_rate =  $cnv_rate,
+                            balancing_account_id =   $balancing_account_id,
+                            balancing_account_code = '" . $balancing_account_code . "',
+                            balancing_account_name = '" . $balancing_account_name . "',
+                            posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                            invoice_id = '".$invoice_id."'
+                            WHERE id = $payment_detail_id AND status = 1 AND
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                                AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
+
+                // echo $Sql;//exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddEditPermission);
+            }
+
+            if($payment_detail_id>0){
+
+                $response['ack'] = 1;
+
+                
+                // $invoice_type = 5;
+                // $module_type = 1;
+                // $transaction_type = 1;
+                // $document_type = 1;
+                // $total_allocated = 0;
+
+                // $TRANSACTION_UNSUCCESSFUL = 0;
+
+                // $del_allocation_entry = "DELETE FROM payment_allocation 
+                //                          WHERE  payment_id = $parent_id AND payment_detail_id = $payment_detail_id AND invoice_id = $invoice_id AND
+                //                                 payment_type =1 AND invoice_type = 5 AND document_type = 1 AND module_type = 1 AND transaction_type =1 AND
+                //                                 company_id = ".$this->arrUser['company_id']." AND status =0";
+
+                // $RS = $this->objsetup->CSI($del_allocation_entry);  
+
+                // $total_allocated += $allocated_amount;
+                // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
+                // // echo $Check_Sql; 
+                // $RS1 = $this->objsetup->CSI($Check_Sql);
+                // if($RS1->fields['invoice_value'] < 0)
+                // {
+                //     $TRANSACTION_UNSUCCESSFUL = 1;
+                // }
+
+                // if($TRANSACTION_UNSUCCESSFUL == 0)
+                // {
+                //     $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                //             VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                //             ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
+                //     $RS = $this->objsetup->CSI($Sql);
+
+                //     // echo $Sql; 
+                //     $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                //     $RS = $this->objsetup->CSI($allocation_entries);
+
+                    
+                //     $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                //     $RS = $this->objsetup->CSI($allocation_entries);                    
+                // }
+                // else{
+
+                //     $response['ack'] = 0;
+                //     $response['error'] = 'Journal can not be created';
+    
+                //     $srLogTrace = array();
+    
+                //     $srLogTrace['ErrorCode'] = '';
+                //     $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                //     $srLogTrace['Function'] = __FUNCTION__;
+                //     $srLogTrace['CLASS'] = __CLASS__;
+                //     $srLogTrace['Parameter1'] = 'Exit';
+                //     $srLogTrace['Parameter2'] = 'parent:';
+                //     $srLogTrace['ErrorMessage'] = 'Journal can not be created';
+    
+                //     $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                //     return $response;
+                // } 
+
+            }
+            else{
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 1';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 1';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }           
+           
+        }
+        else{
+
+            $modulePermission = sr_AddPermission;
+            // $msg = 'Inserted';
+            $Sql = "INSERT INTO gl_journal_receipt 
+                                        SET 
+                                            create_date='" . current_date . "',
+                                            acc_code='" . $acc_code . "',
+                                            company_id='" . $this->arrUser['company_id'] . "',  
+                                            user_id='" . $this->arrUser['id'] . "',
+                                            type=1,
+                                            template_id='0',
+                                            module_type= '1',
+                                            sub_module_type= '0',
+                                            invoice_id='" . $invoice_id . "',
+                                            transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2)";
+            // echo  $Sql;exit;
+            $RS = $this->objsetup->CSI($Sql, $moduleForPermission, $modulePermission);            
+            $parent_id = $this->Conn->Insert_ID();
+
+            if($parent_id>0){
+
+                if ($payment_detail_id == 0) {
+
+                    // $modulePermission = sr_AddPermission;
+                    $Sql = "INSERT INTO payment_details
+                                (parent_id,
+                                transaction_type,
+                                document_type,
+                                document_no,
+                                company_id,
+                                user_id,
+                                account_id,
+                                account_no,
+                                account_name,
+                                posting_date,
+                                created_date,
+                                currency_id,
+                                posting_group_id,
+                                debit_amount,
+                                credit_amount,
+                                converted_price,
+                                converted_currency_id,
+                                cnv_rate,
+                                balancing_account_id,
+                                balancing_account_code,
+                                balancing_account_name,
+                                invoice_id,
+                                status,
+                                posting_dateUnConv)
+                            SELECT 
+                                \"".$parent_id."\",
+                                    $transaction_type,
+                                    $document_type,
+                                    \"$document_no\",
+                                    " . $this->arrUser['company_id'] . ",
+                                    " . $this->arrUser['id'] . ",
+                                    $account_id,
+                                    \"$account_no\",
+                                    \"$account_name\",
+                                    \"$posting_date\",
+                                " . current_date . " ,
+                                    " . $currency_id . ",
+                                    " . $posting_group_id . ",
+                                    $debit_amount,
+                                    $credit_amount,
+                                    $converted_price,
+                                $converted_currency_id,
+                                    $cnv_rate,
+                                    $balancing_account_id,
+                                \"$balancing_account_code\",
+                                \"$balancing_account_name\",
+                                '".$invoice_id."',
+                                1,
+                                DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                            FROM widgetone
+                            WHERE
+                                (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                            LIMIT 1";
+    
+                    // echo $Sql;exit;
+                    $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
+    
+                    $payment_detail_id = $this->Conn->Insert_ID();
+    
+                } else {
+    
+                    // $modulePermission = sr_AddEditPermission;
+                    $Sql = "UPDATE payment_details SET
+                                transaction_type =  $transaction_type,
+                                document_type =  $document_type,
+                                document_no =  '" . $document_no . "',
+                                account_id =  $account_id,
+                                account_no =  '" . $account_no. "',
+                                account_name =  '" . $account_name . "',
+                                posting_date =  '" . $posting_date . "',
+                                currency_id =  " . $currency_id . ",
+                                posting_group_id =  " . $posting_group_id . ",
+                                debit_amount =  $debit_amount,
+                                credit_amount =  $credit_amount,
+                                converted_price =  $converted_price,
+                                converted_currency_id = $converted_currency_id,
+                                cnv_rate =  $cnv_rate,
+                                balancing_account_id =   $balancing_account_id,
+                                balancing_account_code = '" . $balancing_account_code . "',
+                                balancing_account_name = '" . $balancing_account_name . "',
+                                posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                                invoice_id = '".$invoice_id."'
+                                WHERE id = $payment_detail_id AND status = 1 AND
+                                (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                                    AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
+    
+                    // echo $Sql;exit;
+                    $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddEditPermission);
+                }
+    
+                if($payment_detail_id>0){
+
+                    $response['ack'] = 1;
+    
+                    
+                    // $invoice_type = 5;
+                    // $module_type = 1;
+                    // $transaction_type = 1;
+                    // $document_type = 1;
+                    // $total_allocated = 0;
+    
+                    // $TRANSACTION_UNSUCCESSFUL = 0;
+    
+                    // $total_allocated += $allocated_amount;
+                    // // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";                
+                     
+                    // $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01',".$this->arrUser['company_id'].", $document_type) + $allocated_amount), 2)) AS invoice_value FROM orders WHERE id=$invoice_id";
+            
+                    // $RS1 = $this->objsetup->CSI($Check_Sql);
+                    // if($RS1->fields['invoice_value'] < 0)
+                    // {
+                    //     $TRANSACTION_UNSUCCESSFUL = 1;
+                    // }
+    
+                    // if($TRANSACTION_UNSUCCESSFUL == 0)
+                    // {
+                    //     $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                    //             VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                    //             ".$this->arrUser['company_id'].",".$this->arrUser['id'].", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), ".$this->arrUser['id'].", UNIX_TIMESTAMP (NOW()))";
+                    //     $RS = $this->objsetup->CSI($Sql);
+    
+    
+                    //     $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                    //     $RS = $this->objsetup->CSI($allocation_entries);
+    
+                        
+                    //     $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                    //     $RS = $this->objsetup->CSI($allocation_entries);                    
+                    // }
+                    // else{
+    
+                    //     $response['ack'] = 0;
+                    //     $response['error'] = 'Journal can not be created 2';        
+                    //     $srLogTrace = array();
+        
+                    //     $srLogTrace['ErrorCode'] = '';
+                    //     $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    //     $srLogTrace['Function'] = __FUNCTION__;
+                    //     $srLogTrace['CLASS'] = __CLASS__;
+                    //     $srLogTrace['Parameter1'] = 'Exit';
+                    //     $srLogTrace['Parameter2'] = 'parent:';
+                    //     $srLogTrace['ErrorMessage'] = 'Journal can not be created 2';
+        
+                    //     $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    //     return $response;
+                    // } 
+    
+                }
+                else{
+    
+                    $response['ack'] = 0;
+                    $response['error'] = 'Journal can not be created 3';    
+                    $srLogTrace = array();
+    
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['Parameter2'] = 'parent:';
+                    $srLogTrace['ErrorMessage'] = 'Journal can not be created 3';
+    
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                }
+            }
+            else{
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 4 ';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 4';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }
+        }
+
+        $response['ack'] = 1;
+        $response['error'] = 'Journal created successfully';
+        $response['parent_id'] = $parent_id;
+        $response['payment_detail_id'] = $payment_detail_id;
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = 'Journal created successfully';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    } */
+
+
+    function addCusJournalInvoice($attr) 
+    {
+        // error_reporting(E_ERROR);
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;      
+        $dataArray = $attr['selectdata'];
+        // echo '<pre>'; print_r($dataArray);
+        $parent_id = $attr['parent_id'];      
+
+        $update_check = '';
+
+        if ($parent_id > 0){
+            $update_check = " AND tst.id <> '" . $parent_id . "'";            
+        }
+        else{
+            $modulePermission = sr_AddPermission;
+            // $msg = 'Inserted';
+            $Sql = "INSERT INTO gl_journal_receipt 
+                                        SET 
+                                            create_date='" . current_date . "',
+                                            acc_code='" . $acc_code . "',
+                                            company_id='" . $this->arrUser['company_id'] . "',  
+                                            user_id='" . $this->arrUser['id'] . "',
+                                            type=1,
+                                            template_id='0',
+                                            module_type= '1',
+                                            sub_module_type= '0',
+                                            invoice_id='" . $invoice_id . "',
+                                            transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2)";
+            // echo  $Sql;exit;
+            $RS = $this->objsetup->CSI($Sql, $moduleForPermission, $modulePermission);            
+            $parent_id = $this->Conn->Insert_ID();
+
+            if(!($parent_id>0)){
+
+                $this->Conn->rollbackTrans();
+                $this->Conn->autoCommit = true;
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 4 ';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 4';
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);               
+
+                return $response;
+            }
+        }
+
+        $data_pass = "  tst.acc_code='" . $dataArray->acc_code . "'  and 
+                        tst.module_type='1' and
+                        tst.status=1 and  
+                        tst.type=1  $update_check ";
+
+
+        $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
+
+        if ($total > 0) {
+
+            $this->Conn->rollbackTrans();
+            $this->Conn->autoCommit = true;
+
+            $response['ack'] = 0;
+            $response['error'] = 'Record Already Exists. ';
+            return $response; 
+        }        
+
+        // $moduleForPermission = "supplier_journal";
+
+        $modulePermission = "";
+        $invoice_id = (isset($dataArray->invoice_id) && $dataArray->invoice_id != '') ? $dataArray->invoice_id : '0';
+        $account_id = (isset($dataArray->account_id) && $dataArray->account_id != '') ? $dataArray->account_id : '0';
+        $account_no = addslashes($dataArray->account_no);
+        $account_name = addslashes($dataArray->account_name);
+
+        $acc_code = addslashes($dataArray->acc_code);
+
+        $balancing_account_id = (isset($dataArray->balancing_account_id) && $dataArray->balancing_account_id != '') ? $dataArray->balancing_account_id : '0';
+        $balancing_account_code = addslashes($dataArray->balancing_account_code);
+        $balancing_account_name = addslashes($dataArray->balancing_account_name);
+
+        $converted_price = (isset($dataArray->converted_price) && floatval($dataArray->converted_price) > 0) ? Round($dataArray->converted_price,2) : '0';
+        $credit_amount = (isset($dataArray->credit_amount) && $dataArray->credit_amount != '') ? Round($dataArray->credit_amount,2) : 'NULL';
+        $allocated_amount = (isset($dataArray->allocated_amount) && $dataArray->allocated_amount != '') ? Round($dataArray->allocated_amount,2) : 0;
+        $debit_amount = 'NULL';
+
+        $transaction_type = (isset($dataArray->transaction_type) && $dataArray->transaction_type != '') ? $dataArray->transaction_type : '0';
+        $document_type = (isset($dataArray->document_type) && $dataArray->document_type != '') ? $dataArray->document_type : '0';
+        $cnv_rate = (isset($dataArray->cnv_rate) && $dataArray->cnv_rate != '') ? $dataArray->cnv_rate : '0';
+        $converted_currency_id = (isset($dataArray->converted_currency_id) && $dataArray->converted_currency_id != '') ? $dataArray->converted_currency_id : '0';
+        $posting_date = $this->objGeneral->convert_date($dataArray->posting_date);
+        $allocation_date = $this->objGeneral->convert_date($dataArray->allocation_date);
+
+        $payment_detail_id = (isset($dataArray->payment_detail_id) && $dataArray->payment_detail_id != '') ? $dataArray->payment_detail_id : '0';
+        $posting_group_id = (isset($dataArray->posting_group_id) && $dataArray->posting_group_id != '') ? $dataArray->posting_group_id : '0';
+        $currency_id = (isset($dataArray->currency_id) && $dataArray->currency_id->id != '') ? $dataArray->currency_id->id : '0';
+        $document_no = addslashes($dataArray->document_no);   
+                        
+
+            if ($payment_detail_id == 0) {
+
+                // $modulePermission = sr_AddPermission;
+                $Sql = "INSERT INTO payment_details
+                            (parent_id,
+                            transaction_type,
+                            document_type,
+                            document_no,
+                            company_id,
+                            user_id,
+                            account_id,
+                            account_no,
+                            account_name,
+                            posting_date,
+                            created_date,
+                            currency_id,
+                            posting_group_id,
+                            debit_amount,
+                            credit_amount,
+                            converted_price,
+                            converted_currency_id,
+                            cnv_rate,
+                            balancing_account_id,
+                            balancing_account_code,
+                            balancing_account_name,
+                            invoice_id,
+                            status,
+                            posting_dateUnConv)
+                        SELECT 
+                            \"".$parent_id."\",
+                                $transaction_type,
+                                $document_type,
+                                \"$document_no\",
+                                " . $this->arrUser['company_id'] . ",
+                                " . $this->arrUser['id'] . ",
+                                $account_id,
+                                \"$account_no\",
+                                \"$account_name\",
+                                \"$posting_date\",
+                            " . current_date . " ,
+                                " . $currency_id . ",
+                                " . $posting_group_id . ",
+                                $debit_amount,
+                                $credit_amount,
+                                $converted_price,
+                            $converted_currency_id,
+                                $cnv_rate,
+                                $balancing_account_id,
+                            \"$balancing_account_code\",
+                            \"$balancing_account_name\",
+                            '".$invoice_id."',
+                            1,
+                            DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                        FROM widgetone
+                        WHERE
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                        LIMIT 1";
+
+                // echo $Sql;exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
+
+                $payment_detail_id = $this->Conn->Insert_ID();
+
+            } else {
+
+                // $modulePermission = sr_AddEditPermission;
+                $Sql = "UPDATE payment_details SET
+                            transaction_type =  $transaction_type,
+                            document_type =  $document_type,
+                            document_no =  '" . $document_no . "',
+                            account_id =  $account_id,
+                            account_no =  '" . $account_no. "',
+                            account_name =  '" . $account_name . "',
+                            posting_date =  '" . $posting_date . "',
+                            currency_id =  " . $currency_id . ",
+                            posting_group_id =  " . $posting_group_id . ",
+                            debit_amount =  $debit_amount,
+                            credit_amount =  $credit_amount,
+                            converted_price =  $converted_price,
+                            converted_currency_id = $converted_currency_id,
+                            cnv_rate =  $cnv_rate,
+                            balancing_account_id =   $balancing_account_id,
+                            balancing_account_code = '" . $balancing_account_code . "',
+                            balancing_account_name = '" . $balancing_account_name . "',
+                            posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                            invoice_id = '".$invoice_id."'
+                            WHERE id = $payment_detail_id AND status = 1 AND
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$parent_id." LIMIT 1) = 1 
+                                AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
+
+                // echo $Sql;//exit;
+                $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddEditPermission);
+            }
+
+            if($payment_detail_id>0){
+
+                $response['ack'] = 1;
+            }
+            else{
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 1';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 1';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }           
+
+        
+
+        $response['ack'] = 1;
+        $response['error'] = 'Journal created successfully';
+        $response['parent_id'] = $parent_id;
+        $response['payment_detail_id'] = $payment_detail_id;
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = 'Journal created successfully';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    }
+
+    function updateCusJournalInvoice($attr) 
+    {
+        // error_reporting(E_ERROR);
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;      
+
+        $account_name = addslashes($attr['account_name']);
+        $document_no = addslashes($attr['document_no']);  
+
+        $posting_date = $this->objGeneral->convert_date($attr['posting_date']);
+
+        $balancing_account_id = (isset($attr['balancing_account_id']) && $attr['balancing_account_id'] != '') ? $attr['balancing_account_id'] : '0';
+        $balancing_account_code = addslashes($attr['balancing_account_code']);
+        $balancing_account_name = addslashes($attr['balancing_account_name']);
+
+        $payment_id = (isset($attr['payment_id']) && $attr['payment_id'] != '') ? $attr['payment_id'] : '0';
+        $payment_detail_id = (isset($attr['payment_detail_id']) && $attr['payment_detail_id'] != '') ? $attr['payment_detail_id'] : '0';      
+
+
+        $Sql = "UPDATE payment_details 
+                                    SET        
+                                        document_no =  '" . $document_no . "',
+                                        account_name =  '" . $account_name . "',
+                                        posting_date =  '" . $posting_date . "',
+                                        balancing_account_id =   $balancing_account_id,
+                                        balancing_account_code = '" . $balancing_account_code . "',
+                                        balancing_account_name = '" . $balancing_account_name . "',
+                                        posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+
+                                WHERE id = $payment_detail_id AND status = 1 AND 
+                                        company_id = " . $this->arrUser['company_id']." AND
+                                        (SELECT type FROM gl_journal_receipt AS gjr 
+                                        WHERE gjr.id=".$payment_id." LIMIT 1) = 1   
+                                LIMIT 1";
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+
+
+        $response['ack'] = 1;
+        $response['error'] = 'Journal created successfully';
+        $response['parent_id'] = $payment_id;
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = 'Journal created successfully';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    }
+        
+    function getCusJournalInvoice($attr) 
+    {
+        // print_r($attr);exit;
+        $this->objGeneral->mysql_clean($attr);
+
+        $Sql = "SELECT  pd.parent_id, pd.id AS payment_detail_id,pd.allocated_amount,
+                        pd.cnv_rate,pd.currency_id,pd.posting_date,pd.debit_amount,pd.credit_amount,pd.converted_price,
+                        pd.temp_allocated_amount,pd.document_no,pd.account_name,pd.balancing_account_id,
+                        pd.balancing_account_code,pd.balancing_account_name,glJ.acc_code AS glcode,glJ.type AS postedStatus,
+                        COALESCE((SELECT SUM(pa.amount_allocated) FROM payment_allocation AS pa 
+                                    WHERE pa.payment_detail_id = pd.id AND 
+                                        pa.payment_id = glJ.id AND 
+                                        pa.invoice_id =  ".$attr['invoice_id']."),0) AS amount_allocated
+                FROM gl_journal_receipt AS glJ
+                LEFT JOIN payment_details AS pd ON glJ.id = pd.parent_id 
+                WHERE   glJ.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        pd.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        glJ.company_id= '" . $this->arrUser['company_id'] . "' AND 
+                        pd.transaction_type = 2 AND 
+                        pd.document_type = 2 AND 
+                        pd.status IN (1,2)";
+
+        /* $Sql = "SELECT pa.payment_id AS parent_id, pa.id AS paid, pa.payment_detail_id, pa.amount_allocated,pa.allocation_date,
+                        pd.cnv_rate,pd.currency_id,pd.posting_date,pd.debit_amount,pd.credit_amount,pd.converted_price,
+                        pd.temp_allocated_amount,pd.document_no,pd.account_name,pd.balancing_account_id,
+                        pd.balancing_account_code,pd.balancing_account_name,glJ.acc_code AS glcode,glJ.type AS postedStatus
+                FROM payment_allocation AS pa
+                LEFT JOIN payment_details AS pd ON pa.payment_detail_id = pd.id 
+                LEFT JOIN gl_journal_receipt AS glJ ON pa.payment_id = glJ.id 
+                WHERE pa.invoice_id =  ".$attr['invoice_id']." AND 
+                        pa.company_id= '".$this->arrUser['company_id']."' AND 
+                        pa.payment_type = 1 AND 
+                        pa.invoice_type = 5 AND 
+                        pa.document_type = 1 AND 
+                        pa.module_type =  1 AND 
+                        pa.transaction_type = 1"; */
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $Row['allocation_date'] = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
+                $Row['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+                $response['response'][] = $Row;
+            }
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else
+            $response['response'][] = array();
+
+        return $response;
+    } 
+        
+    function chkOrderPayment($attr) 
+    {
+        // print_r($attr);exit;
+        $this->objGeneral->mysql_clean($attr);
+        // LEFT JOIN payment_allocation AS pa ON pa.payment_detail_id = pd.id AND pa.payment_id = glJ.id AND pa.invoice_id =  ".$attr['invoice_id']."
+
+        $Sql = "SELECT  pd.parent_id, pd.id AS payment_detail_id,pd.allocated_amount,
+                        pd.cnv_rate,pd.currency_id,pd.posting_date,pd.debit_amount,pd.credit_amount,pd.converted_price,
+                        pd.temp_allocated_amount,pd.document_no,pd.account_name,pd.balancing_account_id,
+                        pd.balancing_account_code,pd.balancing_account_name,glJ.acc_code AS glcode,glJ.type AS postedStatus,
+                        COALESCE((SELECT SUM(pa.amount_allocated) FROM payment_allocation AS pa 
+                                    WHERE pa.payment_detail_id = pd.id AND 
+                                        pa.payment_id = glJ.id AND 
+                                        pa.invoice_id =  ".$attr['invoice_id']."),0) AS amount_allocated
+                FROM gl_journal_receipt AS glJ
+                LEFT JOIN payment_details AS pd ON glJ.id = pd.parent_id                 
+                WHERE   glJ.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        pd.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        glJ.company_id= '" . $this->arrUser['company_id'] . "' AND 
+                        pd.transaction_type = 2 AND 
+                        pd.document_type = 2 AND 
+                        pd.status IN (1,2)";
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $Row['allocation_date'] = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
+                $Row['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+                $response['response'] = $Row;
+            }
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else
+            $response['response'][] = array();
+
+        return $response;
+    } 
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 ?>

@@ -5,32 +5,55 @@
 
         <div class="row">
             <div class="col-md-12 col-md-12">
+<<<<<<< HEAD
                 <div><!--  class="bs-example bs-example-tabs" data-example-id="togglable-tabs" -->
                     <div ng-if="recnew > 0">
                         <tabset>
                             <tab heading="General" class="general_information" ng-click="generalInformation(); " ng-if="item_gneral_tab_module">
                                 <form autocomplete="off" class="form-horizontal no-margin" id="form_check" novalidate="" role="form" validate-form="" ng-submit="updateGeneral(formData)"
                                     ><!-- ng-hide="showLoader" -->
+=======
+                <div>
+                    <!--  class="bs-example bs-example-tabs" data-example-id="togglable-tabs" -->
+                    <div ng-if="recnew > 0">
+                        <tabset>
+                            <tab heading="General" class="general_information" ng-click="generalInformation(); " ng-if="item_gneral_tab_module">
+                                <form autocomplete="off" class="form-horizontal no-margin" id="form_check" novalidate="" role="form" validate-form="" ng-submit="updateGeneral(formData)">
+                                    <!-- ng-hide="showLoader" -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <!-- ng-submit="addGeneral(formData)" -->
                                     <div ng-include="'app/views/product_values/general_form.html'"></div>
                                 </form>
                                 <!-- <div ng-include="'app/views/product_values/itemSubstituteModal.html'"></div> -->
+<<<<<<< HEAD
                                 
                                 <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)"
                                     ng-hide="showLoader">
+=======
+
+                                <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)" ng-hide="showLoader">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div ng-include="'app/views/product_values/add_unit_setup.html'"></div>
                                 </form>
                             </tab>
 
                             <tab heading="Purchase Information " ng-if="item_purchase_tab_module" ng-click="getItemPurchaseInfo();">
+<<<<<<< HEAD
                                 <form autocomplete="off" class="form-horizontal no-margin" id="PurchaseInformation" role="form" validate-form="" novalidate="" ng-hide="showLoader"
                                     ng-submit="addItemPurchaseInfo()">
+=======
+                                <form autocomplete="off" class="form-horizontal no-margin" id="PurchaseInformation" role="form" validate-form="" novalidate="" ng-hide="showLoader" ng-submit="addItemPurchaseInfo()">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div ng-include="'app/views/product_values/itemPurchaseInfo.html'"></div>
                                 </form>
                             </tab>
 
                             <!-- Cost Price-->
+<<<<<<< HEAD
                             <tab heading="Sales Information" active="isSalesPrice"  ng-click="getItemSalesInfo()" ng-if="item_sale_tab_module">
+=======
+                            <tab heading="Sales Information" active="isSalesPrice" ng-click="getItemSalesInfo()" ng-if="item_sale_tab_module">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <form autocomplete="off" class="form-horizontal no-margin" id="SalesInformation" role="form" validate-form="" novalidate="">
                                     <div ng-include="'app/views/product_values/itemSalesInfo.html'"></div>
                                 </form>
@@ -61,6 +84,7 @@
                                     <div ng-include="'app/views/product_values/itemRawMaterialInfo.html'"></div>
                                 </form>
                             </tab> -->
+<<<<<<< HEAD
                             <!-- Raw Material ng-click="getItemRawMaterialInfo();" -->  
                             
                             <div class="pull-right">
@@ -103,6 +127,63 @@
                             </div>  
                         </tabset>
 
+=======
+                            <!-- Raw Material ng-click="getItemRawMaterialInfo();" -->
+
+                            <div class="pull-right">
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    Allocated Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative; font-weight: bold; padding: 1px 6px;" ng-click="clearFiltersAndGetAllocatedStock(formData)">{{formData.allocated_stock1 | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <!-- {{formData.unit_name}} -->
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.allocated_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                </h3>
+                                <!-- showOrderTrail(formData, 3) -->
+
+                                <h3 style="font-size: 12px;font-weight: bold;float: right;margin-right: 14px;margin-top: 15px;">
+                                    Available Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative;font-weight: bold;padding: 1px 6px;" ng-click="clearFiltersAndGetAvailableStock(formData)">{{formData.available_stock1 | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.available_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    <!-- {{formData.unit_name}} -->
+                                </h3>
+                                <!-- showOrderTrail(formData, 2) -->
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    <!-- Current -->Total Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative;
+                                                font-weight: bold;
+                                                padding: 1px 6px;" ng-click="clearFiltersAndGetTotalStockSheet(formData)">
+                                    {{formData.current_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</a>
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.current_stock1 | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                    <!-- {{formData.unit_name}} -->
+                                </h3>
+                                <!-- showOrderTrail(formData, 1) -->
+
+                                <h3 style="font-size: 12px; font-weight: bold; float: right; margin-right: 14px; margin-top: 15px;">
+                                    On Route Stock: <a class="pull-right hilight cursorPointer" ng-if="formData.stock_check > 0" style="position: relative; font-weight: bold; padding: 1px 6px;" ng-click="clearFiltersAndGetOnRouteStock(formData)">{{formData.total_stock_on_route | numberNoDecimalsIfZeroFilter:2:''}}
+                                    </a>
+                                    <!-- {{formData.unit_name}} -->
+                                    <span ng-if="!(formData.stock_check > 0)"> {{formData.total_stock_on_route | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                </h3>
+                                <!-- showOrderTrail(formData, 3) -->
+                            </div>
+                        </tabset>
+
+
+                        <div class="row">
+                            <div class="col-md-12 affix">
+                                <div class="pull-left">
+                                    <!-- <div class="communication">
+                                        <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                                        <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                                        <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                                    </div> -->
+                                </div>
+                                <div class="pull-right">
+                                </div>
+                            </div>
+                        </div>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <!-- <div ng-include="'app/views/orders/order_trail_modal.html'"></div> -->
                         <div ng-include="'app/views/stock_sheet/history_modal.html'"></div>
 
@@ -117,14 +198,22 @@
                         <tabset>
                             <tab heading="General" class="general_information">
                                 <div class="vertical_space"></div>
+<<<<<<< HEAD
                                 <form autocomplete="off" class="form-horizontal no-margin" id="general_information" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)"
                                     ng-init="generate_unique_id()" ng-hide="showLoader">
+=======
+                                <form autocomplete="off" class="form-horizontal no-margin" id="general_information" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)" ng-init="generate_unique_id()" ng-hide="showLoader">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div ng-include="'app/views/product_values/general_form.html'"></div>
                                 </form>
                                 <!-- <div ng-include="'app/views/product_values/itemSubstituteModal.html'"></div> -->
                                 <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+<<<<<<< HEAD
                                 <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)"
                                     ng-hide="showLoader">
+=======
+                                <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_unit_setup(unit_measures_category_record)" ng-hide="showLoader">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div ng-include="'app/views/product_values/add_unit_setup.html'"></div>
                                 </form>
                             </tab>

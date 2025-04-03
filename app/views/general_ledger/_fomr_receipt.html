@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <div ng-controller="GlControllerReceipt as table"> -->
 <div ng-controller="GlControllerTREE as table">
 
@@ -7,6 +8,13 @@
     <div ng-show="receipt_gl_list" id="xyz2">
 
         <div class="row" style="margin-bottom: 0 !important;">
+=======
+<div ng-controller="GlControllerTREE as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div ng-show="receipt_gl_list" id="xyz2">
+        <div class="row" style="margin-bottom: 0 !important;">
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             <div class="col-md-12">
                 <div class="nav nav-tabs" style="padding:8px;">
                     <form class="form-horizontal no-margin" role="form" ng-submit="get_receipt_main_list()" name="addForm" validate-form="" novalidate="">
@@ -16,6 +24,7 @@
                                 <i class="fa fa-search search-icon" aria-hidden="true"></i>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <!-- <div class="col-md-2 padl6"> -->
                         <!-- <select ng-model="rec.status" ng-options="opt as opt.name for opt in acc_basic_type" ng-change="get_receipt_main_list(rec.status.id);"
                 class="form-control">
@@ -23,6 +32,10 @@
                     </select> -->
                         <!-- </div> -->
                     </form>
+=======
+                    </form>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="col-md-1">
                         <a id="prompt" ng-click="showAddReceipt()" class="btn btn_add pull-right" ng-if="addPerm && isPosted == 0">Add</a>
                     </div>
@@ -34,11 +47,18 @@
                 <thead class="fixit">
                     <tr class="bg-col">
                         <th ng-repeat="column in columns_recipt_main" ng-if="column.field != 'id'"> {{column.title}}</th>
+<<<<<<< HEAD
                         <!-- <th ng-repeat="column in columns_recipt_main" ng-if="column.field != 'id'"> {{column.title}}</th> -->
                         <th style="width: 10%;text-align:center !important;" class="ShowHideAction">Action</th>
                     </tr>
                 </thead>
                 <tbody class="fixit" style="    max-height: 500px;">
+=======
+                        <th style="width: 10%;text-align:center !important;" class="ShowHideAction">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit" style="max-height: 500px;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <tr ng-click="showEditReceipt(recmian.id)" ng-repeat="recmian in recipt_record_main | filter:serachkeyword " ng-if="recipt_record_main.length > 0">
                         <td ng-repeat="column in columns_recipt_main" ng-if="column.field != 'id'"> {{recmian[column.field]}} </td>
                         <td style="    width: 10%;text-align:center !important;" class="ShowHideAction">
@@ -52,6 +72,7 @@
                     </tr>
                 </tbody>
             </table>
+<<<<<<< HEAD
 
             <div ng-show="!recipt_record_main.length > 0" class="no-record">
             </div>
@@ -61,13 +82,27 @@
     <div class="row" ng-show="receipt_gl_form">
         <div class="col-md-12 ">
             <div class="nav nav-tabs" style="    padding-bottom: 12px !important;padding-top: 11px !important;">
+=======
+            <div ng-show="!recipt_record_main.length > 0" class="no-record">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="receipt_gl_form">
+        <div class="col-md-12 ">
+            <div class="nav nav-tabs" style="padding-bottom: 12px !important;padding-top: 11px !important;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <form class="form-horizontal no-margin" autocomplete="off" ng-submit="addReceipt_main(1)" role="form" validate-form="" novalidate="">
                     <input type="hidden" ng-model="array_receipt_gl_form.id" class="form-control" />
                     <div>
                         <div class="col-md-3">
+<<<<<<< HEAD
                             <label class="control-label col-md-4"> Journal No.
                 <!-- <span class="required">*</span> -->
               </label>
+=======
+                            <label class="control-label col-md-4"> Journal No.</label>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class="col-md-8">
                                 <input ng-readonly="product_type" type="text" ng-model="array_receipt_gl_form.acc_code" class="form-control" required />
                                 <input type="hidden" ng-model="array_receipt_gl_form.code_type" />
@@ -78,22 +113,32 @@
                             <label class="control-label col-md-5"> Select Template </label>
                             <div class="col-md-7">
                                 <select class="form-control" ng-change="OnChangeTemplate(array_receipt_gl_form.template_ids.id)" ng-model="array_receipt_gl_form.template_ids" ng-options="opt as opt.name for opt in template_arr" ng-disabled="readonly_journal">
+<<<<<<< HEAD
                   <option value="">--New Template--</option>
                 </select>
                                 <!-- <input ng-readonly="readonly_journal" type="text" required ng-model="array_receipt_gl_form.acc_description" class="form-control input_text"> -->
 
+=======
+                                    <option value="">--New Template--</option>
+                                </select>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                         <div class="col-md-6 text-right pull-right" ng-if="readonly_journal">
                             <div class="dropdown report-excel pull-right" ng-if="readonly_journal">
+<<<<<<< HEAD
                                 <button class="btn report-default dropdown-toggle" style="float: right" type="button" data-toggle="dropdown">Export As
                   <span class="caret"></span></button>
+=======
+                                <button class="btn report-default dropdown-toggle" style="float: right" type="button" data-toggle="dropdown">Export As<span class="caret"></span></button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <ul class="dropdown-menu">
                                     <li><a ng-click="printPdf(receipt_sub_list, 'HJx6pNfd2V', 'pdf')">PDF</a></li>
                                     <li><a ng-click="printxlsx(receipt_sub_list, 'HJx6pNfd2V','xlsx')">Excel</a></li>
                                 </ul>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <!--<label class=" control-label col-md-4">Save as Template </label>
               <div class="col-md-8">
                 ng-change="get_recpt_temp_data(array_receipt_gl_form.template_id.id)"
@@ -123,28 +168,44 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                   <i class="fa fa-undo fa_display"></i> Cancel </button>
               </div>
             </div> -->
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </div>
                 </form>
             </div>
         </div>
         <div ng-show="array_receipt_gl_form.id > 0">
             <div class="col-md-12">
+<<<<<<< HEAD
                 <div class="panel panel-default" style="    padding-bottom: 0;">
                     <div class="panel-heading" style="display:none;">
                         <h3 class="panel-title">Journal Details </h3>
                         <!--                <a ng-click="AddReceiptRow(rec_data, $index)" class="btn btn_add" style="position: absolute;right: 17px;top: 28px;">Add</a> -->
                     </div>
+=======
+                <div class="panel panel-default" style="padding-bottom: 0;">
+                    <div class="panel-heading" style="display:none;">
+                        <h3 class="panel-title">Journal Details </h3>
+                    </div>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="panel-body">
                         <table class="table table-striped table-bordered narrow_table small_fields">
                             <thead>
                                 <tr>
+<<<<<<< HEAD
                                     <th style="    width: 9%;">Posting Date</th>
                                     <th style="    width: 8%;">Doc. Type</th>
+=======
+                                    <th style="width: 8%;">Posting Date</th>
+                                    <th style="width: 8%;">Doc. Type</th>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <th style="width: 7%;">Doc. No.</th>
                                     <th style="width: 7%;">Transaction <br>Type</th>
                                     <th style="width: 10%;" ng-if="receipt_type == 0">Account No. </th>
                                     <th style="width: 10%;" ng-if="receipt_type == 1">Customer No. </th>
                                     <th style="width: 10%;" ng-if="receipt_type == 2">Supplier No. </th>
+<<<<<<< HEAD
                                     <th style="    width: 16%;"> Name </th>
                                     <th>Currency</th>
                                     <th style="    width: 10%;    text-align: right;">Debit</th>
@@ -152,6 +213,16 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                                     <th style="width: 10%;text-align: right;">Converted Amount </th>
                                     <th style="width: 9%;"> Balancing G/L No. </th>
                                     <th style="    width: 10%;"> Balancing G/L Name </th>
+=======
+                                    <th style="width: 15%;"> Name </th>
+                                    <th>Currency</th>
+                                    <th style="width: 9%; text-align: right;">Debit</th>
+                                    <th style="width: 9%; text-align: right;">Credit</th>
+                                    <th style="width: 5%; text-align: right;">Cnv. Rate</th>
+                                    <th style="width: 10%;text-align: right;">Converted Amount </th>
+                                    <th style="width: 8%;"> Balancing G/L No. </th>
+                                    <th style="width: 10%;"> Balancing G/L Name </th>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <th ng-if="receipt_type != 0">Allocate Amount</th>
                                     <th class="text-center">
                                         <div ng-if="editPerm && array_receipt_gl_form.type == 1">
@@ -165,6 +236,7 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                             <tbody>
                                 <tr data-ng-repeat="rec_recpt in receipt_sub_list track by $index">
                                     <td>
+<<<<<<< HEAD
                                         <!-- title="{{rec_recpt.posting_date}}" -->
                                         <!-- id="test_{{$index}}"  -->
 
@@ -193,11 +265,30 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                               selected
                               disabled>Select</option>
                     </select>
+=======
+                                        <input jqdatepicker class="2date-picker form-control form-control" ng-model="rec_recpt.posting_date" required ng-click="load_date_picker('load'); " ng-class="{'pickdate':(!readonly_journal || !readonly_posted_journal)}" ng-change="GetConversionRate(rec_recpt);"
+                                            readonly="readonly" ng-disabled="(readonly_journal  || array_receipt_gl_form.type == 2 ) && readonly_posted_journal">
+                                    </td>
+                                    <td title="{{rec_recpt.doc_type.name}}">
+                                        <select ng-model="rec_recpt.doc_type" ng-options="opt as opt.name for opt in doc_type_arr" class="form-control" ng-disabled="readonly_journal || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2" required ng-change="setdoctype(rec_recpt, $index)">
+                                             <option value="" selected disabled>Select</option>
+                                        </select>
+                                    </td>
+                                    <td title="{{rec_recpt.document_no}}">
+                                        <input type="text" title="{{rec_recpt.document_no}}" ng-model="rec_recpt.document_no" class="form-control input_text" ng-disabled="(readonly_journal || array_receipt_gl_form.type == 2)  && readonly_posted_journal">
+                                    </td>
+                                    <td>
+                                        <select ng-model="rec_recpt.module_type" ng-options="opt as opt.name for opt in sale_type_array" ng-disabled="rec_recpt.allocated_amount > 0 || readonly_journal || array_receipt_gl_form.type == 2 || receipt_type != 0" class="form-control" ng-change="OnChangeModuleType(rec_recpt, $index);"
+                                            required>
+                                            <option value="" selected  disabled>Select</option>
+                                        </select>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </td>
                                     <td title="{{rec_recpt.account_no}}">
                                         <div class="input-symbol" ng-class="{'dont-click':readonly_journal || rec_recpt.allocated_amount > 0}" ng-click="getGLRecipt(rec_recpt, $index, 1)">
                                             <input type="text" style=" cursor: pointer;" ng-model="rec_recpt.account_no" ng-readonly="readonly_journal  || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2" ng-disabled="readonly_journal || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2"
                                                 required class="form-control" />
+<<<<<<< HEAD
                                             <span>
                         <i class="fa fa-external-link"></i>
                       </span>
@@ -221,10 +312,26 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                          </div>
                                                  </td> -->
 
+=======
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td title="{{rec_recpt.account_name}}">
+                                        <!--  ng-disabled="readonly_journal" -->
+                                        <input type="text" ng-disabled="(readonly_journal || rec_recpt.allocated_amount > 0) && readonly_posted_journal" ng-readonly="(readonly_journal || rec_recpt.allocated_amount > 0)  && readonly_posted_journal" ng-model="rec_recpt.account_name" class="form-control input_text">
+                                    </td>
+                                    <td>
+                                        <select ng-model="rec_recpt.currency_id" ng-change="GetConversionRate(rec_recpt)" ng-disabled="readonly_journal || rec_recpt.module_type.value != 1 ||  array_receipt_gl_form.type == 2" ng-options="opt as opt.code  for opt in currency_arr_local track by opt.code"
+                                            class="form-control">
+                                            <option style="display:block" value=""></option>
+                                        </select>
+                                    </td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <td class="rightAlign" title="{{rec_recpt.debit_amount | currency : '' }}">
                                         <input type="number" data-parsley-trigger="keyup" ng-if="!readonly_journal" ng-readonly="readonly_journal || rec_recpt.chk_debit || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2" ng-disabled="readonly_journal || rec_recpt.chk_debit || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2"
                                             ng-class="{'dont-click setshow':readonly_journal || rec_recpt.chk_debit == 1 || rec_recpt.chk_debit}" ng-model="rec_recpt.debit_amount" ng-blur="validatePrice(rec_recpt, 'lev2'); test_date_duplicate(rec_recpt, $index)"
                                             class=" form-control input_text rightAlign" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+<<<<<<< HEAD
                                         <span ng-if="readonly_journal">{{rec_recpt.debit_amount | currency : "" }}</span>
 
                                     </td>
@@ -236,16 +343,38 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
 
                                         <span ng-if="readonly_journal">{{rec_recpt.credit_amount | currency : "" }}</span>
                                     </td>
+=======
+
+                                        <span ng-if="readonly_journal">{{rec_recpt.debit_amount | currency : "" }}</span>
+                                    </td>
+                                    <td class="rightAlign" title="{{rec_recpt.credit_amount | currency : '' }}">
+                                        <input type="number" data-parsley-trigger="keyup" ng-if="!readonly_journal" ng-readonly="readonly_journal || rec_recpt.chk_credit || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2" ng-disabled="readonly_journal || rec_recpt.chk_credit || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2"
+                                            ng-class="{'dont-click setshow':readonly_journal || rec_recpt.chk_credit == 1 || rec_recpt.chk_credit}" ng-model="rec_recpt.credit_amount" ng-blur="validatePrice(rec_recpt, 'lev1'); test_date_duplicate(rec_recpt, $index)"
+                                            class=" form-control input_text rightAlign" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                        <span ng-if="readonly_journal">{{rec_recpt.credit_amount | currency : "" }}</span>
+                                    </td>
+                                    <td class="rightAlign" title="{{rec_recpt.cnv_rate | currency : '' }}">
+                                        <input type="text" data-parsley-trigger="keyup" ng-if="!readonly_journal" ng-readonly="readonly_journal || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2" ng-disabled="readonly_journal || rec_recpt.allocated_amount > 0 || array_receipt_gl_form.type == 2"
+                                            ng-class="{'dont-click setshow':readonly_journal }" ng-model="rec_recpt.cnv_rate" ng-blur="validatePrice(rec_recpt, 'loop'); test_date_duplicate(rec_recpt, $index)" class="form-control input_text rightAlign" data-parsley-type-message="Invalid Value"
+                                            data-parsley-minlength-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                                        <span ng-if="readonly_journal">{{rec_recpt.cnv_rate | currency : "" }}</span>
+                                    </td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <td class="rightAlign" title="{{rec_recpt.converted_price | currency : '' }}">
                                         <div class=" input-symbol">
                                             <input ng-disabled="readonly_journal" type="text" ng-if="!readonly_journal" data-parsley-trigger="keyup" ng-model="rec_recpt.converted_price" ng-blur="validatePrice(rec_recpt, 'loop'); test_date_duplicate(rec_recpt, $index)" class="setshow  form-control input_text rightAlign"
                                                 readonly data-parsley-error-message="Invalid Value">
+<<<<<<< HEAD
 
                                             <!--		<span> {{rec_recpt.currency_id}} </span>-->
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         </div>
                                         <span ng-if="readonly_journal">{{rec_recpt.converted_price | currency : "" }}</span>
                                     </td>
                                     <td title="{{rec_recpt.balancing_account_code}}">
+<<<<<<< HEAD
                                         <!-- ng-class="{'dont-click setshow':rec_recpt.module_type.value == 1}" -->
                                         <div class="input-symbol" ng-class="{'dont-click':readonly_journal}" ng-click="getGLRecipt(rec_recpt, $index, 2)">
                                             <input type="text" ng-model="rec_recpt.balancing_account_code" required readonly class="form-control input_text" ng-class="{'dont-click pickdate':(rec_recpt.allocated_amount > 0 && rec_recpt.balancing_account_code.length > 0) || !readonly_journal || array_receipt_gl_form.type == 2}"
@@ -258,11 +387,20 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
 
                                         </div>
 
+=======
+                                        <div class="input-symbol" ng-class="{'dont-click':readonly_journal}" ng-click="getGLRecipt(rec_recpt, $index, 2)">
+                                            <input type="text" ng-model="rec_recpt.balancing_account_code" required readonly class="form-control input_text" ng-class="{'dont-click pickdate':(rec_recpt.allocated_amount > 0 && rec_recpt.balancing_account_code.length > 0) || !readonly_journal || array_receipt_gl_form.type == 2}"
+                                            />
+                                            <input type="hidden" ng-model="rec_recpt.balance_id" />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </td>
                                     <td title="{{rec_recpt.balancing_account_name }}">
                                         <input type="text" ng-disabled="readonly_journal" ng-model="rec_recpt.balancing_account_name" required class="form-control input_text" ng-class="{'pickdate':!readonly_journal}" />
                                     </td>
                                     <td style="text-align:center;" ng-if="receipt_type != 0">
+<<<<<<< HEAD
                                         <a title="Open" ng-hide="(rec_recpt.allocated == 0)" ng-if="array_receipt_gl_form.type == 1" ng-click="get_invoice_list(rec_recpt, $index, parent_id)" class="tooltips_cls btn " ng-class="{'disable-el':(receipt_type == 0), 'dont-click disable-el':readonly_journal}">
                                             <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i>
                                         </a>
@@ -271,6 +409,14 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                                             <i style="font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i>
                                         </a>
 
+=======
+                                        <a title="Open" ng-if="array_receipt_gl_form.type == 1" ng-hide="(rec_recpt.allocated == 0)" ng-click="get_invoice_list(rec_recpt, $index, parent_id)" class="tooltips_cls btn " ng-class="{'disable-el':(receipt_type == 0), 'dont-click disable-el':readonly_journal}">
+                                            <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i>
+                                        </a>
+                                        <a title="Open" class="tooltips_cls btn " ng-click="getPaidEntries(rec_recpt)" ng-if="array_receipt_gl_form.type != 1">
+                                            <i style="font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i>
+                                        </a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </td>
                                     <td>
                                         <a ng-class="{'dont-click':readonly_journal}" ng-if="editPerm && array_receipt_gl_form.type == 1" ng-click="showDeletReceipt(rec_recpt.id, $index, receipt_sub_list)" title="Delete" class="btn">
@@ -278,6 +424,7 @@ ng-options="opt as opt.name for opt in repeat_arr"   class="form-control">
                                         </a>
                                     </td>
                                 </tr>
+<<<<<<< HEAD
                                 <!--<tr>
                                             <td colspan="5"></td>
                                             <td colspan="1">Total</td>
@@ -301,6 +448,13 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                                     </td>
                                     <td class="rightAlign">
                                         <!-- <b>{{credit_total | number:decimal_range}}</b> -->
+=======
+                                <tr style="border: 0px;">
+                                    <td colspan="7"></td>
+                                    <td class="rightAlignr">
+                                    </td>
+                                    <td class="rightAlign">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <b>Difference:</b>
                                     </td>
                                     <td class="rightAlign">
@@ -310,6 +464,7 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                                 </tr>
                             </tbody>
                         </table>
+<<<<<<< HEAD
                         <div class="col-md-12 no-padding" ng-if="array_receipt_gl_form.type == 1" style="    margin-top: 15px;">
                             <div class="pull-right ">
                                 <!-- ng-show="backend_data == 1"  -->
@@ -322,10 +477,23 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
 
                                 <button class="btn btn-default " type="submit" ng-class="{'dont-click setshow':(netBalanceRecipt() > 0 || enable_date_check) }" ng-if="postPerm" ng-click="recptconvertposting()" style="margin-left:5px;">
                   <i class="fa fa-check fa_display"></i> Post Journal</button>
+=======
+
+                        <div class="col-md-12 no-padding" ng-if="array_receipt_gl_form.type == 1" style="    margin-top: 15px;">
+                            <div class="pull-right ">
+                                <button ng-if="editPerm && readonly_journal && array_receipt_gl_form.template_ids.id > 0" ng-click="DeleteTemplate()" class="btn btn-delete"> Delete Template</button>
+                                <button ng-if="editPerm && readonly_journal" ng-click="SaveAsTemplate()" class="btn btn-edit">
+                                    <span ng-if="array_receipt_gl_form.template_ids.id > 0">Update</span>
+                                    <span ng-if="!(array_receipt_gl_form.template_ids.id > 0)">Save As</span> Template </button>
+
+                                <button class="btn btn-default " type="submit" ng-class="{'dont-click setshow':(netBalanceRecipt() > 0 || enable_date_check) }" ng-if="postPerm" ng-click="recptconvertposting()" style="margin-left:5px;">
+                                    <i class="fa fa-check fa_display"></i> Post Journal</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 <button class="btn btn-submit cur_block  " ng-if="(editPerm || addPerm) && !readonly_journal" ng-click="addReceipt_main()" type="button"> Save </button>
                                 <button ng-if="editPerm && readonly_journal" ng-click="toggleReadonly()" class="btn btn-edit"> Edit </button>
                                 <button class="btn btn-cancel" type="button" ng-click="get_receipt_main_list(1)">
+<<<<<<< HEAD
                   <i class="fa fa-undo fa_display"></i> Cancel </button>
                             </div>
                         </div>
@@ -336,6 +504,18 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
 
                                 <button class="btn btn-cancel" type="button" ng-click="get_receipt_main_list(1)">
                   <i class="fa fa-undo fa_display"></i> Cancel </button>
+=======
+                                    <i class="fa fa-undo fa_display"></i> Cancel </button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 no-padding" ng-if="array_receipt_gl_form.type != 1" style=" margin-top: 15px;">
+                            <div class="pull-right ">
+                                <button class="btn btn-cancel" type="button" ng-click="NavigateOrder(array_receipt_gl_form)"><i class="fa fa-undo fa_display"></i> Navigate </button>
+                                <button class="btn btn-cancel" type="button" ng-click="get_receipt_main_list(1)"><i class="fa fa-undo fa_display"></i> Cancel </button>
+
+                                <button class="btn btn-submit cur_block" type="button" ng-click="savePostedJournal();" ng-if="array_receipt_gl_form.type != 1 && !readonly_posted_journal">Save</button>
+                                <button class="btn btn-edit" type="button" ng-click="showJournalEditForm();" ng-if="editPerm && array_receipt_gl_form.type != 1 && readonly_posted_journal">Edit </button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                     </div>
@@ -343,6 +523,10 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     <div ng-include="'app/views/_confirm_modal.html'"></div>
     <div ng-include="'app/views/_conform_to_continue.html'"></div>
     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
@@ -357,7 +541,10 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                     <div class="row" style="margin-bottom: 0 !important;">
                         <div class="col-md-12" style="margin-bottom: 5px;">
                             <div class="col-md-5 no-padding">
+<<<<<<< HEAD
                                 <!-- ng-blur="getGLRecipt(module_type, account_index, gltype)"  -->
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <input type="text" placeholder="Search" class="form-control ng-pristine ng-valid ng-touched" ng-model="module_type.searchKeyword2" style="padding-left:4px;">
                             </div>
                             <div class="col-md-7"></div>
@@ -377,7 +564,10 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                                                 </tr>
                                             </thead>
                                             <tbody class="fixit" style="max-height:230px;">
+<<<<<<< HEAD
                                                 <!--module_type.searchKeyword2 -->
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 <tr ng-repeat="record in account_list | filter:module_type.searchKeyword2 | orderBy : 'code'" ng-click="assignreciptselect(record);" ng-class="{'dont-click4':record.status==0}">
                                                     <td style=" width: 30%;">{{record.code}}</td>
                                                     <td>{{record.name}}</td>
@@ -392,6 +582,7 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                 </div>
                 <div class="modal-footer">
                     <div class="pull-left">
+<<<<<<< HEAD
                         <!-- <div ng-show="item_paging.total_pages > 1"
                  style="    margin-top: -22px;">
               <div class="form-group">
@@ -418,6 +609,8 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
                 </ul>
               </div>
             </div> -->
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </div>
                     <button type="button" class="btn btn-cancel pull-right" data-dismiss="modal">Cancel</button>
                 </div>
@@ -428,6 +621,10 @@ ng-if="netBalanceRecipt()<0">Cr</span></div></td>
 <div ng-include="'app/views/general_ledger/payment_invoice_list.html'"></div>
 <div ng-include="'app/views/general_ledger/get_invoice_payed_list.html'"></div>
 <div ng-include="'app/views/general_ledger/_invoice_for_payment_list.html'"></div>
+<<<<<<< HEAD
+=======
+<div ng-include="'app/views/general_ledger/_invoice_for_allocated_list.html'"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 <div ng-include="'app/views/general_ledger/_template_name.html'"></div>
 <div ng-include="'app/views/_customer_modal_single.html'"></div>
 <div ng-include="'app/views/_listing_supplier_single.html'"></div>

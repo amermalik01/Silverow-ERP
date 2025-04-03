@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* specific routes here (see file config.js) */
         $stateProvider
             .state('app.sales-bucket', {
@@ -30,21 +34,38 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
                 controller: 'SalesbucketEditController'
             })
 
+<<<<<<< HEAD
     }]);
+=======
+    }
+]);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 myApp.controller('SalesbuckettListController', SalesbuckettListController);
 SalesbuckettListController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$state"];
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $state) {
     'use strict';
     var vm = this;
 
     $scope.class = 'inline_block';
+<<<<<<< HEAD
     $scope.$root.breadcrumbs =
         [//{'name':'Dashboard','url':'app.dashboard','isActive':false},
             { 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
             { 'name': 'Human Resources', 'url': 'app.setup', 'isActive': false, 'tabIndex': '7' },
             { 'name': 'View Bucket', 'url': '#', 'isActive': false }];
+=======
+    $scope.$root.breadcrumbs = [ //{'name':'Dashboard','url':'app.dashboard','isActive':false},
+        { 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+        { 'name': 'Human Resources', 'url': 'app.setup', 'isActive': false, 'tabIndex': '7' },
+        { 'name': 'View Bucket', 'url': '#', 'isActive': false }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     var Api = $scope.$root.sales + "customer/sale-bucket/get-sale-bucket-list";
     var postData = {
@@ -52,7 +73,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
     };
     $scope.searchKeyword = {};
 
+<<<<<<< HEAD
     $scope.$watch("MyCustomeFilters", function () {
+=======
+    $scope.$watch("MyCustomeFilters", function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.MyCustomeFilters && $scope.table.tableParams5) {
             $scope.table.tableParams5.reload();
         }
@@ -60,6 +85,7 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
     $scope.MyCustomeFilters = {}
 
     vm.tableParams5 = new ngParams({
+<<<<<<< HEAD
         page: 1,            // show first page
         count: 999,           // count per page // $scope.$root.pagination_limit
         sorting: { "bucket_no": 'Desc' }
@@ -72,6 +98,19 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
                 ngDataService.getDataCustom($defer, params, Api, $filter, $scope, postData);
             }
         });
+=======
+        page: 1, // show first page
+        count: 999, // count per page // $scope.$root.pagination_limit
+        sorting: { "bucket_no": 'Desc' }
+    }, {
+        total: 0, // length of data
+        counts: [], // hide page counts control
+
+        getData: function($defer, params) {
+            ngDataService.getDataCustom($defer, params, Api, $filter, $scope, postData);
+        }
+    });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
     $scope.main_bucket_listing = true;
@@ -94,7 +133,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
     $scope.product_type = true;
     $scope.count_result = 0;
 
+<<<<<<< HEAD
     $scope.getSalePerson_single = function (id) {
+=======
+    $scope.getSalePerson_single = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns = [];
         $scope.record = {};
@@ -109,11 +152,19 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
         $http
             .post(Api, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.columns = [];//record_bk
                     $scope.record = res.data.response;
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.columns = []; //record_bk
+                    $scope.record = res.data.response;
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -123,8 +174,12 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
 
                     //$('#sale_target_pop').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 }
             });
@@ -133,20 +188,32 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
             template: 'modalDialogId2',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
+=======
+        }).then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.rec.bucket_name = result.name;
             //$scope.rec.sale_person_name = result.first_name+' '+result.last_name;
             $scope.rec.bucket_id = result.id;
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
     }
 
 
+<<<<<<< HEAD
     $scope.goto_main = function () {
+=======
+    $scope.goto_main = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
         // { 'name': 'Human Resources', 'url': 'app.setup', 'isActive': false, 'tabIndex': '7' },
@@ -161,7 +228,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
     }
 
+<<<<<<< HEAD
     $scope.get_sale_person_bucket = function (id) {
+=======
+    $scope.get_sale_person_bucket = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.bk_id = id;
         $scope.main_bucket_listing = false;
@@ -181,7 +252,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
         var APIURLSB = $scope.$root.sales + "customer/sale-bucket/get-sale-person-bucket-list";
         $http
             .post(APIURLSB, { 'token': $scope.$root.token, bk_id: $scope.bk_id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns_general = [];
                 $scope.general = {};
 
@@ -190,7 +265,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
                 if (res.data.ack == true) {
                     $scope.general = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_general.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -203,7 +282,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
             });
     }
 
+<<<<<<< HEAD
     $scope.edit_sale_person_bucket = function (id) {
+=======
+    $scope.edit_sale_person_bucket = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_sale_bucket_readonly = false;
         $scope.show_add_bucket_listing = false;
         $scope.show_add_bucket_form = true;
@@ -217,7 +300,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
         $scope.rec = {};
         $http
             .post(get, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec = res.data.response;
 
 
@@ -227,7 +314,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
                 if (res.data.response.ending_date == 0) $scope.rec.ending_date = null;
                 else $scope.rec.ending_date = $scope.$root.convert_unix_date_to_angular(res.data.response.ending_date);
 
+<<<<<<< HEAD
                 $.each($scope.arr_status, function (index, obj) {
+=======
+                $.each($scope.arr_status, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.value == res.data.response.status) $scope.rec.status = obj;
                 });
 
@@ -235,7 +326,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
     }
 
+<<<<<<< HEAD
     $scope.add_sale_person_bucket = function (rec) {
+=======
+    $scope.add_sale_person_bucket = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var updateUrl = $scope.$root.sales + "customer/sale-bucket/update-person-sale-bucket";
 
@@ -247,7 +342,11 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
         $http
             .post(updateUrl, $scope.rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
@@ -257,8 +356,12 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
                     //if($scope.rec.id==undefined)
                     $scope.get_sale_person_bucket($scope.bk_id);
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'info', res.data.error);
+=======
+                } else toaster.pop('error', 'info', res.data.error);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             });
@@ -266,11 +369,16 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
     }
 
+<<<<<<< HEAD
     $scope.delete_sale_person_bucket = function (id, index, arr_data_ret) {
+=======
+    $scope.delete_sale_person_bucket = function(id, index, arr_data_ret) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.sales + "customer/sale-bucket/delete-person-sale-bucket";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -284,11 +392,29 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
                 });
         },
             function (reason) {
+=======
+        }).then(function(value) {
+                $http
+                    .post(delUrl, { id: id, 'token': $scope.$root.token })
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                            arr_data_ret.splice(index, 1);
+                        } else toaster.pop('error', 'Info', 'Record cannot be Deleted.');
+
+                    });
+            },
+            function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
     };
 
+<<<<<<< HEAD
     $scope.showEditForm = function () {
+=======
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_sale_bucket_readonly = false;
         //$scope.perreadonly = true;
     }
@@ -302,11 +428,16 @@ function SalesbuckettListController($scope, $filter, ngParams, $resource, $timeo
 
 SalesbucketEditController.$inject = ["$scope", "$filter", "$resource", "$timeout", "$http", "ngDialog", "toaster", "$state", "$rootScope", "$stateParams"];
 myApp.controller('SalesbucketEditController', SalesbucketEditController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, ngDialog, toaster, $state, $rootScope, $stateParams) {
     'use strict';
 
 
     $scope.EmployeeSelectAllowedCols = [
+<<<<<<< HEAD
         "Employee No.","name", "Department", "job_title", "Email"
     ]
 
@@ -315,6 +446,17 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     { 'name': 'View Bucket', 'url': '#', 'isActive': false }];
 
     $scope.getBucketFilterData = function () {
+=======
+        "Employee No.", "name", "Department", "job_title", "Email"
+    ]
+
+    $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+        { 'name': 'Human Resources', 'url': 'app.setup', 'isActive': false, 'tabIndex': '7' },
+        { 'name': 'View Bucket', 'url': '#', 'isActive': false }
+    ];
+
+    $scope.getBucketFilterData = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var postUrl = $rootScope.setup + "hr/get-bucket-filter-data";
         $scope.showLoader = true;
@@ -322,11 +464,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             .post(postUrl, {
                 'token': $rootScope.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
 
                     $scope.modules = [];
                     angular.forEach(res.data.response, function (value, key) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+
+                    $scope.modules = [];
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.modules.push({
                             name: key,
                             data: value
@@ -335,6 +485,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
                     $scope.bucketFilterData = res.data.response;
                     //$scope.arr_filter_product = res.data.response.item;
+<<<<<<< HEAD
                     angular.forEach(res.data.response.item, function (obj) {
                         var tempObj = {
                             name: obj.meta.display_field_name,
@@ -350,6 +501,27 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 }
                 $scope.showLoader = false;
                 
+=======
+
+                    if ($scope.bucketFilterData) {
+
+                        angular.forEach($scope.bucketFilterData.item, function(obj) {
+                            var tempObj = {
+                                name: obj.meta.display_field_name,
+                                field_name: obj.meta.field_name,
+                                display_field_name: obj.meta.display_field_name,
+                                foreign_key_name: obj.meta.foreign_key_name,
+                                foreign_key_id: obj.meta.foreign_key_id,
+                                is_numeric: obj.meta.is_numeric
+                            };
+                            $scope.arr_filter_product.push(tempObj);
+                        });
+                    }
+                    //return $scope.bucketFilterData;
+                }
+                $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
     }
 
@@ -357,6 +529,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     if ($stateParams.id > 0) {
         $scope.check_sale_bucket_readonly = true;
+<<<<<<< HEAD
     }
     else{
         $scope.getBucketFilterData();
@@ -365,6 +538,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     
 
     $scope.showEditForm = function () {
+=======
+    } else {
+        $scope.getBucketFilterData();
+    }
+
+
+
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_sale_bucket_readonly = false;
         //$scope.perreadonly = true;
     }
@@ -442,17 +624,29 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.showLoader = true;
         $http
             .post(get, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec = res.data.response;
                 $scope.allEmployees = res.data.allEmployees.response;
                 $scope.allEmployeesIDs = [];
 
+<<<<<<< HEAD
                 angular.forEach($scope.allEmployees, function (obj) {
                     if (res.data.primarySalesperson == obj.id) {
                         $scope.primarySalesperson = obj.id;
                         obj.is_primary = true;
                     }
                     else
+=======
+                angular.forEach($scope.allEmployees, function(obj) {
+                    if (res.data.primarySalesperson == obj.id) {
+                        $scope.primarySalesperson = obj.id;
+                        obj.is_primary = true;
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.is_primary = false;
                     $scope.allEmployeesIDs.push(obj.id);
                 });
@@ -471,7 +665,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         { 'name': 'Human Resources', 'url': 'app.setup', 'isActive': false, 'tabIndex': '7' },
                         { 'name': 'View Bucket', 'url': 'app.sales-bucket', 'isActive': false }
                     ];
+<<<<<<< HEAD
                     $scope.$root.breadcrumbs.push({ 'name': $scope.rec.name + " ("+$scope.rec.sale_bk_code+")", 'url': '#', 'isActive': true });
+=======
+                    $scope.$root.breadcrumbs.push({ 'name': $scope.rec.name + " (" + $scope.rec.sale_bk_code + ")", 'url': '#', 'isActive': true });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
 
@@ -482,7 +680,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 if (res.data.response.ending_date == 0) $scope.rec.ending_date = null;
                 else $scope.rec.ending_date = $scope.$root.convert_unix_date_to_angular(res.data.response.ending_date);
 
+<<<<<<< HEAD
                 $.each($scope.arr_status, function (index, obj) {
+=======
+                $.each($scope.arr_status, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.value == res.data.response.status) $scope.rec.status = obj;
                 });
 
@@ -507,32 +709,53 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.showLoader = false;
                 $scope.getBucketFilterData();
             });
+<<<<<<< HEAD
     }
     else {
+=======
+    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var get = $scope.$root.sales + "customer/sale-bucket/get-sale-bucket-preData";
         var postData = { 'token': $scope.$root.token };
 
         $http
             .post(get, postData)
+<<<<<<< HEAD
             .then(function (res) {
 
                 if (res.data.ack == true) {
                     $scope.allEmployees = res.data.allEmployees.response;
                     angular.forEach($scope.allEmployees, function (obj) {
+=======
+            .then(function(res) {
+
+                if (res.data.ack == true) {
+                    $scope.allEmployees = res.data.allEmployees.response;
+                    angular.forEach($scope.allEmployees, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.is_primary = false;
                     });
                     $scope.allEmployeesIDs = [];
 
+<<<<<<< HEAD
                     angular.forEach($scope.allEmployees, function (obj) {
+=======
+                    angular.forEach($scope.allEmployees, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.allEmployeesIDs.push(obj.id);
                     });
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.askConfirmation = function (rec, overwrite) {
         
+=======
+    $scope.askConfirmation = function(rec, overwrite) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.primarySalesperson == undefined || $scope.primarySalesperson == "") {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Primary Employee']));
             return;
@@ -542,6 +765,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             ngDialog.openConfirm({
                 template: "applyFiltersDialogId",
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
                 $scope.update_main(rec);
             }, function (reason) {
@@ -549,18 +773,35 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             });
         }
         else {
+=======
+            }).then(function(value) {
+                $scope.update_main(rec);
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.overwrite = false;
             $scope.update_main(rec);
         }
     }
 
+<<<<<<< HEAD
     $scope.update_main = function (rec) {
         if ($scope.selectedEmployees == undefined || $scope.selectedEmployees.length == 0){
+=======
+    $scope.update_main = function(rec) {
+        if ($scope.selectedEmployees == undefined || $scope.selectedEmployees.length == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Employee(s)']));
             $scope.showLoader = false;
             return;
         }
+<<<<<<< HEAD
         if (rec.name == undefined || rec.name && rec.name.trim() == ""){
+=======
+        if (rec.name == undefined || rec.name && rec.name.trim() == "") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Name']));
             $scope.showLoader = false;
             return;
@@ -570,8 +811,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         if (rec.sale_bk_code != undefined) {
             $scope.UpdateForm(rec);
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
             var name = $scope.$root.base64_encode('crm_sale_bucket');
@@ -583,13 +828,21 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     'category': '',
                     'brand': '',
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     if (res.data.ack == 1) {
                         rec.sale_bk_code = res.data.code;
                         $scope.UpdateForm(rec);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'info', res.data.error);
                         return false;
                     }
@@ -598,7 +851,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     }
 
 
+<<<<<<< HEAD
     $scope.UpdateForm = function (rec) {
+=======
+    $scope.UpdateForm = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         // console.log(rec);
@@ -620,7 +877,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(updateUrl, $scope.rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 if (res.data.ack == true) {
                     if ($scope.rec.id == 0) {
@@ -632,20 +893,34 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
                     $scope.check_sale_bucket_readonly = true;
 
+<<<<<<< HEAD
                     
                     $scope.$root.sale_target_id = res.data.id;
                     
+=======
+
+                    $scope.$root.sale_target_id = res.data.id;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ($stateParams.id === undefined) {
                         $stateParams.id = res.data.id;
                         $scope.check_sale_bucket_readonly = false;
                         $scope.moduleDataRetriever($scope.moduleName);
+<<<<<<< HEAD
                         if ($scope.module_id){
                             $scope.get_bucket_product_edit($scope.$root.sale_target_id, 1, $scope.module_id, 1);
                         }
                         else{
                             $scope.check_sale_bucket_readonly = true;
                             $timeout(function () {
+=======
+                        if ($scope.module_id) {
+                            $scope.get_bucket_product_edit($scope.$root.sale_target_id, 1, $scope.module_id, 1);
+                        } else {
+                            $scope.check_sale_bucket_readonly = true;
+                            $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $rootScope.animateGlobal = false;
                                 $state.go("app.sales-bucket");
                             }, 1500);
@@ -658,6 +933,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         $rootScope.getInventorySetupGlobalData(0);
                         $rootScope.getEmployeeGlobalData(0);
                         $rootScope.getPOSOData(0);
+<<<<<<< HEAD
                         
                         $timeout(function () {
                             $rootScope.animateGlobal = false;
@@ -665,6 +941,14 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         }, 1500);
                     }
                     else {
+=======
+
+                        $timeout(function() {
+                            $rootScope.animateGlobal = false;
+                            //$state.go("app.view-sales-bucket", { id: res.data.id });
+                        }, 1500);
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rootScope.animateGlobal = true;
 
@@ -673,8 +957,13 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         $rootScope.getInventorySetupGlobalData(0);
                         $rootScope.getEmployeeGlobalData(0);
                         $rootScope.getPOSOData(0);
+<<<<<<< HEAD
                         
                         $timeout(function () {
+=======
+
+                        $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $rootScope.animateGlobal = false;
                             $state.go("app.sales-bucket");
                         }, 1500);
@@ -688,6 +977,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     //     if ($scope.isSalePerersonChanged)
                     //         $scope.add_salespersons($scope.$root.sale_target_id);
 
+<<<<<<< HEAD
                         // if($scope.isProoductChanged_detail)
                         //$scope.add_bucket_product($scope.$root.sale_target_id, 1);
 
@@ -698,10 +988,22 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                    // }
                 }
                 else toaster.pop('error', 'info', res.data.error);
+=======
+                    // if($scope.isProoductChanged_detail)
+                    //$scope.add_bucket_product($scope.$root.sale_target_id, 1);
+
+                    // if ($scope.isregionChanged_detail)
+                    //     $scope.add_bucket_to_customer($scope.$root.sale_target_id, 1);
+
+                    // $scope.add_bucket_customer($scope.$root.sale_target_id, 1);
+                    // }
+                } else toaster.pop('error', 'info', res.data.error);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
     }
 
 
+<<<<<<< HEAD
     $scope.delete_sale_buket = function (id, index, arr_data_ret) {
 
         var delUrl = $scope.$root.sales + "customer/sale-bucket/delete-sale-bucket";
@@ -710,12 +1012,22 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             template = "bucketDeleteDialogId";
         }
         else{
+=======
+    $scope.delete_sale_buket = function(id, index, arr_data_ret) {
+
+        var delUrl = $scope.$root.sales + "customer/sale-bucket/delete-sale-bucket";
+        var template = "";
+        if ($scope.allAppliedFilters.length) {
+            template = "bucketDeleteDialogId";
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             template = "modalDeleteDialogId";
         }
 
         ngDialog.openConfirm({
             template: template,
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -743,6 +1055,34 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 });
         },
             function (reason) {
+=======
+        }).then(function(value) {
+                $http
+                    .post(delUrl, { id: id, 'token': $scope.$root.token })
+                    .then(function(res) {
+
+                        if (res.data.ack == true) {
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+
+                            $rootScope.animateGlobal = true;
+
+                            $rootScope.get_global_data(0);
+                            $rootScope.getInventoryGlobalData(0);
+                            $rootScope.getInventorySetupGlobalData(0);
+                            $rootScope.getEmployeeGlobalData(0);
+                            $rootScope.getPOSOData(0);
+
+                            // arr_data_ret.splice(index,1);
+                            $timeout(function() {
+                                $rootScope.animateGlobal = false;
+                                $state.go("app.sales-bucket");
+                            }, 1500);
+                        } else toaster.pop('error', 'Info', 'Record cannot be Deleted.');
+
+                    });
+            },
+            function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
     };
@@ -754,7 +1094,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.dropdown_selectedsalespersons = [];
     var primary_sale_id = 0;
 
+<<<<<<< HEAD
     $scope.getsalesperson_pop = function (isShow) {
+=======
+    $scope.getsalesperson_pop = function(isShow) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns = [];
         $scope.salepersons = [];
@@ -770,12 +1114,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.showLoader = false;*/
 
 
+<<<<<<< HEAD
         angular.forEach($rootScope.salesperson_arr, function (obj) {
+=======
+        angular.forEach($rootScope.salesperson_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             obj.chk = false;
             obj.isPrimary = false;
 
             if ($scope.selectedSalespersons.length > 0) {
+<<<<<<< HEAD
                 angular.forEach($scope.selectedSalespersons, function (obj2) {
+=======
+                angular.forEach($scope.selectedSalespersons, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == obj2.salesperson_id) {
 
                         obj.chk = true;
@@ -789,7 +1141,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         });
 
 
+<<<<<<< HEAD
         angular.forEach($rootScope.salesperson_arr[0], function (val, index) {
+=======
+        angular.forEach($rootScope.salesperson_arr[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (index != 'chk' && index != 'id') {
                 $scope.columns.push({
                     'title': toTitleCase(index),
@@ -858,7 +1214,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '.checkAllSalesperson', function () {
+=======
+    angular.element(document).on('click', '.checkAllSalesperson', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedSalespersons = [];
         if (angular.element('.checkAllSalesperson').is(':checked') == true) {
             $scope.isSalePerersonChanged = true;
@@ -884,14 +1244,22 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         }
 
         //$timeout(function(){
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.selectedSalespersons;
         });
         //},500);
 
     });
 
+<<<<<<< HEAD
     $scope.selectSaleperson = function (sp, isPrimary) {
+=======
+    $scope.selectSaleperson = function(sp, isPrimary) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.isSalePerersonChanged = true;
 
@@ -902,18 +1270,30 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 if ($scope.salepersons[i].chk == true && isPrimary == 0) {
                     $scope.salepersons[i].chk = false;
                     $scope.salepersons[i].isPrimary = false;
+<<<<<<< HEAD
                     $.each($scope.selectedSalespersons, function (indx, obj) {
+=======
+                    $.each($scope.selectedSalespersons, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj != undefined) {
                             if (obj.id == sp.id)
                                 $scope.selectedSalespersons.splice(indx, 1);
                         }
                     });
+<<<<<<< HEAD
                 }
                 else {
                     if (isPrimary == 1 || $scope.selectedSalespersons.length == 0) {
                         var isExist = false;
                         $scope.salepersons[i].isPrimary = true;
                         $.each($scope.selectedSalespersons, function (indx, obj) {
+=======
+                } else {
+                    if (isPrimary == 1 || $scope.selectedSalespersons.length == 0) {
+                        var isExist = false;
+                        $scope.salepersons[i].isPrimary = true;
+                        $.each($scope.selectedSalespersons, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj != undefined) {
                                 $scope.selectedSalespersons[indx].isPrimary = false;
                                 if (obj.id == sp.id) {
@@ -928,8 +1308,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.selectedSalespersons.push($scope.salepersons[i]);
                         }
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.salepersons[i].chk = true;
                         $scope.selectedSalespersons.push($scope.salepersons[i]);
                     }
@@ -941,13 +1325,18 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.getSalePersons_edit_sale = function (id, type) {
+=======
+    $scope.getSalePersons_edit_sale = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //var salepersonUrl = $scope.$root.sales + "crm/crm/get-crm-salesperson";
         var salepersonUrl = $scope.$root.sales + "customer/sale-bucket/get-crm-salesperson";
 
         $http
             .post(salepersonUrl, { id: id, 'token': $scope.$root.token, 'type': 6 })
+<<<<<<< HEAD
             .then(function (emp_data) {
                 if (emp_data.data.ack == true) {
                     $timeout(function () {
@@ -959,6 +1348,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                                 obj.chk = false;
                                 obj.isPrimary = false;
                                 $.each(emp_data.data.response, function (indx, obj2) {
+=======
+            .then(function(emp_data) {
+                if (emp_data.data.ack == true) {
+                    $timeout(function() {
+                        $scope.$root.$apply(function() {
+
+                            $scope.selectedSalespersons = [];
+                            $scope.dropdown_selectedsalespersons = [];
+                            $.each($scope.salepersons, function(indx, obj) {
+                                obj.chk = false;
+                                obj.isPrimary = false;
+                                $.each(emp_data.data.response, function(indx, obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == obj2.salesperson_id) {
                                         obj.chk = true;
 
@@ -986,12 +1388,17 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.add_salespersons = function (id) {
+=======
+    $scope.add_salespersons = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //   var excUrl = $scope.$root.sales + "crm/crm/add-crm-salesperson";
         var excUrl = $scope.$root.sales + "customer/sale-bucket/add-crm-salesperson";
         var post = {};
         var temp = [];
+<<<<<<< HEAD
         $.each($scope.selectedSalespersons, function (index, obj) {
 
             if (obj.isPrimary == 1) primary_sale_id = obj.id;
@@ -999,6 +1406,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             temp.push({ id: obj.id, isPrimary: obj.isPrimary });
         })
         //	console.log(primary_sale_id);$scope.showLoader = false;return;
+=======
+        $.each($scope.selectedSalespersons, function(index, obj) {
+
+                if (obj.isPrimary == 1) primary_sale_id = obj.id;
+
+                temp.push({ id: obj.id, isPrimary: obj.isPrimary });
+            })
+            //	console.log(primary_sale_id);$scope.showLoader = false;return;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         post.id = id;
@@ -1007,12 +1423,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             });
     }
 
+<<<<<<< HEAD
     $scope.update_salespersons = function (id) {
+=======
+    $scope.update_salespersons = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //$scope.loader_pop=true;
         $scope.showLoader = true;
@@ -1027,6 +1451,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             post.pre_sale_person = $scope.rec.select_saleperson !== undefined ? $scope.rec.select_saleperson.id : 0;
 
         var pre_selected_primary = 0;
+<<<<<<< HEAD
         $.each($scope.salepersons_exculde, function (index, obj) {
 
             if (obj.isPrimary == 1) primary_sale_id = obj.id;
@@ -1039,6 +1464,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             if (obj.chk) temp.push({ id: obj.id, salesperson_id: obj.salesperson_id, isPrimary: obj.isPrimary });
         })
         //console.log(primary_sale_id);$scope.showLoader = false;return;
+=======
+        $.each($scope.salepersons_exculde, function(index, obj) {
+
+                if (obj.isPrimary == 1) primary_sale_id = obj.id;
+
+                if (post.pre_sale_person == obj.salesperson_id) {
+                    if (obj.is_primary == 1) pre_selected_primary = true;
+                }
+
+                // $scope.salepersons[i].chk = true;
+                if (obj.chk) temp.push({ id: obj.id, salesperson_id: obj.salesperson_id, isPrimary: obj.isPrimary });
+            })
+            //console.log(primary_sale_id);$scope.showLoader = false;return;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         post.id = id;
         post.primary_sale_id = pre_selected_primary;
         post.salespersons = temp;
@@ -1050,7 +1489,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.showLoader = false;
                     $scope.selectedSalespersons = [];
@@ -1058,26 +1501,42 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     // $scope.getsalesperson_pop(1,0);
 
                     toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(106));
+=======
+                } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(106));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
 
     }
 
+<<<<<<< HEAD
     $scope.check_primary_sp = function () {
+=======
+    $scope.check_primary_sp = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!$("input[name='isPrimary']").is(':checked')) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Primary Employee']));
             $('.isPrimary_sp').attr("disabled", true);
             return;
+<<<<<<< HEAD
         }
         else $('.isPrimary_sp').attr("disabled", false);
+=======
+        } else $('.isPrimary_sp').attr("disabled", false);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   alert('One of the radio buttons is checked!');
 
 
     }
 
+<<<<<<< HEAD
     $scope.get_customer_by_sale_person = function (id, type) {
+=======
+    $scope.get_customer_by_sale_person = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns_saleperson = [];
         $scope.record_saleperson = {};
@@ -1096,11 +1555,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(custUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
 
                 $scope.record_saleperson = res.data.response;
 
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+            .then(function(res) {
+
+                $scope.record_saleperson = res.data.response;
+
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns_saleperson.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -1112,7 +1579,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     }
 
     $scope.salepersons_exculde = [];
+<<<<<<< HEAD
     $scope.get_sale_person_exculde = function (id, type) {
+=======
+    $scope.get_sale_person_exculde = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         angular.element('#salesPersonModal').modal({ show: true });
 
@@ -1122,12 +1593,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         if (type == 1) var id1 = id;
         if (type == 2) var id1 = id;
 
+<<<<<<< HEAD
         $.each($scope.salepersons, function (indx, obj) {
+=======
+        $.each($scope.salepersons, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (id1 !== obj.id) $scope.salepersons_exculde.push(obj);
 
         });
 
+<<<<<<< HEAD
         angular.forEach($scope.salepersons[0], function (val, index) {
+=======
+        angular.forEach($scope.salepersons[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (index != 'chk' && index != 'id') {
                 $scope.columns_exclude.push({
                     'title': toTitleCase(index),
@@ -1150,6 +1629,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.arr_filter = [{ 'name': 'CustomerName', 'id': 1 }, {
         'name': 'CustomerCountry',
         'id': 2
+<<<<<<< HEAD
     }, { 'name': 'CustomerCity', 'id': 3 }
         , { 'name': 'CustomerPostCode', 'id': 4 }, { 'name': 'CustomerTurnOver', 'id': 5 }, { 'name': 'Region', 'id': 6 }
         , { 'name': 'Segment', 'id': 7 }, { 'name': 'BuyingGroup', 'id': 8 }, {
@@ -1157,6 +1637,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         'id': 9
     }, { 'name': 'Locationcity', 'id': 10 }
         , { 'name': 'LocationPostcode', 'id': 11 }, { 'name': 'LocationCountry', 'id': 12 }];
+=======
+    }, { 'name': 'CustomerCity', 'id': 3 }, { 'name': 'CustomerPostCode', 'id': 4 }, { 'name': 'CustomerTurnOver', 'id': 5 }, { 'name': 'Region', 'id': 6 }, { 'name': 'Segment', 'id': 7 }, { 'name': 'BuyingGroup', 'id': 8 }, {
+        'name': 'Loctioname',
+        'id': 9
+    }, { 'name': 'Locationcity', 'id': 10 }, { 'name': 'LocationPostcode', 'id': 11 }, { 'name': 'LocationCountry', 'id': 12 }];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.arr_operator = [];
     $scope.arr_operator = [
@@ -1175,7 +1661,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         { 'name': 'Exclude', 'id': 8 }
     ];
 
+<<<<<<< HEAD
     $scope.newItemInList = function (tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+=======
+    $scope.newItemInList = function(tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var obj = {};
         obj.id = 999;
@@ -1183,21 +1673,33 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         //$scope.cat_prodcut_arr.push(obj);
         return { id: tag, name: tag };
     }
+<<<<<<< HEAD
     $scope.newBrandInBrandsArray = function (tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+=======
+    $scope.newBrandInBrandsArray = function(tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var obj = {};
         obj.id = $scope.brand_prodcut_arr.length;
         obj.name = tag;
         $scope.brand_prodcut_arr.push(obj);
         return obj;
     }
+<<<<<<< HEAD
     $scope.newUnitInUnitsArray = function (tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+=======
+    $scope.newUnitInUnitsArray = function(tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var obj = {};
         obj.id = $scope.uni_prooduct_arr.length;
         obj.name = tag;
         $scope.uni_prooduct_arr.push(obj);
         return obj;
     }
+<<<<<<< HEAD
     $scope.newOriginInOriginArray = function (tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+=======
+    $scope.newOriginInOriginArray = function(tag) { // this is a functional created for ui-select to allow new value as input additional to the values inside array..
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var obj = {};
         obj.id = $scope.itemOriginCountries.length;
         obj.name = tag;
@@ -1215,7 +1717,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.salepersons_customer_arry = [];
     $scope.dropdown_crm_bucket = [];
 
+<<<<<<< HEAD
     $scope.getcustomer_filter = function (isShow, type, item_paging) {
+=======
+    $scope.getcustomer_filter = function(isShow, type, item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
 
         $scope.columnss = [];
@@ -1268,7 +1774,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
          */
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.total = res.data.total;
                     $scope.item_paging.total_pages = res.data.total_pages;
@@ -1285,14 +1795,23 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.dropdown_crm_bucket = [];
                     // $scope.dropdown_crm_bucket={};
 
+<<<<<<< HEAD
                     $.each($scope.salepersons, function (indx, obj) {
                         $.each($scope.selectedSalespersons, function (indx, obj2) {
+=======
+                    $.each($scope.salepersons, function(indx, obj) {
+                        $.each($scope.selectedSalespersons, function(indx, obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if ($scope.$root.sale_target_id === undefined) {
                                 ids = obj2.id;
                                 isPrimary = obj.isPrimary;
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 isPrimary = obj2.is_primary;
                                 ids = obj2.salesperson_id;
                             }
@@ -1309,7 +1828,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         });
                     });
 
+<<<<<<< HEAD
                     $.each(res.data.response, function (indx, obj) {
+=======
+                    $.each(res.data.response, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         /* $.each($scope.dropdown_crm_bucket, function (indx, obj3) {
                          if (obj3.id == primary_sale_id)  obj.select_saleperson=obj3;
@@ -1325,7 +1848,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         obj.chk = false;
                         $scope.arr_customer_all.push(obj);
                     });
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columnss.push({
                                 'title': toTitleCase(index),
@@ -1335,8 +1862,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         }
                     });
                     $scope.showLoader = false;
+<<<<<<< HEAD
                 }
                 else $scope.showLoader = false;
+=======
+                } else $scope.showLoader = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
             });
 
@@ -1346,7 +1877,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '.checkAll_Customer', function () {
+=======
+    angular.element(document).on('click', '.checkAll_Customer', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedCustomer = [];
         if (angular.element('.checkAll_Customer').is(':checked') == true) {
             $scope.isregionChanged_detail = true;
@@ -1354,35 +1889,55 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.arr_customer_all[i].chk = true;
                 $scope.selectedCustomer.push($scope.arr_customer_all[i]);
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = 0; i < $scope.arr_customer_all.length; i++) {
                 $scope.arr_customer_all[i].chk = false;
             }
             $scope.selectedCustomer = [];
         }
 
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.selectedCustomer;
         });
 
     });
 
+<<<<<<< HEAD
     $scope.selectCustomer_bucket = function (cust) {
+=======
+    $scope.selectCustomer_bucket = function(cust) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isregionChanged_detail = true;
 
         for (var i = 0; i < $scope.arr_customer_all.length; i++) {
             if (cust.id == $scope.arr_customer_all[i].id) {
                 if ($scope.arr_customer_all[i].chk == true) {
                     $scope.arr_customer_all[i].chk = false;
+<<<<<<< HEAD
                     $.each($scope.selectedCustomer, function (indx, obj) {
+=======
+                    $.each($scope.selectedCustomer, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj != undefined) {
                             if (obj.id == cust.id)
                                 $scope.selectedCustomer.splice(indx, 1);
                         }
                     });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.arr_customer_all[i].chk = true;
                     $scope.selectedCustomer.push($scope.arr_customer_all[i]);
                 }
@@ -1391,6 +1946,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         }
         if ($scope.selectedCustomer.length == $scope.arr_customer_all.length) {
+<<<<<<< HEAD
             $timeout(function () {
                 $scope.$root.$apply(function () {
                     angular.element('.checkAll_Customer').prop('checked', true);
@@ -1400,18 +1956,33 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         else {
             $timeout(function () {
                 $scope.$root.$apply(function () {
+=======
+            $timeout(function() {
+                $scope.$root.$apply(function() {
+                    angular.element('.checkAll_Customer').prop('checked', true);
+                });
+            }, 500);
+        } else {
+            $timeout(function() {
+                $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     angular.element('.checkAll_Customer').prop('checked', false);
                 });
             }, 500);
         }
     }
 
+<<<<<<< HEAD
     $scope.get_bucket_customer_edit = function (id, type) {
+=======
+    $scope.get_bucket_customer_edit = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         var salepersonUrl = $scope.$root.sales + "customer/sale-bucket/get-sale-customer";
         $http
             .post(salepersonUrl, { module_id: id, 'token': $scope.$root.token, 'type': type })
+<<<<<<< HEAD
             .then(function (emp_data) {
 
                 if (emp_data.data.ack == true) {
@@ -1423,6 +1994,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                                 obj.chk = false;
                                 // obj.isPrimary = false;
                                 $.each(emp_data.data.response_customer, function (indx, obj2) {
+=======
+            .then(function(emp_data) {
+
+                if (emp_data.data.ack == true) {
+                    $scope.showLoader = true;
+                    $timeout(function() {
+                        $scope.$root.$apply(function() {
+
+                            $.each($scope.arr_customer_all, function(indx, obj) {
+                                obj.chk = false;
+                                // obj.isPrimary = false;
+                                $.each(emp_data.data.response_customer, function(indx, obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == obj2.id) {
                                         //  obj.chk = true;
                                         $scope.selectedCustomer.push(obj);
@@ -1432,12 +2016,17 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                             });
 
                             $scope.array_dynamic_filter = emp_data.data.response_filter;
+<<<<<<< HEAD
                             $.each($scope.array_dynamic_filter, function (index, obj_rec) {
+=======
+                            $.each($scope.array_dynamic_filter, function(index, obj_rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 obj_rec.id = obj_rec.id;
                                 obj_rec.sort_id = obj_rec.sort_id;
                                 obj_rec.operator_search = obj_rec.operator_search;
 
+<<<<<<< HEAD
                                 $.each($scope.arr_filter, function (index, obj) {
                                     if (obj.id == obj_rec.normal_filter) obj_rec.normal_filter = obj;
                                 });
@@ -1447,6 +2036,17 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                                 });
 
                                 $.each($scope.arr_logic_operator, function (index, obj) {
+=======
+                                $.each($scope.arr_filter, function(index, obj) {
+                                    if (obj.id == obj_rec.normal_filter) obj_rec.normal_filter = obj;
+                                });
+
+                                $.each($scope.arr_operator, function(index, obj) {
+                                    if (obj.id == obj_rec.operator_filter) obj_rec.operator_filter = obj;
+                                });
+
+                                $.each($scope.arr_logic_operator, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == obj_rec.logical_filter) obj_rec.logical_filter = obj;
                                 });
 
@@ -1468,8 +2068,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.showLoader = false;
                         });
                     }, 1000);
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.array_dynamic_filter = {};
                     $scope.array_dynamic_filter = [{ sort_id: '1' }];
                     //toaster.pop('error', 'info',$scope.$root.getErrorMessageByCode(400));
@@ -1478,7 +2082,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.add_bucket_customer = function (id, type) {
+=======
+    $scope.add_bucket_customer = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         //,$scope.selectedProducts[$scope.counter].id
@@ -1498,20 +2106,32 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) check = true;
             });
 
 
     }
 
+<<<<<<< HEAD
     $scope.show_assign_cnfrm = function () {
+=======
+    $scope.show_assign_cnfrm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         angular.element('#show_assign_cnfrm').modal({ show: true });
 
     }
 
+<<<<<<< HEAD
     $scope.add_bucket_to_customer = function (id, type, confrm_type) {
+=======
+    $scope.add_bucket_to_customer = function(id, type, confrm_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         angular.element('#show_assign_cnfrm').modal('hide');
 
         // if($stateParams.id!==undefined) $scope.add_bucket_customer(id,1);
@@ -1523,7 +2143,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         var post = {};
         var temp = [];
         //$scope.selectedCustomer
+<<<<<<< HEAD
         $.each($scope.arr_customer_all, function (index, obj) {
+=======
+        $.each($scope.arr_customer_all, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.chk) temp.push({ id: obj.id, select_saleperson: obj.select_saleperson });
         })
         post.confrm_type = confrm_type;
@@ -1542,17 +2166,29 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         post.salespersons = temp;
         post.primary_sale_id = primary_sale_id;
+<<<<<<< HEAD
         post.bucket_id = $scope.$root.sale_target_id;// id;
+=======
+        post.bucket_id = $scope.$root.sale_target_id; // id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         post.token = $scope.$root.token;
 
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.showLoader = false;
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                 }
                 else {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.showLoader = false;
+                    toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
                     $scope.showLoader = false;
                 }
@@ -1560,7 +2196,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.get_filter_pop_list = function (id, main_index) {
+=======
+    $scope.get_filter_pop_list = function(id, main_index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //$scope.country_type_arr = [];
         //$scope.region_customer_arr = [];
@@ -1573,6 +2213,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         if (id == 2 || id == 12) {
             $scope.$root.get_country_list();
             $scope.title = 'Country';
+<<<<<<< HEAD
         }
 
         else if (id == 6) {
@@ -1586,6 +2227,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         }
 
         else if (id == 8) {
+=======
+        } else if (id == 6) {
+            $scope.$root.get_region_list();
+            $scope.title = 'Region';
+        } else if (id == 7) {
+            $scope.$root.get_segment_list();
+            $scope.title = 'Segment';
+        } else if (id == 8) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.$root.get_buyinggroup_list();
             $scope.title = 'Buying Group';
         }
@@ -1609,13 +2259,21 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
          */
     }
 
+<<<<<<< HEAD
     $scope.confirm = function (result, array, main_index, type) {
+=======
+    $scope.confirm = function(result, array, main_index, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if (type == 2) var name = result.name;
         else var name = result.title;
 
+<<<<<<< HEAD
         $.each(array, function (index, obj) {
+=======
+        $.each(array, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (index == main_index) obj.operator_search = name;
         });
 
@@ -1625,7 +2283,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     $scope.cust_id = 0;
     $scope.crm_bucket_array = [];
+<<<<<<< HEAD
     $scope.crm_bucket_detail = function (id) {
+=======
+    $scope.crm_bucket_detail = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.cust_id = id;
 
         $scope.crm_bucket = [];
@@ -1633,24 +2295,40 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         var bucketApi = $scope.$root.sales + "customer/sale-bucket/get-sale-bucket-list";
         $http
             .post(bucketApi, { 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.crm_bucket_array = res.data.response;
                     var bucketApi = $scope.$root.sales + "customer/sale-bucket/get-sales-person-and-bucket";
                     $http
                         .post(bucketApi, { module_id: $scope.cust_id, 'token': $scope.$root.token, 'type': 1 })
+<<<<<<< HEAD
                         .then(function (emp_data) {
+=======
+                        .then(function(emp_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (emp_data.data.ack == true) {
                                 $scope.selectedSalespersons_bucket = emp_data.data.response_salesperson;
 
 
+<<<<<<< HEAD
                                 $.each($scope.crm_bucket_array, function (indx, obj) {
                                     obj.chk = false;
                                     obj.isPrimary = false;
 
                                     $.each(emp_data.data.response, function (indx, obj2) {
+=======
+                                $.each($scope.crm_bucket_array, function(indx, obj) {
+                                    obj.chk = false;
+                                    obj.isPrimary = false;
+
+                                    $.each(emp_data.data.response, function(indx, obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (obj.id == obj2.bucket_id) {
                                             obj.chk = true;
                                             obj.bucket_id = obj2.bucket_id;
@@ -1665,13 +2343,21 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         });
 
                     $('#crm_bucket').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+=======
+                } else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
     }
 
     $scope.selectedSalespersons_bucket = [];
+<<<<<<< HEAD
     $scope.get_bucket_salesperson = function (id) {
+=======
+    $scope.get_bucket_salesperson = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.salepersons_bucket = [];
         $scope.selectedSalespersons_bucket = [];
@@ -1687,13 +2373,18 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.salepersons_bucket = res.data.response;
 
                     var salepersonUrl = $scope.$root.sales + "crm/crm/get-crm-salesperson";
                     $http
                         .post(salepersonUrl, { id: $scope.cust_id, 'token': $scope.$root.token, 'type': 2 })
+<<<<<<< HEAD
                         .then(function (emp_data) {
 
                             if (emp_data.data.ack == true) {
@@ -1701,6 +2392,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                                 $.each($scope.salepersons_bucket, function (indx, obj) {
                                     ids = obj.id.split('.')[0];
                                     $.each(emp_data.data.response, function (indx, obj2) {
+=======
+                        .then(function(emp_data) {
+
+                            if (emp_data.data.ack == true) {
+                                var ids = 0;
+                                $.each($scope.salepersons_bucket, function(indx, obj) {
+                                    ids = obj.id.split('.')[0];
+                                    $.each(emp_data.data.response, function(indx, obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (ids === obj2.salesperson_id && obj.bucket_id === id) {
                                             $scope.selectedSalespersons_bucket.push(obj);
                                         }
@@ -1711,14 +2411,22 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
 
                     angular.element('#salesperson_bucket').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+=======
+                } else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
 
     }
 
     $scope.customer_loc_record = {};
+<<<<<<< HEAD
     $scope.get_customer_loc = function (id) {
+=======
+    $scope.get_customer_loc = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns_customer_loc_record = [];
         $scope.customer_loc_record = {};
@@ -1727,11 +2435,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         var ApiAjax = $scope.$root.sales + "crm/crm/alt-depots";
         $http
             .post(ApiAjax, { 'column': 'crm_id', 'value': id, token: $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.record.result) {
 
                     $scope.customer_loc_record = res.data.record.result;
                     angular.forEach(res.data.record.result[0], function (val, index) {
+=======
+            .then(function(res) {
+                if (res.data.record.result) {
+
+                    $scope.customer_loc_record = res.data.record.result;
+                    angular.forEach(res.data.record.result[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         //   if (index != 'chk' && index != 'id'&& index != 'Location'&& index != 'Type') {
                         $scope.columns_customer_loc_record.push({
                             'title': toTitleCase(index),
@@ -1742,20 +2458,29 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     });
 
                     angular.element('#customer_location').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+=======
+                } else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
 
 
     }
 
+<<<<<<< HEAD
     $scope.delete_bucket_frm_customer = function (id, index, arr_data_ret) {
+=======
+    $scope.delete_bucket_frm_customer = function(id, index, arr_data_ret) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         var delUrl = $scope.$root.sales + "customer/sale-bucket/delete-bucket-customer-card";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -1769,13 +2494,31 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 });
         },
             function (reason) {
+=======
+        }).then(function(value) {
+                $http
+                    .post(delUrl, { id: id, 'token': $scope.$root.token })
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                            arr_data_ret.splice(index, 1);
+                        } else toaster.pop('error', 'Info', 'Record cannot be Deleted.');
+
+                    });
+            },
+            function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
 
 
     }
 
+<<<<<<< HEAD
     $scope.clear_search = function () {
+=======
+    $scope.clear_search = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword = {};
         var postData = {};
         $scope.array_dynamic_filter = {};
@@ -1795,7 +2538,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.array_dynamic_filter = {};
     $scope.array_dynamic_filter = [{ sort_id: '1' }];
 
+<<<<<<< HEAD
     $scope.addNewChoice = function (item) {
+=======
+    $scope.addNewChoice = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (item.logical_filter !== undefined || item.logical_filter !== null) {
             var newItemNo = $scope.array_dynamic_filter.length + 1;
@@ -1803,12 +2550,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         }
     };
 
+<<<<<<< HEAD
     $scope.remove_choice = function (item, index1) {
+=======
+    $scope.remove_choice = function(item, index1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //  var lastItem = $scope.array_dynamic_filter.length-1;
         $scope.array_dynamic_filter.splice(index1, 1); //lastItem
 
+<<<<<<< HEAD
         $.each($scope.array_dynamic_filter, function (index, obj_rec) {
+=======
+        $.each($scope.array_dynamic_filter, function(index, obj_rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (index1 - 1 == index) obj_rec.logical_filter = '';
         });
 
@@ -1906,6 +2661,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
 
 
+<<<<<<< HEAD
     $scope.moduleDataRetriever = function (moduleName) {
         $scope.columns = [];
         $scope.tableData = [];
@@ -1933,6 +2689,35 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     //     { 'name': 'Unit', 'id': 5 },
     //     { 'name': 'ItemOriginCountry', 'id': 6 },
     // ];
+=======
+    $scope.moduleDataRetriever = function(moduleName) {
+            $scope.columns = [];
+            $scope.tableData = [];
+            $scope.moduleName = moduleName;
+            $scope.arr_filter_product = [];
+            angular.forEach($scope.bucketFilterData[moduleName], function(obj) {
+                if (obj.constructor === Object) {
+                    var tempObj = {
+                        name: obj.meta.display_field_name,
+                        field_name: obj.meta.field_name,
+                        display_field_name: obj.meta.display_field_name,
+                        foreign_key_name: obj.meta.foreign_key_name,
+                        foreign_key_id: obj.meta.foreign_key_id,
+                        is_numeric: obj.meta.is_numeric
+                    };
+                    $scope.arr_filter_product.push(tempObj);
+                }
+            })
+        }
+        // $scope.arr_filter_product = [
+        //     { 'name': 'ItemNo.', 'id': 1 },
+        //     { 'name': 'ItemDescription', 'id': 2 },
+        //     { 'name': 'Category', 'id': 3 },
+        //     { 'name': 'Brand', 'id': 4 },
+        //     { 'name': 'Unit', 'id': 5 },
+        //     { 'name': 'ItemOriginCountry', 'id': 6 },
+        // ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.isProoductChanged_detail = false;
     $scope.arr_all_product = [];
@@ -1940,7 +2725,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.searchKeyword = {};
     $scope.module_select = "";
 
+<<<<<<< HEAD
     $scope.ifShowSearchBtn = function () {
+=======
+    $scope.ifShowSearchBtn = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var flag = true;
         if ($scope.array_dynamic_filter_product[0].normal_filter && $scope.array_dynamic_filter_product[0].operator_filter && $scope.array_dynamic_filter_product[0].operator_search) {
             flag = false;
@@ -1948,7 +2737,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         return flag;
     }
 
+<<<<<<< HEAD
     $scope.getFilterSearchResults = function (isShow, type, item_paging, moduleName, go) {
+=======
+    $scope.getFilterSearchResults = function(isShow, type, item_paging, moduleName, go) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
         var postprdUrl = "";
         postData.token = $scope.$root.token;
@@ -1990,11 +2783,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.array_dynamic_filter_product.splice(i, 1);
                 }
             }
+<<<<<<< HEAD
         /* angular.forEach($scope.array_dynamic_filter_product, function (obj, index) {
             if (!(obj.hasOwnProperty("normal_filter")) || !(obj.hasOwnProperty("operator_filter")) || !(obj.hasOwnProperty("operator_search"))) {
                 $scope.array_dynamic_filter_product.splice(index, 1);
             }
         }) */
+=======
+            /* angular.forEach($scope.array_dynamic_filter_product, function (obj, index) {
+                if (!(obj.hasOwnProperty("normal_filter")) || !(obj.hasOwnProperty("operator_filter")) || !(obj.hasOwnProperty("operator_search"))) {
+                    $scope.array_dynamic_filter_product.splice(index, 1);
+                }
+            }) */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrLength = $scope.array_dynamic_filter_product.length;
         if (arrLength && $scope.array_dynamic_filter_product[arrLength - 1].hasOwnProperty("logical_filter")) {
             delete $scope.array_dynamic_filter_product[arrLength - 1].logical_filter
@@ -2005,7 +2806,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         // debugger
         $http
             .post(postprdUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack || (res.data.response != undefined && res.data.response.length == 0)) {
 
                     $scope.tableData = res.data.response;
@@ -2013,14 +2818,22 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.localResultsPagination = {
                         currentPage: 0,
                         pageSize: 25,
+<<<<<<< HEAD
                         numberOfPages: function () {
+=======
+                        numberOfPages: function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             return Math.ceil($scope.tableData.length / $scope.localResultsPagination.pageSize);
                         }
                     }
 
                     $scope.columns = [];
                     $scope.record = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': index,
                             'field': index,
@@ -2031,8 +2844,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     if (res.data.response.length == 0) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(634));
                     }
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log("ERROR TRACE", res.data);
                     toaster.pop('error', 'Incorrect Filter!', 'Check Console for Details!');
                 }
@@ -2040,10 +2857,17 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             });
     }
 
+<<<<<<< HEAD
     $scope.getproduct_filter = function (isShow, type, item_paging, moduleName, go) {
         $scope.columns = [];
         var postData   = {};
         $scope.title   = '';
+=======
+    $scope.getproduct_filter = function(isShow, type, item_paging, moduleName, go) {
+        $scope.columns = [];
+        var postData = {};
+        $scope.title = '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.rec.name == undefined || $scope.rec.name.length == 0) {
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Bucket Name']));
@@ -2054,8 +2878,13 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         //     $scope.stopChangeState = true;
         //     $scope.update_main($scope.rec);
         // }
+<<<<<<< HEAD
         postData.token     = $scope.$root.token;
         postData.type      = type;
+=======
+        postData.token = $scope.$root.token;
+        postData.type = type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         postData.bucket_id = $scope.$root.sale_target_id;
         postData.module_id;
         switch (moduleName) {
@@ -2084,6 +2913,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.title = "Create Supplier Filter";
                 break;
             case ("HR"):
+<<<<<<< HEAD
                     $scope.module_id = 1;
                     $scope.title = "Create HR Filter";
                     break;
@@ -2091,6 +2921,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         postData.module_id = $scope.module_id;
 
         if ($scope.$root.sale_target_id == undefined){
+=======
+                $scope.module_id = 1;
+                $scope.title = "Create HR Filter";
+                break;
+        }
+        postData.module_id = $scope.module_id;
+
+        if ($scope.$root.sale_target_id == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // save bucket and then get back here...
             $scope.moduleName = moduleName;
             $scope.askConfirmation($scope.rec);
@@ -2102,8 +2941,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         if (typeof moduleName != "undefined") {
             $scope.moduleDataRetriever(moduleName);
             $scope.get_bucket_product_edit($scope.$root.sale_target_id, 1, $scope.module_id, isShow);
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.moduleDataRetriever($scope.moduleName);
         }
         // if (!moduleName) {
@@ -2193,7 +3036,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         //	if($scope.$root.sale_target_id!==undefined && isShow ) $scope.get_bucket_product_edit($scope.$root.sale_target_id,1);
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '.checkAll_Product', function () {
+=======
+    angular.element(document).on('click', '.checkAll_Product', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedProdct = [];
         if (angular.element('.checkAll_Product').is(':checked') == true) {
             $scope.isProoductChanged_detail = true;
@@ -2201,35 +3048,55 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.arr_all_product[i].chk = true;
                 $scope.selectedProdct.push($scope.arr_all_product[i]);
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = 0; i < $scope.arr_all_product.length; i++) {
                 $scope.arr_all_product[i].chk = false;
             }
             $scope.selectedProdct = [];
         }
 
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.selectedProdct;
         });
 
     });
 
+<<<<<<< HEAD
     $scope.selectProduct_bucket = function (cust) {
+=======
+    $scope.selectProduct_bucket = function(cust) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isProoductChanged_detail = true;
 
         for (var i = 0; i < $scope.arr_all_product.length; i++) {
             if (cust.id == $scope.arr_all_product[i].id) {
                 if ($scope.arr_all_product[i].chk == true) {
                     $scope.arr_all_product[i].chk = false;
+<<<<<<< HEAD
                     $.each($scope.selectedProdct, function (indx, obj) {
+=======
+                    $.each($scope.selectedProdct, function(indx, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj != undefined) {
                             if (obj.id == cust.id)
                                 $scope.selectedProdct.splice(indx, 1);
                         }
                     });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.arr_all_product[i].chk = true;
                     $scope.selectedProdct.push($scope.arr_all_product[i]);
                 }
@@ -2238,6 +3105,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
         }
         if ($scope.selectedProdct.length == $scope.arr_all_product.length) {
+<<<<<<< HEAD
             $timeout(function () {
                 $scope.$root.$apply(function () {
                     angular.element('.checkAll_Product').prop('checked', true);
@@ -2247,6 +3115,16 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         else {
             $timeout(function () {
                 $scope.$root.$apply(function () {
+=======
+            $timeout(function() {
+                $scope.$root.$apply(function() {
+                    angular.element('.checkAll_Product').prop('checked', true);
+                });
+            }, 500);
+        } else {
+            $timeout(function() {
+                $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     angular.element('.checkAll_Product').prop('checked', false);
                 });
             }, 500);
@@ -2256,15 +3134,25 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     // this function will sort an object array based on it's properties
     function createComparator(property) {
+<<<<<<< HEAD
         return function (a, b) {
+=======
+        return function(a, b) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return a[property] - b[property];
         };
     }
 
     $scope.allAppliedFilters = [];
+<<<<<<< HEAD
     $scope.ifFilters = function (moduleId) {
         var flag = false;
         angular.forEach($scope.allAppliedFilters, function (obj, index) {
+=======
+    $scope.ifFilters = function(moduleId) {
+        var flag = false;
+        angular.forEach($scope.allAppliedFilters, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.module_id == moduleId) {
                 flag = true;
             }
@@ -2272,12 +3160,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         return flag;
     }
 
+<<<<<<< HEAD
     $scope.get_bucket_product_edit = function (id, type, moduleId, isShow) {
+=======
+    $scope.get_bucket_product_edit = function(id, type, moduleId, isShow) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
         var salepersonUrl = $scope.$root.sales + "customer/sale-bucket/getBucketFilters";
         $http
             .post(salepersonUrl, { bucket_id: id, 'token': $scope.$root.token, 'type': type })
+<<<<<<< HEAD
             .then(function (emp_data) {
+=======
+            .then(function(emp_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (emp_data.data.ack == true) {
 
@@ -2302,7 +3198,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.allAppliedFilters = emp_data.data.response_filter;
                     $scope.array_dynamic_filter_product = [];
                     //$scope.array_dynamic_filter_product = emp_data.data.response_filter;
+<<<<<<< HEAD
                     $.each(emp_data.data.response_filter, function (i, o) {
+=======
+                    $.each(emp_data.data.response_filter, function(i, o) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (o.module_id != moduleId.toString()) return true;
                         else {
                             $scope.array_dynamic_filter_product.push(o);
@@ -2310,6 +3210,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     })
                     if ($scope.array_dynamic_filter_product.length == 0) {
                         $scope.array_dynamic_filter_product = [{ sort_id: '1' }];
+<<<<<<< HEAD
                     }
                     else {
                         $scope.array_dynamic_filter_product.sort(createComparator("sort_id"));
@@ -2331,6 +3232,28 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                         });
 
                         $.each($scope.arr_logic_operator, function (index, obj) {
+=======
+                    } else {
+                        $scope.array_dynamic_filter_product.sort(createComparator("sort_id"));
+                    }
+                    $.each($scope.array_dynamic_filter_product, function(index, obj_rec) {
+
+                        obj_rec.id = obj_rec.id;
+                        obj_rec.sort_id = obj_rec.sort_id;
+
+                        $.each($scope.arr_filter_product, function(index, obj) {
+                            if (obj.field_name == obj_rec.normal_filter) obj_rec.normal_filter = obj;
+                        });
+
+                        if (obj_rec.normal_filter && obj_rec.normal_filter.is_numeric == 1)
+                            obj_rec.operator_search = parseFloat(obj_rec.operator_search);
+
+                        $.each($scope.arr_operator, function(index, obj) {
+                            if (obj.id == obj_rec.operator_filter) obj_rec.operator_filter = obj;
+                        });
+
+                        $.each($scope.arr_logic_operator, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == obj_rec.logical_filter) obj_rec.logical_filter = obj;
                         });
 
@@ -2352,8 +3275,12 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
 
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.array_dynamic_filter_product = {};
                     $scope.array_dynamic_filter_product = [{ sort_id: '1' }];
                     //toaster.pop('error', 'info',$scope.$root.getErrorMessageByCode(400));
@@ -2368,6 +3295,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     if ($scope.$root.sale_target_id)
         $scope.get_bucket_product_edit($scope.$root.sale_target_id, 1);
 
+<<<<<<< HEAD
     $scope.add_bucket_product = function (id, type) {
         if ($scope.array_dynamic_filter_product[$scope.array_dynamic_filter_product.length - 1].normal_filter && $scope.array_dynamic_filter_product[$scope.array_dynamic_filter_product.length - 1].operator_filter  == undefined)
         {
@@ -2375,6 +3303,14 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
             return false;
         }
   
+=======
+    $scope.add_bucket_product = function(id, type) {
+        if ($scope.array_dynamic_filter_product[$scope.array_dynamic_filter_product.length - 1].normal_filter && $scope.array_dynamic_filter_product[$scope.array_dynamic_filter_product.length - 1].operator_filter == undefined) {
+            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Operator']));
+            return false;
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
         //,$scope.selectedProducts[$scope.counter].id
         var check = false;
@@ -2387,7 +3323,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
          post.salespersons = temp;*/
 
         if ($scope.array_dynamic_filter_product.length > 1)
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = $scope.array_dynamic_filter_product.length - 1; i >= 0; i--) {
 
                 var obj = $scope.array_dynamic_filter_product[i];
@@ -2395,11 +3335,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.array_dynamic_filter_product.splice(i, 1);
                 }
             }
+<<<<<<< HEAD
         /* angular.forEach($scope.array_dynamic_filter_product, function (obj, index) {
             if (!(obj.hasOwnProperty("normal_filter")) || !(obj.hasOwnProperty("operator_filter")) || !(obj.hasOwnProperty("operator_search"))) {
                 $scope.array_dynamic_filter_product.splice(index, 1);
             }
         }) */
+=======
+            /* angular.forEach($scope.array_dynamic_filter_product, function (obj, index) {
+                if (!(obj.hasOwnProperty("normal_filter")) || !(obj.hasOwnProperty("operator_filter")) || !(obj.hasOwnProperty("operator_search"))) {
+                    $scope.array_dynamic_filter_product.splice(index, 1);
+                }
+            }) */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrLength = $scope.array_dynamic_filter_product.length;
         if (arrLength && $scope.array_dynamic_filter_product[arrLength - 1].hasOwnProperty("logical_filter")) {
             delete $scope.array_dynamic_filter_product[arrLength - 1].logical_filter
@@ -2411,16 +3359,25 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     check = true;
                     $scope.allAppliedFilters = [];
                     $scope.get_bucket_product_edit(id, 1);
                     toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
+<<<<<<< HEAD
                 }
                 else {
                  
+=======
+                } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(106));
                 }
                 angular.element('#product_dilter_pop').modal("hide");
@@ -2430,7 +3387,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.get_filter_pop_product = function (id, main_index) {
+=======
+    $scope.get_filter_pop_product = function(id, main_index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.searchKeywordpop2 = '';
         $scope.main_index = main_index;
@@ -2438,6 +3399,7 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         if (id == 3) {
             $scope.$root.get_category_list();
             $scope.title2 = 'Category';
+<<<<<<< HEAD
         }
 
         else if (id == 4) {
@@ -2451,6 +3413,15 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         }
 
         else if (id == 6) {
+=======
+        } else if (id == 4) {
+            $scope.$root.get_brand_list();
+            $scope.title2 = 'Brand';
+        } else if (id == 5) {
+            $scope.$root.get_uom_list();
+            $scope.title2 = 'Unit';
+        } else if (id == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //$scope.$root.get_uom_list();
             $scope.title2 = 'ItemOriginCountry';
         }
@@ -2462,12 +3433,20 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.type = id;
     }
 
+<<<<<<< HEAD
     $scope.confirm_product = function (result, array, main_index, type) {
+=======
+    $scope.confirm_product = function(result, array, main_index, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var name = result.name;
         if (type == 5) name = result.title;
 
+<<<<<<< HEAD
         $.each(array, function (index, obj) {
+=======
+        $.each(array, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (index == main_index) obj.operator_search = name;
         });
 
@@ -2475,7 +3454,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.clear_search_product = function () {
+=======
+    $scope.clear_search_product = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //test cross domain
         /*
@@ -2523,7 +3506,11 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.array_dynamic_filter_product = {};
     $scope.array_dynamic_filter_product = [{ sort_id: '1' }];
 
+<<<<<<< HEAD
     $scope.addNewIndexProduct = function (item, index) {
+=======
+    $scope.addNewIndexProduct = function(item, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // if ($scope.array_dynamic_filter_product.length == 4) {
         //     item.logical_filter = {};
         //     return;
@@ -2537,11 +3524,19 @@ function SalesbucketEditController($scope, $filter, $resource, $timeout, $http, 
         }
     };
 
+<<<<<<< HEAD
     $scope.resetFilterValue = function(obj){
         obj.operator_search = "";
     }
 
     $scope.removeIndexProduct = function (item, index1) {
+=======
+    $scope.resetFilterValue = function(obj) {
+        obj.operator_search = "";
+    }
+
+    $scope.removeIndexProduct = function(item, index1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //  var lastItem = $scope.array_dynamic_filter_product.length-1;
         $scope.array_dynamic_filter_product.splice(index1, 1); //lastItem

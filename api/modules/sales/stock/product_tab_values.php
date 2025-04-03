@@ -17,7 +17,11 @@ $app->post('/stock/product-tab-values', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/stock/product-tab-values/get_new_number', function () use ($app) {
+=======
+/* $app->post('/stock/product-tab-values/get_new_number', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objStock, $input;
     $array = array(
         "is_increment" => $input->is_increment
@@ -27,7 +31,11 @@ $app->post('/stock/product-tab-values/get_new_number', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/stock/product-tab-values/get-tab-col', function () use ($app) {
@@ -145,7 +153,11 @@ $app->post('/stock/product-tab-values/get_pr_value_by_defined', function () use 
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/stock/product-tab-values/status-tab-value', function () use ($app) {
     global $objStock, $input;
     $input_array = array();
@@ -158,7 +170,11 @@ $app->post('/stock/product-tab-values/status-tab-value', function () use ($app) 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/stock/product-tab-values/get-cat-val', function () use ($app) {
     global $objStock, $input;
@@ -411,7 +427,11 @@ $app->post('/stock/product-tab-values/purchase_delete_id', function () use ($app
 // CRM Document Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/stock/product-tab-values/srm-documents', function () use ($app) {
+=======
+/* $app->post('/stock/product-tab-values/srm-documents', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objStock, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -421,7 +441,11 @@ $app->post('/stock/product-tab-values/srm-documents', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/stock/product-tab-values/get-srm-document-by-id', function () use ($app) {
     global $objStock, $input;
@@ -435,7 +459,11 @@ $app->post('/stock/product-tab-values/get-srm-document-by-id', function () use (
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/stock/product-tab-values/add-srm-document', function () use ($app) {
     global $objStock, $input;
     $input_array = array();
@@ -460,7 +488,11 @@ $app->post('/stock/product-tab-values/update-srm-document', function () use ($ap
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/stock/product-tab-values/delete-srm-document', function () use ($app) {
     global $objStock, $input;
@@ -475,7 +507,11 @@ $app->post('/stock/product-tab-values/delete-srm-document', function () use ($ap
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/stock/product-tab-values/folders', function () use ($app) {
+=======
+/* $app->post('/stock/product-tab-values/folders', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objStock, $input;
     $input_array = array();
 
@@ -501,7 +537,11 @@ $app->post('/stock/product-tab-values/add-folder', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
 ?>
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

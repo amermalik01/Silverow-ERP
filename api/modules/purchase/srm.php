@@ -101,7 +101,11 @@ $app->post('/purchase/srm/srm/convert', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/get-srm-code', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/get-srm-code', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -111,10 +115,17 @@ $app->post('/purchase/srm/srm/get-srm-code', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
 $app->post('/purchase/srm/srm/update-finance', function () use ($app) {
+=======
+}); */
+
+
+/* $app->post('/purchase/srm/srm/update-finance', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -124,7 +135,11 @@ $app->post('/purchase/srm/srm/update-finance', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Alt Contact Module
@@ -1121,7 +1136,11 @@ $app->post('/purchase/srm/srm/delete-haulier', function () use ($app) {
 // CRM Document Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/srm-documents', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/srm-documents', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1131,7 +1150,11 @@ $app->post('/purchase/srm/srm/srm-documents', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srm/get-srm-document-by-id', function () use ($app) {
     global $objSrm, $input;
@@ -1146,7 +1169,11 @@ $app->post('/purchase/srm/srm/get-srm-document-by-id', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/add-srm-document', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/add-srm-document', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
 
@@ -1158,9 +1185,15 @@ $app->post('/purchase/srm/srm/add-srm-document', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
 
 $app->post('/purchase/srm/srm/update-srm-document', function () use ($app) {
+=======
+}); */
+
+/* $app->post('/purchase/srm/srm/update-srm-document', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1170,7 +1203,11 @@ $app->post('/purchase/srm/srm/update-srm-document', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srm/delete-srm-document', function () use ($app) {
     global $objSrm, $input;
@@ -1185,7 +1222,11 @@ $app->post('/purchase/srm/srm/delete-srm-document', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/folders', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/folders', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
 
@@ -1197,9 +1238,15 @@ $app->post('/purchase/srm/srm/folders', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
 
 $app->post('/purchase/srm/srm/add-folder', function () use ($app) {
+=======
+}); */
+
+/* $app->post('/purchase/srm/srm/add-folder', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
 
@@ -1211,7 +1258,11 @@ $app->post('/purchase/srm/srm/add-folder', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Price Offer Volume Module
@@ -1308,7 +1359,11 @@ $app->post('/purchase/srm/srm/delete-price-offer-volume', function () use ($app)
 
 ///////////////// for volume discount ///////////////
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/supplier_list', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/supplier_list', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1332,7 +1387,11 @@ $app->post('/purchase/srm/srm/supplier_by_id', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srm/delete_sp_id', function () use ($app) {
     global $objSrm, $input;
@@ -1362,7 +1421,11 @@ $app->post('/purchase/srm/srm/update_product_values', function () use ($app) {
 // Rebate Volume Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/rebate-volumes', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/rebate-volumes', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1372,7 +1435,11 @@ $app->post('/purchase/srm/srm/rebate-volumes', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srm/get-rebate-volume', function () use ($app) {
     global $objSrm, $input;
@@ -1388,7 +1455,11 @@ $app->post('/purchase/srm/srm/get-rebate-volume', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/add-rebate-volume', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/add-rebate-volume', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1411,7 +1482,11 @@ $app->post('/purchase/srm/srm/update-rebate-volume', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srm/get-rebate-volume-by-id', function () use ($app) {
     global $objSrm, $input;
@@ -1439,7 +1514,11 @@ $app->post('/purchase/srm/srm/delete-rebate-volume', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srm/get-rebate-volume-by-type', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srm/get-rebate-volume-by-type', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSrm, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1449,7 +1528,11 @@ $app->post('/purchase/srm/srm/get-rebate-volume-by-type', function () use ($app)
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 //-------SRM Rebate -------------------------------------
@@ -1819,5 +1902,8 @@ $app->post('/purchase/srm/srm/price-list-PDF-download', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

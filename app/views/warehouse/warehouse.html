@@ -1,6 +1,11 @@
 <div ng-controller="WarehouseControllerListing as table">
+<<<<<<< HEAD
   <div ng-include="'app/views/_breadcrumb.html'"></div>
   <!--<div class="row" style="margin-bottom: 0 !important;">
+=======
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <!--<div class="row" style="margin-bottom: 0 !important;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
       <div class="col-md-12">
         <div class="nav nav-tabs" style="padding:8px;">
             <div class="col-md-11">
@@ -79,6 +84,7 @@
   </div> -->
 
 
+<<<<<<< HEAD
   <div class="row"
        style="margin-bottom: 0 !important;">
 
@@ -122,4 +128,41 @@
   </div>
   <div ng-include="'app/views/_confirm_modal.html'"></div>
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+=======
+    <div class="row" style="margin-bottom: 0 !important;">
+        <div class="col-md-12 col-md-12">
+
+            <a id="prompt" ui-sref="app.add-warehouse" title="Add Warehouse" class="btn pull-right btn_add">
+                <!-- <i class="fa fa-plus"></i> oval-->
+                <i class="fa fa-plus fa_display"></i> Add
+            </a>
+        </div>
+
+        <style>
+            .hideAdd {
+                margin-top: -20px;
+            }
+        </style>
+    </div>
+
+    <div class="row" style="margin-bottom: 0 !important;">
+        <div class="col-md-12 col-md-12">
+            <style>
+                .linkLeft span {
+                    float: right;
+                    margin-right: 13px;
+                }
+            </style>
+            <div id="dt_example" class="example_alt_pagination">
+
+                <div style=" margin-top: -14px;">
+                    <div class="flexiTable makeModalFixed" x-generate-table x-data="tempWarehouseArr.data" x-table-name="Warehouse" x-filter-function="showWarehouseListing()" x-filter-object="searchKeyword">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 </div>

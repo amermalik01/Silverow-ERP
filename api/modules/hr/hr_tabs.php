@@ -116,4 +116,7 @@ $app->post('/hr/hr-tabs/status-tab', function () use ($app) {
 });
 
 ############	End: hr of Tabs ##############
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 $app->post('/sales/to-do', function () use ($app) {
+=======
+/* $app->post('/sales/to-do', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objCrm, $input;
 	$array = array(
 				"all"=> $input->all,
@@ -63,9 +67,15 @@ $app->post('/sales/to-do/delete-to-do', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
 
 ?>
 
+=======
+}); */
+
+?>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

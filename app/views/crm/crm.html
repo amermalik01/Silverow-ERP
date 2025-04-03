@@ -1,4 +1,5 @@
 <div ng-controller="CrmController as table">
+<<<<<<< HEAD
   <div style="margin-bottom: 13px;">
     <div ng-include="'app/views/_breadcrumb.html'"></div>
   </div>
@@ -40,4 +41,45 @@
   </div>
   <div ng-include="'app/views/_confirm_modal.html'"></div>
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+=======
+    <div style="margin-bottom: 13px;">
+        <div ng-include="'app/views/_breadcrumb.html'"></div>
+    </div>
+    <div class="row" style="margin-top: -15px;">
+        <style>
+            .control-label {
+                margin-top: 7px !important;
+            }
+        </style>
+
+        <a ng-if="allowadd_crm_module && retailer==0" title="Add CRM" id="prompt" ui-sref="app.add-crm" class="btn pull-right btn_add oval"><i class="fa fa-plus fa_display"></i> Add</a>
+        <a ng-if="retailer==2" id="prompt" ui-sref="app.add-prospect" title="Add CRM" class="btn pull-right btn_add oval"><i class="fa fa-plus fa_display"></i> Add</a>
+
+        <style>
+            .hideAdd {
+                margin-top: 35px;
+            }
+        </style>
+
+    </div>
+    <div class="row" style="margin-top:-15px !important;">
+        <div class="col-md-12">
+        </div>
+        <div class="col-md-12 col-md-12">
+            <div id="dt_example" class="example_alt_pagination">
+                <div style="margin-top: -13px;" ng-if="retailer==0">
+                    <div ng-class="{'hideAdd':!allowadd_crm_module}" class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="CRM" x-filter-function="getcrm_list()" x-filter-object="searchKeyword"></div>
+                </div>
+                <div style="margin-top: 20px;" ng-if="retailer==2">
+                    <div ng-class="{'hideAdd':!allowadd_crm_module}" class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="prospect" x-filter-function="getprospect_list()" x-filter-object="searchKeyword"></div>
+                </div>
+                <!-- <div style="margin-top: -13px;" ng-if="retailer==1">
+          <div ng-class="{'hideAdd':!allowadd_crm_module}" class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="CRM_retailer" x-filter-function="getcrm_list()" x-filter-object="searchKeyword"></div>
+        </div> -->
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 </div>

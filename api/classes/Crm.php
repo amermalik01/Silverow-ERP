@@ -9,6 +9,10 @@ require_once(SERVER_PATH . "/classes/Srm.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 require(SERVER_PATH . "/vendor/sendgrid-php/sendgrid-php.php");
 //require_once(SERVER_PATH . "/classes/class.phpmailer.php");
 require 'vendor/autoload.php';
@@ -34,7 +38,11 @@ class Crm extends Xtreme
         $this->objsetup = new Setup($user_info);
         $this->objHr = new Hr($user_info);
         $this->objSrm = new Srm($user_info);
+<<<<<<< HEAD
         $this->arrUser = $user_info; 
+=======
+        $this->arrUser = $user_info;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->sendgrid = new \SendGrid('SG.U1fh-cwZQfSPoO8WzzWe0w.0w0gH1UCAQEPbOsnipbF0iU0SPzJpGNU8C1CCPg03h0');
     }
 
@@ -56,7 +64,11 @@ class Crm extends Xtreme
         }
 
         return $response;
+<<<<<<< HEAD
     }// commit
+=======
+    } // commit
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function delete_update_status($table_name, $column, $id)
     {
@@ -72,7 +84,11 @@ class Crm extends Xtreme
             $response['ack'] = 0;
             $response['error'] = 'Record can\'t be deleted!';
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -107,7 +123,11 @@ class Crm extends Xtreme
         $response = array();
 
         $Sql = "SELECT * FROM employees
+<<<<<<< HEAD
             WHERE company_id='" . $this->arrUser['company_id'] . "' AND user_type <> 1  AND status=1 ORDER BY user_code ASC"; 
+=======
+            WHERE company_id='" . $this->arrUser['company_id'] . "' AND user_type <> 1  AND status=1 ORDER BY user_code ASC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -116,7 +136,11 @@ class Crm extends Xtreme
                 $result = array();
                 $result = array();
                 $result['id'] = $Row['id'];
+<<<<<<< HEAD
                 $result['name'] = $Row['first_name'].' '.$Row['last_name'];
+=======
+                $result['name'] = $Row['first_name'] . ' ' . $Row['last_name'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['email'] = $Row['email'];
                 $result['user_code'] = $Row['user_code'];
                 $response['response'][] = $result;
@@ -131,12 +155,20 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function load_crm_nested_data($attr, $response, $type, $notselect=null)
+=======
+    function load_crm_nested_data($attr, $response, $type, $notselect = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $attr['crm_id'] = $attr['id'];
         $attr['value'] = $attr['id'];
         $attr['primaryc_id'] = $response["response"]['primaryc_id'];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $attr['is_primary'] = 1;
 
         if ($type == 'crm' || $type == 'customer') {
@@ -153,11 +185,19 @@ class Crm extends Xtreme
             $response['response']['arr_crm_classification'] = $result3['response']; */
             $result4 = $this->get_pref_method_of_comm();
             $response['response']['arr_pref_method_comm'] = $result4['response'];
+<<<<<<< HEAD
             if(isset($attr['id'])){
               $result5 = $this->get_crmSalesPerson($attr);
              $response['response']['crmSalesPerson'] = $result5['response'];  
             }
             
+=======
+            if (isset($attr['id'])) {
+                $result5 = $this->get_crmSalesPerson($attr);
+                $response['response']['crmSalesPerson'] = $result5['response'];
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             require_once(SERVER_PATH . "/classes/Setup.php");
             $objsetup = new Setup($this->arrUser);
@@ -169,12 +209,16 @@ class Crm extends Xtreme
                 $attr['tbl'] = base64_encode('customer_status');
                 $result9 = $objsetup->get_all_status($attr, 1);
                 $response['response']['arr_crm_status'] = $result9['response'];
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             $attr["type"] = 1;
             $attr["module_id"] = $attr['id'];
 
+<<<<<<< HEAD
              if($attr['primaryc_id']>0){
                 $result10 = $this->getPrimaryContactLocAssigntotal($attr);
                 $response['response']['totalLocAssigned'] = $result10['showdata'];
@@ -182,6 +226,15 @@ class Crm extends Xtreme
 
             /* Commented by Ahmad End */
             
+=======
+            if ($attr['primaryc_id'] > 0) {
+                $result10 = $this->getPrimaryContactLocAssigntotal($attr);
+                $response['response']['totalLocAssigned'] = $result10['showdata'];
+            }
+
+            /* Commented by Ahmad End */
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // if(empty($notselect))  $result9 = $objsetup->get_all_status($attr,1);
             // if(empty($notselect))   $response['response']['arr_crm_status'] = $result9['response'];
@@ -209,16 +262,27 @@ class Crm extends Xtreme
                     FROM crm_salesperson emp  left JOIN bucket csb on csb.id=emp.module_id
                     left JOIN employees  es on es.id=emp.salesperson_id
                     WHERE emp.company_id='" . $this->arrUser['company_id'] . "' AND
+<<<<<<< HEAD
                            emp.type = '".$attr['type']."' AND  emp.end_date=0  AND emp.module_id IN ('".$attr['module_id']."') 
                     GROUP BY es.id ";
 
                     //$ids
+=======
+                           emp.type = '" . $attr['type'] . "' AND  emp.end_date=0  AND emp.module_id IN ('" . $attr['module_id'] . "') 
+                    GROUP BY es.id ";
+
+        //$ids
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $order_by = 'order by  csb.name DESC ';
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -251,12 +315,17 @@ class Crm extends Xtreme
     function get_crm_listings($attr)
     {
         // print_r($attr);exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
 
         $response = array();
         $defaultFilter = false;
         //$this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $where_clause = $this->objGeneral->flexiWhereRetriever("c.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("c.",$attr,$fieldsMeta);
         if (empty($where_clause)){
@@ -267,6 +336,18 @@ class Crm extends Xtreme
         // $type = (isset($attr['retailer']) && $attr['retailer'] == 1) ? 4 : 1;
         $type = (isset($attr['retailer']) && $attr['retailer'] == 1 && $attr['retailer'] != 2 ) ? 4 : 1;
         $type = (isset($attr['retailer']) && $attr['retailer'] != 1 && $attr['retailer'] == 2 ) ? 0 : 1;
+=======
+        $where_clause = $this->objGeneral->flexiWhereRetriever("c.", $attr, $fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("c.", $attr, $fieldsMeta);
+        if (empty($where_clause)) {
+            $defaultFilter = true;
+            $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("CRM", $this->arrUser);
+        }
+
+        // $type = (isset($attr['retailer']) && $attr['retailer'] == 1) ? 4 : 1;
+        $type = (isset($attr['retailer']) && $attr['retailer'] == 1 && $attr['retailer'] != 2) ? 4 : 1;
+        $type = (isset($attr['retailer']) && $attr['retailer'] != 1 && $attr['retailer'] == 2) ? 0 : 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
                         c.primaryc_name,c.primaryc_email, c.company_email, c.primary_county, c.primary_city,
@@ -275,16 +356,27 @@ class Crm extends Xtreme
                         c.turnover,c.primary_country,c.currency,c.credit_limit,c.credit_rating,c.verifiedStatus,
                         c.source_of_crm
                 FROM sr_crm_listing AS c 
+<<<<<<< HEAD
                 where c.type IN (".$type.") AND c.crm_code IS NOT NULL AND
                       c.company_id=" . $this->arrUser['company_id'] . "  " . $where_clause . " ";
 
             
+=======
+                where c.type IN (" . $type . ") AND c.crm_code IS NOT NULL AND
+                      c.company_id=" . $this->arrUser['company_id'] . "  " . $where_clause . " ";
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;exit;
         /* if($type==1){
            $Sql = $this->objsetup->whereClauseAppender($Sql,40); 
         } */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //or  company.parent_id=" . $this->arrUser['company_id'] . "
         //defualt Variable
 
@@ -295,6 +387,7 @@ class Crm extends Xtreme
             if ($attr['sort_column'] == 'code')
                 $column = 'c.crm_code';
             else if ($attr['sort_column'] == 'person')
+<<<<<<< HEAD
                 $column = 'c.primaryc_name';//$column = 'c.contact_person';
             else if ($attr['sort_column'] == "Region")
                 $column = 'c.region';//$column = 'cr.' . 'title';
@@ -312,11 +405,31 @@ class Crm extends Xtreme
 
         if ($order_clause == "")
         $order_type = " Order BY c.id DESC ";
+=======
+                $column = 'c.primaryc_name'; //$column = 'c.contact_person';
+            else if ($attr['sort_column'] == "Region")
+                $column = 'c.region'; //$column = 'cr.' . 'title';
+            else if ($attr['sort_column'] == "Segment")
+                $column = 'c.segment'; //$column = 'seg.' . 'title';
+            else if ($attr['sort_column'] == "Buying Group")
+                $column = 'c.buying_group'; //$column = 'bs.' . 'title';
+            //calculated value can be order by id
+            else if ($attr['sort_column'] == 'status')
+                $column = 'c.statusp'; //$column = 'c.id';
+
+            //$order_type = "Order BY " . $column . " $attr[sortform]";
+
+        }
+
+        if ($order_clause == "")
+            $order_type = " Order BY c.id DESC ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $order_type = $order_clause;
 
 
         //$order_type = "Order BY " . $column . " DESC";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
@@ -333,6 +446,24 @@ class Crm extends Xtreme
         $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($tableName);
         $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
          //echo $Sql;exit;
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->preListing($attr, $Sql, $response, $total_limit, 'c', $order_type);
+
+        //echo $response['q'];
+        if (isset($attr['retailer']) && $attr['retailer'] == 1) {
+            $tableName = "CRM_retailer";
+        } else {
+            if ($attr['bucketTable']) $tableName = "crm_bucket";
+            else $tableName = "CRM";
+        }
+        $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($tableName);
+        $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($response['q'], "crm", sr_ViewPermission);
         // $response['q'] = '';
 
@@ -356,7 +487,11 @@ class Crm extends Xtreme
                 $result['phone']              = $Row['phone'];
                 $result['type']               = $Row['type'];
                 $result['company_email']      = $Row['company_email'];
+<<<<<<< HEAD
                 $result['region']             = $Row['region']; 
+=======
+                $result['region']             = $Row['region'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['buying_group']       = $Row['buying_group'];
                 $result['segment']            = $Row['segment'];
                 $result['crm_classification'] = $Row['crm_classification'];
@@ -376,18 +511,31 @@ class Crm extends Xtreme
                 $result['source_of_crm'] = $Row['source_of_crm'];
                 //if ($Row['status'] == 0)    $result['status_name'] = "Deleted";
                 //$result['status_date'] = $this->objGeneral->convert_unix_into_date($Row['status_date']);
+<<<<<<< HEAD
                 $response['total'] = $Row['totalRecordCount'];                
+=======
+                $response['total'] = $Row['totalRecordCount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response = $this->objGeneral->postListing($attr, $response);
+<<<<<<< HEAD
         } else{
             $response['ack'] = 1;
             $response['response'][] = array();
         }
             
         
+=======
+        } else {
+            $response['ack'] = 1;
+            $response['response'][] = array();
+        }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -396,6 +544,7 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         //$Sql = "SELECT * FROM crm WHERE id='".$attr['id']."' 	LIMIT 1";
         $response['response'] = array();
+<<<<<<< HEAD
         $upToDate = date("Y-m-d"); 
 
         $moduleCodeType = 1;  
@@ -409,6 +558,21 @@ class Crm extends Xtreme
                                END) AS balanceInCustomerCurrency";
         }
         
+=======
+        $upToDate = date("Y-m-d");
+
+        $moduleCodeType = 1;
+
+        $balanceInCustomerCurrency = '';
+
+        if (isset($attr['defaultCurrency']) && $attr['defaultCurrency'] > 0) {
+            $balanceInCustomerCurrency = ",
+                         (CASE WHEN (c.type <> 1 AND c.currency_id <> " . $attr['defaultCurrency'] . ") THEN sr_getCustomerBalanceInActualCurrency('$upToDate',c.company_id,c.id)
+                               ELSE 0
+                               END) AS balanceInCustomerCurrency";
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* if ($attr['customer'] == "customer"){
             $bucketType = 48;
         }
@@ -422,26 +586,40 @@ class Crm extends Xtreme
                         IFNULL(SR_Payment_Days_Avg(c.id,DATE_SUB('$upToDate', INTERVAL 14600 DAY),'$upToDate',c.company_id,1), 0) AS custAvgPaymentDays   
                          $balanceInCustomerCurrency            
                 FROM sr_crm  c 
+<<<<<<< HEAD
                 WHERE c.id=".$attr['id']." AND c.company_id=" . $this->arrUser['company_id'] . "  ";
+=======
+                WHERE c.id=" . $attr['id'] . " AND c.company_id=" . $this->arrUser['company_id'] . "  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* $subQueryForBuckets = "SELECT  c.id
             from sr_crm_listing  c
             where  c.id IS NOT NULL "; */
+<<<<<<< HEAD
         
         if ($attr['customer'] == "customer"){//crm
+=======
+
+        if ($attr['customer'] == "customer") { //crm
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $subQueryForBuckets = "SELECT  c.id
                                     FROM sr_crm_listing c
                                     WHERE c.type IN (2,3) AND 
                                         c.company_id=" . $this->arrUser['company_id'] . "";
             $bucketType = 48;
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $subQueryForBuckets = "SELECT  c.id
                             FROM sr_crm_listing c
                             WHERE c.type IN (1,2) AND 
                                 c.company_id=" . $this->arrUser['company_id'] . "";
             $bucketType = 40;
         }
+<<<<<<< HEAD
        // $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, $bucketType);
         //echo $subQueryForBuckets;exit;
         /* if(!isset($attr['is_retailer']) && $attr['is_retailer']!=1){
@@ -454,6 +632,19 @@ class Crm extends Xtreme
             $RS = $this->objsetup->CSI($Sql, "customer_gneraltab", sr_ViewPermission);
         }
         else{
+=======
+        // $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, $bucketType);
+        //echo $subQueryForBuckets;exit;
+        /* if(!isset($attr['is_retailer']) && $attr['is_retailer']!=1){
+           $Sql .= " AND c.id IN ($subQueryForBuckets) "; 
+        } */
+
+        $Sql .= " LIMIT 1 ";
+        // echo $Sql;exit;
+        if ($attr['customer'] == "customer") {
+            $RS = $this->objsetup->CSI($Sql, "customer_gneraltab", sr_ViewPermission);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql, "crm_gneraltab", sr_ViewPermission);
         }
 
@@ -466,6 +657,7 @@ class Crm extends Xtreme
                 if (is_numeric($key))
                     unset($Row[$key]);
             }
+<<<<<<< HEAD
             
             $Row['date_of_inc'] = $this->objGeneral->convert_unix_into_date($Row['date_of_inc']);
 
@@ -483,6 +675,24 @@ class Crm extends Xtreme
                     $temp_attr['fromData'] = 1;
 
                     if($Row['crm_type'] == 2)
+=======
+
+            $Row['date_of_inc'] = $this->objGeneral->convert_unix_into_date($Row['date_of_inc']);
+
+            if ($Row['customer_balance'] == '333333333')
+                $Row['customer_balance'] = 0;
+
+            $response['response'] = $Row;
+
+            // if(strlen($Row['crm_code']) > 0)
+            {
+                $temp_attr = array();
+                if ($Row['crm_type'] != "1") {
+                    $temp_attr['crm_id'] = $Row['id'];
+                    $temp_attr['fromData'] = 1;
+
+                    if ($Row['crm_type'] == 2)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $temp_attr['type'] = 1;
                     else
                         $temp_attr['type'] = 2;
@@ -497,11 +707,18 @@ class Crm extends Xtreme
 
                     $rs4 = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
                     if ($rs4->RecordCount() > 0){
                         $moduleCodeType = $rs4->fields['type'];
                     }
                 }
                 else{
+=======
+                    if ($rs4->RecordCount() > 0) {
+                        $moduleCodeType = $rs4->fields['type'];
+                    }
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $Sql = "SELECT type
                             FROM ref_module_category_value
                             WHERE  module_code_id=1 AND status=1 AND company_id=" . $this->arrUser['company_id'] . "
@@ -510,11 +727,16 @@ class Crm extends Xtreme
 
                     $rs4 = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
                     if ($rs4->RecordCount() > 0){
+=======
+                    if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $moduleCodeType = $rs4->fields['type'];
                     }
                 }
             }
+<<<<<<< HEAD
         } else  {
             $response['response'] = array();
             $response['bucketFail'] = 1;
@@ -524,6 +746,16 @@ class Crm extends Xtreme
             $type = 'customer';
         }
         else{
+=======
+        } else {
+            $response['response'] = array();
+            $response['bucketFail'] = 1;
+        }
+
+        if (!empty($attr['customer'])) {
+            $type = 'customer';
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $type = 'crm';
         }
 
@@ -538,7 +770,11 @@ class Crm extends Xtreme
 
         $moduleCodeType = 1;
 
+<<<<<<< HEAD
         if($attr['type'] == 1 ){
+=======
+        if ($attr['type'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT type
                     FROM ref_module_category_value
@@ -548,12 +784,20 @@ class Crm extends Xtreme
 
             $rs4 = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
                 $moduleCodeType = $rs4->fields['type'];
             }
 
         }
         
+=======
+            if ($rs4->RecordCount() > 0) {
+                $moduleCodeType = $rs4->fields['type'];
+            }
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['moduleCodeType'] = $moduleCodeType;
         $response = $this->load_crm_nested_data($attr, $response, 'crm', 'notselect');
@@ -567,7 +811,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         if (!empty($arr_attr['id']))
+<<<<<<< HEAD
             $where_id = "AND tst.id <>  '".$arr_attr['id']."' ";
+=======
+            $where_id = "AND tst.id <>  '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = " tst.type IN (1,2) AND tst.name='" . $arr_attr['name'] . "' $where_id ";
         $total = $this->objGeneral->count_duplicate_in_sql('crm', $data_pass, $this->arrUser['company_id']);
@@ -579,6 +827,7 @@ class Crm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '')? $arr_attr['is_billing_address']: 0; 
         $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '')? $arr_attr['is_delivery_collection_address']: 0; 
         $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '')? $arr_attr['is_invoice_address']: 0; 
@@ -622,10 +871,56 @@ class Crm extends Xtreme
                             credit_rating='".$arr_attr['credit_rating']."',
                             currency_id='".$arr_attr['currency_id']."',
                             anonymous_customer='".$anonymous_customer."',
+=======
+        $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '') ? $arr_attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '') ? $arr_attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '') ? $arr_attr['is_invoice_address'] : 0;
+
+        $anonymous_customer = (isset($arr_attr['anonymous_customer']) && $arr_attr['anonymous_customer'] != '') ? $arr_attr['anonymous_customer'] : 0;
+        $unsubscribeEmail = (isset($arr_attr['unsubscribeEmail']) && $arr_attr['unsubscribeEmail'] != '') ? $arr_attr['unsubscribeEmail'] : 0;
+
+        $Sql = "INSERT INTO crm 
+                            SET 
+                            transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2),
+                            crm_code='" . $arr_attr['crm_code'] . "',
+                            crm_classification='" . $arr_attr['crm_classification'] . "',
+                            name='" . $arr_attr['name'] . "',
+                            type='" . $arr_attr['type'] . "',
+                            ownership_type='" . $arr_attr['ownership_type'] . "',
+                            address_type='" . $arr_attr['address_type'] . "',
+                            contact_person='" . $arr_attr['contact_person'] . "',
+                            address_1='" . $arr_attr['address_1'] . "',
+                            job_title='" . $arr_attr['job_title'] . "',
+                            address_2='" . $arr_attr['address_2'] . "',
+                            phone='" . $arr_attr['phone'] . "',
+                            city='" . $arr_attr['city'] . "',
+                            fax='" . $arr_attr['fax'] . "',
+                            county='" . $arr_attr['county'] . "',
+                            country_id='" . $arr_attr['country_id'] . "',
+                            mobile='" . $arr_attr['mobile'] . "',
+                            postcode='" . $arr_attr['postcode'] . "',
+                            direct_line='" . $arr_attr['direct_line'] . "',
+                            support_person='" . $arr_attr['support_person'] . "',
+                            email='" . $arr_attr['email'] . "',
+                            salesperson_id='" . $arr_attr['salesperson_id'] . "',
+                            turnover='" . $arr_attr['turnover'] . "',
+                            internal_sales='" . $arr_attr['internal_sales'] . "',
+                            company_type='" . $arr_attr['company_type'] . "',
+                            source_of_crm='" . $arr_attr['source_of_crm'] . "',
+                            pref_method_of_communication='" . $arr_attr['pref_method_of_communication'] . "',
+                            status='" . $arr_attr['status'] . "',
+                            web_address='" . $arr_attr['web_address'] . "',
+                            buying_grp='" . $arr_attr['buying_grp'] . "',
+                            region_id='" . $arr_attr['region_id'] . "',
+                            credit_rating='" . $arr_attr['credit_rating'] . "',
+                            currency_id='" . $arr_attr['currency_id'] . "',
+                            anonymous_customer='" . $anonymous_customer . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             user_id='" . $this->arrUser['id'] . "',
                             company_id='" . $this->arrUser['company_id'] . "',
                             AddedBy='" . $this->arrUser['id'] . "',
                             AddedOn= UNIX_TIMESTAMP (NOW()),
+<<<<<<< HEAD
                             emp_no='".$arr_attr['emp_no']."',
                             unsubscribeEmail='".$unsubscribeEmail."',
                             is_billing_address='".$is_billing_address."',
@@ -635,6 +930,17 @@ class Crm extends Xtreme
         //echo $Sql."<hr>"; exit;
         
                            // prev_code='$arr_attr[prev_code]',
+=======
+                            emp_no='" . $arr_attr['emp_no'] . "',
+                            unsubscribeEmail='" . $unsubscribeEmail . "',
+                            is_billing_address='" . $is_billing_address . "',
+                            is_shipping_address='" . $is_delivery_collection_address . "',
+                            is_invoice_address='" . $is_invoice_address . "'";
+
+        //echo $Sql."<hr>"; exit;
+
+        // prev_code='$arr_attr[prev_code]',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
 
@@ -655,6 +961,7 @@ class Crm extends Xtreme
 
     function updateDuplicationAddress($attr)
     {
+<<<<<<< HEAD
        
        $acc_id      = $attr['rec']->acc_id;
        $module_type = $attr['rec']->module_type;
@@ -724,14 +1031,71 @@ class Crm extends Xtreme
 	  
 	   return;
      
+=======
+
+        $acc_id      = $attr['rec']->acc_id;
+        $module_type = $attr['rec']->module_type;
+        $billing     = $attr['reccheckaddress']->billing;
+        $payment     = $attr['reccheckaddress']->payment;
+        $company_id  = $this->arrUser['company_id'];
+
+        if ($billing == 1 && $payment == 1) {
+
+            $Sql = "SELECT id   FROM alt_depot WHERE is_billing_address = 1 AND acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+
+            $RS = $this->objsetup->CSI($Sql);
+
+            if ($RS->RecordCount() > 0) {
+                $Sql = "UPDATE alt_depot SET is_billing_address = 0 WHERE acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+                $this->objsetup->CSI($Sql);
+            }
+
+            $Sql = "SELECT id   FROM alt_depot WHERE is_invoice_address = 1 AND acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+
+            $RS = $this->objsetup->CSI($Sql);
+
+            if ($RS->RecordCount() > 0) {
+                $Sql = "UPDATE alt_depot SET is_invoice_address = 0 WHERE acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+                $this->objsetup->CSI($Sql);
+            }
+        } else if ($billing == 1) {
+
+            $Sql = "SELECT id   FROM alt_depot WHERE is_billing_address = 1 AND acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+
+            $RS = $this->objsetup->CSI($Sql);
+
+            if ($RS->RecordCount() > 0) {
+
+                $Sql = "UPDATE alt_depot SET is_billing_address = 0 WHERE acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+                $this->objsetup->CSI($Sql);
+            }
+        } else if ($payment == 1) {
+            $Sql = "SELECT id   FROM alt_depot WHERE is_invoice_address = 1 AND acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+
+            $RS = $this->objsetup->CSI($Sql);
+
+            if ($RS->RecordCount() > 0) {
+                $Sql = "UPDATE alt_depot SET is_invoice_address = 0 WHERE acc_id = '$acc_id' AND module_type = '$module_type' AND company_id = '$company_id'";
+
+                $this->objsetup->CSI($Sql);
+            }
+        }
+
+        return;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function checkAddressDuplication($attr)
     {
         //print_r($attr); exit;
         $attr['rec'] =  (array) $attr['rec'];
+<<<<<<< HEAD
         
         $response = $this->objGeneral->check_duplication_for_location_address($attr['rec'],$attr['rec']['acc_id'],$attr['rec']['module_type'],$this->arrUser['company_id'],$attr['rec']['id'],1);
+=======
+
+        $response = $this->objGeneral->check_duplication_for_location_address($attr['rec'], $attr['rec']['acc_id'], $attr['rec']['module_type'], $this->arrUser['company_id'], $attr['rec']['id'], 1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -746,13 +1110,22 @@ class Crm extends Xtreme
         $Sql1 = "SELECT  c1.name,c1.crm_code,c1.customer_code,c1.type
                  FROM crm AS c1
                  WHERE  c1.company_id = '" . $this->arrUser['company_id'] . "' AND  
+<<<<<<< HEAD
                         c1.web_address = '".$attr['web_address']."' AND 
+=======
+                        c1.web_address = '" . $attr['web_address'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c1.web_address <> '' AND
                         c1.status <> -1
                  LIMIT 1";
         //echo  $Sql1;exit;
+<<<<<<< HEAD
         
         if($attr['crmModuleType'] == 1)
+=======
+
+        if ($attr['crmModuleType'] == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS1 = $this->objsetup->CSI($Sql1, "crm", sr_AddPermission);
         else
             $RS1 = $this->objsetup->CSI($Sql1, "customer", sr_AddPermission);
@@ -766,11 +1139,18 @@ class Crm extends Xtreme
 
             $response['ack'] = 1;
 
+<<<<<<< HEAD
             if($Row1['type'] == 1){
                 $response['error'] = ' Same web address already exist under '.$Row1['name'].'('.$Row1['crm_code'].'). Are you sure, you want to duplicate?';
             }
             else{
                 $response['error'] = ' Same web address already exist under '.$Row1['name'].'('.$Row1['customer_code'].'). Are you sure, you want to duplicate?';          
+=======
+            if ($Row1['type'] == 1) {
+                $response['error'] = ' Same web address already exist under ' . $Row1['name'] . '(' . $Row1['crm_code'] . '). Are you sure, you want to duplicate?';
+            } else {
+                $response['error'] = ' Same web address already exist under ' . $Row1['name'] . '(' . $Row1['customer_code'] . '). Are you sure, you want to duplicate?';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
@@ -778,10 +1158,17 @@ class Crm extends Xtreme
         $Sql = "SELECT  c1.name,c1.crm_code,c1.customer_code,c1.company_email,c1.primary_postcode,c1.phone,c1.type
                 FROM sr_crm_listing c1
                 WHERE   c1.company_id = '" . $this->arrUser['company_id'] . "' AND  
+<<<<<<< HEAD
                         ((IFNULL(c1.`name`,'#1') = '".$attr['name']."' AND c1.name <> '') OR 
                         (IFNULL(c1.`company_email`,'#1') = '".$attr['email']."' AND c1.company_email <> '') OR 
                         (IFNULL(c1.`primary_postcode`,'#1') = '".$attr['postcode']."' AND c1.primary_postcode <> '') OR 
                         (IFNULL(c1.`phone`,'#1') = '".$attr['phone']."' AND c1.phone <> '')) AND 	
+=======
+                        ((IFNULL(c1.`name`,'#1') = '" . $attr['name'] . "' AND c1.name <> '') OR 
+                        (IFNULL(c1.`company_email`,'#1') = '" . $attr['email'] . "' AND c1.company_email <> '') OR 
+                        (IFNULL(c1.`primary_postcode`,'#1') = '" . $attr['postcode'] . "' AND c1.primary_postcode <> '') OR 
+                        (IFNULL(c1.`phone`,'#1') = '" . $attr['phone'] . "' AND c1.phone <> '')) AND 	
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c1.statusp ='Active'
                 LIMIT 1";
         // echo  $Sql;exit;
@@ -797,6 +1184,7 @@ class Crm extends Xtreme
             }
 
             $response['ack'] = 1;
+<<<<<<< HEAD
             
 
             if($Row['type'] == 1){
@@ -804,6 +1192,14 @@ class Crm extends Xtreme
             }
             else{
                 $response['error'] = 'Same record already exist under '.$Row['name'].'('.$Row['customer_code'].'). Are you sure, you want to duplicate?';         
+=======
+
+
+            if ($Row['type'] == 1) {
+                $response['error'] = 'Same record already exist under ' . $Row['name'] . '(' . $Row['crm_code'] . '). Are you sure, you want to duplicate?';
+            } else {
+                $response['error'] = 'Same record already exist under ' . $Row['name'] . '(' . $Row['customer_code'] . '). Are you sure, you want to duplicate?';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
@@ -814,6 +1210,7 @@ class Crm extends Xtreme
     function update_crm($arr_attr)
     {
 
+<<<<<<< HEAD
         if($arr_attr['turnover']=='') 
             $turnover=0;
         else
@@ -827,6 +1224,21 @@ class Crm extends Xtreme
 
         $social_media_arr = $arr_attr['social_media_arr'];
         
+=======
+        if ($arr_attr['turnover'] == '')
+            $turnover = 0;
+        else
+            $turnover = $arr_attr['turnover'];
+
+
+        if ($arr_attr['emp_no'] == '')
+            $emp_no = 0;
+        else
+            $emp_no = $arr_attr['emp_no'];
+
+        $social_media_arr = $arr_attr['social_media_arr'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $social_media_str = "";
         $index = 1;
         // print_r($social_media_arr);exit;
@@ -837,12 +1249,19 @@ class Crm extends Xtreme
                 $index++;
             }
         }
+<<<<<<< HEAD
         if($index<=5)
         {
             while($index <= 5)
             {
                 $social_media_str .= " socialmedia".$index." = '0',
                 socialmedia".$index."_value = '',";
+=======
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
@@ -853,11 +1272,19 @@ class Crm extends Xtreme
         $contactArray = $arr_attr['contact'];
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
               
         if (!empty($arr_attr['id']))
             $where_id = "AND tst.id <> '".$arr_attr['id']."' ";
 
         
+=======
+
+        if (!empty($arr_attr['id']))
+            $where_id = "AND tst.id <> '" . $arr_attr['id'] . "' ";
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $data_pass = " tst.type IN (1,2) AND tst.crm_code='" . $arr_attr['crm_code'] . "'  $where_id ";
         $total = $this->objGeneral->count_duplicate_in_sql('crm', $data_pass, $this->arrUser['company_id']);
 
@@ -877,6 +1304,7 @@ class Crm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '')? $arr_attr['is_billing_address']: 0; 
         $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '')? $arr_attr['is_delivery_collection_address']: 0; 
         $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '')? $arr_attr['is_invoice_address']: 0; 
@@ -948,11 +1376,88 @@ class Crm extends Xtreme
                                     crm_bank_name = '".$arr_attr['crm_bank_name']."',
                                     unsubscribeEmail='".$unsubscribeEmail."',
                                     verified='".$verified."',
+=======
+        $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '') ? $arr_attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '') ? $arr_attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '') ? $arr_attr['is_invoice_address'] : 0;
+        $anonymous_customer = (isset($arr_attr['anonymous_customer']) && $arr_attr['anonymous_customer'] != '') ? $arr_attr['anonymous_customer'] : 0;
+        // $unsubscribeEmail = (isset($arr_attr['unsubscribeEmail']) && $arr_attr['unsubscribeEmail'] != '')? $arr_attr['unsubscribeEmail']: 0;
+        $unsubscribeEmail = (isset($arr_attr['unsubscribeEmail_address']) && $arr_attr['unsubscribeEmail_address'] != '') ? $arr_attr['unsubscribeEmail_address'] : 0;
+        $verified = (isset($arr_attr['verified_chk']) && $arr_attr['verified_chk'] != '') ? $arr_attr['verified_chk'] : 0;
+        $crm_segment_id = (isset($arr_attr['crm_segment_id']) && $arr_attr['crm_segment_id'] != '' && intval($arr_attr['crm_segment_id']) > 0) ? $arr_attr['crm_segment_id'] : 'NULL';
+
+        $saleperson_code_id = (isset($arr_attr['saleperson_code_id']) && $arr_attr['saleperson_code_id'] != '' && intval($arr_attr['saleperson_code_id']) > 0) ? $arr_attr['saleperson_code_id'] : 0;
+
+        $address_type = (isset($arr_attr['address_type'])) ? $arr_attr['address_type'] : '';
+
+
+
+
+
+        if (empty($arr_attr['id'])) {
+
+            $type = (isset($arr_attr['retailer']) && $arr_attr['retailer'] == 1 && $arr_attr['retailer'] != 2) ? 4 : 1;
+            $type = (isset($arr_attr['retailer']) && $arr_attr['retailer'] == 2) ? 0 : 1;
+
+            $Sql = "INSERT INTO crm 
+                                SET 
+                                    transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2),
+                                    unique_id = UUID(),
+                                    type='$type',
+                                    crm_code='" . $arr_attr['crm_code'] . "',
+                                    name='" . $arr_attr['name'] . "',
+                                    customer_classification='" . $arr_attr['crm_classification'] . "',
+                                    crm_classification='" . $arr_attr['crm_classification'] . "',
+                                    ownership_type='" . $arr_attr['ownership_types'] . "',
+                                    address_type='" . $address_type . "',
+                                    contact_person='" . $arr_attr['contact_person'] . "',
+                                    address_1='" . $arr_attr['address_1'] . "',
+                                    job_title='" . $arr_attr['job_title'] . "',
+                                    address_2='" . $arr_attr['address_2'] . "',
+                                    phone='" . $arr_attr['phone'] . "',
+                                    city='" . $arr_attr['city'] . "',
+                                    fax='" . $arr_attr['fax'] . "',
+                                    county='" . $arr_attr['county'] . "',
+                                    country_id='" . $arr_attr['country_id'] . "',
+                                    mobile='" . $arr_attr['mobile'] . "',
+                                    postcode='" . $arr_attr['postcode'] . "',
+                                    direct_line='" . $arr_attr['direct_line'] . "',
+                                    email='" . $arr_attr['email'] . "',
+                                    turnover='$turnover',
+                                    crm_segment_id=$crm_segment_id,
+                                    additionalInformation = '" . $arr_attr['additionalInformation'] . "',
+                                    source_of_crm='" . $arr_attr['source_of_crm'] . "',
+                                    pref_method_of_communication='" . $arr_attr['pref_method_of_communication'] . "',
+                                    status='" . $arr_attr['status'] . "',
+                                    web_address='" . $arr_attr['web_address'] . "',
+                                    buying_grp='" . $arr_attr['buying_grp'] . "',
+                                    region_id='" . $arr_attr['region_ids'] . "',
+                                    credit_rating='" . $arr_attr['credit_ratings'] . "',
+                                    currency_id='" . $arr_attr['currency_id'] . "',
+                                    is_billing_address='" . $is_billing_address . "',
+                                    is_shipping_address='" . $is_delivery_collection_address . "',
+                                    is_invoice_address='" . $is_invoice_address . "' ,
+                                    anonymous_customer='" . $anonymous_customer . "',
+                                    emp_no = '$emp_no',
+                                    company_reg_no='" . $arr_attr['company_reg_no'] . "',
+                                    salesperson_id='$saleperson_code_id',
+                                    date_of_inc='" . $this->objGeneral->convert_date($arr_attr['date_of_inc']) . "',
+                                    crm_type = '" . $arr_attr['crm_type'] . "',
+                                    crm_posting_group_id = '" . $arr_attr['crm_posting_group_id'] . "',
+                                    crm_bank_account_id = '" . $arr_attr['crm_bank_account_id'] . "',
+                                    crm_bank_name = '" . $arr_attr['crm_bank_name'] . "',
+                                    unsubscribeEmail='" . $unsubscribeEmail . "',
+                                    verified='" . $verified . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     user_id='" . $this->arrUser['id'] . "',
                                     company_id='" . $this->arrUser['company_id'] . "',
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn=UNIX_TIMESTAMP (NOW()),
+<<<<<<< HEAD
                                     ".$social_media_str."
+=======
+                                    " . $social_media_str . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ";
             // echo  $Sql;exit;
 
@@ -960,6 +1465,7 @@ class Crm extends Xtreme
 
             $id = $this->Conn->Insert_ID();
             $arr_attr['id'] = $id;
+<<<<<<< HEAD
         }
         else{   
 
@@ -983,11 +1489,34 @@ class Crm extends Xtreme
                     $RS_Check_billing = $this->objsetup->CSI($checkBillingSql);
                     if($RS_Check_billing->fields['total'] == 0)
                     {
+=======
+        } else {
+
+            if ((isset($locArray->depot) && $locArray->depot != "") || (isset($locArray->postcode) && $locArray->postcode != "")) {
+
+                $whereLocID = '';
+
+                if ($locArray->alt_loc_id  > 0)
+                    $whereLocID = 'id <>  ' . $locArray->alt_loc_id . ' AND';
+
+
+                if ($locArray->is_billing_address == 0) {
+                    $checkBillingSql = "SELECT COUNT(*) AS total FROM alt_depot
+                                        WHERE acc_id = " . $arr_attr['id'] . " AND 
+                                              module_type = 1 AND 
+                                              is_billing_address = 1 AND
+                                              " . $whereLocID . "
+                                              company_id=" . $this->arrUser['company_id'];
+
+                    $RS_Check_billing = $this->objsetup->CSI($checkBillingSql);
+                    if ($RS_Check_billing->fields['total'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $response['ack'] = 0;
                         $response['error'] = 'Please select billing and payment address';
                         return $response;
                     }
                 }
+<<<<<<< HEAD
                 if($locArray->is_invoice_address == 0)
                 {
                     $checkPaymentSql = "SELECT COUNT(*) AS total FROM alt_depot
@@ -995,18 +1524,31 @@ class Crm extends Xtreme
                                               module_type = 1 AND 
                                               is_invoice_address = 1 AND
                                               ".$whereLocID."
+=======
+                if ($locArray->is_invoice_address == 0) {
+                    $checkPaymentSql = "SELECT COUNT(*) AS total FROM alt_depot
+                                        WHERE acc_id = " . $arr_attr['id'] . " AND 
+                                              module_type = 1 AND 
+                                              is_invoice_address = 1 AND
+                                              " . $whereLocID . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                               company_id=" . $this->arrUser['company_id'];
 
                     $RS_Check_payment = $this->objsetup->CSI($checkPaymentSql);
 
 
+<<<<<<< HEAD
                     if($RS_Check_payment->fields['total'] == 0 )
                     {
+=======
+                    if ($RS_Check_payment->fields['total'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $response['ack'] = 0;
                         $response['error'] = 'Please select billing and payment address';
                         return $response;
                     }
                 }
+<<<<<<< HEAD
             }     
         
         
@@ -1061,13 +1603,73 @@ class Crm extends Xtreme
                                 $social_media_str
 
                                 WHERE id = ".$arr_attr['id']."   and
+=======
+            }
+
+
+            $Sql = "UPDATE crm
+                            SET
+                                crm_code='" . $arr_attr['crm_code'] . "',
+                                name='" . $arr_attr['name'] . "',
+                                customer_classification='" . $arr_attr['crm_classification'] . "',
+                                crm_classification='" . $arr_attr['crm_classification'] . "',
+                                ownership_type='" . $arr_attr['ownership_types'] . "',
+                                address_type='" . $address_type . "',
+                                contact_person='" . $arr_attr['contact_person'] . "',
+                                address_1='" . $arr_attr['address_1'] . "',
+                                job_title='" . $arr_attr['job_title'] . "',
+                                address_2='" . $arr_attr['address_2'] . "',
+                                phone='" . $arr_attr['phone'] . "',
+                                city='" . $arr_attr['city'] . "',
+                                fax='" . $arr_attr['fax'] . "',
+                                county='" . $arr_attr['county'] . "',
+                                country_id='" . $arr_attr['country_id'] . "',
+                                mobile='" . $arr_attr['mobile'] . "',
+                                postcode='" . $arr_attr['postcode'] . "',
+                                direct_line='" . $arr_attr['direct_line'] . "',
+                                email='" . $arr_attr['email'] . "',
+                                turnover='$turnover',
+                                crm_segment_id=$crm_segment_id,
+                                additionalInformation = '" . $arr_attr['additionalInformation'] . "',
+                                source_of_crm='" . $arr_attr['source_of_crm'] . "',
+                                pref_method_of_communication='" . $arr_attr['pref_method_of_communication'] . "',
+                                status='" . $arr_attr['status'] . "',
+                                web_address='" . $arr_attr['web_address'] . "',
+                                buying_grp='" . $arr_attr['buying_grp'] . "',
+                                region_id='" . $arr_attr['region_ids'] . "',
+                                credit_rating='" . $arr_attr['credit_ratings'] . "',
+                                currency_id='" . $arr_attr['currency_id'] . "',
+                                is_billing_address='" . $is_billing_address . "',
+                                is_shipping_address='" . $is_delivery_collection_address . "',
+                                is_invoice_address='" . $is_invoice_address . "' ,
+                                anonymous_customer='" . $anonymous_customer . "',
+                                ChangedBy='" . $this->arrUser['id'] . "',
+                                ChangedOn='" . current_date_time . "',
+                                emp_no = '$emp_no',
+                                company_reg_no='" . $arr_attr['company_reg_no'] . "',
+                                salesperson_id='$saleperson_code_id',
+                                date_of_inc='" . $this->objGeneral->convert_date($arr_attr['date_of_inc']) . "',
+                                crm_type = '" . $arr_attr['crm_type'] . "',
+                                crm_posting_group_id = '" . $arr_attr['crm_posting_group_id'] . "',
+                                crm_bank_account_id = '" . $arr_attr['crm_bank_account_id'] . "',
+                                crm_bank_name = '" . $arr_attr['crm_bank_name'] . "',
+                                unsubscribeEmail='" . $unsubscribeEmail . "',
+                                verified='" . $verified . "',
+                                $social_media_str
+
+                                WHERE id = " . $arr_attr['id'] . "   and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     company_id=" . $this->arrUser['company_id'] . "
                                 limit 1";
             // echo $Sql;  exit;
 
             $response = $this->objsetup->CSI($Sql, "crm_gneraltab", sr_AddEditPermission);
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response99['ack'] = 1;
         $response99['error'] = NULL;
         $response = $response99;
@@ -1083,12 +1685,17 @@ class Crm extends Xtreme
 
         // error_reporting(E_ALL) ;
 
+<<<<<<< HEAD
         if ((isset($locArray->depot) && $locArray->depot != "" ) || (isset($locArray->postcode) && $locArray->postcode != "")) {        
+=======
+        if ((isset($locArray->depot) && $locArray->depot != "") || (isset($locArray->postcode) && $locArray->postcode != "")) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (empty($arr_attr['alt_loc_id']))
                 $response2 = $this->objSrm->add_alt_depot2($locArray, $response2);
             else
                 $response2 = $this->objSrm->update_alt_depot2($locArray, $response2);
+<<<<<<< HEAD
         
             if($response2['ack']==0 && $response2['ack']!="")  return $response2;
         }
@@ -1112,13 +1719,43 @@ class Crm extends Xtreme
         $response['alt_loc_id'] = $arr_attr['alt_loc_id'];
         $response['alt_contact_id'] = $arr_attr['alt_contact_id']; 
         $response['crm_id'] = $arr_attr['id']; 
+=======
+
+            if ($response2['ack'] == 0 && $response2['ack'] != "")  return $response2;
+        }
+
+        if ((isset($contactArray->contact_name) && $contactArray->contact_name != "") || $arr_attr['alt_contact_id'] > 0) {
+
+            $contactArray->alt_contact_id = $arr_attr['alt_contact_id'];
+
+            if (empty($arr_attr['alt_contact_id']))
+                $response2 = $this->objSrm->add_alt_contact2($contactArray, $response2);
+            else
+                $response2 = $this->objSrm->update_alt_contact2($contactArray, $response2);
+        }
+
+        if (!($arr_attr['alt_contact_id'] > 0))
+            $arr_attr['alt_contact_id'] = $response2['alt_contact_id'];
+
+        if (!($arr_attr['alt_loc_id'] > 0))
+            $arr_attr['alt_loc_id'] = $response2['alt_location_id'];
+
+        $response['alt_loc_id'] = $arr_attr['alt_loc_id'];
+        $response['alt_contact_id'] = $arr_attr['alt_contact_id'];
+        $response['crm_id'] = $arr_attr['id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($arr_attr['alt_loc_id'] > 0 && $arr_attr['alt_contact_id'] > 0) {
 
             $sqlC = "SELECT COUNT(*) as loc_con_count
                      From alt_depot_contact
+<<<<<<< HEAD
                      WHERE acc_id = '".$arr_attr['id']."' and module_type = '1' and location_id = '".$arr_attr['alt_loc_id']."' and
                            contact_id = '".$arr_attr['alt_contact_id']."'";
+=======
+                     WHERE acc_id = '" . $arr_attr['id'] . "' and module_type = '1' and location_id = '" . $arr_attr['alt_loc_id'] . "' and
+                           contact_id = '" . $arr_attr['alt_contact_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $sqlC;
             $RSC = $this->objsetup->CSI($sqlC);
             $Row = $RSC->FetchRow();
@@ -1134,6 +1771,7 @@ class Crm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         if (!empty($arr_attr['selectedSalesBucket'])  && empty($arr_attr['CRMBucketList'])){
              $input_arr = [];
              $input_arr["module_id"] = $arr_attr['id'];
@@ -1168,6 +1806,40 @@ class Crm extends Xtreme
         ### Akhtar's Code to change customer bucket from customer card.
         */        
         elseif (!empty($arr_attr['selectedSalesBucket']) && !empty($arr_attr['CRMBucketList']) && $arr_attr['last_selected_bucket']!=$arr_attr['selectedSalesBucket']->id) {
+=======
+        if (!empty($arr_attr['selectedSalesBucket'])  && empty($arr_attr['CRMBucketList'])) {
+            $input_arr = [];
+            $input_arr["module_id"] = $arr_attr['id'];
+            $input_arr["bucket_id"] = $arr_attr['selectedSalesBucket']->id;
+            require_once(SERVER_PATH . "/classes/Customersales.php");
+            $ObjCSale = new Customersales($this->arrUser);
+            $result = $ObjCSale->checkBucketValidity($input_arr, 40);
+            if ($result['valid']) {
+                $response['validBucket'] = 1;
+                $insertBucketSql = "INSERT INTO crm_bucket (module_id,bucket_id,type,is_primary,company_id,user_id,start_date,AddedBy,AddedOn) VALUES (" . $arr_attr['id'] . "," . $input_arr['bucket_id'] . ",1,0, " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . "," . current_date . "," . $this->arrUser['id'] . ",UNIX_TIMESTAMP (NOW()))";
+                //echo $insertBucketSql;exit;
+                $RS = $this->objsetup->CSI($insertBucketSql);
+                //print_r($RS);exit;
+                if ($this->Conn->Insert_ID() > 0) {
+                    $response['bucketAdded'] = 1;
+                    $selectSalePersonsFromBucket = "SELECT " . $input_arr['module_id'] . ", employee_id, is_primary, " . $this->arrUser['company_id'] . "," . $this->arrUser['id'] . ",2," . $input_arr['bucket_id'] . "," . current_date . "," . $this->arrUser['id'] . "," . current_date . " FROM employee_bucket WHERE bucket_id = " . $input_arr['bucket_id'] . " ";
+                    $insertSalePersonSql = "INSERT INTO crm_salesperson (module_id, salesperson_id, is_primary, company_id, user_id, type, bucket_id, start_date, AddedBy, AddedOn) ($selectSalePersonsFromBucket)";
+                    //echo $insertSalePersonSql;exit;
+                    $RS = $this->objsetup->CSI($insertSalePersonSql);
+                    if ($this->Conn->Insert_ID() > 0) {
+                        $response['salesPersonsAdded'] = 1;
+                    }
+                    $sqlForceCRMUpdate = "UPDATE crm SET name = name WHERE id = '" . $arr_attr['id'] . "' ";
+                    $x = $this->objsetup->CSI($sqlForceCRMUpdate);
+                }
+            } else {
+                $response['validBucket'] = 0;
+            }
+        }
+        /* 
+        ### Akhtar's Code to change customer bucket from customer card.
+        */ elseif (!empty($arr_attr['selectedSalesBucket']) && !empty($arr_attr['CRMBucketList']) && $arr_attr['last_selected_bucket'] != $arr_attr['selectedSalesBucket']->id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $arr_attr['last_selected_bucket'];exit;
             $input_arr = [];
             $input_arr["module_id"] = $arr_attr['id'];
@@ -1175,6 +1847,7 @@ class Crm extends Xtreme
             require_once(SERVER_PATH . "/classes/Customersales.php");
             $ObjCSale = new Customersales($this->arrUser);
             $result = $ObjCSale->checkBucketValidity($input_arr, 40);
+<<<<<<< HEAD
            
             if ($result['valid']){
                  ////--------------------------------------------///
@@ -1206,6 +1879,38 @@ class Crm extends Xtreme
             }
         }
          $response['crm_id'] = $arr_attr['id'];
+=======
+
+            if ($result['valid']) {
+                ////--------------------------------------------///
+                $SQ = "DELETE FROM crm_bucket WHERE module_id= " . $arr_attr['id'] . "";
+                $this->objsetup->CSI($SQ);
+                $SQ1 = "DELETE FROM crm_salesperson WHERE module_id= " . $arr_attr['id'] . "";
+                $this->objsetup->CSI($SQ1);
+
+                $response['validBucket'] = 1;
+                $insertBucketSql = "INSERT INTO crm_bucket (module_id,bucket_id,type,is_primary,company_id,user_id,start_date,AddedBy,AddedOn) VALUES (" . $arr_attr['id'] . "," . $input_arr['bucket_id'] . ",1,0, " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . "," . current_date . "," . $this->arrUser['id'] . ",UNIX_TIMESTAMP (NOW()))";
+                //echo $insertBucketSql;exit;
+                $RS = $this->objsetup->CSI($insertBucketSql);
+                //print_r($RS);exit;
+                if ($this->Conn->Insert_ID() > 0) {
+                    $response['bucketAdded'] = 1;
+                    $selectSalePersonsFromBucket = "SELECT $input_arr[module_id], employee_id, is_primary, " . $this->arrUser['company_id'] . "," . $this->arrUser['id'] . ",2," . $input_arr['bucket_id'] . "," . current_date . "," . $this->arrUser['id'] . "," . current_date . " FROM employee_bucket WHERE bucket_id = " . $input_arr['bucket_id'] . " ";
+                    $insertSalePersonSql = "INSERT INTO crm_salesperson (module_id, salesperson_id, is_primary, company_id, user_id, type, bucket_id, start_date, AddedBy, AddedOn) ($selectSalePersonsFromBucket)";
+                    //echo $insertSalePersonSql;exit;
+                    $RS = $this->objsetup->CSI($insertSalePersonSql);
+                    if ($this->Conn->Insert_ID() > 0) {
+                        $response['salesPersonsAdded'] = 1;
+                    }
+                    $sqlForceCRMUpdate = "UPDATE crm SET name = name WHERE id = " . $arr_attr['id'] . "; ";
+                    $x = $this->objsetup->CSI($sqlForceCRMUpdate);
+                }
+            } else {
+                $response['validBucket'] = 0;
+            }
+        }
+        $response['crm_id'] = $arr_attr['id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         return $response;
     }
@@ -1213,6 +1918,7 @@ class Crm extends Xtreme
     function delete_crm($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
 
@@ -1236,6 +1942,30 @@ class Crm extends Xtreme
                 $RS_del = $this->objsetup->CSI($function_del);
             }
 
+=======
+        $arr_attr = (array) $attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $function = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 16,4)"; //notes
+        $RS = $this->objsetup->CSI($function, "crm_gneraltab", sr_DeletePermission);
+        $function1 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 17,1)"; //documents
+        $RS1 = $this->objsetup->CSI($function1, "crm_gneraltab", sr_DeletePermission);
+        $function2 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 18,1)"; //email
+        $RS2 = $this->objsetup->CSI($function2, "crm_gneraltab", sr_DeletePermission);
+        $function3 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 1,0)"; // for type 1
+        $RS3 = $this->objsetup->CSI($function3, "crm_gneraltab", sr_DeletePermission);
+        //echo $RS3->fields[0];exit;
+        // asked to remove the documetn check on Monday, 17th June 2019 , && $RS1->fields[0] == 'success' 
+        if ($RS->fields[0] == 'success' && $RS2->fields[0] == 'success' && $RS3->fields[0] == 'success') {
+            $Sql = "UPDATE crm SET status=" . DELETED_STATUS . " WHERE id = " . $arr_attr['id'] . " AND SR_CheckTransactionBeforeDelete(" . $attr['id'] . ", " . $this->arrUser['company_id'] . ", 1,0) = 'success'";
+            // remove doc association
+            $Sql_sel = "SELECT * FROM document_association where record_id = " . $arr_attr['id'] . "";
+            $RS_sel = $this->objsetup->CSI($Sql_sel);
+            if ($this->Conn->Affected_Rows() > 0) {
+                $function_del = "DELETE from document_association where record_id = " . $arr_attr['id'] . "";
+                $RS_del = $this->objsetup->CSI($function_del);
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } elseif ($RS->fields[0] != 'success') {
             $response['ack'] = 0;
             $response['error'] = 'A Note already exists against this record.';
@@ -1248,12 +1978,20 @@ class Crm extends Xtreme
             $response['ack'] = 0;
             $response['error'] = 'An Email already exists against this record.';
             return $response;
+<<<<<<< HEAD
         }elseif ($RS3->fields[0] != 'success') {
+=======
+        } elseif ($RS3->fields[0] != 'success') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = $RS3->fields[0];
             return $response;
         }
+<<<<<<< HEAD
          //echo $Sql;exit;
+=======
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS4 = $this->objsetup->CSI($Sql, "crm_gneraltab", sr_DeletePermission);
 
@@ -1270,6 +2008,7 @@ class Crm extends Xtreme
 
     function convert($attr)
     {
+<<<<<<< HEAD
        // echo '<pre>';print_r($attr);exit;
         $this->objGeneral->mysql_clean($attr);
         $moduleForPermission = "";
@@ -1292,6 +2031,26 @@ class Crm extends Xtreme
             //crm_no =  '" . $attr[crm_no] . "', 
             $moduleForPermission = "customer_gneraltab";
 
+=======
+        // echo '<pre>';print_r($attr);exit;
+        $this->objGeneral->mysql_clean($attr);
+        $moduleForPermission = "";
+        if ($attr['module'] == 1) {
+            $Sql = "UPDATE crm SET 
+                        type =2,  
+                        customer_code= '" . $attr['cust_code'] . "', convertedBy = '" . $this->arrUser['id'] . "', convertedOn ='" . current_date_time . "',
+                        customer_classification = (SELECT id FROM ref_classification WHERE name = 'Customer' AND company_id='" . $this->arrUser['company_id'] . "' LIMIT 1),
+                        crm_classification = (SELECT id FROM ref_classification WHERE name = 'Customer' AND company_id='" . $this->arrUser['company_id'] . "' LIMIT 1)
+					WHERE id = " . $attr['id'] . " and company_id='" . $this->arrUser['company_id'] . "'  limit 1";
+            //customer_no=' " . $attr[cust_no] . "', 
+            $moduleForPermission = "crm_gneraltab";
+        } elseif ($attr['module'] == 2) {
+            $Sql = "UPDATE crm SET type = 2, 
+                crm_code =  '" . $attr['crm_code'] . "' 
+                WHERE id = " . $attr['id'] . " and company_id='" . $this->arrUser['company_id'] . "' limit 1";
+            //crm_no =  '" . $attr[crm_no] . "', 
+            $moduleForPermission = "customer_gneraltab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         // echo  $Sql;exit;
 
@@ -1304,19 +2063,30 @@ class Crm extends Xtreme
             $response['error'] = NULL;
 
             // deleting buckets and salespersons for that crm/customer
+<<<<<<< HEAD
             $SqlDeleteSp = "DELETE FROM crm_salesperson where module_id = ".$attr['id']." and company_id = '" . $this->arrUser['company_id'] . "'; ";
             $SqlDeleteBucks  = "DELETE From crm_bucket where module_id = ".$attr['id']." and company_id = '" . $this->arrUser['company_id'] . "'";
             $SqlDeleteOfferedBy  = "UPDATE priceoffer set offeredByID =0  where moduleID = ".$attr['id']." and company_id = '" . $this->arrUser['company_id'] . "'";
+=======
+            $SqlDeleteSp = "DELETE FROM crm_salesperson where module_id = " . $attr['id'] . " and company_id = '" . $this->arrUser['company_id'] . "'; ";
+            $SqlDeleteBucks  = "DELETE From crm_bucket where module_id = " . $attr['id'] . " and company_id = '" . $this->arrUser['company_id'] . "'";
+            $SqlDeleteOfferedBy  = "UPDATE priceoffer set offeredByID =0  where moduleID = " . $attr['id'] . " and company_id = '" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS2 = $this->objsetup->CSI($SqlDeleteSp);
             $RS3 = $this->objsetup->CSI($SqlDeleteBucks);
             $RS4 = $this->objsetup->CSI($SqlDeleteOfferedBy);
 
             // insert posting grp and bank account
+<<<<<<< HEAD
             $Sql1 = "select crm_posting_group_id,crm_bank_account_id from crm WHERE id = ".$attr['id']." and company_id='" . $this->arrUser['company_id'] . "'  limit 1";
+=======
+            $Sql1 = "select crm_posting_group_id,crm_bank_account_id from crm WHERE id = " . $attr['id'] . " and company_id='" . $this->arrUser['company_id'] . "'  limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS1 = $this->objsetup->CSI($Sql1)->FetchRow();
             $crm_posting_group_id = $RS1['crm_posting_group_id'];
             $crm_bank_account_id = $RS1['crm_bank_account_id'];
             $data = "";
+<<<<<<< HEAD
             if($crm_posting_group_id){
                 $data = " posting_group_id = '".$crm_posting_group_id."', ";
             }
@@ -1325,16 +2095,34 @@ class Crm extends Xtreme
             }
             if($data!=""){
                 $InsertF = "INSERT INTO finance SET ".$data." customer_id=".$attr['id'].",type='1'";
+=======
+            if ($crm_posting_group_id) {
+                $data = " posting_group_id = '" . $crm_posting_group_id . "', ";
+            }
+            if ($crm_bank_account_id) {
+                $data .= " bank_account_id = '" . $crm_bank_account_id . "', ";
+            }
+            if ($data != "") {
+                $InsertF = "INSERT INTO finance SET " . $data . " customer_id=" . $attr['id'] . ",type='1'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $RSF = $this->objsetup->CSI($InsertF);
             }
 
             // changing crm code to customer code in orders table
+<<<<<<< HEAD
             $UpdateOrders = "UPDATE orders SET sell_to_cust_no = '" . $attr['cust_code'] . "'  WHERE sell_to_cust_id=".$attr['id']." ";
             $RSO = $this->objsetup->CSI($UpdateOrders);
             $UpdateOrdersC = "UPDATE orderscache SET sell_to_cust_no = '" . $attr['cust_code'] . "'  WHERE sell_to_cust_id=".$attr['id']." ";
             //echo $UpdateOrdersC;exit;
             $RSOC = $this->objsetup->CSI($UpdateOrdersC); 
 
+=======
+            $UpdateOrders = "UPDATE orders SET sell_to_cust_no = '" . $attr['cust_code'] . "'  WHERE sell_to_cust_id=" . $attr['id'] . " ";
+            $RSO = $this->objsetup->CSI($UpdateOrders);
+            $UpdateOrdersC = "UPDATE orderscache SET sell_to_cust_no = '" . $attr['cust_code'] . "'  WHERE sell_to_cust_id=" . $attr['id'] . " ";
+            //echo $UpdateOrdersC;exit;
+            $RSOC = $this->objsetup->CSI($UpdateOrdersC);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated!';
@@ -1347,8 +2135,13 @@ class Crm extends Xtreme
 
             $number = $crm['count'] + 1;
             $code = "CUST" . $number;
+<<<<<<< HEAD
             $Sql = "UPDATE crm SET type = ".$attr['type'].", customer_no = $number,customer_code='$code'
 					WHERE id = ".$attr['id']." ";
+=======
+            $Sql = "UPDATE crm SET type = " . $attr['type'] . ", customer_no = $number,customer_code='$code'
+					WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             //echo $Sql."-".$Sqls; exit;
         } else {
@@ -1357,20 +2150,33 @@ class Crm extends Xtreme
 
             //$number = $crm['count'] + 1;
             $code = "CRM" . $number;
+<<<<<<< HEAD
             $Sql = "UPDATE crm SET type = ".$attr['type'].", crm_no = $number,crm_code='$code'
 				WHERE id = ".$attr['id']." ";
             //echo $Sql."2"; exit;
         }
 
 
+=======
+            $Sql = "UPDATE crm SET type = " . $attr['type'] . ", crm_no = $number,crm_code='$code'
+				WHERE id = " . $attr['id'] . " ";
+            //echo $Sql."2"; exit;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function convertToCRM($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $Sql = "UPDATE crm SET type =1
                 WHERE id = ".$attr['id']." AND company_id='" . $this->arrUser['company_id'] . "'  LIMIT 1";
+=======
+
+        $Sql = "UPDATE crm SET type =1
+                WHERE id = " . $attr['id'] . " AND company_id='" . $this->arrUser['company_id'] . "'  LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo  $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1378,7 +2184,10 @@ class Crm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated!';
@@ -1409,15 +2218,26 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         if (!empty($arr_attr['id']))
+<<<<<<< HEAD
             $where_id = "AND tst.id !=  '".$arr_attr['id']."'";
 
         $unsubscribeEmail = (isset($arr_attr['unsubscribeEmail']) && $arr_attr['unsubscribeEmail'] != '')? $arr_attr['unsubscribeEmail']: 0; 
+=======
+            $where_id = "AND tst.id !=  '" . $arr_attr['id'] . "'";
+
+        $unsubscribeEmail = (isset($arr_attr['unsubscribeEmail']) && $arr_attr['unsubscribeEmail'] != '') ? $arr_attr['unsubscribeEmail'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE crm
                         SET 
  
+<<<<<<< HEAD
                             unsubscribeEmail='".$unsubscribeEmail."'
                         WHERE id = ".$arr_attr['id']."  and
+=======
+                            unsubscribeEmail='" . $unsubscribeEmail . "'
+                        WHERE id = " . $arr_attr['id'] . "  and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                   company_id=" . $this->arrUser['company_id'] . "
                         limit 1";
 
@@ -1430,9 +2250,15 @@ class Crm extends Xtreme
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else { */
+<<<<<<< HEAD
             $response['id'] = 0;
             $response['ack'] = 0;
             $response['error'] = 'Record not inserted!';
+=======
+        $response['id'] = 0;
+        $response['ack'] = 0;
+        $response['error'] = 'Record not inserted!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // }
 
         return $response;
@@ -1449,7 +2275,11 @@ class Crm extends Xtreme
             case 2:
                 $id = '0' . $id;
                 break;
+<<<<<<< HEAD
             default :
+=======
+            default:
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $id = $id;
                 break;
         }
@@ -1460,9 +2290,15 @@ class Crm extends Xtreme
     {
         $fromDataChk = '';
 
+<<<<<<< HEAD
         if($attr['fromData']>0){
 
             if($attr['type'] == 1)  // (From Indirect to RTM)
+=======
+        if ($attr['fromData'] > 0) {
+
+            if ($attr['type'] == 1)  // (From Indirect to RTM)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             {
                 $fromDataChk = "c.crm_code IN ( SELECT (CASE WHEN rtm.type = 1 THEN rtm.from_crm_code
                                                             WHEN rtm.type = 2 THEN rtm.link_crm_code
@@ -1470,11 +2306,17 @@ class Crm extends Xtreme
                                                             END) AS crmCode 
                                                 FROM route_to_market_link as rtm
                                                 WHERE rtm.company_id = c.company_id AND 
+<<<<<<< HEAD
                                                         ((rtm.type = 1 AND rtm.link_crm_id = ".$attr['crm_id'].") OR 
                                                         (rtm.type = 2 AND rtm.from_crm_id = ".$attr['crm_id']."))) AND 2=2 AND";
 
             }
             elseif($attr['type'] == 2) // (From RTM To Indirect )
+=======
+                                                        ((rtm.type = 1 AND rtm.link_crm_id = " . $attr['crm_id'] . ") OR 
+                                                        (rtm.type = 2 AND rtm.from_crm_id = " . $attr['crm_id'] . "))) AND 2=2 AND";
+            } elseif ($attr['type'] == 2) // (From RTM To Indirect )
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             {
                 $fromDataChk = "c.crm_code IN ( SELECT (CASE WHEN rtm.type = 2 THEN rtm.from_crm_code
                                                             WHEN rtm.type = 1 THEN rtm.link_crm_code
@@ -1482,24 +2324,41 @@ class Crm extends Xtreme
                                                             END) AS crmCode 
                                                 FROM route_to_market_link as rtm
                                                 WHERE rtm.company_id = c.company_id AND 
+<<<<<<< HEAD
                                                         ((rtm.type = 2 AND rtm.link_crm_id = ".$attr['crm_id'].") OR 
                                                         (rtm.type = 1 AND rtm.from_crm_id = ".$attr['crm_id']."))) AND 1=1 AND ";
             }
         }
 
         if($attr['type'] == 1)  // (From Indirect to RTM)
+=======
+                                                        ((rtm.type = 2 AND rtm.link_crm_id = " . $attr['crm_id'] . ") OR 
+                                                        (rtm.type = 1 AND rtm.from_crm_id = " . $attr['crm_id'] . "))) AND 1=1 AND ";
+            }
+        }
+
+        if ($attr['type'] == 1)  // (From Indirect to RTM)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT link_crm_id AS crm_id, link_crm_code AS code, is_prefered
                     FROM route_to_market_link
                     WHERE type = 2 AND 
+<<<<<<< HEAD
                           from_crm_id = ".$attr['crm_id']." AND 
+=======
+                          from_crm_id = " . $attr['crm_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           company_id=" . $this->arrUser['company_id'] . "
                     UNION
 
                     SELECT from_crm_id AS crm_id, from_crm_code AS code, 0 AS is_prefered
                     FROM route_to_market_link
                     WHERE type = 1 AND 
+<<<<<<< HEAD
                           link_crm_id = ".$attr['crm_id']." AND 
+=======
+                          link_crm_id = " . $attr['crm_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           company_id=" . $this->arrUser['company_id'] . " ";
 
             $customers_sql = "SELECT c.id,
@@ -1516,6 +2375,7 @@ class Crm extends Xtreme
                                     0 AS associated_indirect_crm
                                 FROM sr_crm AS c
                                 WHERE 
+<<<<<<< HEAD
                                     c.id <> ".$attr['crm_id']." AND
                                     c.type IN (1,2) AND c.crm_code IS NOT NULL AND
                                     c.status = 1 AND 
@@ -1523,6 +2383,15 @@ class Crm extends Xtreme
                                     c.crm_type IN (1,3) AND c.company_id=" . $this->arrUser['company_id'];
 
             
+=======
+                                    c.id <> " . $attr['crm_id'] . " AND
+                                    c.type IN (1,2) AND c.crm_code IS NOT NULL AND
+                                    c.status = 1 AND 
+                                    " . $fromDataChk . "
+                                    c.crm_type IN (1,3) AND c.company_id=" . $this->arrUser['company_id'];
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /* $subQueryForBuckets = " SELECT  c.id
                                     FROM sr_crm_listing c
                                     WHERE c.type IN (1,2) AND 
@@ -1530,21 +2399,33 @@ class Crm extends Xtreme
 
             //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 40);
             $customers_sql .= " AND c.id IN ($subQueryForBuckets) "; */
+<<<<<<< HEAD
         }
         else if($attr['type'] == 2) // (From RTM To Indirect )
+=======
+        } else if ($attr['type'] == 2) // (From RTM To Indirect )
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT link_crm_id AS crm_id, link_crm_code AS code, is_prefered
                     FROM route_to_market_link
                     WHERE 
                         type = 1 AND 
+<<<<<<< HEAD
                         from_crm_id = ".$attr['crm_id']." AND
+=======
+                        from_crm_id = " . $attr['crm_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         company_id=" . $this->arrUser['company_id'] . "
                     UNION 
                     SELECT from_crm_id AS crm_id, from_crm_code AS code, 0 AS is_prefered
                     FROM route_to_market_link
                     WHERE 
                         type = 2 AND 
+<<<<<<< HEAD
                         link_crm_id = ".$attr['crm_id']." AND
+=======
+                        link_crm_id = " . $attr['crm_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         company_id=" . $this->arrUser['company_id'] . " ";
 
             $customers_sql = "SELECT c.id,
@@ -1564,7 +2445,11 @@ class Crm extends Xtreme
                                                 rtm.from_crm_id = c.id) AS associated_indirect_crm
                                 FROM sr_crm AS c 
                                     WHERE 
+<<<<<<< HEAD
                                         c.id <> ".$attr['crm_id']." AND
+=======
+                                        c.id <> " . $attr['crm_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         c.type IN (1,2) AND c.crm_code IS NOT NULL AND  c.name !='' AND
                                         c.crm_type = 2 AND 
                                         c.status = 1 AND  
@@ -1585,16 +2470,27 @@ class Crm extends Xtreme
         $linked_crms = '';
 
         if ($RS->RecordCount() > 0) {
+<<<<<<< HEAD
             
             while ($Row = $RS->FetchRow()) 
             {
+=======
+
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 $response['response']['RTMCrmList'] [] = $Row;
             }
             
+=======
+                $response['response']['RTMCrmList'][] = $Row;
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS1 = $this->objsetup->CSI($Sql);
 
             while ($Row1 = $RS1->FetchRow()) {
@@ -1602,6 +2498,7 @@ class Crm extends Xtreme
                     if (is_numeric($key))
                         unset($Row1[$key]);
                 }
+<<<<<<< HEAD
                 $linked_crms .= $Row1['code'].", ";
                 $response['response']['LinkedRTMCrmList'][] = $Row1;
             }
@@ -1613,6 +2510,18 @@ class Crm extends Xtreme
             }
             
             $response['ack'] = 1;  
+=======
+                $linked_crms .= $Row1['code'] . ", ";
+                $response['response']['LinkedRTMCrmList'][] = $Row1;
+            }
+
+            if (strlen($linked_crms) > 0) {
+                $linked_crms =  substr($linked_crms, 0, -2);
+                $response['response']['LinkedRTMCrmString'] = $linked_crms;
+            }
+
+            $response['ack'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['response'] = array();
@@ -1623,6 +2532,7 @@ class Crm extends Xtreme
     function update_route_to_market($attr)
     {
         // print_r($attr);exit;
+<<<<<<< HEAD
         $Sql = "DELETE FROM route_to_market_link WHERE from_crm_id = ".$attr['crm_id']." OR link_crm_id = ".$attr['crm_id']." ";
         $RS = $this->objsetup->CSI($Sql);
         
@@ -1648,27 +2558,66 @@ class Crm extends Xtreme
             $is_prefered = ($rmt_item->is_prefered != '') ? $rmt_item->is_prefered : '0';
             $Sql = "INSERT INTO route_to_market_link SET
                         from_crm_id = $attr[crm_id],
+=======
+        $Sql = "DELETE FROM route_to_market_link WHERE from_crm_id = " . $attr['crm_id'] . " OR link_crm_id = " . $attr['crm_id'] . " ";
+        $RS = $this->objsetup->CSI($Sql);
+
+        $crm_ids_arr = array();
+        if ($attr['type'] == 1)
+            return;
+        if ($attr['type'] == 2) // route to market
+        {
+            $type = 2;
+            foreach ($attr['rmt_list'] as $rmt_item) {
+                $crm_ids_arr[] = $rmt_item->id;
+            }
+            $crm_ids_list = implode(',', $crm_ids_arr);
+        } else if ($attr['type'] == 3) // indirect
+        {
+            $type = 1;
+        }
+
+        foreach ($attr['rmt_list'] as $rmt_item) {
+            $is_prefered = ($rmt_item->is_prefered != '') ? $rmt_item->is_prefered : '0';
+            $Sql = "INSERT INTO route_to_market_link SET
+                        from_crm_id = " . $attr['crm_id'] . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         from_crm_code = '$attr[crm_code]',
                         link_crm_id = $rmt_item->id,
                         link_crm_code = '$rmt_item->code',
                         type = $type,
                         is_prefered = $is_prefered,
+<<<<<<< HEAD
                         company_id = " . $this->arrUser['company_id'].",
                         user_id = " . $this->arrUser['id'].",
                         AddedBy = " . $this->arrUser['id'].",
+=======
+                        company_id = " . $this->arrUser['company_id'] . ",
+                        user_id = " . $this->arrUser['id'] . ",
+                        AddedBy = " . $this->arrUser['id'] . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         AddedOn = UNIX_TIMESTAMP (NOW())
                 ";
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
         }
+<<<<<<< HEAD
         
         if($attr['type'] == 2 && strlen($crm_ids_list) > 0)
         {
+=======
+
+        if ($attr['type'] == 2 && strlen($crm_ids_list) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql1 = "UPDATE crm SET crm_type=3 WHERE crm_type <> 3 AND id IN ($crm_ids_list)";
             // echo $Sql1;exit;
             $RS1 = $this->objsetup->CSI($Sql1);
         }
+<<<<<<< HEAD
         $response['ack'] = 1;  
+=======
+        $response['ack'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -1688,7 +2637,11 @@ class Crm extends Xtreme
                         WHERE 
                             c.crm_type = 3 AND 
                             rtm.link_crm_id = c.id AND
+<<<<<<< HEAD
                             from_crm_id = '".$attr['crm_id']."' AND
+=======
+                            from_crm_id = '" . $attr['crm_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             c.company_id=" . $this->arrUser['company_id'];
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1698,12 +2651,20 @@ class Crm extends Xtreme
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 $response['response'][]= $Row;
             }
             $response['ack'] = 1;
         }
         else
                 $response['ack'] = 0;
+=======
+                $response['response'][] = $Row;
+            }
+            $response['ack'] = 1;
+        } else
+            $response['ack'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
     function get_bucket_name_by_id($attr)
@@ -1711,7 +2672,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT name
 				FROM crm_sale_bucket
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
@@ -1770,7 +2735,11 @@ class Crm extends Xtreme
         else
             $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -1856,12 +2825,21 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // Alt Depot Module
 //--------------------------------------
 
     function getPrimaryContactLocAssigntotal($attr)
     {
        $Sql = " SELECT  contLoc.id
+=======
+    // Alt Depot Module
+    //--------------------------------------
+
+    function getPrimaryContactLocAssigntotal($attr)
+    {
+        $Sql = " SELECT  contLoc.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 FROM alt_depot_contact as contLoc
                 where contLoc.status=1 and contLoc.contact_id='" . $attr['primaryc_id'] . "'";
         //echo $Sql; exit;                 
@@ -1877,11 +2855,19 @@ class Crm extends Xtreme
     function getPrimaryContactLocAssign($attr)
     {
         //$attr['acc_id'] = $attr['value'];
+<<<<<<< HEAD
        // $response = $this->objSrm->get_alt_depots($attr);
        $where = '';
        if($attr['acc_id']>0) $where = ' and contLoc.acc_id='.$attr['acc_id'];
 
        $Sql = " SELECT  contLoc.id,contLoc.module_type,
+=======
+        // $response = $this->objSrm->get_alt_depots($attr);
+        $where = '';
+        if ($attr['acc_id'] > 0) $where = ' and contLoc.acc_id=' . $attr['acc_id'];
+
+        $Sql = " SELECT  contLoc.id,contLoc.module_type,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         loc.depot,
                         loc.is_billing_address,
                         loc.is_invoice_address,
@@ -1906,6 +2892,7 @@ class Crm extends Xtreme
 
         $RS = $this->objsetup->CSI($Sql);
         $showdata = $RS->RecordCount();
+<<<<<<< HEAD
        // exit; 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
@@ -1915,6 +2902,17 @@ class Crm extends Xtreme
                 $result['location'] = $Row['depot'];
                 $result['is_primary'] = $Row['is_primary'];
                 $result['is_default'] = $Row['is_default'];                
+=======
+        // exit; 
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                $result = array();
+
+                $result['id'] = $Row['id'];
+                $result['location'] = $Row['depot'];
+                $result['is_primary'] = $Row['is_primary'];
+                $result['is_default'] = $Row['is_default'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['chk'] = 1;
 
                 $address_type = "";
@@ -1950,9 +2948,15 @@ class Crm extends Xtreme
             $response['error'] = NULL;
             /* print_r($response);echo "<hr>";
             exit; */
+<<<<<<< HEAD
             
             $response['showdata'] = $showdata;
         } else   
+=======
+
+            $response['showdata'] = $showdata;
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
 
         return $response;
@@ -2042,7 +3046,11 @@ class Crm extends Xtreme
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2072,15 +3080,26 @@ class Crm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         return array('filters_dropdown' => $filters_dropdown, 'columns' => $head, 'filter_dict' => $filter_dict,
             'filters' => $record['column_id'], 'record' => array('total' => $response['total'], 'result' => $record['results'], 'response' => $record['response'], 'ack' => $ack));
+=======
+        return array(
+            'filters_dropdown' => $filters_dropdown, 'columns' => $head, 'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'], 'record' => array('total' => $response['total'], 'result' => $record['results'], 'response' => $record['response'], 'ack' => $ack)
+        );
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // return $response;
     }
 
     function get_opportunity_cycle_by_id($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "SELECT *  FROM crm_opportunity_cycle WHERE id='".$attr['id']."' LIMIT 1";
+=======
+        $Sql = "SELECT *  FROM crm_opportunity_cycle WHERE id='" . $attr['id'] . "' LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
         $response['error'] = NULL;
@@ -2101,13 +3120,21 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $mainSql = "INSERT INTO crm_opportunity_cycle SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '$attr[crm_id]',stage_id = '".$attr['type']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+        $mainSql = "INSERT INTO crm_opportunity_cycle SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '" . $attr['crm_id'] . "',stage_id = '" . $attr['type'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->Conn->StartTrans();
         $mRS = $this->objsetup->CSI($mainSql);
         $mId = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
         $detailSql = "INSERT INTO crm_opportunity_cycle_detail SET start_date = '" . $this->objGeneral->convert_date($attr[start_date]) . "',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "',probability = '$attr[probability]',description = '$attr[description]',tab_id = '".$attr['type']."',crm_opportunity_cycle_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+        $detailSql = "INSERT INTO crm_opportunity_cycle_detail SET start_date = '" . $this->objGeneral->convert_date($attr['start_date']) . "',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "',probability = '$attr[probability]',description = '$attr[description]',tab_id = '" . $attr['type'] . "',crm_opportunity_cycle_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $dRS = $this->objsetup->CSI($detailSql);
@@ -2128,10 +3155,17 @@ class Crm extends Xtreme
     function update_opportunity_cycle($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $mainSql = "UPDATE crm_opportunity_cycle SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]' WHERE id = '".$attr['id']."' limit 1";
 
 
         $detailSql = "UPDATE crm_opportunity_cycle_detail SET start_date = '" . $this->objGeneral->convert_date($attr[start_date]) . "',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "',probability = '$attr[probability]',description = '$attr[description]' WHERE crm_opportunity_cycle_id = '".$attr['id']."' AND tab_id = ".$attr['type']." limit 1";
+=======
+        $mainSql = "UPDATE crm_opportunity_cycle SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]' WHERE id = '" . $attr['id'] . "' limit 1";
+
+
+        $detailSql = "UPDATE crm_opportunity_cycle_detail SET start_date = '" . $this->objGeneral->convert_date($attr['start_date']) . "',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "',probability = '$attr[probability]',description = '$attr[description]' WHERE crm_opportunity_cycle_id = '" . $attr['id'] . "' AND tab_id = " . $attr['type'] . " limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* echo $mainSql."<hr>";
           echo $detailSql."<hr>"; exit; */
@@ -2153,7 +3187,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "update   crm_opportunity_cycle set status=0 WHERE id = '".$attr['id']."'";
+=======
+        $Sql = "update   crm_opportunity_cycle set status=0 WHERE id = '" . $attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2172,7 +3210,11 @@ class Crm extends Xtreme
     function complete_opportunity_cycle($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "UPDATE crm_opportunity_cycle_detail SET complete_date = NOW(), is_complete = '1',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "' WHERE crm_opportunity_cycle_id = '".$attr['id']."' AND type = ".$attr['type']." ";
+=======
+        $Sql = "UPDATE crm_opportunity_cycle_detail SET complete_date = NOW(), is_complete = '1',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "' WHERE crm_opportunity_cycle_id = '" . $attr['id'] . "' AND type = " . $attr['type'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2204,7 +3246,11 @@ class Crm extends Xtreme
         $Sql = "SELECT id, name, starting_date, customer_type FROM promotions WHERE 1 " . $where_clause . "  ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2237,7 +3283,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM promotions
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
@@ -2266,9 +3316,15 @@ class Crm extends Xtreme
         $id = $attr['id'];
 
         if ($id > 0)
+<<<<<<< HEAD
             $update_check = "  AND tst.id <> '".$id."'";
 
         $data_pass = " tst.description='". $attr['description']."'  $update_check  ";
+=======
+            $update_check = "  AND tst.id <> '" . $id . "'";
+
+        $data_pass = " tst.description='" . $attr['description'] . "'  $update_check  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('promotions', $data_pass, $this->arrUser['company_id']);
 
 
@@ -2280,7 +3336,11 @@ class Crm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         $Sql = "INSERT INTO promotions SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+        $Sql = "INSERT INTO promotions SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '" . $attr['name'] . "',file = '$attr[file]',description = '$attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -2300,7 +3360,11 @@ class Crm extends Xtreme
     function update_promotion($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "UPDATE promotions SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]' WHERE id = ".$attr['id']." limit 1";
+=======
+        $Sql = "UPDATE promotions SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '" . $attr['name'] . "',file = '$attr[file]',description = '$attr[description]' WHERE id = " . $attr['id'] . " limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //  echo $Sql."<hr>";exit;
         $this->objsetup->CSI($Sql);
@@ -2319,8 +3383,13 @@ class Crm extends Xtreme
     function update_promotions($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "UPDATE crm_promotions 	SET type = '".$attr['type']."'
 					WHERE id = '".$attr['id']."' limit 1";
+=======
+        $Sql = "UPDATE crm_promotions 	SET type = '" . $attr['type'] . "'
+					WHERE id = '" . $attr['id'] . "' limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* echo $Sql."<hr>";exit; */
         $this->objsetup->CSI($Sql);
@@ -2341,7 +3410,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "update   promotions set status =0
+<<<<<<< HEAD
 				WHERE id = '".$attr['id']."' ";
+=======
+				WHERE id = '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2367,10 +3440,17 @@ class Crm extends Xtreme
         $order_type = "";
         $response = array();
 
+<<<<<<< HEAD
         $Sql = "SELECT c.id, c.product_id FROM promotions_items c WHERE c.promotion_id = '".$attr['id']."'";
 
         $total_limit = pagination_limit;
         
+=======
+        $Sql = "SELECT c.id, c.product_id FROM promotions_items c WHERE c.promotion_id = '" . $attr['id'] . "'";
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2423,7 +3503,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_items
+<<<<<<< HEAD
 					SET product_id = '$attr[product_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET product_id = '" . $attr['product_id'] . "',promotion_id = '" . $attr['promotion_id'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -2445,7 +3529,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "update promotions_items set sttaus=0
+<<<<<<< HEAD
 				WHERE id = '".$attr['id']."'";
+=======
+				WHERE id = '" . $attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2471,10 +3559,17 @@ class Crm extends Xtreme
         $limit_clause = "";
         $order_type = "";
         $response = array();
+<<<<<<< HEAD
         
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);          
 
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+=======
+
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_competetorab";
 
         $Sql = "SELECT compt.id,compt.price,compt.sale_price,compt.lead_time,compt.created_date,
@@ -2498,6 +3593,7 @@ class Crm extends Xtreme
                   LEFT JOIN category as cat on cat.id = compt.category_id
                   LEFT JOIN company on company.id=compt.company_id
                   LEFT JOIN currency on currency.id = company.currency_id
+<<<<<<< HEAD
                   WHERE compt.status=1 AND compt.crm_id  =". $attr['value'] . "
                    ";
                 //   LEFT JOIN brand on brand.id = compt.brand
@@ -2505,6 +3601,15 @@ class Crm extends Xtreme
                    //echo $Sql;exit;
         $total_limit = pagination_limit;
         
+=======
+                  WHERE compt.status=1 AND compt.crm_id  =" . $attr['value'] . "
+                   ";
+        //   LEFT JOIN brand on brand.id = compt.brand
+        // brand.brandname,
+        //echo $Sql;exit;
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2530,7 +3635,11 @@ class Crm extends Xtreme
                 $result['item'] = $Row['item_notes'];
 
                 if ($Row['price'] > 0)
+<<<<<<< HEAD
                     $result['Purchase Price'] = $Row['price'] . " " . $Row['Code'] . " /" . $Row['uom_title'];//$Row['Code']
+=======
+                    $result['Purchase Price'] = $Row['price'] . " " . $Row['Code'] . " /" . $Row['uom_title']; //$Row['Code']
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 else
                     $result['Purchase Price'] = "";
 
@@ -2554,22 +3663,37 @@ class Crm extends Xtreme
         } else
             $response['response'][] = array();
 
+<<<<<<< HEAD
             $response['competitorProperties'] = $this->objsetup->getCompetitorPropertyListing($attr, 1);
+=======
+        $response['competitorProperties'] = $this->objsetup->getCompetitorPropertyListing($attr, 1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
     function get_crm_competitor_by_id($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);          
 
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+=======
+
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_competetorab";
 
         $Sql = " SELECT * From sr_crm_competitors_sel WHERE id='" . $attr['id'] . "'  ";
         // $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_ViewPermission);
 
 
@@ -2597,6 +3721,7 @@ class Crm extends Xtreme
     {
         $files = $attr['files'];
         $attr = $attr['frmData'];
+<<<<<<< HEAD
         $count = count($files[name]); 
 
         $this->objGeneral->mysql_clean($attr);       
@@ -2604,6 +3729,15 @@ class Crm extends Xtreme
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);          
 
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+=======
+        $count = count($files['name']);
+
+        $this->objGeneral->mysql_clean($attr);
+
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_competetorab";
 
         if ($attr['purchase_price_vat_chk'] == true)
@@ -2625,14 +3759,22 @@ class Crm extends Xtreme
             } else {
                 $start_date = $attr['created_date'];
             }
+<<<<<<< HEAD
         }        
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $data_pass = "  tst.supplier_name='" . $attr['supplier_name_id'] . "'  and 
                         tst.crm_id='" . $attr['crm_id'] . "' and
                         tst.category_id='" . $attr['category_id'] . "' and
                         tst.item_notes='" . $attr['item_notes_id'] . "' and
+<<<<<<< HEAD
                         tst.brand='" . $attr['brand_id'] . "' ";//$attr['brand_id'] 
+=======
+                        tst.brand='" . $attr['brand_id'] . "' "; //$attr['brand_id'] 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total = $this->objGeneral->count_duplicate_in_sql('crm_competitor', $data_pass, $this->arrUser['company_id']);
 
@@ -2642,6 +3784,7 @@ class Crm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if($attr['lead_time']=='') 
             $lead_time=0;
         else
@@ -2649,6 +3792,15 @@ class Crm extends Xtreme
 
         $price = Round($attr['price'],5);
         $sale_price = Round($attr['sale_price'],5);
+=======
+        if ($attr['lead_time'] == '')
+            $lead_time = 0;
+        else
+            $lead_time = $attr['lead_time'];
+
+        $price = Round($attr['price'], 5);
+        $sale_price = Round($attr['sale_price'], 5);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //print_r($attr);exit;
         $Sql = "INSERT INTO crm_competitor 
                                     SET 
@@ -2663,7 +3815,11 @@ class Crm extends Xtreme
                                         volume = '$attr[volume_id]',  
                                         note = '$attr[note]',  
                                         order_frequency = '$attr[lead_time]',   
+<<<<<<< HEAD
                                         crm_id = '$attr[crm_id]', 
+=======
+                                        crm_id = '" . $attr['crm_id'] . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         created_date = '" . $this->objGeneral->convert_date($attr['created_date']) . "',  
                                         sale_price='$sale_price', 
                                         purchase_price_vat_chk = " . $purchase_price_vat_chk . ",    
@@ -2678,7 +3834,11 @@ class Crm extends Xtreme
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "crm_competetortab", sr_AddPermission);
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $id = $this->Conn->Insert_ID();
 
         if ($id > 0) {
@@ -2703,10 +3863,17 @@ class Crm extends Xtreme
 
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $count = count($files['name']);                   
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);          
 
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+=======
+        $count = count($files['name']);
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_competetorab";
 
 
@@ -2722,13 +3889,21 @@ class Crm extends Xtreme
 
 
         if ($attr['id'] > 0)
+<<<<<<< HEAD
             $update_check = "  AND tst.id <> '".$attr['id']."'";
+=======
+            $update_check = "  AND tst.id <> '" . $attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "  tst.supplier_name='" . $attr['supplier_name_id'] . "'  and 
                         tst.crm_id='" . $attr['crm_id'] . "' and
                         tst.category_id='" . $attr['category_id'] . "' and
                         tst.item_notes='" . $attr['item_notes_id'] . "' and
+<<<<<<< HEAD
                         tst.brand='" . $attr['brand_id'] . "' $update_check";//brand_id
+=======
+                        tst.brand='" . $attr['brand_id'] . "' $update_check"; //brand_id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total = $this->objGeneral->count_duplicate_in_sql('crm_competitor', $data_pass, $this->arrUser['company_id']);
 
@@ -2738,6 +3913,7 @@ class Crm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if($attr['lead_time']=='') 
             $lead_time=0;
         else
@@ -2745,6 +3921,15 @@ class Crm extends Xtreme
 
             $price = Round($attr['price'],5);
             $sale_price = Round($attr['sale_price'],5);
+=======
+        if ($attr['lead_time'] == '')
+            $lead_time = 0;
+        else
+            $lead_time = $attr['lead_time'];
+
+        $price = Round($attr['price'], 5);
+        $sale_price = Round($attr['sale_price'], 5);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE crm_competitor  
                                     SET 
@@ -2765,9 +3950,15 @@ class Crm extends Xtreme
                                         purchase_price_vat_chk = " . $purchase_price_vat_chk . ",   
                                         wholesale_price_vat_chk = " . $wholesale_price_vat_chk . ",   
                                         vol_unit = '$attr[vol_unit]'    
+<<<<<<< HEAD
                         WHERE id = ".$attr['id']."  
                         limit 1";
                         
+=======
+                        WHERE id = " . $attr['id'] . "  
+                        limit 1";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql; exit;
 
         // $RS = $this->objsetup->CSI($Sql);
@@ -2789,6 +3980,7 @@ class Crm extends Xtreme
 
     function delete_crm_competitor($attr)
     {
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($attr);                  
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);          
 
@@ -2796,6 +3988,15 @@ class Crm extends Xtreme
         else $moduleForPermission = $moduleForPermission . "_competetorab";
 
         $Sql = "Update crm_competitor set status=0 WHERE id = '".$attr['id']."' ";
+=======
+        $this->objGeneral->mysql_clean($attr);
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_competetortab";
+        else $moduleForPermission = $moduleForPermission . "_competetorab";
+
+        $Sql = "Update crm_competitor set status=0 WHERE id = '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         // $RS = $this->objsetup->CSI($Sql);
@@ -2813,7 +4014,11 @@ class Crm extends Xtreme
         return $response;
     }
     // price module predata api for add form
+<<<<<<< HEAD
     function price_form_predata($attr)
+=======
+    function price_form_predata($attr = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $this->objGeneral->mysql_clean($attr);
         $response = array();
@@ -2823,7 +4028,11 @@ class Crm extends Xtreme
                             where  c.status=1 and c.type=1 and
                                    c.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
        // echo $SqlOfferMethod; exit;
+=======
+        // echo $SqlOfferMethod; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RSOfferMethod = $this->objsetup->CSI($SqlOfferMethod);
 
         if ($RSOfferMethod->RecordCount() > 0) {
@@ -2833,11 +4042,19 @@ class Crm extends Xtreme
                 $result['title'] = $Row['title'];
                 $response['response']['OfferMethod'][] = $result;
             }
+<<<<<<< HEAD
         } else{
             $response['response']['OfferMethod'][]= array(); 
         }    
 
         
+=======
+        } else {
+            $response['response']['OfferMethod'][] = array();
+        }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['error'] = NULL;
         return $response;
@@ -2852,6 +4069,7 @@ class Crm extends Xtreme
         $order_type = "";
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
 
+<<<<<<< HEAD
         $where_clause = $this->objGeneral->flexiWhereRetriever("rebt.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("rebt.",$attr,$fieldsMeta);
         if (empty($where_clause)){
@@ -2863,6 +4081,19 @@ class Crm extends Xtreme
 
         $moduleForPermission = "";
         if($attr['moduleType']==1){
+=======
+        $where_clause = $this->objGeneral->flexiWhereRetriever("rebt.", $attr, $fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("rebt.", $attr, $fieldsMeta);
+        if (empty($where_clause)) {
+            $defaultFilter = true;
+            $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("Rebates", $this->arrUser);
+        }
+
+        $response = array();
+
+        $moduleForPermission = "";
+        if ($attr['moduleType'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // coming from customer
             $Sql = "SELECT id,rebate_history,created_date,start_date,end_date,rebate_type_name,
                            rebate_type,item_type,category_type,universal_type,
@@ -2874,9 +4105,14 @@ class Crm extends Xtreme
                     WHERE rebt.moduleID = '" . $attr['moduleID'] . "' AND 
                           rebt.moduleType = 1 AND 
                           rebt.status <> 0 " . $where_clause . "";
+<<<<<<< HEAD
                           $moduleForPermission = "customer_pricetab";
 
         }elseif($attr['moduleType']==2){
+=======
+            $moduleForPermission = "customer_pricetab";
+        } elseif ($attr['moduleType'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // coming from supplier
             $Sql = "SELECT id,rebate_history,created_date,start_date,end_date,rebate_type_name,
                            rebate_type,item_type,category_type,universal_type,
@@ -2888,12 +4124,18 @@ class Crm extends Xtreme
                     WHERE rebt.moduleID = '" . $attr['moduleID'] . "' AND 
                           rebt.moduleType = 2 AND 
                           rebt.status <> 0 " . $where_clause . "";
+<<<<<<< HEAD
                           $moduleForPermission = "supplier_pricetab";
         }     
+=======
+            $moduleForPermission = "supplier_pricetab";
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql; exit;
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
@@ -2901,6 +4143,15 @@ class Crm extends Xtreme
             $column = "rebt.id";
         if ($order_clause == "")
         $order_type = " Order BY " . $column . " DESC";
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $column = "rebt.id";
+        if ($order_clause == "")
+            $order_type = " Order BY " . $column . " DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $order_type = $order_clause;
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'rebt', $order_type);
@@ -2927,13 +4178,21 @@ class Crm extends Xtreme
                 $result['category_type'] = $Row['category_type'];
                 $result['rebate_price_type'] = $Row['rebate_price_type'];
 
+<<<<<<< HEAD
                 if($Row['rebate_price'])
+=======
+                if ($Row['rebate_price'])
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['rebate_price'] = $Row['rebate_price'];
                 else
                     $result['rebate_price'] = '';
                 $result['action'] = 1;
 
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
@@ -2948,18 +4207,30 @@ class Crm extends Xtreme
         require_once(SERVER_PATH . "/classes/Setup.php");
         $objsetup = new Setup($this->arrUser);
         $response['response']['tbl_meta_data'] = $objsetup->GetTableMetaData('Rebates');
+<<<<<<< HEAD
          $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
+=======
+        $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
     function getRebatebyID($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $Sql = "SELECT rebate.*,employees.first_name, employees.last_name
                 FROM rebate
                 left JOIN employees ON employees.id=rebate.user_id
                 WHERE rebate.id='".$attr['id']."' LIMIT 1";
+=======
+
+        $Sql = "SELECT rebate.*,employees.first_name, employees.last_name
+                FROM rebate
+                left JOIN employees ON employees.id=rebate.user_id
+                WHERE rebate.id='" . $attr['id'] . "' LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* echo $Sql;
           exit; */
         $RS = $this->objsetup->CSI($Sql);
@@ -2975,12 +4246,17 @@ class Crm extends Xtreme
             }
 
             $attr['rebate_id'] = $Row['id'];
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // print_r($Row['rebate_type']);exit;
             // && $Row['rebate_type'] == 1
 
             if (($Row['universal_type'] == 2) || ($Row['universal_type'] == 3))
                 $Row['revenueVolume'] = $this->get_rebateRevenueVolume($attr);
+<<<<<<< HEAD
             
             if($Row['rebate_type']==2){
                 
@@ -2991,6 +4267,17 @@ class Crm extends Xtreme
 
                 $Row['items'] = $this->get_rebate_items($attr);
             }            
+=======
+
+            if ($Row['rebate_type'] == 2) {
+
+                $Row['categories'] = $this->get_rebate_categories($attr);
+            } else  // || $Row['rebate_type']==3
+                if ($Row['universal_type'] == 2 || $Row['universal_type'] == 3 || $Row['rebate_type'] == 3) {
+
+                    $Row['items'] = $this->get_rebate_items($attr);
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             $Row['created_date'] = $this->objGeneral->convert_unix_into_date($Row['created_date']);
@@ -3003,7 +4290,11 @@ class Crm extends Xtreme
             $response['response'][] = array();
         }
         return $response;
+<<<<<<< HEAD
     } 
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_rebateRevenueVolume($attr)
     {
@@ -3036,7 +4327,11 @@ class Crm extends Xtreme
         $Sql = "SELECT SP.* 
                 FROM rebate_items AS reb 
                 LEFT JOIN sr_product_purchaselist AS SP ON SP.id = reb.item_id
+<<<<<<< HEAD
                 WHERE reb.rebate_id = ".$attr['rebate_id']."
+=======
+                WHERE reb.rebate_id = " . $attr['rebate_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 GROUP BY SP.id";
 
         //echo $Sql; exit;
@@ -3047,7 +4342,11 @@ class Crm extends Xtreme
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
+<<<<<<< HEAD
                 }  
+=======
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 // $result['item_id'] = $Row['item_id'];
                 $response['response'][] = $Row;
@@ -3082,11 +4381,16 @@ class Crm extends Xtreme
             $response['response'][] = array();
         }
         return $response;
+<<<<<<< HEAD
     }   
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function addRebate($attr)
     {
         // echo "<pre>"; print_r($attr); exit;
+<<<<<<< HEAD
         
         $modulePermission = "";
         $moduleForPermission = "";
@@ -3094,6 +4398,14 @@ class Crm extends Xtreme
             $moduleForPermission = "customer_pricetab";
         }
         else if ($attr['moduleType'] == 2){
+=======
+
+        $modulePermission = "";
+        $moduleForPermission = "";
+        if ($attr['moduleType'] == 1) {
+            $moduleForPermission = "customer_pricetab";
+        } else if ($attr['moduleType'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $moduleForPermission = "supplier_pricetab";
         }
         $start_date = $this->objGeneral->convert_date($attr['offer_date']);
@@ -3112,12 +4424,21 @@ class Crm extends Xtreme
         $updateCHK = '';
         $id = $attr['id'];
 
+<<<<<<< HEAD
         if($id>0)
             $updateCHK = " AND reb.id != '" . $id . "'";
         
         // check duplicate if universal rebate is already exist for these dates
        // if($attr['type']==2 || $attr['type']==3) {
             $DupCHKSql = "SELECT reb.id
+=======
+        if ($id > 0)
+            $updateCHK = " AND reb.id != '" . $id . "'";
+
+        // check duplicate if universal rebate is already exist for these dates
+        // if($attr['type']==2 || $attr['type']==3) {
+        $DupCHKSql = "SELECT reb.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           FROM rebate as reb
                           WHERE reb.moduleID='" . $attr['moduleID'] . "' AND 
                                 reb.moduleType='" . $attr['moduleType'] . "' AND 
@@ -3129,6 +4450,7 @@ class Crm extends Xtreme
                                  ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                         ELSE reb.end_date 
                                         END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "'))  AND 
+<<<<<<< HEAD
                                 reb.status <> 0 ".$updateCHK."
                             LIMIT 1";
             // echo $DupCHKSql;exit;
@@ -3146,6 +4468,25 @@ class Crm extends Xtreme
         // }
         // for universal rebate for customer
         if($attr['type']==1) {
+=======
+                                reb.status <> 0 " . $updateCHK . "
+                            LIMIT 1";
+        // echo $DupCHKSql;exit;
+
+        $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
+
+        if ($DupCHKRS->RecordCount() > 0) {
+
+            $DupCHKRow = $DupCHKRS->FetchRow();
+
+            $response['ack'] = 0;
+            $response['error'] = 'Rebate Already Exists!';
+            return $response;
+        }
+        // }
+        // for universal rebate for customer
+        if ($attr['type'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $DupCHKSql = "SELECT reb.id
                           FROM rebate as reb
                           WHERE reb.moduleID='" . $attr['moduleID'] . "' AND 
@@ -3157,7 +4498,11 @@ class Crm extends Xtreme
                                  ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                         ELSE reb.end_date 
                                         END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "'))  AND 
+<<<<<<< HEAD
                                 reb.status <> 0 ".$updateCHK."
+=======
+                                reb.status <> 0 " . $updateCHK . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             LIMIT 1";
             // echo $DupCHKSql;exit;
             /* 
@@ -3172,8 +4517,13 @@ class Crm extends Xtreme
                 $response['error'] = 'Universal Rebate Already Exists!';
                 return $response;
             }
+<<<<<<< HEAD
          }
          // for seperate rebate for category
+=======
+        }
+        // for seperate rebate for category
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($attr['type'] == 2) {
 
             $dupChkError = 0;
@@ -3198,9 +4548,15 @@ class Crm extends Xtreme
                                        ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                                 ELSE reb.end_date 
                                                 END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "')) AND 
+<<<<<<< HEAD
                                       reb.status <> 0 ".$updateCHK."
                                 LIMIT 1";//COALESCE(reb.end_date,'4099766400') 
                  //echo $DupCHKSql; exit;
+=======
+                                      reb.status <> 0 " . $updateCHK . "
+                                LIMIT 1"; //COALESCE(reb.end_date,'4099766400') 
+                //echo $DupCHKSql; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // reb.rebate_type = '" . $attr['type'] . "' AND
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
 
@@ -3212,7 +4568,11 @@ class Crm extends Xtreme
                     // $response['ack'] = 0;
                     // $response['error'] = 'Rebate Already Exists for "' . $DupCHKRow['description'] . '" Item!';
                     // return $response;product_code
+<<<<<<< HEAD
                     $products .=$DupCHKRow['name'].',';
+=======
+                    $products .= $DupCHKRow['name'] . ',';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
                 //check for duplicate category items
@@ -3232,9 +4592,15 @@ class Crm extends Xtreme
                                        ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                                 ELSE reb.end_date 
                                                 END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "')) AND 
+<<<<<<< HEAD
                                       reb.status <> 0 ".$updateCHK."
                                 LIMIT 1";//COALESCE(reb.end_date,'4099766400') 
                  //echo $DupCHKSql; exit;
+=======
+                                      reb.status <> 0 " . $updateCHK . "
+                                LIMIT 1"; //COALESCE(reb.end_date,'4099766400') 
+                //echo $DupCHKSql; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // reb.rebate_type = '" . $attr['type'] . "' AND
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
 
@@ -3246,6 +4612,7 @@ class Crm extends Xtreme
                     // $response['ack'] = 0;
                     // $response['error'] = 'Rebate Already Exists for "' . $DupCHKRow['description'] . '" Item!';
                     // return $response;product_code
+<<<<<<< HEAD
                     $products .=$DupCHKRow['name'].',';
                     $cats .=$DupCHKRow['name'].',';
                 }
@@ -3264,6 +4631,25 @@ class Crm extends Xtreme
                 return $response;
             }
 
+=======
+                    $products .= $DupCHKRow['name'] . ',';
+                    $cats .= $DupCHKRow['name'] . ',';
+                }
+            }
+
+            if ($dupChkError > 0) {
+
+                $products2 = substr($products, 0, -1);
+                $response['ack'] = 0;
+                if ($cats != '') {
+                    $response['error'] = 'Rebate Already Exists for "' . $products2 . '" Category Items!';
+                } else {
+                    $response['error'] = 'Rebate Already Exists for "' . $products2 . '" Category(ies)!';
+                }
+
+                return $response;
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         // for seperate rebate for item
         if ($attr['type'] == 3) {
@@ -3289,8 +4675,13 @@ class Crm extends Xtreme
                                        ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                                 ELSE reb.end_date 
                                                 END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "')) AND 
+<<<<<<< HEAD
                                       reb.status <> 0 ".$updateCHK."
                                 LIMIT 1";//COALESCE(reb.end_date,'4099766400') 
+=======
+                                      reb.status <> 0 " . $updateCHK . "
+                                LIMIT 1"; //COALESCE(reb.end_date,'4099766400') 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $DupCHKSql; exit;
                 // reb.rebate_type = '" . $attr['type'] . "' AND
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
@@ -3303,7 +4694,11 @@ class Crm extends Xtreme
                     // $response['ack'] = 0;
                     // $response['error'] = 'Rebate Already Exists for "' . $DupCHKRow['description'] . '" Item!';
                     // return $response;product_code
+<<<<<<< HEAD
                     $products .=$DupCHKRow['description'].'('.$DupCHKRow['product_code'].'),';
+=======
+                    $products .= $DupCHKRow['description'] . '(' . $DupCHKRow['product_code'] . '),';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
                 // check duplicate category
@@ -3323,8 +4718,13 @@ class Crm extends Xtreme
                                        ((CASE WHEN reb.end_date = 0 THEN 4099299120 
                                                 ELSE reb.end_date 
                                                 END ) BETWEEN '" . $start_date . "' AND '" . $end_date . "')) AND 
+<<<<<<< HEAD
                                       reb.status <> 0 ".$updateCHK."
                                 LIMIT 1";//COALESCE(reb.end_date,'4099766400') 
+=======
+                                      reb.status <> 0 " . $updateCHK . "
+                                LIMIT 1"; //COALESCE(reb.end_date,'4099766400') 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $DupCHKSql; exit;
                 // reb.rebate_type = '" . $attr['type'] . "' AND
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
@@ -3337,6 +4737,7 @@ class Crm extends Xtreme
                     // $response['ack'] = 0;
                     // $response['error'] = 'Rebate Already Exists for "' . $DupCHKRow['description'] . '" Item!';
                     // return $response;product_code
+<<<<<<< HEAD
                     $products .=$DupCHKRow['description'].'('.$DupCHKRow['product_code'].'),';
                     $cats .=$DupCHKRow['description'].'('.$DupCHKRow['product_code'].'),';
                 }
@@ -3363,17 +4764,53 @@ class Crm extends Xtreme
         $rebate_price = (isset($attr['rebate_price'])  && $attr['rebate_price']!='') ? $attr['rebate_price'] : 0;
         $item_type = (isset($attr['item_type'])  && $attr['item_type']!='') ? $attr['item_type'] : 0;
         $universal_type = (isset($attr['universal_type']) && $attr['universal_type']!='') ? $attr['universal_type'] : 0;
+=======
+                    $products .= $DupCHKRow['description'] . '(' . $DupCHKRow['product_code'] . '),';
+                    $cats .= $DupCHKRow['description'] . '(' . $DupCHKRow['product_code'] . '),';
+                }
+            }
+
+            if ($dupChkError > 0) {
+
+                $products2 = substr($products, 0, -1);
+                $response['ack'] = 0;
+                if ($cats != '') {
+                    $response['error'] = 'Rebate Already Exists for "' . $products2 . '" Item(s) Category!';
+                } else {
+                    $response['error'] = 'Rebate Already Exists for "' . $products2 . '" Item(s)!';
+                }
+
+                return $response;
+            }
+        }
+
+        // exit;
+
+        $category_type = (isset($attr['category_type'])  && $attr['category_type'] != '') ? $attr['category_type'] : 0;
+        $rebate_price = (isset($attr['rebate_price'])  && $attr['rebate_price'] != '') ? $attr['rebate_price'] : 0;
+        $item_type = (isset($attr['item_type'])  && $attr['item_type'] != '') ? $attr['item_type'] : 0;
+        $universal_type = (isset($attr['universal_type']) && $attr['universal_type'] != '') ? $attr['universal_type'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $recVolumeRevenue = $attr['recVolumeRevenue'];
         $items = $attr['items'];
         $categories = $attr['categories'];
         //echo '<pre>';print_r($categories);exit;
+<<<<<<< HEAD
         if($universal_type == 0)
             $universal_type = (isset($attr['universal_types']) && $attr['universal_types']!='') ? $attr['universal_types'] : 0;
         
         $rebate_price_types = (isset($attr['rebate_price_types']->id) && $attr['rebate_price_types']!='') ? $attr['rebate_price_types']->id : 0;
       
         if($id>0){
+=======
+        if ($universal_type == 0)
+            $universal_type = (isset($attr['universal_types']) && $attr['universal_types'] != '') ? $attr['universal_types'] : 0;
+
+        $rebate_price_types = (isset($attr['rebate_price_types']->id) && $attr['rebate_price_types'] != '') ? $attr['rebate_price_types']->id : 0;
+
+        if ($id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $modulePermission = sr_EditPermission;
 
             $this->objGeneral->mysql_clean($attr);
@@ -3389,12 +4826,17 @@ class Crm extends Xtreme
                             end_date = '" . $end_date . "'
 				        WHERE id = '" . $id . "' 
                         limit 1";
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $RS = $this->objsetup->CSI($Sql);
             $RS = $this->objsetup->CSI($Sql, $moduleForPermission, $modulePermission);
 
 
             if (($attr['universal_type'] == 2) || ($attr['universal_type'] == 3))
+<<<<<<< HEAD
                 self::addRevenueVolume($id, $recVolumeRevenue,$attr['universal_type'], 1);
 
             if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3)
@@ -3405,6 +4847,16 @@ class Crm extends Xtreme
 
         }
         else{
+=======
+                self::addRevenueVolume($id, $recVolumeRevenue, $attr['universal_type'], 1);
+
+            if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3)
+                self::add_rebate_items($attr['id'], $items, 1); // || $attr['type'] == 3
+
+            if ($attr['type'] == 2)
+                self::add_rebate_categories($attr['id'], $categories, 1);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $modulePermission = sr_AddPermission;
 
             $this->objGeneral->mysql_clean($attr);
@@ -3437,11 +4889,19 @@ class Crm extends Xtreme
                 //print_r($attr['recVolumeRevenue']->revenue_volume_to);
 
                 if (($attr['universal_type'] == 2) || ($attr['universal_type'] == 3))
+<<<<<<< HEAD
                     self::addRevenueVolume($id, $recVolumeRevenue,$attr['universal_type'], 0);
 
                 
                 if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3)
                     self::add_rebate_items($id, $items, 1);// || $attr['type'] == 3
+=======
+                    self::addRevenueVolume($id, $recVolumeRevenue, $attr['universal_type'], 0);
+
+
+                if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3)
+                    self::add_rebate_items($id, $items, 1); // || $attr['type'] == 3
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ($attr['type'] == 2)
                     self::add_rebate_categories($id, $categories, 0);
@@ -3452,12 +4912,20 @@ class Crm extends Xtreme
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['edit'] = 0;
+<<<<<<< HEAD
             $response['id'] = $id;            
+=======
+            $response['id'] = $id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $attr['crm_rebate_id'] = $attr['id'];
             // if($attr['crm_rebate_id'] > 0)
             //     $this->add_customer_rebate_history($attr);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not inserted!';
@@ -3466,10 +4934,17 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function addRevenueVolume($id, $recVolumeRevenue, $volumeRevenuetype,$isEdit)
     {
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
         $uom = (isset($recVolumeRevenue['uom']) && $recVolumeRevenue['uom'] != '')? $recVolumeRevenue['uom']: 0; 
+=======
+    function addRevenueVolume($id, $recVolumeRevenue, $volumeRevenuetype, $isEdit)
+    {
+        $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
+        $uom = (isset($recVolumeRevenue['uom']) && $recVolumeRevenue['uom'] != '') ? $recVolumeRevenue['uom'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if ($isEdit == 1) {
@@ -3478,14 +4953,24 @@ class Crm extends Xtreme
         }
 
         foreach ($recVolumeRevenue as $rec) {
+<<<<<<< HEAD
             if($rec->revenue_volume_from > 0)// && $rec->revenue_volume_to > 0
             {
                 $rebate_types = (isset($rec->rebate_types->id) && $rec->rebate_types->id != '')? $rec->rebate_types->id: 0; 
+=======
+            if ($rec->revenue_volume_from > 0) // && $rec->revenue_volume_to > 0
+            {
+                $rebate_types = (isset($rec->rebate_types->id) && $rec->rebate_types->id != '') ? $rec->rebate_types->id : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $Sql = "INSERT INTO rebate_volume_revenue
                             SET
                                 rebate_id = '" . $id . "',
+<<<<<<< HEAD
                                 revenue_volume_from = '" . $rec->revenue_volume_from. "',
+=======
+                                revenue_volume_from = '" . $rec->revenue_volume_from . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 revenue_volume_to = 0,
                                 uom = '" . $uom . "',
                                 type = '" . $volumeRevenuetype . "',
@@ -3502,7 +4987,11 @@ class Crm extends Xtreme
         return true;
     }
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function add_rebate_items($id, $items, $isEdit)
     {
@@ -3561,6 +5050,7 @@ class Crm extends Xtreme
 
         $Sql = "SELECT moduleType,start_date,end_date,moduleID 
                 FROM rebate 
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']."";
 
         $RS = $this->objsetup->CSI($Sql); 
@@ -3571,6 +5061,18 @@ class Crm extends Xtreme
         $end_date = $RS->fields['end_date']; 
 
         if ($moduleType == 1){
+=======
+                WHERE id = " . $attr['id'] . "";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        $moduleType = $RS->fields['moduleType'];
+        $accID = $RS->fields['moduleID'];
+        $start_date = $RS->fields['start_date'];
+        $end_date = $RS->fields['end_date'];
+
+        if ($moduleType == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $modulePermission = "customer_pricetab";
 
@@ -3580,18 +5082,31 @@ class Crm extends Xtreme
                            offer_date >= $start_date AND 
                            offer_date <= $end_date ";
 
+<<<<<<< HEAD
             $RS2 = $this->objsetup->CSI($Sql2); 
 
             if ($RS2->RecordCount() > 0) { 
+=======
+            $RS2 = $this->objsetup->CSI($Sql2);
+
+            if ($RS2->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'This Rebate cannot be deleted because it is being used in another record.';
                 return $response;
             }
+<<<<<<< HEAD
         }
         else if ($moduleType == 2)
             $modulePermission = "supplier_pricetab";  
 
         $Sql = "UPDATE rebate SET status = '0' WHERE id = ".$attr['id']." ";
+=======
+        } else if ($moduleType == 2)
+            $modulePermission = "supplier_pricetab";
+
+        $Sql = "UPDATE rebate SET status = '0' WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         // $RS = $this->objsetup->CSI($Sql);
@@ -3600,6 +5115,7 @@ class Crm extends Xtreme
 
         if ($this->Conn->Affected_Rows() > 0) {
 
+<<<<<<< HEAD
             $Sql2 = "UPDATE rebate_items SET status = '0' WHERE rebate_id = ".$attr['id']." ";
             $RS2 = $this->objsetup->CSI($Sql2);
 
@@ -3607,11 +5123,23 @@ class Crm extends Xtreme
             $RS3 = $this->objsetup->CSI($Sql3);
 
             $Sql4 = "UPDATE rebate_volume_revenue SET status = '0' WHERE rebate_id = ".$attr['id']." ";
+=======
+            $Sql2 = "UPDATE rebate_items SET status = '0' WHERE rebate_id = " . $attr['id'] . " ";
+            $RS2 = $this->objsetup->CSI($Sql2);
+
+            $Sql3 = "UPDATE rebate_categories SET status = '0' WHERE rebate_id = " . $attr['id'] . " ";
+            $RS3 = $this->objsetup->CSI($Sql3);
+
+            $Sql4 = "UPDATE rebate_volume_revenue SET status = '0' WHERE rebate_id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS4 = $this->objsetup->CSI($Sql4);
 
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $response['ack'] = 0;
@@ -3625,7 +5153,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "Delete from rebate WHERE id = ".$attr['id']." ";
+=======
+        $Sql = "Delete from rebate WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3752,7 +5284,11 @@ class Crm extends Xtreme
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
+<<<<<<< HEAD
         $uom = ($attr['uom'])?$attr['uom']:0;
+=======
+        $uom = ($attr['uom']) ? $attr['uom'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "INSERT INTO rebate_volume_revenue
                         SET
                             rebate_id = '" . $attr['rebate_id'] . "',
@@ -3803,8 +5339,13 @@ class Crm extends Xtreme
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
+<<<<<<< HEAD
         $uom = ($attr['uom'])?$attr['uom']:0;
         
+=======
+        $uom = ($attr['uom']) ? $attr['uom'] : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "UPDATE rebate_volume_revenue
 				        SET
 				            revenue_volume_from = '" . $attr['revenue_volume_from'] . "',
@@ -3813,7 +5354,11 @@ class Crm extends Xtreme
                             rebate_type = '" . $attr['rebate_type'] . "',
                             rebate = '" . $attr['rebate'] . "'
 				        WHERE id = '" . $attr['id'] . "'  limit 1";
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -3929,9 +5474,15 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $order_type = "";
@@ -3943,20 +5494,32 @@ class Crm extends Xtreme
 
         $check_cond = '';
         $check_cond = (isset($attr['value']) && $attr['value'] != '') ? " oppmain.crm_id = $attr[value] AND " : "";
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT oppmain.id,oppmain.oop_code,oppmain.name,oppmain.date_added,
                         (SELECT COUNT(id) FROM crm_opportunity_cycle_detail 
                          WHERE crm_opportunity_cycle_id = oppmain.id AND is_complete = 1 AND 
                                company_id = " . $this->arrUser['company_id'] . " ) AS stageComplete
                 FROM crm_opportunity_cycle as oppmain
                 where  $check_cond oppmain.status=1 and oppmain.company_id=" . $this->arrUser['company_id'] . " ";
+<<<<<<< HEAD
                      
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         // $order_type = "Group by opp.crm_opportunity_cycle_id DESC";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -4013,6 +5576,7 @@ class Crm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         return array('filters_dropdown' => $filters_dropdown, 
                      'columns' => $head, 
                      'filter_dict' => $filter_dict,
@@ -4022,6 +5586,20 @@ class Crm extends Xtreme
                                         'response' => $record['response'], 
                                         'ack' => $ack));
 
+=======
+        return array(
+            'filters_dropdown' => $filters_dropdown,
+            'columns' => $head,
+            'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'],
+            'record' => array(
+                'total' => $response['total'],
+                'result' => $record['results'],
+                'response' => $record['response'],
+                'ack' => $ack
+            )
+        );
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_job_title($attr)
@@ -4031,7 +5609,11 @@ class Crm extends Xtreme
         $response = array();
         //print_r($attr);
         if (!empty($attr['type']))
+<<<<<<< HEAD
             $where_clause = "and c.type= '".$attr['type']."' ";
+=======
+            $where_clause = "and c.type= '" . $attr['type'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sqla = "SELECT  c.oppCycleFreqstartmonth,c.oop_cycle_edit_role
                 FROM company c
@@ -4043,7 +5625,11 @@ class Crm extends Xtreme
         if ($RSa->fields['oppCycleFreqstartmonth'] > 0) {
             $oppCycleFreqstartmonth = $RSa->fields['oppCycleFreqstartmonth'];
             $oop_cycle_edit_role = $RSa->fields['oop_cycle_edit_role'];
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $oppCycleFreqstartmonth = 0;
             $oop_cycle_edit_role = $RSa->fields['oop_cycle_edit_role'];
@@ -4059,7 +5645,11 @@ class Crm extends Xtreme
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_type);
@@ -4096,7 +5686,11 @@ class Crm extends Xtreme
         //print_r($attr); exit;
         $limit_clause = "";
         // if ($attr['is_opp_cyle'] == 1)  $where_clause = " and   c.is_default = 1";// AND c.status =1 OR
+<<<<<<< HEAD
         if ($attr['is_opp_cyle'] == 0 && $this->arrUser[user_type] != SUPER_ADMIN_USER_TYPE)
+=======
+        if ($attr['is_opp_cyle'] == 0 && $this->arrUser['user_type'] != SUPER_ADMIN_USER_TYPE)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $where_clause = "AND c.company_id ='" . $this->arrUser['company_id'] . "' AND c.is_default = 0";
         else
             $where_clause = " AND c.company_id =" . $this->arrUser['company_id'];
@@ -4112,19 +5706,31 @@ class Crm extends Xtreme
         $Sql = "SELECT   c.*  
                 FROM opp_cycle_tabs  c   
                 where c.company_id=" . $this->arrUser['company_id'] . "  
+<<<<<<< HEAD
                         " . $where_clause . "  and c.status=1 ";//$where_clause2
+=======
+                        " . $where_clause . "  and c.status=1 "; //$where_clause2
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $order_type = "order by c.start_end,c.rank ASC ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_type);
         //echo $response['q'];exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
@@ -4136,7 +5742,11 @@ class Crm extends Xtreme
                 $result['name'] = $Row['name'];
                 // $result['name'] = (strlen($Row['name']>25)) ? substr($Row['name'], 0, 150).'... ' : $Row['name'];
 
+<<<<<<< HEAD
                 $result['stage_number'] = $index;                
+=======
+                $result['stage_number'] = $index;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['rank'] = $Row['rank'];
                 $result['edit_percentage'] = $Row['edit_percentage'];
                 $result['percentage'] = $Row['percentage'];
@@ -4148,7 +5758,10 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
             $response['ack'] = 0;
@@ -4168,10 +5781,17 @@ class Crm extends Xtreme
         $Sql = "SELECT   c.*  
                 FROM  process_of_decision  c
                 where  c.status=1 and 
+<<<<<<< HEAD
                        c.company_id=" . $this->arrUser['company_id'] . " "; 
 
         $total_limit = pagination_limit;
         
+=======
+                       c.company_id=" . $this->arrUser['company_id'] . " ";
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_type);
@@ -4222,7 +5842,10 @@ class Crm extends Xtreme
             if ($SR_GetNextseqcode == "MaxReached" || $SR_GetNextseqcode == "NoValueSet") {
                 $response['ack'] = 0;
                 $response['error'] = $SR_GetNextseqcode;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } elseif ($SR_GetNextseqcode != "") {
 
                 $response['code'] = $SR_GetNextseqcode;
@@ -4238,7 +5861,11 @@ class Crm extends Xtreme
             /*=================  end =================*/
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_crm_opportunity_cycle_pre_data($attr)
     {
         // print_r($attr); exit;
@@ -4254,15 +5881,24 @@ class Crm extends Xtreme
         $result['ack'] = true;
         // print_r($result);
         return $result;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function getOpportunityCycleStagesStatus($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $Sql = " SELECT c.stage_id,c.is_complete
@@ -4272,19 +5908,29 @@ class Crm extends Xtreme
                        c.company_id='" . $this->arrUser['company_id'] . "' ";
 
         //echo $Sql; exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "crm_oopCycle_tab", sr_ViewPermission);
 
 
         if ($RS->RecordCount() > 0) {
+<<<<<<< HEAD
             
             $activeRec= 0;
+=======
+
+            $activeRec = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
+<<<<<<< HEAD
                 }                  
 
                 if($activeRec==0){
@@ -4298,13 +5944,30 @@ class Crm extends Xtreme
                 $response['response'][] = $Row;
             }
             
+=======
+                }
+
+                if ($activeRec == 0) {
+                    $Row["activeRec"] = 1;
+                    $activeRec = 1;
+                } else {
+                    $Row["activeRec"] = 0;
+                }
+
+                $response['response'][] = $Row;
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
             $response['ack'] = 0;
             $response['error'] = NULL;
             return $response;
         }
+<<<<<<< HEAD
        // print_r($response);exit;
+=======
+        // print_r($response);exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['error'] = NULL;
         return $response;
@@ -4313,11 +5976,19 @@ class Crm extends Xtreme
     function get_crm_opportunity_cycle_by_stageid($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $custom_find = 0;        
 
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $custom_find = 0;
+
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $Sql = " SELECT c.*
@@ -4326,7 +5997,11 @@ class Crm extends Xtreme
                        c.company_id='" . $this->arrUser['company_id'] . "' ";
 
         // echo $Sql; exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_ViewPermission);
 
@@ -4354,16 +6029,28 @@ class Crm extends Xtreme
             $Row['alt_contacts'] = self::get_alt_contacts_list($attr);
             $Row['process_of_decission'] = self::get_process_of_decision($attr);
             $Row['stages'] = self::get_opportunity_cycle_tabs($attr);
+<<<<<<< HEAD
             $Row['job_titles'] = self::get_job_title($attr);            
+=======
+            $Row['job_titles'] = self::get_job_title($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // print_r($Row);
             $response['response'] = $Row;
         } else {
+<<<<<<< HEAD
             $response['response'] = array();     
 
             $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
             
             if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+            $response['response'] = array();
+
+            $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+            if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
             $Sql2 = " SELECT c.*
@@ -4373,7 +6060,11 @@ class Crm extends Xtreme
                            c.company_id='" . $this->arrUser['company_id'] . "' limit 1";
 
             // echo $Sql2; exit;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $RS2 = $this->objsetup->CSI($Sql2);
             $RS2 = $this->objsetup->CSI($Sql2, $moduleForPermission, sr_ViewPermission);
 
@@ -4382,7 +6073,11 @@ class Crm extends Xtreme
                 foreach ($Row2 as $key => $value) {
                     if (is_numeric($key))
                         unset($Row2[$key]);
+<<<<<<< HEAD
                 }           
+=======
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // print_r($Row2);
                 $response['response2'] = $Row2;
@@ -4405,15 +6100,22 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $custom_find = 0;
 
         $Sql = " SELECT c.*
                         From sr_crm_opportunitycycle_sel c
+<<<<<<< HEAD
                         WHERE c.crm_opportunity_cycle_id='".$attr['id']."' AND 
                               c.id = '$attr[child_id]' AND 
                               c.company_id='" . $this->arrUser['company_id'] . "' ";
@@ -4422,6 +6124,16 @@ class Crm extends Xtreme
         //echo $Sql; exit;
         $attr['crm_opportunity_cycle_id']=$attr['id'];
         
+=======
+                        WHERE c.crm_opportunity_cycle_id='" . $attr['id'] . "' AND 
+                              c.id = '$attr[child_id]' AND 
+                              c.company_id='" . $this->arrUser['company_id'] . "' ";
+        //c.crm_id='".$attr['crm_id']."' and
+
+        //echo $Sql; exit;
+        $attr['crm_opportunity_cycle_id'] = $attr['id'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_ViewPermission);
 
@@ -4460,7 +6172,11 @@ class Crm extends Xtreme
             $Row['employees'] = $this->objHr->get_employees();
 
             //print_r($Row);exit;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = $Row;
         } else {
             $response['response'] = array();
@@ -4469,7 +6185,11 @@ class Crm extends Xtreme
             return $response;
         }
         //echo "<pre>";print_r($attr);exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['response']['stagesStatus'] = self::getOpportunityCycleStagesStatus($attr);
 
         $response['ack'] = 1;
@@ -4487,7 +6207,11 @@ class Crm extends Xtreme
         $Sql = "SELECT c.* 
                 FROM crm_opportunity_cycle c  
                 where  c.id='$attr[crm_opportunity_cycle_id]' AND 
+<<<<<<< HEAD
                        c.tab_id='".$attr['type']."'   AND 
+=======
+                       c.tab_id='" . $attr['type'] . "'   AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                        c.company_id=" . $this->arrUser['company_id'] . "
                 LIMIT 1";
 
@@ -4530,7 +6254,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_crm_opportunity_cycle_detail($attr, $type)
+=======
+    function get_crm_opportunity_cycle_detail($attr, $type = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $order_type = "";
         $response = "";
@@ -4544,14 +6272,24 @@ class Crm extends Xtreme
             $alias = "opp.id";
         //order by st.id DESC
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $Sql = "SELECT  opp.*
                 from sr_crm_opportunitycycle_details_sel opp
+<<<<<<< HEAD
                 WHERE $alias='".$attr['id']."' AND opp.company_id=" . $this->arrUser['company_id'] . "  $wherehistory";
+=======
+                WHERE $alias='" . $attr['id'] . "' AND opp.company_id=" . $this->arrUser['company_id'] . "  $wherehistory";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql; exit;
 
@@ -4561,7 +6299,11 @@ class Crm extends Xtreme
             $total_limit = pagination_limit;
 
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -4597,7 +6339,10 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $response['response'] = array();
@@ -4606,6 +6351,7 @@ class Crm extends Xtreme
         }
 
         return $response;
+<<<<<<< HEAD
     } 
 
     function get_crm_opportunityCycleStageListing($attr, $type)
@@ -4613,11 +6359,24 @@ class Crm extends Xtreme
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+    }
+
+    function get_crm_opportunityCycleStageListing($attr, $type)
+    {
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $Sql = "SELECT  opp.*
                 from sr_crm_opportunitycycle_details_sel opp
+<<<<<<< HEAD
                 WHERE opp.ids='".$attr['id']."' AND opp.company_id=" . $this->arrUser['company_id'] . " ORDER BY opp.id DESC LIMIT 1";
+=======
+                WHERE opp.ids='" . $attr['id'] . "' AND opp.company_id=" . $this->arrUser['company_id'] . " ORDER BY opp.id DESC LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql; exit;
         // $RS = $this->objsetup->CSI($Sql);
@@ -4647,7 +6406,10 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $response['response'] = array();
@@ -4660,18 +6422,30 @@ class Crm extends Xtreme
 
     function add_crm_opportunity_cycle($attr)
     {
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $this->objGeneral->mysql_clean($attr);
 
         $mainSql = "INSERT INTO crm_opportunity_cycle
                                     SET
+<<<<<<< HEAD
                                         crm_id = '".$attr['crm_id']."' ,
                                         oop_code = '".$attr['oop_code']."' ,
                                         name = '".$attr['name']."' ,
+=======
+                                        crm_id = '" . $attr['crm_id'] . "' ,
+                                        oop_code = '" . $attr['oop_code'] . "' ,
+                                        name = '" . $attr['name'] . "' ,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         user_id='" . $this->arrUser['id'] . "',
                                         company_id='" . $this->arrUser['company_id'] . "' ,
                                         date_added='" . current_date . "' ";
@@ -4706,13 +6480,20 @@ class Crm extends Xtreme
     function add_crm_opportunity_cycle_details($attr)
     {
         //echo "<pre>";print_r($attr); exit;
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
 
         $attr_array = $attr;
+<<<<<<< HEAD
         $attr_array = (array)$attr_array;
 
         $this->objGeneral->mysql_clean($attr);
@@ -4760,6 +6541,54 @@ class Crm extends Xtreme
 
         //$this->objGeneral->mysql_clean($attr);
         
+=======
+        $attr_array = (array) $attr_array;
+
+        $this->objGeneral->mysql_clean($attr);
+
+        if ($attr['frequency_ids'] != 1 && $attr['frequency_ids'] != 2) {
+
+            $equalSpread = 0;
+            $freqJanuary = 0;
+            $freqFebruary = 0;
+            $freqMarch = 0;
+            $freqApril = 0;
+            $freqMay = 0;
+            $freqJune = 0;
+            $freqJuly = 0;
+            $freqAugust = 0;
+            $freqSeptember = 0;
+            $freqOctober = 0;
+            $freqNovember = 0;
+            $freqDecember = 0;
+            $freqStartmonth = 0;
+            $freqFirstQuartermonth = 0;
+            $freqSecondQuartermonth = 0;
+            $freqThirdQuartermonth = 0;
+        } else {
+
+            $equalSpread = (isset($attr['recfrequeny']->equalSpread) && $attr['recfrequeny']->equalSpread != "") ? $attr['recfrequeny']->equalSpread : 0;
+            $freqJanuary = (isset($attr['recfrequeny']->monthlySpreadArr->January) && $attr['recfrequeny']->monthlySpreadArr->January != "") ? $attr['recfrequeny']->monthlySpreadArr->January : 0;
+            $freqFebruary = (isset($attr['recfrequeny']->monthlySpreadArr->February) && $attr['recfrequeny']->monthlySpreadArr->February != "") ? $attr['recfrequeny']->monthlySpreadArr->February : 0;
+            $freqMarch = (isset($attr['recfrequeny']->monthlySpreadArr->March) && $attr['recfrequeny']->monthlySpreadArr->March != "") ? $attr['recfrequeny']->monthlySpreadArr->March : 0;
+            $freqApril = (isset($attr['recfrequeny']->monthlySpreadArr->April) && $attr['recfrequeny']->monthlySpreadArr->April != "") ? $attr['recfrequeny']->monthlySpreadArr->April : 0;
+            $freqMay = (isset($attr['recfrequeny']->monthlySpreadArr->May) && $attr['recfrequeny']->monthlySpreadArr->May != "") ? $attr['recfrequeny']->monthlySpreadArr->May : 0;
+            $freqJune = (isset($attr['recfrequeny']->monthlySpreadArr->June) && $attr['recfrequeny']->monthlySpreadArr->June != "") ? $attr['recfrequeny']->monthlySpreadArr->June : 0;
+            $freqJuly = (isset($attr['recfrequeny']->monthlySpreadArr->July) && $attr['recfrequeny']->monthlySpreadArr->July != "") ? $attr['recfrequeny']->monthlySpreadArr->July : 0;
+            $freqAugust = (isset($attr['recfrequeny']->monthlySpreadArr->August) && $attr['recfrequeny']->monthlySpreadArr->August != "") ? $attr['recfrequeny']->monthlySpreadArr->August : 0;
+            $freqSeptember = (isset($attr['recfrequeny']->monthlySpreadArr->September) && $attr['recfrequeny']->monthlySpreadArr->September != "") ? $attr['recfrequeny']->monthlySpreadArr->September : 0;
+            $freqOctober = (isset($attr['recfrequeny']->monthlySpreadArr->October) && $attr['recfrequeny']->monthlySpreadArr->October != "") ? $attr['recfrequeny']->monthlySpreadArr->October : 0;
+            $freqNovember = (isset($attr['recfrequeny']->monthlySpreadArr->November) && $attr['recfrequeny']->monthlySpreadArr->November != "") ? $attr['recfrequeny']->monthlySpreadArr->November : 0;
+            $freqDecember = (isset($attr['recfrequeny']->monthlySpreadArr->December) && $attr['recfrequeny']->monthlySpreadArr->December != "") ? $attr['recfrequeny']->monthlySpreadArr->December : 0;
+            $freqStartmonth = (isset($attr['recfrequeny']->startmonths) && $attr['recfrequeny']->startmonths != "") ? $attr['recfrequeny']->startmonths : 0;
+            $freqFirstQuartermonth = (isset($attr['recfrequeny']->firstquarter) && $attr['recfrequeny']->firstquarter != "") ? $attr['recfrequeny']->firstquarter : 0;
+            $freqSecondQuartermonth = (isset($attr['recfrequeny']->secondquarter) && $attr['recfrequeny']->secondquarter != "") ? $attr['recfrequeny']->secondquarter : 0;
+            $freqThirdQuartermonth = (isset($attr['recfrequeny']->thirdquarter) && $attr['recfrequeny']->eqthirdquarterualSpread != "") ? $attr['recfrequeny']->thirdquarter : 0;
+        }
+
+        //$this->objGeneral->mysql_clean($attr);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $end_date = $this->objGeneral->convert_date($attr['end_date']);
         $start_date = $this->objGeneral->convert_date($attr['start_date']);
         $date_added = $this->objGeneral->convert_date($attr['date_added']);
@@ -4767,7 +6596,11 @@ class Crm extends Xtreme
         $expected_close_date = $this->objGeneral->convert_date($attr['expected_close_date']);
 
         // subject = '$attr[subject]',
+<<<<<<< HEAD
         /* crm_id = '$attr[crm_id]',*/
+=======
+        /* crm_id = '".$attr['crm_id']."',*/
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $currency_id = (isset($attr['currency_id']) && $attr['currency_id']->id != "") ? $attr['currency_id']->id : '0';
         $contact_person_1 = (isset($attr['contact_person_1']) && $attr['contact_person_1'] != "") ? $attr['contact_person_1'] : '0';
         $contact_person_2 = (isset($attr['contact_person_2']) && $attr['contact_person_2'] != "") ? $attr['contact_person_2'] : '0';
@@ -4783,12 +6616,20 @@ class Crm extends Xtreme
         $process_of_decision = (isset($attr['process_of_decision']) && $attr['process_of_decision'] != "") ? $attr['process_of_decision'] : '0';
         $percentage_stage = (isset($attr['stage_id']->percentage) && $attr['stage_id']->percentage != "") ? $attr['stage_id']->percentage : '0';
 
+<<<<<<< HEAD
         $crm_opportunity_cycle_id = $attr['crm_opportunity_cycle_id'] ;
+=======
+        $crm_opportunity_cycle_id = $attr['crm_opportunity_cycle_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $sql_total = "SELECT  count(tst.id) as total	
                       FROM crm_opportunity_cycle_detail as tst
                       WHERE tst.is_complete!=1 AND 
+<<<<<<< HEAD
                             tst.stage_id!='".$stage_ids."' AND
+=======
+                            tst.stage_id!='" . $stage_ids . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             tst.crm_opportunity_cycle_id = '" . $crm_opportunity_cycle_id . "' AND  
                             tst.company_id=" . $this->arrUser['company_id'] . "
                       Limit 1";
@@ -4804,6 +6645,7 @@ class Crm extends Xtreme
 
         $mainSql = "INSERT INTO crm_opportunity_cycle_detail
                                 SET
+<<<<<<< HEAD
                                   forecast_amount = '".$attr['forecast_amount']."',
                                   stage_id = '".$stage_ids."',
                                   process_of_decision = '".$process_of_decision."',
@@ -4815,18 +6657,36 @@ class Crm extends Xtreme
                                   role_3 = '".$role_3."',
                                   description = '".$attr['description']."',
                                   outcome = '".$attr['outcome']."',
+=======
+                                  forecast_amount = '" . $attr['forecast_amount'] . "',
+                                  stage_id = '" . $stage_ids . "',
+                                  process_of_decision = '" . $process_of_decision . "',
+                                  contact_person_1 = '" . $contact_person_1 . "',
+                                  contact_person_2 = '" . $contact_person_2 . "',
+                                  contact_person_3 = '" . $contact_person_3 . "',
+                                  role_1 = '" . $role_1 . "',
+                                  role_2 = '" . $role_2 . "',
+                                  role_3 = '" . $role_3 . "',
+                                  description = '" . $attr['description'] . "',
+                                  outcome = '" . $attr['outcome'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                   percentage_stage =  '" . $percentage_stage . "',
                                   currency_id = '" . $currency_id . "',
                                   convert_amount = '$attr[convert_amount]',
                                   start_date = '" . $start_date . "',
                                   end_date = '" . $end_date . "',
                                   expected_close_date = '" . $expected_close_date . "',
+<<<<<<< HEAD
                                   tab_id = '".$attr['stage_ids']."',
+=======
+                                  tab_id = '" . $attr['stage_ids'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                   crm_opportunity_cycle_id = '$attr[crm_opportunity_cycle_id]',
                                   probability = '$attr[probability]',
                                   user_id='" . $this->arrUser['id'] . "',
                                   company_id='" . $this->arrUser['company_id'] . "',
                                   date_added='" . $date_added . "',
+<<<<<<< HEAD
                                   final_step = '".$final_steps."',
                                   notes = '$attr[notes]',
                                   frequencyID = '".$frequency_ids."',
@@ -4848,6 +6708,29 @@ class Crm extends Xtreme
                                     freqSecondQuartermonth = '".$freqSecondQuartermonth."',
                                     freqThirdQuartermonth = '".$freqThirdQuartermonth."'";
                                   /* 
+=======
+                                  final_step = '" . $final_steps . "',
+                                  notes = '$attr[notes]',
+                                  frequencyID = '" . $frequency_ids . "',
+                                  equalSpread = '" . $equalSpread . "',
+                                    freqJanuary = '" . $freqJanuary . "',
+                                    freqFebruary = '" . $freqFebruary . "',
+                                    freqMarch = '" . $freqMarch . "',
+                                    freqApril = '" . $freqApril . "',
+                                    freqMay = '" . $freqMay . "',
+                                    freqJune = '" . $freqJune . "',
+                                    freqJuly = '" . $freqJuly . "',
+                                    freqAugust = '" . $freqAugust . "',
+                                    freqSeptember = '" . $freqSeptember . "',
+                                    freqOctober = '" . $freqOctober . "',
+                                    freqNovember = '" . $freqNovember . "',
+                                    freqDecember = '" . $freqDecember . "',
+                                    freqStartmonth = '" . $freqStartmonth . "',
+                                    freqFirstQuartermonth = '" . $freqFirstQuartermonth . "',
+                                    freqSecondQuartermonth = '" . $freqSecondQuartermonth . "',
+                                    freqThirdQuartermonth = '" . $freqThirdQuartermonth . "'";
+        /* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                   contact_id = '$attr[contact_id]', */
 
         // echo $mainSql . "<hr>";  exit;
@@ -4866,14 +6749,23 @@ class Crm extends Xtreme
             $response['edit'] = 0;
             $response['error'] = NULL;
 
+<<<<<<< HEAD
             $attr_array['supportstaff'] = $attr_array['salespersons_support']; 
+=======
+            $attr_array['supportstaff'] = $attr_array['salespersons_support'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $attr_array['id'] = $dId;
             $sqlSalesperson = self::add_opp_cycle_salesperson($attr_array);
             $sqlSupportStaff = self::add_opp_cycle_SupportStaff($attr_array);
+<<<<<<< HEAD
             
             $response['stagesStatus'] = self::getOpportunityCycleStagesStatus($attr_array);
 
+=======
+
+            $response['stagesStatus'] = self::getOpportunityCycleStagesStatus($attr_array);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['id'] = 0;
             $response['ack'] = 0;
@@ -4886,9 +6778,15 @@ class Crm extends Xtreme
 
     function update_crm_opportunity_cycle($attr)
     {
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['value']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         $contact_person_1 = (isset($attr['contact_person_1']) && $attr['contact_person_1'] != "") ? $attr['contact_person_1'] : '0';
@@ -4908,6 +6806,7 @@ class Crm extends Xtreme
         // $this->objGeneral->mysql_clean($attr);
         $mainSql = "UPDATE crm_opportunity_cycle_detail 
                                                 SET 
+<<<<<<< HEAD
                                                     forecast_amount = '".$attr['forecast_amount']."',
                                                     stage_id = '".$stage_ids."', 
                                                     process_of_decision = '".$process_of_decision."',
@@ -4924,6 +6823,24 @@ class Crm extends Xtreme
                                                     WHERE id = ".$attr['id']." 
                                                     limit 1"; 
                                                           
+=======
+                                                    forecast_amount = '" . $attr['forecast_amount'] . "',
+                                                    stage_id = '" . $stage_ids . "', 
+                                                    process_of_decision = '" . $process_of_decision . "',
+                                                    contact_person_1 = '" . $contact_person_1 . "',
+                                                    contact_person_2 = '" . $contact_person_2 . "',
+                                                    contact_person_3 = '" . $contact_person_3 . "',
+                                                    role_1 = '" . $role_1 . "',
+                                                    role_2 = '" . $role_2 . "',
+                                                    role_3 = '" . $role_3 . "',
+                                                    description = '" . $attr['description'] . "',
+                                                    outcome = '" . $attr['outcome'] . "',
+                                                    currency_id = '" . $currency_id . "' ,
+                                                    convert_amount = '" . $attr['convert_amount'] . "' 
+                                                    WHERE id = " . $attr['id'] . " 
+                                                    limit 1";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($mainSql);
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -4945,9 +6862,15 @@ class Crm extends Xtreme
     {
         // $this->objGeneral->mysql_clean($attr);
         // echo "<pre>";print_r($attr); exit;
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
 
@@ -4956,6 +6879,7 @@ class Crm extends Xtreme
 
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         if($attr['frequency_ids']!=1 && $attr['frequency_ids']!=2){
 
             $equalSpread=0;
@@ -4998,6 +6922,48 @@ class Crm extends Xtreme
 
         }
         
+=======
+        if ($attr['frequency_ids'] != 1 && $attr['frequency_ids'] != 2) {
+
+            $equalSpread = 0;
+            $freqJanuary = 0;
+            $freqFebruary = 0;
+            $freqMarch = 0;
+            $freqApril = 0;
+            $freqMay = 0;
+            $freqJune = 0;
+            $freqJuly = 0;
+            $freqAugust = 0;
+            $freqSeptember = 0;
+            $freqOctober = 0;
+            $freqNovember = 0;
+            $freqDecember = 0;
+            $freqStartmonth = 0;
+            $freqFirstQuartermonth = 0;
+            $freqSecondQuartermonth = 0;
+            $freqThirdQuartermonth = 0;
+        } else {
+
+            $equalSpread = (isset($attr['recfrequeny']->equalSpread) && $attr['recfrequeny']->equalSpread != "") ? $attr['recfrequeny']->equalSpread : 0;
+            $freqJanuary = (isset($attr['recfrequeny']->monthlySpreadArr->January) && $attr['recfrequeny']->monthlySpreadArr->January != "") ? $attr['recfrequeny']->monthlySpreadArr->January : 0;
+            $freqFebruary = (isset($attr['recfrequeny']->monthlySpreadArr->February) && $attr['recfrequeny']->monthlySpreadArr->February != "") ? $attr['recfrequeny']->monthlySpreadArr->February : 0;
+            $freqMarch = (isset($attr['recfrequeny']->monthlySpreadArr->March) && $attr['recfrequeny']->monthlySpreadArr->March != "") ? $attr['recfrequeny']->monthlySpreadArr->March : 0;
+            $freqApril = (isset($attr['recfrequeny']->monthlySpreadArr->April) && $attr['recfrequeny']->monthlySpreadArr->April != "") ? $attr['recfrequeny']->monthlySpreadArr->April : 0;
+            $freqMay = (isset($attr['recfrequeny']->monthlySpreadArr->May) && $attr['recfrequeny']->monthlySpreadArr->May != "") ? $attr['recfrequeny']->monthlySpreadArr->May : 0;
+            $freqJune = (isset($attr['recfrequeny']->monthlySpreadArr->June) && $attr['recfrequeny']->monthlySpreadArr->June != "") ? $attr['recfrequeny']->monthlySpreadArr->June : 0;
+            $freqJuly = (isset($attr['recfrequeny']->monthlySpreadArr->July) && $attr['recfrequeny']->monthlySpreadArr->July != "") ? $attr['recfrequeny']->monthlySpreadArr->July : 0;
+            $freqAugust = (isset($attr['recfrequeny']->monthlySpreadArr->August) && $attr['recfrequeny']->monthlySpreadArr->August != "") ? $attr['recfrequeny']->monthlySpreadArr->August : 0;
+            $freqSeptember = (isset($attr['recfrequeny']->monthlySpreadArr->September) && $attr['recfrequeny']->monthlySpreadArr->September != "") ? $attr['recfrequeny']->monthlySpreadArr->September : 0;
+            $freqOctober = (isset($attr['recfrequeny']->monthlySpreadArr->October) && $attr['recfrequeny']->monthlySpreadArr->October != "") ? $attr['recfrequeny']->monthlySpreadArr->October : 0;
+            $freqNovember = (isset($attr['recfrequeny']->monthlySpreadArr->November) && $attr['recfrequeny']->monthlySpreadArr->November != "") ? $attr['recfrequeny']->monthlySpreadArr->November : 0;
+            $freqDecember = (isset($attr['recfrequeny']->monthlySpreadArr->December) && $attr['recfrequeny']->monthlySpreadArr->December != "") ? $attr['recfrequeny']->monthlySpreadArr->December : 0;
+            $freqStartmonth = (isset($attr['recfrequeny']->startmonths) && $attr['recfrequeny']->startmonths != "") ? $attr['recfrequeny']->startmonths : 0;
+            $freqFirstQuartermonth = (isset($attr['recfrequeny']->firstquartermonth) && $attr['recfrequeny']->firstquartermonth != "") ? $attr['recfrequeny']->firstquartermonth : 0;
+            $freqSecondQuartermonth = (isset($attr['recfrequeny']->secondquartermonth) && $attr['recfrequeny']->secondquartermonth != "") ? $attr['recfrequeny']->secondquartermonth : 0;
+            $freqThirdQuartermonth = (isset($attr['recfrequeny']->thirdquartermonth) && $attr['recfrequeny']->thirdquartermonth != "") ? $attr['recfrequeny']->thirdquartermonth : 0;
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $end_date = $this->objGeneral->convert_date($attr['end_date']);
         $start_date = $this->objGeneral->convert_date($attr['start_date']);
         $complete_date = $this->objGeneral->convert_date($attr['complete_date']);
@@ -5010,20 +6976,34 @@ class Crm extends Xtreme
         $role_1 = (isset($attr['role_1']) && $attr['role_1'] != "") ? $attr['role_1'] : '0';
         $role_2 = (isset($attr['role_2']) && $attr['role_2'] != "") ? $attr['role_2'] : '0';
         $role_3 = (isset($attr['role_3']) && $attr['role_3'] != "") ? $attr['role_3'] : '0';
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $stage_ids = (isset($attr['stage_ids']) && $attr['stage_ids'] != "") ? $attr['stage_ids'] : '0';
         $final_steps = (isset($attr['final_steps']) && $attr['final_steps'] != "") ? $attr['final_steps'] : '0';
         $currency_id = (isset($attr['currency_id']) && $attr['currency_id']->id != "") ? $attr['currency_id']->id : '0';
         $frequency_ids = (isset($attr['frequency_ids']) && $attr['frequency_ids'] != "") ? $attr['frequency_ids'] : '0';
+<<<<<<< HEAD
         $percentageStage = (isset($attr['stage_id']->percentage) && $attr['stage_id']->percentage!="")? $attr['stage_id']->percentage:'0';
         $process_of_decision = (isset($attr['process_of_decision']) && $attr['process_of_decision'] != "") ? $attr['process_of_decision'] : '0';
         
+=======
+        $percentageStage = (isset($attr['stage_id']->percentage) && $attr['stage_id']->percentage != "") ? $attr['stage_id']->percentage : '0';
+        $process_of_decision = (isset($attr['process_of_decision']) && $attr['process_of_decision'] != "") ? $attr['process_of_decision'] : '0';
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $crm_opportunity_cycle_id = $attr['crm_opportunity_cycle_id'];
 
         $sql_total = "SELECT  count(tst.id) as total	
                       FROM crm_opportunity_cycle_detail as tst
                       WHERE tst.is_complete!=1 AND 
+<<<<<<< HEAD
                             tst.stage_id!='".$stage_ids."' AND
+=======
+                            tst.stage_id!='" . $stage_ids . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             tst.crm_opportunity_cycle_id = '" . $crm_opportunity_cycle_id . "' AND  
                             tst.company_id=" . $this->arrUser['company_id'] . "
                       Limit 1";
@@ -5039,6 +7019,7 @@ class Crm extends Xtreme
 
         $detailSql = "UPDATE crm_opportunity_cycle_detail
                                 SET
+<<<<<<< HEAD
                                       forecast_amount = '".$attr['forecast_amount']."',
                                       stage_id = '".$stage_ids."',
                                       process_of_decision = '".$process_of_decision."',
@@ -5079,15 +7060,64 @@ class Crm extends Xtreme
                                       freqFirstQuartermonth = '".$freqFirstQuartermonth."',
                                       freqSecondQuartermonth = '".$freqSecondQuartermonth."',
                                       freqThirdQuartermonth = '".$freqThirdQuartermonth."'
+=======
+                                      forecast_amount = '" . $attr['forecast_amount'] . "',
+                                      stage_id = '" . $stage_ids . "',
+                                      process_of_decision = '" . $process_of_decision . "',
+                                      contact_person_1 = '" . $contact_person_1 . "',
+                                      contact_person_2 = '" . $contact_person_2 . "',
+                                      contact_person_3 = '" . $contact_person_3 . "',
+                                      role_1 = '" . $role_1 . "',
+                                      role_2 = '" . $role_2 . "',
+                                      role_3 = '" . $role_3 . "',
+                                      description = '" . $attr['description'] . "',
+                                      outcome = '" . $attr['outcome'] . "',
+                                      percentage_stage =  '" . $percentageStage . "' ,
+                                      currency_id = '" . $currency_id . "',
+                                      convert_amount = '" . $attr['convert_amount'] . "',
+                                      start_date = '" . $start_date . "',
+                                      end_date = '" . $end_date . "',
+                                      expected_close_date = '" . $expected_close_date . "',
+                                      is_complete = '" . $attr['is_complete'] . "',
+                                      complete_date = '" . $complete_date . "' ,
+                                      probability = '" . $attr['probability'] . "',
+                                      final_step = '" . $final_steps . "',
+                                      notes = '" . $attr['notes'] . "',
+                                      frequencyID = '" . $frequency_ids . "',
+                                      equalSpread = '" . $equalSpread . "',
+                                      freqJanuary = '" . $freqJanuary . "',
+                                      freqFebruary = '" . $freqFebruary . "',
+                                      freqMarch = '" . $freqMarch . "',
+                                      freqApril = '" . $freqApril . "',
+                                      freqMay = '" . $freqMay . "',
+                                      freqJune = '" . $freqJune . "',
+                                      freqJuly = '" . $freqJuly . "',
+                                      freqAugust = '" . $freqAugust . "',
+                                      freqSeptember = '" . $freqSeptember . "',
+                                      freqOctober = '" . $freqOctober . "',
+                                      freqNovember = '" . $freqNovember . "',
+                                      freqDecember = '" . $freqDecember . "',
+                                      freqStartmonth = '" . $freqStartmonth . "',
+                                      freqFirstQuartermonth = '" . $freqFirstQuartermonth . "',
+                                      freqSecondQuartermonth = '" . $freqSecondQuartermonth . "',
+                                      freqThirdQuartermonth = '" . $freqThirdQuartermonth . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       WHERE id = $attr[did] 
                                       limit 1 ";
 
         /*
         contact_id = '$attr[contact_id]',
+<<<<<<< HEAD
         crm_id = '$attr[crm_id]',
         subject = '$attr[subject]',
         probability_type = '".$attr['probability_type']."'  ,*/
         
+=======
+        crm_id = '".$attr['crm_id']."',
+        subject = '$attr[subject]',
+        probability_type = '".$attr['probability_type']."'  ,*/
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $detailSql; exit;     
 
         // $this->objsetup->CSI($detailSql);
@@ -5098,19 +7128,32 @@ class Crm extends Xtreme
         $attr1['id'] = $attr['id'];
         $attr1['opp_cycle_id'] = $attr['crm_opportunity_cycle_id'];
         $attr1['tab_id'] = $attr['stage_ids'];
+<<<<<<< HEAD
         $attr1['salespersons'] = $attr['salespersons'];             
+=======
+        $attr1['salespersons'] = $attr['salespersons'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $attr1['supportstaff'] = $attr['salespersons_support'];
 
         $sqlSalesperson = self::add_opp_cycle_salesperson($attr1);
         $sqlSupportStaff = self::add_opp_cycle_SupportStaff($attr1);
+<<<<<<< HEAD
         $response['stagesStatus'] = self::getOpportunityCycleStagesStatus($attr); 
 
         if ($this->Conn->Affected_Rows() > 0) {            
+=======
+        $response['stagesStatus'] = self::getOpportunityCycleStagesStatus($attr);
+
+        if ($this->Conn->Affected_Rows() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['edit'] = 0;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $response['ack'] = 0;
@@ -5124,6 +7167,7 @@ class Crm extends Xtreme
     function delete_crm_opportunity_cycle($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
@@ -5144,6 +7188,28 @@ class Crm extends Xtreme
                       cocd.is_complete = 0";
 
       // echo $Sql; exit; // $RS = $this->objsetup->CSI($Sql);
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+        else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
+
+        //    $Sql = "Update crm_opportunity_cycle 
+        //                                    set 
+        //                                        status=0 
+        //                                    WHERE id = '".$attr['id']."' AND 
+        //                                          company_id='" . $this->arrUser['company_id'] . "'";
+        $Sql = "UPDATE crm_opportunity_cycle coc 
+                JOIN crm_opportunity_cycle_detail cocd ON cocd.crm_opportunity_cycle_id = coc.id 
+                SET coc.ChangedOn = UNIX_TIMESTAMP (NOW()),  
+                    coc.ChangedBy = " . $this->arrUser['id'] . ", 
+                    coc.status=0 
+                WHERE coc.id = '" . $attr['id'] . "' AND 
+                      coc.company_id='" . $this->arrUser['company_id'] . "' AND 
+                      cocd.is_complete = 0";
+
+        // echo $Sql; exit; // $RS = $this->objsetup->CSI($Sql);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_DeletePermission);
 
 
@@ -5160,9 +7226,15 @@ class Crm extends Xtreme
 
     function complete_crm_opportunity_cycle($attr)
     {
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);      
         
         if( $moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider(1, $attr['crm_id']);
+
+        if ($moduleForPermission == 'crm') $moduleForPermission = $moduleForPermission . "_oopCycle_tab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $moduleForPermission = $moduleForPermission . "_oop_cycletab";
 
         //final_step //notes
@@ -5171,9 +7243,15 @@ class Crm extends Xtreme
                                         SET 
                                             complete_date = '" . current_date . "' ,  
                                             is_complete = '1' ,
+<<<<<<< HEAD
                                             end_date = '" .$this->objGeneral->convert_date($attr['end_date']) . "' 
                                         WHERE crm_opportunity_cycle_id = '".$attr['id']."' AND 
                                               tab_id = '".$attr['tab_id']."'   AND 
+=======
+                                            end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "' 
+                                        WHERE crm_opportunity_cycle_id = '" . $attr['id'] . "' AND 
+                                              tab_id = '" . $attr['tab_id'] . "'   AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                               company_id='" . $this->arrUser['company_id'] . "'  
                                         limit 1";
 
@@ -5190,7 +7268,11 @@ class Crm extends Xtreme
             $Sql2 = "UPDATE crm_opportunity_cycle 
                                         SET  
                                             stageComplete = '1'
+<<<<<<< HEAD
                                         WHERE id = '".$attr['id']."' ";
+=======
+                                        WHERE id = '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             //  echo $Sql2."<hr>"; exit;
             $RS2 = $this->objsetup->CSI($Sql2);
@@ -5222,8 +7304,13 @@ class Crm extends Xtreme
                 FROM crm_opportunity_cycle as oppmain, crm as c
                 where c.id = oppmain.crm_id AND oppmain.status=1 and oppmain.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
             //  echo $Sql."<hr>"; exit;
             $RS = $this->objsetup->CSI($Sql);
+=======
+        //  echo $Sql."<hr>"; exit;
+        $RS = $this->objsetup->CSI($Sql);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 $result = array();
@@ -5294,7 +7381,11 @@ class Crm extends Xtreme
                         " . $where_clause . " ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5327,7 +7418,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM crm_promotions
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
@@ -5380,6 +7475,7 @@ class Crm extends Xtreme
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
+<<<<<<< HEAD
         $offer_type = ($attr[offer_type])?$attr[offer_type]:0;
         $customer_type = ($attr[customer_type])?$attr[customer_type]:0;
         
@@ -5387,15 +7483,32 @@ class Crm extends Xtreme
                               SET
                                     starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',
                                     ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',
+=======
+        $offer_type = ($attr['offer_type']) ? $attr['offer_type'] : 0;
+        $customer_type = ($attr['customer_type']) ? $attr['customer_type'] : 0;
+
+        $Sql = "INSERT INTO crm_promotions
+                              SET
+                                    starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',
+                                    ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     offer_type = '$offer_type',
                                     customer_type = '$customer_type',
                                     discount_type = '$attr[discount_type]',
                                     discount = '$attr[discount]',
+<<<<<<< HEAD
                                     name = '".$attr['name']."',
                                     file_title = '$attr[file_title]',
                                     file = '" . $new_file_name . "',
                                     description = '$attr[description]',
                                     crm_id = '$attr[crm_id]',
+=======
+                                    name = '" . $attr['name'] . "',
+                                    file_title = '$attr[file_title]',
+                                    file = '" . $new_file_name . "',
+                                    description = '$attr[description]',
+                                    crm_id = '" . $attr['crm_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     user_id='" . $this->arrUser['id'] . "',
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn= UNIX_TIMESTAMP (NOW()),
@@ -5427,7 +7540,11 @@ class Crm extends Xtreme
         $attr = $attr['frmData'];
         //echo "<pre>"; print_r($attr);exit;
 
+<<<<<<< HEAD
         $new_file_name = $attr[old_file];
+=======
+        $new_file_name = $attr['old_file'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //if(empty($attr[old_file]))  $new_file_name = $_FILES["file"]["name"];
 
         if (isset($files["name"]) && $files["name"] != '') {
@@ -5440,12 +7557,20 @@ class Crm extends Xtreme
             // upload file
             $var_export = move_uploaded_file($tmp_name, $uploads_dir . $new_file_name);
             if ($var_export) {
+<<<<<<< HEAD
                 unlink($uploads_dir . $attr[old_file]);
+=======
+                unlink($uploads_dir . $attr['old_file']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
         if ($attr['id'] > 0)
+<<<<<<< HEAD
             $update_check = "  AND tst.id <> '".$attr['id']."'";
+=======
+            $update_check = "  AND tst.id <> '" . $attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "tst.description='" . $attr['description'] . "'  and tst.crm_id='" . $attr['crm_id'] . "'  $update_check  ";
         $total = $this->objGeneral->count_duplicate_in_sql('crm_promotions', $data_pass, $this->arrUser['company_id']);
@@ -5458,17 +7583,30 @@ class Crm extends Xtreme
 
         $Sql = "UPDATE crm_promotions
                           SET
+<<<<<<< HEAD
                                 starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',
                                 ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',
+=======
+                                starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',
+                                ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 offer_type = '$attr[offer_type]',
                                 customer_type = '$attr[customer_type]',
                                 discount_type = '$attr[discount_type]',
                                 discount = '$attr[discount]',
+<<<<<<< HEAD
                                 name = '".$attr['name']."',
                                 file_title = '$attr[file_title]',
                                 file = '" . $new_file_name . "',
                                 description = '$attr[description]'
                                 WHERE id = ".$attr['id']." limit 1";
+=======
+                                name = '" . $attr['name'] . "',
+                                file_title = '$attr[file_title]',
+                                file = '" . $new_file_name . "',
+                                description = '$attr[description]'
+                                WHERE id = " . $attr['id'] . " limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>";exit;
         $this->objsetup->CSI($Sql);
@@ -5489,13 +7627,21 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
         $uploads_dir = UPLOAD_PATH . 'sales/crm/';
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $Sql = "SELECT * 	FROM crm_promotions WHERE id='".$attr['id']."' LIMIT 1";
         //$Row = $this->objsetup->CSI($Sql)->FetchRow();
         //if ($Row[file] != '')
         // unlink($uploads_dir . $Row[file]);
 
+<<<<<<< HEAD
         $Sql = "update  crm_promotions  set status=0 WHERE id = ".$attr['id']." ";
+=======
+        $Sql = "update  crm_promotions  set status=0 WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -5519,10 +7665,17 @@ class Crm extends Xtreme
         $order_type = "";
         $response = array();
 
+<<<<<<< HEAD
         $Sql = "SELECT c.id, c.product_id FROM crm_promotions_items c WHERE  c.promotion_id = ".$attr['id']."";
 
         $total_limit = pagination_limit;
         
+=======
+        $Sql = "SELECT c.id, c.product_id FROM crm_promotions_items c WHERE  c.promotion_id = " . $attr['id'] . "";
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5589,7 +7742,11 @@ class Crm extends Xtreme
     {
         //$this->objGeneral->mysql_clean($attr);
         //echo "<pre>"; print_r($attr); exit;
+<<<<<<< HEAD
         $Sql1 = "DELETE FROM crm_promotions_items WHERE promotion_id = '$attr[promotion_id]'";
+=======
+        $Sql1 = "DELETE FROM crm_promotions_items WHERE promotion_id = '" . $attr['promotion_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($Sql1);
 
         /*echo "<pre>"; print_r($attr['promotion_product']);
@@ -5600,7 +7757,11 @@ class Crm extends Xtreme
                 $Sql = "INSERT INTO crm_promotions_items
                                       SET
                                           product_id = '$value->id',
+<<<<<<< HEAD
                                           promotion_id = '$attr[promotion_id]',
+=======
+                                          promotion_id = '" . $attr['promotion_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                           user_id='" . $this->arrUser['id'] . "',
                                           company_id='" . $this->arrUser['company_id'] . "'";
 
@@ -5618,7 +7779,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "update crm_promotions_items set status=0 WHERE product_id = $attr[product_id] AND promotion_id = $attr[prom_id]";
+=======
+        $Sql = "update crm_promotions_items set status=0 WHERE product_id = " . $attr['product_id'] . " AND promotion_id = $attr[prom_id]";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -5639,8 +7804,13 @@ class Crm extends Xtreme
     function get_documents($attr)
     {
         global $objFilters;
+<<<<<<< HEAD
         $where = array(0 => array('document.module_id' => 19), 1 => array('document.row_id' => $attr[crm_id]), 2 => array('document.type' => 2));
         return $objFilters->get_module_listing(12, "document", '', '', $attr[more_fields], '', $where);
+=======
+        $where = array(0 => array('document.module_id' => 19), 1 => array('document.row_id' => $attr['crm_id']), 2 => array('document.type' => 2));
+        return $objFilters->get_module_listing(12, "document", '', '', $attr['more_fields'], '', $where);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_crm_document_by_id($attr)
@@ -5648,7 +7818,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM document
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
@@ -5671,7 +7845,11 @@ class Crm extends Xtreme
     function add_folder($attr)
     {
         $Sql = "INSERT INTO document
+<<<<<<< HEAD
 					SET module_id = 19,row_id = '$attr[row_id]',folder_id = '$attr[folder_id]',title = '".$attr['title']."',type = 1,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+=======
+					SET module_id = 19,row_id = '$attr[row_id]',folder_id = '$attr[folder_id]',title = '" . $attr['title'] . "',type = 1,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -5713,7 +7891,11 @@ class Crm extends Xtreme
         }
 
         $Sql = "INSERT INTO document
+<<<<<<< HEAD
 					SET module_id = 19,row_id = '$attr[row_id]',title = '".$attr['title']."',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',type = 2,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',file_size = " . $files["size"] . ",user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+=======
+					SET module_id = 19,row_id = '$attr[row_id]',title = '" . $attr['title'] . "',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',type = 2,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',file_size = " . $files["size"] . ",user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -5737,7 +7919,11 @@ class Crm extends Xtreme
         $attr = $attr['frmData'];
         /* echo'<pre>'; print_r($attr); echo "</pre>";
           exit; */
+<<<<<<< HEAD
         $new_file_name = $attr[old_file];
+=======
+        $new_file_name = $attr['old_file'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $file_size = $attr["file_size"];
         if (isset($files["name"]) && $files["name"] != '') {
             $uploads_dir = UPLOAD_PATH . 'sales/crm/';
@@ -5751,14 +7937,23 @@ class Crm extends Xtreme
             $var_export = move_uploaded_file($tmp_name, $uploads_dir . $new_file_name);
             if ($var_export) {
                 //echo $uploads_dir.$attr[file];
+<<<<<<< HEAD
                 unlink($uploads_dir . $attr[old_file]);
+=======
+                unlink($uploads_dir . $attr['old_file']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
 
         $Sql = "UPDATE document
+<<<<<<< HEAD
 					SET title = '".$attr['title']."',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',file_size = " . $file_size . ",type = 2,modified_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "'
 					WHERE id = ".$attr['id']."";
+=======
+					SET title = '" . $attr['title'] . "',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',file_size = " . $file_size . ",type = 2,modified_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "'
+					WHERE id = " . $attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>";exit;
         $this->objsetup->CSI($Sql);
@@ -5786,11 +7981,19 @@ class Crm extends Xtreme
                 where   c.company_id=" . $this->arrUser['company_id'] . "  AND 
                         type=1 AND 
                         module_id = 19 
+<<<<<<< HEAD
                         order by c.id ASC "; 
                 //and  c.parent_id=0 and //c.id  != 7 and
 
         $total_limit = pagination_limit;
         
+=======
+                        order by c.id ASC ";
+        //and  c.parent_id=0 and //c.id  != 7 and
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5961,8 +8164,13 @@ class Crm extends Xtreme
     function get_opp_documents($attr)
     {
         global $objFilters;
+<<<<<<< HEAD
         $where = array(0 => array('document.module_id' => 49), 1 => array('document.row_id' => $attr[crm_id]), 2 => array('document.type' => 2));
         return $objFilters->get_module_listing(12, "document", '', '', $attr[more_fields], '', $where);
+=======
+        $where = array(0 => array('document.module_id' => 49), 1 => array('document.row_id' => $attr['crm_id']), 2 => array('document.type' => 2));
+        return $objFilters->get_module_listing(12, "document", '', '', $attr['more_fields'], '', $where);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_crm_opp_document_by_id($attr)
@@ -5971,7 +8179,11 @@ class Crm extends Xtreme
 
         $Sql = "SELECT *
 				FROM document
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -5995,7 +8207,11 @@ class Crm extends Xtreme
     function add_opp_cycle_folder($attr)
     {
         $Sql = "INSERT INTO document
+<<<<<<< HEAD
 					SET module_id = 49,row_id = '$attr[row_id]',folder_id = '$attr[folder_id]',title = '".$attr['title']."',type = 1,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+=======
+					SET module_id = 49,row_id = '$attr[row_id]',folder_id = '$attr[folder_id]',title = '" . $attr['title'] . "',type = 1,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -6033,7 +8249,11 @@ class Crm extends Xtreme
         }
 
         $Sql = "INSERT INTO document
+<<<<<<< HEAD
 					SET module_id = 49,row_id = '$attr[row_id]',title = '".$attr['title']."',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',type = 2,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',file_size = " . $files["size"] . ",user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+=======
+					SET module_id = 49,row_id = '$attr[row_id]',title = '" . $attr['title'] . "',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',type = 2,create_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "',file_size = " . $files["size"] . ",user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "',user_name='" . $this->arrUser[user_name] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -6057,7 +8277,11 @@ class Crm extends Xtreme
         $attr = $attr['frmData'];
         /* echo'<pre>'; print_r($attr); echo "</pre>";
           exit; */
+<<<<<<< HEAD
         $new_file_name = $attr[old_file];
+=======
+        $new_file_name = $attr['old_file'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $file_size = $attr["file_size"];
         if (isset($files["name"]) && $files["name"] != '') {
             $uploads_dir = UPLOAD_PATH . 'sales/crm/';
@@ -6071,13 +8295,21 @@ class Crm extends Xtreme
             $var_export = move_uploaded_file($tmp_name, $uploads_dir . $new_file_name);
             if ($var_export) {
                 //echo $uploads_dir.$attr[file];
+<<<<<<< HEAD
                 unlink($uploads_dir . $attr[old_file]);
+=======
+                unlink($uploads_dir . $attr['old_file']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
 
         $Sql = "UPDATE document
+<<<<<<< HEAD
 					SET title = '".$attr['title']."',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',file_size = " . $file_size . ",type = 2,modified_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "' WHERE id = ".$attr['id']." limit 1";
+=======
+					SET title = '" . $attr['title'] . "',folder_id = '$attr[folder_id]',document_code = '$attr[document_code]',name = '" . $new_file_name . "',file_size = " . $file_size . ",type = 2,modified_date = '" . $this->objGeneral->convert_date(date('Y-m-d')) . "' WHERE id = " . $attr['id'] . " limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>";exit;
         $this->objsetup->CSI($Sql);
@@ -6102,16 +8334,28 @@ class Crm extends Xtreme
 
         $Sql1 = "SELECT *
 				FROM document
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
 
         //echo $Sql1."<hr>"; exit;
         $Row = $this->objsetup->CSI($Sql1)->FetchRow();
+<<<<<<< HEAD
         if ($Row[file] != '')
             unlink($uploads_dir . $Row[file]);
 
         $Sql = "DELETE FROM document
 				WHERE id = ".$attr['id']." ";
+=======
+        if ($Row['file'] != '')
+            unlink($uploads_dir . $Row['file']);
+
+        $Sql = "DELETE FROM document
+				WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -6136,12 +8380,20 @@ class Crm extends Xtreme
                 FROM  document  c 
                 where   c.company_id=" . $this->arrUser['company_id'] . "  AND 
                         type=1 AND 
+<<<<<<< HEAD
                         module_id = 49"; 
+=======
+                        module_id = 49";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //and  c.parent_id=0 and //c.id  != 7 and
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -6231,7 +8483,10 @@ class Crm extends Xtreme
     {
         global $objFilters;
         return $objFilters->get_module_listing(106, "price_offer_volume");
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_price_offer_volume_by_id($attr)
@@ -6239,7 +8494,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM price_offer_volume
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
@@ -6264,7 +8523,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM price_offer_volume
+<<<<<<< HEAD
 				WHERE type='".$attr['type']."' AND company_id =" . $this->arrUser['company_id'];
+=======
+				WHERE type='" . $attr['type'] . "' AND company_id =" . $this->arrUser['company_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -6290,7 +8553,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
         $Sql = "INSERT INTO price_offer_volume
+<<<<<<< HEAD
 				SET status=1, `type`='".$arr_attr['type']."',`name`='".$arr_attr['name']."',`description`='$arr_attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET status=1, `type`='" . $arr_attr['type'] . "',`name`='" . $arr_attr['name'] . "',`description`='" . $arr_attr['description'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -6316,8 +8583,13 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE price_offer_volume
+<<<<<<< HEAD
 				SET `type`='".$arr_attr['type']."',`name`='".$arr_attr['name']."',`description`='$arr_attr[description]'
 				WHERE id = ".$arr_attr['id']."  limit 1";
+=======
+				SET `type`='" . $arr_attr['type'] . "',`name`='" . $arr_attr['name'] . "',`description`='" . $arr_attr['description'] . "'
+				WHERE id = " . $arr_attr['id'] . "  limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -6339,7 +8611,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $Sql = "update price_offer_volume set status=0 WHERE id = ".$arr_attr['id']." ";
+=======
+        $Sql = "update price_offer_volume set status=0 WHERE id = " . $arr_attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -6354,11 +8630,16 @@ class Crm extends Xtreme
 
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_items_price_offer_by_custid($attr)
     {
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $whereCond='';
 
         if($attr['crm_id']>0)
@@ -6368,11 +8649,22 @@ class Crm extends Xtreme
 
         if(isset($attr['order_date']))
         {
+=======
+        $whereCond = '';
+
+        if ($attr['crm_id'] > 0)
+            $whereCond = "po.moduleID = " . $attr['crm_id'] . " AND  po.moduleType = 1 AND";
+        elseif ($attr['srm_id'] > 0)
+            $whereCond = "po.moduleID = " . $attr['srm_id'] . " AND  po.moduleType = 2 AND";
+
+        if (isset($attr['order_date'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $order_date = $this->objGeneral->convert_date($attr['order_date']);
             /* $whereCond .=" $order_date BETWEEN po.start_date AND 
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                 ELSE po.end_date 
                             END AND "; */
+<<<<<<< HEAD
             $whereCond .=" $order_date BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                  ELSE (FLOOR(po.end_date/86400)*86400)
@@ -6380,11 +8672,22 @@ class Crm extends Xtreme
         }
         else
         {
+=======
+            $whereCond .= " $order_date BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+                            CASE WHEN po.end_date = 0 THEN 4099299120 
+                                 ELSE (FLOOR(po.end_date/86400)*86400)
+                            END AND ";
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /* $whereCond .=" UNIX_TIMESTAMP (NOW()) BETWEEN po.start_date AND 
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                 ELSE po.end_date 
                             END AND "; */
+<<<<<<< HEAD
             $whereCond .=" UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+=======
+            $whereCond .= " UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                  ELSE (FLOOR(po.end_date/86400)*86400) 
                             END AND ";
@@ -6402,7 +8705,11 @@ class Crm extends Xtreme
                 FROM priceofferitem AS poi 
                 JOIN `priceoffer` AS po ON po.id = poi.`priceID`
                 LEFT JOIN `priceofferitemvolume` AS poiv ON poiv.priceID = po.id  AND poiv.`itemID` = poi.`itemID`
+<<<<<<< HEAD
                 WHERE ".$whereCond." 
+=======
+                WHERE " . $whereCond . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       po.priceType IN (2,3)
                 ORDER BY poi.`itemID`, poiv.min";
 
@@ -6416,20 +8723,29 @@ class Crm extends Xtreme
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 $result = array();
+<<<<<<< HEAD
                 if($prev_item_id != $Row['item_id'])
                 {
+=======
+                if ($prev_item_id != $Row['item_id']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $prev_item_id = $Row['item_id'];
                     $count++;
                     $temp_arr['id']             = $Row['id'];
                     $temp_arr['price_offer']    = $Row['price_offer'];
                     $temp_arr['minSaleQty']     = $Row['minSaleQty'];
                     $temp_arr['maxSaleQty']     = $Row['maxSaleQty'];
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $temp_arr['uom_id']         = $Row['uom_id'];
                     $temp_arr['item_id']        = $Row['item_id'];
                     $response['response'][$count] = $temp_arr;
                 }
 
+<<<<<<< HEAD
                 if($prev_item_id == $Row['item_id'] && $Row['item_volume_id'] != null )
                 {
                     $temp['volume_discount'] = $Row['volume_discount'];
@@ -6437,6 +8753,14 @@ class Crm extends Xtreme
                     $temp['min_qty']         = $Row['min_qty'];
                     
                     $response['response'][$count]['arr_volume_discounts'][]= $temp;
+=======
+                if ($prev_item_id == $Row['item_id'] && $Row['item_volume_id'] != null) {
+                    $temp['volume_discount'] = $Row['volume_discount'];
+                    $temp['discount_type']   = $Row['discount_type'];
+                    $temp['min_qty']         = $Row['min_qty'];
+
+                    $response['response'][$count]['arr_volume_discounts'][] = $temp;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
             $response['ack'] = 1;
@@ -6447,7 +8771,11 @@ class Crm extends Xtreme
             $response['error'] = NULL;
         }
 
+<<<<<<< HEAD
         return $response; 
+=======
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_items_promotions_by_custid($attr)
@@ -6465,7 +8793,11 @@ class Crm extends Xtreme
                         WHEN sp.discount_type = 1 THEN
                             sp.discount
                         ELSE
+<<<<<<< HEAD
                             sp.discount/SR_GetConversionRateByDate($order_date, sp.currency_id, ". $this->arrUser['company_id'].") 
+=======
+                            sp.discount/SR_GetConversionRateByDate($order_date, sp.currency_id, " . $this->arrUser['company_id'] . ") 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     END) AS discount,                    
                     sp.strategy_type_id AS strategy_type, 
                     sp.strategy_id AS strategy,
@@ -6475,9 +8807,15 @@ class Crm extends Xtreme
                 `promotion_products` AS pp, `promotion_customers` AS pc, `sale_promotion` AS sp
                 WHERE
                     (
+<<<<<<< HEAD
                         '".$order_date."' BETWEEN sp.start_date AND sp.end_date
                     ) AND 
                     sp.company_id = ".$this->arrUser['company_id']." AND
+=======
+                        '" . $order_date . "' BETWEEN sp.start_date AND sp.end_date
+                    ) AND 
+                    sp.company_id = " . $this->arrUser['company_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     pp.promotion_id = sp.id AND 
                     pc.promotion_id = sp.id AND
                     pc.customer_id = $crm_id
@@ -6488,13 +8826,19 @@ class Crm extends Xtreme
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
+<<<<<<< HEAD
                 if (is_numeric($key))
                     unset($Row[$key]);
+=======
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
                 $response['response'][] = $Row;
             }
             $response['ack'] = 1;
+<<<<<<< HEAD
         }
         else
              $response['ack'] = 0;
@@ -6502,18 +8846,35 @@ class Crm extends Xtreme
         return $response;
     }
     
+=======
+        } else
+            $response['ack'] = 0;
+
+        return $response;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_items_sales_price_in_date_range($attr)
     {
         $this->objGeneral->mysql_clean($arr_attr);
         $order_date = $this->objGeneral->convert_date($attr['order_date']);
         $currency_id = ($attr['currency_id'] != '') ? $attr['currency_id'] : 0;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT 	pp.product_id,
                         pp.discount_type AS discountType,
                         pp.min_qty AS min_sale_qty,
                         pp.max_qty  AS max_sale_qty,
+<<<<<<< HEAD
                         ROUND((pp.standard_price*SR_GetConversionRateByDate($order_date, $currency_id, ". $this->arrUser['company_id'].")), 3) AS standard_price,
                         ROUND((pp.min_max_sale_price*SR_GetConversionRateByDate($order_date, $currency_id, ". $this->arrUser['company_id'].")), 3) AS min_max_sale_price,
+=======
+                        ROUND((pp.standard_price*SR_GetConversionRateByDate($order_date, $currency_id, " . $this->arrUser['company_id'] . ")), 3) AS standard_price,
+                        ROUND((pp.min_max_sale_price*SR_GetConversionRateByDate($order_date, $currency_id, " . $this->arrUser['company_id'] . ")), 3) AS min_max_sale_price,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ppv.id,
                         ppv.discount,
                         ppv.min_qty as min
@@ -6524,9 +8885,15 @@ class Crm extends Xtreme
                         WHERE
                             prd.id IN($attr[item_ids]) AND 
                             pp.type=1 AND
+<<<<<<< HEAD
                             $order_date BETWEEN pp.start_date AND pp.end_date";    
         // echo $Sql;exit;
         
+=======
+                            $order_date BETWEEN pp.start_date AND pp.end_date";
+        // echo $Sql;exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         $prev_row_id = 0;
         if ($RS->RecordCount() > 0) {
@@ -6536,8 +8903,12 @@ class Crm extends Xtreme
                         unset($Row[$key]);
                 }
 
+<<<<<<< HEAD
                 if($prev_row_id != $Row['product_id'])
                 {
+=======
+                if ($prev_row_id != $Row['product_id']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $response['response'][$Row['product_id']]['standard_price'] = $Row['standard_price'];
                     $response['response'][$Row['product_id']]['min_sale_price'] = $Row['min_max_sale_price'];
                     $response['response'][$Row['product_id']]['min_sale_qty']   = $Row['min_sale_qty'];
@@ -6547,6 +8918,7 @@ class Crm extends Xtreme
                     $prev_row_id = $Row['product_id'];
                 }
 
+<<<<<<< HEAD
                 if($prev_row_id == $Row['product_id'])
                 {
                     if($Row['min'] != null && $Row['discount'] != null)
@@ -6557,16 +8929,33 @@ class Crm extends Xtreme
                         $response['response'][$prev_row_id]['arr_sales_price'][] = $temp_arr; 
                     }
                     
+=======
+                if ($prev_row_id == $Row['product_id']) {
+                    if ($Row['min'] != null && $Row['discount'] != null) {
+                        $temp_arr = array();
+                        $temp_arr['min']            = $Row['min'];
+                        $temp_arr['discount']       = $Row['discount'];
+                        $response['response'][$prev_row_id]['arr_sales_price'][] = $temp_arr;
+                    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
             $response['ack'] = 1;
         } else {
+<<<<<<< HEAD
             $response['ack'] =0;
+=======
+            $response['ack'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
         }
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     /* function ($dispatch_date, $transfer_order_date, $offer_date, $quantity, $ref_po_id)
     {
         $Sql = "SELECT SR_CalculateTransferOrderCost($dispatch_date, $transfer_order_date, $offer_date, $quantity, $ref_po_id, ".$this->arrUser['company_id'].") AS cost";
@@ -6575,7 +8964,11 @@ class Crm extends Xtreme
     } */
     function get_items_storage_cost($attr)
     {
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT wh_loc.product_id,  wh_loc.sale_order_detail_id,
                         SUM(CASE 
@@ -6623,7 +9016,11 @@ class Crm extends Xtreme
                                                         wh_bin_loc.bin_cost
                                                 END)  
                                     END)
+<<<<<<< HEAD
                                 ) / (SELECT uoms.ref_quantity FROM `units_of_measure_setup` AS uoms WHERE uoms.product_id = wh_loc.product_id AND uoms.unit_id=wh_loc.primary_unit_id AND uoms.record_id=wh_bin_loc.dimensions_id LIMIT 1)) * wh_loc.quantity) / SR_GetConversionRateByDate(o.offer_date, wh_bin_loc.currency_id, ".$this->arrUser['company_id']."))
+=======
+                                ) / (SELECT uoms.ref_quantity FROM `units_of_measure_setup` AS uoms WHERE uoms.product_id = wh_loc.product_id AND uoms.unit_id=wh_loc.primary_unit_id AND uoms.record_id=wh_bin_loc.dimensions_id LIMIT 1)) * wh_loc.quantity) / SR_GetConversionRateByDate(o.offer_date, wh_bin_loc.currency_id, " . $this->arrUser['company_id'] . "))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             )
                             ELSE  -- IF STOCK IS NOT ALLOCATED FROM TRANSFER ORDER
                             (
@@ -6669,15 +9066,25 @@ class Crm extends Xtreme
                                                         wh_bin_loc.bin_cost
                                                 END)  
                                     END)
+<<<<<<< HEAD
                                 ) / (SELECT uoms.ref_quantity FROM `units_of_measure_setup` AS uoms WHERE uoms.product_id = wh_loc.product_id AND uoms.unit_id=wh_loc.primary_unit_id AND uoms.record_id=wh_bin_loc.dimensions_id LIMIT 1)) * wh_loc.quantity) / SR_GetConversionRateByDate(o.offer_date, wh_bin_loc.currency_id, ".$this->arrUser['company_id']."))
+=======
+                                ) / (SELECT uoms.ref_quantity FROM `units_of_measure_setup` AS uoms WHERE uoms.product_id = wh_loc.product_id AND uoms.unit_id=wh_loc.primary_unit_id AND uoms.record_id=wh_bin_loc.dimensions_id LIMIT 1)) * wh_loc.quantity) / SR_GetConversionRateByDate(o.offer_date, wh_bin_loc.currency_id, " . $this->arrUser['company_id'] . "))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             )
                         END) +
                         -- GO ON STEP BACK TO CHECK THE STORAGE COST
                         SUM(CASE
                             WHEN (SELECT w.type FROM `warehouse_allocation` AS w WHERE w.id = wh_loc.ref_po_id) = 5 then
+<<<<<<< HEAD
                                 SR_CalculateTransferOrderCost(wh_loc.transfer_order_date, wh_loc.date_received, o.offer_date, wh_loc.quantity, wh_loc.ref_po_id, ".$this->arrUser['company_id'].")
                             ELSE
                                 0 -- SR_CalculateTransferOrderCost(o.dispatch_date, wh_loc.date_received, o.offer_date, wh_loc.quantity, wh_loc.ref_po_id, ".$this->arrUser['company_id'].")
+=======
+                                SR_CalculateTransferOrderCost(wh_loc.transfer_order_date, wh_loc.date_received, o.offer_date, wh_loc.quantity, wh_loc.ref_po_id, " . $this->arrUser['company_id'] . ")
+                            ELSE
+                                0 -- SR_CalculateTransferOrderCost(o.dispatch_date, wh_loc.date_received, o.offer_date, wh_loc.quantity, wh_loc.ref_po_id, " . $this->arrUser['company_id'] . ")
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         END) AS storage_cost
                         FROM 
                             `warehouse_allocation` AS wh_loc, 
@@ -6689,12 +9096,21 @@ class Crm extends Xtreme
                             o.id = wh_loc.order_id AND
                             wh_bin_loc.id = prd_wh_loc.`warehouse_loc_id` AND 
                             wh_loc.location = prd_wh_loc.id AND
+<<<<<<< HEAD
                             wh_loc.company_id= ".$this->arrUser['company_id']." AND 
                             wh_loc.order_id= $attr[order_id]
                             GROUP BY wh_loc.sale_order_detail_id";
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+                            wh_loc.company_id= " . $this->arrUser['company_id'] . " AND 
+                            wh_loc.order_id= " . $attr['order_id'] . "
+                            GROUP BY wh_loc.sale_order_detail_id";
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -6705,17 +9121,26 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
         } else {
+<<<<<<< HEAD
             $response['ack'] =0;
+=======
+            $response['ack'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
         }
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_items_original_fifo_additional_cost($attr)
     {
         // echo 'helosd';exit;
         $additional_cost = 0;
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "SELECT od.id, od.item_id, (IFNULL(SR_Calculate_AdditionalCost_FIFO($attr[order_id], od.id, od.item_id, SUM(od.qty), ".$this->arrUser['company_id'].", $attr[order_date], FALSE),0)) AS additional_cost
 						FROM order_details AS od
 						WHERE od.order_id= $attr[order_id] AND od.type = 0 AND  od.costing_method_id = 1
@@ -6723,6 +9148,15 @@ class Crm extends Xtreme
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+        $Sql = "SELECT od.id, od.item_id, (IFNULL(SR_Calculate_AdditionalCost_FIFO(" . $attr['order_id'] . ", od.id, od.item_id, SUM(od.qty), " . $this->arrUser['company_id'] . ", $attr[order_date], FALSE),0)) AS additional_cost
+						FROM order_details AS od
+						WHERE od.order_id= " . $attr['order_id'] . " AND od.type = 0 AND  od.costing_method_id = 1
+						GROUP BY od.item_id";
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -6735,12 +9169,20 @@ class Crm extends Xtreme
             // $response['response'] = $additional_cost;
             $response['ack'] = 1;
         } else {
+<<<<<<< HEAD
             $response['ack'] =0;
+=======
+            $response['ack'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
         }
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_items_purchase_cost($attr)
     {
         $this->objGeneral->mysql_clean($attr);
@@ -6748,6 +9190,7 @@ class Crm extends Xtreme
 
         $Sqla = "SELECT vat_sales_type
                 FROM financial_settings
+<<<<<<< HEAD
                 WHERE company_id= ".$this->arrUser['company_id']."
                 LIMIT 1";
         // echo $Sqla;exit;
@@ -6759,11 +9202,28 @@ class Crm extends Xtreme
         $postingType = $RSa->fields['vat_sales_type'];
 
         if($postingType == 1){
+=======
+                WHERE company_id= " . $this->arrUser['company_id'] . "
+                LIMIT 1";
+        // echo $Sqla;exit;
+        // SELECT marginAnalysisView
+        //	FROM company
+        //	WHERE id=
+
+        $RSa = $this->objsetup->CSI($Sqla);
+        $postingType = $RSa->fields['vat_sales_type'];
+
+        if ($postingType == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT prd.id as product_id,
                             (CASE
                                 WHEN prd.costing_method_id=1
+<<<<<<< HEAD
                                     THEN IFNULL(SR_Calculate_Cost_FIFO(od.item_id, SUM(od.qty),  ".$this->arrUser['company_id']."), 0)
+=======
+                                    THEN IFNULL(SR_Calculate_Cost_FIFO(od.item_id, SUM(od.qty),  " . $this->arrUser['company_id'] . "), 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 
                                 WHEN prd.costing_method_id=3
                                     THEN IFNULL((SELECT standard_price FROM product_price WHERE product_id = prd.id AND type = 2 
@@ -6772,13 +9232,21 @@ class Crm extends Xtreme
 					                od.unit_price
                             END) AS purchase_cost
                 FROM product AS prd, order_details AS od
+<<<<<<< HEAD
                 WHERE prd.id = od.item_id AND od.order_id= $attr[order_id] AND od.company_id= ".$this->arrUser['company_id']."
+=======
+                WHERE prd.id = od.item_id AND od.order_id= " . $attr['order_id'] . " AND od.company_id= " . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 GROUP BY prd.id";
 
             /* WHEN prd.costing_method_id=2
                     THEN IFNULL(SR_Calculate_Cost_Moving_Avg(od.item_id,  ".$this->arrUser['company_id']."), 0) */
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT prd.id as product_id,
                            (CASE WHEN (od.type =0) THEN IFNULL((SELECT 
@@ -6789,14 +9257,24 @@ class Crm extends Xtreme
                             ELSE 0
                             END) AS purchase_cost
                     FROM product AS prd, order_details AS od
+<<<<<<< HEAD
                     WHERE prd.id = od.item_id AND od.order_id= $attr[order_id] AND od.company_id= ".$this->arrUser['company_id']."
+=======
+                    WHERE prd.id = od.item_id AND od.order_id= " . $attr['order_id'] . " AND od.company_id= " . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     GROUP BY prd.id";
         }
 
         // echo $Sql;exit;
+<<<<<<< HEAD
         
         $RS = $this->objsetup->CSI($Sql);
          
+=======
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -6807,10 +9285,17 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
         } else {
+<<<<<<< HEAD
             $response['ack'] =0;
             $response['response'] = array();
         }
         return $response; 
+=======
+            $response['ack'] = 0;
+            $response['response'] = array();
+        }
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_items_level_rebate($attr)
@@ -6835,15 +9320,24 @@ class Crm extends Xtreme
                 BETWEEN reb.start_date AND CASE WHEN reb.end_date = 0 THEN 4099299120  ELSE reb.end_date END";
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
                 $attr['rebate_id'] = $Row['id'];    
+=======
+
+                $attr['rebate_id'] = $Row['id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 /* if (($Row['universal_type'] == 2) || ($Row['universal_type'] == 3) && $Row['rebate_type'] == 1)
                     $Row['revenue_volume_rebate'] = $this->get_rebateRevenueVolume($attr);
                 
@@ -6855,12 +9349,17 @@ class Crm extends Xtreme
 
                     $Row['items_rebate'] = $this->get_rebate_items($attr);
                 }  */
+<<<<<<< HEAD
                 if ($Row['universal_type'] != 1)
                 {
+=======
+                if ($Row['universal_type'] != 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $Row['items_rebate'] = $this->get_rebate_items($attr);
                     $Row['revenue_volume_rebate'] = $this->get_rebateRevenueVolume($attr);
                 }
 
+<<<<<<< HEAD
                 $response['response'][] = $Row;          
 
             }
@@ -6870,6 +9369,16 @@ class Crm extends Xtreme
             $response['response'] = array();
         }
         return $response; 
+=======
+                $response['response'][] = $Row;
+            }
+            $response['ack'] = 1;
+        } else {
+            $response['ack'] = 0;
+            $response['response'] = array();
+        }
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
     function get_items_margin_cost($attr)
     {
@@ -6882,20 +9391,34 @@ class Crm extends Xtreme
                         pma.product_id, 
                         pma.uom_id, 
                         pma.currency_id, 
+<<<<<<< HEAD
                         pma.amount/SR_GetConversionRateByDate($order_date, pma.currency_id, ". $this->arrUser['company_id'].") AS amount,
                         SR_GetConversionRateByDate($order_date, pma.currency_id, ". $this->arrUser['company_id'].") AS margin_analysis_conversion_rate,
                         idc.title AS name, 
                         idc.ref_id,
                         SR_GetConversionRateByDate($order_date, $currency_id, ". $this->arrUser['company_id'].") AS conversion_rate
+=======
+                        pma.amount/SR_GetConversionRateByDate($order_date, pma.currency_id, " . $this->arrUser['company_id'] . ") AS amount,
+                        SR_GetConversionRateByDate($order_date, pma.currency_id, " . $this->arrUser['company_id'] . ") AS margin_analysis_conversion_rate,
+                        idc.title AS name, 
+                        idc.ref_id,
+                        SR_GetConversionRateByDate($order_date, $currency_id, " . $this->arrUser['company_id'] . ") AS conversion_rate
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 FROM product_marginal_analysis AS pma
                     JOIN product AS prd ON pma.product_id = prd.id
                     JOIN item_additional_cost AS idc ON pma.marginal_analysis_id =idc.id
                     WHERE
                     prd.id IN($attr[item_ids])";
         // echo $Sql;exit;
+<<<<<<< HEAD
         
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -6909,14 +9432,22 @@ class Crm extends Xtreme
                 $temp_row['currency_id']            = $Row['currency_id'];
                 $temp_row['conversion_rate']        = $Row['conversion_rate'];
                 $temp_row['margin_analysis_conversion_rate'] = $Row['margin_analysis_conversion_rate'];
+<<<<<<< HEAD
                 $temp_row['amount']                 = $Row['amount'];// * $temp_row['conversion_rate'];
+=======
+                $temp_row['amount']                 = $Row['amount']; // * $temp_row['conversion_rate'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $temp_row['ref_id']                 = $Row['ref_id'];
                 $margin_response[$Row['product_id']][] = $temp_row;
             }
             $response['response']['margin_analysis']    = $margin_response;
+<<<<<<< HEAD
         }
         else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response']['margin_analysis'] = array();
         }
         $response['ack'] = 1;
@@ -6957,7 +9488,11 @@ class Crm extends Xtreme
 				 ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -6990,7 +9525,11 @@ class Crm extends Xtreme
 
         $Sql = "SELECT *
 				FROM rebate_volume
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -7016,7 +9555,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM rebate_volume
+<<<<<<< HEAD
 				WHERE type='".$attr['type']."' AND company_id =" . $this->arrUser['company_id'];
+=======
+				WHERE type='" . $attr['type'] . "' AND company_id =" . $this->arrUser['company_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7041,7 +9584,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
         $Sql = "INSERT INTO rebate_volume
+<<<<<<< HEAD
 				SET status=1,`name`='".$arr_attr['name']."',`description`='$arr_attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET status=1,`name`='" . $arr_attr['name'] . "',`description`='" . $arr_attr['description'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7067,8 +9614,13 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE rebate_volume
+<<<<<<< HEAD
 				SET `name`='".$arr_attr['name']."',`description`='$arr_attr[description]'
 				WHERE id = ".$arr_attr['id']."  limit 1";
+=======
+				SET `name`='" . $arr_attr['name'] . "',`description`='" . $arr_attr['description'] . "'
+				WHERE id = " . $arr_attr['id'] . "  limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7091,7 +9643,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "update rebate_volume set status=0
+<<<<<<< HEAD
 				WHERE id = ".$arr_attr['id']." ";
+=======
+				WHERE id = " . $arr_attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7107,7 +9663,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 /////////////////////// for volume discount /////////////////
+=======
+    /////////////////////// for volume discount /////////////////
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_supplier_list_product_id($attr)
     {
@@ -7129,12 +9689,20 @@ class Crm extends Xtreme
 			LEFT JOIN units_of_measure_setup AS unitSetup1 ON (pVolume_1.unit_category = unitSetup1.id)
 			LEFT JOIN units_of_measure AS uom1 ON (uom1.id = unitSetup1.cat_id) 
 
+<<<<<<< HEAD
 		WHERE crm_volume_discount.crm_id='$attr[crm_id]' and crm_volume_discount.status=1
+=======
+		WHERE crm_volume_discount.crm_id='" . $attr['crm_id'] . "' and crm_volume_discount.status=1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		 ";
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -7250,7 +9818,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "SELECT * FROM priceOfferListVolumeDiscount where id = ".$attr['id']."";
+=======
+        $Sql = "SELECT * FROM priceOfferListVolumeDiscount where id = " . $attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7280,7 +9852,11 @@ class Crm extends Xtreme
     {
 
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         /* $Sql = "UPDATE crm_volume_discount
@@ -7289,7 +9865,11 @@ class Crm extends Xtreme
           WHERE id = ".$arr_attr['id']." Limit 1"; */
 
         $Sql = "DELETE FROM crm_volume_discount
+<<<<<<< HEAD
 			WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+			WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $RS = $this->objsetup->CSI($Sql);
@@ -7308,13 +9888,21 @@ class Crm extends Xtreme
     function delete_customer_price_volume($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE crm_volume_discount
                           SET
                               status=0
+<<<<<<< HEAD
                               WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+                              WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*$Sql = "DELETE FROM crm_volume_discount
 			WHERE id = ".$arr_attr['id']." Limit 1";*/
@@ -7363,7 +9951,11 @@ class Crm extends Xtreme
         $sql_total = "SELECT  ef.id	FROM 
 		product_supplier_volume ef
 		WHERE  
+<<<<<<< HEAD
 		ef.status=1  and  ef.product_id='" . $arr_attr[product_id] . "' 	and ef.supplier_id='" . $arr_attr[supplier_id] . "' 
+=======
+		ef.status=1  and  ef.product_id='" . $arr_attr['product_id'] . "' 	and ef.supplier_id='" . $arr_attr['supplier_id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and 
 		('" . $arr_attr['volume_id']->quantity_from . "' BETWEEN ef.quantity_from AND ef.quantity_to 
 		OR 
@@ -7384,8 +9976,12 @@ class Crm extends Xtreme
 
                     if ($value['volume_id'] == $Row['id']) {
 
+<<<<<<< HEAD
                         if ((($from >= $value['start_date']) && ($from <= $value['end_date']) || (($to >= $value['start_date']) && ($to <= $value['end_date'])))
                         ) /* if( (  ( $from > $this->objGeneral->convert_date(gmdate("d-m-Y", $value['start_date'])) )
+=======
+                        if ((($from >= $value['start_date']) && ($from <= $value['end_date']) || (($to >= $value['start_date']) && ($to <= $value['end_date'])))) /* if( (  ( $from > $this->objGeneral->convert_date(gmdate("d-m-Y", $value['start_date'])) )
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           && ( $from < $this->objGeneral->convert_date(gmdate("d-m-Y", $value['end_date']) ) )
                           )	||	( ( $to > $this->objGeneral->convert_date(gmdate("d-m-Yd", $value['start_date'])) )
                           && ( $to < $this->objGeneral->convert_date(gmdate("d-m-Y", $value['end_date']) )) )   )
@@ -7407,19 +10003,32 @@ class Crm extends Xtreme
             $Sqli = "SELECT max(ef.volume_type) as count
 			FROM srm_volume_discount ef
 			WHERE ef.status=1
+<<<<<<< HEAD
 			and volume_id= '" . $arr_attr[volume_id]->id . "'	and product_id='" . $arr_attr[product_id] . "' 
 			and supplier_id='" . $arr_attr[supplier_id] . "'  and 	purchase_info_id='" . $arr_attr[purchase_info_id] . "'
+=======
+			and volume_id= '" . $arr_attr['volume_id']->id . "'	and product_id='" . $arr_attr['product_id'] . "' 
+			and supplier_id='" . $arr_attr['supplier_id'] . "'  and 	purchase_info_id='" . $arr_attr['purchase_info_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			and ef.company_id=" . $this->arrUser['company_id'] . " ";
             $crm = $this->objsetup->CSI($Sqli)->FetchRow();
             $nubmer = $crm['count'] + 1;
             //echo $Sqli; exit;
 
             $Sql = "INSERT  INTO srm_volume_discount SET  
+<<<<<<< HEAD
 			product_id='$arr_attr[product_id]'  
 			,supplier_id='$arr_attr[supplier_id]' 
 			,purchase_info_id='$arr_attr[purchase_info_id]'
 			,volume_id= '" . $arr_attr[volume_id]->id . "'
 			,supplier_type='" . $arr_attr[supplier_type]->id . "'
+=======
+			product_id='" . $arr_attr['product_id'] . "'  
+			,supplier_id='" . $arr_attr['supplier_id'] . "' 
+			,purchase_info_id='$arr_attr[purchase_info_id]'
+			,volume_id= '" . $arr_attr['volume_id']->id . "'
+			,supplier_type='" . $arr_attr['supplier_type']->id . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			,volume_type='" . $nubmer . "'
 			,purchase_price='$arr_attr[purchase_price]'
 			,discount_value='$arr_attr[discount_value]'
@@ -7505,8 +10114,12 @@ class Crm extends Xtreme
                           echo	gmdate("d-m-Y", $value['end_date']) ;
                           echo $value['end_date'];
                          */
+<<<<<<< HEAD
                         if ((($from >= $value['start_date']) && ($from <= $value['end_date']) || (($to >= $value['start_date']) && ($to <= $value['end_date'])))
                         ) /* if( (  ( $from > $this->objGeneral->convert_date(gmdate("d-m-Y", $value['start_date'])) )
+=======
+                        if ((($from >= $value['start_date']) && ($from <= $value['end_date']) || (($to >= $value['start_date']) && ($to <= $value['end_date'])))) /* if( (  ( $from > $this->objGeneral->convert_date(gmdate("d-m-Y", $value['start_date'])) )
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           && ( $from < $this->objGeneral->convert_date(gmdate("d-m-Y", $value['end_date']) ) )
                           )	||	( ( $to > $this->objGeneral->convert_date(gmdate("d-m-Yd", $value['start_date'])) )
                           && ( $to < $this->objGeneral->convert_date(gmdate("d-m-Y", $value['end_date']) )) )   )
@@ -7594,8 +10207,13 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // CRM Price offer module start
 //--------------------------------------------
+=======
+    // CRM Price offer module start
+    //--------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_sale_cust_price_offer_volume($attr)
     {
@@ -7620,7 +10238,11 @@ class Crm extends Xtreme
 		WHERE p.customer_price_info_id =" . $customer_price_info_id . "  AND p.status=1 " . $strLimit;
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -7724,7 +10346,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
         $start_date1 = $this->objGeneral->convert_date($arr_attr['start_date1']);
+<<<<<<< HEAD
         $end_date1 = $this->objGeneral->convert_date($arr_attr['end_date1']);      
+=======
+        $end_date1 = $this->objGeneral->convert_date($arr_attr['end_date1']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //print_r($arr_attr);exit;
         $id = $arr_attr['id'];
@@ -7738,11 +10364,19 @@ class Crm extends Xtreme
                                  vd.priceVolID
                           FROM priceOfferListVolumeDiscount vd
                           WHERE vd.status=1  and  
+<<<<<<< HEAD
                                 vd.priceID='" . $arr_attr['priceID']. "' and
                                 vd.company_id=" . $this->arrUser['company_id'] . " ";
 
         //echo $sqlVolumeDisc;//exit;
         $rsVolumeDisc = $this->objsetup->CSI($sqlVolumeDisc);       
+=======
+                                vd.priceID='" . $arr_attr['priceID'] . "' and
+                                vd.company_id=" . $this->arrUser['company_id'] . " ";
+
+        //echo $sqlVolumeDisc;//exit;
+        $rsVolumeDisc = $this->objsetup->CSI($sqlVolumeDisc);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($rsVolumeDisc->RecordCount() > 0) {
             $result = array();
@@ -7764,6 +10398,7 @@ class Crm extends Xtreme
                                  '" . $arr_attr['quantity_to'] . "'  BETWEEN Pv.quantity_from AND Pv.quantity_to ) and
                                 Pv.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         $rsPriceVol = $this->objsetup->CSI($sqlPriceVol);       
 
         $from = $this->objGeneral->convert_date($arr_attr['start_date1']);
@@ -7786,6 +10421,24 @@ class Crm extends Xtreme
                                 if ($value['id'] != $id)
                                     $total++;
                             }else
+=======
+        $rsPriceVol = $this->objsetup->CSI($sqlPriceVol);
+
+        $from = $this->objGeneral->convert_date($arr_attr['start_date1']);
+        $to = $this->objGeneral->convert_date($arr_attr['end_date1']);
+
+        $total = 0;
+
+        if ($rsPriceVol->RecordCount() > 0 && $rsVolumeDisc->RecordCount() > 0) {
+            while ($Row = $rsPriceVol->FetchRow()) {
+                foreach ($response2['responsePriceVolume'] as $key => $value) {
+                    if ($value['priceVolID'] == $Row['id']) {
+                        if ((($from >= $value['start_date']) && ($from <= $value['end_date']) || (($to >= $value['start_date']) && ($to <= $value['end_date'])))) {
+                            if ($id > 0) {
+                                if ($value['id'] != $id)
+                                    $total++;
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $total++;
                         }
                     }
@@ -7799,6 +10452,7 @@ class Crm extends Xtreme
             $response['error'] = 'Record Date Overlaps !';
             $response['edit'] = 0;
             return $response;
+<<<<<<< HEAD
         } 
 
 
@@ -7807,6 +10461,16 @@ class Crm extends Xtreme
             $Sql = "UPDATE priceOfferListVolumeDiscount
                             SET
                                 price='" . $arr_attr['price']. "',
+=======
+        }
+
+
+        if ($id > 0) {
+
+            $Sql = "UPDATE priceOfferListVolumeDiscount
+                            SET
+                                price='" . $arr_attr['price'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 discountType='" . $arr_attr['discountType'] . "',
                                 discount='" . $arr_attr['discount'] . "',
                                 discountedPrice='" . $arr_attr['discountedPrice'] . "',
@@ -7825,13 +10489,18 @@ class Crm extends Xtreme
                 $response['edit'] = 0;
 
                 $arr_attr['priceVolDiscID'] = $id;
+<<<<<<< HEAD
                 $this->addPriceVolDiscHistory($arr_attr);
 
+=======
+                // $this->addPriceVolDiscHistory($arr_attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } else {
                 $response['ack'] = 0;
                 $response['error'] = 'Record not insert !';
                 $response['edit'] = 1;
             }
+<<<<<<< HEAD
 
         }else{
 
@@ -7842,6 +10511,17 @@ class Crm extends Xtreme
                                         product_id='" . $arr_attr['product_id']. "',
                                         priceVolID='" . $arr_attr['priceVolID'] . "',                                      
                                         price='" . $arr_attr['price']. "',
+=======
+        } else {
+
+
+            $Sql1 = "INSERT INTO priceOfferListVolumeDiscount
+                                    SET
+                                        priceID='" . $arr_attr['priceID'] . "',
+                                        product_id='" . $arr_attr['product_id'] . "',
+                                        priceVolID='" . $arr_attr['priceVolID'] . "',                                      
+                                        price='" . $arr_attr['price'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         discountType='" . $arr_attr['discountType'] . "',
                                         discount='" . $arr_attr['discount'] . "',
                                         discountedPrice='" . $arr_attr['discountedPrice'] . "',
@@ -7868,15 +10548,24 @@ class Crm extends Xtreme
                 $response['edit'] = 0;
 
                 $arr_attr['priceVolDiscID'] = $id;
+<<<<<<< HEAD
                 $this->addPriceVolDiscHistory($arr_attr);
 
+=======
+                // $this->addPriceVolDiscHistory($arr_attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } else {
                 $response['ack'] = 0;
                 $response['error'] = 'Record not insert !';
                 $response['edit'] = 0;
             }
+<<<<<<< HEAD
         }        
         
+=======
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -7884,7 +10573,11 @@ class Crm extends Xtreme
     {
         $Sql = "SELECT pvd.*
                 FROM SR_PriceVolumeDiscount_sel as pvd
+<<<<<<< HEAD
                 where pvd.priceID ='".$attr['id']."' AND pvd.status=1 ";      
+=======
+                where pvd.priceID ='" . $attr['id'] . "' AND pvd.status=1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
 
@@ -7898,10 +10591,17 @@ class Crm extends Xtreme
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
                 if($Row['moduleType']==1)
                     $modulename = $Row['crm_name'];
                 elseif($Row['moduleType']==2)
+=======
+
+                if ($Row['moduleType'] == 1)
+                    $modulename = $Row['crm_name'];
+                elseif ($Row['moduleType'] == 2)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $modulename = $Row['srm_name'];
 
                 $result['id'] = $Row['id'];
@@ -7934,7 +10634,11 @@ class Crm extends Xtreme
     //--------------------------------------------
 
     // function to add price module volume 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function add_price_volume($arr_attr)
     {
         $this->objGeneral->mysql_clean($arr_attr);
@@ -7946,7 +10650,11 @@ class Crm extends Xtreme
                         tst.uomID='" . $arr_attr['uomID'] . "' and
                         tst.quantity_from = '" . $arr_attr['quantity_from'] . "' and 
                         tst.quantity_to = '" . $arr_attr['quantity_to'] . "' and 
+<<<<<<< HEAD
                         tst.priceID = '" . $arr_attr['priceID'] . "'";        
+=======
+                        tst.priceID = '" . $arr_attr['priceID'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total = $this->objGeneral->count_duplicate_in_sql('priceOfferListVolume', $data_pass, $this->arrUser['company_id']);
 
@@ -7972,7 +10680,11 @@ class Crm extends Xtreme
                                         AddedOn=UNIX_TIMESTAMP (NOW()),
                                         created_date='" . $current_date . "'";
         //echo $Sql;exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
 
@@ -8005,7 +10717,11 @@ class Crm extends Xtreme
                 LEFT JOIN crm as crm_module ON (crm_module.id = p.moduleID and p.moduleType =1)
                 LEFT JOIN srm as srm_module ON (srm_module.id = p.moduleID and p.moduleType =2)
                 WHERE pv.priceID ='" . $attr['priceID'] . "'  AND 
+<<<<<<< HEAD
                       pv.status=1 ";              
+=======
+                      pv.status=1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
 
@@ -8014,6 +10730,7 @@ class Crm extends Xtreme
             while ($Row = $RS->FetchRow()) {
                 $result = array();
 
+<<<<<<< HEAD
                 $modulename = '';                             
                 
 
@@ -8021,6 +10738,15 @@ class Crm extends Xtreme
                     $modulename = $Row['crmmodulename'];
                 elseif($Row['moduleType']==2)
                     $modulename = $Row['srmmodulename'];      
+=======
+                $modulename = '';
+
+
+                if ($Row['moduleType'] == 1)
+                    $modulename = $Row['crmmodulename'];
+                elseif ($Row['moduleType'] == 2)
+                    $modulename = $Row['srmmodulename'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $result['id'] = $Row['id'];
                 $result['quantity_to'] = $Row['quantity_to'];
@@ -8051,14 +10777,24 @@ class Crm extends Xtreme
         $response = array();
 
         if (!empty($arr_attr['type']))
+<<<<<<< HEAD
             $type .= "and type = '".$arr_attr['type']."' ";
         if (!empty($arr_attr['bucket_id']))
             $type .= "and bucket_id = '".$arr_attr['bucket_id']."' ";
+=======
+            $type .= "and type = '" . $arr_attr['type'] . "' ";
+        if (!empty($arr_attr['bucket_id']))
+            $type .= "and bucket_id = '" . $arr_attr['bucket_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT c.* 
                 FROM crm_salesperson c 
                 LEFT JOIN bucket b on c.bucket_id = b.id
+<<<<<<< HEAD
                 WHERE b.status = 1 AND module_id = '".$arr_attr['id']."'  " . $type . " AND  
+=======
+                WHERE b.status = 1 AND module_id = '" . $arr_attr['id'] . "'  " . $type . " AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       (end_date IS NULL OR end_date=0) ";
 
 
@@ -8098,7 +10834,11 @@ class Crm extends Xtreme
 
         //print_r($arr_attr);
         if ($arr_attr['type'] == 1) {
+<<<<<<< HEAD
             $Sql2 = "UPDATE crm_sale_target_detail SET status=0 WHERE   cd.sale_group_id='".$arr_attr['id']."'";
+=======
+            $Sql2 = "UPDATE crm_sale_target_detail SET status=0 WHERE   cd.sale_group_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $rs = $this->objsetup->CSI($Sql2);
         }
 
@@ -8111,17 +10851,28 @@ class Crm extends Xtreme
             if ($item->bucket_id > 0)
                 $bucket_ids .= $item->bucket_id . ',';
             else
+<<<<<<< HEAD
                 $item->bucket_id=0;
+=======
+                $item->bucket_id = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // $id = explode('.', $item->id);
             // $ids .= $id[0] . ',';
             $ids .= $item->id . ',';
 
 
+<<<<<<< HEAD
             if($item->isPrimary>0)
                 $is_primary=$item->isPrimary;
             else
                 $is_primary=0;
+=======
+            if ($item->isPrimary > 0)
+                $is_primary = $item->isPrimary;
+            else
+                $is_primary = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql .= "(  '" . $arr_attr['id'] . "' ," . $item->id . " ," . $arr_attr['type'] . ", '" . $is_primary . "' ," . $this->arrUser['company_id'] . " ," . $this->arrUser['id'] . ",'" . $item->bucket_id . "' ,'" . current_date . "' ), ";
             $check = true;
@@ -8139,7 +10890,11 @@ class Crm extends Xtreme
         $where_del = "";
 
         $ids = substr($ids, 0, -1);
+<<<<<<< HEAD
         $sql_del = "DELETE FROM crm_salesperson WHERE module_id='".$arr_attr['id']."' AND type='" . $arr_attr['type'] . "' $where_del ";
+=======
+        $sql_del = "DELETE FROM crm_salesperson WHERE module_id='" . $arr_attr['id'] . "' AND type='" . $arr_attr['type'] . "' $where_del ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $sql_del;
         //  echo "<hr/>";
         // echo $Sql;
@@ -8181,10 +10936,18 @@ class Crm extends Xtreme
         //}
     }
 
+<<<<<<< HEAD
     function getCrmSalesTargetUsingEmpId($arr_attr){
         // written by Ahmad
         // primary purpose to get Commission information inside "HR Employee Salary, Pension and Entitled Holiday" Page
         $Sql = "SELECT id,sale_code FROM crm_sale_target WHERE sale_person_id = '".$arr_attr['id']."'";
+=======
+    function getCrmSalesTargetUsingEmpId($arr_attr)
+    {
+        // written by Ahmad
+        // primary purpose to get Commission information inside "HR Employee Salary, Pension and Entitled Holiday" Page
+        $Sql = "SELECT id,sale_code FROM crm_sale_target WHERE sale_person_id = '" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         $response = "";
         if ($RS->RecordCount() > 0) {
@@ -8214,9 +10977,15 @@ class Crm extends Xtreme
 
         //print_r($arr_attr);exit;
         $Sql = "SELECT c.salesperson_id FROM crm_salesperson  c
+<<<<<<< HEAD
   WHERE module_id = '".$arr_attr['id']."'  and type =2  
   and c.company_id=" . $this->arrUser['company_id'] . " ";
   //echo $Sql;exit;
+=======
+  WHERE module_id = '" . $arr_attr['id'] . "'  and type =2  
+  and c.company_id=" . $this->arrUser['company_id'] . " ";
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total_limit = pagination_limit;
         if ($arr_attr['pagination_limits'])
             $total_limit = $arr_attr['pagination_limits'];
@@ -8281,17 +11050,27 @@ class Crm extends Xtreme
         foreach ($arr_attr['salespersons'] as $value) {
             $salespersonarray[] = $value->id;
         }
+<<<<<<< HEAD
        
         $strIds = implode(',', $salespersonarray);       
 
         $Sql1 = "UPDATE crm_salesperson_log  
                             SET  
                                 end_date = '". current_date."'
+=======
+
+        $strIds = implode(',', $salespersonarray);
+
+        $Sql1 = "UPDATE crm_salesperson_log  
+                            SET  
+                                end_date = '" . current_date . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 WHERE  end_date IS NULL and 
                                        crm_id= '" . $arr_attr['id'] . "' and 
                                        salesperson_id NOT IN (" . $strIds . ") and 
                                        company_id='" . $this->arrUser['company_id'] . "'";
 
+<<<<<<< HEAD
         $RS1 = $this->objsetup->CSI($Sql1);  
 
         foreach ($arr_attr['salespersons'] as $value) {
@@ -8305,6 +11084,20 @@ class Crm extends Xtreme
             
             if($is_primary>0)
             {
+=======
+        $RS1 = $this->objsetup->CSI($Sql1);
+
+        foreach ($arr_attr['salespersons'] as $value) {
+
+            $is_primary = 0;
+
+            if ($value->isPrimary > 0)
+                $is_primary = $value->isPrimary;
+            else
+                $is_primary = 0;
+
+            if ($is_primary > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $is_primarySql = "UPDATE crm_salesperson_log  
                                   SET  
                                     is_primary = 0
@@ -8314,7 +11107,11 @@ class Crm extends Xtreme
 
                 /* echo $is_primarySql;
                 exit; */
+<<<<<<< HEAD
                 $is_primaryRS1 = $this->objsetup->CSI($is_primarySql); 
+=======
+                $is_primaryRS1 = $this->objsetup->CSI($is_primarySql);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             /*======= Query for store procedure start */
@@ -8328,30 +11125,51 @@ class Crm extends Xtreme
             //$this->objsetup->CSI($Sql);
             /*======= Query for store procedure end */
 
+<<<<<<< HEAD
              $selSql = "SELECT id
+=======
+            $selSql = "SELECT id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM crm_salesperson_log
                         WHERE end_date IS NULL AND
                               crm_id= '" . $arr_attr['id'] . "' AND 
                               salesperson_id= '" . $value->id . "' AND 
+<<<<<<< HEAD
                               company_id='" . $this->arrUser['company_id'] . "'"; 
             
             $selRS1 = $this->objsetup->CSI($selSql); 
 
             if ($selRS1->RecordCount() == 0) {         
+=======
+                              company_id='" . $this->arrUser['company_id'] . "'";
+
+            $selRS1 = $this->objsetup->CSI($selSql);
+
+            if ($selRS1->RecordCount() == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $Sql = "INSERT INTO crm_salesperson_log
                                                 SET 
                                                     salesperson_id='" . $value->id . "',
+<<<<<<< HEAD
                                                     crm_id='".$arr_attr['id']."',
+=======
+                                                    crm_id='" . $arr_attr['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     is_primary='" . $is_primary . "',
                                                     company_id='" . $this->arrUser['company_id'] . "',
                                                     user_id='" . $this->arrUser['id'] . "',
                                                     created_date='" . current_date . "',
                                                     start_date='" . current_date . "'";
                 //echo $Sql;// exit;
+<<<<<<< HEAD
                 $RS = $this->objsetup->CSI($Sql); 
             }
             elseif($selRS1->RecordCount() > 0 && $is_primary>0){
+=======
+                $RS = $this->objsetup->CSI($Sql);
+            } elseif ($selRS1->RecordCount() > 0 && $is_primary > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $Sql = "UPDATE crm_salesperson_log  
                                   SET  
@@ -8361,7 +11179,11 @@ class Crm extends Xtreme
                                         salesperson_id= '" . $value->id . "' AND  
                                         company_id='" . $this->arrUser['company_id'] . "'";
                 //echo $Sql;// exit;
+<<<<<<< HEAD
                 $RS = $this->objsetup->CSI($Sql); 
+=======
+                $RS = $this->objsetup->CSI($Sql);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         //exit;
@@ -8376,13 +11198,21 @@ class Crm extends Xtreme
         $response = array();
 
         if (isset($arr_attr['type']))
+<<<<<<< HEAD
             $type .= "and crm_sp.type = '".$arr_attr['type']."' ";
+=======
+            $type .= "and crm_sp.type = '" . $arr_attr['type'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT emp.id,emp.user_code as code,CONCAT(emp.first_name,' ',emp.last_name) as name,emp.job_title,emp.user_email as email,
                        emp.work_phone as telephone, crm_sp.is_primary AS is_primary
                 FROM crm_salesperson as crm_sp
                 LEFT JOIN employees as emp on emp.id= crm_sp.salesperson_id
+<<<<<<< HEAD
                 WHERE crm_sp.module_id = '".$arr_attr['crm_id']."'  " . $type . " AND (crm_sp.end_date IS NULL OR crm_sp.end_date=0)";
+=======
+                WHERE crm_sp.module_id = '" . $arr_attr['crm_id'] . "'  " . $type . " AND (crm_sp.end_date IS NULL OR crm_sp.end_date=0)";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;exit;
         $total_limit = pagination_limit;
@@ -8417,7 +11247,11 @@ class Crm extends Xtreme
         // print_r($arr_attr); exit;
         $current_date = date('Y-m-d H:i:s');
 
+<<<<<<< HEAD
         $sql = "DELETE FROM crm_opp_cycle_salesperson WHERE crm_opportunity_cycle_detail_id='".$arr_attr['id']."'";
+=======
+        $sql = "DELETE FROM crm_opp_cycle_salesperson WHERE crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
 
         //echo "<pre>"; print_r($arr_attr['salespersons']);
@@ -8429,14 +11263,23 @@ class Crm extends Xtreme
             $Sql = "INSERT INTO crm_opp_cycle_salesperson
                                       SET
                                             salesperson_id=" . $value->id . ",
+<<<<<<< HEAD
                                             crm_opportunity_cycle_detail_id='".$arr_attr['id']."',
+=======
+                                            crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             user_id='" . $this->arrUser['id'] . "',
                                             company_id='" . $this->arrUser['company_id'] . "',
                                             added_on='" . strtotime($current_date) . "'
                                             ";
             // echo "<hr>".$Sql;exit;
+<<<<<<< HEAD
              // is_primary='" . $value->isPrimary . "',
             //crm_id='$arr_attr[crm_id]',opp_cycle_id='$arr_attr[opp_cycle_id]',
+=======
+            // is_primary='" . $value->isPrimary . "',
+            //crm_id='".$arr_attr['crm_id']."',opp_cycle_id='$arr_attr[opp_cycle_id]',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //tab_id='$arr_attr[tab_id]',
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
@@ -8463,30 +11306,50 @@ class Crm extends Xtreme
         $current_date = date('Y-m-d H:i:s');
 
         $sql = "DELETE FROM crm_opp_cycle_SupportStaff 
+<<<<<<< HEAD
                 WHERE crm_opportunity_cycle_detail_id='".$arr_attr['id']."'";
+=======
+                WHERE crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
 
         //echo "<pre>"; print_r($arr_attr);exit;
 
+<<<<<<< HEAD
         $check = false;//supportstaff
+=======
+        $check = false; //supportstaff
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         foreach ($arr_attr['supportstaff'] as $value) {
             $Sql = "INSERT INTO crm_opp_cycle_SupportStaff
                                       SET
                                             employee_id=" . $value->id . ",
+<<<<<<< HEAD
                                             crm_opportunity_cycle_detail_id='".$arr_attr['id']."',
+=======
+                                            crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             user_id='" . $this->arrUser['id'] . "',
                                             company_id='" . $this->arrUser['company_id'] . "',
                                             added_on='" . strtotime($current_date) . "'
                                             ";
+<<<<<<< HEAD
            // echo "<hr>".$Sql;exit;
             //crm_id='$arr_attr[crm_id]',opp_cycle_id='$arr_attr[opp_cycle_id]',
+=======
+            // echo "<hr>".$Sql;exit;
+            //crm_id='".$arr_attr['crm_id']."',opp_cycle_id='$arr_attr[opp_cycle_id]',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //tab_id='$arr_attr[tab_id]',
             //is_primary='" . $value->isPrimary . "',
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
             if ($id > 0) {
                 $check = true;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } else
                 $check = false;
         }
@@ -8494,7 +11357,11 @@ class Crm extends Xtreme
 
         $response = array();
         if ($check) {
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else {
@@ -8506,7 +11373,11 @@ class Crm extends Xtreme
 
     function get_opp_cycle_salesperson($arr_attr)
     {
+<<<<<<< HEAD
         $Sql = "SELECT * FROM crm_opp_cycle_salesperson  WHERE crm_opportunity_cycle_detail_id='".$arr_attr['id']."'";
+=======
+        $Sql = "SELECT * FROM crm_opp_cycle_salesperson  WHERE crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8533,7 +11404,11 @@ class Crm extends Xtreme
     {
         $Sql = "SELECT * 
                 FROM crm_opp_cycle_SupportStaff  
+<<<<<<< HEAD
                 WHERE crm_opportunity_cycle_detail_id='".$arr_attr['id']."'";
+=======
+                WHERE crm_opportunity_cycle_detail_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8556,7 +11431,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_pref_method_of_comm($attr=null)
+=======
+    function get_pref_method_of_comm($attr = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $this->objGeneral->mysql_clean($attr);
         //print_r($attr);
@@ -8567,11 +11446,19 @@ class Crm extends Xtreme
         //defualt Variable
         $total_limit = pagination_limit;
         $order_by = 'ORDER BY c.title ';
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c',$order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_by);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $response['q'];   exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
@@ -8605,20 +11492,36 @@ class Crm extends Xtreme
                     left JOIN employees  es on es.id=emp.salesperson_id
                     WHERE emp.company_id=" . $this->arrUser['company_id'] . " AND emp.module_id IN (".$attr['id'].") 
                     GROUP BY es.id "; */
+<<<<<<< HEAD
         
         $Sql = "SELECT emp.id,CONCAT( emp.first_name,' ',emp.last_name) as  name 
                 FROM crm c  
                 left JOIN employees  emp on emp.id = c.salesperson_id
                 WHERE c.company_id=" . $this->arrUser['company_id'] . " AND c.id IN (".$attr['id'].")";
+=======
+
+        $Sql = "SELECT emp.id,CONCAT( emp.first_name,' ',emp.last_name) as  name 
+                FROM crm c  
+                left JOIN employees  emp on emp.id = c.salesperson_id
+                WHERE c.company_id=" . $this->arrUser['company_id'] . " AND c.id IN (" . $attr['id'] . ")";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //defualt Variable
         $total_limit = pagination_limit;
         $order_by = 'ORDER BY emp.id ';
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c',$order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_by);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $response['q'];   exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
@@ -8645,7 +11548,11 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
         $Sql = "INSERT INTO crm_pref_method_of_communiction
+<<<<<<< HEAD
 			SET `status`=1,`title`='".$arr_attr['title']."',`description`='$arr_attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+			SET `status`=1,`title`='" . $arr_attr['title'] . "',`description`='" . $arr_attr['description'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8667,12 +11574,20 @@ class Crm extends Xtreme
 
     function add_crm_segment($arr_attr)
     {
+<<<<<<< HEAD
         $sql = "DELETE FROM crm_selected_segment WHERE crm_id='".$arr_attr['id']."'";
+=======
+        $sql = "DELETE FROM crm_selected_segment WHERE crm_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
         //echo "<pre>"; print_r($arr_attr['segments']);
         foreach ($arr_attr['segments'] as $value) {
             $Sql = "INSERT INTO crm_selected_segment
+<<<<<<< HEAD
 					SET segment_id=" . $value->id . ",crm_id='".$arr_attr['id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET segment_id=" . $value->id . ",crm_id='" . $arr_attr['id'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql; //exit;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -8680,7 +11595,11 @@ class Crm extends Xtreme
 
     function get_crm_segments($arr_attr)
     {
+<<<<<<< HEAD
         $Sql = "SELECT segment_id FROM crm_selected_segment WHERE crm_id = ".$arr_attr['id']."";
+=======
+        $Sql = "SELECT segment_id FROM crm_selected_segment WHERE crm_id = " . $arr_attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8701,12 +11620,20 @@ class Crm extends Xtreme
 
     function add_crm_region($arr_attr)
     {
+<<<<<<< HEAD
         $sql = "DELETE FROM crm_selected_region WHERE crm_id='".$arr_attr['id']."'";
+=======
+        $sql = "DELETE FROM crm_selected_region WHERE crm_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
         //echo "<pre>"; print_r($arr_attr['customers']);
         foreach ($arr_attr['regions'] as $value) {
             $Sql = "INSERT INTO crm_selected_region
+<<<<<<< HEAD
 					SET region_id=" . $value->id . ",crm_id='".$arr_attr['id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET region_id=" . $value->id . ",crm_id='" . $arr_attr['id'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql; //exit;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -8715,7 +11642,11 @@ class Crm extends Xtreme
     function get_crm_regions($arr_attr)
     {
         $Sql = "SELECT region_id FROM crm_selected_region
+<<<<<<< HEAD
 			WHERE crm_id = ".$arr_attr['id']."";
+=======
+			WHERE crm_id = " . $arr_attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8736,12 +11667,20 @@ class Crm extends Xtreme
 
     function add_crm_buying_group($arr_attr)
     {
+<<<<<<< HEAD
         $sql = "DELETE FROM crm_selected_buying_group WHERE crm_id='".$arr_attr['id']."'";
+=======
+        $sql = "DELETE FROM crm_selected_buying_group WHERE crm_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
         //echo "<pre>"; print_r($arr_attr['customers']);
         foreach ($arr_attr['buying_groups'] as $value) {
             $Sql = "INSERT INTO crm_selected_buying_group
+<<<<<<< HEAD
 					SET buying_group_id=" . $value->id . ",crm_id='".$arr_attr['id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET buying_group_id=" . $value->id . ",crm_id='" . $arr_attr['id'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql; //exit;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -8750,7 +11689,11 @@ class Crm extends Xtreme
     function get_crm_buying_groups($arr_attr)
     {
         $Sql = "SELECT buying_group_id FROM crm_selected_buying_group
+<<<<<<< HEAD
 			WHERE crm_id = ".$arr_attr['id']."";
+=======
+			WHERE crm_id = " . $arr_attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8771,25 +11714,39 @@ class Crm extends Xtreme
 
     function add_credit_rating_log($arr_attr)
     {
+<<<<<<< HEAD
         
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 
 
     function add_status_log($arr_attr)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function add_alt_location_region($arr_attr)
     {
+<<<<<<< HEAD
         $sql = "DELETE FROM crm_alt_location_selected_region WHERE alt_location_id='".$arr_attr['id']."'";
+=======
+        $sql = "DELETE FROM crm_alt_location_selected_region WHERE alt_location_id='" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sql);
         //echo "<pre>"; print_r($arr_attr['customers']);
         foreach ($arr_attr['regions'] as $value) {
             $Sql = "INSERT INTO crm_alt_location_selected_region
+<<<<<<< HEAD
 					SET region_id=" . $value->id . ",alt_location_id='".$arr_attr['id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET region_id=" . $value->id . ",alt_location_id='" . $arr_attr['id'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql; //exit;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -8798,7 +11755,11 @@ class Crm extends Xtreme
     function get_alt_location_regions($arr_attr)
     {
         $Sql = "SELECT region_id FROM crm_alt_location_selected_region
+<<<<<<< HEAD
 			WHERE alt_location_id = ".$arr_attr['id']."";
+=======
+			WHERE alt_location_id = " . $arr_attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8817,8 +11778,13 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // CRM Ownership  Module
 //--------------------------------------------------------------------
+=======
+    // CRM Ownership  Module
+    //--------------------------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_all_owner($attr)
     {
         $this->objGeneral->mysql_clean($attr);
@@ -8829,7 +11795,11 @@ class Crm extends Xtreme
         $Sql = "SELECT id, title,description FROM crm_owner where status=1 AND company_id='" . $this->arrUser['company_id'] . "'  ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -8876,8 +11846,13 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // CRM volume competeter  Module
 //--------------------------------------------------------------------
+=======
+    // CRM volume competeter  Module
+    //--------------------------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_all_competitor_volume($attr)
     {
         $this->objGeneral->mysql_clean($attr);
@@ -8888,7 +11863,11 @@ class Crm extends Xtreme
         $Sql = "SELECT id, title,description  FROM crm_competitor_volume ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -8944,7 +11923,11 @@ class Crm extends Xtreme
 
         $Sql = "SELECT id, title,description   FROM ref_address_type";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -8976,7 +11959,11 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
         $current_date = date('Y-m-d H:i:s');
         $Sql = "INSERT INTO ref_address_type
+<<<<<<< HEAD
     SET `status`=1,`title`='".$arr_attr['title']."',`description`='$arr_attr[description]',created_date='" . strtotime($current_date) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+    SET `status`=1,`title`='" . $arr_attr['title'] . "',`description`='" . $arr_attr['description'] . "',created_date='" . strtotime($current_date) . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -8996,7 +11983,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 ////////////Mudassir/////
+=======
+    ////////////Mudassir/////
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_crm_turnovers($attr)
     {
         $this->objGeneral->mysql_clean($attr);
@@ -9058,7 +12049,11 @@ class Crm extends Xtreme
         $response = array();
 
         if ($attr['type'] == "Salespersons") {
+<<<<<<< HEAD
         return; // removing table crm_salesperson_log from db as it is not being used
+=======
+            return; // removing table crm_salesperson_log from db as it is not being used
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             $Sql = "SELECT crm_salesperson_log.*, employees.first_name, employees.last_name, employees.job_title,
@@ -9116,7 +12111,11 @@ class Crm extends Xtreme
                     $result['id'] = $Row['id'];
                     $result['credit_rating'] = $Row['credit_limit'];
                     $result['changed_by'] = $Row['e_fname'] . " " . $Row['e_lname'];
+<<<<<<< HEAD
                    // $result['date'] = $this->objGeneral->convert_unix_into_date($Row['created_date']);                   
+=======
+                    // $result['date'] = $this->objGeneral->convert_unix_into_date($Row['created_date']);                   
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['Start_date'] = $this->objGeneral->convert_unix_into_datetime($Row['start_date']);
                     $result['End_date'] = $this->objGeneral->convert_unix_into_datetime($Row['end_date']);
                     $response['response'][] = $result;
@@ -9177,6 +12176,7 @@ class Crm extends Xtreme
 
         $forGlobalArrayChk = '';
 
+<<<<<<< HEAD
         if($attr['forGlobalArray'] >0){
 
             $forGlobalArrayChk = 'ORDER BY ref.name';
@@ -9184,6 +12184,15 @@ class Crm extends Xtreme
 
             $forGlobalArrayChk = 'ORDER BY ref.id DESC';
         }      
+=======
+        if ($attr['forGlobalArray'] > 0) {
+
+            $forGlobalArrayChk = 'ORDER BY ref.name';
+        } else {
+
+            $forGlobalArrayChk = 'ORDER BY ref.id DESC';
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT ref.* 
                 FROM ref_social_media as ref
@@ -9218,7 +12227,11 @@ class Crm extends Xtreme
 
 
         if (!empty($arr_attr['id']))
+<<<<<<< HEAD
             $where_id = "AND tst.id <> '".$arr_attr['id']."'";
+=======
+            $where_id = "AND tst.id <> '" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "   tst.name='" . $arr_attr['name'] . "'   $where_id ";
         $total = $this->objGeneral->count_duplicate_in_sql('ref_social_media', $data_pass, $this->arrUser['company_id']);
@@ -9244,7 +12257,11 @@ class Crm extends Xtreme
 
 
         if (!empty($arr_attr['id']))
+<<<<<<< HEAD
             $where_id = "AND tst.id <>  '".$arr_attr['id']."' ";
+=======
+            $where_id = "AND tst.id <>  '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "   tst.name='" . $arr_attr['name'] . "'   $where_id ";
         $total = $this->objGeneral->count_duplicate_in_sql('ref_social_media', $data_pass, $this->arrUser['company_id']);
@@ -9258,7 +12275,11 @@ class Crm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         $Sql = "update   ref_social_media SET  name='" . $arr_attr['name'] . "'    where id= ".$arr_attr['id']."  limit 1";
+=======
+        $Sql = "update   ref_social_media SET  name='" . $arr_attr['name'] . "'    where id= " . $arr_attr['id'] . "  limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response = $this->objGeneral->run_query_exception($Sql);
         return $response;
@@ -9268,7 +12289,11 @@ class Crm extends Xtreme
     {
         //  $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $sqld = "DELETE FROM crm_social_media   where    crm_id=".$arr_attr['id']."  and  company_id='" . $this->arrUser['company_id'] . "' ";
+=======
+        $sqld = "DELETE FROM crm_social_media   where    crm_id=" . $arr_attr['id'] . "  and  company_id='" . $this->arrUser['company_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sqld);
 
         $Sqle = "INSERT INTO crm_social_media (crm_id,media_id,address, company_id,user_id,date_created) VALUES ";
@@ -9277,7 +12302,11 @@ class Crm extends Xtreme
 
         foreach ($arr_attr['social_mediascrm'] as $item) {
             if ($item->media_id->id)
+<<<<<<< HEAD
                 $Sqle .= "(  ".$arr_attr['id'].",'" . $item->media_id->id . "' ,'" . $item->addrees . "'," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "	,'" . current_date . "' ),";
+=======
+                $Sqle .= "(  " . $arr_attr['id'] . ",'" . $item->media_id->id . "' ,'" . $item->addrees . "'," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "	,'" . current_date . "' ),";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
 
@@ -9289,10 +12318,17 @@ class Crm extends Xtreme
         $Sql = "SELECT crm_social_media.id FROM crm_social_media INNER JOIN company ON company.id=crm_social_media.company_id
 		INNER JOIN ref_social_media ON ref_social_media.id=crm_social_media.media_id WHERE crm_social_media.company_id='" . $this->arrUser['company_id'] . "' "
             . "AND crm_social_media.user_id='" . $this->arrUser['id'] . "' AND "
+<<<<<<< HEAD
             . "crm_social_media.media_id='" . $arr_attr[media_id] . "' AND "
             . "crm_social_media.address='" . $arr_attr[address] . "'
 		AND crm_social_media.status=1 
 		AND crm_social_media.crm_id='" . $arr_attr[crm_id] . "' 
+=======
+            . "crm_social_media.media_id='" . $arr_attr['media_id'] . "' AND "
+            . "crm_social_media.address='" . $arr_attr['address'] . "'
+		AND crm_social_media.status=1 
+		AND crm_social_media.crm_id='" . $arr_attr['crm_id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		ORDER BY id DESC limit 1";
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -9306,7 +12342,11 @@ class Crm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         $Sql = "INSERT INTO crm_social_media   SET `status`=1,`crm_id`='$arr_attr[crm_id]',`media_id`='$arr_attr[media_id]' ,`address`='" . $arr_attr[address] . "',user_id='" . $this->arrUser['id'] . "' ,company_id='" . $this->arrUser['company_id'] . "', date_created=NOW()";
+=======
+        $Sql = "INSERT INTO crm_social_media   SET `status`=1,`crm_id`='" . $arr_attr['crm_id'] . "',`media_id`='$arr_attr[media_id]' ,`address`='" . $arr_attr['address'] . "',user_id='" . $this->arrUser['id'] . "' ,company_id='" . $this->arrUser['company_id'] . "', date_created=NOW()";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $RS = $this->objsetup->CSI($Sql);
@@ -9331,10 +12371,17 @@ class Crm extends Xtreme
         $order_type = "";
         $response = array();
 
+<<<<<<< HEAD
         $Sql = "SELECT crm_social_media.*, ref_social_media.name AS sname  FROM crm_social_media  INNER JOIN company ON company.id=crm_social_media.company_id INNER JOIN ref_social_media ON ref_social_media.id=crm_social_media.media_id WHERE crm_social_media.company_id='" . $this->arrUser['company_id'] . "' 	AND crm_social_media.user_id='" . $this->arrUser['id'] . "'  AND crm_social_media.status=1  AND crm_social_media.crm_id='" . $attr[crm_id] . "'    ";
 
         $total_limit = pagination_limit;
         
+=======
+        $Sql = "SELECT crm_social_media.*, ref_social_media.name AS sname  FROM crm_social_media  INNER JOIN company ON company.id=crm_social_media.company_id INNER JOIN ref_social_media ON ref_social_media.id=crm_social_media.media_id WHERE crm_social_media.company_id='" . $this->arrUser['company_id'] . "' 	AND crm_social_media.user_id='" . $this->arrUser['id'] . "'  AND crm_social_media.status=1  AND crm_social_media.crm_id='" . $attr['crm_id'] . "'    ";
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'crm_social_media', $order_type);
@@ -9368,14 +12415,22 @@ class Crm extends Xtreme
 
         //  $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $sqld = "DELETE FROM alt_contact_social_media   where    crm_id=$arr_attr[crm_id]  and  company_id='" . $this->arrUser['company_id'] . "' and alt_contact_id='$arr_attr[alt_contact_id]' ";
+=======
+        $sqld = "DELETE FROM alt_contact_social_media   where    crm_id=" . $arr_attr['crm_id'] . "  and  company_id='" . $this->arrUser['company_id'] . "' and alt_contact_id='$arr_attr[alt_contact_id]' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objsetup->CSI($sqld);
 
         $Sqle = "INSERT INTO alt_contact_social_media (alt_contact_id,crm_id,media_id,address, company_id,user_id,date_created) VALUES ";
 
         foreach ($arr_attr['alitcotact_scoial'] as $item) {
             if ($item->media_id->id)
+<<<<<<< HEAD
                 $Sqle .= "(   $arr_attr[alt_contact_id],$arr_attr[crm_id],'" . $item->media_id->id . "' ,'" . $item->addrees . "'," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "	,'" . current_date . "' ),";
+=======
+                $Sqle .= "(   $arr_attr[alt_contact_id]," . $arr_attr['crm_id'] . ",'" . $item->media_id->id . "' ,'" . $item->addrees . "'," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "	,'" . current_date . "' ),";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         //echo $Sqle;exit;
 
@@ -9386,6 +12441,7 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "SELECT alt_contact_social_media.id FROM alt_contact_social_media 
+<<<<<<< HEAD
             INNER JOIN company ON company.id=alt_contact_social_media.company_id
             INNER JOIN ref_social_media ON ref_social_media.id=alt_contact_social_media.media_id
             WHERE alt_contact_social_media.company_id='" . $this->arrUser['company_id'] . "' "
@@ -9395,6 +12451,17 @@ class Crm extends Xtreme
             . "alt_contact_social_media.media_id='" . $arr_attr[media_id] . "' AND "
             . "alt_contact_social_media.address='" . $arr_attr[address] . "'
     AND alt_contact_social_media.status=1 ORDER BY id DESC";
+=======
+                INNER JOIN company ON company.id=alt_contact_social_media.company_id
+                INNER JOIN ref_social_media ON ref_social_media.id=alt_contact_social_media.media_id
+                WHERE alt_contact_social_media.company_id='" . $this->arrUser['company_id'] . "' "
+            . "AND alt_contact_social_media.user_id='" . $this->arrUser['id'] . "' AND "
+            . "alt_contact_social_media.alt_contact_id='" . $arr_attr['alt_contact_id'] . "' AND "
+            . "alt_contact_social_media.crm_id='" . $arr_attr['crm_id'] . "' AND "
+            . "alt_contact_social_media.media_id='" . $arr_attr['media_id'] . "' AND "
+            . "alt_contact_social_media.address='" . $arr_attr['address'] . "'
+        AND alt_contact_social_media.status=1 ORDER BY id DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -9404,7 +12471,11 @@ class Crm extends Xtreme
             $response['Update'] = 0;
         } else {
             $Sql = "INSERT INTO alt_contact_social_media
+<<<<<<< HEAD
     SET `status`=1,`alt_contact_id`='$arr_attr[alt_contact_id]',`crm_id`='$arr_attr[crm_id]',`media_id`='$arr_attr[media_id]',`address`='" . $arr_attr[address] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "', date_created=NOW()";
+=======
+                    SET `status`=1,`alt_contact_id`='$arr_attr[alt_contact_id]',`crm_id`='" . $arr_attr['crm_id'] . "',`media_id`='$arr_attr[media_id]',`address`='" . $arr_attr['address'] . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "', date_created=NOW()";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
@@ -9477,8 +12548,13 @@ class Crm extends Xtreme
         $Sql = "INSERT INTO crm_credit_rating
                                         SET 
                                             `status`=1,
+<<<<<<< HEAD
                                             `crm_id`='$arr_attr[crm_id]',
                                             `title`='".$arr_attr['title']."',
+=======
+                                            `crm_id`='" . $arr_attr['crm_id'] . "',
+                                            `title`='" . $arr_attr['title'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             `description`='" . $arr_attr['description'] . "',
                                             user_id='" . $this->arrUser['id'] . "',
                                             company_id='" . $this->arrUser['company_id'] . "', 
@@ -9501,7 +12577,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_crm_credit_ratings($attr=null)
+=======
+    function get_crm_credit_ratings($attr = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $this->objGeneral->mysql_clean($attr);
         $response = array();
@@ -9585,7 +12665,11 @@ class Crm extends Xtreme
 
 		WHERE 1 " . $strWhere . "  and crm_price_offer.user_id='" . $this->arrUser['id'] . "' and crm_price_offer.company_id='" . $this->arrUser['company_id'] . "'  ";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -9658,7 +12742,11 @@ class Crm extends Xtreme
         /* ".$strWhere."  and crm_price_offer.user_id='".$this->arrUser['id']."' and crm_price_offer.company_id='".$this->arrUser['company_id']."' ORDER BY crm_price_offer.id DESC */
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -9700,7 +12788,11 @@ class Crm extends Xtreme
 
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
 
+<<<<<<< HEAD
         $loc_string = $attr[location_id];
+=======
+        $loc_string = $attr['location_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $loc_string = rtrim($loc_string, ',');
 
         $locArray = explode(',', $loc_string);
@@ -9733,7 +12825,11 @@ class Crm extends Xtreme
                 }
             }
         } else {
+<<<<<<< HEAD
             $data_pass = "  tst.crm_id='$attr[crm_id]' AND tst.product_id = '$attr[product_id]' AND
+=======
+            $data_pass = "  tst.crm_id='" . $attr['crm_id'] . "' AND tst.product_id = '" . $attr['product_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             tst.customer_product_type_id = '$attr[customer_product_type_id]' AND
                             tst.end_date >= '" . $start_date . "'";
             $total = $this->objGeneral->count_duplicate_in_sql('customer_item_info', $data_pass, $this->arrUser['company_id']);
@@ -9745,8 +12841,13 @@ class Crm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         $is_sales_vol_disc = (isset($attr['is_sales_vol_disc']))?$attr['is_sales_vol_disc']:0;
         $vat_chk = (isset($attr['vat_chk']))?$attr['vat_chk']:0;
+=======
+        $is_sales_vol_disc = (isset($attr['is_sales_vol_disc'])) ? $attr['is_sales_vol_disc'] : 0;
+        $vat_chk = (isset($attr['vat_chk'])) ? $attr['vat_chk'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "INSERT INTO customer_item_info
                               SET
@@ -9779,7 +12880,11 @@ class Crm extends Xtreme
         if ($id > 0) {
             $attr['custPriceID'] = $id;
             $attr['price_type'] = 2;
+<<<<<<< HEAD
             $this->add_customer_price_history($attr);
+=======
+            // $this->add_customer_price_history($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -9807,7 +12912,11 @@ class Crm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $loc_string = $attr[location_id];
+=======
+        $loc_string = $attr['location_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $loc_string = rtrim($loc_string, ',');
         $locArray = explode(',', $loc_string);
 
@@ -9820,7 +12929,11 @@ class Crm extends Xtreme
                                      tst.product_id = '" . $attr['product_id'] . "' AND
                                      ('" . $start_date . "' BETWEEN tst.start_date AND tst.end_date OR
                                       '" . $end_date . "'   BETWEEN tst.start_date AND tst.end_date ) AND
+<<<<<<< HEAD
                                      FIND_IN_SET($crm_loc, crm_alt_location_id) AND tst.id!=".$attr['id']."";
+=======
+                                     FIND_IN_SET($crm_loc, crm_alt_location_id) AND tst.id!=" . $attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     /*
                      * tst.end_date >= '" . $start_date . "' AND
@@ -9852,8 +12965,13 @@ class Crm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         $is_sales_vol_disc = (isset($attr['is_sales_vol_disc']))?$attr['is_sales_vol_disc']:0;
         $vat_chk = (isset($attr['vat_chk']))?$attr['vat_chk']:0;
+=======
+        $is_sales_vol_disc = (isset($attr['is_sales_vol_disc'])) ? $attr['is_sales_vol_disc'] : 0;
+        $vat_chk = (isset($attr['vat_chk'])) ? $attr['vat_chk'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE customer_item_info
                         SET
@@ -9872,9 +12990,15 @@ class Crm extends Xtreme
                               start_date = '" . $start_date . "',
                               unit_of_measure_id = '" . $attr['unit_of_measure'] . "'
 
+<<<<<<< HEAD
                               WHERE id = ".$attr['id']."  Limit 1";
 
         /* crm_alt_location_id ='" . $attr[location_id] . "', */
+=======
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+
+        /* crm_alt_location_id ='" . $attr['location_id'] . "', */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -9882,7 +13006,11 @@ class Crm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
             $attr['custPriceID'] = $attr['id'];
             $attr['price_type'] = 2;
+<<<<<<< HEAD
             $this->add_customer_price_history($attr);
+=======
+            // $this->add_customer_price_history($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -9904,6 +13032,7 @@ class Crm extends Xtreme
     {
         $strWhere = '';
         $order_type = "";
+<<<<<<< HEAD
         $response = array(); 
 
         $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);
@@ -9914,6 +13043,18 @@ class Crm extends Xtreme
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
         
+=======
+        $response = array();
+
+        $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);
+
+        $moduleForPermission = $moduleForPermission . "_pricetab";
+        $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
+
+        $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT * FROM  (Select c.*,
                         (CASE
                             WHEN moduleType = 1 THEN
@@ -9932,12 +13073,21 @@ class Crm extends Xtreme
                       c.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
  
         if ($order_clause == "")
             $order_type = "Order BY tbl.id DESC";
         else 
             $order_type = $order_clause;
         
+=======
+
+        if ($order_clause == "")
+            $order_type = "Order BY tbl.id DESC";
+        else
+            $order_type = $order_clause;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -9963,7 +13113,11 @@ class Crm extends Xtreme
                 // {
                 //     $Row['Offered_By'] = $Row['offered_by1'];
                 // }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             $response['ack'] = 1;
@@ -9972,7 +13126,11 @@ class Crm extends Xtreme
             $response['response'][] = array();
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         }        
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $tableName = $attr['priceType'] == "2,3" ? "PriceList" : "PriceOffer";
         $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($tableName);
         return $response;
@@ -9980,6 +13138,7 @@ class Crm extends Xtreme
 
     function priceOfferbyID($attr)
     {
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($attr);   
          
 
@@ -9989,14 +13148,29 @@ class Crm extends Xtreme
 
         if($attr["moduleType"] == 2){
                 $Sql = "SELECT c.*,
+=======
+        $this->objGeneral->mysql_clean($attr);
+
+
+        $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);
+
+        $moduleForPermission = $moduleForPermission . "_pricetab";
+
+        if ($attr["moduleType"] == 2) {
+            $Sql = "SELECT c.*,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             cont.contact_name AS Offered_By,
                             cont.contact_name AS first_name,
                             '' AS last_name
                         FROM sr_priceoffersel as c
                         LEFT JOIN alt_contact as cont on c.offeredByID = cont.id AND cont.module_type =2
                         WHERE c.id='" . $attr['id'] . "' ";
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT c.*,
                         CONCAT(hr.first_name,' ',hr.last_name) AS Offered_By,
@@ -10006,10 +13180,17 @@ class Crm extends Xtreme
                     LEFT JOIN sr_employee_sel as hr on c.offeredByID=hr.id
                     WHERE c.id='" . $attr['id'] . "' ";
         }
+<<<<<<< HEAD
         
         
         // echo $Sql;exit;
         
+=======
+
+
+        // echo $Sql;exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
 
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_ViewPermission);
@@ -10035,6 +13216,7 @@ class Crm extends Xtreme
             /* $result1 = $this->objsetup->get_offer_method_list();
             $response['response']['OfferMethod'] = $result1['response']; */
 
+<<<<<<< HEAD
             if($Row['moduleType']==1){
                 $result1 = $this->price_form_predata();
             }
@@ -10043,13 +13225,26 @@ class Crm extends Xtreme
             }
 
             
+=======
+            if ($Row['moduleType'] == 1) {
+                $result1 = $this->price_form_predata();
+            } elseif ($Row['moduleType'] == 2) {
+                $result1 = $this->objSrm->price_form_predata();
+            }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response']['OfferMethod'] = $result1['response']['OfferMethod'];
 
             // fetching price items function
             $result2 = $this->priceOfferItembyID($attr['priceID']);
             $response['response']['items'] = $result2['response'];
 
+<<<<<<< HEAD
            //echo "<pre>";print_r($response['response']);exit;
+=======
+            //echo "<pre>";print_r($response['response']);exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
         }
@@ -10058,6 +13253,7 @@ class Crm extends Xtreme
 
     function priceOfferItembyID($priceID)
     {
+<<<<<<< HEAD
          $Sql = "Select *
                 FROM sr_priceitemsel
                 WHERE priceID='" . $priceID . "' AND status=1 ";        
@@ -10065,6 +13261,15 @@ class Crm extends Xtreme
         
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+        $Sql = "Select *
+                FROM sr_priceitemsel
+                WHERE priceID='" . $priceID . "' AND status=1 ";
+        //echo $Sql;exit;
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -10074,6 +13279,7 @@ class Crm extends Xtreme
 
                 $itemID = $Row['itemID'];
                 $itemrecID = $Row['id'];
+<<<<<<< HEAD
                 
                 //echo "<pre>";print_r($response);exit;
 
@@ -10083,19 +13289,40 @@ class Crm extends Xtreme
 
                 // fetching price items Additional Cost function
                 $result = $this->priceListAdditionalCostbyID($itemID,$itemrecID,$priceID);
+=======
+
+                //echo "<pre>";print_r($response);exit;
+
+                // fetching price items volume function
+                $result = $this->priceOfferItemVolumebyID($itemID, $itemrecID, $priceID);
+                $Row['itemsVolume'] = $result['response'];
+
+                // fetching price items Additional Cost function
+                $result = $this->priceListAdditionalCostbyID($itemID, $itemrecID, $priceID);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Row['itemsAdditionalCost'] = $result['response'];
 
                 //$result2 = $this->objstock->get_products_setup_list($attr, 1);
 
+<<<<<<< HEAD
                 $Row['product_id'] =$itemID;
                 
+=======
+                $Row['product_id'] = $itemID;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result2 = $this->objstock->get_unit_setup_list_category_by_item($Row);
                 $Row['arr_units'] = $result2['response'];
                 //$Row['uom'] = $result['response'];
                 //$response['response']['prooduct_arr'] = $result13['response']; 
 
+<<<<<<< HEAD
                // echo "<pre>";print_r($Row);exit;
                 
+=======
+                // echo "<pre>";print_r($Row);exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
         } else {
@@ -10104,24 +13331,40 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function priceOfferItemVolumebyID($itemID,$itemrecID,$priceID)
+=======
+    function priceOfferItemVolumebyID($itemID, $itemrecID, $priceID)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $Sql = "Select id,discountType,discount,min
                 FROM priceofferitemvolume
                 WHERE priceID='" . $priceID . "' AND 
                       itemID='" . $itemID . "' AND 
+<<<<<<< HEAD
                       status=1";        
         //echo $Sql;exit;
         
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+                      status=1";
+        //echo $Sql;exit;
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             //echo "<pre>";print_r($response);exit;
@@ -10131,7 +13374,11 @@ class Crm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function priceListAdditionalCostbyID($itemID,$itemrecID,$priceID)
+=======
+    function priceListAdditionalCostbyID($itemID, $itemrecID, $priceID)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $Sql = "Select plac.id,
                         plac.description,
@@ -10146,18 +13393,30 @@ class Crm extends Xtreme
                 LEFT JOIN item_additional_cost as iac on plac.descriptionID = iac.id
                 WHERE plac.priceID='" . $priceID . "' AND 
                       plac.itemID='" . $itemID . "' AND 
+<<<<<<< HEAD
                       plac.status=1";        
         //echo $Sql;exit;
         
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+                      plac.status=1";
+        //echo $Sql;exit;
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             //echo "<pre>";print_r($response);exit;
@@ -10174,18 +13433,30 @@ class Crm extends Xtreme
                 WHERE
                       itemID='" . $itemID . "' AND 
                       type=2 AND
+<<<<<<< HEAD
                       status=1";        
         //echo $Sql;exit;
         
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+                      status=1";
+        //echo $Sql;exit;
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             //echo "<pre>";print_r($response);exit;
@@ -10201,22 +13472,36 @@ class Crm extends Xtreme
         $itemsArr = $attr['items'];
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);          
 
         $moduleForPermission = $moduleForPermission . "_pricetab"; 
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);
+
+        $moduleForPermission = $moduleForPermission . "_pricetab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $start_date = $this->objGeneral->convert_date($attr['offer_date']);
         $end_date = $this->objGeneral->convert_date($attr['offer_valid_date']);
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $data_pass = "  tst.moduleID='$attr[moduleID]' AND 
                         tst.moduleType='" . $attr['moduleType'] . "' AND
                         tst.priceType='" . $attr['priceType'] . "' AND
                         tst.name = '" . $attr['name'] . "' AND
                         tst.end_date >= '" . $start_date . "'";
 
+<<<<<<< HEAD
         $total = $this->objGeneral->count_duplicate_in_sql('priceoffer',$data_pass,$this->arrUser['company_id']);
+=======
+        $total = $this->objGeneral->count_duplicate_in_sql('priceoffer', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 0;
@@ -10250,7 +13535,11 @@ class Crm extends Xtreme
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
 
@@ -10260,11 +13549,18 @@ class Crm extends Xtreme
             $response['edit'] = 0;
             $response['id'] = $id;
 
+<<<<<<< HEAD
             foreach($itemsArr as $item)
             {
                 $itemID = $item->ItemID;
                 $moduleID = $attr['moduleID'];
                 $moduleType = $attr['moduleType'];            
+=======
+            foreach ($itemsArr as $item) {
+                $itemID = $item->ItemID;
+                $moduleID = $attr['moduleID'];
+                $moduleType = $attr['moduleType'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $sql2 = " SELECT count(pf.id) as total 
                         FROM priceofferitem AS pft
@@ -10274,7 +13570,11 @@ class Crm extends Xtreme
                                 pf.moduleID='" . $moduleID . "' AND 
                                 pf.moduleType='" . $moduleType . "' AND 
                                 pft.status=1  AND 
+<<<<<<< HEAD
                                 pf.id != ".$attr['id']." AND
+=======
+                                pf.id != " . $attr['id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 (('" . $start_date . "' BETWEEN pf.start_date AND pf.end_date) OR 
                                 ('" . $start_date . "' >= pf.start_date AND pf.end_date = 0) OR 
                                 ('" . $end_date . "' BETWEEN pf.start_date AND pf.end_date) OR 
@@ -10286,15 +13586,23 @@ class Crm extends Xtreme
                 if ($rs2->fields['total'] > 0) {
                     $this->Conn->rollbackTrans();
                     $this->Conn->autoCommit = true;
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $response['ack'] = 0;
                     $response['error'] = 'Price offer dates for Item ovelaps with previous price offer!';
                     return $response;
                 }
             }
 
+<<<<<<< HEAD
             foreach($itemsArr as $item)
             {
+=======
+            foreach ($itemsArr as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $item->itemID = $item->ItemID;
                 $item->uomID = $item->UOM->id;
                 $item->startDate = $attr['offer_date'];
@@ -10320,14 +13628,24 @@ class Crm extends Xtreme
 
     function updatePriceOffer($attr)
     {
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);          
 
         $moduleForPermission = $moduleForPermission . "_pricetab"; 
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider($attr["moduleType"], $attr["moduleID"]);
+
+        $moduleForPermission = $moduleForPermission . "_pricetab";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $itemsArr = $attr['items'];
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $start_date = $this->objGeneral->convert_date($attr['offer_date']);
         $end_date = $this->objGeneral->convert_date($attr['offer_valid_date']);
 
@@ -10337,7 +13655,11 @@ class Crm extends Xtreme
                         tst.moduleType='" . $attr['moduleType'] . "' AND
                         tst.priceType='" . $attr['priceType'] . "' AND
                         tst.name = '" . $attr['name'] . "' AND
+<<<<<<< HEAD
                         tst.end_date >= '" . $start_date . "' AND tst.id!=".$attr['id']."";
+=======
+                        tst.end_date >= '" . $start_date . "' AND tst.id!=" . $attr['id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total = $this->objGeneral->count_duplicate_in_sql('priceoffer', $data_pass, $this->arrUser['company_id']);
 
@@ -10345,9 +13667,15 @@ class Crm extends Xtreme
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists in Same Dates!';
             return $response;
+<<<<<<< HEAD
         }      
         $offeredByID = (isset($attr['offeredByID']) && $attr['offeredByID'] != '') ? $attr['offeredByID'] : '0';
         
+=======
+        }
+        $offeredByID = (isset($attr['offeredByID']) && $attr['offeredByID'] != '') ? $attr['offeredByID'] : '0';
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "UPDATE priceoffer
                         SET
                               name = '" . $attr['name'] . "',
@@ -10359,7 +13687,11 @@ class Crm extends Xtreme
                               ChangedBy='" . $this->arrUser['id'] . "',
                               ChangedOn='" . $current_date . "'
 
+<<<<<<< HEAD
                               WHERE id = ".$attr['id']."  Limit 1";
+=======
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //addslashes($attr['name']) 
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddEditPermission);
 
@@ -10367,20 +13699,33 @@ class Crm extends Xtreme
         // $RS = $this->objsetup->CSI($Sql);
 
         // if ($this->Conn->Affected_Rows() > 0) {
+<<<<<<< HEAD
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['edit'] = 1;
+=======
+        $response['ack'] = 1;
+        $response['error'] = NULL;
+        $response['edit'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // print_r($attr);exit;
         // print_r($attr['items']);exit;       
 
 
         $priceID = $attr['id'];
 
+<<<<<<< HEAD
         foreach($itemsArr as $item)
         {
             $itemID = $item->ItemID;
             $moduleID = $attr['moduleID'];
             $moduleType = $attr['moduleType'];            
+=======
+        foreach ($itemsArr as $item) {
+            $itemID = $item->ItemID;
+            $moduleID = $attr['moduleID'];
+            $moduleType = $attr['moduleType'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $sql2 = " SELECT count(pf.id) as total 
                       FROM priceofferitem AS pft
@@ -10390,7 +13735,11 @@ class Crm extends Xtreme
                             pf.moduleID='" . $moduleID . "' AND 
                             pf.moduleType='" . $moduleType . "' AND 
                             pft.status=1  AND 
+<<<<<<< HEAD
                             pf.id != ".$attr['id']." AND
+=======
+                            pf.id != " . $attr['id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (('" . $start_date . "' BETWEEN pf.start_date AND pf.end_date) OR 
                             ('" . $start_date . "' >= pf.start_date AND pf.end_date = 0) OR 
                             ('" . $end_date . "' BETWEEN pf.start_date AND pf.end_date) OR 
@@ -10406,17 +13755,27 @@ class Crm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         foreach($itemsArr as $item)
         {
             
+=======
+        foreach ($itemsArr as $item) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $item->itemID = $item->ItemID;
             $item->uomID = $item->UOM->id;
             $item->priceID = $attr['id'];
             $item = json_decode(json_encode($item), True);
             self::addPriceOfferItem($item);
         }
+<<<<<<< HEAD
         
                
+=======
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // } else {
         //     $response['ack'] = 1;
         //     $response['error'] = 'Record not update!';
@@ -10430,14 +13789,23 @@ class Crm extends Xtreme
         // echo "hello";exit;
         $start_date = $this->objGeneral->convert_date($attr['date_from']);
         $end_date = $this->objGeneral->convert_date($attr['date_to']);
+<<<<<<< HEAD
         
         if($end_date == 0)
         {
+=======
+
+        if ($end_date == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $end_date = 4099299120;
         }
         $Sql = "SELECT *, COUNT(*) AS total_records FROM product_price
                 WHERE
+<<<<<<< HEAD
                     type = ".$attr['type']." AND
+=======
+                    type = " . $attr['type'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     product_id IN($attr[selected_items]) AND
                     start_date <= $start_date AND end_date >= $end_date
                 GROUP BY product_id
@@ -10455,17 +13823,28 @@ class Crm extends Xtreme
                 $Row['productUOM'] = self::getProductUOM($Row['product_id']);
                 $response['response'][] = $Row;
             }
+<<<<<<< HEAD
         }
         else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
         }
         // echo '<pre>';print_r($response);exit;
         return $response;
+<<<<<<< HEAD
 
     }
 
     function getProductUOM($product_id){
+=======
+    }
+
+    function getProductUOM($product_id)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sqla = "SELECT c.product_id,c.id,
                         c.quantity,
                         us.title as name,
@@ -10486,11 +13865,18 @@ class Crm extends Xtreme
         $RSa = $this->objsetup->CSI($Sqla);
 
         if ($RSa->RecordCount() > 0) {
+<<<<<<< HEAD
             while($Rowa = $RSa->FetchRow())
             {
                 foreach ($Rowa as $key => $value) {
                     if (is_numeric($key)) unset($Rowa[$key]);
                 }         
+=======
+            while ($Rowa = $RSa->FetchRow()) {
+                foreach ($Rowa as $key => $value) {
+                    if (is_numeric($key)) unset($Rowa[$key]);
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $response[] = $Rowa;
             }
@@ -10505,6 +13891,7 @@ class Crm extends Xtreme
         $where_id = "";
         // $this->objGeneral->mysql_clean($attr);
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
+<<<<<<< HEAD
        $id =$attr['id'];
        
        $minOrderQty = (isset($attr['Min']) && $attr['Min']!='')?$attr['Min']:0;
@@ -10526,20 +13913,52 @@ class Crm extends Xtreme
                        tst.itemID='" . $attr['itemID'] . "' $where_id";
 
         $total = $this->objGeneral->count_duplicate_in_sql('priceofferitem',$data_pass,$this->arrUser['company_id']);
+=======
+        $id = $attr['id'];
+
+        $minOrderQty = (isset($attr['Min']) && $attr['Min'] != '') ? $attr['Min'] : 0;
+        $maxOrderQty = (isset($attr['Max']) && $attr['Max'] != '') ? $attr['Max'] : 0;
+        $maxPurchasePriceoffer = (isset($attr['maxPurchasePriceLCY']) && $attr['maxPurchasePriceLCY'] != '') ? $attr['maxPurchasePriceLCY'] : 0;
+        $min_max_price = (isset($attr['min_max_price']) && $attr['min_max_price'] != '') ? $attr['min_max_price'] : 0;
+        $minAllowedQty = (isset($attr['minAllowedQty']) && $attr['minAllowedQty'] != '') ? $attr['minAllowedQty'] : 0;
+        $maxAllowedQty = (isset($attr['maxAllowedQty']) && $attr['maxAllowedQty'] != '') ? $attr['maxAllowedQty'] : 0;
+        $standard_price = (isset($attr['StdPrice']) && $attr['StdPrice'] != '') ? Round($attr['StdPrice'], 3) : 0;
+        $price_offer = (isset($attr['priceoffer']) && $attr['priceoffer'] != '') ? Round($attr['priceoffer'], 3) : 0;
+        $price_offer_lcy = (isset($attr['lCY']) && $attr['lCY'] != '') ? Round($attr['lCY'], 3) : 0;
+
+
+
+        if (!empty($id))
+            $where_id = "AND tst.id <>  '$id' ";
+
+        $data_pass = " tst.priceID='$attr[priceID]' AND 
+                       tst.itemID='" . $attr['itemID'] . "' $where_id";
+
+        $total = $this->objGeneral->count_duplicate_in_sql('priceofferitem', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
             return $response;
+<<<<<<< HEAD
         }  
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $uomID = ($attr['UOM']['id'] != "") ? $attr['UOM']['id']  : 0;
         if ($id > 0) {
             $Sql = "UPDATE priceofferitem
                         SET                              
                               uomID = '" . $uomID . "',
                               itemOfferPrice = '" . $price_offer . "',
+<<<<<<< HEAD
                               itemOfferPriceLcy = '". $price_offer_lcy."',
                               maxPurchasePrice = '". $maxPurchasePriceoffer."',
+=======
+                              itemOfferPriceLcy = '" . $price_offer_lcy . "',
+                              maxPurchasePrice = '" . $maxPurchasePriceoffer . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               min_max_price = '$min_max_price',
                               standard_price = '$standard_price',
                               minAllowedQty = '$minAllowedQty',
@@ -10549,6 +13968,7 @@ class Crm extends Xtreme
                               ChangedBy='" . $this->arrUser['id'] . "',
                               ChangedOn='" . $current_date . "'
 
+<<<<<<< HEAD
                               WHERE id = ".$attr['id']."  Limit 1";
 
             // echo $Sql."<hr>"; exit;
@@ -10556,14 +13976,29 @@ class Crm extends Xtreme
         }
         else{
          
+=======
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+
+            // echo $Sql."<hr>"; exit;
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO priceofferitem
                                 SET
                                     priceID = '" . $attr['priceID'] . "',
                                     itemID = '" . $attr['ItemID'] . "',
+<<<<<<< HEAD
                                     uomID = '" .$uomID . "',
                                     itemOfferPrice = '" . $price_offer . "',
                                     itemOfferPriceLcy = '". $price_offer_lcy."',
                                     maxPurchasePrice = '". $maxPurchasePriceoffer."',
+=======
+                                    uomID = '" . $uomID . "',
+                                    itemOfferPrice = '" . $price_offer . "',
+                                    itemOfferPriceLcy = '" . $price_offer_lcy . "',
+                                    maxPurchasePrice = '" . $maxPurchasePriceoffer . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     minQty = '" . $minOrderQty . "',
                                     maxQty = '" . $maxOrderQty . "',
                                     min_max_price = '$min_max_price',
@@ -10582,12 +14017,17 @@ class Crm extends Xtreme
             $id = $this->Conn->Insert_ID();
         }
 
+<<<<<<< HEAD
         foreach($attr['discountDetails'] as $discount_details)
         {
+=======
+        foreach ($attr['discountDetails'] as $discount_details) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $discount_details['discountType'] = $attr['discountType'];
             $discount_details['type'] = $attr['type'];
             $discount_details['priceID'] = $attr['priceID'];
             $discount_details['itemID'] = $attr['ItemID'];
+<<<<<<< HEAD
             
             // print_r( $discount_details);exit;
             // $item = json_decode(json_encode($item), True);
@@ -10596,6 +14036,15 @@ class Crm extends Xtreme
 
         foreach($attr['additionalCosts'] as $additional_costs)
         {
+=======
+
+            // print_r( $discount_details);exit;
+            // $item = json_decode(json_encode($item), True);
+            self::addPriceOfferItemVolume($discount_details);
+        }
+
+        foreach ($attr['additionalCosts'] as $additional_costs) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $additional_costs['priceID'] = $attr['priceID'];
             $additional_costs['itemID'] = $attr['ItemID'];
 
@@ -10606,9 +14055,15 @@ class Crm extends Xtreme
             $additional_costs['endDate'] = $attr['endDate'];
             $additional_costs['descriptionIDs'] = $additional_costs['iacid'];
             $additional_costs['descriptionName'] = $additional_costs['description'];
+<<<<<<< HEAD
             
             // print_r( $additional_costs);exit;
              self::addPriceListAdditionalCost($additional_costs);
+=======
+
+            // print_r( $additional_costs);exit;
+            self::addPriceListAdditionalCost($additional_costs);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
 
@@ -10629,12 +14084,20 @@ class Crm extends Xtreme
     function deletePriceOffer($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $Sql = "Delete from priceoffer WHERE id = ".$attr['id']." AND SR_CheckTransactionBeforeDelete(".$attr['id'].", ".$this->arrUser['company_id'].", 33,0) = 'success'";
+=======
+        $Sql = "Delete from priceoffer WHERE id = " . $attr['id'] . " AND SR_CheckTransactionBeforeDelete(" . $attr['id'] . ", " . $this->arrUser['company_id'] . ", 33,0) = 'success'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $Sql = "Delete from priceoffer WHERE id = $attr[offeredByID]";
         // echo $Sql."<hr>"; exit;
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "crm_pricetab", sr_DeletePermission);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -10644,11 +14107,16 @@ class Crm extends Xtreme
         }
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function deletePriceOfferItem($attr)
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         if($attr['priceID']>0){
 
             $Sql = "DELETE FROM priceofferitem 
@@ -10661,16 +14129,37 @@ class Crm extends Xtreme
             $Sql = "DELETE FROM priceofferitemvolume 
                     WHERE priceID = $attr[priceID] and 
                           itemID = $attr[ItemID] AND SR_CheckTransactionBeforeDelete($attr[priceID], ".$this->arrUser['company_id'].", 33,0) = 'success'";
+=======
+        if ($attr['priceID'] > 0) {
+
+            $Sql = "DELETE FROM priceofferitem 
+                    WHERE priceID = $attr[priceID] and 
+                          itemID = $attr[ItemID]  AND SR_CheckTransactionBeforeDelete($attr[priceID], " . $this->arrUser['company_id'] . ", 33,0) = 'success'";
+            // echo $Sql."<hr>"; exit;
+            $RS = $this->objsetup->CSI($Sql);
+
+            // delete all of items discount also
+            $Sql = "DELETE FROM priceofferitemvolume 
+                    WHERE priceID = $attr[priceID] and 
+                          itemID = $attr[ItemID] AND SR_CheckTransactionBeforeDelete($attr[priceID], " . $this->arrUser['company_id'] . ", 33,0) = 'success'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // echo $Sql."<hr>"; exit;
             $RS = $this->objsetup->CSI($Sql);
 
             // delete all of items Additional Cost
             $Sql2 = "DELETE FROM price_list_additional_cost 
                      WHERE priceID = $attr[priceID] and 
+<<<<<<< HEAD
                            itemID = $attr[ItemID] AND SR_CheckTransactionBeforeDelete($attr[priceID], ".$this->arrUser['company_id'].", 33,0) = 'success'";
             // echo $Sql2."<hr>"; exit;
             $RS2 = $this->objsetup->CSI($Sql2);
             
+=======
+                           itemID = $attr[ItemID] AND SR_CheckTransactionBeforeDelete($attr[priceID], " . $this->arrUser['company_id'] . ", 33,0) = 'success'";
+            // echo $Sql2."<hr>"; exit;
+            $RS2 = $this->objsetup->CSI($Sql2);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($this->Conn->Affected_Rows() > 0) {
                 $response['ack'] = 1;
                 $response['error'] = NULL;
@@ -10678,12 +14167,20 @@ class Crm extends Xtreme
                 $response['ack'] = 0;
                 $response['error'] = 'Record can\'t be deleted!';
             }
+<<<<<<< HEAD
 
         }else{
             $response['ack'] = 1;
             $response['error'] = NULL;
         }
         
+=======
+        } else {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -10691,10 +14188,17 @@ class Crm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
         $Sql = "DELETE FROM priceofferitemvolume  
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']."";
         // echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+                WHERE id = " . $attr['id'] . "";
+        // echo $Sql."<hr>"; exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -10713,6 +14217,7 @@ class Crm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
 
+<<<<<<< HEAD
         $minOrderQty = (isset($attr['Min']) && $attr['Min']!='')?$attr['Min']:0;
         if($minOrderQty == 0)
         {
@@ -10726,6 +14231,20 @@ class Crm extends Xtreme
         if (!empty($attr['id']))
             $where_id = "AND tst.id <> '".$attr['id']."' ";
         
+=======
+        $minOrderQty = (isset($attr['Min']) && $attr['Min'] != '') ? $attr['Min'] : 0;
+        if ($minOrderQty == 0) {
+            $minOrderQty = (isset($attr['min']) && $attr['min'] != '') ? $attr['min'] : 0;
+        }
+        $priceID = (isset($attr['priceID']) && $attr['priceID'] != '') ? $attr['priceID'] : 'NULL';
+        $type = (isset($attr['type']) && $attr['type'] != '') ? $attr['type'] : '1';
+
+        $id = $attr['id'];
+
+        if (!empty($attr['id']))
+            $where_id = "AND tst.id <> '" . $attr['id'] . "' ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* $data_pass = " tst.priceID='$priceID' AND 
                        tst.itemID='" . $attr['itemID'] . "' AND 
                        tst.discount='" . $attr['discount'] . "' AND 
@@ -10739,7 +14258,11 @@ class Crm extends Xtreme
             return $response;
         }   */
 
+<<<<<<< HEAD
         $discount =  (isset($attr['discount']) && $attr['discount']!='')? Round($attr['discount'],2):0;
+=======
+        $discount =  (isset($attr['discount']) && $attr['discount'] != '') ? Round($attr['discount'], 2) : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($attr['id'] > 0) {
             $Sql = "UPDATE priceofferitemvolume
                         SET                              
@@ -10749,12 +14272,20 @@ class Crm extends Xtreme
                               ChangedBy='" . $this->arrUser['id'] . "',
                               ChangedOn='" . $current_date . "'
 
+<<<<<<< HEAD
                               WHERE id = ".$attr['id']."  Limit 1";
         //   echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         }
         else{
         
+=======
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+            //   echo $Sql."<hr>"; exit;
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO priceofferitemvolume
                                 SET
                                     priceID = " . $priceID . ",
@@ -10764,7 +14295,11 @@ class Crm extends Xtreme
                                     min = '" . $minOrderQty . "',
                                     user_id='" . $this->arrUser['id'] . "',
                                     status=1,
+<<<<<<< HEAD
                                     type = ".$type.",
+=======
+                                    type = " . $type . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     company_id='" . $this->arrUser['company_id'] . "',
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn=UNIX_TIMESTAMP (NOW()),
@@ -10773,7 +14308,11 @@ class Crm extends Xtreme
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
+<<<<<<< HEAD
         }    
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
@@ -10799,12 +14338,21 @@ class Crm extends Xtreme
         $startDate = $this->objGeneral->convert_date($attr['startDate']);
         $endDate = $this->objGeneral->convert_date($attr['endDate']);
 
+<<<<<<< HEAD
         $cost = (isset($attr['cost']) && $attr['cost']!='')?$attr['cost']:0;
         $currencyID = (isset($attr['currencyID']) && $attr['currencyID']!='')?$attr['currencyID']:0;
         $currencyCode = (isset($attr['currencyCode']) && $attr['currencyCode']!='')?$attr['currencyCode']:0;
         $cost_gl_code_id = (isset($attr['cost_gl_code_id']) && $attr['cost_gl_code_id']!='')?$attr['cost_gl_code_id']:0;
         $priceID = (isset($attr['priceID']) && $attr['priceID']!='')?$attr['priceID']:0;
         $descriptionID = (isset($attr['descriptionIDs']) && $attr['descriptionIDs']!='')?$attr['descriptionIDs']:0;
+=======
+        $cost = (isset($attr['cost']) && $attr['cost'] != '') ? $attr['cost'] : 0;
+        $currencyID = (isset($attr['currencyID']) && $attr['currencyID'] != '') ? $attr['currencyID'] : 0;
+        $currencyCode = (isset($attr['currencyCode']) && $attr['currencyCode'] != '') ? $attr['currencyCode'] : 0;
+        $cost_gl_code_id = (isset($attr['cost_gl_code_id']) && $attr['cost_gl_code_id'] != '') ? $attr['cost_gl_code_id'] : 0;
+        $priceID = (isset($attr['priceID']) && $attr['priceID'] != '') ? $attr['priceID'] : 0;
+        $descriptionID = (isset($attr['descriptionIDs']) && $attr['descriptionIDs'] != '') ? $attr['descriptionIDs'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $sql2 = " SELECT count(pf.id) as total 
                     FROM priceofferitem AS pft
@@ -10828,6 +14376,7 @@ class Crm extends Xtreme
             $response['error'] = 'Price offer dates for Item ovelaps with previous price offer!';
             return $response;
         }
+<<<<<<< HEAD
         
         $id =$attr['id'];
 
@@ -10840,41 +14389,79 @@ class Crm extends Xtreme
                        //tst.description='" . $attr['description'] . "'
 
         $total = $this->objGeneral->count_duplicate_in_sql('price_list_additional_cost',$data_pass,$this->arrUser['company_id']);
+=======
+
+        $id = $attr['id'];
+
+        if (!empty($attr['id']))
+            $where_id = "AND tst.id <>  '" . $attr['id'] . "' ";
+
+        $data_pass = " tst.priceID='$priceID' AND 
+                       tst.itemID='" . $attr['itemID'] . "' AND 
+                       tst.descriptionID='" . $descriptionID . "' $where_id";
+        //tst.description='" . $attr['description'] . "'
+
+        $total = $this->objGeneral->count_duplicate_in_sql('price_list_additional_cost', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
             return $response;
+<<<<<<< HEAD
         }  
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($attr['id'] > 0) {
             $Sql = "UPDATE price_list_additional_cost
                         SET                              
                               descriptionID = '" . $descriptionID . "',
                               description = '" . $attr['descriptionName'] . "',
+<<<<<<< HEAD
                               cost = '" . $cost. "',
                               currencyID= '" . $currencyID. "',
                               currencyCode= '" . $currencyCode. "',
+=======
+                              cost = '" . $cost . "',
+                              currencyID= '" . $currencyID . "',
+                              currencyCode= '" . $currencyCode . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               cost_gl_code_id = '" . $cost_gl_code_id . "',
                               cost_gl_code = '" . $attr['cost_gl_code'] . "',
                               ChangedBy='" . $this->arrUser['id'] . "',
                               ChangedOn='" . $current_date . "'
 
+<<<<<<< HEAD
                               WHERE id = ".$attr['id']."  Limit 1";
          //  echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         }
         else{
         
+=======
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+            //  echo $Sql."<hr>"; exit;
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO price_list_additional_cost
                                 SET
                                     priceID = " . $priceID . ",
                                     itemID = '" . $attr['itemID'] . "',
                                     descriptionID = '" . $descriptionID . "',
                                     description = '" . $attr['descriptionName'] . "',
+<<<<<<< HEAD
                                     cost = '" . $cost. "',
                                     currencyID= '" . $currencyID. "',
                                     currencyCode= '" . $currencyCode. "',
+=======
+                                    cost = '" . $cost . "',
+                                    currencyID= '" . $currencyID . "',
+                                    currencyCode= '" . $currencyCode . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     cost_gl_code_id = '" . $cost_gl_code_id . "',
                                     cost_gl_code = '" . $attr['cost_gl_code'] . "',
                                     user_id='" . $this->arrUser['id'] . "',
@@ -10887,7 +14474,11 @@ class Crm extends Xtreme
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
+<<<<<<< HEAD
         }    
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
@@ -10906,6 +14497,7 @@ class Crm extends Xtreme
     function deletePriceListAdditionalCost($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $Sql = "DELETE FROM price_list_additional_cost as plac 
                 WHERE plac.id = ".$attr['id']."  AND SR_CheckTransactionBeforeDelete(plac.priceID, ".$this->arrUser['company_id'].", 33,0) = 'success";
@@ -10913,6 +14505,15 @@ class Crm extends Xtreme
 
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+
+        $Sql = "DELETE FROM price_list_additional_cost as plac 
+                WHERE plac.id = " . $attr['id'] . "  AND SR_CheckTransactionBeforeDelete(plac.priceID, " . $this->arrUser['company_id'] . ", 33,0) = 'success";
+        // echo $Sql."<hr>"; exit;
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -10926,11 +14527,19 @@ class Crm extends Xtreme
     function conversion_price_list($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $Sql = "UPDATE priceoffer
                         SET
                               priceType = '3'
                               WHERE id = ".$attr['id']."  Limit 1";
+=======
+
+        $Sql = "UPDATE priceoffer
+                        SET
+                              priceType = '3'
+                              WHERE id = " . $attr['id'] . "  Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -11005,7 +14614,11 @@ class Crm extends Xtreme
         //echo $Sql; exit;
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -11177,6 +14790,7 @@ class Crm extends Xtreme
         }
         return $response;
     }
+<<<<<<< HEAD
     
     function getPurchaseOrderListings($attr)
     {
@@ -11187,6 +14801,18 @@ class Crm extends Xtreme
 
         if(isset($attr['invoice_id']) && $attr['invoice_id']>0){
             $where_clause = " AND d.id <> ".$attr['invoice_id']." ";
+=======
+
+    function getPurchaseOrderListings($attr)
+    {
+        //print_r($attr);
+        $response = array();
+        $where_clause = "";
+        // $where_clause = " AND d.type in (3, 4) ";
+
+        if (isset($attr['invoice_id']) && $attr['invoice_id'] > 0) {
+            $where_clause = " AND d.id <> " . $attr['invoice_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "SELECT  d.*, currency.code AS currency_code
@@ -11195,7 +14821,11 @@ class Crm extends Xtreme
                 WHERE  d.status=1   AND 
                        d.company_id=" . $this->arrUser['company_id'] . " 
                         AND d.type = 3  $where_clause
+<<<<<<< HEAD
                 Order by d.id DESC";
+=======
+                Order by d.order_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -11213,7 +14843,11 @@ class Crm extends Xtreme
 
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['rq_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -11224,10 +14858,17 @@ class Crm extends Xtreme
                 $result['cust_phone'] = $Row['cust_phone'];
                 $result['sell_to_address'] = $Row['sell_to_address'];
                 $result['sell_to_address2'] = $Row['sell_to_address2'];
+<<<<<<< HEAD
                 
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 $result['order_code'] = $Row['order_code'];
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+
+                $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
+                $result['order_code'] = $Row['order_code'];
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -11242,6 +14883,7 @@ class Crm extends Xtreme
             $response['response'][] = array();
 
         return $response;
+<<<<<<< HEAD
     }  
     
     function getPurchaseOrderInvoicesListings($attr)
@@ -11253,6 +14895,19 @@ class Crm extends Xtreme
 
         if(isset($attr['invoice_id']) && $attr['invoice_id']>0){
             $where_clause = " AND d.id <> ".$attr['invoice_id']." ";
+=======
+    }
+
+    function getPurchaseOrderInvoicesListings($attr)
+    {
+        //print_r($attr);
+        $response = array();
+        $where_clause = "";
+        // $where_clause = " AND d.type in (3, 4) ";
+
+        if (isset($attr['invoice_id']) && $attr['invoice_id'] > 0) {
+            $where_clause = " AND d.id <> " . $attr['invoice_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "SELECT  d.*, currency.code AS currency_code
@@ -11261,7 +14916,11 @@ class Crm extends Xtreme
                 WHERE  d.status=1   AND 
                        d.company_id=" . $this->arrUser['company_id'] . " 
                     $where_clause
+<<<<<<< HEAD
                 Order by d.id DESC";
+=======
+                Order by d.order_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -11279,7 +14938,11 @@ class Crm extends Xtreme
 
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['rq_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -11290,10 +14953,17 @@ class Crm extends Xtreme
                 $result['cust_phone'] = $Row['cust_phone'];
                 $result['sell_to_address'] = $Row['sell_to_address'];
                 $result['sell_to_address2'] = $Row['sell_to_address2'];
+<<<<<<< HEAD
                 
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 $result['order_code'] = $Row['order_code'];
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+
+                $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
+                $result['order_code'] = $Row['order_code'];
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -11308,13 +14978,22 @@ class Crm extends Xtreme
             $response['response'][] = array();
 
         return $response;
+<<<<<<< HEAD
     }  
     
+=======
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function getPurchaseOrderListingsForSO($attr)
     {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $defaultFilter = false;
+<<<<<<< HEAD
         $cond = $attr['cond'];       
+=======
+        $cond = $attr['cond'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!empty($attr['searchKeyword'])) {
             $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
@@ -11326,11 +15005,19 @@ class Crm extends Xtreme
             $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("PurchaseOrderListingsForSO", $this->arrUser);
         }
 
+<<<<<<< HEAD
         $response = array(); 
         $where_clause2 = ""; 
 
         if(isset($attr['invoice_id']) && $attr['invoice_id']>0){
             $where_clause2 = " AND d.id <> ".$attr['invoice_id']." ";
+=======
+        $response = array();
+        $where_clause2 = "";
+
+        if (isset($attr['invoice_id']) && $attr['invoice_id'] > 0) {
+            $where_clause2 = " AND d.id <> " . $attr['invoice_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "SELECT * FROM (SELECT  d.*, currency.code AS currency_code
@@ -11339,22 +15026,36 @@ class Crm extends Xtreme
                                 WHERE   d.status=1   AND 
                                         d.company_id=" . $this->arrUser['company_id'] . " AND 
                                         d.type = 3  $where_clause2
+<<<<<<< HEAD
                                 Order by d.id DESC) AS tbl  where 1 " . $where_clause . " ";
+=======
+                                Order by d.order_code DESC) AS tbl  where 1 " . $where_clause . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         if (!empty($attr['sort_column'])) {
             $column = 'tbl.' . $attr['sort_column'];
             $order_type = "Order BY " . $column . " DESC";
+<<<<<<< HEAD
         }
         else{
             $column = 'tbl.order_code';
         }        
+=======
+        } else {
+            $column = 'tbl.order_code';
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($order_clause == "")
             $order_type = "Order BY " . $column . " ASC";
@@ -11374,7 +15075,11 @@ class Crm extends Xtreme
                 $result['invoice_code'] = $Row['invoice_code'];
                 $result['currency_code'] = $Row['currency_code'];
 
+<<<<<<< HEAD
                 $result['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);              
+=======
+                $result['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['requested_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -11384,10 +15089,17 @@ class Crm extends Xtreme
                 $result['cust_phone'] = $Row['cust_phone'];
                 $result['sell_to_address'] = $Row['sell_to_address'];
                 $result['sell_to_address2'] = $Row['sell_to_address2'];
+<<<<<<< HEAD
                 
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 $result['order_code'] = $Row['order_code'];
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+
+                $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
+                $result['order_code'] = $Row['order_code'];
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -11397,7 +15109,11 @@ class Crm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         }  else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'][] = array();
@@ -11407,20 +15123,35 @@ class Crm extends Xtreme
         $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
 
         return $response;
+<<<<<<< HEAD
     }    
     
     function getPurchaseOrderListingsBySaleID($attr)
     {
         //print_r($attr);
         $response = array(); 
+=======
+    }
+
+    function getPurchaseOrderListingsBySaleID($attr)
+    {
+        //print_r($attr);
+        $response = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT  srminv.*,srm.id AS ids
                 FROM link_so_po d 
                 LEFT JOIN srm_invoice srminv ON srminv.id=d.purchaseOrderID     
                 LEFT JOIN srm ON srm.id=srminv.sell_to_cust_id      
                 WHERE  d.status=1   AND 
+<<<<<<< HEAD
 			    d.saleOrderID = ".$attr['id']." AND
                       d.company_id=" . $this->arrUser['company_id'] . "   
                 ORDER BY d.id DESC";
+=======
+			    d.saleOrderID = " . $attr['id'] . " AND
+                      d.company_id=" . $this->arrUser['company_id'] . "   
+                ORDER BY srminv.order_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -11437,7 +15168,11 @@ class Crm extends Xtreme
 
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['rq_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -11448,7 +15183,11 @@ class Crm extends Xtreme
                 $result['cust_order_no'] = $Row['cust_order_no'];
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 $result['order_code'] = $Row['order_code'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -11499,10 +15238,15 @@ class Crm extends Xtreme
 
         $record['num_rows'] = $total;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['location'] = $Row['depot'];
@@ -11515,8 +15259,12 @@ class Crm extends Xtreme
                 if ($Row['is_invoice_address'] > 0)
                     $address_type .= "Payment, ";
 
+<<<<<<< HEAD
                 if ($Row['is_delivery_collection_address'] > 0) 
                 {
+=======
+                if ($Row['is_delivery_collection_address'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if ($attr['module_type'] == 2)
                         $address_type .= "Collection, ";
                     else if ($attr['module_type'] == 1)
@@ -11530,10 +15278,17 @@ class Crm extends Xtreme
                 $result['address_2'] = $Row['address_2'];
                 $result['city'] = $Row['city'];
                 $result['county'] = $Row['county'];
+<<<<<<< HEAD
                 $result['postcode'] = $Row['postcode'];  
                 $result['country'] = $Row['country'];  
                 $result['is_primary'] = $Row['is_primary'];
                 $result['is_default'] = $Row['is_default'];                
+=======
+                $result['postcode'] = $Row['postcode'];
+                $result['country'] = $Row['country'];
+                $result['is_primary'] = $Row['is_primary'];
+                $result['is_default'] = $Row['is_default'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['clcontact_name'] = $Row['clcontact_name'];
                 $result['cldirect_line'] = $Row['cldirect_line'];
                 $result['clphone'] = $Row['clphone'];
@@ -11542,6 +15297,7 @@ class Crm extends Xtreme
                 $record['results'][] = $result;
             }
             $ack = 1;
+<<<<<<< HEAD
         } 
         else   
             $response['response'][] = array();
@@ -11560,15 +15316,45 @@ class Crm extends Xtreme
     /* ================      Customer Rebate Volume and Revenue History End   ================== */
 
     
+=======
+        } else
+            $response['response'][] = array();
+
+        return array(
+            'filters_dropdown' => $filters_dropdown,
+            'columns' => $head,
+            'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'],
+            'record' => array(
+                'total' => $response['total'],
+                'result' => $record['results'],
+                'response' => $record['response'],
+                'ack' => $ack
+            )
+        );
+        // return $response;
+    }
+
+    /* ================      Customer Rebate Volume and Revenue History End   ================== */
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     /* ================     Customer Portal Settings  ================== */
 
     function getPortalSettings($attr)
     {
         //print_r($attr);
+<<<<<<< HEAD
         $response = array(); 
         $Sql = "SELECT  d.*
                 FROM cust_portal_settings d    
                 WHERE d.crm_id = ".$attr['crm_id']." AND
+=======
+        $response = array();
+        $Sql = "SELECT  d.*
+                FROM cust_portal_settings d    
+                WHERE d.crm_id = " . $attr['crm_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       d.company_id=" . $this->arrUser['company_id'] . " 
                 limit 1 ";
         // echo $Sql;exit;
@@ -11586,17 +15372,25 @@ class Crm extends Xtreme
 
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else
             $response['response'][] = array();
 
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function updatePortalSettings($attr)
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $id =$attr['id'];
 
         if (!empty($attr['id']))
@@ -11606,12 +15400,27 @@ class Crm extends Xtreme
         $data_pass = " tst.crm_id='" . $crm_id . "' $where_id";
 
         $total = $this->objGeneral->count_duplicate_in_sql('cust_portal_settings',$data_pass,$this->arrUser['company_id']);
+=======
+        $id = $attr['id'];
+
+        if (!empty($attr['id']))
+            $where_id = "AND tst.id <>  '" . $attr['id'] . "' ";
+
+        $crm_id = (isset($attr['crm_id']) && $attr['crm_id'] != '') ? $attr['crm_id'] : 0;
+        $data_pass = " tst.crm_id='" . $crm_id . "' $where_id";
+
+        $total = $this->objGeneral->count_duplicate_in_sql('cust_portal_settings', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
             return $response;
+<<<<<<< HEAD
         }  
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($attr['id'] > 0) {
             $Sql = "UPDATE cust_portal_settings
@@ -11621,6 +15430,7 @@ class Crm extends Xtreme
                               custEmail = '" . $attr['custEmail'] . "',
                               ChangedBy='" . $this->arrUser['id'] . "',
                               ChangedOn=UNIX_TIMESTAMP (NOW())
+<<<<<<< HEAD
                     WHERE id = ".$attr['id']."  
                     Limit 1";
             //  echo $Sql."<hr>"; exit;
@@ -11628,6 +15438,14 @@ class Crm extends Xtreme
         }
         else{
         
+=======
+                    WHERE id = " . $attr['id'] . "  
+                    Limit 1";
+            //  echo $Sql."<hr>"; exit;
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO cust_portal_settings
                                 SET
                                     crm_id = '" . $crm_id . "',
@@ -11643,7 +15461,11 @@ class Crm extends Xtreme
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
+<<<<<<< HEAD
         }    
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
@@ -11664,15 +15486,25 @@ class Crm extends Xtreme
         $res = $this->updatePortalSettings($attr);
         // echo '<pre>';print_r($res['ack']);exit;
 
+<<<<<<< HEAD
         if($res['ack'] == 1){            
+=======
+        if ($res['ack'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $user_email = $attr['user_email'];
             $user_password = $attr['user_password'];
             $invoiceEmail = $attr['custEmail'];
             $custID = $attr['crm_id'];
+<<<<<<< HEAD
             $response = array();  
 
             $invoiceName = 'CUST,'.$custID.','.$user_email.','.$user_password.','.$this->arrUser['company_id'] .'';
+=======
+            $response = array();
+
+            $invoiceName = 'CUST,' . $custID . ',' . $user_email . ',' . $user_password . ',' . $this->arrUser['company_id'] . '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // $senderEmailID = $response['template']->senderEmail;            
             // $templateSubject = strip_tags($response['template']->templateSubject);  
@@ -11687,6 +15519,7 @@ class Crm extends Xtreme
 
             if ($RS->RecordCount() > 0) {
                 while ($row = $RS->FetchRow()) {
+<<<<<<< HEAD
                     $clientConfiguration = array('username' => $row['username'],
                                                 'alias' => $row['alias']);
                 }
@@ -11702,36 +15535,78 @@ class Crm extends Xtreme
 
                 $templateBody = $response['template']->templateBody; 
                 $mail = new \SendGrid\Mail\Mail();                     
+=======
+                    $clientConfiguration = array(
+                        'username' => $row['username'],
+                        'alias' => $row['alias']
+                    );
+                }
+            } else {
+                $clientConfiguration = array();
+            }
+
+            $rejectedInvoicesCounter = 0;
+            $sendEmailInvoicesCounter = 0;
+            $file_name = '';
+            $customer_name = '';
+
+            if (!empty($clientConfiguration)) {
+                //Mail object initialization
+
+                $response2 = [];
+
+                $templateBody = $response['template']->templateBody;
+                $mail = new \SendGrid\Mail\Mail();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $key = hash('sha256', SECRET_KEY);
                 $iv = substr(hash('sha256', SECRET_IV), 0, 16);
                 $outputInvName = openssl_encrypt($invoiceName, SECRET_METHOD, $key, 0, $iv);
                 $outputInvName = base64_encode($outputInvName);
 
+<<<<<<< HEAD
                 $file_url = WEB_PATH . '/?customer='.$outputInvName; //customerPortal.html
 
                 $emailSubject = 'Customer Portal Link';
                 $emailBody = "<p><span style=\"font-size: 12px;\">Dear Sir / Madam,</span></p><p><span style=\"font-size: 12px;\">Please click on this link to get access to Customer Portal &nbsp;</span> <a target='_blank' href='$file_url'> View Portal </a></p><p><span style=\"font-size: 12px;\">Login Details</span></p><p><span style=\"font-size: 12px;\">User Email &nbsp;:&nbsp; $user_email</span></p><p><span style=\"font-size: 12px;\">Password &nbsp;: &nbsp; $user_password</span></p><p><span style=\"font-size: 12px;\"><i>Please do not reply to this email. This is an auto generated&nbsp;email.&nbsp;</i></span><br><br></p><p><span style=\"font-size: 12px;\">Kind regards</span></p><p>Finance Team</p>"; 
+=======
+                $file_url = WEB_PATH . '/?customer=' . $outputInvName; //customerPortal.html
+
+                $emailSubject = 'Customer Portal Link';
+                $emailBody = "<p><span style=\"font-size: 12px;\">Dear Sir / Madam,</span></p><p><span style=\"font-size: 12px;\">Please click on this link to get access to Customer Portal &nbsp;</span> <a target='_blank' href='$file_url'> View Portal </a></p><p><span style=\"font-size: 12px;\">Login Details</span></p><p><span style=\"font-size: 12px;\">User Email &nbsp;:&nbsp; $user_email</span></p><p><span style=\"font-size: 12px;\">Password &nbsp;: &nbsp; $user_password</span></p><p><span style=\"font-size: 12px;\"><i>Please do not reply to this email. This is an auto generated&nbsp;email.&nbsp;</i></span><br><br></p><p><span style=\"font-size: 12px;\">Kind regards</span></p><p>Finance Team</p>";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $emailSubject = str_replace('[[customer_no]]', $rec->customer_code, $templateSubject);
                 // $emailBody .= str_replace('[[customer_no]]', $rec->customer_code, $templateBody);
 
                 $emailDetails = array(
+<<<<<<< HEAD
                     "to" => array_unique(explode(';',$invoiceEmail)),
+=======
+                    "to" => array_unique(explode(';', $invoiceEmail)),
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     "cc" => '',
                     "from" => $clientConfiguration['username'],
                     "fromName" => $clientConfiguration['alias'],
                     "subject" => $emailSubject,
                     "body" =>  $emailBody,
                     "attachment" => ''
+<<<<<<< HEAD
                 );   
             
                 if($invoiceEmail){
                     try {                    
+=======
+                );
+
+                if ($invoiceEmail) {
+                    try {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         //Recipients
                         $mail->setFrom($emailDetails['from'], $emailDetails['fromName']);
                         for ($k = 0; $k < count($emailDetails['to']); $k++) {
                             //echo '<br>'. $emailDetails['to'][$k];
                             $mail->AddTo($emailDetails['to'][$k]);
+<<<<<<< HEAD
                         }                                
                         
                         //Content
@@ -11748,33 +15623,67 @@ class Crm extends Xtreme
                                     $statusCode['statusCode'] = $value;
                                 }
                                 else if (strpos($key, "body") > -1){
+=======
+                        }
+
+                        //Content
+                        $mail->setSubject($emailDetails['subject']);
+                        $mail->addContent("text/html", $emailDetails['body']);
+
+                        // echo '<pre>';print_r($attachment);
+                        try {
+                            $result2 = $this->sendgrid->send($mail);
+                            $result2 =  (array) $result2;
+                            $statusCode = [];
+                            foreach ($result2 as $key => $value) {
+                                if (strpos($key, "statusCode") > -1) {
+                                    $statusCode['statusCode'] = $value;
+                                } else if (strpos($key, "body") > -1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $response2['body'] = json_decode($value);
                                 }
                             }
 
+<<<<<<< HEAD
                             if ($statusCode['statusCode'] == 202){
+=======
+                            if ($statusCode['statusCode'] == 202) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $response2['message'] =  "E-mail sent successfully";
                                 $response2['ack'] = 1;
                                 $response2['id'] = $res['id'];
                                 $sendEmailInvoicesCounter++;
+<<<<<<< HEAD
                                 array_push($response2['sendEmailInvoices'],$file_name); 
                             }
                             else{
+=======
+                                array_push($response2['sendEmailInvoices'], $file_name);
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $response2['mailObj'] = $mail;
                                 $response2['ack'] = 0;
                                 $response2['message'] =  $response['body']->errors[0]->message;
                             }
+<<<<<<< HEAD
                             $response2['sentData'][] = $response2;                                                   
                                     
                         } catch (Exception $e) {
                             array_push($response2['sendFailedEmailInvoices'],$file_name);                                    
                         } 
 
+=======
+                            $response2['sentData'][] = $response2;
+                        } catch (Exception $e) {
+                            array_push($response2['sendFailedEmailInvoices'], $file_name);
+                        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     } catch (Exception $e) {
                         $response2['configIssue'] = 1;
                         $response2['message'] =   $mail->ErrorInfo;
                         $response2['mailObj'] = $mail;
                         $response2['debug'] = $mail->smtp->smtp_errors;
+<<<<<<< HEAD
                         
                         $rejectedInvoicesReason .= 'Email sending Failed, ';  
                         
@@ -11809,10 +15718,44 @@ class Crm extends Xtreme
                 $response2['error'] = 'Email configuration does not exist.';  
                 $response2['rejectedInvoices'] .= 'Email configuration does not exist.';      
                 $rejectedInvoicesCounter++;   
+=======
+
+                        $rejectedInvoicesReason .= 'Email sending Failed, ';
+
+                        $rejectedInvoicesCounter++;
+                    }
+                } else {
+                    $rejectedInvoicesReason .= $customer_name . ' Email is Missing, ';
+                    $rejectedInvoicesCounter++;
+                }
+
+                // echo $sendEmailInvoicesCounter;
+                if ($sendEmailInvoicesCounter > 0 && $rejectedInvoicesCounter > 0) {
+                    $response2['ack'] = 0;
+                    $response2['error'] = $rejectedInvoicesReason;
+                } elseif ($sendEmailInvoicesCounter > 0) {
+                    $response2['ack'] = 1;
+                } elseif ($rejectedInvoicesCounter > 0) {
+                    $response2['ack'] = 0;
+                    $response2['error'] = $rejectedInvoicesReason;
+                } else {
+                    $response2['ack'] = 0;
+                    $response2['error'] = $rejectedInvoicesReason;
+                    $response2['response'] = array();
+                }
+            } else {
+
+                $response2['error'] = 'Email configuration does not exist.';
+                $response2['rejectedInvoices'] .= 'Email configuration does not exist.';
+                $rejectedInvoicesCounter++;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         return $response2;
     }
 }
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

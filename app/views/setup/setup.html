@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row"
      id="setup-view">
     <div class="col-lg-12">
@@ -6,6 +7,13 @@
              ng-controller="SetupController">
             <div id="tabs"
                  class="c-tabs no-js">
+=======
+<div class="row" id="setup-view">
+    <div class="col-lg-12">
+        <div class="panel-title2 pl0">Setup</div>
+        <div class=" ng-scope" ng-controller="SetupController">
+            <div id="tabs" class="c-tabs no-js">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <div class="c-tabs-nav">
                     <h3 style="padding: 0px 28px;
                     margin-top: 20px;
@@ -13,6 +21,7 @@
                     margin-left: -15px;
                     color: #4c4c4c;
                     font-weight: bold;    margin-bottom: 19p">Setup</h3>
+<<<<<<< HEAD
                     <a ng-show="setup_gen"
                        href="#"
                        class="c-tabs-nav__link"
@@ -99,6 +108,50 @@
                 <div class="c-tab"
                      ng-if="setup_gen"
                      ng-class="currentSetupTab == 1 ? 'is-active' : ''">
+=======
+                    <a ng-show="setup_gen" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 1 ? 'is-active' : ''" ng-click="currentSetupTab = 1">
+                        <span class="mbri-layers" style="font-size: 16px;width: 25px;"></span>
+                        <span>General</span>
+                    </a>
+                    <a ng-show="setup_fin  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 2 ? 'is-active' : ''" ng-click="currentSetupTab = 2">
+                        <span class="mbri-growing-chart" style="font-size: 16px;width: 25px;"></span>
+                        <span>Finance</span>
+                    </a>
+                    <a ng-show="setup_salescrm  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 3 ? 'is-active' : ''" ng-click="currentSetupTab = 3">
+                        <span class="mbri-sale" style="font-size: 16px;width: 25px;"></span>
+                        <span>Sales</span>
+                    </a>
+                    <a ng-show="setup_purc  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 4 ? 'is-active' : ''" ng-click="currentSetupTab = 4">
+                        <span class="mbri-shopping-bag" style="font-size: 16px;width: 25px;"></span>
+                        <span>Purchases</span>
+                    </a>
+                    <a ng-show="setup_ware  && defaultCompany != 11" href="#" ui-sref="app.warehouse" class="c-tabs-nav__link" ng-class="currentSetupTab == 5 ? 'is-active' : ''" ng-click="currentSetupTab = 5">
+                        <span class="mbri-database" style="font-size: 16px;width: 25px;"></span>
+                        <span>Warehouse</span>
+                    </a>
+                    <a ng-show="setup_inven  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 6 ? 'is-active' : ''" ng-click="currentSetupTab = 6">
+                        <span class="mbri-extension" style="font-size: 16px;width: 25px;"></span>
+                        <span>Inventory</span>
+                    </a>
+                    <a ng-show="setup_hr  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 7 ? 'is-active' : ''" ng-click="currentSetupTab = 7">
+                        <span class="mbri-user" style="font-size: 16px;width: 25px;"></span>
+                        <span>Human Resources</span>
+                    </a>
+                    <a ng-show="setup_data  && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 8 ? 'is-active' : ''" ng-click="currentSetupTab = 8">
+                        <span class="mbri-up-down" style="font-size: 16px;width: 25px;"></span>
+                        <span>Data Migration</span>
+                    </a>
+                    <a ng-show="setup_email_config && defaultCompany != 11" href="#" class="c-tabs-nav__link" ng-class="currentSetupTab == 9 ? 'is-active' : ''" ng-click="currentSetupTab = 9">
+                        <span class="mbri-letter" style="font-size: 16px;width: 25px;"></span>
+                        <span>Auto-email Templates</span>
+                    </a>
+                    <a ng-show="defaultCompany == 11" href="#" ui-sref="app.otherCompanies" class="c-tabs-nav__link" ng-class="currentSetupTab == 10 ? 'is-active' : ''" ng-click="currentSetupTab = 10">
+                        <span class="mbri-bookmark" style="font-size: 16px;width: 25px;"></span>
+                        <span>Other Companies</span>
+                    </a>
+                </div>
+                <div class="c-tab" ng-if="setup_gen" ng-class="currentSetupTab == 1 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">General</div>
@@ -107,6 +160,7 @@
                             <li>
                                 <a ui-sref="app.viewCompany({id:defaultCompany})">Company</a>
                             </li>
+<<<<<<< HEAD
                             <li>
                                 <a ui-sref="app.editCompany({id:defaultCompany,tab:'currencies'})">Currency Setup</a>
                             </li>
@@ -117,6 +171,18 @@
                                 <a ui-sref="app.widgetRoles({type:1})">Widget Roles</a>
                             </li>
                             <li>
+=======
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.editCompany({id:defaultCompany,tab:'currencies'})">Currency Setup</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.modules-codes()">Module Codes</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+                                <a ui-sref="app.widgetRoles({type:1})">Widget Roles</a>
+                            </li>
+                            <li ng-show="defaultCompany != 11">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <a ui-sref="app.widgetRoles({type:2})">Reports Roles</a>
                             </li>
                         </ul>
@@ -124,9 +190,13 @@
                         <div class="tab-grey-name">General</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_fin"
                      ng-class="currentSetupTab == 2 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_fin" ng-class="currentSetupTab == 2 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Finance</div>
@@ -202,12 +272,17 @@
                         </ul>
 
                         <!--    Exchange Rate SETUP  -->
+<<<<<<< HEAD
                         <div ng-show="show_exchange_rate_setup"
                              style="    margin-left: 21px;">
+=======
+                        <div ng-show="show_exchange_rate_setup" style="    margin-left: 21px;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class="col-md-12  ">
                                 <fieldset class="scheduler-border">
                                     <legend class="scheduler-border">G/L Account(s) Setup for Foreign Currency Movement
                                     </legend>
+<<<<<<< HEAD
                                     <div class="form-group"
                                          style="height: 40px;">
                                         <label class="col-md-3 control-label"> Realised Currency Movement </label>
@@ -235,13 +310,29 @@
                                             <input type="hidden"
                                                    ng-model="finance.unrealised_movement_gl_ac"
                                                    class="form-control" />
+=======
+                                    <div class="form-group" style="height: 40px;">
+                                        <label class="col-md-3 control-label"> Realised Currency Movement </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.realised_movement_gl_ac_code}}" ng-model="finance.realised_movement_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('realised_movement_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.realised_movement_gl_ac" class="form-control" />
+                                        </div>
+                                        <label class="col-md-3 control-label"> Unrealised Currency Movement </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.unrealised_movement_gl_ac_code}}" ng-model="finance.unrealised_movement_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('unrealised_movement_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.unrealised_movement_gl_ac" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="pull-right">
+<<<<<<< HEAD
                                             <button class="btn btn-submit"
                                                     type="button"
                                                     ng-click="addFinancial_exchange_rate(finance)"> Save
+=======
+                                            <button class="btn btn-submit" type="button" ng-click="addFinancial_exchange_rate(finance)"> Save
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </button>
                                         </div>
                                     </div>
@@ -251,12 +342,17 @@
                         <!--    Exchange Rate SETUP  -->
 
                         <!--    Discounts & Promotions  G/L Account(s) SETUP  -->
+<<<<<<< HEAD
                         <div ng-show="show_discount_promotion_gl"
                              style=" margin-left: 21px;">
+=======
+                        <div ng-show="show_discount_promotion_gl" style=" margin-left: 21px;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class="col-md-12  ">
                                 <fieldset class="scheduler-border">
                                     <legend class="scheduler-border">G/L Account(s) Setup for Discounts & Promotions
                                     </legend>
+<<<<<<< HEAD
                                     <div class="form-group"
                                          style="height: 40px;">
                                         <label class="col-md-3 control-label"> G/L Account for Volume Discounts</label>
@@ -284,13 +380,29 @@
                                             <input type="hidden"
                                                    ng-model="finance.promotion_gl_ac"
                                                    class="form-control" />
+=======
+                                    <div class="form-group" style="height: 40px;">
+                                        <label class="col-md-3 control-label"> G/L Account for Volume Discounts</label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.discount_gl_ac_code}}" ng-model="finance.discount_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('discount_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.discount_gl_ac" class="form-control" />
+                                        </div>
+                                        <label class="col-md-3 control-label"> G/L Account for Promotions </label>
+                                        <div class="col-md-3">
+                                            <input type="text" title="{{finance.promotion_gl_ac_code}}" ng-model="finance.promotion_gl_ac_code" class="in-t-1" ng-click="getGL_account_code('promotion_gl_ac')" ng-readonly="check_readonly" required />
+                                            <input type="hidden" ng-model="finance.promotion_gl_ac" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="pull-right">
+<<<<<<< HEAD
                                             <button class="btn btn-submit"
                                                     type="button"
                                                     ng-click="addFinancial_exchange_rate(finance)">Save</button>
+=======
+                                            <button class="btn btn-submit" type="button" ng-click="addFinancial_exchange_rate(finance)">Save</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         </div>
                                     </div>
                                 </fieldset>
@@ -299,9 +411,13 @@
                         <div class="tab-grey-name">Finance</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_salescrm"
                      ng-class="currentSetupTab == 3 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_salescrm" ng-class="currentSetupTab == 3 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Sales & CRM</div>
@@ -439,7 +555,11 @@
                                                 <a ui-sref="app.shipment-methods">Shipment Methods</a>
                                             </li>
                                             <li>
+<<<<<<< HEAD
                                                     <a ui-sref="app.profit-margin-analysis">Profit Margin Analysis View</a>
+=======
+                                                <a ui-sref="app.profit-margin-analysis">Profit Margin Analysis View</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </li>
                                             <li>
                                                 <a ui-sref="app.haulier-target">Haulier Target Price</a>
@@ -452,9 +572,13 @@
                         <div class="tab-grey-name">Sales</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_purc"
                      ng-class="currentSetupTab == 4 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_purc" ng-class="currentSetupTab == 4 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Purchases</div>
@@ -527,9 +651,13 @@
                 <div class="c-tab">
                     <div class="c-tab__content"></div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_inven"
                      ng-class="currentSetupTab == 6 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_inven" ng-class="currentSetupTab == 6 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Inventory</div>
@@ -557,9 +685,13 @@
                         <div class="tab-grey-name">Inventory</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_hr"
                      ng-class="currentSetupTab == 7 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_hr" ng-class="currentSetupTab == 7 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Human Resources</div>
@@ -577,9 +709,15 @@
                             <!-- <li>
                                 <a ui-sref="app.cause-of-inactivity">Cause of Inactivity</a>
                             </li> -->
+<<<<<<< HEAD
                             <!-- <li>
                                 <a ui-sref="app.sales-bucket()">View Bucket</a>
                             </li> -->
+=======
+                            <li>
+                                <a ui-sref="app.sales-bucket()">View Bucket</a>
+                            </li>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <li>
                                 <a ui-sref="app.approvals()">Approvals</a>
                             </li>
@@ -591,9 +729,13 @@
                         <div class="tab-grey-name">Human Resources</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-if="setup_data"
                      ng-class="currentSetupTab == 8 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-if="setup_data" ng-class="currentSetupTab == 8 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-12 setup-heading">
                             <div class="panel-title2 mb19">Data Migration</div>
@@ -608,6 +750,7 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('CRM-General')"
                                                    class="">General</a>
                                             </li>
@@ -626,6 +769,21 @@
                                             <li>
                                                 <a ng-click="show_migrate_pop('CRM-Notes')"
                                                    class="">Notes</a>
+=======
+                                                <a ng-click="show_migrate_pop('CRM-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Contact-Location-Mapping')" class="">Contact Location Mapping </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('CRM-Notes')" class="">Notes</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </li>
                                         </ul>
                                     </div>
@@ -640,6 +798,7 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('Customer-General')"
                                                    class="">General</a>
                                             </li>
@@ -662,6 +821,24 @@
                                             <li>
                                                 <a ng-click="show_migrate_pop('Customer-Notes')"
                                                    class="">Notes</a>
+=======
+                                                <a ng-click="show_migrate_pop('Customer-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Contact-Location-Mapping')" class="">Contact Location Mapping </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Finance')" class="">Finance</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Customer-Notes')" class="">Notes</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </li>
                                         </ul>
                                     </div>
@@ -679,6 +856,7 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('SRM-General')"
                                                    class="">General</a>
                                             </li>
@@ -689,6 +867,15 @@
                                             <li>
                                                 <a ng-click="show_migrate_pop('SRM-Location')"
                                                    class="">Location</a>
+=======
+                                                <a ng-click="show_migrate_pop('SRM-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('SRM-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('SRM-Location')" class="">Location</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </li>
                                         </ul>
                                     </div>
@@ -702,6 +889,7 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('Supplier-General')"
                                                    class="">General</a>
                                             </li>
@@ -720,6 +908,21 @@
                                             <li>
                                                 <a ng-click="show_migrate_pop('Supplier-Finance')"
                                                    class="">Finance</a>
+=======
+                                                <a ng-click="show_migrate_pop('Supplier-General')" class="">General</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Contact')" class="">Contact</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Location')" class="">Location</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Contact-Location-Mapping')" class="">Contact Location Mapping</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="show_migrate_pop('Supplier-Finance')" class="">Finance</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </li>
                                         </ul>
                                     </div>
@@ -735,8 +938,12 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a
                                                    style="background: transparent !important; cursor: default; pointer-events: none;">
+=======
+                                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     <strong>Warehouses</strong>
                                                 </a>
 
@@ -751,8 +958,12 @@
                                                 </div>
                                             </li>
                                             <li>
+<<<<<<< HEAD
                                                 <a
                                                    style="background: transparent !important; cursor: default; pointer-events: none;">
+=======
+                                                <a style="background: transparent !important; cursor: default; pointer-events: none;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     <strong>Setup</strong>
                                                 </a>
                                                 <ul>
@@ -782,12 +993,19 @@
                                                                     <li ng-click="show_migrate_pop('Item')">
                                                                         <a>Item</a>
                                                                     </li>
+<<<<<<< HEAD
                                                                     <li
                                                                         ng-click="show_migrate_pop('Item-Unit-of-Measure')">
                                                                         <a>Item Hierarchy of Unit of Measure </a>
                                                                     </li>
                                                                     <li
                                                                         ng-click="show_migrate_pop('Item-Purchase-Cost')">
+=======
+                                                                    <li ng-click="show_migrate_pop('Item-Unit-of-Measure')">
+                                                                        <a>Item Hierarchy of Unit of Measure </a>
+                                                                    </li>
+                                                                    <li ng-click="show_migrate_pop('Item-Purchase-Cost')">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                         <a>Item Purchase Cost</a>
                                                                     </li>
                                                                     <li ng-click="show_migrate_pop('Item-Sales-Price')">
@@ -818,20 +1036,32 @@
                                     <div>
                                         <ul>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('Opening-Balances-Stock')"
                                                    class="">
+=======
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Stock')" class="">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     Stock
                                                 </a>
                                             </li>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('Opening-Balances-Customer')"
                                                    class="">
+=======
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Customer')" class="">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     Customer
                                                 </a>
                                             </li>
                                             <li>
+<<<<<<< HEAD
                                                 <a ng-click="show_migrate_pop('Opening-Balances-Supplier')"
                                                    class="">
+=======
+                                                <a ng-click="show_migrate_pop('Opening-Balances-Supplier')" class="">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     Supplier
                                                 </a>
                                             </li>
@@ -845,8 +1075,12 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="c-tab"
                      ng-class="currentSetupTab == 9 ? 'is-active' : ''">
+=======
+                <div class="c-tab" ng-class="currentSetupTab == 9 ? 'is-active' : ''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="c-tab__content">
                         <ul class="col-md-3">
                             <li ng-if="currentSetupTab == 9">

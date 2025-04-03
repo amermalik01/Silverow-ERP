@@ -1,4 +1,5 @@
 <div class="widget">
+<<<<<<< HEAD
     <div class="widget-body widget_media_ipad">
         <div class="row">
             <div class="col-md-12">    
@@ -342,3 +343,442 @@
         </div>
     </div>
 </div>
+=======
+
+    <div class="widget-body widget_media_ipad">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h5 class="sales_heading" style="float:left;" ng-if="show_order">Purchase Order</h5>
+
+                <h5 class="sales_heading" style="float:left;" ng-if="show_invoice">Purchase Invoice</h5>
+
+
+
+                <h5 class="sales_heading" style="float:right;margin-right: 16px; color:green; font-style: italic;" ng-if="approvals_lock_order==1">Approved</h5>
+
+                <h5 class="sales_heading" style="float:right;margin-right: 16px; color:red; font-style: italic;" ng-if="show_order && approvals_lock_order!=1 && purchase_order_approval_req > 0">Not Approved</h5>
+
+
+                <!-- <div class="pull-right" ng-if="showReceiveStuff">
+
+                    <span class="margin-right">
+                                    <i class="fa fa-circle" style="color:#ef7372;"></i> Partially Allocated </span>
+
+                    <span class="margin-right">
+                                    <i class="fa fa-circle" style="color:#25b726;"></i> Allocated Stock </span>
+
+                    <span class="margin-right">
+                                    <i class="fa fa-circle" style="color:#ffd351;"></i> Stock Recieved</span>
+                </div> -->
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+
+                <div class="col-md-3">
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">{{title_code}}</label>
+
+                        <div ng-class="{'col-md-8':show_order,'col-md-4 pr0':show_invoice}">
+                            <!-- class="col-md-8"  -->
+
+                            <div ng-if="show_order">
+
+                                <div class="input-symbol">
+
+                                    <input type="text" class="form-control" ng-readonly="product_type" ng-model="rec.order_code" />
+
+                                    <span ng-click="unlockReadonly == 1">
+
+                                        <i class="fa fa-lock"></i>
+
+                                        <!-- <i class="fa fa-unlock-alt"></i> -->
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div ng-if="show_invoice">
+
+                                <input type="text" class="form-control" ng-readonly="product_type" ng-model="rec.invoice_code" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4" ng-if="show_invoice" style="padding-left: 5px;">
+
+                            <input type="text" class="form-control" readonly ng-model="rec.order_code" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Supplier No. <span ng-if="!(rec.id > 0)"
+
+                                  class="required"> *</span></label>
+
+                        <div class="col-md-8">
+
+                            <div class="input-symbol" ng-class="{'dont-click':check_srm_readonly}" ng-click="!check_srm_readonly && get_supplier(1);">
+
+                                <input type="text" id="sell_to_cust_no" class="form-control" required ng-model="rec.sell_to_cust_no" ng-class="{'white_bg':!check_srm_readonly}" readonly />
+
+                                <span><i class="fa fa-external-link"></i></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Name
+
+                            <!-- <span
+
+                                class="required">*</span> --></label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="sell_to_cust_name" class="form-control" ng-model="rec.sell_to_cust_name" ng-readonly="anonymousSupplierFlag || check_srm_readonly" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Address Line 1</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="sell_to_address" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.sell_to_address" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Address Line 2</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="sell_to_address2" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.sell_to_address2" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">City</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="sell_to_city" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.sell_to_city" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">County</label>
+
+
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="sell_to_county" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.sell_to_county" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
+
+                        <div class="col-md-4 pr0">
+
+                            <input type="text" id="sell_to_post_code" class="form-control text-uppercase" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.sell_to_post_code" />
+
+                        </div>
+
+                        <div class="col-md-4" style="padding-left: 5px;">
+
+                            <!-- <select class="form-control" disabled 
+
+                                ng-model="rec.country" 
+
+                                ng-attr-title="{{rec.country.name}}"
+
+                                ng-options="opt as opt.code for opt in country_type_arr">
+
+                            </select> -->
+
+                            <input type="text" value="{{rec.country.code}}" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly">
+
+                        </div>
+                        <!-- {{rec.country}} -->
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Contact Person</label>
+
+                        <div class="col-md-8">
+
+                            <div ng-show="check_read">
+
+                                <div class="input-symbol">
+
+                                    <input type="text" id="sell_to_contact_no" class="form-control" style="padding-right: 29px;" ng-model="rec.sell_to_contact_no" ng-readonly="check_srm_readonly" />
+
+                                    <span><i class="fa fa-external-link"></i></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="input-symbol" ng-class="{'dont-click':check_srm_readonly}" ng-click="getAltContact(1)">
+
+                                <input type="text" id="sell_to_contact_no" class="form-control" ng-model="rec.sell_to_contact_no" readonly ng-class="{'white_bg':!check_srm_readonly}" />
+
+                                <input type="hidden" id="sell_to_contact_id" name="sell_to_contact_id" ng-model="rec.sell_to_contact_id">
+
+                                <span><i class="fa fa-external-link"></i></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Telephone</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="cust_phone" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.cust_phone" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 ">
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Email</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="cust_email" class="form-control" ng-readonly="anonymousSupplierFlag || check_srm_readonly" ng-model="rec.cust_email" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Purchaser</label>
+
+                        <div class="col-md-8">
+
+                            <div class="input-symbol" ng-class="{'dont-click':check_srm_readonly && !check_pi_readonly}" ng-click="get_empl_list('purchaser_code')">
+
+                                <input type="text" id="purchaser_code" class="form-control" ng-model="rec.srm_purchase_code" readonly style="padding-right: 29px;" ng-class="{'white_bg':(!check_srm_readonly || check_pi_readonly)}" />
+
+                                <span><i class="fa fa-external-link"></i></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Consignment No.">Cons. No.
+
+                            <!-- <span
+
+                                class="required">*</span> required  {{show_recieve_list}}--></label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="comm_book_in_no" class="form-control" ng-model="rec.comm_book_in_no" ng-readonly="(check_srm_readonly || show_recieve_list) && !check_pi_readonly" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Supplier Order No.">Suppl. Order No.</label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="cust_order_no" class="form-control" ng-model="rec.cust_order_no" ng-readonly="check_srm_readonly && !check_pi_readonly" />
+                            <!-- ship_to_contact -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Link to Sales Order No.">Link to SO No.</label>
+
+                        <div class="col-md-8">
+
+                            <div class="panel-info pi2" ng-class="{'readonly dont-click':check_srm_readonly && !check_pi_readonly, 'max-height':selectedSaleOrderArr.length>3 }">
+
+                                <div class="panel-body " ng-click="show_list_order()">
+
+                                    <aside>
+
+                                    </aside>
+
+                                    {{selectedSaleOrders}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Invoice Date">Invoice Date<span ng-show="display_required"
+
+                                  class="required">*</span>
+
+                        </label>
+
+                        <div class="col-md-8 no-margin">
+
+                            <input jqdatepicker readonly class=" form-control " id="ck_InvoiceDate" ng-model="rec.invoice_date" ng-disabled="check_srm_readonly" ng-change="testdate_by_id('ck_OrderDate','ck_InvoiceDate','invdate_msg_leave_order');updateDueDate(rec.invoice_date)"
+                                ng-required="display_required" ng-class="{'pickdate':!check_srm_readonly}">
+
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+
+                            <span id="invdate_msg_leave_order" style="color:#F00; display: none;">Inv. Date is earlier than order Date
+
+                                <!-- must be same/after order Date --></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Supplier Invoice No.">Suppl. Invoice No.<span ng-show="display_required"
+
+                                  class="required">*</span>
+
+                        </label>
+
+                        <div class="col-md-8">
+
+                            <input type="text" id="supp_order_no" class="display_required form-control" ng-required="display_required" ng-model="rec.supp_order_no" ng-readonly="check_srm_readonly && !check_pi_readonly" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Order Date</label>
+
+                        <div class="col-md-8 no-margin">
+
+                            <input jqdatepicker required readonly class=" form-control" id="ck_OrderDate" ng-model="rec.order_date" ng-disabled="check_srm_readonly" ng-class="{'pickdate':!check_srm_readonly}" ng-change="testdate_by_id('ck_OrderDate','ck_InvoiceDate','invdate_msg_leave_order'); getPriceOffers(0,1)">
+
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+
+                            <span id="date_msg_leave_order" style="color:#F00; display: none;">Order Date is earlier than Inv Date</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" title="Requested Receipt Date">Req. Rcpt. Date</label>
+
+                        <div class="col-md-8">
+
+                            <input jqdatepicker readonly class=" form-control" id="ckDeliveryDate" ng-model="rec.requested_delivery_date" ng-disabled="check_srm_readonly" ng-class="{'pickdate':!check_srm_readonly}" ng-change="testdate_by_id('ck_OrderDate','ckDeliveryDate','invalidDeliveryDateMsg')">
+
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+
+                            <span id="invalidDeliveryDateMsg" style="color:#F00; display: none;">Requested Receipt Date must be same/after Order
+
+                                Date</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label">Receipt Date </label>
+
+                        <div class="col-md-8">
+
+                            <!--  {{PurchaseStatus}} -->
+
+                            <input jqdatepicker required readonly class=" form-control" id="receiptDate" ng-model="rec.receiptDate" ng-class="{'pickdate':!check_srm_readonly}" ng-disabled="check_srm_readonly || PurchaseStatus>0" ng-change="testdate_by_id('ck_OrderDate','receiptDate','invalidReceiptDateMsg');updateReceiptDateChk()">
+
+                            <span class="fa fa-calendar new_ca form-control-feedback"></span>
+
+                            <span id="invalidReceiptDateMsg" style="color:#F00; display: none;">Receipt Date must be same/after Order Date</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

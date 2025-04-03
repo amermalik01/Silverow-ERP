@@ -1,0 +1,64 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade" id="cost_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{cost_modal_title}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <div >
+                    <div id="dt_example" class="example_alt_pagination">
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table">
+                            <thead>
+                            <tr class="bg-col" ng-show="columns2.length > 0">
+                                <th ng-repeat="column in columns2"
+                                    ng-if="	column.title != 'Id' && column.title != 'Del Chk'  "> {{column.title}}
+                                </th>
+
+                                <th ng-if="add_cost_del_chk>0">
+                                    Action
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-body courser ">
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                            <tr ng-repeat="rec3 in warehouse_loc_History" ng-show="columns2.length > 0">
+                                <td ng-repeat="column in columns2" ng-if="column.title != 'Id'  && column.title != 'Del Chk' "
+                                    sortable="column.title">
+                                    <!--ng-click="edit_bin_loc_add_cost(rec3.id)" -->
+                                    {{rec3[column.field]}}
+                                </td>
+
+                                <th ng-if="add_cost_del_chk>0 && rec3.end_date.length==0"><!-- &&  rec3.del_chk-->
+                                    <a ng-click="delete_warehouse_loc_History(rec3.id,$index,warehouse_loc_History)"
+                                       title="Delete" class="btn ">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                            <tr ng-show="columns2.length == 0 && !showLoader">
+                                <td>No Record found agaist this entity! Please add.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

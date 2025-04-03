@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 	    
                 <div class="row">
                   <div class="col-md-3 col-md-3">
@@ -122,3 +123,128 @@
 
               </div>
               </div>
+=======
+<div class="row">
+    <div class="col-md-3 col-md-3">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Customer No.<span class="required">*</span></label>
+            <div class="col-md-8">
+                <input type="text" id="bill_to_cust_no" ng-model="rec.bill_to_cust_no" ng-click="getCustomers()" class="form-control" ng-readonly="check_so_readonly" required />
+                <input type="hidden" id="bill_to_cust_id" ng-model="rec.bill_to_cust_id" class="form-control" />
+                <!-- <input type="text" id="order_id" ng-model="rec.id" class="form-control"/> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Contact No.<span class="required">*</span></label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_contact_no" id="bill_to_contact_no" ng-click="getAltContact()" required class="form-control" ng-readonly="check_so_readonly" />
+                <input type="hidden" id="bill_to_contact_id" ng-model="rec.bill_to_contact_id" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Name</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_name" id="bill_to_name" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address </label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_address" id="bill_to_address" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 col-md-3">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Address 2</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_address2" id="bill_to_address2" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">City</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_city" id="bill_to_city" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">County</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_county" id="bill_to_county" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Postcode</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_post_code" id="bill_to_post_code" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-3">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Contact</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.bill_to_contact" id="bill_to_contact" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Payable Bank</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.payable_bank" id="payable_bank" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" title="Payment Terms">Paym. Terms</label>
+            <div class="col-md-8">
+                <select ng-model="rec.payment_terms_codes" ng-options="opt as opt.name for opt in arr_payment_terms" class="select2me form-control" ng-disabled="check_so_readonly" tabindex="7"><option style="display:none" value=""></option> </select>
+                <!-- <input type="text" ng-model="payment_terms_code" id="payment_terms_code" class="form-control" ng-readonly="check_so_readonly" /> -->
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Due Date</label>
+            <div class="col-md-8">
+                <input jqdatepicker class="2date-picker form-control" ng-model="rec.due_date" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-3">
+        <div class="form-group">
+            <label class="col-md-4 control-label" style="Payment Discount %">Paym. Disc. %</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="rec.payment_discount" id="payment_discount" class="form-control" ng-readonly="check_so_readonly" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" title="Payment Method">Paym. Method</label>
+            <div class="col-md-8">
+                <select ng-model="rec.payment_method_ids" ng-options="opt as opt.name for opt in arr_payment_methods" class="select2me form-control" ng-disabled="check_so_readonly" tabindex="7"><option style="display:none" value=""></option> </select>
+
+                <!-- <input type="text" ng-model="rec.payment_method_code" id="payment_method_code" ng-focus="getPaymentMethods()" class="form-control" ng-readonly="check_so_readonly" />
+                        <input type="hidden" ng-model="rec.payment_method_id" id="payment_method_id" class="form-control" ng-readonly="check_so_readonly" /> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" title="Price Including VAT">Price Inc. VAT</label>
+            <div class="col-md-8">
+                <input ng-disabled="check_so_readonly" type="checkbox" ng-true-value="1" ng-false-value="0" ng-checked="1 == rec.price_including_vat" ng-model="rec.price_including_vat">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="hr_line2"></div>
+        <div class="pull-right">
+            <button class="btn btn-info btn_blue" type="submit" ng-show="!check_so_readonly"><i class="fa fa-check"></i> Submit</button>
+            <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_so_readonly"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn default" type="button" ui-sref="app.orders()"><i class="fa fa-undo"></i> Cancel</button>
+        </div>
+
+    </div>
+</div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

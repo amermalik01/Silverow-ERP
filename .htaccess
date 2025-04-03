@@ -71,3 +71,6 @@ RewriteCond %{HTTP:X-Forwarded-SSL} !on
 RewriteCond %{HTTP_HOST} ^nevico-env-2.eba-69kvqubz.us-east-1.elasticbeanstalk/\.com$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.nevico-env-2\.eba-69kvqubz\.us-east-1\.elasticbeanstalk\.com$
 RewriteRule ^(.*)$ "https\:\/\/nevico-env-2\.eba-69kvqubz\.us-east-1\.elasticbeanstalk\.com\/$1" [R=301,L]
+RewriteCond %{HTTP_HOST} ^silverow.us-east-1.elasticbeanstalk/\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.silverow\.us-east-1\.elasticbeanstalk\.com$
+RewriteRule ^(.*)$ "https\:\/\/silverow\.us-east-1\.elasticbeanstalk\.com\/$1" [R=301,L]

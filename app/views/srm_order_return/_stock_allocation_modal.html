@@ -3,45 +3,71 @@
         width: 24%;
         margin-top: 5px;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     .smallwidget span {
         font-weight: normal;
         font-size: 11px;
     }
 </style>
+<<<<<<< HEAD
 <div id="stockAllocationModal"
      class="modal fade"
      role="dialog">
     <div class="modal-dialog modal-lg"
          style="width:90% !important;"
          dragable>
+=======
+<div id="stockAllocationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:90% !important;" dragable>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
+<<<<<<< HEAD
                 <button type="button"
                         class="close"
                         ng-click="updateAllocationResults()">&times;</button><!-- data-dismiss="modal" -->
+=======
+                <button type="button" class="close" ng-click="updateAllocationResults()">&times;</button>
+                <!-- data-dismiss="modal" -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <h4 class="modal-title">Stock Deallocation - Debit Note ({{rec.debitNoteCode}}) </h4>
             </div>
             <div class="modal-body">
                 <form id="stock_all_modal">
                     <div class="row">
                         <div class="col-md-4">
+<<<<<<< HEAD
                             <div class="form-group"
                                  style="margin-bottom: 0px !important;">
+=======
+                            <div class="form-group" style="margin-bottom: 0px !important;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <label class="col-md-3 control-label pl0">Item</label>
                                 <label class="col-md-9 control-label normal-font"> {{stock_item.product_code}} -
                                     {{stock_item.product_name}}&nbsp;</label>
                             </div>
+<<<<<<< HEAD
                             <div class="form-group"
                                  style="margin-bottom: 0px !important;">
+=======
+                            <div class="form-group" style="margin-bottom: 0px !important;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <label class="col-md-3 control-label pl0">Warehouse</label>
                                 <label class="col-md-9 control-label normal-font "> {{formData.warehouses_name}}
                                     &nbsp;</label>
                             </div>
+<<<<<<< HEAD
                             <div class="form-group"
                                  style="margin-bottom: 0px !important;">
+=======
+                            <div class="form-group" style="margin-bottom: 0px !important;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <label class="col-md-3 control-label pl0">Supplier</label>
                                 <label class="col-md-9 control-label normal-font ">{{rec.supplierNo}} -
                                     {{rec.supplierName}} &nbsp;</label>
@@ -56,8 +82,12 @@
                                     {{stock_item.qty | numberNoDecimalsIfZeroFilter:2:''}} <span>{{stock_item.unit_of_measure_name}}</span>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="smallwidget"
                                  ng-class="{'belowzero2 && !hide_dispatch_btn':stock_item.remainig_qty>0}">
+=======
+                            <div class="smallwidget" ng-class="{'belowzero2 && !hide_dispatch_btn':stock_item.remainig_qty>0}">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <div>
                                     Qty. To Deallocate
                                 </div>
@@ -67,8 +97,12 @@
 
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="smallwidget"
                                  ng-class="{'StkAllocated && !hide_dispatch_btn':stock_item.remainig_qty==0}">
+=======
+                            <div class="smallwidget" ng-class="{'StkAllocated && !hide_dispatch_btn':stock_item.remainig_qty==0}">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <div>
                                     Deallocated Stock
                                 </div>
@@ -88,8 +122,12 @@
                                      <span>{{stock_item.unit_of_measure_name}}</span>
                                 </div>
                             </div> -->
+<<<<<<< HEAD
                             <div class="smallwidget "
                                  ng-class="currentStock && !hide_dispatch_btn">
+=======
+                            <div class="smallwidget " ng-class="currentStock && !hide_dispatch_btn">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <div>
                                     Current Stock
                                 </div>
@@ -103,6 +141,7 @@
                 <!-- added from purchase stock popup -->
                 <hr style="margin: 14px 0 13px 0;">
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col-md-3"
                          style="margin-bottom: 6px;">
                         <div class="input-symbol">
@@ -110,6 +149,11 @@
                                    class="form-control"
                                    placeholder="Search"
                                    ng-model="searchKeyword.search">
+=======
+                    <div class="col-md-3" style="margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="searchKeyword.search">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <!-- <span>
                                 <i class="fa fa-search"></i>
                             </span> -->
@@ -120,10 +164,14 @@
                     </div>
                     <div class="col-md-1">
 
+<<<<<<< HEAD
                         <button class="btn btn-default2"
                                 type="button"
                                 ng-click="searchKeyword = {};"
                                 ng-model="strict">Clear Filter</button>
+=======
+                        <button class="btn btn-default2" type="button" ng-click="searchKeyword = {};" ng-model="strict">Clear Filter</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </div>
                     <div class="col-md-12">
                         <div>
@@ -138,6 +186,10 @@
                                                 <th>Date Received</th>
                                                 <th>Use By Date</th>
                                                 <th>Ref. No.</th>
+<<<<<<< HEAD
+=======
+                                                <th>Batch No.</th>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 <!-- <th>Warehouse </th> -->
                                                 <th title="Storage Location">Storage Loc.</th>
                                                 <th class="text-right"> Qty. Purchased
@@ -151,6 +203,7 @@
                                                 <th class="text-right" ng-if="!check_sr_readonly && stock_item.sale_status !=2">
                                                     Qty. <br/>({{stock_item.units.name}})
                                                 </th>
+<<<<<<< HEAD
                                                 <th class="text-center"
                                                     ng-if="!check_sr_readonly && stock_item.sale_status !=2">Action</th>
                                             </tr>
@@ -158,22 +211,37 @@
                                         <tbody class="fixit">
                                             <tr ng-repeat="stock in all_wh_stock | filter:searchKeyword.search"
                                                 ng-class="{'stock-done2':stock.qty_currently_returned>0, 'active-items':stock.active_line}">
+=======
+                                                <th class="text-center" ng-if="!check_sr_readonly && stock_item.sale_status !=2">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="stock in all_wh_stock | filter:searchKeyword.search" ng-class="{'stock-done2':stock.qty_currently_returned>0, 'active-items':stock.active_line}">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 <td> {{stock.invoice_date}} </td>
                                                 <!-- <td>
                                                     <a title="View Sales Order" class="tooltips_clss btn hilight " 
                                                             style="font-size: 11px;" ui-sref="app.viewOrder({id:stock.order_id})" target="_blank" > {{stock.sale_order_code}} </a>
                                                 </td> -->
                                                 <td>
+<<<<<<< HEAD
                                                     <a title="View Purchase Invoice"
                                                        class="tooltips_clss btn hilight "
                                                        style="font-size: 11px;"
                                                        ui-sref="app.viewsrminvoice({id:stock.order_id})"
                                                        target="_blank"> {{stock.invoice_code}} </a>
+=======
+                                                    <a title="View Purchase Invoice" class="tooltips_clss btn hilight " style="font-size: 11px;" ui-sref="app.viewsrminvoice({id:stock.order_id})" target="_blank"> {{stock.invoice_code}} </a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 </td>
                                                 <td>{{stock.prod_date}}</td>
                                                 <td>{{stock.date_received}}</td>
                                                 <td>{{stock.use_by_date}}</td>
                                                 <td>{{stock.container_no}}</td>
+<<<<<<< HEAD
+=======
+                                                <td title="{{stock.batch_no}}"> {{stock.batch_no}} </td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 <!-- <td title="{{stock.warehouse_name}}"> {{stock.warehouse_name}}  </td> -->
                                                 <td title="{{stock.location}}">
                                                     {{stock.location}}
@@ -211,6 +279,7 @@
                                                 <td ng-if="!check_sr_readonly">
                                                     <!--  && !hide_dispatch_btn -->
                                                     <div class="input-symbol">
+<<<<<<< HEAD
                                                         <input type="number"
                                                                step="any"
                                                                style="width:100%;"
@@ -243,6 +312,23 @@
                                             <tr ng-if="all_wh_stock.length == 0">
                                                 <td colspan="10"
                                                     class="text-center">No record found!</td>
+=======
+                                                        <input type="number" step="any" style="width:100%;" class="form-control text-right" ng-model="stock.req_qty" ng-focus="OnFocusQty(stock);" ng-click="OnFocusQty(stock);" ng-blur="OnBlurQty(stock);" ng-class="{'readonly dont-click':check_sr_readonly}">
+                                                        <!--  ng-disabled="(stock.qty_sold - stock.qty_returned) == 0" -->
+                                                        <!-- !(stock.avail_qty>0) ||  || stock_item.sale_status ==2 -->
+
+                                                    </div>
+                                                </td>
+                                                <!--  && stock_item.sale_status !=2 -->
+                                                <td class="text-center allo" ng-if="!check_sr_readonly">
+                                                    <i class="fa fa-plus" title="Allocate" ng-class="{'disable-el':!stock.active_line || disableBtnStock}" ng-click="addStockItem(stock,stock_item)"></i>
+                                                    <!-- ng-if="remainig_qty>0 && (stock.qty_sold - stock.qty_returned) > 0" -->
+                                                    <i class="fa fa-minus" title="Un-Allocate" ng-click="delStockItem(stock, stock_item)" ng-if="stock.qty_currently_returned > 0" ng-class="{'disable-el':!stock.active_line || disableBtnStock}"></i>
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="all_wh_stock.length == 0">
+                                                <td colspan="10" class="text-center">No record found!</td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             </tr>
                                         </tbody>
                                     </table>
@@ -256,9 +342,13 @@
                 <div class="pull-right">
                     <!-- <button class="btn btn-submit" type="button"  ng-click="allocate_stock();" style="width:130px;">Un-Allocate Stock</button>
                     <button class="btn btn-submit" type="button" ng-click="un_allocate_stock();" style="width:130px;">Allocate Stock </button> -->
+<<<<<<< HEAD
                     <button type="button"
                             class="btn btn-cancel"
                             ng-click="updateAllocationResults()">Close</button>
+=======
+                    <button type="button" class="btn btn-cancel" ng-click="updateAllocationResults()">Close</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 </div>
                 <!-- class="btn btn-default pull-right"  style="margin-left:10px;" data-dismiss="modal" -->
                 <!--<button type="button" class="btn btn-default pull-right btn_blue" ng-click="stock_allocate_detail(stock_item.id,1)">Detail</button>-->

@@ -16,7 +16,11 @@ $app->post('/hr/roles/user/all', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/hr/roles/user/get', function () use ($app) {
+=======
+/* $app->post('/hr/roles/user/get', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objHr, $input;
 	$array = array(
 				"id"=> $input->id
@@ -25,7 +29,11 @@ $app->post('/hr/roles/user/get', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/hr/roles/user/add', function () use ($app) {
@@ -165,7 +173,11 @@ $app->post('/hr/roles/get-user-rights-module-data', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/hr/roles/add-user-rights-module-data', function () use ($app) {
+=======
+/* $app->post('/hr/roles/add-user-rights-module-data', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objHr, $input;
 	$input_array = array();
 	foreach($input as $key => $val){
@@ -176,6 +188,7 @@ $app->post('/hr/roles/add-user-rights-module-data', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
@@ -183,6 +196,9 @@ $app->post('/hr/roles/add-user-rights-module-data', function () use ($app) {
 
 
 
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/hr/roles/user-rights-list', function () use ($app) {
 	global $objHr, $input;
@@ -240,9 +256,12 @@ $app->post('/hr/roles/delete-user-rights', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
  
 
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 /*	*********Permission******** */
@@ -258,7 +277,11 @@ $app->post('/hr/roles/permision-list', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/hr/roles/get-permision-by-id', function () use ($app) {
+=======
+/* $app->post('/hr/roles/get-permision-by-id', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objHr, $input;
 	$input_array = array();
 	foreach($input as $key => $val){
@@ -268,7 +291,11 @@ $app->post('/hr/roles/get-permision-by-id', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/hr/roles/add-permision', function () use ($app) {
 	global $objHr, $input;
 	$input_array = array();
@@ -291,7 +318,11 @@ $app->post('/hr/roles/update-permision', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/hr/roles/delete-permision', function () use ($app) {
+=======
+/* $app->post('/hr/roles/delete-permision', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objHr, $input;
 	$input_array = array();
 	foreach($input as $key => $val){
@@ -301,7 +332,11 @@ $app->post('/hr/roles/delete-permision', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 //Assign Multiple Roles To employees
 
@@ -316,4 +351,7 @@ $app->post('/hr/roles/add-multiple-role-employee', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

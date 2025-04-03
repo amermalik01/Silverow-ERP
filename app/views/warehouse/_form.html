@@ -7,14 +7,19 @@
                 <tab heading="General" class="general_information" ng-click="generalInformation()">
                     <div>
                         <div class="vertical_space"></div>
+<<<<<<< HEAD
                         <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form=""
                               novalidate="" ng-submit="add_general_warehouse(rec,drp)" name="addForm" ng-hide="showLoader">
+=======
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="add_general_warehouse(rec,drp)" name="addForm" ng-hide="showLoader">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div ng-include="'app/views/warehouse/general_form.html'"></div>
                         </form>
                         <div ng-include="'app/views/warehouse/add_storage_type_modal.html'"></div>
                     </div>
                 </tab>
                 <tab heading="Other Contacts" class="contact_information" ng-click="general_contact()">
+<<<<<<< HEAD
                     <div >
                         <div class="vertical_space"></div>
                         <div ng-include="'app/views/warehouse/contact_listing.html'"
@@ -22,11 +27,18 @@
                         <form autocomplete="off" class="form-horizontal no-margin parsley-validate"
                               data-validate="parsley" role="form" ng-submit="add_srm_contact(rec2)"
                               name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+=======
+                    <div>
+                        <div class="vertical_space"></div>
+                        <div ng-include="'app/views/warehouse/contact_listing.html'" ng-show="altContacListingShow"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin parsley-validate" data-validate="parsley" role="form" ng-submit="add_srm_contact(rec2)" name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div ng-include="'app/views/warehouse/contact_form.html'" ng-show="altContacFormShow"></div>
                         </form>
                     </div>
                 </tab>
                 <tab heading="Storage Location" class="bin_location_information" ng-click="general_bin_location()">
+<<<<<<< HEAD
                     <div >
                         <div class="vertical_space"></div>
                         <div ng-include="'app/views/warehouse/warehouseStorageLocList.html'"
@@ -36,6 +48,15 @@
                               name="addForm" validate-form="" novalidate="" ng-hide="showLoader">-->
                         <div ng-include="'app/views/warehouse/warehouseStorageLocForm.html'"
                              ng-show="altbin_loc_FormShow"></div>
+=======
+                    <div>
+                        <div class="vertical_space"></div>
+                        <div ng-include="'app/views/warehouse/warehouseStorageLocList.html'" ng-show="bin_loc_ListingShow"></div>
+                        <!--<form autocomplete="off" class="form-horizontal no-margin parsley-validate"
+                              data-validate="parsley" role="form" ng-submit="add_bin_location(rec2)"
+                              name="addForm" validate-form="" novalidate="" ng-hide="showLoader">-->
+                        <div ng-include="'app/views/warehouse/warehouseStorageLocForm.html'" ng-show="altbin_loc_FormShow"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <!--</form>-->
                         <div class="vertical_space"></div>
 
@@ -44,7 +65,28 @@
                 </tab>
 
             </tabset>
+<<<<<<< HEAD
         </div>
     </div>
 </div>
 <div ng-include="'app/views/_confirm_modal.html'"></div>
+=======
+
+            <!-- <div class="row">
+                <div class="col-md-12 affix">
+                    <div class="pull-left">
+                        <div class="communication">
+                            <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                            <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                            <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

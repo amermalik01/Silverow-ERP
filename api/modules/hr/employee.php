@@ -58,7 +58,11 @@ $app->post('/hr/employee/get-employee', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/hr/employee/add-employee', function () use ($app) {
+=======
+/* $app->post('/hr/employee/add-employee', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objHr, $input;
 	$result = $objHr->add_employee($input);
 	$app->response->setStatus(200);
@@ -104,7 +108,11 @@ $app->post('/hr/employee/delete-employee', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 ?>
 
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

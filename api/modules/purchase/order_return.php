@@ -1,7 +1,11 @@
 <?php
 // General Tab
+<<<<<<< HEAD
 //--------------------------------------
 	
+=======
+//--------------------------------------	
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/purchase/srm/srmorderreturn/listings', function () use ($app) {
 	global $objSrm, $input;
 	$input_array = array();
@@ -79,6 +83,21 @@ $app->post('/purchase/srm/srmorderreturn/update-order-return', function () use (
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
+=======
+$app->post('/purchase/srm/srmorderreturn/update-posted-debit-note', function () use ($app) {
+	global $objSrm, $input;
+	$input_array = array();
+	 foreach($input as $key => $val){
+	  $input_array[$key] = $val; 
+	 }
+	$result = $objSrm->updatePostedDebitNote($input_array);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+});
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/purchase/srm/srmorderreturn/delete-debit-note-before-save', function () use ($app) {
 	global $objSrm, $input;
 	$input_array = array();
@@ -251,7 +270,11 @@ $app->post('/purchase/srm/srmorderreturn/convert-to-invoice', function () use ($
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srmorderreturn/convert_order', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srmorderreturn/convert_order', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -261,7 +284,11 @@ $app->post('/purchase/srm/srmorderreturn/convert_order', function () use ($app) 
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srmorderreturn/update-purchase-status', function () use ($app) {
 	global $objSrm, $input;
@@ -285,6 +312,7 @@ $app->post('/purchase/srm/srmorderreturn/get-order-return-number', function () u
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
  
 
@@ -293,3 +321,6 @@ $app->post('/purchase/srm/srmorderreturn/get-order-return-number', function () u
 
 ?>
 
+=======
+});
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

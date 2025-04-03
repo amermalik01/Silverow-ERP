@@ -1,0 +1,78 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [{
+            "title": "Name",
+            "field_name": "name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "Email",
+            "field_name": "email",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "Telephone",
+            "field_name": "telephone",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "City",
+            "field_name": "city",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "110",
+            "data_type": "string"
+        },
+        {
+            "title": "Postcode",
+            "field_name": "postcode",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "100",
+            "data_type": "string"
+        },
+        {
+            "title": "No. of Users",
+            "field_name": "num_user_login",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Currency",
+            "field_name": "currency",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "120",
+            "data_type": "string"
+        },
+        {
+            "title": "Currency Code",
+            "field_name": "curr_code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "120",
+            "data_type": "string"
+        }
+    ]
+}

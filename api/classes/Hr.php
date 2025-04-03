@@ -32,21 +32,36 @@ class Hr extends Xtreme
     {
         $empllastUpdateTime = $attr['empllastUpdateTime'];
 
+<<<<<<< HEAD
         if($empllastUpdateTime > 0){    
+=======
+        if ($empllastUpdateTime > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sqla = "SELECT MAX(UNIX_TIMESTAMP(changedOn)) as updatedTime 
                         FROM sr_checksum 
                         WHERE tablename IN ('departments','employee_type','employees','vat','vat_posting_grp_setup','ref_posting_group') AND 
+<<<<<<< HEAD
                               company_id='" .  $this->arrUser['company_id']. "'
+=======
+                              company_id='" .  $this->arrUser['company_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         LIMIT 1";
 
             // echo $Sqla;exit;
             $RSa = $this->Conn->Execute($Sqla);
+<<<<<<< HEAD
             
             if ($RSa->RecordCount() == 1) {
 
                 if($empllastUpdateTime > $RSa->fields['updatedTime'])
                 {
+=======
+
+            if ($RSa->RecordCount() == 1) {
+
+                if ($empllastUpdateTime > $RSa->fields['updatedTime']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $response['ack'] = 1;
                     $response['error'] = 3;
                     $response['empllastUpdateTime'] = $empllastUpdateTime;
@@ -62,12 +77,20 @@ class Hr extends Xtreme
         $response['response']['emp_type_arr'] = $result2['response'];
 
         $attr['deprtment_type'] = 2;
+<<<<<<< HEAD
         $result3 = $this->get_employees($attr, 1);//get sales person listing
+=======
+        $result3 = $this->get_employees($attr, 1); //get sales person listing
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['response']['salesperson_arr'] = $result3['response'];
 
         $result4 = $this->get_vat_list($attr);
         $response['response']['arr_vat'] = $result4['response'];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $result5 = $this->get_vat_group_by_posting_group($attr);
         // $response['response']['arr_vat_post_grp'] = $result5['response'];
 
@@ -75,7 +98,11 @@ class Hr extends Xtreme
         // echo $Sql;exit;
         $RS = $this->Conn->Execute($Sql);
         $response['empllastUpdateTime'] = $RS->fields['current_date_time'];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['error'] = NULL;
         // print_r($response);  exit;
@@ -271,14 +298,21 @@ class Hr extends Xtreme
 
     function get_role_to_employee($arr_attr)
     {
+<<<<<<< HEAD
         $Sql = "SELECT role_id FROM employee_roles  WHERE employee_id = '".$arr_attr['id']."'  ";
+=======
+        $Sql = "SELECT role_id FROM employee_roles  WHERE employee_id = '" . $arr_attr['id'] . "'  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
         $roles = [];
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 array_push($roles, $Row[0]);
+<<<<<<< HEAD
                 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
             $roles = implode(",", $roles);
         }
@@ -291,15 +325,27 @@ class Hr extends Xtreme
                 $response['response'][] = $Row;
             }
         }
+<<<<<<< HEAD
             $response['response'] = $roles;
             $response['ack'] = 1;
             $response['error'] = NULL;
+=======
+        $response['response'] = $roles;
+        $response['ack'] = 1;
+        $response['error'] = NULL;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         return $response;
     }
 
+<<<<<<< HEAD
     function get_buckets_to_employee($arr_attr){
         $Sql = "SELECT bucket_id FROM employee_bucket WHERE employee_id = '".$arr_attr['id']."'";
+=======
+    function get_buckets_to_employee($arr_attr)
+    {
+        $Sql = "SELECT bucket_id FROM employee_bucket WHERE employee_id = '" . $arr_attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         $buckets = [];
@@ -307,7 +353,10 @@ class Hr extends Xtreme
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 array_push($buckets, $Row[0]);
+<<<<<<< HEAD
                 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
             $buckets = implode(",", $buckets);
         }
@@ -315,7 +364,11 @@ class Hr extends Xtreme
         $response['response'] = $buckets;
         $response['ack'] = 1;
         $response['error'] = NULL;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //print_r($response);exit;
         return $response;
     }
@@ -397,7 +450,11 @@ class Hr extends Xtreme
         $Sql = "SELECT c.id,c.role,c.role_code   
                 FROM ref_roles c
                 WHERE c.status=1  AND c.company_id=" . $this->arrUser['company_id'] .  "
+<<<<<<< HEAD
                 ORDER BY c.role ASC ";// AND (select COUNT(1) FROM ref_user_rights rur WHERE rur.role_id = c.id)
+=======
+                ORDER BY c.role ASC "; // AND (select COUNT(1) FROM ref_user_rights rur WHERE rur.role_id = c.id)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo 	$Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -423,7 +480,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "SELECT r.* FROM ref_roles AS r
+<<<<<<< HEAD
 		where  r.id='".$attr['id']."' and company_id=".$this->arrUser['company_id']." 
+=======
+		where  r.id='" . $attr['id'] . "' and company_id=" . $this->arrUser['company_id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		LIMIT 1";
         $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
 
@@ -440,7 +501,11 @@ class Hr extends Xtreme
             $response['response'] = $Row;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['bucketFail'] = 1;
         }
@@ -448,12 +513,18 @@ class Hr extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function addWidgetRole ($id){
+=======
+    function addWidgetRole($id)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT id from widgets;";
         $RS = $this->objsetup->CSI($Sql);
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
 				foreach ($Row as $key => $value) {
 					if (is_numeric($key))
 					unset($Row[$key]);
@@ -472,11 +543,33 @@ class Hr extends Xtreme
     }
 
     function addReportRole ($id){
+=======
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $ids[] = $Row['id'];
+            }
+            // print_r($ids);exit;
+            if (!empty($ids)) {
+                foreach ($ids as $key => $value) {
+                    $Sql2 = "INSERT INTO widgetroles SET widget_id=" . $value . ", role_id=" . $id . ", permission=0, company_id=" . $this->arrUser['company_id'] . ", type=1";
+                    // echo $Sql2;
+                    $RS2 = $this->objsetup->CSI($Sql2);
+                }
+            }
+        }
+    }
+
+    function addReportRole($id)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT id from reports";
         $RS = $this->objsetup->CSI($Sql);
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
 				foreach ($Row as $key => $value) {
 					if (is_numeric($key))
 					unset($Row[$key]);
@@ -492,12 +585,33 @@ class Hr extends Xtreme
                 }
 			} 
 		} 
+=======
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $ids[] = $Row['id'];
+            }
+            // print_r($ids);exit;
+            if (!empty($ids)) {
+                foreach ($ids as $key => $value) {
+                    $Sql2 = "INSERT INTO widgetroles SET widget_id=" . $value . ", role_id=" . $id . ", permission=0, company_id=" . $this->arrUser['company_id'] . ", type=2";
+                    // echo $Sql2;
+                    $RS2 = $this->objsetup->CSI($Sql2);
+                }
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function add_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;        
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         $data_pass = " tst.role='$arr_attr[role]'  ";
@@ -526,7 +640,11 @@ class Hr extends Xtreme
 
         $this->addWidgetRole($id);
         $this->addReportRole($id);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //$this->Conn->Affected_Rows()
         if ($id > 0) {
             $response['ack'] = 1;
@@ -542,10 +660,17 @@ class Hr extends Xtreme
     function update_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
         //print_r($arr_attr);exit;
         $data_pass = " tst.role='$arr_attr[role]' AND tst.id <> '".$arr_attr['id']."' ";
+=======
+        $arr_attr = (array) $attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+        //print_r($arr_attr);exit;
+        $data_pass = " tst.role='$arr_attr[role]' AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('ref_roles', $data_pass, $this->arrUser['company_id']);
 
         if ($total >= 1) {
@@ -561,7 +686,11 @@ class Hr extends Xtreme
                             status='$arr_attr[statuss]',
                             start_date ='" . $this->objGeneral->convert_date($arr_attr['start_date']) . "',
                             end_date = '" . $this->objGeneral->convert_date($arr_attr['end_date']) . "'
+<<<<<<< HEAD
                         WHERE id = ".$arr_attr['id']." 
+=======
+                        WHERE id = " . $arr_attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         Limit 1 ";
 
         ///echo $Sql."<hr>"; exit;
@@ -578,8 +707,14 @@ class Hr extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function deleteWidgetRole($id){
         $Sql = "DELETE FROM widgetroles WHERE role_id=".$id;
+=======
+    function deleteWidgetRole($id)
+    {
+        $Sql = "DELETE FROM widgetroles WHERE role_id=" . $id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
     }
@@ -590,24 +725,41 @@ class Hr extends Xtreme
 
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
+<<<<<<< HEAD
         
         $arr_attr = array();
         $arr_attr = (array)$attr;
+=======
+
+        $arr_attr = array();
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
         // $arr_attr['id'];
         //$Sql = "DELETE FROM roles WHERE id = ".$arr_attr['id']." Limit 1 ";
         $Sql = "UPDATE ref_roles
 			SET  
 			status=0
+<<<<<<< HEAD
 			WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+			WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit; 
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         
         if ($this->Conn->Affected_Rows() > 0) {
             $this->deleteWidgetRole($arr_attr['id']);
             
+=======
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            $this->deleteWidgetRole($arr_attr['id']);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
             $response['ack'] = 1;
@@ -623,7 +775,11 @@ class Hr extends Xtreme
     function get_user_rights_module_data($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
         //print_r($attr);exit;
 
@@ -662,7 +818,11 @@ class Hr extends Xtreme
     function get_user_rights_list($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //print_r($attr);exit;
 
         $response = array();
@@ -670,7 +830,11 @@ class Hr extends Xtreme
         $Sql = "SELECT c.id,c.name,c.status,c.module_id,c.permisions,ref_module.display_name,ref_module.complete_name,ref_module.order    
                 FROM  ref_user_rights c
                 LEFT JOIN ref_module ON ref_module.id = c.module_id
+<<<<<<< HEAD
                 WHERE   c.status = 1 AND c.role_id = ".$arr_attr['id']." AND 
+=======
+                WHERE   c.status = 1 AND c.role_id = " . $arr_attr['id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c.company_id=" . $this->arrUser['company_id'] . "	
 		        ORDER BY  c.id DESC ";
 
@@ -692,7 +856,10 @@ class Hr extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else
             $response['response'][] = array();
 
@@ -703,7 +870,11 @@ class Hr extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "SELECT r.* FROM ref_user_rights AS r where r.id='".$attr['id']."'	LIMIT 1";
+=======
+        $Sql = "SELECT r.* FROM ref_user_rights AS r where r.id='" . $attr['id'] . "'	LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo  $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -738,7 +909,11 @@ class Hr extends Xtreme
 
 
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //print_r($arr_attr);exit;
 
@@ -761,26 +936,42 @@ class Hr extends Xtreme
         $chk = 0;
         $ids = "";
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
 
         $Sqladd = "INSERT INTO ref_user_rights (role_id,name,module_id ,permisions,allow_flag,company_id,  user_id,date_added)
                     VALUES ";
+<<<<<<< HEAD
         $SqlEntries = "";            
+=======
+        $SqlEntries = "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($arr_attr['role_id']) {
             foreach ($attr['selected'] as $item) {
                 //if(count($item->permisions)>0) 
                 $sql_total = "SELECT  count(tst.id) as total,tst.id	FROM ref_user_rights as tst LEFT JOIN company on company.id=tst.company_id WHERE tst.role_id= $attr[role_id]  AND tst.module_id= $item->module_id AND  tst.status=1 AND (tst.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ") Limit 1";
                 //echo $sql_total . "\n";
                 $rs_count = $this->objsetup->CSI($sql_total);
+<<<<<<< HEAD
                 
                 if ($rs_count->fields['total'] > 0)
                     $ids .= $rs_count->fields['id'] . ',';
                 
                     $SqlEntries .= "( '" . $attr['role_id'] . "','" . $item->name . "','" . $item->module_id . "','" . $item->permisions . "','" . $item->allow_flag . "','" . $this->arrUser['company_id'] . "','" . $this->arrUser['id'] . "','" . current_date . "' ), ";
                 
+=======
+
+                if ($rs_count->fields['total'] > 0)
+                    $ids .= $rs_count->fields['id'] . ',';
+
+                $SqlEntries .= "( '" . $attr['role_id'] . "','" . $item->name . "','" . $item->module_id . "','" . $item->permisions . "','" . $item->allow_flag . "','" . $this->arrUser['company_id'] . "','" . $this->arrUser['id'] . "','" . current_date . "' ), ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             //echo "-----".$ids."\n";exit;
@@ -789,7 +980,11 @@ class Hr extends Xtreme
             //echo $ids;exit;
             $sql_del = "DELETE FROM ref_user_rights WHERE role_id = $id";
             //echo $sql_del;
+<<<<<<< HEAD
             if (!empty($ids)){
+=======
+            if (!empty($ids)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //echo "deleted";
                 $RSdel = $this->objsetup->CSI($sql_del);
 
@@ -799,6 +994,7 @@ class Hr extends Xtreme
                 $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
                 $srLogTrace['Function'] = __FUNCTION__;
                 $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
                 $srLogTrace['Parameter1'] = 'role_id:'.$id;
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
@@ -806,6 +1002,13 @@ class Hr extends Xtreme
             }
             if(strlen($SqlEntries) > 0)
             {
+=======
+                $srLogTrace['Parameter1'] = 'role_id:' . $id;
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+            }
+            if (strlen($SqlEntries) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $SqlEntries = substr_replace(substr($SqlEntries, 0, -1), "", -1);
                 $Sqladd .= $SqlEntries;
                 //echo  $Sqladd;exit;
@@ -817,6 +1020,7 @@ class Hr extends Xtreme
                 $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
                 $srLogTrace['Function'] = __FUNCTION__;
                 $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
                 $srLogTrace['Parameter1'] = 'role_id:'.$id;
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
@@ -824,14 +1028,25 @@ class Hr extends Xtreme
             }
             else
             {
+=======
+                $srLogTrace['Parameter1'] = 'role_id:' . $id;
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'No data provided for update.';
                 return $response;
             }
             //print_r($RS);
         } else {
+<<<<<<< HEAD
             $Sql = "UPDATE ref_user_rights SET module_id='$arr_attr[module_id]',name='".$arr_attr['name']."',permisions='$arr_attr[selectedList]' WHERE id = ".$arr_attr['id']."	Limit 1 ";
             	// echo $Sql;exit;
+=======
+            $Sql = "UPDATE ref_user_rights SET module_id='$arr_attr[module_id]',name='" . $arr_attr['name'] . "',permisions='$arr_attr[selectedList]' WHERE id = " . $arr_attr['id'] . "	Limit 1 ";
+            // echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql);
 
             $srLogTrace = array();
@@ -840,11 +1055,17 @@ class Hr extends Xtreme
             $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
             $srLogTrace['Function'] = __FUNCTION__;
             $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
             $srLogTrace['Parameter1'] = 'role_id:'.$arr_attr['id'];
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
                     
+=======
+            $srLogTrace['Parameter1'] = 'role_id:' . $arr_attr['id'];
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -852,7 +1073,10 @@ class Hr extends Xtreme
             $response['error'] = NULL;
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not inserted';
@@ -863,14 +1087,22 @@ class Hr extends Xtreme
     function delete_user_rights($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
         // $arr_attr['id'];;
         //$Sql = "DELETE FROM roles WHERE id = ".$arr_attr['id']." Limit 1 ";
         $Sql = "UPDATE  ref_user_rights
 			SET  
 			status=0
+<<<<<<< HEAD
 			WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+			WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //print_r($Sql);exit; 
 
         $RS = $this->objsetup->CSI($Sql);
@@ -921,12 +1153,21 @@ class Hr extends Xtreme
     function add_permision($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
 
         if ($arr_attr['id'] > 0)
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
 
         $data_pass = "   tst.name='".$arr_attr['name']."'   $where_id ";
+=======
+        $arr_attr = (array) $attr;
+
+        if ($arr_attr['id'] > 0)
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+
+        $data_pass = "   tst.name='" . $arr_attr['name'] . "'   $where_id ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('ref_roles', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -938,13 +1179,21 @@ class Hr extends Xtreme
         if ($arr_attr['id'] == 0) {
             $Sql = "INSERT INTO ref_permisions
                                     SET  
+<<<<<<< HEAD
                                         name='".$arr_attr['name']."',
+=======
+                                        name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         status=1,
                                         company_id='" . $this->arrUser['company_id'] . "',
                                         user_id='" . $this->arrUser['id'] . "',
                                         date_added='" . current_date . "'";
         } else {
+<<<<<<< HEAD
             $Sql = "UPDATE ref_permisions	SET name='".$arr_attr['name']."' 	WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+            $Sql = "UPDATE ref_permisions	SET name='" . $arr_attr['name'] . "' 	WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         //	echo $Sql;exit;
@@ -970,7 +1219,11 @@ class Hr extends Xtreme
     function get_user_roles($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
         //print_r($attr);exit;
 
@@ -1021,7 +1274,11 @@ class Hr extends Xtreme
     function add_user_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         $data_pass = "  tst.role_id='" . $arr_attr['role_id'] . "'   ";
@@ -1035,9 +1292,15 @@ class Hr extends Xtreme
 
         $Sql = "INSERT INTO employee_roles
 				SET 
+<<<<<<< HEAD
 				role_id='".$arr_attr['role_id']."',
 				user_id='".$this->arrUser['id']."',
 				company_id='".$this->arrUser['company_id']."',
+=======
+				role_id='" . $arr_attr['role_id'] . "',
+				user_id='" . $this->arrUser['id'] . "',
+				company_id='" . $this->arrUser['company_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				status='$this->arrUser[status]'";
 
         //echo $Sql."<hr>"; exit;
@@ -1057,12 +1320,20 @@ class Hr extends Xtreme
     function update_user_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "  tst.role_id='" . $arr_attr['role_id'] . "'  $where_id  ";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_roles', $data_pass, $this->arrUser['company_id']);
@@ -1077,7 +1348,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE employee_roles
 				SET 
 				role_id='$arr_attr[role_id]'
+<<<<<<< HEAD
 				WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+				WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1096,10 +1371,17 @@ class Hr extends Xtreme
     function delete_user_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "Update employee_roles set status=0 WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+        $arr_attr = (array) $attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $Sql = "Update employee_roles set status=0 WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1118,10 +1400,17 @@ class Hr extends Xtreme
     function status_user_role($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE employee_roles SET status='$arr_attr[status]' WHERE id = ".$arr_attr['id']." ";
+=======
+        $arr_attr = (array) $attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $Sql = "UPDATE employee_roles SET status='" . $arr_attr['status'] . "' WHERE id = " . $arr_attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1139,7 +1428,11 @@ class Hr extends Xtreme
     function add_multiple_role_employee($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $check = false;
         $Sql = "INSERT INTO employee_roles (role_id,employee_id,company_id,  user_id,date_added) VALUES ";
@@ -1159,7 +1452,11 @@ class Hr extends Xtreme
             $check = true;
         }
         $Sql = substr_replace(substr($Sql, 0, -1), "", -1);
+<<<<<<< HEAD
           //echo $Sql;exit;
+=======
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -1205,7 +1502,11 @@ class Hr extends Xtreme
                 left JOIN crm_salesperson on crm_salesperson.salesperson_id= employees.id
                 where (employees.user_company=45 or company.parent_id=45) AND 
                         crm_salesperson.module_id='$attr[bkt_id]' AND  
+<<<<<<< HEAD
                         crm_salesperson.type='".$attr['type']."'
+=======
+                        crm_salesperson.type='" . $attr['type'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 ORDER BY employees.id DESC";
         // echo $Sql;exit;
         //echo $total_records."<hr>";
@@ -1239,6 +1540,7 @@ class Hr extends Xtreme
 
     // Employee
     //--------------------------------------
+<<<<<<< HEAD
     function get_employees($attr=array(), $arg=null)
     { 
         // error_reporting(E_ALL);
@@ -1274,11 +1576,54 @@ class Hr extends Xtreme
             {$where_clause .= " AND emp.status IN (0, 1)";}
         else
             {$where_clause .= " AND emp.status = 1";}
+=======
+    function get_employees($attr = array(), $arg = null)
+    {
+        // error_reporting(E_ALL);
+        $limit_clause = "";
+        $where_clause = "";
+        $dept_where_clause = "";
+        $order_by = "";
+        $deprt_join = "";
+        // print_r($attr);exit;
+
+
+
+        if (!empty($attr['searchKeyword'])) {
+            $val = intval(preg_replace("/[^0-9]/", '', $attr['searchKeyword']));
+            $where_clause .= " AND ( emp.user_code LIKE '%" . $attr['searchKeyword'] . "%'
+			 OR emp.first_name LIKE '%" . $attr['searchKeyword'] . "%'  OR emp.last_name LIKE '%" . $attr['searchKeyword'] . "%'
+			 OR emp.job_title LIKE '%" . $attr['searchKeyword'] . "%' ) ";
+        }
+        // else $attr['searchKeyword'] = {};
+
+        if (!empty($attr['emp_types'])) {
+            $where_clause .= " AND  emp.employee_type=" . $attr['emp_types'] . " ";
+        }
+
+        if (!empty($attr['deprtments'])) {
+            $where_clause .= " AND  emp.department LIKE '%" . $attr['deprtments'] . "%' ";
+        }
+
+        if (!empty($attr['admin_emp_chk'])) {
+            $where_clause .= " AND  emp.emp_type<>1 ";
+        }
+        //
+
+        if (isset($attr['filter_status']) || $attr['filter_status'] == "0") {
+            $where_clause .= " AND emp.status = " . $attr['filter_status'];
+        } else if (isset($attr['show_active_inactive']) || $attr['show_active_inactive'] == "1") {
+            $where_clause .= " AND emp.status IN (0, 1)";
+        } else {
+            $where_clause .= " AND emp.status = 1";
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response = array();
 
         $Sql = "SELECT   emp.* 
                 from sr_employee_sel emp
+<<<<<<< HEAD
                 ".$deprt_join."
                 where emp.user_company=" . $this->arrUser['company_id'] . "
                       ".$where_clause."
@@ -1291,6 +1636,24 @@ class Hr extends Xtreme
 
         if($attr['limit']>0 && isset($attr['searchKeyword']))
             {$attr['searchKeyword']->totalRecords = 9999;}
+=======
+                " . $deprt_join . "
+                where emp.user_company=" . $this->arrUser['company_id'] . "
+                      " . $where_clause . "
+                      " . $dept_where_clause . " ";
+        //echo $Sql;exit;
+        //  $order_by = "group by emp.id";
+
+        if ($arg == 1) {
+            $direct_limit = cache_pagination_limit;
+        } else {
+            $direct_limit = pagination_limit;
+        }
+
+        if ($attr['limit'] > 0 && isset($attr['searchKeyword'])) {
+            $attr['searchKeyword']->totalRecords = 9999;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //defualt Variable
         $total_limit = 99999;
@@ -1409,7 +1772,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM leave
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
@@ -1432,7 +1799,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         if ($attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "  tst.role_id='" . $attr['role_id'] . "'  $where_id  ";
         $total = $this->objGeneral->count_duplicate_in_sql('leave', $data_pass, $this->arrUser['company_id']);
@@ -1472,7 +1843,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         if ($attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "  tst.role_id='" . $attr['role_id'] . "'  $where_id  ";
         $total = $this->objGeneral->count_duplicate_in_sql('leave', $data_pass, $this->arrUser['company_id']);
@@ -1486,7 +1861,11 @@ class Hr extends Xtreme
 
         $Sql = "UPDATE leave
 				SET employee_id='$attr[employee_id]',start_from='$attr[start_from]',end_date='" . $this->objGeneral->convert_date($attr['end_date']) . "',date_return='" . $this->objGeneral->convert_date($attr['date_return']) . "',total_days='$attr[total_days]',leave_reason='$attr[leave_reason]',leave_type='$attr[leave_type]',reason='$attr[reason]',is_authroztion_absent_taken='$attr[is_authroztion_absent_taken]',athority_id='$attr[athority_id]',absent_taken_date='" . $this->objGeneral->convert_date($attr['absent_taken_date']) . "',company_notify_data='$attr[company_notify_data]',notifying_person_id='$attr[notifying_person_id]',doctor_consult='$attr[doctor_consult]',obtain_certificate='$attr[obtain_certificate]',certificate_file='$attr[certificate_file]',taking_medication='$attr[taking_medication]',medication_file='$attr[medication_file]',side_effect_advised='$attr[side_effect_advised]',side_effect_advised='$attr[side_effect_advised]'
+<<<<<<< HEAD
 				WHERE id = ".$attr['id']." Limit 1 ";
+=======
+				WHERE id = " . $attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1508,7 +1887,11 @@ class Hr extends Xtreme
 
         $Sql = "UPDATE leave
 				SET status='$attr[status]'
+<<<<<<< HEAD
 				WHERE id = ".$attr['id']." ";
+=======
+				WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1529,7 +1912,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "DELETE FROM leave
+<<<<<<< HEAD
 				WHERE id = ".$attr['id']." Limit 1 ";
+=======
+				WHERE id = " . $attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1602,7 +1989,11 @@ class Hr extends Xtreme
                         employee_columns.status, employee_columns.tab_id
                 FROM employee_columns 
                 where employee_columns.company_id=" . $this->arrUser['company_id'] . " and 
+<<<<<<< HEAD
                         employee_columns.id='".$attr['id']."'
+=======
+                        employee_columns.id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 LIMIT 1 ";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -1655,10 +2046,17 @@ class Hr extends Xtreme
 
             $Sql = "INSERT INTO employee_columns
                                     SET 
+<<<<<<< HEAD
                                         name='".$arr_attr['name']."',
                                         sort_id='$total_s',  
                                         description='$arr_attr[description]', 
                                         status='$arr_attr[status]', 
+=======
+                                        name='" . $arr_attr['name'] . "',
+                                        sort_id='$total_s',  
+                                        description='" . $arr_attr['description'] . "', 
+                                        status='" . $arr_attr['status'] . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         tab_id='$arr_attr[tab_id]', 
                                         company_id='" . $this->arrUser['company_id'] . "',
                                         user_id='" . $this->arrUser['id'] . "'"; //sort_id='$arr_attr[sort_id]
@@ -1683,12 +2081,21 @@ class Hr extends Xtreme
 
         $Sql = "UPDATE employee_columns
 				SET 
+<<<<<<< HEAD
 					name='".$arr_attr['name']."',
 					description='$arr_attr[description]', 
 					status='$arr_attr[status]', 
 					tab_id='$arr_attr[tab_id]', 
 					sort_id='$arr_attr[sort_id]'
 					WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+					name='" . $arr_attr['name'] . "',
+					description='" . $arr_attr['description'] . "', 
+					status='" . $arr_attr['status'] . "', 
+					tab_id='$arr_attr[tab_id]', 
+					sort_id='$arr_attr[sort_id]'
+					WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -1707,7 +2114,11 @@ class Hr extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $Sql = "UPDATE employee_columns SET status=0 WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+        $Sql = "UPDATE employee_columns SET status=0 WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
         // print_r($Sql);exit;
@@ -1726,7 +2137,11 @@ class Hr extends Xtreme
     {
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         $Sql = "UPDATE employee_columns SET status='$arr_attr[status]' WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+        $Sql = "UPDATE employee_columns SET status='" . $arr_attr['status'] . "' WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -1757,7 +2172,11 @@ class Hr extends Xtreme
         $count = 0;
 
 
+<<<<<<< HEAD
         if ($upslide == 0) {//&& $arr_attr['index']>=0
+=======
+        if ($upslide == 0) { //&& $arr_attr['index']>=0
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $sql_total = "SELECT  *	FROM employee_columns WHERE sort_id='" . $sort_pre . "' and tab_id='" . $arr_attr['t_id'] . "'";
             $rs_count_start = $this->objsetup->CSI($sql_total);
 
@@ -1845,12 +2264,20 @@ class Hr extends Xtreme
             exit;
         }
 
+<<<<<<< HEAD
         $Sql = "SELECT * FROM employees	WHERE id='".$attr['id']."' and company_id = '" . $this->arrUser['company_id'] . "' LIMIT 1";
         // echo $Sql;exit;
         if ($attr['id'] == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($Sql);
         }
         else{
+=======
+        $Sql = "SELECT * FROM employees	WHERE id='" . $attr['id'] . "' and company_id = '" . $this->arrUser['company_id'] . "' LIMIT 1";
+        // echo $Sql;exit;
+        if ($attr['id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql, "HR", sr_ViewPermission);
         }
 
@@ -1887,13 +2314,22 @@ class Hr extends Xtreme
             $Row['status_date'] = $this->objGeneral->convert_unix_into_date($Row['status_date']);
             $Row['status_inactive_date'] = $this->objGeneral->convert_unix_into_date($Row['status_inactive_date']);
             $Row['date_of_birth'] = $this->objGeneral->convert_unix_into_date($Row['date_of_birth']);
+<<<<<<< HEAD
 			$Row['user_password'] = "Y0u sh@uldn't be doing this..";
 			$Row['user_password_prev'] = $Row['user_password'];
+=======
+            $Row['user_password'] = "Y0u sh@uldn't be doing this..";
+            $Row['user_password_prev'] = $Row['user_password'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['response'] = $Row;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['bucketFail'] = 1;
         }
@@ -1996,7 +2432,11 @@ class Hr extends Xtreme
           WHERE id = ".$arr_attr['id']." Limit 1";
          */
 
+<<<<<<< HEAD
         $Sql = "UPDATE employees SET status=".DELETED_STATUS." , user_email = CONCAT('*deleted*',user_email)  WHERE id = ".$arr_attr['id']."  AND SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 3,0) = 'success'";
+=======
+        $Sql = "UPDATE employees SET status=" . DELETED_STATUS . " , user_email = CONCAT('*deleted*',user_email)  WHERE id = " . $arr_attr['id'] . "  AND SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 3,0) = 'success'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "HR_generalTab", sr_DeletePermission);
 
@@ -2005,7 +2445,11 @@ class Hr extends Xtreme
             $response['error'] = NULL;
         } else {
             $response['ack'] = 0;
+<<<<<<< HEAD
             $Sql1 = "SELECT SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 3,0) AS error_msg";
+=======
+            $Sql1 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 3,0) AS error_msg";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS1 = $this->objsetup->CSI($Sql1);
             $response['error'] = $RS1->fields['error_msg'];
         }
@@ -2077,7 +2521,11 @@ class Hr extends Xtreme
                 FROM  vat  c 
                 where c.status =1  AND company_id='" . $this->arrUser['company_id'] . "'
                 order by c.id ASC ";
+<<<<<<< HEAD
                 /* AND 
+=======
+        /* AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       c.company_id=" . $this->arrUser['company_id'] . "   */
         //c.user_id=".$this->arrUser['id']."
         $RS = $this->objsetup->CSI($Sql);
@@ -2113,7 +2561,11 @@ class Hr extends Xtreme
                 left join vat on vat.id=c.vatRateID
                 where postgrp.id = $posting_group_id AND postgrp.company_id='" . $this->arrUser['company_id'] . "' AND 
                       c.company_id='" . $this->arrUser['company_id'] . "'";
+<<<<<<< HEAD
                 /* AND 
+=======
+        /* AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       c.company_id=" . $this->arrUser['company_id'] . "   */
         //c.user_id=".$this->arrUser['id']."
 
@@ -2138,7 +2590,11 @@ class Hr extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_vat_group_by_posting_groupByCompanyID($attr,$companyID)
+=======
+    function get_vat_group_by_posting_groupByCompanyID($attr, $companyID)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $posting_group_id = ($attr['posting_group_id'] != '') ? " $attr[posting_group_id] " : "0";
         $Sql = "SELECT vat.id,
@@ -2177,6 +2633,7 @@ class Hr extends Xtreme
         //print_r($attr);exit;
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $defaultFilter = false;
+<<<<<<< HEAD
 
         $where_clause = $this->objGeneral->flexiWhereRetriever("emp.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("emp.",$attr,$fieldsMeta);
@@ -2192,6 +2649,24 @@ class Hr extends Xtreme
 		" . $where_clause . " 
         ";  
         
+=======
+        $arg = 0;
+
+        $where_clause = $this->objGeneral->flexiWhereRetriever("emp.", $attr, $fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("emp.", $attr, $fieldsMeta);
+
+        if (empty($where_clause)) {
+            $defaultFilter = true;
+            $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("HR", $this->arrUser);
+        }
+
+        //echo $order_clause;exit;
+        $response = array();
+        $Sql = "SELECT   * from sr_employee_sel emp where emp.company_id=" . $this->arrUser['company_id'] . "
+		" . $where_clause . " 
+        ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* $subQueryForBuckets = " SELECT  emp.id
                                     FROM employees emp
                                     WHERE emp.company_id=" . $this->arrUser['company_id'] . "";
@@ -2207,6 +2682,7 @@ class Hr extends Xtreme
         //defualt Variable
         $total_limit = $direct_limit;
 
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
            $total_limit = $attr['pagination_limits'];
@@ -2215,16 +2691,35 @@ class Hr extends Xtreme
 
         if ($order_clause == "")
         $order_type = "Order BY " . $column . " DESC";
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+        $column = 'emp.' . 'id';
+
+
+        if ($order_clause == "")
+            $order_type = "Order BY " . $column . " DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $order_type = $order_clause;
 
 
         $response = $this->objGeneral->preListing($attr, $Sql, $response, $total_limit, 'emp', $order_type);
         // $RS = $this->objsetup->CSI($response['q']);
+<<<<<<< HEAD
         $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData('HR');$response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
 
         $RS = $this->objsetup->CSI($response['q'], "HR", sr_ViewPermission);
         
         
+=======
+        $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData('HR');
+        $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
+
+        $RS = $this->objsetup->CSI($response['q'], "HR", sr_ViewPermission);
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $response['q'];exit;
         //$RS = $this->objsetup->CSI($Sql);
 
@@ -2244,9 +2739,13 @@ class Hr extends Xtreme
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response = $this->objGeneral->postListing($attr, $response);
+<<<<<<< HEAD
 
         } else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'][] = array();
@@ -2268,10 +2767,17 @@ class Hr extends Xtreme
         $employee_id = 0;
         // print_r($arr_attr);exit;
 
+<<<<<<< HEAD
         $account_setting = (isset($arr_attr->account_setting) && $arr_attr->account_setting!='')?$arr_attr->account_setting:0;
 
         $where2 = '';
         
+=======
+        $account_setting = (isset($arr_attr->account_setting) && $arr_attr->account_setting != '') ? $arr_attr->account_setting : 0;
+
+        $where2 = '';
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($arr_attr->allow_logins > 0 && !$account_setting) {
 
             $max_allow_user_SQL = "select num_user_login from company where id='" . $this->arrUser['company_id'] . "' limit 1";
@@ -2279,11 +2785,19 @@ class Hr extends Xtreme
             //echo $rs_max_allow_user_SQL;exit;
             $max_num_user_login = $rs_max_allow_user_SQL->fields['num_user_login'];
 
+<<<<<<< HEAD
             if($arr_attr->id)
                 $where2 ="AND id <> '". $arr_attr->id ."'";
 
 
             $sel_allow_user_SQL = "select count(id) as total from employees where allow_login=1 ".$where2." and status <> -1 and user_type <> 1 and company_id='" . $this->arrUser['company_id'] . "'";
+=======
+            if ($arr_attr->id)
+                $where2 = "AND id <> '" . $arr_attr->id . "'";
+
+
+            $sel_allow_user_SQL = "select count(id) as total from employees where allow_login=1 " . $where2 . " and status <> -1 and user_type <> 1 and company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $sel_allow_user_SQL;exit;
             $rs_sel_allow_user_SQL = $this->objsetup->CSI($sel_allow_user_SQL);
 
@@ -2292,7 +2806,11 @@ class Hr extends Xtreme
             // echo "Max: ".$max_num_user_login;exit;
             //echo $arr_attr->user_type;exit;
             //echo $sel_num_user_login;exit;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($sel_num_user_login >= $max_num_user_login) {
                 //echo "$sel_num_user_login - $max_num_user_login";
                 $arr_attr->allow_logins = 0;
@@ -2304,7 +2822,11 @@ class Hr extends Xtreme
         }
 
         //print_r($arr_attr);exit;
+<<<<<<< HEAD
         if ($arr_attr->user_ids == 1){
+=======
+        if ($arr_attr->user_ids == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // count administrators..
             // user_type='1' is 1 for super admin (Asked from amer)
             $count_admin_user_SQL = "select count(id) as total from employees where user_type='1' and company_id='" . $this->arrUser['company_id'] . "'";
@@ -2392,6 +2914,7 @@ class Hr extends Xtreme
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
+<<<<<<< HEAD
 		
 		$password_expiry_reset = (strlen($arr_attr->user_password) > 0 && $arr_attr->user_password != $arr_attr->user_password_prev) ?  'password_expiry_date = UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 90 DAY)),' : '';
         // echo $password_expiry_reset;exit;
@@ -2424,6 +2947,40 @@ class Hr extends Xtreme
         $post_code_country = (isset($arr_attr->post_code_countrys) && $arr_attr->post_code_countrys!='')?$arr_attr->post_code_countrys:225;  
 		
             
+=======
+
+        $password_expiry_reset = (strlen($arr_attr->user_password) > 0 && $arr_attr->user_password != $arr_attr->user_password_prev) ?  'password_expiry_date = UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 90 DAY)),' : '';
+        // echo $password_expiry_reset;exit;
+
+        $workingHours = (isset($arr_attr->working_hours) && $arr_attr->working_hours != '') ? $arr_attr->working_hours : 0;
+
+        $contract_end_date = (isset($arr_attr->contract_end_date) && $arr_attr->contract_end_date != '') ? $arr_attr->contract_end_date : 0;
+
+        $user_type = (isset($arr_attr->user_ids) && $arr_attr->user_ids != '') ? $arr_attr->user_ids : 0;
+
+        $employee_types = (isset($arr_attr->employee_types) && $arr_attr->employee_types != '') ? $arr_attr->employee_types : 0;
+
+        $cause_of_inactivity = (isset($arr_attr->cause_of_inactivity) && $arr_attr->cause_of_inactivity != '') ? $arr_attr->cause_of_inactivity : 0;
+
+        $job_status_id = (isset($arr_attr->job_status_id) && $arr_attr->job_status_id != '') ? $arr_attr->job_status_id : 0;
+        $start_date = (isset($arr_attr->start_date) && $arr_attr->start_date != '') ? $arr_attr->start_date : 0;
+        $leave_date = (isset($arr_attr->leave_date) && $arr_attr->leave_date != '') ? $arr_attr->leave_date : 0;
+        $status_date = (isset($arr_attr->status_date) && $arr_attr->status_date != '') ? $arr_attr->status_date : 0;
+        $case_date = (isset($arr_attr->case_date) && $arr_attr->case_date != '') ? $arr_attr->case_date : 0;
+        $status_inactive_date = (isset($arr_attr->status_inactive_date) && $arr_attr->status_inactive_date != '') ? $arr_attr->status_inactive_date : 0;
+        $line_manager_name_id = (isset($arr_attr->line_manager_name_id) && $arr_attr->line_manager_name_id != '') ? $arr_attr->line_manager_name_id : 0;
+
+        $ethical_origin_id = $arr_attr->ethical_origin->id;
+        $otherReligion = (isset($arr_attr->religions) && $arr_attr->religions != '') ? $arr_attr->religions : 0;
+        $genderId = (isset($arr_attr->gender_id) && $arr_attr->gender_id != '') ? $arr_attr->gender_id : 0;
+        $children = (isset($arr_attr->children) && $arr_attr->children != '') ? $arr_attr->children : 0;
+        $marStatusId = (isset($arr_attr->mar_status_id) && $arr_attr->mar_status_id != '') ? $arr_attr->mar_status_id : 0;
+        $bonus = (isset($arr_attr->bonus) && $arr_attr->bonus != '') ? $arr_attr->bonus : 0;
+        $commission = (isset($arr_attr->commission) && $arr_attr->commission != '') ? $arr_attr->commission : 0;
+        $post_code_country = (isset($arr_attr->post_code_countrys) && $arr_attr->post_code_countrys != '') ? $arr_attr->post_code_countrys : 225;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($employee_id == 0) {
             $password = $arr_attr->user_password;
             $arr_attr->user_password = $this->objGeneral->encrypt_password($password);
@@ -2433,10 +2990,17 @@ class Hr extends Xtreme
             // removed following line from below query by ahmad
             // user_no='" . $arr_attr->user_no . "',
             //$lineManagerNameId = (isset($arr_attr->line_manager_name_id) && $arr_attr->line_manager_name_id!='')?$arr_attr->line_manager_name_id:0;
+<<<<<<< HEAD
             
 
             $password_attempts = "";
             
+=======
+
+
+            $password_attempts = "";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO employees
                                 SET
                                     user_code=(SELECT SR_GetNextSeq('employees', '" . $this->arrUser['company_id'] . "', 0, 0)),
@@ -2468,7 +3032,11 @@ class Hr extends Xtreme
                                     start_date= '" . $this->objGeneral->convert_date($start_date) . "',
                                     leave_date='" . $this->objGeneral->convert_date($leave_date) . "',
                                     status_date='" . $this->objGeneral->convert_date($status_date) . "',
+<<<<<<< HEAD
                                     case_date='" . $this->objGeneral->convert_date($case_date ) . "',
+=======
+                                    case_date='" . $this->objGeneral->convert_date($case_date) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     line_manager_name='" . $arr_attr->line_manager_name . "',
                                     line_manager_name_id='" . $line_manager_name_id . "',
                                     status_inactive_date=  '" . $this->objGeneral->convert_date($status_inactive_date) . "',
@@ -2496,7 +3064,11 @@ class Hr extends Xtreme
 
 
 
+<<<<<<< HEAD
            /*  $widgetQueries = $this->objdashboard->getWidgetContents();
+=======
+            /*  $widgetQueries = $this->objdashboard->getWidgetContents();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // print_r($widgetQueries);exit;
 
             $widgetSql = "SELECT * FROM widgets;";
@@ -2529,14 +3101,21 @@ class Hr extends Xtreme
                 $widgetUsersSql = "INSERT INTO widgetuser (company_id,widget_id,user_id,active,pos,query,years,months,current) VALUES ".$str;
                 // echo $widgetUsersSql;exit;
                 $RSwidgetUsersSql = $this->objsetup->CSI($widgetUsersSql); */
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $new = 'Edit';
             $new_msg = 'Updated';
             $counter_copy++;
 
+<<<<<<< HEAD
             if ($arr_attr->case_of_inactivitys == ''){
+=======
+            if ($arr_attr->case_of_inactivitys == '') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $arr_attr->case_of_inactivitys = 0;
             }
 
@@ -2548,20 +3127,32 @@ class Hr extends Xtreme
 
             //$lineManagerNameId = (isset($arr_attr->line_manager_name_id) && $arr_attr->line_manager_name_id!='')?$arr_attr->line_manager_name_id:0;
             // $workingHours = (isset($arr_attr->working_hours) && $arr_attr->working_hours!='')?$arr_attr->working_hours:0;
+<<<<<<< HEAD
             if($arr_attr->allow_logins > 0)
             {
+=======
+            if ($arr_attr->allow_logins > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $password_attempts = " password_unsuccessful_attempts = 0, ";
             }
 
 
             $updatePassword = "";
 
+<<<<<<< HEAD
             if ($arr_attr->user_password != "Y0u sh@uldn\'t be doing this.."){
+=======
+            if ($arr_attr->user_password != "Y0u sh@uldn\'t be doing this..") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $arr_attr->user_password;exit;
                 $password = $arr_attr->user_password;
                 $arr_attr->user_password = $this->objGeneral->encrypt_password($password);
                 $arr_attr->user_password_1 = $this->objGeneral->encrypt_password_1($password);
+<<<<<<< HEAD
                 $updatePassword = "user_password='" . $arr_attr->user_password . "', user_password_1 ='".$arr_attr->user_password_1."', ";
+=======
+                $updatePassword = "user_password='" . $arr_attr->user_password . "', user_password_1 ='" . $arr_attr->user_password_1 . "', ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
 
@@ -2601,6 +3192,7 @@ class Hr extends Xtreme
                                 
                                 WHERE id = " . $employee_id . "
                                 Limit 1";
+<<<<<<< HEAD
             
             //  echo $Sql;exit;
 
@@ -2615,6 +3207,20 @@ class Hr extends Xtreme
                 return $RSProducts;
             }
             else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
+=======
+
+            //  echo $Sql;exit;
+
+            // $RSProducts = $this->objsetup->CSI($Sql);
+            if ($account_setting) {
+                $RSProducts = $this->objsetup->CSI($Sql);
+            } else {
+                $RSProducts = $this->objsetup->CSI($Sql, "HR_generalTab", sr_EditPermission);
+            }
+            if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+                return $RSProducts;
+            } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return $RSProducts;
             }
 
@@ -2626,23 +3232,38 @@ class Hr extends Xtreme
 
         //echo $Sql; exit;
         // if($counter_copy > 0)$this->copy_employee_log($arr_attr,$employee_id);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* Below Code will add departments for current employee inside hr_selected_departments table. */
         $Sql = "DELETE FROM hr_selected_departments
         WHERE hr_id='$employee_id' AND company_id=" . $this->arrUser['company_id'] . ";\n";
         $R = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         $deptArr = explode(",",$arr_attr->department);
         if (sizeof($deptArr) && !empty($deptArr[0])){
             for ($i = 0; $i<sizeof($deptArr); $i++){
+=======
+        $deptArr = explode(",", $arr_attr->department);
+        if (sizeof($deptArr) && !empty($deptArr[0])) {
+            for ($i = 0; $i < sizeof($deptArr); $i++) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Sql = "INSERT INTO hr_selected_departments
                         set
                             hr_id='$employee_id',
                             company_id='" . $this->arrUser['company_id'] . "',
                             department_id='$deptArr[$i]'";
+<<<<<<< HEAD
                             $R = $this->objsetup->CSI($Sql);
                             //echo $Sql;
+=======
+                $R = $this->objsetup->CSI($Sql);
+                //echo $Sql;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         /* Below Code will add roles for current employee inside employee_roles table. */
@@ -2650,14 +3271,22 @@ class Hr extends Xtreme
         WHERE employee_id='$employee_id' AND company_id=" . $this->arrUser['company_id'] . ";\n";
         //echo $Sql;
         $R = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         $roleArr = explode(",",$arr_attr->roles);
         for ($i = 0; $i<sizeof($roleArr); $i++){
             if ($roleArr[$i] == '')
             continue;
+=======
+        $roleArr = explode(",", $arr_attr->roles);
+        for ($i = 0; $i < sizeof($roleArr); $i++) {
+            if ($roleArr[$i] == '')
+                continue;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO employee_roles
                     set
                         employee_id='$employee_id',
                         company_id='" . $this->arrUser['company_id'] . "',
+<<<<<<< HEAD
                         user_id ='". $this->arrUser['id'] ."',
                         
                         role_id='$roleArr[$i]';\n";
@@ -2669,6 +3298,19 @@ class Hr extends Xtreme
         //exit;
 
         
+=======
+                        user_id ='" . $this->arrUser['id'] . "',
+                        
+                        role_id='$roleArr[$i]';\n";
+            //echo $Sql;
+            //date_added ='". current_date ."',
+            //status ='1',
+            $R = $this->objsetup->CSI($Sql);
+        }
+        //exit;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $message = "Record  $new_msg Successfully. ";
 
         if ($employee_id > 0) {
@@ -2679,7 +3321,11 @@ class Hr extends Xtreme
             $response['info'] = $new;
             $response['tab_change'] = $tab_change;
             $response['last_expense_id'] = $lastExpenseID;
+<<<<<<< HEAD
             if ($allow_login_exceeding){
+=======
+            if ($allow_login_exceeding) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['allow_login_exceeding'] = 1;
             }
         } else {
@@ -2702,17 +3348,30 @@ class Hr extends Xtreme
 
         if (!empty($arr_attr->employee_id))
             $employee_id = $arr_attr->employee_id;
+<<<<<<< HEAD
 		
 		$password_expiry_reset = (strlen($arr_attr->user_password) > 0 && $arr_attr->user_password != $arr_attr->user_password_prev)?'password_expiry_date = UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 90 DAY)),' : '';
+=======
+
+        $password_expiry_reset = (strlen($arr_attr->user_password) > 0 && $arr_attr->user_password != $arr_attr->user_password_prev) ? 'password_expiry_date = UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 90 DAY)),' : '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $updatePassword = "";
         $resetPassword = 0;
 
+<<<<<<< HEAD
         if ($arr_attr->user_password != "Y0u sh@uldn\'t be doing this.."){
             $password = $arr_attr->user_password;
             $arr_attr->user_password = $this->objGeneral->encrypt_password($password);
             $arr_attr->user_password_1 = $this->objGeneral->encrypt_password_1($password);
             $updatePassword = "user_password='" . $arr_attr->user_password . "', user_password_1 ='".$arr_attr->user_password_1."', ";
+=======
+        if ($arr_attr->user_password != "Y0u sh@uldn\'t be doing this..") {
+            $password = $arr_attr->user_password;
+            $arr_attr->user_password = $this->objGeneral->encrypt_password($password);
+            $arr_attr->user_password_1 = $this->objGeneral->encrypt_password_1($password);
+            $updatePassword = "user_password='" . $arr_attr->user_password . "', user_password_1 ='" . $arr_attr->user_password_1 . "', ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $resetPassword = 1;
         }
 
@@ -2723,6 +3382,7 @@ class Hr extends Xtreme
                             known_as='" . $arr_attr->known_as . "'                                
                 WHERE id = " . $employee_id . "
                 Limit 1";
+<<<<<<< HEAD
         
         //echo $Sql;exit;
         $RSProducts = $this->objsetup->CSI($Sql);
@@ -2731,6 +3391,15 @@ class Hr extends Xtreme
             return $RSProducts;
         }
         else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
+=======
+
+        //echo $Sql;exit;
+        $RSProducts = $this->objsetup->CSI($Sql);
+
+        if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+            return $RSProducts;
+        } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return $RSProducts;
         }
 
@@ -2776,7 +3445,11 @@ class Hr extends Xtreme
         $new = 'Add';
         $new_msg = 'Inserted';
 
+<<<<<<< HEAD
         $post_code_country = (isset($arr_attr->post_code_countrys) && $arr_attr->post_code_countrys!='')?$arr_attr->post_code_countrys:225; 
+=======
+        $post_code_country = (isset($arr_attr->post_code_countrys) && $arr_attr->post_code_countrys != '') ? $arr_attr->post_code_countrys : 225;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE employees
                             SET
@@ -2807,12 +3480,20 @@ class Hr extends Xtreme
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "HR_contact_Tab", sr_EditPermission);
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() == 0){
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
             $response['msg'] = $message;
         }
         else{
+=======
+        if ($this->Conn->Affected_Rows() == 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated!';
+            $response['msg'] = 'Record is Not updated!'; //$message;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $message = "Record  $new_msg Successfully. ";
 
             if ($employee_id > 0) {
@@ -2852,10 +3533,17 @@ class Hr extends Xtreme
         /* print_r($arr_attr->ethical_origin->id);
           exit; */
         $ethical_origin_id = $arr_attr->ethical_origin->id;
+<<<<<<< HEAD
         $otherReligion = (isset($arr_attr->religions) && $arr_attr->religions!='')?$arr_attr->religions:0;
         $genderId = (isset($arr_attr->gender_id) && $arr_attr->gender_id!='')?$arr_attr->gender_id:0;
         $children = (isset($arr_attr->children) && $arr_attr->children!='')?$arr_attr->children:0;
         $marStatusId = (isset($arr_attr->mar_status_id) && $arr_attr->mar_status_id!='')?$arr_attr->mar_status_id:0;
+=======
+        $otherReligion = (isset($arr_attr->religions) && $arr_attr->religions != '') ? $arr_attr->religions : 0;
+        $genderId = (isset($arr_attr->gender_id) && $arr_attr->gender_id != '') ? $arr_attr->gender_id : 0;
+        $children = (isset($arr_attr->children) && $arr_attr->children != '') ? $arr_attr->children : 0;
+        $marStatusId = (isset($arr_attr->mar_status_id) && $arr_attr->mar_status_id != '') ? $arr_attr->mar_status_id : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE employees
                         SET
@@ -2893,12 +3581,20 @@ class Hr extends Xtreme
 
         //   echo $Sql;exit;
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() == 0){
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
             $response['msg'] = $message;
         }
         else{
+=======
+        if ($this->Conn->Affected_Rows() == 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated!';
+            $response['msg'] = 'Record is Not updated!'; //$message;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $message = "Record  $new_msg Successfully. ";
 
             if ($employee_id > 0) {
@@ -2940,6 +3636,7 @@ class Hr extends Xtreme
         // removed following line from query by ahmad
         // 
 
+<<<<<<< HEAD
         $bonus = (isset($arr_attr->bonus) && $arr_attr->bonus!='')?$arr_attr->bonus:0;
         $commission = (isset($arr_attr->commission) && $arr_attr->commission!='')?$arr_attr->commission:0;
         $salary_type = (isset($arr_attr->salary_type) && $arr_attr->salary_type!='')?$arr_attr->salary_type:0;
@@ -2947,6 +3644,15 @@ class Hr extends Xtreme
         $ee_pention = (isset($arr_attr->ee_pention) && $arr_attr->ee_pention!='')?$arr_attr->ee_pention:0;
         $er_pention = (isset($arr_attr->er_pention) && $arr_attr->er_pention!='')?$arr_attr->er_pention:0;
         $entitle_holiday_optis = (isset($arr_attr->entitle_holiday_optis) && $arr_attr->entitle_holiday_optis!='')?$arr_attr->entitle_holiday_optis:0;
+=======
+        $bonus = (isset($arr_attr->bonus) && $arr_attr->bonus != '') ? $arr_attr->bonus : 0;
+        $commission = (isset($arr_attr->commission) && $arr_attr->commission != '') ? $arr_attr->commission : 0;
+        $salary_type = (isset($arr_attr->salary_type) && $arr_attr->salary_type != '') ? $arr_attr->salary_type : 0;
+        $salary_currency_id = (isset($arr_attr->salary_currency_id) && $arr_attr->salary_currency_id != '') ? $arr_attr->salary_currency_id : 0;
+        $ee_pention = (isset($arr_attr->ee_pention) && $arr_attr->ee_pention != '') ? $arr_attr->ee_pention : 0;
+        $er_pention = (isset($arr_attr->er_pention) && $arr_attr->er_pention != '') ? $arr_attr->er_pention : 0;
+        $entitle_holiday_optis = (isset($arr_attr->entitle_holiday_optis) && $arr_attr->entitle_holiday_optis != '') ? $arr_attr->entitle_holiday_optis : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE employees
                         SET
@@ -2977,10 +3683,16 @@ class Hr extends Xtreme
 
         // $rs_salary = $this->objsetup->CSI($salHistorySQLSelect);
         $rs_salary = $this->objsetup->CSI($salHistorySQLSelect, "HR_salaryTab", sr_EditPermission);
+<<<<<<< HEAD
         if(is_array($rs_salary) && $rs_salary['Error'] == 1){
             return $rs_salary;
         }
         else if (is_array($rs_salary) && $rs_salary['Access'] == 0){
+=======
+        if (is_array($rs_salary) && $rs_salary['Error'] == 1) {
+            return $rs_salary;
+        } else if (is_array($rs_salary) && $rs_salary['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return $rs_salary;
         }
         $hSalary = $rs_salary->fields['salary'];
@@ -2990,7 +3702,11 @@ class Hr extends Xtreme
 
         if ($lastID > 0) {
 
+<<<<<<< HEAD
             if ($hSalary != $arr_attr->salary) {// && $endDate == 0
+=======
+            if ($hSalary != $arr_attr->salary) { // && $endDate == 0
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 /* $salHistorySQLUpdate = "update salary_history
                   set
@@ -3043,12 +3759,20 @@ class Hr extends Xtreme
         $RS = $this->objsetup->CSI($Sql);
         //   echo $Sql;exit;
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() == 0){
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
             $response['msg'] = $message;
         }
         else{
+=======
+        if ($this->Conn->Affected_Rows() == 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated!';
+            $response['msg'] = 'Record is Not updated!'; //$message;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $message = "Record  $new_msg Successfully. ";
 
             if ($employee_id > 0) {
@@ -3060,13 +3784,18 @@ class Hr extends Xtreme
                 $response['tab_change'] = $tab_change;
                 $response['last_expense_id'] = $lastExpenseID;
 
+<<<<<<< HEAD
                 if($commission>0){
+=======
+                if ($commission > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $commissionHistorySql = "SELECT * FROM employees_commission_history 
                                              WHERE employees_id='" . $employee_id . "' AND 
                                                   company_id = '" . $this->arrUser['company_id'] . "'
                                              ORDER BY id desc 
                                              LIMIT 1";
+<<<<<<< HEAD
             
                     // echo $commissionHistorySql;exit;
                     // $rsCommissionHistory = $this->objsetup->CSI($commissionHistorySql);
@@ -3075,14 +3804,28 @@ class Hr extends Xtreme
                         return $rsCommissionHistory;
                     }
                     else if (is_array($rsCommissionHistory) && $rsCommissionHistory['Access'] == 0){
+=======
+
+                    // echo $commissionHistorySql;exit;
+                    // $rsCommissionHistory = $this->objsetup->CSI($commissionHistorySql);
+                    $rsCommissionHistory = $this->objsetup->CSI($commissionHistorySql, "HR_salaryTab", sr_EditPermission);
+                    if (is_array($rsCommissionHistory) && $rsCommissionHistory['Error'] == 1) {
+                        return $rsCommissionHistory;
+                    } else if (is_array($rsCommissionHistory) && $rsCommissionHistory['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         return $rsCommissionHistory;
                     }
 
                     $prevCommission = $rsCommissionHistory->fields['commission'];
                     $prevCommission_effective_date = $rsCommissionHistory->fields['commission_effective_date'];
 
+<<<<<<< HEAD
                     if(($prevCommission != $commission) || ($prevCommission_effective_date != $this->objGeneral->convert_date($arr_attr->commission_effective_date))){
                         
+=======
+                    if (($prevCommission != $commission) || ($prevCommission_effective_date != $this->objGeneral->convert_date($arr_attr->commission_effective_date))) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $addCommissionHistorySQL = "INSERT INTO employees_commission_history
                                                                 SET
                                                                     employees_id = '$employee_id',
@@ -3121,8 +3864,13 @@ class Hr extends Xtreme
         if (!empty($arr_attr->employee_id))
             $employee_id = $arr_attr->employee_id;
 
+<<<<<<< HEAD
         $tabletStatusIds = (isset($arr_attr->tablet_status_ids) && $arr_attr->tablet_status_ids!='')?$arr_attr->tablet_status_ids:0;
             
+=======
+        $tabletStatusIds = (isset($arr_attr->tablet_status_ids) && $arr_attr->tablet_status_ids != '') ? $arr_attr->tablet_status_ids : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $new = 'Add';
         $new_msg = 'Inserted';
@@ -3170,6 +3918,7 @@ class Hr extends Xtreme
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, "HR_benefit_Tab", sr_EditPermission);
+<<<<<<< HEAD
         
 
         if ($this->Conn->Affected_Rows() == 0){
@@ -3178,6 +3927,15 @@ class Hr extends Xtreme
             $response['msg'] = $message;
         }
         else{
+=======
+
+
+        if ($this->Conn->Affected_Rows() == 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated!';
+            $response['msg'] = 'Record is Not updated!'; //$message;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             /* for benefits history */
             $this->current_employees_benefit($arr_attr, $employee_id);
@@ -3190,36 +3948,62 @@ class Hr extends Xtreme
                 $response['error'] = NULL;
                 $response['msg'] = $message;
                 $response['info'] = $new;
+<<<<<<< HEAD
                 $response['tab_change'] = $tab_change;
                 $response['last_expense_id'] = $lastExpenseID;
+=======
+                $response['tab_change'] = ''; //$tab_change;
+                $response['last_expense_id'] = ''; //$lastExpenseID;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
         return $response;
     }
 
+<<<<<<< HEAD
     function current_employees_benefit($arr_attr,$employee_id)
+=======
+    function current_employees_benefit($arr_attr, $employee_id)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         //echo '<pre>';print_r($arr_attr->car_enngine);exit;
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
             /* for benefits history */
             // for car
            // echo $arr_attr->company_car;exit;
             if($arr_attr->company_cars==1){
 
                 $current_car = "SELECT is_current 
+=======
+        /* for benefits history */
+        // for car
+        // echo $arr_attr->company_car;exit;
+        if ($arr_attr->company_cars == 1) {
+
+            $current_car = "SELECT is_current 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 FROM employees_benefits_history 
                                 WHERE benefit_type='1' AND 
                                       employee_id=" . $employee_id . " AND 
                                       company_id='" . $this->arrUser['company_id'] . "'  AND 
                                       is_current=1";
 
+<<<<<<< HEAD
                 $RS1 = $this->objsetup->CSI($current_car);
 
                 if ($RS1->RecordCount() == 0) {
 
                     $car_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS1 = $this->objsetup->CSI($current_car);
+
+            if ($RS1->RecordCount() == 0) {
+
+                $car_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         SET  
                                                             benefit_type='1' ,
                                                             employee_id=" . $employee_id . " ,
@@ -3234,6 +4018,7 @@ class Hr extends Xtreme
                                                             car_engine='" . $arr_attr->car_enngines . "' ,
                                                             car_date_assign= '" . $this->objGeneral->convert_date($arr_attr->car_date_assign) . "' ,
                                                             car_date_return=   '" . $this->objGeneral->convert_date($arr_attr->car_date_return) . "',
+<<<<<<< HEAD
                                                             AddedBy = '" .  $this->arrUser['id']. "',
                                                             AddedOn = UNIX_TIMESTAMP(NOW()),
                                                             is_current = 1 ";
@@ -3241,6 +4026,14 @@ class Hr extends Xtreme
 
                 }else{
                     $car_query_ins = "UPDATE employees_benefits_history 
+=======
+                                                            AddedBy = '" .  $this->arrUser['id'] . "',
+                                                            AddedOn = UNIX_TIMESTAMP(NOW()),
+                                                            is_current = 1 ";
+                $this->objsetup->CSI($car_query_ins);
+            } else {
+                $car_query_ins = "UPDATE employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     SET  
                                                         car_make='" . $arr_attr->company_car_make . "' ,
                                                         car_model='" . $arr_attr->car_model . "' ,
@@ -3251,13 +4044,18 @@ class Hr extends Xtreme
                                                         car_engine='" . $arr_attr->car_enngines . "' ,
                                                         car_date_assign= '" . $this->objGeneral->convert_date($arr_attr->car_date_assign) . "' ,
                                                         car_date_return=   '" . $this->objGeneral->convert_date($arr_attr->car_date_return) . "',
+<<<<<<< HEAD
                                                         AddedBy = '" .  $this->arrUser['id']. "',
+=======
+                                                        AddedBy = '" .  $this->arrUser['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         AddedOn = UNIX_TIMESTAMP(NOW())
                                         WHERE benefit_type='1' AND 
                                                 employee_id=" . $employee_id . " AND 
                                                 company_id='" . $this->arrUser['company_id'] . "' AND 
                                                 is_current=1 ";
 
+<<<<<<< HEAD
                     $this->objsetup->CSI($car_query_ins);
                 }                
             }
@@ -3266,17 +4064,35 @@ class Hr extends Xtreme
             if($arr_attr->car_fuel_card==1){  
 
                 $current_fuel = "SELECT is_current 
+=======
+                $this->objsetup->CSI($car_query_ins);
+            }
+        }
+
+        // for fuel card
+        if ($arr_attr->car_fuel_card == 1) {
+
+            $current_fuel = "SELECT is_current 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                  FROM employees_benefits_history 
                                  WHERE benefit_type='2' AND 
                                        employee_id=" . $employee_id . " AND 
                                        company_id='" . $this->arrUser['company_id'] . "'  AND 
                                        is_current=1";
 
+<<<<<<< HEAD
                 $RS2 = $this->objsetup->CSI($current_fuel);
 
                 if ($RS2->RecordCount() == 0) {
 
                     $fuelcard_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS2 = $this->objsetup->CSI($current_fuel);
+
+            if ($RS2->RecordCount() == 0) {
+
+                $fuelcard_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                 SET  
                                                                     benefit_type='2' ,
                                                                     employee_id=" . $employee_id . " ,
@@ -3284,6 +4100,7 @@ class Hr extends Xtreme
                                                                     car_fuel_card='1' ,
                                                                     car_fuel_card_num='" . $arr_attr->car_fuel_card_num . "',
                                                                     fuel_cost_deduction='" . $arr_attr->fuel_cost_deduction . "',
+<<<<<<< HEAD
                                                                     AddedBy = '" .  $this->arrUser['id']. "',
                                                                     AddedOn = UNIX_TIMESTAMP(NOW()),
                                                                     is_current = 1 ";
@@ -3296,12 +4113,26 @@ class Hr extends Xtreme
                                                             car_fuel_card_num='" . $arr_attr->car_fuel_card_num . "',
                                                             fuel_cost_deduction='" . $arr_attr->fuel_cost_deduction . "',
                                                             AddedBy = '" .  $this->arrUser['id']. "',
+=======
+                                                                    AddedBy = '" .  $this->arrUser['id'] . "',
+                                                                    AddedOn = UNIX_TIMESTAMP(NOW()),
+                                                                    is_current = 1 ";
+                $this->objsetup->CSI($fuelcard_query_ins);
+            } else {
+
+                $fuelcard_query_ins = "UPDATE employees_benefits_history 
+                                                        SET                  
+                                                            car_fuel_card_num='" . $arr_attr->car_fuel_card_num . "',
+                                                            fuel_cost_deduction='" . $arr_attr->fuel_cost_deduction . "',
+                                                            AddedBy = '" .  $this->arrUser['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             AddedOn = UNIX_TIMESTAMP(NOW())
                                             WHERE benefit_type='2' AND 
                                                   employee_id=" . $employee_id . " AND 
                                                   company_id='" . $this->arrUser['company_id'] . "' AND 
                                                   is_current=1 ";
 
+<<<<<<< HEAD
                     $this->objsetup->CSI($fuelcard_query_ins);
                 }               
             }
@@ -3310,18 +4141,37 @@ class Hr extends Xtreme
             if($arr_attr->company_laptop_models==1){
 
                 $current_laptop = " SELECT is_current 
+=======
+                $this->objsetup->CSI($fuelcard_query_ins);
+            }
+        }
+
+        // for laptop
+        if ($arr_attr->company_laptop_models == 1) {
+
+            $current_laptop = " SELECT is_current 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     FROM employees_benefits_history 
                                     WHERE benefit_type='3' AND 
                                           employee_id=" . $employee_id . " AND 
                                           company_id='" . $this->arrUser['company_id'] . "'  AND 
                                           is_current=1";
 
+<<<<<<< HEAD
                 $RS3 = $this->objsetup->CSI($current_laptop);
 
                // echo $RS3->RecordCount();exit;
                 if ($RS3->RecordCount() == 0) {  
 
                     $laptop_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS3 = $this->objsetup->CSI($current_laptop);
+
+            // echo $RS3->RecordCount();exit;
+            if ($RS3->RecordCount() == 0) {
+
+                $laptop_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     SET  
                                                         benefit_type='3' ,
                                                         employee_id=" . $employee_id . " ,
@@ -3332,6 +4182,7 @@ class Hr extends Xtreme
                                                         laptop_model='" . $arr_attr->laptop_model . "',
                                                         laptop_return_date_assign=  '" . $this->objGeneral->convert_date($arr_attr->laptop_return_date_assign) . "',
                                                         laptop_date_assign=  '" . $this->objGeneral->convert_date($arr_attr->laptop_date_assign) . "',
+<<<<<<< HEAD
                                                         AddedBy = '" .  $this->arrUser['id']. "',
                                                         AddedOn = UNIX_TIMESTAMP(NOW()),
                                                         is_current = 1 ";
@@ -3341,19 +4192,34 @@ class Hr extends Xtreme
                 }else{
 
                     $laptop_query_ins = "UPDATE employees_benefits_history 
+=======
+                                                        AddedBy = '" .  $this->arrUser['id'] . "',
+                                                        AddedOn = UNIX_TIMESTAMP(NOW()),
+                                                        is_current = 1 ";
+
+                $this->objsetup->CSI($laptop_query_ins);
+            } else {
+
+                $laptop_query_ins = "UPDATE employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         SET                  
                                                             laptop_serial='" . $arr_attr->company_laptop_serial . "',
                                                             laptop_make='" . $arr_attr->laptop_make . "',
                                                             laptop_model='" . $arr_attr->laptop_model . "',
                                                             laptop_return_date_assign=  '" . $this->objGeneral->convert_date($arr_attr->laptop_return_date_assign) . "',
                                                             laptop_date_assign=  '" . $this->objGeneral->convert_date($arr_attr->laptop_date_assign) . "',
+<<<<<<< HEAD
                                                             AddedBy = '" .  $this->arrUser['id']. "',
+=======
+                                                            AddedBy = '" .  $this->arrUser['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             AddedOn = UNIX_TIMESTAMP(NOW())
                                                 WHERE benefit_type='3' AND 
                                                       employee_id=" . $employee_id . " AND 
                                                       company_id='" . $this->arrUser['company_id'] . "' AND 
                                                       is_current=1";
 
+<<<<<<< HEAD
                     $this->objsetup->CSI($laptop_query_ins);  
                 }              
             }
@@ -3362,17 +4228,35 @@ class Hr extends Xtreme
             if($arr_attr->tablet_status_ids==1){
 
                 $current_tab = "SELECT is_current 
+=======
+                $this->objsetup->CSI($laptop_query_ins);
+            }
+        }
+
+        // for ipad
+        if ($arr_attr->tablet_status_ids == 1) {
+
+            $current_tab = "SELECT is_current 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 FROM employees_benefits_history 
                                 WHERE benefit_type='4' AND 
                                       employee_id=" . $employee_id . " AND 
                                       company_id='" . $this->arrUser['company_id'] . "'  AND 
                                       is_current=1";
 
+<<<<<<< HEAD
                 $RS4 = $this->objsetup->CSI($current_tab);
 
                 if ($RS4->RecordCount() == 0) { 
 
                     $laptop_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS4 = $this->objsetup->CSI($current_tab);
+
+            if ($RS4->RecordCount() == 0) {
+
+                $laptop_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         SET  
                                                             benefit_type='4' ,
                                                             employee_id=" . $employee_id . " ,
@@ -3383,6 +4267,7 @@ class Hr extends Xtreme
                                                             tablet_model='" . $arr_attr->tablet_model . "',
                                                             tablet_date_assign='" . $this->objGeneral->convert_date($arr_attr->tablet_date_assign) . "',
                                                             tablet_return_date_assign= '" . $this->objGeneral->convert_date($arr_attr->tablet_return_date_assign) . "',
+<<<<<<< HEAD
                                                             AddedBy = '" .  $this->arrUser['id']. "',
                                                             AddedOn = UNIX_TIMESTAMP(NOW()),
                                                             is_current = 1 ";
@@ -3390,19 +4275,33 @@ class Hr extends Xtreme
                     $this->objsetup->CSI($laptop_query_ins);
                 }else{
                     $laptop_query_ins = "UPDATE employees_benefits_history 
+=======
+                                                            AddedBy = '" .  $this->arrUser['id'] . "',
+                                                            AddedOn = UNIX_TIMESTAMP(NOW()),
+                                                            is_current = 1 ";
+
+                $this->objsetup->CSI($laptop_query_ins);
+            } else {
+                $laptop_query_ins = "UPDATE employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 SET                 
                                                     tablet_serial='" . $arr_attr->company_tablet_serial . "',
                                                     tablet_make='" . $arr_attr->tablet_make . "',
                                                     tablet_model='" . $arr_attr->tablet_model . "',
                                                     tablet_date_assign='" . $this->objGeneral->convert_date($arr_attr->tablet_date_assign) . "',
                                                     tablet_return_date_assign= '" . $this->objGeneral->convert_date($arr_attr->tablet_return_date_assign) . "',
+<<<<<<< HEAD
                                                     AddedBy = '" .  $this->arrUser['id']. "',
+=======
+                                                    AddedBy = '" .  $this->arrUser['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     AddedOn = UNIX_TIMESTAMP(NOW())
                                             WHERE benefit_type='4' AND 
                                                   employee_id=" . $employee_id . " AND 
                                                   company_id='" . $this->arrUser['company_id'] . "' AND 
                                                   is_current=1";
 
+<<<<<<< HEAD
                     $this->objsetup->CSI($laptop_query_ins);
                 }               
             }
@@ -3411,17 +4310,35 @@ class Hr extends Xtreme
             if($arr_attr->company_mobile_models==1){
 
                 $current_mob = "SELECT is_current 
+=======
+                $this->objsetup->CSI($laptop_query_ins);
+            }
+        }
+
+        // for mobile
+        if ($arr_attr->company_mobile_models == 1) {
+
+            $current_mob = "SELECT is_current 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 FROM employees_benefits_history 
                                 WHERE benefit_type='5' AND 
                                       employee_id=" . $employee_id . " AND 
                                       company_id='" . $this->arrUser['company_id'] . "' AND 
                                       is_current=1";
 
+<<<<<<< HEAD
                 $RS5 = $this->objsetup->CSI($current_mob);
 
                 if ($RS5->RecordCount() == 0) { 
 
                     $mobile_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS5 = $this->objsetup->CSI($current_mob);
+
+            if ($RS5->RecordCount() == 0) {
+
+                $mobile_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         SET  
                                                             benefit_type='5' ,
                                                             employee_id=" . $employee_id . " ,
@@ -3432,6 +4349,7 @@ class Hr extends Xtreme
                                                             mobile_model='" . $arr_attr->mobile_model . "',
                                                             mobile_date_assign='" . $this->objGeneral->convert_date($arr_attr->mobile_date_assign) . "',
                                                             mobile_return_date_assign=   '" . $this->objGeneral->convert_date($arr_attr->mobile_return_date_assign) . "',
+<<<<<<< HEAD
                                                             AddedBy = '" .  $this->arrUser['id']. "',
                                                             AddedOn = UNIX_TIMESTAMP(NOW()),
                                                             is_current = 1";
@@ -3440,22 +4358,41 @@ class Hr extends Xtreme
                 }else{
 
                     $mobile_query_ins = "UPDATE employees_benefits_history 
+=======
+                                                            AddedBy = '" .  $this->arrUser['id'] . "',
+                                                            AddedOn = UNIX_TIMESTAMP(NOW()),
+                                                            is_current = 1";
+                $this->objsetup->CSI($mobile_query_ins);
+            } else {
+
+                $mobile_query_ins = "UPDATE employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     SET  
                                                         mobile_serial='" . $arr_attr->company_mobile_serial . "',
                                                         mobile_make='" . $arr_attr->mobile_make . "',
                                                         mobile_model='" . $arr_attr->mobile_model . "',
                                                         mobile_date_assign='" . $this->objGeneral->convert_date($arr_attr->mobile_date_assign) . "',
                                                         mobile_return_date_assign=   '" . $this->objGeneral->convert_date($arr_attr->mobile_return_date_assign) . "',
+<<<<<<< HEAD
                                                         AddedBy = '" .  $this->arrUser['id']. "',
+=======
+                                                        AddedBy = '" .  $this->arrUser['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         AddedOn = UNIX_TIMESTAMP(NOW())
                                             WHERE benefit_type='5' AND 
                                                   employee_id=" . $employee_id . " AND 
                                                   company_id='" . $this->arrUser['company_id'] . "' AND 
                                                   is_current=1";
 
+<<<<<<< HEAD
                     $this->objsetup->CSI($mobile_query_ins);
                 }
             }
+=======
+                $this->objsetup->CSI($mobile_query_ins);
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         return true;
     }
@@ -3470,7 +4407,11 @@ class Hr extends Xtreme
         // for car
         // echo $arr_attr->company_car;exit;
 
+<<<<<<< HEAD
         if($arr_attr->company_car==1){
+=======
+        if ($arr_attr->company_car == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $car_query_ins = "UPDATE employees_benefits_history 
                                                 SET 
@@ -3479,6 +4420,7 @@ class Hr extends Xtreme
                                     is_current=1 AND 
                                     company_car=1";
 
+<<<<<<< HEAD
             $this->objsetup->CSI($car_query_ins);                
         }
 
@@ -3505,6 +4447,34 @@ class Hr extends Xtreme
 
         // for mobile
         if($arr_attr->company_mobile==1){
+=======
+            $this->objsetup->CSI($car_query_ins);
+        }
+
+        // for fuel card
+        if ($arr_attr->car_fuel_card == 1) {
+
+            $fuelcard_query_ins = "UPDATE employees_benefits_history SET is_current=0 WHERE employee_id=" . $employee_id . " AND is_current=1 AND car_fuel_card=1";
+            $this->objsetup->CSI($fuelcard_query_ins);
+        }
+
+        // for laptop
+        if ($arr_attr->company_laptop == 1) {
+
+            $laptop_query_ins = "UPDATE employees_benefits_history SET is_current=0 WHERE employee_id=" . $employee_id . " AND is_current=1 AND company_laptop=1";
+            $this->objsetup->CSI($laptop_query_ins);
+        }
+
+        // for ipad
+        if ($arr_attr->company_tablet == 1) {
+
+            $tablet_query_ins = "UPDATE employees_benefits_history SET is_current=0 WHERE employee_id=" . $employee_id . " AND is_current=1 AND company_tablet=1";
+            $this->objsetup->CSI($tablet_query_ins);
+        }
+
+        // for mobile
+        if ($arr_attr->company_mobile == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $mobile_query_ins = "UPDATE employees_benefits_history SET is_current=0 WHERE employee_id=" . $employee_id . " AND is_current=1 AND company_mobile=1";
             $this->objsetup->CSI($mobile_query_ins);
@@ -3552,11 +4522,19 @@ class Hr extends Xtreme
                 FROM employee_roles es
                 left join roles r on r.id=es.role_id
                 left join ref_module m on m.id=es.module_id
+<<<<<<< HEAD
                 WHERE es.employee_id='".$attr['employee_id']."' and es.status=1";
 
         //defualt Variable
         $total_limit = pagination_limit;
         
+=======
+                WHERE es.employee_id='" . $attr['employee_id'] . "' and es.status=1";
+
+        //defualt Variable
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -3597,7 +4575,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $Sql = "SELECT *
 				FROM employee_roles
+<<<<<<< HEAD
 				WHERE id='".$attr['id']."'
+=======
+				WHERE id='" . $attr['id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -3681,7 +4663,11 @@ class Hr extends Xtreme
         }
 
         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $message = "Record  $new_msg Successfully. ";
 
         if ($employee_id > 0) {
@@ -3710,6 +4696,7 @@ class Hr extends Xtreme
         $response2 = array();
 
         if (!empty($attr['keyword']))
+<<<<<<< HEAD
             $where_clause .= " AND name LIKE '%".$attr['keyword']."%' ";
 
         if (!empty($attr['item_id']))
@@ -3717,12 +4704,25 @@ class Hr extends Xtreme
 
         if (!empty($attr['supp_id']))
             $where_clause .= " AND psp.sale_id = '".$attr['supp_id']."' ";
+=======
+            $where_clause .= " AND name LIKE '%" . $attr['keyword'] . "%' ";
+
+        if (!empty($attr['item_id']))
+            $where_clause .= " AND psp.item_id = '" . $attr['item_id'] . "' ";
+
+        if (!empty($attr['supp_id']))
+            $where_clause .= " AND psp.sale_id = '" . $attr['supp_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $page = (isset($attr['page'])) ? $attr['page'] : 1;
         $start_limit = ($page - 1) * 20;
         $end_limit = $page * 20;
 
+<<<<<<< HEAD
         $limit_clause = " LIMIT ".$start_limit.", ".$end_limit." ";
+=======
+        $limit_clause = " LIMIT " . $start_limit . ", " . $end_limit . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $order_clause = " ORDER BY employee_expenses.id DESC";
         // if (!empty($attr['country_keyword']) && $attr['country_keyword'] != "")       $keyword_clause .= " AND (ar.country LIKE '%$attr[country_keyword]%') ";
 
@@ -3741,6 +4741,7 @@ class Hr extends Xtreme
                        employee_expenses.event_date,
 
                         (SELECT round(SUM(es.total_sum) ,2)  FROM employee_expenses_detail  es
+<<<<<<< HEAD
                         where employee_expenses.employee_id=".$attr['employee_id']." and
                         es.exp_id=employee_expenses.id and es.status=1) as amount,
 
@@ -3750,6 +4751,17 @@ class Hr extends Xtreme
 
                         (SELECT round(SUM(ecv.amount) ,2)  FROM expense_company_vehicle  ecv
                         where employee_expenses.employee_id=".$attr['employee_id']." and
+=======
+                        where employee_expenses.employee_id=" . $attr['employee_id'] . " and
+                        es.exp_id=employee_expenses.id and es.status=1) as amount,
+
+                        (SELECT round(SUM(epv.amount) ,2)  FROM expense_personel_vehicle  epv
+                        where employee_expenses.employee_id=" . $attr['employee_id'] . " and
+                        epv.expense_id=employee_expenses.id and epv.status=1) as personalAmount,
+
+                        (SELECT round(SUM(ecv.amount) ,2)  FROM expense_company_vehicle  ecv
+                        where employee_expenses.employee_id=" . $attr['employee_id'] . " and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ecv.expense_id=employee_expenses.id and ecv.status=1) as companyAmount,
 
                         COALESCE((SELECT ah.status 
@@ -3761,6 +4773,7 @@ class Hr extends Xtreme
 
                 FROM employee_expenses
                 where   employee_expenses.status IN(1,2) and
+<<<<<<< HEAD
                         employee_expenses.employee_id=".$attr['employee_id']." and
                         employee_expenses.company_id=" . $this->arrUser['company_id'] . " ";
        // echo $Sql;exit;
@@ -3768,6 +4781,15 @@ class Hr extends Xtreme
         //defualt Variable
         $total_limit = pagination_limit;
         
+=======
+                        employee_expenses.employee_id=" . $attr['employee_id'] . " and
+                        employee_expenses.company_id=" . $this->arrUser['company_id'] . " ";
+        // echo $Sql;exit;
+
+        //defualt Variable
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -3775,10 +4797,16 @@ class Hr extends Xtreme
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'employee_expenses', $order_type);
         // echo $response['q'];exit;		
         // $RS = $this->objsetup->CSI($response['q']);
+<<<<<<< HEAD
         if ($attr['employee_id'] == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($response['q']);
         }
         else{
+=======
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($response['q']);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($response['q'], "HR_expenses_Tab", sr_ViewPermission);
         }
 
@@ -3794,18 +4822,30 @@ class Hr extends Xtreme
                 // $result['amount'] = $Row['amount'] + $Row['personalAmount'] + $Row['companyAmount'];
                 $result['Expense_amount'] = $Row['amount'];
                 $result['Mileage amount'] = $Row['personalAmount'] + $Row['companyAmount'];
+<<<<<<< HEAD
                 $result['Mileage amount'] = number_format((float)$result['Mileage amount'], 2, '.', '');
                 $result['Expense_amount'] = number_format((float)$result['Expense_amount'], 2, '.', '');
+=======
+                $result['Mileage amount'] = number_format((float) $result['Mileage amount'], 2, '.', '');
+                $result['Expense_amount'] = number_format((float) $result['Expense_amount'], 2, '.', '');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['date'] = $this->objGeneral->convert_unix_into_date($Row['event_date']);
                 /* $dt = new DateTime($Row['event_date']);  // convert UNIX timestamp to PHP DateTime
                   $result['event_date'] =$dt->format('d/m/Y');
                  */
                 //echo $Row['expense_status'];
 
+<<<<<<< HEAD
                 if($Row['approvalStatus'] == 1)
                     $Row['expense_status'] = 1;
                    // if($Row['approvalStatus'] == '-1' || $Row['approvalStatus']>3)
                     $Row['expense_status'] = $Row['approvalStatus'];
+=======
+                if ($Row['approvalStatus'] == 1)
+                    $Row['expense_status'] = 1;
+                // if($Row['approvalStatus'] == '-1' || $Row['approvalStatus']>3)
+                $Row['expense_status'] = $Row['approvalStatus'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (($Row['expense_status']) == '-1') {
                     $result['status'] = 'In Progress';
@@ -3819,6 +4859,7 @@ class Hr extends Xtreme
                     $result['status'] = 'Disapproved';
                 } else if (($Row['expense_status']) == 4) {
                     $result['status'] = 'Cancel Rejected';
+<<<<<<< HEAD
                 }else if (($Row['expense_status']) == 5) {
                     $result['status'] = 'Not Responded';
                 }else if (($Row['expense_status']) == 6) {
@@ -3826,6 +4867,15 @@ class Hr extends Xtreme
                 }else if (($Row['expense_status']) == 7) {
                     $result['status'] = 'On Hold';
                 }else {
+=======
+                } else if (($Row['expense_status']) == 5) {
+                    $result['status'] = 'Not Responded';
+                } else if (($Row['expense_status']) == 6) {
+                    $result['status'] = 'Un Locked';
+                } else if (($Row['expense_status']) == 7) {
+                    $result['status'] = 'On Hold';
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['status'] = 'Not defined';
                 }
                 $response['response'][] = $result;
@@ -3857,10 +4907,17 @@ class Hr extends Xtreme
                 FROM employee_expenses ee 
                 left JOIN employees on employees.id=ee.employee_id 
                 left JOIN company on company.id=employees.user_company
+<<<<<<< HEAD
                 where  ee.id='".$attr['id']."'	
                 LIMIT 1 ";
         
        // echo '<pre>'. $Sql;exit;
+=======
+                where  ee.id='" . $attr['id'] . "'	
+                LIMIT 1 ";
+
+        // echo '<pre>'. $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
         if ($RS->RecordCount() > 0) {
@@ -3871,10 +4928,17 @@ class Hr extends Xtreme
             }
             $Row['event_date'] = $this->objGeneral->convert_unix_into_date($Row['event_date']);
 
+<<<<<<< HEAD
            // if($Row['approvalStatus'] == 1) $Row['expense_status'] = 1;
           // if($Row['approvalStatus'] == '-1' || $Row['approvalStatus']>3)
            $Row['expense_status'] = $Row['approvalStatus'];
             
+=======
+            // if($Row['approvalStatus'] == 1) $Row['expense_status'] = 1;
+            // if($Row['approvalStatus'] == '-1' || $Row['approvalStatus']>3)
+            $Row['expense_status'] = $Row['approvalStatus'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Row['status'] = intval($Row['status']);
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -3893,7 +4957,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE employee_expenses 
                             SET  
                                 status=0
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']." 
+=======
+                WHERE id = " . $attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 Limit 1";
         // echo $Sql;exit;
 
@@ -3912,7 +4980,11 @@ class Hr extends Xtreme
     }
 
     function update_hr_expense($arr_attr, $input)
+<<<<<<< HEAD
     { 
+=======
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         if (!empty($arr_attr->id))
@@ -3949,7 +5021,11 @@ class Hr extends Xtreme
             $code_Sql = "SELECT SR_GetNextSeq('employee_expenses','" . $this->arrUser['company_id'] . "','0' ,'0') ";
             $code = $this->objsetup->CSI($code_Sql);
 
+<<<<<<< HEAD
             $event_code = $code->fields[0]; 
+=======
+            $event_code = $code->fields[0];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO employee_expenses 
                                     SET
                                         event_date= '" . $this->objGeneral->convert_date($arr_attr->event_date) . "',
@@ -3965,7 +5041,10 @@ class Hr extends Xtreme
                                         user_id='" . $this->arrUser['id'] . "'";
 
             $modulePermission = sr_AddPermission;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
 
             $Sql = "UPDATE employee_expenses SET  
@@ -3984,10 +5063,16 @@ class Hr extends Xtreme
         // echo $Sql;exit;
         // $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($employee_id == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($Sql);
         }
         else{
+=======
+        if ($employee_id == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", $modulePermission);
         }
 
@@ -4007,7 +5092,11 @@ class Hr extends Xtreme
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
             $response['id'] = $expense_id;
+<<<<<<< HEAD
             $response['msg'] = $message;
+=======
+            $response['msg'] = 'Record is Not updated!'; //$message;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['code'] = $arr_attr->event_code;
         }
 
@@ -4032,11 +5121,18 @@ class Hr extends Xtreme
 
         $Sql .= $limit_clause;
         // $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         if ($attr['employee_id'] == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($Sql);
         }
         else{
             $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", sr_ViewPermission);            
+=======
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+            $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", sr_ViewPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($RS->RecordCount() > 0) {
@@ -4065,6 +5161,7 @@ class Hr extends Xtreme
                 $result['crtype'] = $Row['cname'];
                 $result['category'] = $Row['category'];
                 $result['currency'] = $Row['currency'];
+<<<<<<< HEAD
                 $result['amount'] = (float)$Row['amount'];
                 $result['base_currency'] = $Row['base_currency'];
                 $result['exchange_rate'] = (float)$Row['exchange_rate'];
@@ -4072,11 +5169,24 @@ class Hr extends Xtreme
                 $result['exchange_description'] = $Row['exchange_description'];
                 $result['currencyCode'] = $Row['currencyCode'];
                  
+=======
+                $result['amount'] = (float) $Row['amount'];
+                $result['base_currency'] = $Row['base_currency'];
+                $result['exchange_rate'] = (float) $Row['exchange_rate'];
+                $result['comments'] = $Row['exchange_rate_comment'];
+                $result['exchange_description'] = $Row['exchange_description'];
+                $result['currencyCode'] = $Row['currencyCode'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['imageId'] = $Row['exp_image'];
 
                 if ($result['imageId'] && file_exists($Row['imgPath']))
                     $result['exp_image'] = WEB_PATH . "/" . explode("//", $Row['imgPath'])[1];
+<<<<<<< HEAD
                 else{
+=======
+                else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['exp_image'] = '';
                 }
 
@@ -4096,6 +5206,7 @@ class Hr extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "SELECT * FROM employee_expenses_detail ee  WHERE  ee.id='".$attr['id']."'	and status=1 LIMIT 1 ";
         // $RS = $this->objsetup->CSI($Sql);
         
@@ -4105,6 +5216,16 @@ class Hr extends Xtreme
         else{
             $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", sr_ViewPermission);
         }        
+=======
+        $Sql = "SELECT * FROM employee_expenses_detail ee  WHERE  ee.id='" . $attr['id'] . "'	and status=1 LIMIT 1 ";
+        // $RS = $this->objsetup->CSI($Sql);
+
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+            $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", sr_ViewPermission);
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
@@ -4128,7 +5249,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE employee_expenses_detail 
                         SET
                             status=0
+<<<<<<< HEAD
                             WHERE id = ".$attr['id']."
+=======
+                            WHERE id = " . $attr['id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             Limit 1";
 
         // $RS = $this->objsetup->CSI($Sql);
@@ -4155,7 +5280,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE expense_personel_vehicle 
                         SET
                             status=0
+<<<<<<< HEAD
                             WHERE id = ".$attr['id']."
+=======
+                            WHERE id = " . $attr['id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             Limit 1";
 
 
@@ -4182,7 +5311,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE expense_company_vehicle 
                         SET
                             status=0
+<<<<<<< HEAD
                             WHERE id = ".$attr['id']."
+=======
+                            WHERE id = " . $attr['id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             Limit 1";
 
 
@@ -4202,7 +5335,11 @@ class Hr extends Xtreme
 
     function update_hr_subexpense($arr_attr, $input)
     {
+<<<<<<< HEAD
         $tab_change = $lastExpenseID = ""; 
+=======
+        $tab_change = $lastExpenseID = "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace = array();
 
         $srLogTrace['ErrorCode'] = '';
@@ -4232,7 +5369,11 @@ class Hr extends Xtreme
         $new_msg = 'Inserted';
 
         $expence_id = $arr_attr->expence_id;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         foreach ($arr_attr->data as $key => $row) {
             $modulePermission = "";
             // if ($row->amount != '')
@@ -4242,18 +5383,29 @@ class Hr extends Xtreme
                 $id = ($row->id != "") ? $row->id : 0;
                 $imageId = ($row->imageId != "") ? $row->imageId : 0;
 
+<<<<<<< HEAD
                 if($id == 0)
                 {
+=======
+                if ($id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $SqlSubExpense = "INSERT INTO employee_expenses_detail 
                                                         SET  
                                                             category='" . $category . "',
                                                             currency='" . $row->currency . "',
                                                             amount='" . $row->amount . "',
                                                             exchange_rate='" . $row->exchange_rate . "',
+<<<<<<< HEAD
                                                             exchange_rate_comment='" .addslashes( $row->comments ). "',
                                                             exchange_description='" . addslashes($row->exchange_description) . "',
                                                             exp_image='" . $imageId . "',
                                                             total_sum='" . $row->amount/ $row->exchange_rate . "',
+=======
+                                                            exchange_rate_comment='" . addslashes($row->comments) . "',
+                                                            exchange_description='" . addslashes($row->exchange_description) . "',
+                                                            exp_image='" . $imageId . "',
+                                                            total_sum='" . $row->amount / $row->exchange_rate . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             exp_id='" . $expence_id . "',
                                                             employee_id='" . $employee_id . "',
                                                             status=1,
@@ -4264,10 +5416,15 @@ class Hr extends Xtreme
                                                             company_id='" . $this->arrUser['company_id'] . "',
                                                             user_id='" . $this->arrUser['id'] . "',
                                                             date_added='" . current_date . "'";
+<<<<<<< HEAD
                                                             $modulePermission = sr_AddPermission;
                 }
                 else
                 {
+=======
+                    $modulePermission = sr_AddPermission;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $SqlSubExpense = "UPDATE employee_expenses_detail 
                                                         SET  
                                                             category='" . $category . "',
@@ -4290,16 +5447,26 @@ class Hr extends Xtreme
                                                             date_added='" . current_date . "'
                                         WHERE
                                             id = " . $id;
+<<<<<<< HEAD
                                                     $modulePermission = sr_EditPermission;
 
+=======
+                    $modulePermission = sr_EditPermission;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
                 // echo $SqlSubExpense;exit;
                 // $RS = $this->objsetup->CSI($SqlSubExpense);
                 //$RS = $this->objsetup->CSI($SqlSubExpense, "HR_expenses_Tab", $modulePermission);
+<<<<<<< HEAD
                 if ($employee_id == $this->arrUser['id']){
                     $RS = $this->objsetup->CSI($SqlSubExpense);
                 }
                 else{
+=======
+                if ($employee_id == $this->arrUser['id']) {
+                    $RS = $this->objsetup->CSI($SqlSubExpense);
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $RS = $this->objsetup->CSI($SqlSubExpense, "HR_expenses_Tab", $modulePermission);
                 }
 
@@ -4310,7 +5477,11 @@ class Hr extends Xtreme
                 $srLogTrace['Function'] = __FUNCTION__;
                 $srLogTrace['CLASS'] = __CLASS__;
                 $srLogTrace['Parameter1'] = 'Adding/Updating Detail';
+<<<<<<< HEAD
                 $srLogTrace['Parameter2'] = 'Expense ID:'.$arr_attr->expence_id;
+=======
+                $srLogTrace['Parameter2'] = 'Expense ID:' . $arr_attr->expence_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
             }
@@ -4383,7 +5554,11 @@ class Hr extends Xtreme
                                         Limit 1";
             }
 
+<<<<<<< HEAD
            // echo $Sql; exit;
+=======
+            // echo $Sql; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql);
 
             $srLogTrace = array();
@@ -4393,7 +5568,11 @@ class Hr extends Xtreme
             $srLogTrace['Function'] = __FUNCTION__;
             $srLogTrace['CLASS'] = __CLASS__;
             $srLogTrace['Parameter1'] = 'Adding/Updating Detail';
+<<<<<<< HEAD
             $srLogTrace['Parameter2'] = 'Expense ID:'.$arr_attr->expence_id;
+=======
+            $srLogTrace['Parameter2'] = 'Expense ID:' . $arr_attr->expence_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
         }
@@ -4410,7 +5589,10 @@ class Hr extends Xtreme
             $response['last_expense_id'] = $lastExpenseID;
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
@@ -4459,7 +5641,11 @@ class Hr extends Xtreme
                                     ee.id <> $attr[expense_id] AND
                                     ee.status = 2 AND
                                     es.status = 1 AND
+<<<<<<< HEAD
                                     es.date_of_travel BETWEEN ".strtotime($current_year.'-04-06')." AND ".strtotime($next_year.'-04-06')." AND
+=======
+                                    es.date_of_travel BETWEEN " . strtotime($current_year . '-04-06') . " AND " . strtotime($next_year . '-04-06') . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     es.expense_id <> '$attr[expense_id]' AND
                                     es.employee_id='$attr[employee_id]'  AND
                                     es.company_id=" . $this->arrUser['company_id'];
@@ -4467,6 +5653,7 @@ class Hr extends Xtreme
         // echo $total_calc_milage_Sql;exit;
         // $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
 
+<<<<<<< HEAD
         if ($attr['employee_id'] == $this->arrUser['id']){
             $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
         }
@@ -4478,6 +5665,17 @@ class Hr extends Xtreme
             return $total_calc_milage_count;
         }
         else if (is_array($total_calc_milage_count) && $total_calc_milage_count['Access'] == 0){
+=======
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
+        } else {
+            $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql, "HR_expenses_Tab", sr_ViewPermission);
+        }
+
+        if (is_array($total_calc_milage_count) && $total_calc_milage_count['Error'] == 1) {
+            return $total_calc_milage_count;
+        } else if (is_array($total_calc_milage_count) && $total_calc_milage_count['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return $total_calc_milage_count;
         }
         $calc_milage_total = floatval($total_calc_milage_count->fields['total']);
@@ -4512,7 +5710,11 @@ class Hr extends Xtreme
                 //$result['pvia'] = $Row['via'];  
                 $result['ppostcodeTo'] = $Row['postcodeTo'];
                 $result['pmiles'] = $Row['miles'];
+<<<<<<< HEAD
                 $result['pactual_miles'] = (float)$Row['actual_miles'];
+=======
+                $result['pactual_miles'] = (float) $Row['actual_miles'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['pmileage_rate'] = $Row['mileage_rate'];
                 $result['pvehicleType'] = $Row['vehicleType'];
                 $result['pcomment'] = $Row['comment'];
@@ -4554,8 +5756,12 @@ class Hr extends Xtreme
             $id = ($row->pid != "") ? $row->pid : 0;
             $sort_id = ($row->sort_id != "") ? $row->sort_id : 0;
 
+<<<<<<< HEAD
             if($id == 0)
             {
+=======
+            if ($id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Sql = "INSERT INTO expense_personel_vehicle SET
                             date_of_travel = '" . $this->objGeneral->convert_date($row->pdate_of_travel) . "', 
                             description = '" . addslashes($row->pdescription) . "',
@@ -4576,11 +5782,17 @@ class Hr extends Xtreme
                             date_added = '" . current_date_time . "',
                             vehicleType = '" . $row->pvehicleType . "',
                             comment = '" . addslashes($row->pcomment) . "'";
+<<<<<<< HEAD
                             $modulePermission = sr_AddPermission;
                 // echo $Sql;exit;
             }
             else
             {
+=======
+                $modulePermission = sr_AddPermission;
+                // echo $Sql;exit;
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Sql = "UPDATE expense_personel_vehicle SET
                             date_of_travel = '" . $this->objGeneral->convert_date($row->pdate_of_travel) . "', 
                             description = '" . addslashes($row->pdescription) . "',
@@ -4601,6 +5813,7 @@ class Hr extends Xtreme
                             date_added = '" . current_date_time . "',
                             vehicleType = '" . $row->pvehicleType . "',
                             comment = '" . addslashes($row->pcomment) . "'
+<<<<<<< HEAD
                     WHERE id = ".$id;
                     $modulePermission = sr_EditPermission;
                 // echo $Sql;exit;
@@ -4610,6 +5823,16 @@ class Hr extends Xtreme
                 $RS = $this->objsetup->CSI($Sql);
             }
             else{
+=======
+                    WHERE id = " . $id;
+                $modulePermission = sr_EditPermission;
+                // echo $Sql;exit;
+            }
+            //  $RS = $this->objsetup->CSI($Sql);
+            if ($employee_id  == $this->arrUser['id']) {
+                $RS = $this->objsetup->CSI($Sql);
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", $modulePermission);
             }
         }
@@ -4653,13 +5876,18 @@ class Hr extends Xtreme
                                         ee.id = $attr[expense_id] AND
                                         ee.status = 2 AND
                                         es.status = 1 AND
+<<<<<<< HEAD
                                         es.date_of_travel > ".strtotime(date("Y").'-04-06')." AND
+=======
+                                        es.date_of_travel > " . strtotime(date("Y") . '-04-06') . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         es.expense_id='$attr[expense_id]' AND
                                         es.employee_id='$attr[employee_id]'  AND
                                         es.company_id=" . $this->arrUser['company_id'];
 
         // echo $total_calc_milage_Sql;exit;
         // $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
+<<<<<<< HEAD
         
         if ($attr['employee_id'] == $this->arrUser['id']){
            $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
@@ -4673,6 +5901,19 @@ class Hr extends Xtreme
             else if (is_array($total_calc_milage_count) && $total_calc_milage_count['Access'] == 0){
                 return $total_calc_milage_count;
             }
+=======
+
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql);
+        } else {
+            $total_calc_milage_count = $this->objsetup->CSI($total_calc_milage_Sql, "HR_expenses_Tab", sr_ViewPermission);
+        }
+        if (is_array($total_calc_milage_count) && $total_calc_milage_count['Error'] == 1) {
+            return $total_calc_milage_count;
+        } else if (is_array($total_calc_milage_count) && $total_calc_milage_count['Access'] == 0) {
+            return $total_calc_milage_count;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $calc_milage_total = floatval($total_calc_milage_count->fields['total']);
 
         $response['company_calc_milage_total'] = $calc_milage_total;
@@ -4704,7 +5945,11 @@ class Hr extends Xtreme
 
                 $result['postcodeTo'] = $Row['postcodeTo'];
                 $result['miles'] = $Row['miles'];
+<<<<<<< HEAD
                 $result['actual_miles'] = (float)$Row['actual_miles'];
+=======
+                $result['actual_miles'] = (float) $Row['actual_miles'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['mileage_rate'] = $Row['mileage_rate'];
                 $result['fuelType'] = $Row['fuelType'];
                 $result['engineType'] = $Row['engineType'];
@@ -4740,7 +5985,11 @@ class Hr extends Xtreme
 
         $new = 'Add';
         $new_msg = 'Inserted';
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $expence_id = $arr_attr->expence_id;
 
         foreach ($arr_attr->data as $key => $row) {
@@ -4749,11 +5998,18 @@ class Hr extends Xtreme
             {
                 $id = ($row->id != "") ? $row->id : '';
                 $sort_id = ($row->sort_id != "") ? $row->sort_id : 0;
+<<<<<<< HEAD
                 if($id == 0)
                 {
                     $Sql = "INSERT INTO expense_company_vehicle SET  
                                 date_of_travel='" . $this->objGeneral->convert_date($row->date_of_travel) . "',
                                 description='" .addslashes($row->description) . "',
+=======
+                if ($id == 0) {
+                    $Sql = "INSERT INTO expense_company_vehicle SET  
+                                date_of_travel='" . $this->objGeneral->convert_date($row->date_of_travel) . "',
+                                description='" . addslashes($row->description) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 postcodeFrom='" . $row->postcodeFrom . "',
                                 via='" . $row->via . "',
                                 postcodeTo='" . $row->postcodeTo . "',
@@ -4772,10 +6028,15 @@ class Hr extends Xtreme
                                 company_id='" . $this->arrUser['company_id'] . "',
                                 user_id='" . $this->arrUser['id'] . "',
                                 date_added='" . current_date . "'";
+<<<<<<< HEAD
                                 $modulePermission = sr_AddPermission;
                 }
                 else
                 {
+=======
+                    $modulePermission = sr_AddPermission;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $Sql = "UPDATE expense_company_vehicle SET  
                                 date_of_travel='" . $this->objGeneral->convert_date($row->date_of_travel) . "',
                                 description='" . addslashes($row->description) . "',
@@ -4795,6 +6056,7 @@ class Hr extends Xtreme
                                 tick_option_from_return='0',
                                 sort_id='$sort_id',
                                 date_added='" . current_date . "'
+<<<<<<< HEAD
                         WHERE id = ".$id;
                                 $modulePermission = sr_EditPermission;
 
@@ -4806,6 +6068,17 @@ class Hr extends Xtreme
                 }
                 else{
                 $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", $modulePermission);
+=======
+                        WHERE id = " . $id;
+                    $modulePermission = sr_EditPermission;
+                }
+                // echo $Sql;exit; 
+                // $RS = $this->objsetup->CSI($Sql);
+                if ($employee_id  == $this->arrUser['id']) {
+                    $RS = $this->objsetup->CSI($Sql);
+                } else {
+                    $RS = $this->objsetup->CSI($Sql, "HR_expenses_Tab", $modulePermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
         }
@@ -4851,6 +6124,7 @@ class Hr extends Xtreme
             $response['ack'] = 0;
             $response['error'] = "Holidays in this range are already booked!";
             $response['response'] = array();
+<<<<<<< HEAD
 
         } else {
 
@@ -4859,16 +6133,30 @@ class Hr extends Xtreme
 
             $Sql_empl = "SELECT entitle_holiday FROM employees WHERE id = " . $attr['employee_id'] . "  Limit 1";
         
+=======
+        } else {
+
+            $holiday_type  = ($attr['holiday_type']) ? $attr['holiday_type']  : 0;
+            $holidayYearID  = ($attr['holidayYearID']) ? $attr['holidayYearID']  : 0;
+
+            $Sql_empl = "SELECT entitle_holiday FROM employees WHERE id = " . $attr['employee_id'] . "  Limit 1";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $rs_Sql_empl = $this->objsetup->CSI($Sql_empl);
             $employee_total_holidays = $rs_Sql_empl->fields['entitle_holiday'];
 
             // new code here
+<<<<<<< HEAD
             $financialDateQuery = "SELECT holiday_start_month FROM company WHERE id = '".$this->arrUser['company_id']."'";
+=======
+            $financialDateQuery = "SELECT holiday_start_month FROM company WHERE id = '" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $dateResult = $this->objsetup->CSI($financialDateQuery);
 
             $dateResult = $dateResult->FetchRow();
             $startMonth = $dateResult['holiday_start_month'];
 
+<<<<<<< HEAD
             if($holidayYearID  == 1){
 
                 $year=date("Y");
@@ -4876,6 +6164,15 @@ class Hr extends Xtreme
                 $startDate  = new DateTime("1-" . $startMonth . "-" .$year);
                 $startDate  = strtotime($startDate->format('d-m-Y'));
     
+=======
+            if ($holidayYearID  == 1) {
+
+                $year = date("Y");
+
+                $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+                $startDate  = strtotime($startDate->format('d-m-Y'));
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $endDate    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $year : $year + 1));
                 $endDate->modify('last day of this month');
                 $endDate   = strtotime($endDate->format('d-m-Y'));
@@ -4913,6 +6210,7 @@ class Hr extends Xtreme
                     $response['response'] = array();
                     return $response;
                 }
+<<<<<<< HEAD
             }
             else if($holidayYearID  == 2){
 
@@ -4921,6 +6219,15 @@ class Hr extends Xtreme
                 $startDate  = new DateTime("1-" . $startMonth . "-" .$year);
                 $startDate  = strtotime($startDate->format('d-m-Y'));
     
+=======
+            } else if ($holidayYearID  == 2) {
+
+                $year = date("Y") + 1;
+
+                $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+                $startDate  = strtotime($startDate->format('d-m-Y'));
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $endDate    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $year : $year + 1));
                 $endDate->modify('last day of this month');
                 $endDate   = strtotime($endDate->format('d-m-Y'));
@@ -4960,7 +6267,11 @@ class Hr extends Xtreme
                     return $response;
                 }
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $SQL = "INSERT INTO hr_holidays 
                                     SET 
@@ -4981,6 +6292,7 @@ class Hr extends Xtreme
 
             //echo $SQL; exit; //total_holiday='" . $totalDay . "',
             // $RSProducts = $this->objsetup->CSI($SQL);
+<<<<<<< HEAD
             if ($attr['employee_id'] == $this->arrUser['id']){
                 $RSProducts = $this->objsetup->CSI($SQL);
             }
@@ -4992,6 +6304,17 @@ class Hr extends Xtreme
                 return $RSProducts;
             }
             else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
+=======
+            if ($attr['employee_id'] == $this->arrUser['id']) {
+                $RSProducts = $this->objsetup->CSI($SQL);
+            } else {
+                $RSProducts = $this->objsetup->CSI($SQL, "HR_holidayTab", sr_AddPermission);
+            }
+
+            if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+                return $RSProducts;
+            } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return $RSProducts;
             }
 
@@ -4999,7 +6322,11 @@ class Hr extends Xtreme
                 $response['ack'] = 1;
                 $response['error'] = "Record saved successfully";
                 $response['response'] = array();
+<<<<<<< HEAD
                 $response['lastInsertID'] = $this->Conn->Insert_ID(); 
+=======
+                $response['lastInsertID'] = $this->Conn->Insert_ID();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } else {
                 $response['ack'] = 0;
                 $response['error'] = "Record Not Saved";
@@ -5031,7 +6358,11 @@ class Hr extends Xtreme
         if ($RSH->RecordCount() > 0) {
 
             $response['ack'] = 0;
+<<<<<<< HEAD
             $response['lastInsertID'] = $attr['holiday_id']; 
+=======
+            $response['lastInsertID'] = $attr['holiday_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['error'] = "Holidays in this range are already booked!";
             $response['response'] = array();
         } else {
@@ -5059,7 +6390,11 @@ class Hr extends Xtreme
             $employee_total_holidays_booked = $rs_Sql_empl_holidays->fields['numholiday_booked'];
             //echo "- Employee Total Holidays Availed " . $employee_total_holidays_availed;
             //echo "- Employee Total Holidays Booked " . $employee_total_holidays_booked;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $employee_total_holidays_overall_availed = $employee_total_holidays_availed + $employee_total_holidays_booked;
             //echo $employee_total_holidays_overall_availed;exit;
@@ -5071,7 +6406,11 @@ class Hr extends Xtreme
 
             if ($sum_of_holidays_requested > $employee_total_holidays && $attr['holiday_nature'] == 1) {
                 $response['ack'] = 0;
+<<<<<<< HEAD
                 $response['lastInsertID'] = $attr['holiday_id']; 
+=======
+                $response['lastInsertID'] = $attr['holiday_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['error'] = "Total Holidays Requested are greater than employee Holidays limit";
                 $response['response'] = array();
                 return $response;
@@ -5079,7 +6418,11 @@ class Hr extends Xtreme
 
             if ($remaining_holidays < 0 && $attr['holiday_nature'] == 1) {
                 $response['ack'] = 0;
+<<<<<<< HEAD
                 $response['lastInsertID'] = $attr['holiday_id']; 
+=======
+                $response['lastInsertID'] = $attr['holiday_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['error'] = "Total Holidays Requested are greater than employee Holidays limit";
                 $response['response'] = array();
                 return $response;
@@ -5105,6 +6448,7 @@ class Hr extends Xtreme
             //  total_holiday='" . $totalDay . "'
             // $RSProducts = $this->objsetup->CSI($SQL);
 
+<<<<<<< HEAD
             if ($attr['employee_id'] == $this->arrUser['id']){
                 $RSProducts = $this->objsetup->CSI($SQL);
             }
@@ -5116,17 +6460,36 @@ class Hr extends Xtreme
                 return $RSProducts;
             }
             else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
+=======
+            if ($attr['employee_id'] == $this->arrUser['id']) {
+                $RSProducts = $this->objsetup->CSI($SQL);
+            } else {
+                $RSProducts = $this->objsetup->CSI($SQL, "HR_holidayTab", sr_EditPermission);
+            }
+
+            if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+                return $RSProducts;
+            } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return $RSProducts;
             }
 
             if ($this->Conn->Affected_Rows() > 0) {
                 $response['ack'] = 1;
+<<<<<<< HEAD
                 $response['lastInsertID'] = $attr['holiday_id']; 
+=======
+                $response['lastInsertID'] = $attr['holiday_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['error'] = "Record Updated Successfully";
                 $response['response'] = array();
             } else {
                 $response['ack'] = 1;
+<<<<<<< HEAD
                 $response['lastInsertID'] = $attr['holiday_id']; 
+=======
+                $response['lastInsertID'] = $attr['holiday_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['error'] = "Record Updated Successfully";
                 $response['response'] = array();
             }
@@ -5135,21 +6498,34 @@ class Hr extends Xtreme
     }
 
     function holiday_listing($attr)
+<<<<<<< HEAD
     {     
+=======
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
         $limit_clause = $where_clause = "";
 
         $response = array();
+<<<<<<< HEAD
         $financialDateQuery = "SELECT holiday_start_month FROM company where id = '".$this->arrUser['company_id']."'";
+=======
+        $financialDateQuery = "SELECT holiday_start_month FROM company where id = '" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $dateResult = $this->objsetup->CSI($financialDateQuery);
 
         //print_r($dateResult);exit;
         if ($dateResult->RecordCount() > 0) {
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $dateResult = $dateResult->FetchRow();
             $startMonth = $dateResult['holiday_start_month'];
             $period     = $attr['period'];
 
+<<<<<<< HEAD
             if($period == '-1')
             {
                 $year = date("Y")-1;
@@ -5174,12 +6550,33 @@ class Hr extends Xtreme
             //echo "1-" . $startMonth . "-" .$year."  -  startDate".$startDate; exit;
             $startDate  = strtotime($startDate->format('d-m-Y'));
            
+=======
+            if ($period == '-1') {
+                $year = date("Y") - 1;
+                $yearEnd = date("Y") - 1;
+            } elseif ($period == '1') {
+                $year = date("Y") + 1;
+                $yearEnd = date("Y") + 1;
+            } elseif ($period == '2') {
+                $year = date("Y") - 1;
+                $yearEnd = date("Y") + 1;
+            } else {
+                $year = date("Y");
+                $yearEnd = date("Y");
+            }
+
+            $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+            //echo "1-" . $startMonth . "-" .$year."  -  startDate".$startDate; exit;
+            $startDate  = strtotime($startDate->format('d-m-Y'));
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $startDate = strtotime("1-" . $startMonth . "-" . date("Y"));
             $endDate    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $yearEnd : $yearEnd + 1));
             $endDate->modify('last day of this month');
             $endDate   = strtotime($endDate->format('d-m-Y'));
             // echo $startDate . " - " . $endDate;exit;
 
+<<<<<<< HEAD
             if($period == '2')
             {
                 $year2 = date("Y");
@@ -5198,6 +6595,23 @@ class Hr extends Xtreme
 
         }
         if (empty($startDate) || empty($endDate)){
+=======
+            if ($period == '2') {
+                $year2 = date("Y");
+
+                $startDate2  = new DateTime("1-" . $startMonth . "-" . $year2);
+                $startDate2  = strtotime($startDate2->format('d-m-Y'));
+
+                $endDate2    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $year2 : $year2 + 1));
+                $endDate2->modify('last day of this month');
+                $endDate2   = strtotime($endDate2->format('d-m-Y'));
+            } else {
+                $startDate2  = $startDate;
+                $endDate2   = $endDate;
+            }
+        }
+        if (empty($startDate) || empty($endDate)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = "Please set Financial Year in Company settings.";
             $response['response'][] = array();
@@ -5223,13 +6637,22 @@ class Hr extends Xtreme
                                         ah.company_id = ho.company_id
                                 ORDER BY ah.id DESC LIMIT 1),-1) as approvalStatus
                 FROM hr_holidays as ho
+<<<<<<< HEAD
                 WHERE  ho.status=1 AND ho.holidayStatus <>6 AND ho.emp_id='$attr[employee_id]' AND ho.company_id=" . $this->arrUser['company_id'] ." ";
        // echo '<pre>'. $Sql;exit;
+=======
+                WHERE  ho.status=1 AND ho.holidayStatus <>6 AND ho.emp_id='$attr[employee_id]' AND ho.company_id=" . $this->arrUser['company_id'] . " ";
+        // echo '<pre>'. $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // left JOIN company on company.id=ho.company_id 
         //$Sql .= $limit_clause;
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5238,10 +6661,16 @@ class Hr extends Xtreme
         //echo $response['q'];exit;
 
         // $RS = $this->objsetup->CSI($response['q']);
+<<<<<<< HEAD
         if ($attr['employee_id'] == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($response['q']);
         }
         else{
+=======
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($response['q']);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($response['q'], "HR_holidayTab", sr_ViewPermission);
         }
         $response['q'] = '';
@@ -5259,10 +6688,16 @@ class Hr extends Xtreme
 
                 if ($Row['holidayYear'] == '2') {
                     $result['Holiday Year'] = "Next Year";
+<<<<<<< HEAD
                 }
                 else{
                     $result['Holiday Year'] = "Current Year";
                 } 
+=======
+                } else {
+                    $result['Holiday Year'] = "Current Year";
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ($Row['holiday_nature'] == '1') {
                     $result['holiday type'] = "Annual Leave";
@@ -5277,10 +6712,16 @@ class Hr extends Xtreme
                 $result['date_from'] = $this->objGeneral->convert_unix_into_date($Row['holiday_date_from']);
                 $result['date_to'] = $this->objGeneral->convert_unix_into_date($Row['holiday_date_to']);
 
+<<<<<<< HEAD
                 if (($Row['holiday_date_from'] >= $startDate && $Row['holiday_date_to'] <= $endDate) || $Row['holidayYear'] == '2'){
                     // $result['current_year'] = "Yes";
                 }
                 else{
+=======
+                if (($Row['holiday_date_from'] >= $startDate && $Row['holiday_date_to'] <= $endDate) || $Row['holidayYear'] == '2') {
+                    // $result['current_year'] = "Yes";
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // $result['current_year'] = "No";
                     continue;
                 }
@@ -5292,6 +6733,7 @@ class Hr extends Xtreme
                       $diff=date_diff($date1,$date2); */
                     $totalDay = $Row['total_holiday'];
                     $result['passed'] = "Yes";
+<<<<<<< HEAD
                 }
                 else{
                     $result['passed'] = "No";
@@ -5299,16 +6741,35 @@ class Hr extends Xtreme
 
                 if((FLOOR($Row['holiday_date_to']/86400)*86400) >= $startDate2 && (FLOOR($Row['holiday_date_to']/86400)*86400) <= current_date && 
                     $Row['holiday_nature'] == '1' && $Row['holidayStatus'] != '3' && $result['Holiday Year'] == "Current Year"){
+=======
+                } else {
+                    $result['passed'] = "No";
+                }
+
+                if ((FLOOR($Row['holiday_date_to'] / 86400) * 86400) >= $startDate2 && (FLOOR($Row['holiday_date_to'] / 86400) * 86400) <= current_date &&
+                    $Row['holiday_nature'] == '1' && $Row['holidayStatus'] != '3' && $result['Holiday Year'] == "Current Year"
+                ) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $response['totalAvailed'] += $Row['total_holiday'];
                 }
 
+<<<<<<< HEAD
                 if((FLOOR($Row['holiday_date_to']/86400)*86400) > current_date && 
                     $Row['holiday_nature'] == '1' && $Row['holidayStatus'] != '3' && $result['Holiday Year'] == "Current Year"){
 
                     $response['totalBooked'] += $Row['total_holiday'];//(FLOOR($Row['holiday_date_to']/86400)*86400) <= $endDate2 && 
                 }
                 
+=======
+                if ((FLOOR($Row['holiday_date_to'] / 86400) * 86400) > current_date &&
+                    $Row['holiday_nature'] == '1' && $Row['holidayStatus'] != '3' && $result['Holiday Year'] == "Current Year"
+                ) {
+
+                    $response['totalBooked'] += $Row['total_holiday']; //(FLOOR($Row['holiday_date_to']/86400)*86400) <= $endDate2 && 
+                }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if ($Row['holiday_date_from'] <= current_date && $Row['holiday_date_to'] >= current_date) {
                     //if($Row['holiday_date_from']==current_date){
 
@@ -5339,7 +6800,11 @@ class Hr extends Xtreme
                     //$totalDay=0;
                     //}
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //$result['used'] = $totalDay;
                 $result['No. of Days'] = $Row['total_holiday'];
                 //$result['booked'] = $Row['holiday_booked'];
@@ -5350,13 +6815,20 @@ class Hr extends Xtreme
                 // {value: "2", name: "Approved"},
                 // {value: "3", name: "Disapproved"}
 
+<<<<<<< HEAD
                 if($Row['approvalStatus'] == -1)
                     $holidayStatus = -1;
                 else if($Row['approvalStatus'] == 1 && $Row['holidayStatus']==0)
+=======
+                if ($Row['approvalStatus'] == -1)
+                    $holidayStatus = -1;
+                else if ($Row['approvalStatus'] == 1 && $Row['holidayStatus'] == 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $holidayStatus = 1;
                 else
                     $holidayStatus = $Row['holidayStatus'];
 
+<<<<<<< HEAD
                 if ($holidayStatus == '-1'){
                     $holidayStatus = "In Progress";
                 }
@@ -5383,6 +6855,28 @@ class Hr extends Xtreme
                 
                 $result['Status'] = $holidayStatus;
                 $result['leaves'] = array('sick_leaves'=>$Row['sick_leaves'],'other_leaves'=>$Row['other_leaves']);
+=======
+                if ($holidayStatus == '-1') {
+                    $holidayStatus = "In Progress";
+                } elseif ($holidayStatus == '0') {
+                    $holidayStatus = "Queued For Approval";
+                } else if ($holidayStatus == '1') {
+                    $holidayStatus = "Awaiting Approval";
+                } else if ($holidayStatus == '2') {
+                    $holidayStatus = "Approved";
+                } else if ($holidayStatus == '3') {
+                    $holidayStatus = "Disapproved";
+                } elseif ($holidayStatus == '4') {
+                    $holidayStatus = "Queued For Cancellation";
+                } else if ($holidayStatus == '5') {
+                    $holidayStatus = "Awaiting Cancellation";
+                } else if ($holidayStatus == '6') {
+                    $holidayStatus = "Cancelled";
+                }
+
+                $result['Status'] = $holidayStatus;
+                $result['leaves'] = array('sick_leaves' => $Row['sick_leaves'], 'other_leaves' => $Row['other_leaves']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //$result['description'] = $Row['holiday_description'];
                 $response['response'][] = $result;
@@ -5406,6 +6900,7 @@ class Hr extends Xtreme
 
         $financialDateQueryMonth = "SELECT holiday_start_month 
                                     FROM company 
+<<<<<<< HEAD
                                     WHERE id = '".$this->arrUser['company_id']."'";
 
         $dateResultMonth = $this->objsetup->CSI($financialDateQueryMonth);
@@ -5419,13 +6914,32 @@ class Hr extends Xtreme
         //echo "1-" . $startMonth . "-" .$year."  -  startDate".$startDate; exit;
         $startDate  = strtotime($startDate->format('d-m-Y'));
         
+=======
+                                    WHERE id = '" . $this->arrUser['company_id'] . "'";
+
+        $dateResultMonth = $this->objsetup->CSI($financialDateQueryMonth);
+        $dateResultMonth = $dateResultMonth->FetchRow();
+        $startMonth = $dateResultMonth['holiday_start_month'];
+
+        $year = date("Y");
+
+        $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+        $tempStartDate = $startDate;
+        //echo "1-" . $startMonth . "-" .$year."  -  startDate".$startDate; exit;
+        $startDate  = strtotime($startDate->format('d-m-Y'));
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $startDate = strtotime("1-" . $startMonth . "-" . date("Y"));
         $endDate    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $year : $year + 1));
         $endDate->modify('last day of this month');
         $tempEndDate = $endDate;
         $endDate   = strtotime($endDate->format('d-m-Y'));
 
+<<<<<<< HEAD
         if (empty($startDate) || empty($endDate)){
+=======
+        if (empty($startDate) || empty($endDate)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = "Please set holiday start month in settings.";
             $response['response'][] = array();
@@ -5483,6 +6997,7 @@ class Hr extends Xtreme
 
         $financialDateQueryMonth = "SELECT holiday_start_month 
                                     FROM company 
+<<<<<<< HEAD
                                     WHERE id = '".$this->arrUser['company_id']."'";
 
         $dateResultMonth = $this->objsetup->CSI($financialDateQueryMonth);
@@ -5495,6 +7010,21 @@ class Hr extends Xtreme
             $year = $year+1;
         
         $startDate  = new DateTime("1-" . $startMonth . "-" .$year);
+=======
+                                    WHERE id = '" . $this->arrUser['company_id'] . "'";
+
+        $dateResultMonth = $this->objsetup->CSI($financialDateQueryMonth);
+        $dateResultMonth = $dateResultMonth->FetchRow();
+        $startMonth = $dateResultMonth['holiday_start_month'];
+
+        $year = date("Y");
+        $totalDay = 0;
+
+        if ($holidayYearID == 2)
+            $year = $year + 1;
+
+        $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $tempStartDate = $startDate;
         //echo "1-" . $startMonth . "-" .$year."  -  startDate".$startDate; exit;
         $startDate  = strtotime($startDate->format('d-m-Y'));
@@ -5504,7 +7034,11 @@ class Hr extends Xtreme
         $tempEndDate = $endDate;
         $endDate   = strtotime($endDate->format('d-m-Y'));
 
+<<<<<<< HEAD
         if (empty($startDate) || empty($endDate)){
+=======
+        if (empty($startDate) || empty($endDate)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = "Please set holiday start month in settings.";
             $response['response'][] = array();
@@ -5529,8 +7063,12 @@ class Hr extends Xtreme
 
             $RSNextYear->fields['totalHoliday'];
             $response['nextYeartotalHoliday'] = $RSNextYear->fields['totalHoliday'];
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['nextYeartotalHoliday'] = 0;
         }
 
@@ -5542,15 +7080,25 @@ class Hr extends Xtreme
 
     function holiday_data_by_id($attr)
     {
+<<<<<<< HEAD
         $financialDateQuery = "SELECT holiday_start_month FROM company where id = '".$this->arrUser['company_id']."'";
+=======
+        $financialDateQuery = "SELECT holiday_start_month FROM company where id = '" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $dateResult = $this->objsetup->CSI($financialDateQuery);
 
         $dateResult = $dateResult->FetchRow();
         $startMonth = $dateResult['holiday_start_month'];
 
+<<<<<<< HEAD
         $year=date("Y");
         
         $startDate  = new DateTime("1-" . $startMonth . "-" .$year);
+=======
+        $year = date("Y");
+
+        $startDate  = new DateTime("1-" . $startMonth . "-" . $year);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $startDate  = strtotime($startDate->format('d-m-Y'));
 
         $endDate    = new DateTime("1-" . ($startMonth == 1 ? 12 : $startMonth - 1) . "-" . ($startMonth == 1 ? $year : $year + 1));
@@ -5573,10 +7121,16 @@ class Hr extends Xtreme
                     unset($Row[$key]);
             }
 
+<<<<<<< HEAD
             if ($Row['holiday_date_to'] > $startDate && $Row['holiday_date_from'] < $endDate){
                 $Row['current_year'] = "Yes";
             }
             else{
+=======
+            if ($Row['holiday_date_to'] > $startDate && $Row['holiday_date_from'] < $endDate) {
+                $Row['current_year'] = "Yes";
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Row['current_year'] = "No";
             }
 
@@ -5584,6 +7138,7 @@ class Hr extends Xtreme
 
             if ($Row['holiday_date_to'] < current_date) {
                 $passed = "Yes";
+<<<<<<< HEAD
             }
             else{
                 $passed = "No";
@@ -5593,10 +7148,21 @@ class Hr extends Xtreme
             $temp_attr['object_id'] =  $Row['id'];
             $temp_attr['type'] =  6;
             
+=======
+            } else {
+                $passed = "No";
+            }
+
+            $Row['holiday_date_to'] = $this->objGeneral->convert_unix_into_date($Row['holiday_date_to']);
+            $temp_attr['object_id'] =  $Row['id'];
+            $temp_attr['type'] =  6;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $approval_status = $this->objsetup->get_approval_status($temp_attr);
             $counterStatus = count($approval_status['response']);
             //echo $counterStatus;exit;
             //echo $approval_status['response'][$counterStatus-1]['status'];exit;
+<<<<<<< HEAD
             if($approval_status['response'][$counterStatus-1]['status'] == 1 && $Row['holidayStatus']==0)
                     $Row['holidayStatus'] = 1;
            
@@ -5610,6 +7176,20 @@ class Hr extends Xtreme
             $response['error'] = NULL;
         } 
         else {
+=======
+            if ($approval_status['response'][$counterStatus - 1]['status'] == 1 && $Row['holidayStatus'] == 0)
+                $Row['holidayStatus'] = 1;
+
+            $currentRecTotalHoliday =  $Row['total_holiday'];
+
+            $response['response'] = $Row;
+            $response['response']['startDate'] = date("d-m-Y", $startDate);
+            $response['response']['endDate'] = date("d-m-Y", $endDate);
+            $response['response']['approval_status'] = $approval_status;
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
         }
 
@@ -5642,8 +7222,12 @@ class Hr extends Xtreme
 
             $RSNextYear->fields['totalHoliday'];
             $response['nextYeartotalHoliday'] = $RSNextYear->fields['totalHoliday'] - $currentRecTotalHoliday;
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['nextYeartotalHoliday'] = 0;
         }
 
@@ -5677,7 +7261,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE hr_holidays
                             SET  
                                 status=0
+<<<<<<< HEAD
                 WHERE id = ".$arr_attr['id']." 
+=======
+                WHERE id = " . $arr_attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 Limit 1";
         //echo $Sql;exit;
         // $RS = $this->objsetup->CSI($Sql);
@@ -5693,7 +7281,11 @@ class Hr extends Xtreme
 
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     //--------------------Fuel Cost deduction---------------------
     function add_deduction($attr)
@@ -5745,7 +7337,11 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         if ($attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "   tst.emp_id='" . $attr['employee_id'] . "',
                          tst.start_miles='" . $attr['start_miles'] . "',
@@ -5958,8 +7554,13 @@ class Hr extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "SELECT   c.id, c.name FROM  departments  c  left JOIN company on company.id=c.company_id 
+<<<<<<< HEAD
 		where  c.status=1   c.id='".$attr['id']."'  limit 1 "; //c.user_id=".$this->arrUser['id']."   
         $RS = $this->objsetup->CSI($Sql,"human_resource", sr_ViewPermission);
+=======
+		where  c.status=1   c.id='" . $attr['id'] . "'  limit 1 "; //c.user_id=".$this->arrUser['id']."   
+        $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
@@ -5983,18 +7584,29 @@ class Hr extends Xtreme
         // $attr should contain 2 params
         // employee ID
         // company ID
+<<<<<<< HEAD
         if (!$attr->employee_id){
             return;
         }
         $Sql = "SELECT department_id FROM hr_selected_departments WHERE hr_id=" . $attr->employee_id . " AND company_id=" . $this->arrUser['company_id'];
          //c.user_id=".$this->arrUser['id']." 
+=======
+        if (!$attr->employee_id) {
+            return;
+        }
+        $Sql = "SELECT department_id FROM hr_selected_departments WHERE hr_id=" . $attr->employee_id . " AND company_id=" . $this->arrUser['company_id'];
+        //c.user_id=".$this->arrUser['id']." 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;  
         $RS = $this->objsetup->CSI($Sql);
         $departments = [];
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 array_push($departments, $Row[0]);
+<<<<<<< HEAD
                 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
             $departments = implode(",", $departments);
         }
@@ -6038,7 +7650,11 @@ class Hr extends Xtreme
 
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . $arr_attr['name'] . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('departments', $data_pass, $this->arrUser['company_id']);
@@ -6054,14 +7670,23 @@ class Hr extends Xtreme
         if ($id == 0) {
 
 
+<<<<<<< HEAD
             $Sql = "INSERT INTO config_departments SET   name='".$arr_attr['name']."', status='$arr_attr[statuss]',
+=======
+            $Sql = "INSERT INTO config_departments SET   name='" . $arr_attr['name'] . "', status='$arr_attr[statuss]',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		code='$arr_attr[code]',  company_id='" . $this->arrUser['company_id'] . "',
 		user_id='" . $this->arrUser['id'] . "'";
         } else {
 
 
+<<<<<<< HEAD
             $Sql = "UPDATE config_departments SET  name='".$arr_attr['name']."', code='$arr_attr[code]',
 		 status='$arr_attr[statuss]' 	WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+            $Sql = "UPDATE config_departments SET  name='" . $arr_attr['name'] . "', code='$arr_attr[code]',
+		 status='$arr_attr[statuss]' 	WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         //echo $Sql;exit;
@@ -6083,6 +7708,7 @@ class Hr extends Xtreme
     function insertDepartmentWidgets($id)
     {
         $Sql = "SELECT id FROM widgets;";
+<<<<<<< HEAD
 		// echo $Sql;exit;
 		$RS = $this->objsetup->CSI($Sql);
 		// print_r($RS->RecordCount());exit;
@@ -6099,6 +7725,24 @@ class Hr extends Xtreme
             foreach ($ids as $key => $value){
                 // print_r($value);
                 $Sql2 = "INSERT INTO widgetdepartment SET widget_id=".$value.",  department_id=".$id.",permission=0, company_id=".$this->arrUser['company_id'].";";
+=======
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+        // print_r($RS->RecordCount());exit;
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $ids[] = $Row['id'];
+            }
+            // print_r($ids);exit;
+
+            foreach ($ids as $key => $value) {
+                // print_r($value);
+                $Sql2 = "INSERT INTO widgetdepartment SET widget_id=" . $value . ",  department_id=" . $id . ",permission=0, company_id=" . $this->arrUser['company_id'] . ";";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql2;
                 $RS = $this->objsetup->CSI($Sql2);
             }
@@ -6111,8 +7755,13 @@ class Hr extends Xtreme
 
 
         // $Sql = "DELETE FROM config_departments WHERE id = ".$arr_attr['id']."";
+<<<<<<< HEAD
         $Sql = "DELETE FROM config_departments WHERE id = ".$arr_attr['id']." AND SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 26,0) = 'success' ";
             // echo $Sql;exit;
+=======
+        $Sql = "DELETE FROM config_departments WHERE id = " . $arr_attr['id'] . " AND SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 26,0) = 'success' ";
+        // echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -6125,7 +7774,11 @@ class Hr extends Xtreme
             $response['ack'] = 2;
             $response['error'] = 'Record cannot be deleted.';
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // else {
         //     $response['ack'] = 0;
         //     $response['error'] = 'Record already changed!';
@@ -6180,7 +7833,11 @@ class Hr extends Xtreme
 
         $Sql = "SELECT *
 		FROM employee_religion 
+<<<<<<< HEAD
 		where    employee_religion.id='".$attr['id']."'";
+=======
+		where    employee_religion.id='" . $attr['id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -6238,7 +7895,11 @@ class Hr extends Xtreme
 
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . $arr_attr['name'] . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_religion', $data_pass, $this->arrUser['company_id']);
@@ -6254,7 +7915,11 @@ class Hr extends Xtreme
 
             $Sql = "INSERT INTO employee_religion
 										SET  
+<<<<<<< HEAD
 										name='".$arr_attr['name']."',
+=======
+										name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										status=1,
 										code='$arr_attr[code]', 
 										company_id='" . $this->arrUser['company_id'] . "',
@@ -6263,9 +7928,15 @@ class Hr extends Xtreme
 
             $Sql = "UPDATE employee_religion
 							SET 
+<<<<<<< HEAD
 							name='".$arr_attr['name']."',
 							code='$arr_attr[code]' 
 							WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+							name='" . $arr_attr['name'] . "',
+							code='$arr_attr[code]' 
+							WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $rs = $this->objsetup->CSI($Sql);
@@ -6288,7 +7959,11 @@ class Hr extends Xtreme
         $Sql = "UPDATE employee_religion
 			SET  
 			status=0
+<<<<<<< HEAD
 			WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+			WHERE id = " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -6348,12 +8023,19 @@ class Hr extends Xtreme
 
         $Sql .= $limit_clause;
         if ($attr['fromSetup']) {
+<<<<<<< HEAD
             $RS = $this->objsetup->CSI($Sql,'human_resource',sr_ViewPermission);
         }
         else {
             $RS = $this->objsetup->CSI($Sql);
 
         } 
+=======
+            $RS = $this->objsetup->CSI($Sql, 'human_resource', sr_ViewPermission);
+        } else {
+            $RS = $this->objsetup->CSI($Sql);
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if ($RS->RecordCount() > 0) {
@@ -6378,6 +8060,7 @@ class Hr extends Xtreme
 
         $Sql = "SELECT *
 		FROM employee_type 
+<<<<<<< HEAD
 		where    employee_type.id='".$attr['id']."' and company_id = " . $this->arrUser['company_id'] . "
 		LIMIT 1";
 
@@ -6387,6 +8070,16 @@ class Hr extends Xtreme
         else {
             $RS = $this->objsetup->CSI($Sql);
         } 
+=======
+		where    employee_type.id='" . $attr['id'] . "' and company_id = " . $this->arrUser['company_id'] . "
+		LIMIT 1";
+
+        if ($attr['fromSetup']) {
+            $RS = $this->objsetup->CSI($Sql, 'human_resource', sr_ViewPermission);
+        } else {
+            $RS = $this->objsetup->CSI($Sql);
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
@@ -6443,7 +8136,11 @@ class Hr extends Xtreme
 
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . $arr_attr['name'] . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_type', $data_pass, $this->arrUser['company_id']);
@@ -6457,7 +8154,11 @@ class Hr extends Xtreme
 
             $Sql = "INSERT INTO employee_type
 										SET  
+<<<<<<< HEAD
 										name='".$arr_attr['name']."',
+=======
+										name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										status=1,
 										code='$arr_attr[code]', 
 										company_id='" . $this->arrUser['company_id'] . "',
@@ -6465,9 +8166,15 @@ class Hr extends Xtreme
         } else {
             $Sql = "UPDATE employee_type
 							SET 
+<<<<<<< HEAD
 							name='".$arr_attr['name']."',
 							code='$arr_attr[code]' 
 							WHERE id = ".$arr_attr['id']." and company_id = " . $this->arrUser['company_id'] . " Limit 1  ";
+=======
+							name='" . $arr_attr['name'] . "',
+							code='$arr_attr[code]' 
+							WHERE id = " . $arr_attr['id'] . " and company_id = " . $this->arrUser['company_id'] . " Limit 1  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         //	echo $Sql;exit;
         $rs = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
@@ -6494,7 +8201,11 @@ class Hr extends Xtreme
         $id = $arr_attr['id'];
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . $arr_attr['name'] . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_cases_of_inactivity', $data_pass, $this->arrUser['company_id']);
@@ -6509,15 +8220,24 @@ class Hr extends Xtreme
 
             $Sql = "INSERT INTO employee_cases_of_inactivity
 										SET
+<<<<<<< HEAD
 										name='".$arr_attr['name']."',
+=======
+										name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										status=1,
 										company_id='" . $this->arrUser['company_id'] . "',
 										user_id='" . $this->arrUser['id'] . "'";
         } else {
             $Sql = "UPDATE employee_cases_of_inactivity
 							SET
+<<<<<<< HEAD
 							name='".$arr_attr['name']."',
 							WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+							name='" . $arr_attr['name'] . "',
+							WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         //	echo $Sql;exit;
         $rs = $this->objsetup->CSI($Sql);
@@ -6544,7 +8264,11 @@ class Hr extends Xtreme
         $id = $arr_attr['id'];
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . $arr_attr['name'] . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_reason_of_leaving', $data_pass, $this->arrUser['company_id']);
@@ -6559,15 +8283,24 @@ class Hr extends Xtreme
 
             $Sql = "INSERT INTO employee_reason_of_leaving
 										SET
+<<<<<<< HEAD
 										name='".$arr_attr['name']."',
+=======
+										name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										status=1,
 										company_id='" . $this->arrUser['company_id'] . "',
 										user_id='" . $this->arrUser['id'] . "'";
         } else {
             $Sql = "UPDATE employee_reason_of_leaving
 							SET
+<<<<<<< HEAD
 							name='".$arr_attr['name']."',
 							WHERE id = ".$arr_attr['id']." Limit 1 ";
+=======
+							name='" . $arr_attr['name'] . "',
+							WHERE id = " . $arr_attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         //	echo $Sql;exit;
         $rs = $this->objsetup->CSI($Sql);
@@ -6590,15 +8323,25 @@ class Hr extends Xtreme
         $Sql = "UPDATE employee_type
 			SET  
 			status=0
+<<<<<<< HEAD
             WHERE id = ".$arr_attr['id']." AND SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 27,0) = 'success' Limit 1";
             
             // echo $Sql;exit;
+=======
+            WHERE id = " . $arr_attr['id'] . " AND SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 27,0) = 'success' Limit 1";
+
+        // echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
 
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else  {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = 'Record cannot be deleted.';
         }
@@ -6723,7 +8466,11 @@ class Hr extends Xtreme
         $id = $arr_attr['id'];
 
         if ($arr_attr['id'] > 0)
+<<<<<<< HEAD
             $where_id = " AND tst.id <> '".$arr_attr['id']."' ";
+=======
+            $where_id = " AND tst.id <> '" . $arr_attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "    tst.name='" . strtoupper($arr_attr['name']) . "'  $where_id";
         $total = $this->objGeneral->count_duplicate_in_sql('employee_type', $data_pass, $this->arrUser['company_id']);
@@ -6774,9 +8521,15 @@ class Hr extends Xtreme
                 from srm_purchase_code_emp as em
                 left JOIN company on company.id=em.company_id 
                 where (em.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
+<<<<<<< HEAD
                     AND em.srm_id ='".$attr['id']."'
                 ORDER BY em.id DESC";
                     //echo $Sql;exit;
+=======
+                    AND em.srm_id ='" . $attr['id'] . "'
+                ORDER BY em.id DESC";
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
         $selected = array();
@@ -6795,7 +8548,11 @@ class Hr extends Xtreme
         //print_r($response2['response_selected']);exit;
         $limit_clause = $where_clause = "";
 
+<<<<<<< HEAD
         if ($attr[edit_id] == 2) {
+=======
+        if ($attr['edit_id'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $where_clause .= "  and (NOT EXISTS (SELECT srm_purchase_code_emp.emp_id FROM srm_purchase_code_emp where 
        		 srm_purchase_code_emp.emp_id= emp.id)) ";
         }
@@ -6826,7 +8583,11 @@ class Hr extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -6881,7 +8642,11 @@ class Hr extends Xtreme
         $chk = 0;
         $i = 0;
 
+<<<<<<< HEAD
         $Sqli = "DELETE FROM srm_purchase_code_emp WHERE srm_id = $arr_attr[srm_id]";
+=======
+        $Sqli = "DELETE FROM srm_purchase_code_emp WHERE srm_id = " . $arr_attr['srm_id'] . "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sqli;exit;
         $RS = $this->objsetup->CSI($Sqli);
         if ($this->Conn->Affected_Rows() > 0)
@@ -6893,7 +8658,11 @@ class Hr extends Xtreme
 
         $Sql = "INSERT INTO srm_purchase_code_emp (emp_id,srm_id, company_id, user_id,  date_added ,status,AddedBy,AddedOn) VALUES ";
 
+<<<<<<< HEAD
         $emp_ids = explode(",", $arr_attr[emp_id]);
+=======
+        $emp_ids = explode(",", $arr_attr['emp_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         foreach ($emp_ids as $key => $emp_id) {
             if (is_numeric($emp_id)) {
@@ -6958,8 +8727,13 @@ class Hr extends Xtreme
 				FROM salary_history
 				INNER JOIN employees ON employees.id=salary_history.user_id
 				left join currency on currency.id=salary_history.salary_currency_id
+<<<<<<< HEAD
 				WHERE salary_history.employee_id='".$attr['employee_id']."'
 				AND salary_history.company_id='".$attr['company_id']."'";
+=======
+				WHERE salary_history.employee_id='" . $attr['employee_id'] . "'
+				AND salary_history.company_id='" . $attr['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* echo $Sql;
           exit; */
@@ -6996,7 +8770,11 @@ class Hr extends Xtreme
                        ech.AddedOn
                 FROM employees_commission_history AS ech
 				LEFT JOIN employees ON employees.id = ech.AddedBy
+<<<<<<< HEAD
                 WHERE ech.employees_id='".$attr['employee_id']."' AND 
+=======
+                WHERE ech.employees_id='" . $attr['employee_id'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       ech.company_id='" . $this->arrUser['company_id'] . "'";
         // echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -7007,14 +8785,21 @@ class Hr extends Xtreme
         if ($RS->RecordCount() > 0) {
 
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
                 $result['commission'] = $Row['commission'].'%';
+=======
+                $result['commission'] = $Row['commission'] . '%';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['commission_effective Date'] = $this->objGeneral->convert_unix_into_date($Row['commission_effective_date']);
                 $result['added_by'] = $Row['added_by'];
                 $result['Added_on'] = $this->objGeneral->convert_unix_into_date($Row['AddedOn']);
 
                 $response['response'][] = $result;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
         }
@@ -7032,10 +8817,16 @@ class Hr extends Xtreme
 				AND other_benefits.company_id='$attr[company_id]'";
 
         // $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         if ($attr['employee_id'] == $this->arrUser['id']){
             $RS = $this->objsetup->CSI($Sql);
         }
         else{
+=======
+        if ($attr['employee_id'] == $this->arrUser['id']) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql, "HR_benefit_Tab", sr_ViewPermission);
         }
         $response['ack'] = 1;
@@ -7090,8 +8881,12 @@ class Hr extends Xtreme
 
                             WHERE id = $attr[benefit_id]
                             ";
+<<<<<<< HEAD
                             $modulePermission = sr_EditPermission;
 
+=======
+            $modulePermission = sr_EditPermission;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $SQL = "insert into other_benefits
                           set
@@ -7102,38 +8897,64 @@ class Hr extends Xtreme
                             end_date='" . $this->objGeneral->convert_date($attr['end_date']) . "',
                             user_id='" . $this->arrUser['id'] . "',
                             company_id='" . $attr['company_id'] . "'";
+<<<<<<< HEAD
                             $modulePermission = sr_AddPermission;
 
+=======
+            $modulePermission = sr_AddPermission;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         //echo $SQL; exit;
         // $RSProducts = $this->objsetup->CSI($SQL);
         $RSProducts = $this->objsetup->CSI($SQL, "HR_benefit_Tab", $modulePermission);
+<<<<<<< HEAD
             if(is_array($RSProducts) && $RSProducts['Error'] == 1){
                 return $RSProducts;
             }
             else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
                 return $RSProducts;
             }
+=======
+        if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+            return $RSProducts;
+        } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+            return $RSProducts;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($this->Conn->Affected_Rows() > 0) {
 
             // for other benefit history
 
+<<<<<<< HEAD
                 $ob_query = "SELECT * FROM employees_benefits_history 
                 WHERE  
                 employee_id=" . $attr['employee_id'] . " 
                 AND company_id='" . $attr['company_id']. "'
+=======
+            $ob_query = "SELECT * FROM employees_benefits_history 
+                WHERE  
+                employee_id=" . $attr['employee_id'] . " 
+                AND company_id='" . $attr['company_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 AND other_benefit_title='" . $attr['benefits_title'] . "'
                 AND other_benefit_comments='" . $attr['comments'] . "'
                 AND other_benefit_date_assign='" . $this->objGeneral->convert_date($attr['start_date']) . "'
                 AND other_benefit_return_date_assign='" . $this->objGeneral->convert_date($attr['end_date']) . "'
                 ";
 
+<<<<<<< HEAD
                 $RS6 = $this->objsetup->CSI($ob_query);
                 // insert record
                 if($this->Conn->Affected_Rows()==0){
                     $ob_query_ins = "INSERT INTO employees_benefits_history 
+=======
+            $RS6 = $this->objsetup->CSI($ob_query);
+            // insert record
+            if ($this->Conn->Affected_Rows() == 0) {
+                $ob_query_ins = "INSERT INTO employees_benefits_history 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 SET  
                 benefit_type='6' ,
                 employee_id=" . $attr['employee_id'] . " ,
@@ -7142,11 +8963,19 @@ class Hr extends Xtreme
                 other_benefit_comments='" . $attr['comments'] . "',
                 other_benefit_date_assign='" . $this->objGeneral->convert_date($attr['start_date']) . "',
                 other_benefit_return_date_assign='" . $this->objGeneral->convert_date($attr['end_date']) . "',
+<<<<<<< HEAD
                 AddedBy = '" .  $this->arrUser['id']. "',
                 AddedOn = UNIX_TIMESTAMP(NOW())
                 ";
                 $this->objsetup->CSI($ob_query_ins);
                 };
+=======
+                AddedBy = '" .  $this->arrUser['id'] . "',
+                AddedOn = UNIX_TIMESTAMP(NOW())
+                ";
+                $this->objsetup->CSI($ob_query_ins);
+            };
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             $response['ack'] = 1;
@@ -7169,10 +8998,16 @@ class Hr extends Xtreme
         // echo $SQL; exit;
         // $RSProducts = $this->objsetup->CSI($SQL);
         $RSProducts = $this->objsetup->CSI($SQL, "HR_benefit_Tab", sr_DeletePermission);
+<<<<<<< HEAD
         if(is_array($RSProducts) && $RSProducts['Error'] == 1){
             return $RSProducts;
         }
         else if (is_array($RSProducts) && $RSProducts['Access'] == 0){
+=======
+        if (is_array($RSProducts) && $RSProducts['Error'] == 1) {
+            return $RSProducts;
+        } else if (is_array($RSProducts) && $RSProducts['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return $RSProducts;
         }
 
@@ -7197,23 +9032,37 @@ class Hr extends Xtreme
 				FROM employees_benefits_history ebh
                 INNER JOIN employees emp ON emp.id=ebh.AddedBy
 				WHERE ebh.employee_id='$attr[employee_id]'
+<<<<<<< HEAD
                 AND ebh.company_id='".$this->arrUser['company_id']."'
                 AND ebh.benefit_type='".$attr['benefit_type']."'";
        // echo $Sql;exit;
+=======
+                AND ebh.company_id='" . $this->arrUser['company_id'] . "'
+                AND ebh.benefit_type='" . $attr['benefit_type'] . "'";
+        // echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
         $response['error'] = NULL;
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
                 $result['id'] = $Row['id'];                
                 if($attr['benefit_type']==1){
                     $result['car_make'] = $Row['car_make']; 
                     $result['car_model'] = $Row['car_model']; 
+=======
+                $result['id'] = $Row['id'];
+                if ($attr['benefit_type'] == 1) {
+                    $result['car_make'] = $Row['car_make'];
+                    $result['car_model'] = $Row['car_model'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['reg_no'] = $Row['car_vin'];
                     $result['start_date'] = $this->objGeneral->convert_unix_into_date($Row['car_date_assign']);
                     $result['end_date'] = $this->objGeneral->convert_unix_into_date($Row['car_date_return']);
                 }
+<<<<<<< HEAD
                 if($attr['benefit_type']==2){
                     $result['card_number'] = $Row['car_fuel_card_num']; 
                     $result['cost_deduction'] = ($Row['fuel_cost_deduction']==1) ? "Yes" : "No"; 
@@ -7242,11 +9091,45 @@ class Hr extends Xtreme
                 if($attr['benefit_type']==6){
                     $result['title'] = $Row['other_benefit_title']; 
                     $result['comments'] = $Row['other_benefit_comments']; 
+=======
+                if ($attr['benefit_type'] == 2) {
+                    $result['card_number'] = $Row['car_fuel_card_num'];
+                    $result['cost_deduction'] = ($Row['fuel_cost_deduction'] == 1) ? "Yes" : "No";
+                }
+                if ($attr['benefit_type'] == 3) {
+                    $result['laptop_make'] = $Row['laptop_make'];
+                    $result['laptop_model'] = $Row['laptop_model'];
+                    $result['laptop_serial'] = $Row['laptop_serial'];
+                    $result['start_date'] = $this->objGeneral->convert_unix_into_date($Row['laptop_date_assign']);
+                    $result['end_date'] = $this->objGeneral->convert_unix_into_date($Row['laptop_return_date_assign']);
+                }
+                if ($attr['benefit_type'] == 4) {
+                    $result['tablet_make'] = $Row['tablet_make'];
+                    $result['tablet_model'] = $Row['tablet_model'];
+                    $result['tablet_serial'] = $Row['tablet_serial'];
+                    $result['start_date'] = $this->objGeneral->convert_unix_into_date($Row['tablet_date_assign']);
+                    $result['end_date'] = $this->objGeneral->convert_unix_into_date($Row['tablet_return_date_assign']);
+                }
+                if ($attr['benefit_type'] == 5) {
+                    $result['mobile_make'] = $Row['mobile_make'];
+                    $result['mobile_model'] = $Row['mobile_model'];
+                    $result['mobile_serial'] = $Row['mobile_serial'];
+                    $result['start_date'] = $this->objGeneral->convert_unix_into_date($Row['mobile_date_assign']);
+                    $result['end_date'] = $this->objGeneral->convert_unix_into_date($Row['mobile_return_date_assign']);
+                }
+                if ($attr['benefit_type'] == 6) {
+                    $result['title'] = $Row['other_benefit_title'];
+                    $result['comments'] = $Row['other_benefit_comments'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['start_date'] = $this->objGeneral->convert_unix_into_date($Row['other_benefit_date_assign']);
                     $result['end_date'] = $this->objGeneral->convert_unix_into_date($Row['other_benefit_return_date_assign']);
                 }
                 $result['created_by'] = $Row['first_name'] . " " . $Row['last_name'];
+<<<<<<< HEAD
                 $result['created_at'] = $this->objGeneral->convert_unix_into_date($Row['AddedOn']);               
+=======
+                $result['created_at'] = $this->objGeneral->convert_unix_into_date($Row['AddedOn']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
         } else {
@@ -7351,7 +9234,12 @@ class Hr extends Xtreme
     }
 
     //codemark1
+<<<<<<< HEAD
     function get_emp_form_details($attr){
+=======
+    function get_emp_form_details($attr)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $result1 = $this->get_emp_type_list($attr);
         $response['response']['emp_type_list'] = $result1['response'];
         $result2 = $this->get_employee_inactive_type($attr[0]);
@@ -7378,6 +9266,7 @@ class Hr extends Xtreme
 
         $attr_emp['limit'] = 999;
         $attr_emp['show_active_inactive'] = 1;
+<<<<<<< HEAD
         
         $result11 = $this->get_employees($attr_emp, 1);
         //print_r($result11['response']);exit;
@@ -7385,11 +9274,22 @@ class Hr extends Xtreme
             foreach($result11['response'][$i] as $key => $value)
             {
                 if ($key == "code"){
+=======
+
+        $result11 = $this->get_employees($attr_emp, 1);
+        //print_r($result11['response']);exit;
+        for ($i = 0; $i < sizeof($result11['response']); $i++) {
+            foreach ($result11['response'][$i] as $key => $value) {
+                if ($key == "code") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $tempArray = array("Employee No." => $value);
                     $result11['response'][$i] = $tempArray + $result11['response'][$i];
                     unset($result11['response'][$i][$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         $response['response']['emp_listings'] = $result11;
@@ -7398,11 +9298,19 @@ class Hr extends Xtreme
 
         // $result12 = $this->objsetup->get_hr_territories_list($attr[1]);
         // $response['response']['all_territories'] = $result12;
+<<<<<<< HEAD
         
 
         require_once(SERVER_PATH . "/classes/Crm.php");
         $objCrm = new Crm($this->arrUser);
         $arr_attr['id'] = $attr[1]['id']; 
+=======
+
+
+        require_once(SERVER_PATH . "/classes/Crm.php");
+        $objCrm = new Crm($this->arrUser);
+        $arr_attr['id'] = $attr[1]['id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $result13 = $objCrm->getCrmSalesTargetUsingEmpId($arr_attr);
         // $response['response']['salesTarget'] = $result13;
 
@@ -7418,7 +9326,11 @@ class Hr extends Xtreme
 
         $response['ack'] = 1;
         $response['error'] = NULL;
+<<<<<<< HEAD
         if ($result5['bucketFail']){
+=======
+        if ($result5['bucketFail']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['bucketFail'] = 1;
         }
         return $response;
@@ -7428,7 +9340,11 @@ class Hr extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $id = (isset($attr['id']) && $attr['id'] !='')?$attr['id']:0;
+=======
+        $id = (isset($attr['id']) && $attr['id'] != '') ? $attr['id'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $supplier_id            = ($attr['supplier_id'] != '') ? $attr['supplier_id'] : 0;
         $accomodation_gl_id     = ($attr['accomodation_gl_id'] != '') ? $attr['accomodation_gl_id'] : 0;
@@ -7438,10 +9354,16 @@ class Hr extends Xtreme
         $food_gl_id             = ($attr['food_gl_id'] != '') ? $attr['food_gl_id'] : 0;
         $misc_gl_id             = ($attr['misc_gl_id'] != '') ? $attr['misc_gl_id'] : 0;
         $millage_gl_id          = ($attr['millage_gl_id'] != '') ? $attr['millage_gl_id'] : 0;
+<<<<<<< HEAD
         
         
         if($id == 0)
         {
+=======
+
+
+        if ($id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO expense_form_setup SET 
                         supplier_id = $supplier_id,
                         supplier_code = '$attr[supplier_code]',
@@ -7466,6 +9388,7 @@ class Hr extends Xtreme
                         millage_gl_id = $millage_gl_id,
                         millage_gl_name = '$attr[millage_gl_name]',
                         millage_gl_code = '$attr[millage_gl_code]',
+<<<<<<< HEAD
                         company_id = " .  $this->arrUser['company_id']. ",
                         user_id = " .  $this->arrUser['id']. ",
                         AddedBy = " .  $this->arrUser['id']. ",
@@ -7475,6 +9398,15 @@ class Hr extends Xtreme
         }
         else
         {
+=======
+                        company_id = " .  $this->arrUser['company_id'] . ",
+                        user_id = " .  $this->arrUser['id'] . ",
+                        AddedBy = " .  $this->arrUser['id'] . ",
+                        AddedOn = UNIX_TIMESTAMP(NOW())";
+            $RS = $this->objsetup->CSI($Sql);
+            $id = $this->Conn->Insert_ID();
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "UPDATE expense_form_setup SET 
                         supplier_id = $supplier_id,
                         supplier_code = '$attr[supplier_code]',
@@ -7503,7 +9435,11 @@ class Hr extends Xtreme
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
         }
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['error'] = NULL;
         return $response;
@@ -7516,7 +9452,11 @@ class Hr extends Xtreme
                         s.id = efs.supplier_id AND
                         efs.company_id=" . $this->arrUser['company_id'] . " Limit 1";
         // echo $Sql;exit;
+<<<<<<< HEAD
         $RS = $this->objsetup->CSI($Sql,'purchases',sr_ViewPermission);
+=======
+        $RS = $this->objsetup->CSI($Sql, 'purchases', sr_ViewPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
@@ -7536,6 +9476,7 @@ class Hr extends Xtreme
     {
         // $this->Conn->beginTrans();
         // $this->Conn->autoCommit = false;
+<<<<<<< HEAD
         
         $Sql = "CALL SR_Convert_Expense_To_Purchase_Order(".$attr['id'].", " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . ")";
         // echo $Sql;exit;
@@ -7544,11 +9485,21 @@ class Hr extends Xtreme
         if($RS->fields['Result']==1)
         {
             
+=======
+
+        $Sql = "CALL SR_Convert_Expense_To_Purchase_Order(" . $attr['id'] . ", " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . ")";
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+        //echo '<pre>'; print_r($RS->fields['Result']);exit;
+        if ($RS->fields['Result'] == 1) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->Conn->commitTrans();
             // $this->Conn->autoCommit = true;
 
             $response['ack'] = 1;
             $response['purchase_order_id'] = $RS->fields['PurchaseOrderID'];
+<<<<<<< HEAD
             $response['error'] =$RS->fields['Message'];
         }
         else
@@ -7560,3 +9511,13 @@ class Hr extends Xtreme
     }
 }
 ?>
+=======
+            $response['error'] = $RS->fields['Message'];
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = $RS->fields['Message'];
+        }
+        return $response;
+    }
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -229,4 +229,7 @@ $app->post('/stock/product-col/status-tab-col', function () use ($app) {
 });
 
 ############	End: Product of Tabs ##############
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

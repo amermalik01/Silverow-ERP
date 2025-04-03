@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'flexiConfig', '$filter', '$timeout', function ($http, $state, toaster, $rootScope, flexiConfig, $filter, $timeout) {
+=======
+myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'flexiConfig', '$filter', '$timeout', function($http, $state, toaster, $rootScope, flexiConfig, $filter, $timeout) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     return {
 
@@ -36,7 +40,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
         templateUrl: "app/shared/directives/flexi_table_generator.directive.html",
 
+<<<<<<< HEAD
         link: function (scope, elem, attrib) {
+=======
+        link: function(scope, elem, attrib) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // scope.checkedRecords = [];
 
@@ -46,9 +54,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
             scope.selectedRecordPreview = scope.selectedRecordPreview ? scope.selectedRecordPreview : "id";
 
+<<<<<<< HEAD
             scope.checkChecked = (key) =>{
 
                 if (scope.checkedRecords == undefined){
+=======
+            scope.checkChecked = (key) => {
+
+                if (scope.checkedRecords == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     return;
 
@@ -56,22 +70,35 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 if (scope.checkedRecords.length == 0) return -1;
 
+<<<<<<< HEAD
                 var index = scope.checkedRecords.findIndex( s => s.key == key );
+=======
+                var index = scope.checkedRecords.findIndex(s => s.key == key);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 return index;
 
             }
 
+<<<<<<< HEAD
             scope.toggleCheckRecord = (key,val,record) => {
 
 
 
                 if(record.disabled != undefined && record.disabled == 1)
+=======
+            scope.toggleCheckRecord = (key, val, record) => {
+
+
+
+                if (record.disabled != undefined && record.disabled == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     return;
 
 
 
+<<<<<<< HEAD
                 if (scope.checkChecked(key) > -1){
 
                     scope.checkedRecords.splice(scope.checkChecked(key), 1);
@@ -81,6 +108,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 else{
 
                     scope.checkedRecords.push({key: key, value: val, record: record});
+=======
+                if (scope.checkChecked(key) > -1) {
+
+                    scope.checkedRecords.splice(scope.checkChecked(key), 1);
+
+                } else {
+
+                    scope.checkedRecords.push({ key: key, value: val, record: record });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 }
 
@@ -110,9 +146,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
             } */
 
+<<<<<<< HEAD
             scope.calculateSum = function (header){
 
                 if (!header.headerTotal){
+=======
+            scope.calculateSum = function(header) {
+
+                if (!header.headerTotal) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     return;
 
@@ -120,11 +162,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 var sum = 0;
 
+<<<<<<< HEAD
                 if (parseFloat(scope.data.grand[header.field_name+'_grand'])) {
 
                     sum = parseFloat(scope.data.grand[header.field_name+'_grand']);
 
                  }
+=======
+                if (parseFloat(scope.data.grand[header.field_name + '_grand'])) {
+
+                    sum = parseFloat(scope.data.grand[header.field_name + '_grand']);
+
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 return sum.toFixed(2);
 
@@ -132,7 +182,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.verifyRangeFilters = function (ck_startDate, ck_end_date, div_id, type) {
+=======
+            scope.verifyRangeFilters = function(ck_startDate, ck_end_date, div_id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (type == "date") {
 
@@ -158,9 +212,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     }
 
+<<<<<<< HEAD
                 }
 
                 else if (type == "number" || "numberWithCommaRightAlign") {
+=======
+                } else if (type == "number" || "numberWithCommaRightAlign") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     from = $("#" + ck_startDate).val();
 
@@ -168,7 +226,12 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     if (from && to) {
 
+<<<<<<< HEAD
                         fDate = parseFloat(from); lDate = parseFloat(to);
+=======
+                        fDate = parseFloat(from);
+                        lDate = parseFloat(to);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     }
 
@@ -176,13 +239,21 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 if (fDate > lDate) {
 
+<<<<<<< HEAD
                     $timeout(function(){
+=======
+                    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         toaster.pop('error', 'Error', div_id);
 
 
 
+<<<<<<< HEAD
                     },0)
+=======
+                    }, 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 }
 
@@ -202,9 +273,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.getPreviousTableConfig = function () {
 
                 if (scope.forgetFilters){
+=======
+            scope.getPreviousTableConfig = function() {
+
+                if (scope.forgetFilters) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     scope.filterObject.totalRecords = 50;
 
@@ -246,6 +323,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     }
 
+<<<<<<< HEAD
                     
 
                     // if (scope.showFilters && scope.filtered != true)
@@ -257,6 +335,17 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 else {
 
                     scope.filterObject.selectedPage = 1;                    
+=======
+
+
+                    // if (scope.showFilters && scope.filtered != true)
+
+                    scope.filterFunction(); // function needs to be executed even if nothing is saved or saved
+
+                } else {
+
+                    scope.filterObject.selectedPage = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // no filter is saved for this table yet
 
@@ -264,9 +353,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     var match = false;
 
+<<<<<<< HEAD
                     try{
 
                         angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function (obj) {
+=======
+                    try {
+
+                        angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (obj.default_filter != undefined && obj.default_filter) {
 
@@ -284,15 +379,23 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
                     }
 
                     catch(ex){
+=======
+                    } catch (ex) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
                     }
 
+<<<<<<< HEAD
                     if (attrib.controllerInitiate == undefined || (attrib.controllerInitiate && attrib.controllerInitiate != "")){
+=======
+                    if (attrib.controllerInitiate == undefined || (attrib.controllerInitiate && attrib.controllerInitiate != "")) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.filterFunction();
 
@@ -304,6 +407,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.checkbulkEmailFunction = function () {
 
 
@@ -319,6 +423,23 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                }
 
                
+=======
+            scope.checkbulkEmailFunction = function() {
+
+
+
+                if (scope.checkedRecords.length != 0) {
+
+                    scope.bulkEmailFunction();
+
+                } else {
+
+                    toaster.pop('error', 'Info', "No Record Selected.");
+
+                }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             }
 
@@ -328,7 +449,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.addToConfig = function (fromSearchClick, event) {
+=======
+            scope.addToConfig = function(fromSearchClick, event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (fromSearchClick) {
 
@@ -342,7 +467,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 for (var key in scope.filterObject) {
 
+<<<<<<< HEAD
                     if (scope.filterObject[key].type && scope.filterObject[key].type == 'drop_down' &&  !scope.filterObject[key].value){
+=======
+                    if (scope.filterObject[key].type && scope.filterObject[key].type == 'drop_down' && !scope.filterObject[key].value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         delete scope.filterObject[key];
 
@@ -358,7 +487,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.copySettings = function () {
+=======
+            scope.copySettings = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.settingsBackup = JSON.stringify(scope.data.response.tbl_meta_data.response);
 
@@ -366,7 +499,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.restoreSettings = function () {
+=======
+            scope.restoreSettings = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.data.response.tbl_meta_data.response = JSON.parse(scope.settingsBackup);
 
@@ -376,7 +513,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.getOrderIcon = function (val) {
+=======
+            scope.getOrderIcon = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (scope.filterObject.orderArr == undefined) {
 
@@ -390,9 +531,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         return "a";
 
+<<<<<<< HEAD
                     }
 
                     else if (scope.filterObject.orderArr[i] == ("-" + val)) {
+=======
+                    } else if (scope.filterObject.orderArr[i] == ("-" + val)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         return "d";
 
@@ -404,9 +549,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.updateOrder = function (header) {
 
                 if (header.field_name.indexOf("button") > -1){
+=======
+            scope.updateOrder = function(header) {
+
+                if (header.field_name.indexOf("button") > -1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     return;
 
@@ -424,9 +575,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         found = true;
 
+<<<<<<< HEAD
                     }
 
                     else if (scope.filterObject.orderArr[i] == ("-" + val)) {
+=======
+                    } else if (scope.filterObject.orderArr[i] == ("-" + val)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.filterObject.orderArr.splice(i, 1);
 
@@ -454,7 +609,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.isEmptyOrderObj = function () {
+=======
+            scope.isEmptyOrderObj = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -470,7 +629,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.clearFilterObject = function () {
+=======
+            scope.clearFilterObject = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.clearCounter++;
 
@@ -480,6 +643,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 }
 
+<<<<<<< HEAD
                 
 
                 if(scope.showFilters == false || scope.showFilters != true) 
@@ -487,6 +651,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                     scope.showFilters = true;
 
                 else 
+=======
+
+
+                if (scope.showFilters == false || scope.showFilters != true)
+
+                    scope.showFilters = true;
+
+                else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     scope.showFilters = false;
 
@@ -504,7 +677,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
             scope.containerWidth = elem.width();
 
+<<<<<<< HEAD
             scope.editRecord = function (row, event) {
+=======
+            scope.editRecord = function(row, event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -528,14 +705,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         scope.rowClick({ event: scope.$event, id: row.id, mode: 1 });
 
+<<<<<<< HEAD
                     }
 
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.rowClick({ file: row });
 
                     }
 
+<<<<<<< HEAD
                 }
 
                 else {
@@ -592,6 +774,116 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                         case ("ItemActivity"): stateName = ""; break;
 
                         case ("GLActivity"): stateName = ""; break;
+=======
+                } else {
+
+                    switch (scope.tableName) {
+
+
+
+                        case ("CRM"):
+                            stateName = "app.editCrm";
+                            break;
+                        case ("prospect"):
+                            stateName = "app.editprospect";
+                            break;
+
+                        case ("CRM_retailer"):
+                            stateName = "app.editCrm";
+                            break;
+
+                        case ("HR"):
+                            stateName = "app.edithrvalues";
+                            break;
+
+                        case ("SRMOrder"):
+                            stateName = "app.editsrmorder";
+                            break;
+
+                        case ("PurchaseOrder"):
+                            stateName = "app.editsrmorder";
+                            break;
+
+                        case ("PurchaseInvoice"):
+                            stateName = "app.viewsrminvoice";
+                            break;
+
+                        case ("Item"):
+                            stateName = "app.edit-item";
+                            break;
+
+                        case ("Customer"):
+                            stateName = "app.editCustomer";
+                            break;
+
+                        case ("CreditNotes"):
+                            stateName = "app.editReturnOrder";
+                            break;
+
+                        case ("PostedCreditNotes"):
+                            stateName = "app.viewReturnOrder";
+                            break;
+
+                        case ("SalesInvoice"):
+                            stateName = "app.viewOrder";
+                            break;
+
+                        case ("SalesOrder"):
+                            stateName = "app.editOrder";
+                            break;
+
+                        case ("SalesQuote"):
+                            stateName = "app.viewSaleQuote";
+                            break;
+
+                        case ("PostedDebitNotes"):
+                            stateName = "app.viewsrmorderreturninvoice";
+                            break;
+
+                        case ("DebitNotes"):
+                            stateName = "app.viewsrmorderreturn";
+                            break;
+
+                        case ("SRM"):
+                            stateName = "app.view-srm";
+                            break;
+
+                        case ("Warehouse"):
+                            stateName = "app.view-warehouse";
+                            break;
+
+                        case ("Supplier"):
+                            stateName = "app.view-supplier";
+                            break;
+
+                        case ("Attachments"):
+                            stateName = "";
+                            break;
+
+                        case ("Rebates"):
+                            stateName = "";
+                            break;
+
+                        case ("CustomerActivity"):
+                            stateName = "";
+                            break;
+
+                        case ("SupplierActivity"):
+                            stateName = "";
+                            break;
+
+                        case ("ItemActivity"):
+                            stateName = "";
+                            break;
+
+                        case ("GLActivity"):
+                            stateName = "";
+                            break;
+
+                        case ("OtherCompanies"):
+                            stateName = "app.view-otherCompanies";
+                            break;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     }
 
@@ -631,15 +923,25 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                                 stateData = {
 
+<<<<<<< HEAD
                                     id: recId
 
                                 }
+=======
+                                id: recId
+
+                            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             break;
 
                     }
 
+<<<<<<< HEAD
                     if (stateName){
+=======
+                    if (stateName) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (event.ctrlKey || event.metaKey || event.which == 2 || event.button == 4) {
 
@@ -649,17 +951,25 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             window.open(url, '_blank');
 
+<<<<<<< HEAD
                         }
 
                         else{
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             $state.go(stateName, stateData);
 
                         }
 
+<<<<<<< HEAD
                     }
 
                     else{
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         // no state to go to..
 
@@ -677,6 +987,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.getColumnName = function (field_name) {
 
                 var found = "";
@@ -684,6 +995,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 if (scope.data && scope.data.response){
 
                     angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
+=======
+            scope.getColumnName = function(field_name) {
+
+                var found = "";
+
+                if (scope.data && scope.data.response) {
+
+                    angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (!found && obj.field_name == field_name) {
 
@@ -701,7 +1021,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.filterType = function (key) {
+=======
+            scope.filterType = function(key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 return typeof scope.filterObject[key];
 
@@ -709,11 +1033,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.exportAsCSV = function(){
 
                 for (var key in scope.filterObject) {
 
                     if (scope.filterObject[key].type && scope.filterObject[key].type == 'drop_down' &&  !scope.filterObject[key].value){
+=======
+            scope.exportAsCSV = function() {
+
+                for (var key in scope.filterObject) {
+
+                    if (scope.filterObject[key].type && scope.filterObject[key].type == 'drop_down' && !scope.filterObject[key].value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         delete scope.filterObject[key];
 
@@ -731,13 +1063,22 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.dirFunc = function (s, d) {
+=======
+            scope.dirFunc = function(s, d) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (s == undefined || d == undefined)
 
                     return alert('contact admin: s/d undefined in "arrangeCategories"');
 
+<<<<<<< HEAD
                 s = Number(s); d = Number(d);
+=======
+                s = Number(s);
+                d = Number(d);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (s == d) return;
 
@@ -745,9 +1086,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     scope.data.response.tbl_meta_data.response.colMeta.splice(d + 1, 0, scope.data.response.tbl_meta_data.response.colMeta[s]);
 
+<<<<<<< HEAD
                 }
 
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     scope.data.response.tbl_meta_data.response.colMeta.splice(d, 0, scope.data.response.tbl_meta_data.response.colMeta[s]);
 
@@ -769,7 +1114,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.SaveTableMetaData = function (tblMetaParam) {
+=======
+            scope.SaveTableMetaData = function(tblMetaParam) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -779,9 +1128,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 tempObj.tblMeta.autoAdjust = scope.defaultWidth ? 1 : 0;
 
+<<<<<<< HEAD
                 angular.forEach(tempObj.colMeta, function(obj,i){
 
                     obj.display_order = i+1;
+=======
+                angular.forEach(tempObj.colMeta, function(obj, i) {
+
+                    obj.display_order = i + 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 })
 
@@ -797,19 +1152,33 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     .post(getTblMetaUrl, postData)
 
+<<<<<<< HEAD
                     .then(function (res) {
 
                         toaster.pop('success', 'Update', 'Options Updated Successfully.')
 
                     });
+=======
+                .then(function(res) {
+
+                    toaster.pop('success', 'Update', 'Options Updated Successfully.')
+
+                });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             }
 
 
 
+<<<<<<< HEAD
             scope.selectTotal = function(totalRecords){
 
                 scope.filterObject.selectedPage = 1;                
+=======
+            scope.selectTotal = function(totalRecords) {
+
+                scope.filterObject.selectedPage = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.filterObject.totalRecords = totalRecords;
 
@@ -819,6 +1188,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
             //flexi table default table getter
 
+<<<<<<< HEAD
             scope.getDefaultTableMeta = function (tableName, refData) {
 
                 var tempArr = [];
@@ -826,6 +1196,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 angular.forEach(scope.data.response.tbl_meta_data.response.originalColMeta, function(obj,i){
 
                     elm = scope.data.response.tbl_meta_data.response.colMeta.filter(function (e) { return obj.title == e.title; })[0];
+=======
+            scope.getDefaultTableMeta = function(tableName, refData) {
+
+                var tempArr = [];
+
+                angular.forEach(scope.data.response.tbl_meta_data.response.originalColMeta, function(obj, i) {
+
+                    elm = scope.data.response.tbl_meta_data.response.colMeta.filter(function(e) { return obj.title == e.title; })[0];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     delete elm.display_order;
 
@@ -843,6 +1222,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 scope.data.response.tbl_meta_data.response.colMeta = tempArr;
 
+<<<<<<< HEAD
                 if (scope.data.response.tbl_meta_data.response.originalTblMeta && scope.data.response.tbl_meta_data.response.originalTblMeta.autoAdjust){
 
                     scope.data.response.tbl_meta_data.response.tblMeta.autoAdjust = scope.data.response.tbl_meta_data.response.originalTblMeta.autoAdjust;
@@ -850,6 +1230,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 }
 
                 else{
+=======
+                if (scope.data.response.tbl_meta_data.response.originalTblMeta && scope.data.response.tbl_meta_data.response.originalTblMeta.autoAdjust) {
+
+                    scope.data.response.tbl_meta_data.response.tblMeta.autoAdjust = scope.data.response.tbl_meta_data.response.originalTblMeta.autoAdjust;
+
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     scope.data.response.tbl_meta_data.response.tblMeta.autoAdjust = false;
 
@@ -863,11 +1250,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.$watch('data', function (newVal, oldVal) {
 
                 if (scope.data && scope.data.response){
 
                     if (scope.data.response[0] == undefined || (scope.data.response[0]  && scope.data.response[0].length == 0) && scope.filterObject.selectedPage > 1){
+=======
+            scope.$watch('data', function(newVal, oldVal) {
+
+                if (scope.data && scope.data.response) {
+
+                    if (scope.data.response[0] == undefined || (scope.data.response[0] && scope.data.response[0].length == 0) && scope.filterObject.selectedPage > 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.filterObject.selectedPage = 1;
 
@@ -875,6 +1270,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     }
 
+<<<<<<< HEAD
                     if (scope.filterObject.totalRecords == undefined){
 
                         scope.totalRecords = 50;
@@ -882,12 +1278,23 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                     }
 
                     else{
+=======
+                    if (scope.filterObject.totalRecords == undefined) {
+
+                        scope.totalRecords = 50;
+
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.totalRecords = scope.filterObject.totalRecords;
 
                     }
 
+<<<<<<< HEAD
                     if (scope.data && scope.data.csv){
+=======
+                    if (scope.data && scope.data.csv) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         var hiddenElement = document.createElement('a');
 
@@ -905,7 +1312,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     }
 
+<<<<<<< HEAD
                     if (scope.filterObject && scope.filterObject.exportAsCSV){
+=======
+                    if (scope.filterObject && scope.filterObject.exportAsCSV) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         delete scope.filterObject.exportAsCSV;
 
@@ -917,11 +1328,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         scope.showFilters = true;
 
+<<<<<<< HEAD
                         angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function (obj) {
 
                             if (obj.default_filter != undefined && obj.default_filter) {
 
                                 if (obj.data_type == "drop_down"){
+=======
+                        angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function(obj) {
+
+                            if (obj.default_filter != undefined && obj.default_filter) {
+
+                                if (obj.data_type == "drop_down") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     searchObj[obj.field_name] = {
 
@@ -931,9 +1350,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                                     }
 
+<<<<<<< HEAD
                                 }
 
                                 else{
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     searchObj[obj.field_name] = obj.filter_value;
 
@@ -955,9 +1378,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             }
 
+<<<<<<< HEAD
                         }
 
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             for (var k in searchObj) {
 
@@ -969,11 +1396,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         }
 
+<<<<<<< HEAD
     
 
                     }
 
     
+=======
+
+
+                    }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // for (var key in scope.checkedRecords) {
 
@@ -983,7 +1418,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     scope.data2.response = [];
 
+<<<<<<< HEAD
                     angular.forEach(scope.data.response, function (value, key) {
+=======
+                    angular.forEach(scope.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (key != "tbl_meta_data") {
 
@@ -991,11 +1430,17 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             scope.data2.response.push(value);
 
+<<<<<<< HEAD
     
 
                         }
 
                         else {
+=======
+
+
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             // if (scope.originalMeta) {
 
@@ -1005,9 +1450,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             // else {
 
+<<<<<<< HEAD
                                 scope.defaultWidth = value.response.tblMeta.autoAdjust;
 
                                 scope.originalMeta = JSON.stringify(value.response);
+=======
+                            scope.defaultWidth = value.response.tblMeta.autoAdjust;
+
+                            scope.originalMeta = JSON.stringify(value.response);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             // }
 
@@ -1017,7 +1468,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     scope.total = scope.data.total;
 
+<<<<<<< HEAD
                     if (scope.total && scope.total > 0){
+=======
+                    if (scope.total && scope.total > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $(`.scrollme_${scope.tableName}`).scrollLeft(0);
 
@@ -1039,9 +1494,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     scope.total_paging_record = scope.data.total_paging_record;
 
+<<<<<<< HEAD
                         scope.isEmptyOrderObj();
 
                         scope.pinHandler();
+=======
+                    scope.isEmptyOrderObj();
+
+                    scope.pinHandler();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // if (scope.data.response.tbl_meta_data != undefined) {
 
@@ -1069,7 +1530,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.pinHandler = function (header) {
+=======
+            scope.pinHandler = function(header) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (header != undefined) {
 
@@ -1101,7 +1566,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.updateDefaultWidth = function () {
+=======
+            scope.updateDefaultWidth = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.data.response.tbl_meta_data.response.tblMeta.autoAdjust = scope.defaultWidth;
 
@@ -1111,12 +1580,17 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     for (var i = 0; i < scope.data.response.tbl_meta_data.response.colMeta.length; i++) {
 
+<<<<<<< HEAD
                         elm = tempMeta.filter(function (e) { return scope.data.response.tbl_meta_data.response.colMeta[i].title == e.title; })[0];
+=======
+                        elm = tempMeta.filter(function(e) { return scope.data.response.tbl_meta_data.response.colMeta[i].title == e.title; })[0];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.data.response.tbl_meta_data.response.colMeta[i].width = elm.width == "0" ? 150 : elm.width;
 
                     }
 
+<<<<<<< HEAD
                 }
 
                 else {
@@ -1124,6 +1598,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                     for (var i = 0; i < tempMeta.length; i++) {
 
                         elm = tempMeta.filter(function (e) { return scope.data.response.tbl_meta_data.response.colMeta[i].title == e.title; })[0];
+=======
+                } else {
+
+                    for (var i = 0; i < tempMeta.length; i++) {
+
+                        elm = tempMeta.filter(function(e) { return scope.data.response.tbl_meta_data.response.colMeta[i].title == e.title; })[0];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         scope.data.response.tbl_meta_data.response.colMeta[i].width = elm.width;
 
@@ -1139,7 +1620,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.widthSlider = function (header) {
+=======
+            scope.widthSlider = function(header) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 for (var i = 0; i < scope.data.response.tbl_meta_data.response.colMeta.length; i++) {
 
@@ -1147,7 +1632,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         scope.defaultWidth = false;
 
+<<<<<<< HEAD
                     angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
+=======
+                    angular.forEach(scope.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj.width == 0) {
 
@@ -1167,7 +1656,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
             scope.filterInThere = false;
 
+<<<<<<< HEAD
             scope.isEmpty = function (obj) {
+=======
+            scope.isEmpty = function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 for (var key in obj) {
 
@@ -1181,9 +1674,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         }
 
+<<<<<<< HEAD
                     }
 
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (typeof obj[key] == "object") {
 
@@ -1191,9 +1688,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                                 continue;
 
+<<<<<<< HEAD
                             }
 
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 for (var key2 in obj[key]) {
 
@@ -1237,7 +1738,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.toggleCheckboxColumn = function(){
+=======
+            scope.toggleCheckboxColumn = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 scope.checkboxColumn = !scope.checkboxColumn;
 
@@ -1245,6 +1750,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.toggleAllRecordCheck = function(i){
 
 
@@ -1256,6 +1762,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                         scope.checkedRecords.splice(scope.checkChecked(obj.id), 1);
 
                         
+=======
+            scope.toggleAllRecordCheck = function(i) {
+
+
+
+                if (scope.checkAllRecordChecked()) {
+
+                    angular.forEach(scope.data2.response, function(obj, i) {
+
+                        scope.checkedRecords.splice(scope.checkChecked(obj.id), 1);
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     })
 
@@ -1263,6 +1782,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     // scope.checkedRecords.length = 0;
 
+<<<<<<< HEAD
                 }
 
                 else{
@@ -1276,6 +1796,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                         if (scope.checkChecked(obj.id) == -1 && !(obj.disabled != undefined && obj.disabled == 1)){
 
                             scope.checkedRecords.push({key: obj.id, value: obj[scope.selectedRecordPreview], record: obj});
+=======
+                } else {
+
+                    // scope.checkedRecords.length = 0;
+
+                    angular.forEach(scope.data2.response, function(obj, i) {
+
+
+
+                        if (scope.checkChecked(obj.id) == -1 && !(obj.disabled != undefined && obj.disabled == 1)) {
+
+                            scope.checkedRecords.push({ key: obj.id, value: obj[scope.selectedRecordPreview], record: obj });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         }
 
@@ -1287,6 +1820,7 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.checkAllRecordChecked = function(){
 
                 var allSelected = true;
@@ -1294,6 +1828,15 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                 angular.forEach(scope.data2.response, function (obj, i) {
 
                     if (scope.checkChecked(obj.id) == -1 && !(obj.disabled != undefined && obj.disabled == 1)){
+=======
+            scope.checkAllRecordChecked = function() {
+
+                var allSelected = true;
+
+                angular.forEach(scope.data2.response, function(obj, i) {
+
+                    if (scope.checkChecked(obj.id) == -1 && !(obj.disabled != undefined && obj.disabled == 1)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         allSelected = false;
 
@@ -1301,7 +1844,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     }
 
+<<<<<<< HEAD
                 })                
+=======
+                })
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 return allSelected;
 
@@ -1311,11 +1858,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             
 
 
 
             scope.dismissThis = function(){
+=======
+
+
+
+
+            scope.dismissThis = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 angular.element('#flexiSettingsModal_' + scope.tableName).modal('hide');
 
@@ -1325,11 +1880,19 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.checkHeaderInfo = function (field, title) {
 
                 try {
 
                     var requiredHeader = scope.data.response.tbl_meta_data.response.colMeta.filter(function (e) {
+=======
+            scope.checkHeaderInfo = function(field, title) {
+
+                try {
+
+                    var requiredHeader = scope.data.response.tbl_meta_data.response.colMeta.filter(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         return e.title == title;
 
@@ -1345,11 +1908,17 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             return requiredHeader.width + "px";
 
+<<<<<<< HEAD
                         }
 
                         else {
 
                             var visibleColumns = scope.data.response.tbl_meta_data.response.colMeta.filter(function (e) {
+=======
+                        } else {
+
+                            var visibleColumns = scope.data.response.tbl_meta_data.response.colMeta.filter(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 return e.visible == "1";
 
@@ -1359,7 +1928,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             var nonDefaultColumns = visibleColumns.length;
 
+<<<<<<< HEAD
                             angular.forEach(visibleColumns, function (obj) {
+=======
+                            angular.forEach(visibleColumns, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (obj.width != "0" && !scope.defaultWidth) {
 
@@ -1383,9 +1956,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         }
 
+<<<<<<< HEAD
                     }
 
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         return requiredHeader[field];
 
@@ -1395,7 +1972,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                 }
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             }
 
@@ -1405,7 +1986,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.pinnedFinder = function (colSpecs) {
+=======
+            scope.pinnedFinder = function(colSpecs) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var pinnedCols = [];
 
@@ -1425,9 +2010,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                         }
 
+<<<<<<< HEAD
                     }
 
                     else if (scope.pinnedFound == true) {
+=======
+                    } else if (scope.pinnedFound == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         nonPinnedCols.push(colSpecs[i]);
 
@@ -1441,9 +2030,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                     pinnedCols.length = 0;
 
+<<<<<<< HEAD
                 }
 
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 }
 
@@ -1453,18 +2046,27 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             scope.calculateWidth = function (tables, position) {
+=======
+            scope.calculateWidth = function(tables, position) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (tables.length) {
 
                     var sum = 0;
 
+<<<<<<< HEAD
                     angular.forEach(tables, function (obj, index) {
+=======
+                    angular.forEach(tables, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj != undefined)
 
                             for (var i = 0; i < obj.length; i++) {
 
+<<<<<<< HEAD
                                 if (obj[i].visible == "1") {
 
                                     if ((!scope.defaultWidth) && obj[i].width == "0") {
@@ -1487,12 +2089,33 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
                             }
 
+=======
+                            if (obj[i].visible == "1") {
+
+                                if ((!scope.defaultWidth) && obj[i].width == "0") {
+
+                                    sum += 150;
+
+                                } else
+
+                                    sum += parseInt(obj[i].width);
+
+                            } else {
+
+                                continue;
+
+                            }
+
+                        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     })
 
                     sum = sum + 1 + (scope.checkboxColumn && !scope.defaultWidth ? 40 : 0) + "px";
 
                     // }
 
+<<<<<<< HEAD
                     if (scope.defaultWidth){
 
                         return "100%";
@@ -1500,6 +2123,13 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
                     }
 
                     else{
+=======
+                    if (scope.defaultWidth) {
+
+                        return "100%";
+
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         return sum;
 
@@ -1511,7 +2141,11 @@ myApp.directive("generateTable", ['$http', '$state', 'toaster', '$rootScope', 'f
 
 
 
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 

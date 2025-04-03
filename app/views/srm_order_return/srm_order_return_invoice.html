@@ -1,6 +1,7 @@
 <div ng-controller="PurchaseReturnInvoiceController as table">
     <div ng-include="'app/views/_breadcrumb.html'"></div>
     <a id="prompt" ui-sref="app.addsrmorderreturn" class="btn btn_add pull-right oval" ng-if="allowadd_prucase_order_return" style="visibility: hidden">
+<<<<<<< HEAD
         <i class="fa fa-plus"></i></a>    
 
     <style>
@@ -8,11 +9,21 @@
         margin-top: 35px;
     }
     </style>  
+=======
+        <i class="fa fa-plus"></i></a>
+
+    <style>
+        .hideAdd {
+            margin-top: 35px;
+        }
+    </style>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     <div class="row">
         <div class="col-md-12 col-md-12">
             <div class="widget">
                 <div class="widget-body ">
                     <div id="dt_example" class="example_alt_pagination">
+<<<<<<< HEAD
                         <div style="margin-top: -13px">
                             <div class="flexiTable" 
                                 ng-class="{'hideAdd':!allowadd_prucase_order_return}" 
@@ -24,6 +35,12 @@
                                 x-filter-object="searchKeyword" 
                                 x-bulk-email-function="bulkEmailOption()"
                                 x-selected-record-preview="invoice_code"></div>
+=======
+                        <div>
+                            <!-- style="margin-top: -13px" -->
+                            <div style=" margin-top: 10px;" class="flexiTable" ng-class="{'hideAdd':!allowadd_prucase_order_return}" x-generate-table x-data="tableData.data" x-table-name="PostedDebitNotes" x-filter-function="getPurchaseReturnInvoiceListing()" x-checked-records="selectedRecBulkEmail"
+                                x-filter-object="searchKeyword" x-bulk-email-function="bulkEmailOption()" x-selected-record-preview="invoice_code"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                 </div>

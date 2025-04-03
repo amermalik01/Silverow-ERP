@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $stateProvider
             .state('app.warehouse', {
@@ -18,31 +22,55 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
             .state('app.view-warehouse', {
                 url: '/warehouse/:id/view',
                 title: 'Setup',
+<<<<<<< HEAD
                 templateUrl: helper.basepath('warehouse/_form.html'),//addTabs
+=======
+                templateUrl: helper.basepath('warehouse/_form.html'), //addTabs
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'WarehouseEditController'
             })
             .state('app.edit-warehouse', {
                 url: '/warehouse/:id/edit',
                 title: 'Setup',
+<<<<<<< HEAD
                 templateUrl: helper.basepath('warehouse/_form.html'),//addTabs
+=======
+                templateUrl: helper.basepath('warehouse/_form.html'), //addTabs
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'WarehouseEditController'
             })
 
+<<<<<<< HEAD
     }]);
+=======
+    }
+]);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 WarehouseControllerListing.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "moduleTracker"];
 
 myApp.controller('WarehouseControllerListing', WarehouseControllerListing);
+<<<<<<< HEAD
 function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, moduleTracker) {
     
+=======
+
+function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, moduleTracker) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     moduleTracker.updateName("warehouse");
     moduleTracker.updateRecord("");
 
     $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+<<<<<<< HEAD
     { 'name': 'Warehouse', 'url': '#', 'isActive': false }];
+=======
+        { 'name': 'Warehouse', 'url': '#', 'isActive': false }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     var Api = $scope.$root.setup + "warehouse/listings";
     var delUrl = $scope.$root.setup + "warehouse/delete-warehouse";
@@ -57,7 +85,11 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
     $scope.tempWarehouseArr = {};
     $scope.searchKeyword = {};
 
+<<<<<<< HEAD
     $scope.showWarehouseListing = function (item_paging) {
+=======
+    $scope.showWarehouseListing = function(item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.warehouseParam = {};
         $scope.warehouseParam.token = $scope.$root.token;
@@ -80,7 +112,11 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
 
         $http
             .post(Api, $scope.warehouseParam)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $scope.tableData = res;
                 /* $scope.columns = [];
                 $scope.$data = {}; */
@@ -111,7 +147,11 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
                         }
 
                     }); */
+<<<<<<< HEAD
                     angular.forEach($scope.tempWarehouseArr.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
+=======
+                    angular.forEach($scope.tempWarehouseArr.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.event && obj.event.name && obj.event.trigger) {
                             obj.generatedEvent = $scope[obj.event.name];
                         }
@@ -152,13 +192,21 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
 
     function toTitleCase(str) {
         var title = str.replace('_', ' ');
+<<<<<<< HEAD
         return title.replace(/\w\S*/g, function (txt) {
+=======
+        return title.replace(/\w\S*/g, function(txt) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }
 
 
+<<<<<<< HEAD
     $scope.getItem = function (parm) {
+=======
+    $scope.getItem = function(parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec = {};
         $scope.rec.token = $scope.$root.token;
         //$scope.rec.warehouse_id = $scope.rec.warehouse !=undefined? $scope.rec.warehouse.id:'';
@@ -171,7 +219,11 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
         $scope.$root.$broadcast("myReload");
     }
 
+<<<<<<< HEAD
     $scope.$on("myReload", function (event) {
+=======
+    $scope.$on("myReload", function(event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //var ApiAjax = $resource('api/company/get_listing_ajax/:module_id/:module_table/:filter_id/:more_fields/:condition');
 
         // ngDataService.getDataCustom( $scope.MainDefer, $scope.mainParams, Api,$scope.mainFilter,$scope,$scope.postData);
@@ -180,6 +232,7 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
         //return;
     });
     $scope.$data = {};
+<<<<<<< HEAD
     $scope.delete = function (id, index, $data) {
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
@@ -197,6 +250,24 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
                     }
                 });
         }, function (reason) {
+=======
+    $scope.delete = function(id, index, $data) {
+        ngDialog.openConfirm({
+            template: 'modalDeleteDialogId',
+            className: 'ngdialog-theme-default-custom'
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        $data.splice(index, 1);
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -206,6 +277,10 @@ function WarehouseControllerListing($scope, $filter, ngParams, $resource, $timeo
 
 WarehouseEditController.$inject = ["$scope", "$filter", "$resource", "$timeout", "$http", "ngDialog", "toaster", "$stateParams", "$state", "moduleTracker"];
 myApp.controller('WarehouseEditController', WarehouseEditController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ngDialog, toaster, $stateParams, $state, moduleTracker) {
 
     $scope.altContacListingShow = false;
@@ -213,7 +288,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     $scope.altbin_loc_FormShow = false;
     $scope.bin_loc_ListingShow = false;
 
+<<<<<<< HEAD
     console.log($scope.altContacListingShow+' '+$scope.altContacFormShow+' '+$scope.altbin_loc_FormShow+' '+$scope.bin_loc_ListingShow);
+=======
+    console.log($scope.altContacListingShow + ' ' + $scope.altContacFormShow + ' ' + $scope.altbin_loc_FormShow + ' ' + $scope.bin_loc_ListingShow);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     moduleTracker.updateName("warehouse");
     moduleTracker.updateRecord($stateParams.id);
@@ -223,11 +302,16 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         $scope.check_wh_readonly = true;
     }
 
+<<<<<<< HEAD
     $scope.delete = function (id, index, $data) {
+=======
+    $scope.delete = function(id, index, $data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.setup + "warehouse/delete-warehouse";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: $stateParams.id, 'token': $scope.$root.token })
@@ -243,6 +327,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     }
                 });
         }, function (reason) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: $stateParams.id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        $timeout(function() {
+                            $state.go("app.warehouse", {});
+                        }, 1000);
+                    } else {
+                        toaster.pop('error', 'Error', res.data.error);
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -254,7 +354,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
     $scope.rec = {};
 
+<<<<<<< HEAD
     $scope.showEditForm = function () {
+=======
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_wh_readonly = false;
     }
 
@@ -321,7 +425,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var storage_type_list_Url = $scope.$root.setup + "warehouse/get-warehouse-storage-type";
     $http
         .post(storage_type_list_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
         .then(function (res) {
+=======
+        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.storage_type_list.push({ 'id': '', 'title': '' });
 
@@ -337,11 +445,19 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var countryUrl = $scope.$root.setup + "general/countries";
     $http
         .post(countryUrl, { 'token': $scope.$root.token })
+<<<<<<< HEAD
         .then(function (res) {
             if (res.data.ack == true) {
                 $scope.countries = res.data.response;
                 if ($stateParams.id == undefined) {
                     $.each($scope.countries, function (index, elem) {
+=======
+        .then(function(res) {
+            if (res.data.ack == true) {
+                $scope.countries = res.data.response;
+                if ($stateParams.id == undefined) {
+                    $.each($scope.countries, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == $scope.$root.defaultCountry)
                             $scope.rec.country_id = elem;
                     });
@@ -376,11 +492,19 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var currencyUrl = $scope.$root.setup + "general/currency-list";
     $http
         .post(currencyUrl, { 'token': $scope.$root.token })
+<<<<<<< HEAD
         .then(function (res) {
             $scope.arr_currency = [];
             if (res.data.ack == true) {
                 $scope.arr_currency = res.data.response;
                 $.each($scope.arr_currency, function (index, elem) {
+=======
+        .then(function(res) {
+            $scope.arr_currency = [];
+            if (res.data.ack == true) {
+                $scope.arr_currency = res.data.response;
+                $.each($scope.arr_currency, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == $scope.$root.defaultCurrency) $scope.rec.currency_id = elem;
                 });
 
@@ -393,7 +517,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var ref_dimension_Url = $scope.$root.stock + "unit-measure/get-all-unit";
     $http
         .post(ref_dimension_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
         .then(function (res) {
+=======
+        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.arr_dimension = [];
             if (res.data.ack == true) {
                 $scope.arr_dimension = res.data.response;
@@ -404,7 +532,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var price = 0;
     var currency_id = 0;
     var converted_price = 0;
+<<<<<<< HEAD
     $scope.validatePrice = function (price, type) {
+=======
+    $scope.validatePrice = function(price, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //console.log(price+type);
         // if (price== undefined) return;
         /*  var currency_idd='';
@@ -432,14 +564,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         var currencyURL = $scope.$root.sales + "customer/customer/get-currency-conversion-rate";
         $http
             .post(currencyURL, { 'id': currency_id, token: $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     if (res.data.response.conversion_rate == null) {
 
                         if (type == 'level_1') $scope.rec.converted_price = null;
 
+<<<<<<< HEAD
                         toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+=======
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $('.cur_block').attr("disabled", true);
                         return;
                     }
@@ -475,7 +615,30 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     // $scope.arr_generate = [{ 'id': '1', 'name': 'E-Dispatch Note', 'chk': false }];
     $scope.arr_generate = [{ 'id': '1', 'name': 'E-Dispatch Email', 'chk': false }];
 
+<<<<<<< HEAD
     if ($stateParams.id !== undefined) {
+=======
+
+    var additional_cost_title_Url = $scope.$root.setup + "warehouse/get-warehouse-loc-additional-cost-title";
+    $http
+        .post(additional_cost_title_Url, { 'token': $scope.$root.token })
+        .then(function(res) {
+            $scope.additional_cost_title = [];
+            $scope.additional_cost_title.push({ 'id': '', 'title': '' });
+
+            if (res.data.ack == true) $scope.additional_cost_title = res.data.response;
+            //else    toaster.pop('error', 'Error', "No Category found!");
+
+            $scope.additional_cost_title.push({ 'id': '-1', 'title': '++ Add New ++' });
+
+        });
+
+    $scope.rec_loc = {};
+
+    if ($stateParams.id !== undefined) {
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
 
         var DetailsURL = $scope.$root.setup + "warehouse/get-warehouse";
@@ -483,7 +646,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(DetailsURL, { 'token': $scope.$root.token, 'id': id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 if (res.data.ack == true) {
 
@@ -495,7 +662,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     if (res.data.response.generate) {
                         var arrGen = res.data.response.generate.split(',');
+<<<<<<< HEAD
                         angular.forEach($scope.arr_generate, function (elem, index) {
+=======
+                        angular.forEach($scope.arr_generate, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             var indx = arrGen.indexOf(elem.id) == -1;
                             if (!indx) {
                                 $scope.arr_generate[index].chk = true;
@@ -513,18 +684,88 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     $scope.new_list = true;
                     $scope.save_list = false;
 
+<<<<<<< HEAD
                     $.each($scope.status_list, function (index, obj) {
+=======
+                    $.each($scope.status_list, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.status) {
                             $scope.rec.status_ids = $scope.status_list[index];
                         }
                     });
 
+<<<<<<< HEAD
                     $.each($scope.storage_type_list, function (index, obj) {
+=======
+                    $.each($scope.storage_type_list, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.type) {
                             $scope.rec.types = $scope.storage_type_list[index];
                         }
                     });
 
+<<<<<<< HEAD
+=======
+
+
+
+
+                    $scope.rec_loc.title = $scope.rec.title;
+                    $scope.rec_loc.warehouse_loc_sdate = $scope.rec.warehouse_loc_sdate;
+                    $scope.rec_loc.warehouse_loc_edate = $scope.rec.warehouse_loc_edate;
+                    $scope.rec_loc.bin_cost = $scope.rec.bin_cost;
+                    $scope.rec_loc.description = $scope.rec.description;
+
+                    $scope.rec_loc.id = $scope.rec.wlid;
+                    $scope.rec_loc.parent_id = $scope.rec.parent_id;
+
+                    $.each($scope.status_list, function(index, obj) {
+                        if (obj.id == $scope.rec.status)
+                            $scope.rec_loc.status_ids = $scope.status_list[index];
+                    });
+
+                    if ($scope.rec.currency_id > 0) {
+                        $.each($scope.arr_currency, function(index, elem) {
+                            if (elem.id == $scope.rec.currency_id)
+                                $scope.rec_loc.currency = elem;
+                        });
+
+                    } else {
+                        $.each($scope.arr_currency, function(index, elem) {
+                            if (elem.id == $scope.$root.defaultCurrency)
+                                $scope.rec_loc.currency = elem;
+                        });
+                    }
+
+                    $.each($scope.arr_dimension, function(index, elem) {
+                        if (elem.id == $scope.rec.dimensions_id)
+                            $scope.rec_loc.dimension = elem;
+                    });
+
+                    $.each($scope.cost_types, function(index, elem) {
+                        if (elem.id == $scope.rec.cost_type_id)
+                            $scope.rec_loc.cost_type = elem;
+                    });
+
+                    var postUrl = $scope.$root.setup + "warehouse/alt-parent-bin-location";
+
+                    $http
+                        .post(postUrl, { 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID, 'bin_loc_wrh_id': $scope.rec.wlid })
+                        .then(function(res2) {
+
+                            $scope.parent_bin = [];
+                            if (res2.data.ack == true) {
+
+                                $scope.parent_bin = res2.data.response;
+
+                                $.each($scope.parent_bin, function(index, obj) {
+                                    if (obj.id == $scope.rec_loc.parent_id)
+                                        $scope.rec_loc.parent_bin_location = $scope.parent_bin[index];
+                                });
+                            }
+                        });
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     /*$.each($scope.type_list, function (index, obj) {
                      if (obj.id == res.data.response.type) {
                      $scope.rec.types = $scope.type_list[index];
@@ -532,24 +773,37 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                      });*/
 
 
+<<<<<<< HEAD
                     $.each($scope.storage_list, function (index, obj) {
+=======
+                    $.each($scope.storage_list, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.pallet_type) {
                             $scope.rec.pallet_type = $scope.storage_list[index];
                         }
                     });
 
 
+<<<<<<< HEAD
                     $.each($scope.countries, function (index, elem) {
+=======
+                    $.each($scope.countries, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.country_id)
                             $scope.rec.country_id = elem;
                     });
 
+<<<<<<< HEAD
                     $.each($scope.arr_currency, function (index, elem) {
+=======
+                    $.each($scope.arr_currency, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.currency_id)
                             $scope.rec.currency_id = elem;
                     });
 
                     $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+<<<<<<< HEAD
                     { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
                     { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }];
                 }
@@ -564,6 +818,24 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
         { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
         { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }];
+=======
+                        { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
+                        { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }
+                    ];
+                }
+            });
+    } else {
+        $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+            { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' }
+        ];
+    }
+
+    $scope.generalInformation = function() {
+        $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+            { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
+            { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }
+        ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*{ 'name': 'General', 'url': '#', 'style': '' } */
 
@@ -582,12 +854,20 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     //--------------------- start General   ------------------------------------------
 
 
+<<<<<<< HEAD
     $scope.add_general_warehouse = function (rec, drp) {
 
         if ($scope.rec.wrh_code != undefined) {
             $scope.UpdateForm(rec, drp);
         }
         else {
+=======
+    $scope.add_general_warehouse = function(rec, drp) {
+
+        if ($scope.rec.wrh_code != undefined) {
+            $scope.UpdateForm(rec, drp);
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = true;
 
             var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
@@ -601,7 +881,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     'category': '',
                     'brand': ''
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == 1) {
                         $scope.showLoader = false;
@@ -612,8 +896,12 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         if ($scope.count_result > 0) {
                             $scope.UpdateForm(rec, drp);
                             return true;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log($scope.count_result + 'd');
                             return false;
                         }
@@ -622,14 +910,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         toaster.pop('error', 'info', res.data.error);
                         return false;
                     }
+<<<<<<< HEAD
                 }).catch(function (message) {
+=======
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     // toaster.pop('error', 'info', 'Server is not Acknowledging');
                     throw new Error(message.data);
                 });
         }
     }
+<<<<<<< HEAD
     $scope.setGenerate = function (id) {
+=======
+    $scope.setGenerate = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         for (var i = 0; i < $scope.arr_generate.length; i++) {
             if (id == $scope.arr_generate[i].id) {
                 if ($scope.arr_generate[i].chk == true)
@@ -640,7 +936,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         }
     }
 
+<<<<<<< HEAD
     $scope.UpdateForm = function (rec, drp) {
+=======
+    $scope.UpdateForm = function(rec, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec.country_ids = rec.country_id != undefined ? rec.country_id.id : 0;
         rec.pallet_types = rec.pallet_type != undefined ? rec.pallet_type.id : 0;
@@ -667,6 +967,35 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $scope.showLoader = true;
 
+<<<<<<< HEAD
+=======
+        if ($scope.rec_loc) {
+
+            if ($scope.rec_loc.parent_bin_location !== undefined)
+                rec.parent_id = $scope.rec_loc.parent_bin_location.id;
+
+            if ($scope.rec_loc.status_ids !== undefined)
+                rec.status = $scope.rec_loc.status_ids.id;
+
+            if ($scope.rec_loc.currency !== undefined)
+                rec.currency_id = $scope.rec_loc.currency.id;
+
+            if ($scope.rec_loc.dimension !== undefined)
+                rec.dimensions_id = $scope.rec_loc.dimension.id;
+
+            if ($scope.rec_loc.cost_type !== undefined)
+                rec.cost_type_id = $scope.rec_loc.cost_type.id;
+
+            if ($scope.rec_loc.bin_cost && $scope.rec_loc.bin_cost != 0 && !$scope.rec_loc.cost_type) {
+                toaster.pop('error', 'Edit', 'Cost Frequency is mandatory');
+                return false;
+            }
+
+        }
+
+        rec.rec_loc = $scope.rec_loc;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var addcrmUrl = $scope.$root.setup + "warehouse/add-warehouse";
         if (rec.id != undefined)
@@ -674,7 +1003,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         //console.log(rec);return;
         $http
             .post(addcrmUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = false;
 
@@ -682,21 +1015,33 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     if (rec.id > 0) {
                         toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
                         $scope.check_wh_readonly = true;
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(101));
 
                     $scope.$root.rec_id = res.data.id;
                     //toaster.pop('success', res.data.info,res.data.msg);
                     if (res.data.info == 'insert') {
+<<<<<<< HEAD
                         $timeout(function () {
+=======
+                        $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $state.go("app.view-warehouse", { id: res.data.id });
                         }, 1000);
 
                     }
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (rec.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     //toaster.pop('error', 'Edit', 'Record can\'t be  Saved!');
@@ -714,7 +1059,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     $scope.storage_type_Data = {};
     // $scope.storage_type_list = [];
 
+<<<<<<< HEAD
     $scope.onChange_storage_warehouse_type = function () {
+=======
+    $scope.onChange_storage_warehouse_type = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // angular.element('#model_storage_type').modal({show: true});
 
         if ($scope.rec.types != undefined) {
@@ -730,7 +1079,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     }
 
 
+<<<<<<< HEAD
     $scope.add_storage_type = function (storage_type_Data) {
+=======
+    $scope.add_storage_type = function(storage_type_Data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var add_storage_type_list_Url = $scope.$root.setup + "warehouse/add-warehouse-storage-type";
         var storage_type_list_Url = $scope.$root.setup + "warehouse/get-warehouse-storage-type";
@@ -744,7 +1097,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(add_storage_type_list_Url, storage_type_Data)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(101));
@@ -753,14 +1110,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $http
                         .post(storage_type_list_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data.ack == true) {
                                 $scope.storage_type_list = [];
 
                                 $scope.storage_type_list.push({ 'id': '', 'title': '' });
                                 $scope.storage_type_list = res.data.response;
 
+<<<<<<< HEAD
                                 $.each($scope.storage_type_list, function (index, elem) {
+=======
+                                $.each($scope.storage_type_list, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.title == storage_type_Data.title)
                                         $scope.rec.types = elem;
                                 });
@@ -775,13 +1140,21 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     }
 
     //--------------------- end General   ------------------------------------------
+<<<<<<< HEAD
     $scope.gotoedit = function () {
+=======
+    $scope.gotoedit = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = false;
     }
 
     // ---------------- Contact   	 -----------------------------------------
     // default values false
+<<<<<<< HEAD
     $scope.general_contact = function () {
+=======
+    $scope.general_contact = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.altContacListingShow = false;
         $scope.altContacFormShow = false;
@@ -789,12 +1162,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         $scope.altbin_loc_FormShow = false;
 
         $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+<<<<<<< HEAD
         { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
         { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }];
 
         /* ,{ 'name': 'Contact', 'url': '#', 'style': '' } */
 
        
+=======
+            { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
+            { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }
+        ];
+
+        /* ,{ 'name': 'Contact', 'url': '#', 'style': '' } */
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //$scope.check_readonly = true;
 
@@ -808,14 +1191,22 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         //$scope.postData = {'column':'crm_id','value':$scope.$root.wrhID,token:$scope.$root.token}
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'id': $scope.$root.wrhID })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 $scope.altContacListingShow = true;
                 if (res.data.response != null) {
                     $scope.columns = [];
                     $scope.contact_data = [];
                     $scope.contact_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -827,7 +1218,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     }
 
 
+<<<<<<< HEAD
     $scope.contact_add_Form = function () {
+=======
+    $scope.contact_add_Form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec2 = {};
         $scope.altContacFormShow = true;
         $scope.altContacListingShow = false;
@@ -839,7 +1234,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
     $scope.rec2 = {};
 
+<<<<<<< HEAD
     $scope.add_srm_contact = function (rec2) {
+=======
+    $scope.add_srm_contact = function(rec2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         rec2.countrys = $scope.rec2.country != undefined ? $scope.rec2.country.id : 0;
         rec2.wrh_id = $scope.$root.wrhID;
         rec2.token = $scope.$root.token;
@@ -851,7 +1250,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         //console.log(rec2); return;
         $http
             .post(altAddUrl, rec2)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
@@ -860,11 +1263,18 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     else
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
 
+<<<<<<< HEAD
                     $timeout(function () {
                         $scope.general_contact();
                     }, 3000);
                 }
                 else {
+=======
+                    $timeout(function() {
+                        $scope.general_contact();
+                    }, 3000);
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (rec2.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     else
@@ -873,7 +1283,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             });
     }
 
+<<<<<<< HEAD
     $scope.editcontactForm = function (id, mode) {
+=======
+    $scope.editcontactForm = function(id, mode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (mode == 1)
             $scope.check_readonly = false;
@@ -894,23 +1308,36 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(altcontUrl, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec2 = res.data.response;
                 $scope.rec2.id = res.data.response.id;
                 $scope.showLoader = false;
 
+<<<<<<< HEAD
                 angular.forEach($scope.countries, function (obj) {
+=======
+                angular.forEach($scope.countries, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.country)
                         $scope.rec2.country = obj;
                 });
             });
     }
 
+<<<<<<< HEAD
     $scope.deletecontact = function (id, index, arr_data) {
+=======
+    $scope.deletecontact = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.setup + "warehouse/delete-alt-contact";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -924,6 +1351,20 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     }
                 });
         }, function (reason) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        arr_data.splice(index, 1);
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -938,7 +1379,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     $scope.bin_loc_add_cost_buttons_Show = false;
 
 
+<<<<<<< HEAD
     $scope.openStorageLocAddCostForm = function (bin_loc_id) {
+=======
+    $scope.openStorageLocAddCostForm = function(bin_loc_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log(bin_loc_id);
 
         if (bin_loc_id > 0) {
@@ -955,8 +1400,12 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             angular.element('#storageLocAddCostModal').modal({ show: true });
             // angular.element('#bin_loc_add_cost_modal').modal({ show: true });
 
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Info', "Please add location data first!");
         }
     }
@@ -1006,7 +1455,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
     } */
 
+<<<<<<< HEAD
     $scope.general_bin_loc_cost = function (bin_loc_id) {
+=======
+    $scope.general_bin_loc_cost = function(bin_loc_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //console.log(bin_loc_id);
         var bin_loc_add_cost_Url = $scope.$root.setup + "warehouse/alt-bin-loc-add-cost";
@@ -1018,13 +1471,21 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                 'wrh_id': $scope.$root.wrhID,
                 'bin_loc_wrh_id': bin_loc_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.response != null) {
                     $scope.columns2 = [];
                     $scope.bin_loc_add_cost_data = [];
                     $scope.bin_loc_add_cost_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1039,7 +1500,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
 
     // $scope.add_bin_loc_add_cost = function (rec3) {
+<<<<<<< HEAD
     $scope.addStorageLocAddCost = function (rec3) {
+=======
+    $scope.addStorageLocAddCost = function(rec3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec3.wrh_id = $scope.$root.wrhID;
         rec3.token = $scope.$root.token;
@@ -1077,13 +1542,21 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(add_bin_loc_add_cost_Url, rec3)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
                     var storageLocID = rec3.bin_loc_id;
 
+<<<<<<< HEAD
                     $timeout(function () {
+=======
+                    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.general_bin_loc_cost(storageLocID);
                     }, 1000);
                     // $scope.bin_loc_add_cost_buttons_Show = false;
@@ -1098,8 +1571,12 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     $scope.rec3 = {};
                     // angular.element('#bin_loc_add_cost_modal').modal('hide');
                     $scope.showdatac = true;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (rec3.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     else
@@ -1113,7 +1590,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     var additional_cost_title_Url = $scope.$root.setup + "warehouse/get-warehouse-loc-additional-cost-title";
     $http
         .post(additional_cost_title_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
         .then(function (res) {
+=======
+        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.additional_cost_title = [];
             $scope.additional_cost_title.push({ 'id': '', 'title': '' });
 
@@ -1124,7 +1605,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         });
 
+<<<<<<< HEAD
     $scope.editStorageLocAddCost = function (id) {
+=======
+    $scope.editStorageLocAddCost = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /*console.log(rec3);
          console.log(rec3.id);
          return false;*/
@@ -1140,7 +1625,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(bin_loc_Url, postViewData)
+<<<<<<< HEAD
             .then(function (res3) {
+=======
+            .then(function(res3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res3.data.ack == true) {
                     $scope.rec3 = res3.data.response;
@@ -1148,22 +1637,38 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $scope.rec3.cost = parseFloat(res3.data.response.cost);
 
+<<<<<<< HEAD
                     angular.forEach($scope.status_list, function (obj) {
+=======
+                    angular.forEach($scope.status_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res3.data.response.status)
                             $scope.rec3.status_ids = obj;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.arr_dimension, function (elem) {
+=======
+                    angular.forEach($scope.arr_dimension, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res3.data.response.dimensions_id)
                             $scope.rec3.dimension = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.cost_types, function (elem) {
+=======
+                    angular.forEach($scope.cost_types, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res3.data.response.cost_type_id)
                             $scope.rec3.cost_type = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.additional_cost_title, function (elem) {
+=======
+                    angular.forEach($scope.additional_cost_title, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res3.data.response.add_cost_title_id)
                             $scope.rec3.title = elem;
                     });
@@ -1178,11 +1683,16 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_bin_loc_add_cost = function (id, index, arr_data) {
+=======
+    $scope.delete_bin_loc_add_cost = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.setup + "warehouse/delete-bin-loc-add-cost";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID })
@@ -1196,13 +1706,31 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     }
                 });
         }, function (reason) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        arr_data.splice(index, 1);
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
     };
 
 
+<<<<<<< HEAD
     $scope.bin_loc_add_Form = function () {
+=======
+    $scope.bin_loc_add_Form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec2 = {};
         $scope.altbin_loc_FormShow = true;
         $scope.bin_loc_ListingShow = false;
@@ -1223,7 +1751,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $scope.showLoader = true;
 
+<<<<<<< HEAD
         $.each($scope.arr_currency, function (index, elem) {
+=======
+        $.each($scope.arr_currency, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == $scope.$root.defaultCurrency)
                 $scope.rec2.currency = elem;
         });
@@ -1232,9 +1764,15 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID })
+<<<<<<< HEAD
             .then(function (res) {
                 $scope.parent_bin = [];
                 if (res.data.ack == true) {                    
+=======
+            .then(function(res) {
+                $scope.parent_bin = [];
+                if (res.data.ack == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.parent_bin = res.data.response;
                 }
 
@@ -1242,13 +1780,26 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             });
     }
 
+<<<<<<< HEAD
     $timeout(function () {
+=======
+    if ($stateParams.id > 0) {
+        $scope.bin_loc_add_Form();
+    }
+
+    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword = {};
         $scope.searchKeyword.status_ids = $scope.status_list[0];
     }, 1000);
 
+<<<<<<< HEAD
         // default values false
     $scope.general_bin_location = function (search) {
+=======
+    // default values false
+    $scope.general_bin_location = function(search) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         $scope.altContacListingShow = false;
@@ -1257,8 +1808,14 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         $scope.altbin_loc_FormShow = false;
 
         $scope.$root.breadcrumbs = [{ 'name': 'Setup', 'url': 'app.setup', 'isActive': false, 'tabIndex': '1' },
+<<<<<<< HEAD
         { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
         { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }];
+=======
+            { 'name': 'Warehouse', 'url': 'app.warehouse', 'style': '' },
+            { 'name': $scope.$root.model_code, 'url': '#', 'style': 'color:#515253;' }
+        ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* , { 'name': 'location', 'url': '#', 'style': '' } */
 
@@ -1272,7 +1829,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID, 'status_id': search })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 $scope.bin_loc_ListingShow = true;
                 if (res.data.response != null) {
@@ -1280,7 +1841,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     $scope.bin_loc_data = [];
                     $scope.bin_loc_data = res.data.response;
                     //console.log($scope.bin_loc_data);
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1293,7 +1858,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
     }
 
+<<<<<<< HEAD
     $scope.add_bin_location = function (rec2) {
+=======
+    $scope.add_bin_location = function(rec2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         rec2.wrh_id = $scope.$root.wrhID;
@@ -1313,8 +1882,13 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         if (rec2.cost_type !== undefined)
             rec2.cost_type_id = rec2.cost_type.id;
+<<<<<<< HEAD
         
         if (rec2.bin_cost && rec2.bin_cost != 0 && !rec2.cost_type){
+=======
+
+        if (rec2.bin_cost && rec2.bin_cost != 0 && !rec2.cost_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Edit', 'Cost Frequency is mandatory');
             return false;
         }
@@ -1329,7 +1903,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(altAddUrl, rec2)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = false;
 
@@ -1353,18 +1931,30 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     if (rec2.id > 0) {
                         //$scope.edit_bin_location_Form(rec2.id);
                         toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                     }
 
                     $timeout(function () {
+=======
+                    } else {
+                        toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                    }
+
+                    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.general_bin_location();
                     }, 1500);
 
                     // $scope.check_readonly = true;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (rec2.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     else
@@ -1378,24 +1968,40 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
     }
 
+<<<<<<< HEAD
     $scope.check_conversion_rate = function (currency) {
+=======
+    $scope.check_conversion_rate = function(currency) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log(currency);
         if (currency != $scope.$root.defaultCurrency) {
             var currencyURL = $scope.$root.sales + "customer/customer/get-currency-conversion-rate";
             // var currencyURL = $scope.$root.setup + "general/get-currency";
             $http
                 .post(currencyURL, { 'id': currency, token: $scope.$root.token })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // console.log(res);
                     if (res.data.ack == true) {
 
                         if (res.data.response.conversion_rate == null) {
+<<<<<<< HEAD
                             toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+=======
+                            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.rec2.currency = "";
                             return;
                         }
                     } else {
+<<<<<<< HEAD
                         toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+=======
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.rec2.currency = "";
                         return;
                     }
@@ -1403,7 +2009,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         } else return true;
     }
 
+<<<<<<< HEAD
     $scope.edit_bin_location_Form = function (id, mode) {
+=======
+    $scope.edit_bin_location_Form = function(id, mode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = true;
         $scope.showLoader = true;
         if (mode > 0)
@@ -1416,7 +2026,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         var additional_cost_title_Url = $scope.$root.setup + "warehouse/get-warehouse-loc-additional-cost-title";
         $http
             .post(additional_cost_title_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.additional_cost_title = [];
                 $scope.additional_cost_title.push({ 'id': '', 'title': '' });
 
@@ -1450,7 +2064,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(bin_loc_Url, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
@@ -1462,6 +2080,7 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $http
                         .post(postUrl, { 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID, 'bin_loc_wrh_id': id })
+<<<<<<< HEAD
                         .then(function (res2) {
 
                             $scope.parent_bin = [];
@@ -1470,36 +2089,66 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                                 $scope.parent_bin = res2.data.response;
 
                                 $.each($scope.parent_bin, function (index, obj) {
+=======
+                        .then(function(res2) {
+
+                            $scope.parent_bin = [];
+                            if (res2.data.ack == true) {
+
+                                $scope.parent_bin = res2.data.response;
+
+                                $.each($scope.parent_bin, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == $scope.rec2.parent_id)
                                         $scope.rec2.parent_bin_location = $scope.parent_bin[index];
                                 });
                             }
                         });
 
+<<<<<<< HEAD
                     $.each($scope.status_list, function (index, obj) {
+=======
+                    $.each($scope.status_list, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.status)
                             $scope.rec2.status_ids = $scope.status_list[index];
                     });
 
                     if (res.data.response.currency_id > 0) {
+<<<<<<< HEAD
                         $.each($scope.arr_currency, function (index, elem) {
+=======
+                        $.each($scope.arr_currency, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == res.data.response.currency_id)
                                 $scope.rec2.currency = elem;
                         });
 
                     } else {
+<<<<<<< HEAD
                         $.each($scope.arr_currency, function (index, elem) {
+=======
+                        $.each($scope.arr_currency, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.$root.defaultCurrency)
                                 $scope.rec2.currency = elem;
                         });
                     }
 
+<<<<<<< HEAD
                     $.each($scope.arr_dimension, function (index, elem) {
+=======
+                    $.each($scope.arr_dimension, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.dimensions_id)
                             $scope.rec2.dimension = elem;
                     });
 
+<<<<<<< HEAD
                     $.each($scope.cost_types, function (index, elem) {
+=======
+                    $.each($scope.cost_types, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.cost_type_id)
                             $scope.rec2.cost_type = elem;
                     });
@@ -1525,7 +2174,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         'wrh_id': $scope.$root.wrhID,
                         'bin_loc_wrh_id': id
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (res.data.response != null) {
                             $scope.columns2 = [];
                             $scope.bin_loc_add_cost_data = [];
@@ -1533,7 +2186,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                             //console.log(res.data.response);
 
+<<<<<<< HEAD
                             angular.forEach(res.data.response[0], function (val, index) {
+=======
+                            angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.columns2.push({
                                     'title': toTitleCase(index),
                                     'field': index,
@@ -1552,25 +2209,44 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_bin_location = function (id, index, arr_data) {
+=======
+    $scope.delete_bin_location = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.setup + "warehouse/delete-bin-location";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token, 'wrh_id': $scope.$root.wrhID })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
                         $scope.general_bin_location();
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
         }, function (reason) {
+=======
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -1580,7 +2256,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     //--------------------   Warehouse Additional Cost Title --------------------
     $scope.additional_cost_Data = {};
 
+<<<<<<< HEAD
     $scope.onChange_additional_cost_title = function () {
+=======
+    $scope.onChange_additional_cost_title = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.rec3.title.id;
         //console.log(id );
@@ -1592,12 +2272,20 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
         $scope.additional_cost_Data.title = '';
     }
 
+<<<<<<< HEAD
     $scope.closeAdditionalCostTitle = function () {
+=======
+    $scope.closeAdditionalCostTitle = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec3.title = '';
         $('#model_additional_cost_title').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.add_additional_cost_title = function (additional_cost_Data) {
+=======
+    $scope.add_additional_cost_title = function(additional_cost_Data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var add_additional_cost_title_Url = $scope.$root.setup + "warehouse/add-warehouse-loc-additional-cost-title";
         var additional_cost_title_Url = $scope.$root.setup + "warehouse/get-warehouse-loc-additional-cost-title";
@@ -1611,7 +2299,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(add_additional_cost_title_Url, additional_cost_Data)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(101));
@@ -1620,12 +2312,20 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $http
                         .post(additional_cost_title_Url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data.ack == true) {
                                 $scope.additional_cost_title.push({ 'id': '', 'title': '' });
                                 $scope.additional_cost_title = res.data.response;
 
+<<<<<<< HEAD
                                 $.each($scope.additional_cost_title, function (index, elem) {
+=======
+                                $.each($scope.additional_cost_title, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.title == additional_cost_Data.title)
                                         $scope.rec3.title = elem;
                                 });
@@ -1639,7 +2339,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
             });
     }
 
+<<<<<<< HEAD
     $scope.warehouse_loc_History_modal = function (id, title) {
+=======
+    $scope.warehouse_loc_History_modal = function(id, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // console.log(title);
 
@@ -1650,7 +2354,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'wrh_loc_id': id })
+<<<<<<< HEAD
             .then(function (res2) {
+=======
+            .then(function(res2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns2 = [];
                 $scope.warehouse_loc_History = [];
@@ -1661,7 +2369,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $scope.cost_modal_title = title + " - Warehouse Storage Location & Cost History ";
 
+<<<<<<< HEAD
                     angular.forEach(res2.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res2.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1669,40 +2381,67 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         });
                     });
                     angular.element('#cost_modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', 'No History Exists. ');
                     angular.element('#cost_modal').modal('hide');
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_warehouse_loc_History = function (id, index, arr_data) {
+=======
+    $scope.delete_warehouse_loc_History = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var delUrl = $scope.$root.setup + "warehouse/delete-warehouse-loc-History";
 
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
                         $scope.general_bin_location();
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
         }, function (reason) {
+=======
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
+<<<<<<< HEAD
     $scope.chk_item_assigned_modal = function (id, title) {
+=======
+    $scope.chk_item_assigned_modal = function(id, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // console.log(title);
 
@@ -1713,7 +2452,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'wrh_loc_id': id })
+<<<<<<< HEAD
             .then(function (res2) {
+=======
+            .then(function(res2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns2 = [];
                 $scope.warehouse_loc_History = [];
@@ -1723,7 +2466,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $scope.cost_modal_title = title + " - Warehouse Storage Location Assigned by Items";
 
+<<<<<<< HEAD
                     angular.forEach(res2.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res2.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1731,15 +2478,23 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         });
                     });
                     angular.element('#cost_modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', 'No History Exists. ');
                     angular.element('#cost_modal').modal('hide');
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.show_add_cost_pop = function (id, title) {
+=======
+    $scope.show_add_cost_pop = function(id, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*var postUrl = $scope.$root.setup + "warehouse/alt-warehouse-loc-History";
 
@@ -1783,7 +2538,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                 'wrh_id': $scope.$root.wrhID,
                 'bin_loc_wrh_id': id
             })
+<<<<<<< HEAD
             .then(function (res2) {
+=======
+            .then(function(res2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns2 = [];
                 $scope.warehouse_loc_History = [];
 
@@ -1795,7 +2554,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
                     $scope.cost_modal_title = title + " - Additional Cost ";
 
+<<<<<<< HEAD
                     angular.forEach(res2.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res2.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1822,7 +2585,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
      return Total_additional_cost;
      };*/
 
+<<<<<<< HEAD
     $scope.additional_cost_History_modal = function (id, title) {
+=======
+    $scope.additional_cost_History_modal = function(id, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // console.log(title);
 
@@ -1833,7 +2600,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
 
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'wrh_loc_id': id })
+<<<<<<< HEAD
             .then(function (res4) {
+=======
+            .then(function(res4) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns4 = [];
                 $scope.warehouse_loc_History = [];
@@ -1844,7 +2615,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                     $scope.cost_modal_title = "Additional Cost History ";
                     $scope.add_cost_del_chk = 1;
 
+<<<<<<< HEAD
                     angular.forEach(res4.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res4.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns4.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1852,35 +2627,58 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
                         });
                     });
                     angular.element('#additional_cost_history_modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', 'No History Exists. ');
                     angular.element('#additional_cost_history_modal').modal('hide');
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_additional_cost_History = function (id, index, arr_data) {
+=======
+    $scope.delete_additional_cost_History = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var delUrl = $scope.$root.setup + "warehouse/delete-warehouse-loc-add-cost-History";
 
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
                         $scope.general_bin_loc_cost($scope.bin_loc_id);
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
         }, function (reason) {
+=======
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
@@ -1897,7 +2695,11 @@ function WarehouseEditController($scope, $filter, $resource, $timeout, $http, ng
     // }, 1000);
 
     $scope.item_paging = {};
+<<<<<<< HEAD
     $scope.itemselectPage = function (pageno) {
+=======
+    $scope.itemselectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.item_paging.spage = pageno;
     };
     //$timeout(function () {

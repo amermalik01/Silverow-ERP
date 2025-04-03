@@ -394,7 +394,11 @@ $app->post('/setup/general/update-financial-exchange-rate', function () use ($ap
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/setup/general/delete-financial_setting', function () use ($app) {
+=======
+/* $app->post('/setup/general/delete-financial_setting', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input;
     $input_array = array();
 
@@ -405,7 +409,11 @@ $app->post('/setup/general/delete-financial_setting', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Company Info Module
@@ -663,7 +671,11 @@ $app->post('/setup/general/modules-codes', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/setup/general/filter-modules-codes', function () use ($app) {
+=======
+/* $app->post('/setup/general/filter-modules-codes', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input;
 
     $array = array(
@@ -676,7 +688,11 @@ $app->post('/setup/general/filter-modules-codes', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/setup/general/get-module-code', function () use ($app) {
     global $objSetup, $input;
@@ -1273,7 +1289,11 @@ $app->post('/setup/general/get-company-start-end-date', function () use ($app) {
 
 //      Status listing generic Api      //
 
+<<<<<<< HEAD
 $app->post('/setup/general/all-status-list', function () use ($app) {
+=======
+/* $app->post('/setup/general/all-status-list', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input;
     $input_array = array();
 
@@ -1284,7 +1304,11 @@ $app->post('/setup/general/all-status-list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/setup/general/add-status', function () use ($app) {
     global $objSetup, $input;
@@ -1420,7 +1444,11 @@ $app->post('/setup/general/delete-gl-units-of-measure', function () use ($app) {
 // Ref Dimensions list start
 
 
+<<<<<<< HEAD
 $app->post('/setup/general/ref-dimension-list', function () use ($app) {
+=======
+/* $app->post('/setup/general/ref-dimension-list', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input;
 
     foreach ($input as $key => $val) {
@@ -1431,7 +1459,11 @@ $app->post('/setup/general/ref-dimension-list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 ############	End: Ref Dimensions list ############
@@ -1912,7 +1944,11 @@ $app->post('/setup/general/check-for-approvals-before-delete', function () use (
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/setup/general/send-for-approval', function () use ($app) {
+=======
+/* $app->post('/setup/general/send-for-approval', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input; 
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1922,7 +1958,11 @@ $app->post('/setup/general/send-for-approval', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/setup/general/send-for-approval-bulk', function () use ($app) {
     global $objSetup, $input; 
     $input_array = array();
@@ -1934,7 +1974,11 @@ $app->post('/setup/general/send-for-approval-bulk', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/setup/general/update-approval-status', function () use ($app) {
+=======
+/* $app->post('/setup/general/update-approval-status', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input; 
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1955,7 +1999,11 @@ $app->post('/setup/general/delete-approval-history', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/setup/general/update-approvals-status-bulk', function () use ($app) {
     global $objSetup, $input; 
     $input_array = array();
@@ -2218,5 +2266,8 @@ $app->post('/setup/general/bringEmployeesLeft', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

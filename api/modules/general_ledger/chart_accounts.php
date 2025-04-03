@@ -212,7 +212,11 @@ $app->post('/gl/chart-accounts/add_account_values', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/gl/chart-accounts/update-account-heads', function () use ($app) {
     global $objGl, $input;
     $input_array = array();
@@ -223,7 +227,11 @@ $app->post('/gl/chart-accounts/update-account-heads', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/gl/chart-accounts/get-account-heads', function () use ($app) {
     global $objGl, $input;
@@ -898,7 +906,11 @@ $app->post('/gl/chart-accounts/add-gl-journal-main', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/gl/chart-accounts/delete-gl-journal-main', function () use ($app) {
+=======
+/* $app->post('/gl/chart-accounts/delete-gl-journal-main', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objGl, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -908,7 +920,11 @@ $app->post('/gl/chart-accounts/delete-gl-journal-main', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 //  GL template
 
@@ -947,7 +963,11 @@ $app->post('/gl/chart-accounts/add-template-gl', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/gl/chart-accounts/update-template-gl', function () use ($app) {
+=======
+/* $app->post('/gl/chart-accounts/update-template-gl', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objGl, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -957,7 +977,11 @@ $app->post('/gl/chart-accounts/update-template-gl', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/gl/chart-accounts/delete-template-gl', function () use ($app) {
     global $objGl, $input;
@@ -1045,7 +1069,11 @@ $app->post('/gl/chart-accounts/add-gl-journal-main-receipt', function () use ($a
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/gl/chart-accounts/delete-gl-journal-main-receipt', function () use ($app) {
+=======
+/* $app->post('/gl/chart-accounts/delete-gl-journal-main-receipt', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objGl, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1055,7 +1083,11 @@ $app->post('/gl/chart-accounts/delete-gl-journal-main-receipt', function () use 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 /*=============GL Journal   Receipt Sublist =============================================*/
 
@@ -1382,6 +1414,22 @@ $app->post('/gl/chart-accounts/add-jl-journal-receipt', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
+=======
+$app->post('/gl/chart-accounts/update-posted-journal', function () use ($app) {
+    global $objGl, $input;
+    $input_array = array();
+    foreach ($input as $key => $val) {
+        $input_array[$key] = $val;
+    }
+
+    $result = $objGl->updatePostedJournal($input_array);
+    $app->response->setStatus(200);
+    $app->response()->headers->set('Content-Type', 'application/json');
+    echo json_encode($result);
+});
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/gl/chart-accounts/add-jl-journal-receipt-single', function () use ($app) {
     global $objGl, $input;
     $input_array = array();
@@ -1430,6 +1478,22 @@ $app->post('/gl/chart-accounts/delete-jl-journal-receipt', function () use ($app
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
+=======
+$app->post('/gl/chart-accounts/delete-all-payment-allocations', function () use ($app) {
+    global $objGl, $input;
+    $input_array = array();
+    foreach ($input as $key => $val) {
+        $input_array[$key] = $val;
+    }
+    $result = $objGl->delete_all_payment_allocations($input_array);
+    // $result = $objGl->delete_update_status('gl_journal_receipt_detail', 'status', $input_array['id']);
+    $app->response->setStatus(200);
+    $app->response()->headers->set('Content-Type', 'application/json');
+    echo json_encode($result);
+});
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/gl/chart-accounts/delete-jl-journal-receipt-item', function () use ($app) {
     global $objGl, $input;
     $input_array = array();
@@ -1563,7 +1627,11 @@ $app->post('/gl/chart-accounts/add-refund-journal', function () use ($app) {
 });
 // for currency conversion rate history
 
+<<<<<<< HEAD
 $app->post('/gl/chart-accounts/get-currency-conversion-rate-history', function () use ($app) {
+=======
+/* $app->post('/gl/chart-accounts/get-currency-conversion-rate-history', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objGl, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1573,7 +1641,11 @@ $app->post('/gl/chart-accounts/get-currency-conversion-rate-history', function (
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/gl/chart-accounts/get-invoice-receipt-payment', function () use ($app) {
     global $objGl, $input;
@@ -2119,6 +2191,9 @@ $app->post('/gl/chart-accounts/get-hr-matrix', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -1,4 +1,5 @@
 <style>
+<<<<<<< HEAD
 	.compname {
 		display: block;
 		text-align: center;
@@ -143,11 +144,133 @@
 					class="navbar-toggle"
 					data-toggle="collapse"
 					data-target=".navbar-collapse">
+=======
+    .compname {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        color: black;
+    }
+    
+    .loggedinas {
+        color: grey;
+        display: block;
+        text-align: center;
+    }
+    
+    .dropdown-menu .divider {
+        background-color: #3c3c3c;
+    }
+    
+    .navbar-default .navbar-nav>li>a {
+        color: white !important;
+        font-size: 12.5px;
+        letter-spacing: 0.4px;
+    }
+    
+    .dropdown-menu>li>a {
+        letter-spacing: 0.4px;
+    }
+    
+    .navbar-default .navbar-nav>li>a:hover {
+        color: white !important;
+        cursor: pointer;
+        background-color: #000 !important;
+    }
+    
+    .navbar-default .navbar-nav>li>a:hover .fa-caret-down {
+        visibility: visible;
+    }
+    
+    .dropdown-menu>li>a:hover {
+        color: #ffffff;
+        cursor: pointer;
+        background: #2f2f2f;
+    }
+    
+    .dropdown-menu>li>a:active {
+        color: #2196F3;
+    }
+    
+    .navbar-default .navbar-nav>.open>:not(:hover) {
+        background: #000 !important;
+    }
+    
+    .fa-caret-down {
+        position: absolute;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        text-align: center;
+        transition: none !important;
+        bottom: 3px;
+    }
+    
+    ul.dropdown-menu li a {
+        color: #ffffff;
+        /* text-transform: capitalize; */
+        font-size: 12px;
+        padding: 7px 0 7px 15px;
+    }
+    
+    .dropdown-submenu {
+        position: relative;
+    }
+    
+    .dropdown-submenu:hover {
+        background: #2f2f2f;
+    }
+    
+    .dropdown-submenu>.dropdown-menu {
+        top: -3px;
+        background: #000000;
+        left: 183px;
+        box-shadow: none;
+        border-top-left-radius: 0;
+    }
+    
+    .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+    
+    .dropdown-toggle2 span {
+        position: absolute;
+        right: 11px;
+        top: 8px;
+    }
+    
+    .dropdown-submenu.pull-left>.dropdown-menu {
+        left: -100%;
+        margin-left: 10px;
+        -webkit-border-radius: 6px 0 6px 6px;
+        -moz-border-radius: 6px 0 6px 6px;
+        border-radius: 6px 0 6px 6px;
+    }
+    
+    .navbar-nav>li>.dropdown-menu {
+        background: #000000;
+        min-width: 184px;
+        box-shadow: none;
+    }
+</style>
+
+<div class="navbar navbar-fixed-top silverbg navbar-default" role="navigation" id="gre">
+
+    <!-- Assign  & check permision for Company User /Super Admin -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+<<<<<<< HEAD
 			<a class="navbar-brand"
 			   ui-sref="app.dashboard()"
 				ng-if="userForPortal != 1" 
@@ -175,6 +298,25 @@
 					ng-if="userForPortal != 1">
 					<span ng-if="animateGlobal"
 						  style="   
+=======
+            <a class="navbar-brand" ui-sref="app.dashboard()" ng-if="userForPortal != 1" style="color:white;">
+                <img src="app/img/silverow-svg.svg" /> </a>
+
+            <a class="navbar-brand" ui-sref="app.customerPortal()" ng-if="userForPortal == 1" style="color:white;">
+                <img src="app/img/silverow-svg.svg" /> </a>
+
+            <div class="bubble-wrap" style="display:none;">
+                <div class="bar first"></div>
+                <div class="bar second"></div>
+                <div class="bar third"></div>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right adminprofile">
+                <li class="someyourContainer" ng-controller="SetupController" ng-if="userForPortal != 1">
+                    <span ng-if="animateGlobal" style="   
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						    color: #ffffff;
 								position: absolute;
 								right: 44px;
@@ -184,21 +326,32 @@
 								PADDING: 15PX 13PX;">Fetching
 						Global Data</span>
 
+<<<<<<< HEAD
 					<a ng-click="refreshGlobalData()"
 					   class="refreshbtn"
 					   ng-if="!animateBulkEmail"
 					   ng-class="{'animateGlobalClass': animateGlobal}"
 					   style="
+=======
+                    <a ng-click="refreshGlobalData()" class="refreshbtn" ng-if="!animateBulkEmail" ng-class="{'animateGlobalClass': animateGlobal}" style="
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							padding: 15px 9px 10px;
 							position: absolute;
 							right: 42px;
 							background-color: transparent;">
+<<<<<<< HEAD
 						<i class="material-icons"
 						   style="font-size: 19px;">&#xE863;</i>
 					</a>
 
 					<span ng-if="animateBulkEmail"
 						  style="    color: #ffffff;
+=======
+                        <i class="material-icons" style="font-size: 19px;">&#xE863;</i>
+                    </a>
+
+                    <span ng-if="animateBulkEmail" style="    color: #ffffff;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     position: absolute;
     right: 41px;
     width: 166px;
@@ -209,14 +362,19 @@
 						<!-- Sending Email(s) -->
 					</span>
 
+<<<<<<< HEAD
 					<a ng-if="animateBulkEmail"
 					   class="refreshbtn"
 					   ng-class="{'animateGlobalClass': animateBulkEmail}"
 					   style="
+=======
+                    <a ng-if="animateBulkEmail" class="refreshbtn" ng-class="{'animateGlobalClass': animateBulkEmail}" style="
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							padding: 15px 9px 10px;
 							position: absolute;
 							right: 42px;
 							background-color: transparent;">
+<<<<<<< HEAD
 						<i class="material-icons"
 						   style="font-size: 19px;">&#xE863;</i>
 					</a>
@@ -246,21 +404,47 @@
 							</div>
 							<div ng-hide="!showMoreoptions  > 0"
 								 style="color: #8a8a8a;
+=======
+                        <i class="material-icons" style="font-size: 19px;">&#xE863;</i>
+                    </a>
+
+                    <a class="dropdown-toggle plusbtn" data-toggle="dropdown" style="padding: 9px;">
+                        <i class="material-icons" style="margin-top:3px;">&#xE145;</i>
+                    </a>
+                    <ul class="dropdown-menu multi-level add-quick tello" style="line-height: 27px;left: -142px;    padding-bottom: 7px !important;">
+                        <li>
+                            <div ng-click="showMoreoptions = 1" class="showingmore" style="position: absolute;
+										right: 4px;
+										top: -3px;" ng-hide="showMoreoptions  > 0">
+                                <i class="fa fa-cog" ng-click="GetShortCuts(shortcuts)"></i>
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" ng-click="showMoreoptions = 0" class="showingmore">
+                                <i class="fa fa-caret-left"></i>
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" style="color: #8a8a8a;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									font-size: 12px;
 									margin-top: -27px;
 									margin-left: 57px;
 									font-weight: bold;">
+<<<<<<< HEAD
 								Show/Hide
 							</div>
 							<div ng-hide="!showMoreoptions  > 0"
 								 class="showingmore"
 								 style="top: 2px;
+=======
+                                Show/Hide
+                            </div>
+                            <div ng-hide="!showMoreoptions  > 0" class="showingmore" style="top: 2px;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										position: absolute;
 										right: 5px;
 										display: inline-block;
 										font-size: 13px;
 										padding: 5px 4px;
 										line-height: 0;">
+<<<<<<< HEAD
 								<i class="fa fa-check"
 								   ng-click="SaveShortCuts(shortcuts); showMoreoptions = 0"></i>
 							</div>
@@ -280,6 +464,21 @@
 									   ng-checked="shortcuts.sale_quote>0">
 								<label ng-show="allowadd_sale_qoute_module"
 									   for="checkquote">Sales Quote
+=======
+                                <i class="fa fa-check" ng-click="SaveShortCuts(shortcuts); showMoreoptions = 0"></i>
+                            </div>
+                        </li>
+                        <script>
+                            $(document).on('click', '.someyourContainer .dropdown-menu', function(e) {
+                                e.stopPropagation();
+                            });
+                        </script>
+
+                        <div ng-show="showMoreoptions" class="showMoreoptions">
+                            <li ng-show="allowadd_sale_qoute_module">
+                                <input type="checkbox" ng-model="shortcuts.sale_quote" id="checkquote" ng-checked="shortcuts.sale_quote>0">
+                                <label ng-show="allowadd_sale_qoute_module" for="checkquote">Sales Quote
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							</li>
 							<li ng-show="allowadd_sale_order_module">
 								<input type="checkbox"
@@ -321,6 +520,7 @@
 								<label for="checkitem"
 									   ng-show="allowadd_item">Item
 								</label>
+<<<<<<< HEAD
 							</li>
 							<li ng-show="allowadd_crm_module">
 								<input type="checkbox"
@@ -346,6 +546,22 @@
 									   id="checkemployees">
 								<label ng-show="allowaddhr_employee"
 									   for="checkemployee">Employees
+=======
+                            </li>
+                            <li ng-show="allowadd_crm_module">
+                                <input type="checkbox" ng-model="shortcuts.crm" ng-checked="shortcuts.crm>0" id="checkcrm">
+                                <label for="checkcrm" ng-show="allowadd_crm_module">CRM
+								</label>
+                            </li>
+                            <li ng-show="allowadd_srm">
+                                <input type="checkbox" ng-model="shortcuts.srm" ng-checked="shortcuts.srm>0" id="checksrm">
+                                <label ng-show="allowadd_srm" for="checksrm">SRM
+								</label>
+                            </li>
+                            <li ng-show="allowaddhr_employee">
+                                <input type="checkbox" ng-model="shortcuts.employee" id="checkemployees">
+                                <label ng-show="allowaddhr_employee" for="checkemployee">Employees
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							</li>
 							<li ng-show="user_type != 1">
 								<input type="checkbox"
@@ -452,10 +668,18 @@
 								font-size: 20px;"></i>
 							</div>
 							<div class="pull-right logo_media_ipad"
+<<<<<<< HEAD
 								 ng-if="defaultLogo.length > 0">
 								<img class="img-circles"
 									 style="min-width: 66px;height: 40px;display: inline-block;"
 									 ng-style="{'background-image':'url('+ imagePath+defaultLogo +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '20px'}">
+=======
+								 ng-if="defaultLogo.length > 0" style=" background: #fff; padding: 0px 10px 0px 0px; margin-left: 10px;">
+								<div class="img-circles"
+									 style="min-width: 120px;height: 40px;display: inline-block;"
+									 ng-style="{'background-image':'url('+ imagePath+defaultLogo +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '0px'}">
+									 </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							</div>
 						</div>
 					</a>
@@ -524,9 +748,21 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar_media_ipad" ng-if="userForPortal !=1">
+<<<<<<< HEAD
 				<!-- <li class="left_media_ipad">
 					<sidebar-attachment></sidebar-attachment>
 				</li> -->
+=======
+				<!-- 
+				<li class="left_media_ipad">
+					<sidebar-attachment></sidebar-attachment>
+				</li>
+				<li ng-controller="TaskController" style="height: 44px;" class="noselect" ng-if="noRoleAssigned !=1">
+					<span class="left-tooltip">Tasks</span>
+					<sidebar-tasks name="Task" modules="sidebarModules" submit="addTask(formData)" delete="deleteTask(id)" get-records="tasks(q)" add-template="app/shared/directives/sidebar_tasks.add.html" focused-template="app/shared/directives/sidebar_tasks.focused.html"></sidebar-tasks>
+				</li>-->
+				<!-- <li><a ui-sref="app.dashboard()"><span class="mbri-home dropdown-toggle"></span></a></li> -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				<li ng-if="gl_module">
 					<a class="dropdown-toggle"
 					   data-toggle="dropdown">
@@ -536,6 +772,11 @@
 					</a>
 					<ul class="dropdown-menu multi-level gl "
 						ng-if="charts_of_account || allowviewgen_journal">
+<<<<<<< HEAD
+=======
+
+						
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						<li ng-if="charts_of_account">
 							<a ui-sref="app.general_ledger_list()"
 							   ui-sref-opts="{reload:true}">Chart of Accounts</a>
@@ -548,7 +789,11 @@
 							   ng-click="open_customer(0)"
 							   ui-sref-opts="{reload:true}">General Journal</a>
 						</li>
+<<<<<<< HEAD
 						<li ng-if="allowviewgen_journal">
+=======
+						<li ng-if="((allowviewgen_journal && defaultCompany !=131) || (allowviewposted_gen_journal && defaultCompany ==131))">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							<a ui-sref="app.receipt-journal-gl-posted({isPosted:1})"
 							   ng-controller="journalcustomerapply"
 							   ng-click="open_customer(0)"
@@ -580,20 +825,31 @@
 						<i class="fa fa-caret-down"
 						   aria-hidden="true"></i>
 					</a>
+<<<<<<< HEAD
 					<ul class="dropdown-menu multi-level salesdd " 
 						ng-if="crm_module || customer_module || allowviewcust_journal">
 						<li ng-if="crm_module && (defaultCompany==2 || defaultCompany==9)">
 							<a ui-sref="app.prospect()"
 								ui-sref-opts="{reload:true}" >Prospect</a>
 						</li> 
+=======
+					<ul class="dropdown-menu multi-level salesdd "
+						ng-if="crm_module || customer_module || allowviewcust_journal">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						<li ng-if="crm_module" class="dropdown-submenu">
 							<a ui-sref="app.crm()"
 								ui-sref-opts="{reload:true}"
 								class="dropdown-toggle dropdown-toggle2"
 								data-toggle="dropdown">CRM
+<<<<<<< HEAD
 								<!-- <span class="fa fa-angle-right"></span></a> -->
 
 								<ul class="dropdown-menu" ng-if="crmret_module">
+=======
+								<span class="fa fa-angle-right"></span></a>
+
+								<ul class="dropdown-menu">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 								<li>
 									<a ui-sref="app.crm_retailer()"
 									   ui-sref-opts="{reload:true}">Retailer CRM</a>
@@ -834,10 +1090,17 @@
 							<a ui-sref="app.hr_listing()"
 							   ui-sref-opts="{reload:true}">Employees </a>
 						</li>
+<<<<<<< HEAD
 						<!-- <li ng-if="setup_hr">
 							<a ui-sref="app.sales-bucket()"
 							   ui-sref-opts="{reload:true}">View Bucket</a>
 						</li> -->
+=======
+						<li ng-if="setup_hr">
+							<a ui-sref="app.sales-bucket()"
+							   ui-sref-opts="{reload:true}">View Bucket</a>
+						</li>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						<li ng-show="user_type != 1">
 							<a ui-sref="app.edithrvalues({id:userId, isTab: 1})"
 							   ui-sref-opts="{reload:true}">Holidays</a>
@@ -893,6 +1156,15 @@
 						</li> -->
 					</ul>
 				</li>
+<<<<<<< HEAD
+=======
+
+				<!-- <li title="Setup">
+						<a ui-sref="app.setup" ng-show="setup_main">
+					  <span class="mbri-setting3"></span>
+				  </a>
+				</li> -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			</ul>
 		</div>
 	</div>

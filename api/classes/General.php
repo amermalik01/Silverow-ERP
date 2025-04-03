@@ -547,7 +547,11 @@ class General extends Xtreme
     }
 
     
+<<<<<<< HEAD
     function duplication_for_location_address_check($arr_attr, $acc_id, $module_type, $company_id=0, $update_id=0)
+=======
+    function duplication_for_location_address_check($arr_attr, $acc_id, $module_type, $company_id=0, $update_id=0,$Recordflag=0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
 
         $add_sub_query = "";
@@ -701,7 +705,11 @@ class General extends Xtreme
             return 0;
     }
 
+<<<<<<< HEAD
     function current_stock_counter($company_id, $type)
+=======
+    function current_stock_counter($company_id, $type=null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $po = " IFNULL((SELECT sum(wa.quantity * wa.unit_measure_qty) 
                         FROM warehouse_allocation as wa 
@@ -1051,7 +1059,11 @@ class General extends Xtreme
     }
 
 
+<<<<<<< HEAD
     function pagination_genral($attr, $Sql_query, $response, $dynamic_limit, $alias, $order_type)
+=======
+    function pagination_genral($attr, $Sql_query, $response, $dynamic_limit, $alias, $order_type=null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         if (isset($attr['searchKeyword']) && isset($attr['searchKeyword']->exportAsCSV)){
             $csvQuery = $Sql_query;
@@ -1104,8 +1116,12 @@ class General extends Xtreme
         //echo $response['total'];
 
         $totalPages = ceil($response['total'] / $dynamic_limit);
+<<<<<<< HEAD
         /* echo $totalPages;
           exit; */
+=======
+        // echo $totalPages; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['total_pages'] = $totalPages;
 
         if ($response['total'] > $limit) {
@@ -1119,7 +1135,11 @@ class General extends Xtreme
 
         if ($response['total'] < $end){
             $end = $response['total'];
+<<<<<<< HEAD
         }
+=======
+        }       
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($end >= 1) $offset++; //this added by Ahmad to show "Showing 1 to n Records" rather than "Showing 0 to n Records".
         $response['total_paging_record'] = " Showing ".$offset." to ".$end." Records"; //entries
@@ -1147,10 +1167,18 @@ class General extends Xtreme
         else if ($totalPages >= 5) {
             $response['pages'] = array($page - 2, $page - 1, $page, $page + 1, $page + 2);
         }
+<<<<<<< HEAD
         return $response;
     }
 
     function preListing($attr, $Sql_query, $response, $dynamic_limit, $alias, $order_type)
+=======
+        
+        return $response;
+    }
+
+    function preListing($attr, $Sql_query, $response, $dynamic_limit, $alias, $order_type=null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
 
         if (isset($attr['searchKeyword']) && isset($attr['searchKeyword']->exportAsCSV)){
@@ -1455,7 +1483,11 @@ class General extends Xtreme
                         foreach ($meta['fields'] as $field){
                             if ($count != 0)
                                 $where_clause .= "' ',";
+<<<<<<< HEAD
                             $where_clause .= "$emp$field,";
+=======
+                            $where_clause .= "$field,";//$emp
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $count++;
                         }
                         $where_clause = substr($where_clause, 0, -1);
@@ -1650,7 +1682,11 @@ class General extends Xtreme
                                     $where_clause .= " CONCAT(";
                                     foreach ($meta['fields'] as $field){
                                         $where_clause .= "' ',";
+<<<<<<< HEAD
                                         $where_clause .= "$emp$field,";
+=======
+                                        $where_clause .= "$field,";//$emp
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     }
                                     $where_clause = substr($where_clause, 0, -1);
                                     $where_clause .= ") LIKE '%".$value."%' ";

@@ -1,6 +1,7 @@
 <!-- Top Nav Start -->
 
 
+<<<<<<< HEAD
 <ul class="level-1"   ng-if="user_type ==1 || user_type ==2">
   <li class='active'> <a ui-sref="app.dashboard()"> <i class="fa fa-home nav_round"></i> Dashboard </a> </li>
   <li > <a  > <i class="fa fa-book nav_round"></i> General Ledger </a>
@@ -54,6 +55,64 @@
     </ul>
   </li>
   <!--<li class=''> <a href='#'><i class="fa fa-cog nav_round"></i>Setup</a>
+=======
+<ul class="level-1" ng-if="user_type ==1 || user_type ==2">
+    <li class='active'>
+        <a ui-sref="app.dashboard()"> <i class="fa fa-home nav_round"></i> Dashboard </a>
+    </li>
+    <li>
+        <a> <i class="fa fa-book nav_round"></i> General Ledger </a>
+        <ul>
+            <li><a ui-sref="app.general_ledger_list()">Chart of Accounts</a></li>
+            <!--   <li><a ui-sref="app.general_ledger_tree()"> Chart of Accounts Tree </a></li>-->
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-bar-chart-o nav_round"></i>Sales & CRM</a>
+        <ul>
+            <li><a ui-sref="app.crm()">CRM</a></li>
+            <li><a ui-sref="app.customer()">Customers</a>
+                <ul>
+                    <li><a ui-sref="app.quotes()">Quotes</a></li>
+                    <li><a ui-sref="app.orders()">Orders</a></li>
+                    <li><a ui-sref="app.sale-invoice()">Invoices</a></li>
+                    <li><a ui-sref="app.return-orders()">Sales Return</a></li>
+                    <li><a ui-sref="app.salePromotion()">Sales Promotion</a></li>
+                    <li><a ui-sref="app.priceAdjustment()">Price Adjustment</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-tag nav_round"></i>Purchases</a>
+        <!-- <ul>
+      <li ><a ui-sref="app.purchase_shipping_agents()">Shipping Agents </a></li>
+    </ul>-->
+
+        <ul>
+            <li><a ui-sref="app.srm()">SRM</a></li>
+            <li><a ui-sref="app.supplier()">Suppliers</a>
+                <ul>
+                    <li><a ui-sref="app.srmorder()">Orders</a></li>
+                    <li><a ui-sref="app.srminvoice()">Invoices</a></li>
+                    <li><a ui-sref="app.srm_order_return()">Purchase Return </a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class=''> <a href='#'><i class="fa fa-th-large nav_round"></i>Inventory</a>
+        <ul>
+            <li><a ui-sref="app.item()">Items </a></li>
+            <li><a ui-sref="app.stock-sheet()">Stock Sheet </a></li>
+        </ul>
+    </li>
+
+
+    <li class=''> <a href='#'><i class="fa fa-user nav_round"></i>Human Resources</a>
+        <ul>
+            <li><a ui-sref="app.hr_listing()">HR </a></li>
+        </ul>
+    </li>
+    <!--<li class=''> <a href='#'><i class="fa fa-cog nav_round"></i>Setup</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     <ul class="level-2">
       <li><a href='#'>General</a>
         <ul>
@@ -179,6 +238,7 @@
     ui-sref-disabled="allowedithr==1  && user_type==1"   ui-sref-if="allowedithr==1  && user_type==1"
     ui-sref=" {{ allowedithr==1  && user_type==2?  ' ' :  'app.viewhrvalues({id:rec.id})' }}"
     ng-class="{'dont-click':allowedithr==0}"
+<<<<<<< HEAD
     --> 
     
     
@@ -221,3 +281,46 @@
 
  
   
+=======
+    -->
+
+
+
+<!--USer Roles-->
+<ul class="level-1" ng-if="user_type ==3 || user_type == 4">
+    <li class='active'>
+        <a ui-sref="app.dashboard()"> <i class="fa fa-home nav_round"></i> Dashboard </a>
+    </li>
+    <li ng-repeat-start="namesList in new_data" ng-if=" namesList.m_id ==1">
+        <a> <i class="fa fa-book nav_round"></i> General Ledger </a>
+        <ul>
+            <li><a ui-sref="app.general_ledger()">Chart of Accounts</a></li>
+        </ul>
+    </li>
+    <li ng-if=" namesList.m_id ==12   "> <a href='#'><i class="fa fa-bar-chart-o nav_round"></i>Sales & CRM</a>
+        <ul>
+            <li ng-repeat-start="namesList in new_data" ng-if="namesList.m_id ==12"><a ui-sref="app.crm()">CRM</a></li>
+            <li ng-repeat-end ng-if="namesList.m_id ==23"><a ui-sref="app.customer()">Customers</a></li>
+        </ul>
+    </li>
+    <li ng-if=" namesList.m_id ==10 "> <a href='#'><i class="fa fa-tag nav_round"></i>Purchases</a> </li>
+    <li ng-if=" namesList.m_id ==18 "> <a href='#'><i class="fa fa-th-large nav_round"></i>Inventories</a>
+        <ul>
+            <li ng-if=" namesList.m_id ==18 "><a ui-sref="app.item()">Items </a></li>
+        </ul>
+    </li>
+    <!--  <ul ng-if=" namesList.m_id ==12 ">
+    <li ng-if=" namesList.m_id ==12 "><a ui-sref="app.product_values()">Product Values</a></li>
+  </ul>-->
+
+    <li ng-repeat-end ng-if="namesList.m_id ==3"> <a href='#'><i class="fa fa-user nav_round"></i>Human Resources</a>
+        <ul>
+            <li ng-if="namesList.m_id ==3"><a ui-sref="app.hr_listing()">HR </a></li>
+        </ul>
+    </li>
+
+
+
+
+</ul>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $stateProvider
             .state('app.supplier', {
@@ -30,11 +34,22 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
                 controller: 'SupplierEditController'
             })
 
+<<<<<<< HEAD
     }]);
 
 SupplierSrmController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService",
     "$http", "ngDialog", "toaster", "$rootScope", "$state", "moduleTracker"];
 myApp.controller('SupplierSrmController', SupplierSrmController);
+=======
+    }
+]);
+
+SupplierSrmController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService",
+    "$http", "ngDialog", "toaster", "$rootScope", "$state", "moduleTracker"
+];
+myApp.controller('SupplierSrmController', SupplierSrmController);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SupplierSrmController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $rootScope, $state, moduleTracker) {
     'use strict';
 
@@ -53,7 +68,11 @@ function SupplierSrmController($scope, $filter, ngParams, $resource, $timeout, n
     };
     $scope.searchKeyword = {};
 
+<<<<<<< HEAD
     $scope.getsrm_list = function (item_paging, sort_column, sortform) {
+=======
+    $scope.getsrm_list = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token
@@ -86,7 +105,11 @@ function SupplierSrmController($scope, $filter, ngParams, $resource, $timeout, n
         $scope.showLoader = true;
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.columns = [];
                 $scope.record_data = {};
@@ -102,7 +125,11 @@ function SupplierSrmController($scope, $filter, ngParams, $resource, $timeout, n
                     $scope.total_paging_record = res.data.total_paging_record;
 
                     $scope.record_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -122,7 +149,11 @@ function SupplierSrmController($scope, $filter, ngParams, $resource, $timeout, n
     $scope.$root.itemselectPage(1);
 }
 
+<<<<<<< HEAD
 myApp.controller('SupplierEditController', SupplierEditController);// $window, 
+=======
+myApp.controller('SupplierEditController', SupplierEditController); // $window, 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngDialog, toaster, $stateParams, $state, $rootScope, moduleTracker) {
     'use strict';
 
@@ -159,7 +190,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.check_srm_readonly = true;
     }
 
+<<<<<<< HEAD
     $scope.showEditForm = function () {
+=======
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_srm_readonly = false;
     }
 
@@ -167,7 +202,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         "name", "job_title", "Department"
     ]
 
+<<<<<<< HEAD
     $scope.formUrl = function () {
+=======
+    $scope.formUrl = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return "app/views/supplier/_form.html";
     }
 
@@ -203,6 +242,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     $rootScope.social_medias_general_form = [];
     $rootScope.social_medias_contact_form = [];
+<<<<<<< HEAD
    
     var refreshId = setInterval(function () {
         if (($rootScope.social_medias != undefined && $rootScope.social_medias.length > 0)) {
@@ -212,6 +252,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }, 500);
     
+=======
+
+    var refreshId = setInterval(function() {
+        if (($rootScope.social_medias != undefined && $rootScope.social_medias.length > 0)) {
+            angular.copy($rootScope.social_medias, $rootScope.social_medias_general_form);
+            angular.copy($rootScope.social_medias, $rootScope.social_medias_contact_form);
+            clearInterval(refreshId);
+        }
+    }, 500);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.qty = 5;
     $scope.defaultOption = 2;
     $scope.shiping_list = [];
@@ -229,7 +280,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.selected_count = 0;
     $scope.bill_to_customer = "";
 
+<<<<<<< HEAD
     $scope.delete = function () {
+=======
+    $scope.delete = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($stateParams.id == undefined)
             var recid = $scope.rec.srm_id;
@@ -240,10 +295,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: recid, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: recid, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         $state.go('app.supplier');
@@ -251,21 +313,37 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Error', res.data.error);
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
+<<<<<<< HEAD
     $scope.showEditfinanceForm = function () {
         $scope.check_srm_finance_readonly = false;
     }
 
     $scope.set_link = function () {
+=======
+    $scope.showEditfinanceForm = function() {
+        $scope.check_srm_finance_readonly = false;
+    }
+
+    $scope.set_link = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.rec.web_address != undefined && $scope.rec.web_address.length > 0)
             $scope.rec.web_address = ($scope.rec.web_address.indexOf('://') === -1) ? 'http://' + $scope.rec.web_address : $scope.rec.web_address;
     }
 
+<<<<<<< HEAD
     $scope.get_empl_list = function (arg) {
+=======
+    $scope.get_empl_list = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log(arg);
         $scope.showLoader = true;
         $scope.columns_pr = [];
@@ -289,7 +367,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(empUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 if (res.data.ack == true) {
                     $scope.columns_pr = [];
@@ -297,7 +379,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.record_pr = res.data.response;
 
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_pr.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -314,7 +400,39 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_employeeList = function (result, emptype) {
+=======
+
+    $scope.getGLcode = function() {
+
+        var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
+        $scope.postData = {};
+        $scope.title = 'G/L Accounts';
+        $scope.postData.token = $scope.$root.token;
+        $scope.searchKeyword2 = {};
+
+        $scope.type_id = 2;
+
+        $scope.showLoader = true;
+        $scope.showAllOption = true;
+
+        $http
+            .post(postUrl_cat, $scope.postData)
+            .then(function(res) {
+                $scope.gl_account = [];
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.gl_account = res.data.response;
+                    angular.element('#finance_set_gl_account').modal({ show: true });
+                } else
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.confirm_employeeList = function(result, emptype) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (emptype == 'general') {
             $scope.PriceOffer_rec.recieved_by = result.name;
             $scope.PriceOffer_rec.recieved_by_id = result.id;
@@ -330,17 +448,27 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.columns_history = [];
     $scope.history_title = "";
     $scope.history_type = "";
+<<<<<<< HEAD
     $scope.historytype = function (type) {
+=======
+    $scope.historytype = function(type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.history_type = type;
         var Url = $scope.$root.pr + "srm/srm/srm-history";
 
         if (type == "Salespersons") {
             $scope.history_title = "Salesperson History";
+<<<<<<< HEAD
         }
         else if (type == "CreditLimit") {
             $scope.history_title = "Credit Limit History";
         }
         else if (type == "Status") {
+=======
+        } else if (type == "CreditLimit") {
+            $scope.history_title = "Credit Limit History";
+        } else if (type == "Status") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.history_title = "Status History";
         }
 
@@ -351,14 +479,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(Url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.crm_history = {};
                     $scope.columns_history = [];
                     $scope.crm_history = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_history.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -367,8 +503,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     });
 
                     $('#history_modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                     $scope.crm_history = {};
                 }
@@ -376,6 +516,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     };
 
     $scope.drp = [];
+<<<<<<< HEAD
     $scope.status_list = [];
 
     $rootScope.get_status_list('supplier_status');
@@ -385,6 +526,26 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     // get assigned location listings assigned to primary contact.
     $scope.getGenAssinLoc = function (primaryContID) {
+=======
+
+    $scope.status_list = [{
+        'id': '1',
+        'title': 'Active'
+    }, {
+        'id': '0',
+        'title': 'Inactive'
+    }];
+
+    /* 
+    $scope.status_list = [];
+    $rootScope.get_status_list('supplier_status');
+
+    if ($scope.status_list === 'undefined' || $scope.status_list === null || $scope.status_list.length == 0)
+        $scope.status_list = $rootScope.status_list; */
+
+    // get assigned location listings assigned to primary contact.
+    $scope.getGenAssinLoc = function(primaryContID) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.page_title = "Assigned Locations";
 
@@ -399,14 +560,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.loc_columns = [];
                 $scope.locationRecord = {};
 
                 if (res.data.ack == true) {
                     $scope.locationRecord = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach($scope.locationRecord[0], function (val, index) {
+=======
+                    angular.forEach($scope.locationRecord[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.loc_columns.push({
                                 'title': toTitleCase(index),
@@ -425,7 +594,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.addNewPredefinedPopup = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPredefinedPopup = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.isBtnPredefined = true;
         var sel_id = drpdown[0].id;
@@ -443,7 +616,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/crm/add_predefined.html',
             className: 'ngdialog-theme-default-custom-large',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var types = type;
             pedefined.token = $scope.$root.token;
@@ -468,7 +645,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         var sid = ress.data.id;
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
@@ -481,12 +662,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         $http
                             .post(getUrl, { 'token': $scope.$root.token, type: types })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack == true) {
 
                                     if (type == 'PREFER_METHOD') {
                                         $scope.arr_pref_method_comm = res.data.response;
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_pref_method_comm, function (elem) {
+=======
+                                        angular.forEach($scope.arr_pref_method_comm, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.pref_mthod_of_comm = elem;
                                         });
@@ -497,7 +686,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                                     if (type == 'STATUS') {
                                         $scope.status_list = res.data.response;
+<<<<<<< HEAD
                                         angular.forEach($scope.status_list, function (elem) {
+=======
+                                        angular.forEach($scope.status_list, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.status_ids = elem;
                                         });
@@ -507,7 +700,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     if (type == 'SEGMENT') {
                                         $scope.arr_segment = res.data.response;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_segment, function (elem) {
+=======
+                                        angular.forEach($scope.arr_segment, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.company_type_id = elem;
                                         });
@@ -518,7 +715,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     if (type == 'BUYING_GROUP') {
                                         $scope.arr_buying_group = res.data.response;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_buying_group, function (elem) {
+=======
+                                        angular.forEach($scope.arr_buying_group, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.buying_grp_id = elem;
                                         });
@@ -528,12 +729,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     }
                                 }
                             });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Info', ress.data.error);
                 });
 
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Info', ress.data.error);
+                });
+
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -586,7 +795,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
      } */
     //--------------------- start General   ------------------------------------------
 
+<<<<<<< HEAD
     $scope.generate_unique_id = function () {
+=======
+    $scope.generate_unique_id = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.moduleCodeType = 1;
 
@@ -595,7 +808,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(getUrl, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == 1) {
 
@@ -613,12 +830,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         // $scope.rec.purchaser_code = $rootScope.defaultUserName;
                         // $scope.rec.purchaser_code_id = $rootScope.userId;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.country_type_arr, function (elem) {
+=======
+                        angular.forEach($rootScope.country_type_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.$root.defaultCountry)
                                 $scope.drp.country_id = elem;
                         });
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.arr_currency, function (elem) {
+=======
+                        angular.forEach($rootScope.arr_currency, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.$root.defaultCurrency)
                                 $scope.drp.currency = elem;
                         });
@@ -627,8 +852,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         $scope.drp.status_ids = $scope.status_list[0];
                         //  toaster.pop('success', 'info', res.data.error);   
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'info', res.data.error);
                         return false;
                     }
@@ -645,7 +874,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.$root.breadcrumbs = [{ 'name': 'Purchases', 'url': '#', 'isActive': false }, { 'name': 'Suppliers', 'url': 'app.supplier', 'isActive': false }];
 
 
+<<<<<<< HEAD
     $scope.show_status_date = function (status_sel) {
+=======
+    $scope.show_status_date = function(status_sel) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (status_sel.name != "Active")
             $scope.status_change_date = 1;
@@ -656,14 +889,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.$root.model_code = "";
     $scope.last_po_date = '';
 
+<<<<<<< HEAD
     $scope.getSupplierDataByID = function () {
+=======
+    $scope.getSupplierDataByID = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
         $scope.moduleCodeType = 1;
 
         var DetailsURL = $scope.$root.pr + "srm/srm/get-srm";
         $http
+<<<<<<< HEAD
             .post(DetailsURL, { 'token': $scope.$root.token, 'id': $stateParams.id, 'type': 'Supplier','defaultCurrency':$scope.$root.defaultCurrency })
             .then(function (res) {
+=======
+            .post(DetailsURL, { 'token': $scope.$root.token, 'id': $stateParams.id, 'type': 'Supplier', 'defaultCurrency': $scope.$root.defaultCurrency })
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     moduleTracker.updateRecordName(res.data.response.name);
                     $scope.rec = res.data.response;
@@ -713,22 +955,38 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.new_list = true;
                     $scope.save_list = false;
 
+<<<<<<< HEAD
                     angular.forEach($scope.arr_pref_method_comm, function (obj) {
+=======
+                    angular.forEach($scope.arr_pref_method_comm, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.primaryc_pref_method_of_communication)
                             $scope.drp.pref_mthod_of_comm = obj;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.status_list, function (obj) {
+=======
+                    angular.forEach($scope.status_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.status)
                             $scope.drp.status_ids = obj;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.country_type_arr, function (elem) {
+=======
+                    angular.forEach($rootScope.country_type_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.country_id)
                             $scope.drp.country_id = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.arr_supplier_classification, function (elem) {
+=======
+                    angular.forEach($scope.arr_supplier_classification, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.supplier_classification)
                             $scope.drp.srm_classification = elem;
                     });
@@ -738,7 +996,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             $scope.drp.srm_classification = elem;
                     }); */
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_currency, function (elem) {
+=======
+                    angular.forEach($rootScope.arr_currency, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.currency_id) {
                             $scope.drp.currency = elem;
                             $scope.$root.customerCurrencyCode = elem.name;
@@ -755,14 +1017,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     if (res.data.response.status_date == 0) {
                         res.data.response.status_date = null;
                         $scope.status_change_date = 0;
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.rec.status_date = $scope.$root.convert_unix_date_to_angular(res.data.response.status_date);
                         $scope.status_change_date = 1;
                     }
 
                     $scope.tempSocialMedia = [];
+<<<<<<< HEAD
                     angular.forEach($rootScope.social_medias_general_form, function (obj) {
+=======
+                    angular.forEach($rootScope.social_medias_general_form, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj.id == res.data.response.socialmedia1 && res.data.response.socialmedia1 != 0) {
                             obj.value = res.data.response.socialmedia1_value;
@@ -820,7 +1090,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.getSupplierDataByID();
 
     // sync location primary record with general start
+<<<<<<< HEAD
     $scope.getAltLocationfrmGeneral = function (arr, type) {
+=======
+    $scope.getAltLocationfrmGeneral = function(arr, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (type != undefined) {
             if (arr) {
 
@@ -835,34 +1109,58 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.drp.country_id = $scope.$root.get_obj_frm_arry($rootScope.country_type_arr, $scope.rec.primary_country);
 
 
+<<<<<<< HEAD
                 if ($scope.rec.primary_is_billing_address == 1){
                     // angular.element('#genis_billing_address').checked = true;
                     // document.getElementById("genis_billing_address").checked = true;
                     $scope.rec.is_billing_address = true;
                 }                    
                 else{
+=======
+                if ($scope.rec.primary_is_billing_address == 1) {
+                    // angular.element('#genis_billing_address').checked = true;
+                    // document.getElementById("genis_billing_address").checked = true;
+                    $scope.rec.is_billing_address = true;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // angular.element('#genis_billing_address').checked = false;
                     // document.getElementById("genis_billing_address").checked = false;
                     $scope.rec.is_billing_address = false;
                 }
 
+<<<<<<< HEAD
                 if ($scope.rec.primary_is_invoice_address == 1){
                     // angular.element("#genis_invoice_address").checked = true;
                     // document.getElementById("genis_invoice_address").checked = true;                    
                     $scope.rec.is_invoice_address = true;
                 }
                 else{
+=======
+                if ($scope.rec.primary_is_invoice_address == 1) {
+                    // angular.element("#genis_invoice_address").checked = true;
+                    // document.getElementById("genis_invoice_address").checked = true;                    
+                    $scope.rec.is_invoice_address = true;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // angular.element("#genis_invoice_address").checked = false;
                     // document.getElementById("genis_invoice_address").checked = false;   
                     $scope.rec.is_invoice_address = false;
                 }
 
+<<<<<<< HEAD
                 if ($scope.rec.primary_is_delivery_collection_address == 1){
                     // angular.element("#genis_delivery_collection_address").checked = true;
                     // document.getElementById("genis_delivery_collection_address").checked = true;   
                     $scope.rec.is_delivery_collection_address = true;
                 }
                 else{
+=======
+                if ($scope.rec.primary_is_delivery_collection_address == 1) {
+                    // angular.element("#genis_delivery_collection_address").checked = true;
+                    // document.getElementById("genis_delivery_collection_address").checked = true;   
+                    $scope.rec.is_delivery_collection_address = true;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // angular.element("#genis_delivery_collection_address").checked = false;
                     // document.getElementById("genis_delivery_collection_address").checked = false;   
                     $scope.rec.is_delivery_collection_address = false;
@@ -880,7 +1178,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.rec.is_delivery_collection_address = 0;
                 $scope.rec.is_invoice_address = 0;
 
+<<<<<<< HEAD
                 angular.forEach($rootScope.country_type_arr, function (elem) {
+=======
+                angular.forEach($rootScope.country_type_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == $scope.$root.defaultCountry)
                         $scope.drp.country_id = elem;
                 });
@@ -896,7 +1198,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var ApiAjax = $scope.$root.pr + "srm/srm/alt-depots";
             $http
                 .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
                 .then(function (alt_res) {
+=======
+                .then(function(alt_res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (alt_res.data.record.ack == true) {
 
                         $scope.rec.address_1 = alt_res.data.record.result[0].address_1;
@@ -938,7 +1244,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.rec.is_delivery_collection_address = 0;
                         $scope.rec.is_invoice_address = 0;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.country_type_arr, function (elem) {
+=======
+                        angular.forEach($rootScope.country_type_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.$root.defaultCountry)
                                 $scope.drp.country_id = elem;
                         });
@@ -947,7 +1257,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.getAltContact_genral = function (arr, type) {
+=======
+    $scope.getAltContact_genral = function(arr, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (type != undefined) {
             if (arr) {
 
@@ -990,7 +1304,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 }); */
 
                 $scope.tempContactSocialMedia = [];
+<<<<<<< HEAD
                 angular.forEach($rootScope.social_medias_contact_form, function (obj) {
+=======
+                angular.forEach($rootScope.social_medias_contact_form, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.id == $scope.rec.primaryc_socialmedia1 && $scope.rec.primaryc_socialmedia1 != 0) {
                         obj.value = $scope.rec.primaryc_socialmedia1_value;
@@ -1052,7 +1370,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var ApiAjax = $scope.$root.pr + "srm/srm/get-alt-contacts-list";
             $http
                 .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
                 .then(function (alt_res) {
+=======
+                .then(function(alt_res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (alt_res.data.ack == true) {
 
@@ -1068,7 +1390,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         if (alt_res.data.response[0].pref_method_of_communication != undefined) {
 
+<<<<<<< HEAD
                             angular.forEach($scope.arr_pref_method_comm, function (elem) {
+=======
+                            angular.forEach($scope.arr_pref_method_comm, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (elem.id == alt_res.data.response[0].pref_method_of_communication) {
                                     $scope.drp.pref_mthod_of_comm = elem;
                                 }
@@ -1081,7 +1407,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.rec.csocialmedia4_value = alt_res.data.response[0].socialmedia4_value;
                         $scope.rec.csocialmedia5_value = alt_res.data.response[0].socialmedia5_value;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.social_medias, function (elem) {
+=======
+                        angular.forEach($rootScope.social_medias, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (elem.id == alt_res.data.response[0].socialmedia1)
                                 $scope.rec.csocialmedia1 = elem;
@@ -1127,16 +1457,28 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         // $scope.$root.breadcrumbs[3].name = 'General';
     }
 
+<<<<<<< HEAD
     $scope.generalInformation = function () {
         $scope.getSupplierDataByID();
     }
 
     $scope.add_general_srm = function (rec, drp) {
+=======
+    $scope.generalInformation = function() {
+        $scope.getSupplierDataByID();
+    }
+
+    $scope.add_general_srm = function(rec, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (drp.company_type_id != undefined) {
             var arrSeg = [];
             if (drp.company_type_id.length > 0) {
+<<<<<<< HEAD
                 angular.forEach(drp.company_type_id, function (elem) {
+=======
+                angular.forEach(drp.company_type_id, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     arrSeg.push(elem.id);
                 });
                 rec.segment_id = arrSeg.toString();
@@ -1163,7 +1505,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             return false;
         }
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (rec.web_address != undefined && rec.web_address.length > 0)
             rec.web_address = (rec.web_address.indexOf('://') === -1) ? 'http://' + rec.web_address : rec.web_address;
@@ -1206,6 +1552,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         rec.type = 3;
         rec.token = $scope.$root.token;
         $scope.showLoader = true;
+<<<<<<< HEAD
         
         if ($scope.rec.supplier_code != undefined){
             if (rec.is_delivery_collection_address != 0 && $stateParams.id == undefined)
@@ -1214,13 +1561,26 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }            
         else {
             rec.srmModuleType = 2;  
+=======
+
+        if ($scope.rec.supplier_code != undefined) {
+            if (rec.is_delivery_collection_address != 0 && $stateParams.id == undefined)
+                toaster.pop('warning', 'info', "Contact and Delivery Hours can be added on Other Locations tab.");
+            $scope.UpdateForm(rec);
+        } else {
+            rec.srmModuleType = 2;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.recDupChk = rec;
 
             var duplicationChkUrl = $scope.$root.pr + "srm/srm/duplication-chk-crm";
 
             $http
                 .post(duplicationChkUrl, rec)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == true) {
                         $scope.showLoader = false;
@@ -1231,10 +1591,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             template: 'app/views/crm/duplicationChkModal.html',
                             className: 'ngdialog-theme-default-custom',
                             scope: $scope
+<<<<<<< HEAD
                         }).then(function (value) {
 
                             /* code to get Supplier code Start */
                             
+=======
+                        }).then(function(value) {
+
+                            /* code to get Supplier code Start */
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (rec.is_delivery_collection_address != 0 && $stateParams.id == undefined)
                                 toaster.pop('warning', 'info', "Contact and Delivery Hours can be added on Other Locations tab.");
 
@@ -1257,18 +1624,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     'type': '2,3',
                                     'status': '18'
                                 })
+<<<<<<< HEAD
                                 .then(function (res) {
+=======
+                                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     if (res.data.ack == 1) {
                                         $scope.rec.supplier_code = res.data.code;
                                         $scope.rec.supplier_no = res.data.nubmer;
+<<<<<<< HEAD
                                         $scope.rec.code_type = module_category_id;//res.data.code_type;
+=======
+                                        $scope.rec.code_type = module_category_id; //res.data.code_type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.count_result++;
 
                                         if (res.data.type == 1) {
                                             $scope.product_type = false;
+<<<<<<< HEAD
                                         }
                                         else {
+=======
+                                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             $scope.product_type = true;
                                         }
 
@@ -1276,6 +1655,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                             /* code to add Supplier Start */
                                             $scope.UpdateForm(rec);
                                             /* code to add Supplier End */
+<<<<<<< HEAD
                                         }
                                         else {
                                             $scope.showLoader = false;
@@ -1283,6 +1663,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                         }
                                     }
                                     else {
+=======
+                                        } else {
+                                            $scope.showLoader = false;
+                                            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier Code']));
+                                        }
+                                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.showLoader = false;
                                         toaster.pop('error', 'info', res.data.error);
                                         return false;
@@ -1291,7 +1678,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                             /* code to get Supplier code End */
 
+<<<<<<< HEAD
                         }, function (reason) {
+=======
+                        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log('Modal promise rejected. Reason: ', reason);
                         });
 
@@ -1321,18 +1712,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                 'type': '2,3',
                                 'status': '18'
                             })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (res.data.ack == 1) {
                                     $scope.rec.supplier_code = res.data.code;
                                     $scope.rec.supplier_no = res.data.nubmer;
+<<<<<<< HEAD
                                     $scope.rec.code_type = module_category_id;//res.data.code_type;
+=======
+                                    $scope.rec.code_type = module_category_id; //res.data.code_type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.count_result++;
 
                                     if (res.data.type == 1) {
                                         $scope.product_type = false;
+<<<<<<< HEAD
                                     }
                                     else {
+=======
+                                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.product_type = true;
                                     }
 
@@ -1340,6 +1743,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                         /* code to add Supplier Start */
                                         $scope.UpdateForm(rec);
                                         /* code to add Supplier End */
+<<<<<<< HEAD
                                     }
                                     else {
                                         $scope.showLoader = false;
@@ -1347,6 +1751,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     }
                                 }
                                 else {
+=======
+                                    } else {
+                                        $scope.showLoader = false;
+                                        toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier Code']));
+                                    }
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.showLoader = false;
                                     toaster.pop('error', 'info', res.data.error);
                                     return false;
@@ -1356,7 +1767,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         /* code to get Supplier code End */
                     }
 
+<<<<<<< HEAD
                 }).catch(function (message) {
+=======
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
@@ -1366,7 +1781,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     ///* Function to Update Supplier General Form*/
+<<<<<<< HEAD
     $scope.UpdateForm = function (rec) {
+=======
+    $scope.UpdateForm = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.rec.supplier_code != undefined) {
 
             var addcrmUrl = $scope.$root.pr + "supplier/supplier/add-supplier";
@@ -1391,8 +1810,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 } else if ($scope.rec.postcode != undefined && $scope.rec.postcode.length > 0) {
                     $scope.addAltlocationfromGeneral(rec);
                     rec.loc = $scope.addLocdata;
+<<<<<<< HEAD
                 }
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     rec.loc = {};
             } else if ($scope.rec.postcode != undefined && $scope.rec.postcode.length > 0) {
                 $scope.addAltlocationfromGeneral(rec);
@@ -1417,7 +1840,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 rec.anonymous_supplier = 0;
             $http
                 .post(addcrmUrl, rec)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $scope.showLoader = false;
 
@@ -1433,11 +1860,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.$root.rec_id = res.data.id;
                         $scope.rec.srm_id = res.data.id;
 
+<<<<<<< HEAD
                         if(!$scope.rec.alt_loc_id && res.data.alt_loc_id) 
                             $scope.rec.alt_loc_id = res.data.alt_loc_id;
 
                          if(!$scope.rec.alt_contact_id && res.data.alt_contact_id) 
                             $scope.rec.alt_contact_id = res.data.alt_contact_id;  
+=======
+                        if (!$scope.rec.alt_loc_id && res.data.alt_loc_id)
+                            $scope.rec.alt_loc_id = res.data.alt_loc_id;
+
+                        if (!$scope.rec.alt_contact_id && res.data.alt_contact_id)
+                            $scope.rec.alt_contact_id = res.data.alt_contact_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                         $scope.rec.contact_name = $scope.rec.contact_person;
@@ -1471,7 +1906,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier Code']));
     }
 
+<<<<<<< HEAD
     $scope.add_contact_from_general = function (rec) {
+=======
+    $scope.add_contact_from_general = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var rec2 = {};
         $scope.addContactData = {};
@@ -1511,14 +1950,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.addContactData = rec2;
     }
 
+<<<<<<< HEAD
     $scope.addAltlocationfromGeneral = function (rec) {
+=======
+    $scope.addAltlocationfromGeneral = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.addLocdata = {};
 
         var rec2 = {};
         // rec2.token = $scope.$root.token;
         rec2.contact_name = rec.contact_person;
         rec2.is_primary = 1;
+<<<<<<< HEAD
         rec2.depot = rec.name;//'General Location'; //$scope.rec.contact_person;//
+=======
+        rec2.depot = rec.name; //'General Location'; //$scope.rec.contact_person;//
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         rec2.role = rec.job_title;
         rec2.telephone = rec.phone;
         rec2.is_primary = 1;
@@ -1556,7 +2003,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.addLocdata = rec2;
     }
 
+<<<<<<< HEAD
     $scope.add_location_from_general = function (id, rec) {
+=======
+    $scope.add_location_from_general = function(id, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.srm_id = id;
         $scope.rec.id = 0;
@@ -1575,7 +2026,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var altAddUrl = $scope.$root.pr + "srm/srm/add-alt-depot";
         $http
             .post(altAddUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //    toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(102));
 
@@ -1583,6 +2038,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.convert = function (id, index, $data) {
 
         ngDialog.openConfirm({
@@ -1665,11 +2121,99 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //--------------------- end General   ------------------------------------------
 
     $scope.gotoedit = function () {
+=======
+    $scope.convert = function(id, index, $data) {
+
+            ngDialog.openConfirm({
+                template: 'app/views/supplier/_confirm_convert_modal.html',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+
+
+                $scope.product_type = true;
+                $scope.count_result = 0;
+                var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
+                var name = $scope.$root.base64_encode('srm');
+                var no = $scope.$root.base64_encode('srm_no');
+
+                var module_category_id = 2;
+
+                $http
+                    .post(getCodeUrl, {
+                        'is_increment': 1,
+                        'token': $scope.$root.token,
+                        'tb': name,
+                        'm_id': 54,
+                        'no': no,
+                        'category': '',
+                        'brand': '',
+                        'module_category_id': module_category_id,
+                        'type': '2,3',
+                        'status': '18'
+                    })
+                    .then(function(res) {
+
+                        if (res.data.ack == 1) {
+                            $scope.rec.srm_code = res.data.code;
+
+                            $scope.code_type = module_category_id;
+                            $scope.count_result++;
+
+                            if (res.data.type == 1) $scope.product_type = false;
+                            else $scope.product_type = true;
+
+
+                            var convUrl = $scope.$root.pr + "srm/srm/convert";
+                            $http
+                                .post(convUrl, {
+                                    'id': $stateParams.id,
+                                    'type': 2,
+                                    'module': 2,
+                                    'token': $scope.$root.token,
+                                    'srm_code': res.data.code
+                                })
+                                .then(function(res) {
+                                    // $data.splice(index, 1);
+
+                                    if (res.data.ack == true) {
+                                        toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(229, ['SRM']));
+                                        // $state.go("app.edit-srm", { 'id': $stateParams.id });
+
+                                        $timeout(function() {
+                                            $state.go("app.edit-srm", { 'id': $stateParams.id });
+                                        }, 1000);
+
+                                    } else
+                                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(235, ['to SRM']));
+
+                                });
+
+
+                        } else {
+                            toaster.pop('error', 'info', res.data.error);
+                            return false;
+                        }
+                    });
+
+
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+
+        }
+        //--------------------- end General   ------------------------------------------
+
+    $scope.gotoedit = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = false;
     }
 
 
+<<<<<<< HEAD
     $scope.add_status_history = function (id, rec) {
+=======
+    $scope.add_status_history = function(id, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var excUrl = $scope.$root.pr + "srm/srm/add-status-log";
         var post = {};
         post.id = id;
@@ -1677,11 +2221,18 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
             });
     }
 
     $scope.addNewPredefinedPopup = function (drpdown, type, title, drp) {
+=======
+            .then(function(res) {});
+    }
+
+    $scope.addNewPredefinedPopup = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.isBtnPredefined = true;
 
@@ -1703,7 +2254,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/crm/add_predefined.html',
             className: 'ngdialog-theme-default-custom-large',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var types = type;
             pedefined.token = $scope.$root.token;
@@ -1727,7 +2282,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         var sid = ress.data.id;
 
@@ -1743,12 +2302,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         $http
                             .post(getUrl, { 'token': $scope.$root.token, type: types })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack == true) {
 
                                     if (type == 'PREFER_METHOD') {
                                         $scope.arr_pref_method_comm = res.data.response;
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_pref_method_comm, function (elem) {
+=======
+                                        angular.forEach($scope.arr_pref_method_comm, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.pref_mthod_of_comm = elem;
                                         });
@@ -1758,7 +2325,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                                     if (type == 'STATUS') {
                                         $scope.status_list = res.data.response;
+<<<<<<< HEAD
                                         angular.forEach($scope.status_list, function (elem) {
+=======
+                                        angular.forEach($scope.status_list, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.status_ids = elem;
                                         });
@@ -1768,7 +2339,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     if (type == 'SEGMENT') {
                                         $scope.arr_segment = res.data.response;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_segment, function (elem) {
+=======
+                                        angular.forEach($scope.arr_segment, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.company_type_id = elem;
                                         });
@@ -1779,7 +2354,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     if (type == 'BUYING_GROUP') {
                                         $scope.arr_buying_group = res.data.response;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_buying_group, function (elem) {
+=======
+                                        angular.forEach($scope.arr_buying_group, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == sid)
                                                 drp.buying_grp_id = elem;
                                         });
@@ -1791,12 +2370,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                                 }
                             });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Info', ress.data.error);
                 });
 
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Info', ress.data.error);
+                });
+
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -1854,7 +2441,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.searchKeyword = {};
     $scope.searchKeyword_offered = {};
 
+<<<<<<< HEAD
     $scope.get_purchase_code_emp = function (arg, item_paging) {
+=======
+    $scope.get_purchase_code_emp = function(arg, item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = ' Employess(s)';
         $scope.purchase_code = true;
         $scope.showLoader = true;
@@ -1893,7 +2484,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(emp_Url, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.total = res.data.total;
@@ -1908,7 +2503,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.selected_count = res.data.selected_count;
                     $scope.selection_record_del = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columnss.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1917,7 +2516,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     });
 
                     var test_name = '';
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (value.checked == 1) {
                             test_name += value.name + ",";
                             angular.element('#selected__del' + value.id).click();
@@ -1934,19 +2537,31 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.add_product_list = function (item) {
+=======
+    $scope.add_product_list = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec_code = {};
 
         $scope.selectedList_del = [];
 
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_del, function (index, obj) {
+=======
+        angular.forEach($scope.selection_record_del, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (angular.element('#selected__del' + index.id).prop('checked'))
                 $scope.selectedList_del.push(index);
         });
 
         var test_name = '';
         var test_id = '';
+<<<<<<< HEAD
         angular.forEach($scope.selectedList_del, function (obj) {
+=======
+        angular.forEach($scope.selectedList_del, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = 0; i < $scope.selection_record_del.length; i++) {
                 var object = $scope.selection_record_del[i];
                 if (object.id == obj.id) {
@@ -1971,17 +2586,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(addUrl, $scope.rec_code)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     toaster.pop('success', var_msg, var_error);
                     $('#model_srm_purchase_code').modal('hide');
                 }
                 else
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    toaster.pop('success', var_msg, var_error);
+                    $('#model_srm_purchase_code').modal('hide');
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(106));
             });
     }
 
+<<<<<<< HEAD
     $scope.checkAll_del_list = function () {
+=======
+    $scope.checkAll_del_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var bool = angular.element("#selecctall").is(':checked');
         if (!bool)
@@ -1989,18 +2616,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         else
             $('.pic_block_del_list').attr("disabled", false);
 
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_del, function (item) {
+=======
+        angular.forEach($scope.selection_record_del, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             angular.element('#selected__del' + item.id).prop('checked', bool);
         });
     }
 
+<<<<<<< HEAD
     $scope.checksingle_del_list_edit = function (classname) {
+=======
+    $scope.checksingle_del_list_edit = function(classname) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $('.pic_block_del_list').attr("disabled", false);
 
         $(".new_button_" + classname).hide();
         $(".replace_button_" + classname).show();
         var count = 0;
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_del, function (item) {
+=======
+        angular.forEach($scope.selection_record_del, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var bool = angular.element("#selected__del" + item.id).is(':checked');
             if (bool)
@@ -2010,10 +2649,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         });
     }
 
+<<<<<<< HEAD
     $scope.calculate_total_del_list = function () {
         var count = 0;
 
         angular.forEach($scope.selection_record_del, function (value) {
+=======
+    $scope.calculate_total_del_list = function() {
+        var count = 0;
+
+        angular.forEach($scope.selection_record_del, function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (angular.element('#selected__del' + value.id).prop('checked'))
                 count++;
         });
@@ -2021,8 +2667,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         if (count != 0) {
             angular.element('#from_selected').hide();
             angular.element('#from_ch_selected').show();
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             angular.element('#from_selected').show();
             angular.element('#from_ch_selected').hide();
         }
@@ -2033,7 +2683,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.new_list = false;
     $scope.save_list = true;
 
+<<<<<<< HEAD
     $scope.getItems = function () {
+=======
+    $scope.getItems = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.new_list = false;
         $scope.save_list = true;
 
@@ -2046,7 +2700,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             };
             $http
                 .post(prodApi, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.items = [];
                         var purchasedCodeId = "";
@@ -2059,7 +2717,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             }
                         }
 
+<<<<<<< HEAD
                         angular.forEach(res.data.response, function (obj) {
+=======
+                        angular.forEach(res.data.response, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             obj.chk = false;
                             for (var i = 0; i < purchasedCodes.length; i++) {
                                 if (obj.id == purchasedCodes[i]) {
@@ -2077,8 +2739,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             className: 'ngdialog-theme-default',
             scope: $scope,
             size: 'lg'
+<<<<<<< HEAD
         }).then(function (result) {
             $scope.selectedList = $scope.items.filter(function (namesDataItem) {
+=======
+        }).then(function(result) {
+            $scope.selectedList = $scope.items.filter(function(namesDataItem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return namesDataItem.Selected;
             });
 
@@ -2086,7 +2753,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var test_id = '';
             var customer_price = '';
             var discount_type = '';
+<<<<<<< HEAD
             angular.forEach($scope.selectedList, function (obj) {
+=======
+            angular.forEach($scope.selectedList, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 for (var i = 0; i < $scope.items.length; i++) {
                     var object = $scope.items[i];
                     if (object.first_name == obj.first_name) {
@@ -2103,12 +2774,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             console.log($scope.rec.purchase_code);
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '#checkAll', function () {
+=======
+    angular.element(document).on('click', '#checkAll', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (angular.element('#checkAll').is(':checked') == true) {
             for (var i = 0; i < $scope.items.length; i++) {
                 $scope.items[i].chk = true;
@@ -2118,7 +2797,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.items[i].chk = false;
             }
         }
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.items;
         })
     })
@@ -2126,7 +2809,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //--------------------- end General   ------------------------------------------
     // ---------------- Contact   	 -----------------------------------------
 
+<<<<<<< HEAD
     $scope.general_contact = function () {
+=======
+    $scope.general_contact = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.$root.breadcrumbs[3].name = 'Contact';
 
         $scope.altContacListingShow = true;
@@ -2145,7 +2832,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(API, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.contact_data = [];
                 $scope.columns = [];
@@ -2159,7 +2850,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.item_paging.pages = res.data.pages;
                     $scope.contact_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2172,14 +2867,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     $scope.check_readonly_contact = true;
+<<<<<<< HEAD
     $scope.gotoeditcontact = function () {
+=======
+    $scope.gotoeditcontact = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly_contact = false;
     }
 
     //---------------- Contact    ------------------------
     // ---------------- Location   	 -----------------------------------------
 
+<<<<<<< HEAD
     $scope.general_location = function () {
+=======
+    $scope.general_location = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.$root.breadcrumbs[3].name = 'Location';
         $scope.altDepotListingShow = true;
         $scope.altDepotFormShow = false;
@@ -2196,7 +2899,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(API, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.location_data = [];
                 $scope.columns = [];
@@ -2209,7 +2916,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.item_paging.pages = res.data.pages;
                     $scope.location_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2224,7 +2935,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //---------------- Location    ------------------------
     // ---------------- Shipping   	 -----------------------------------------
 
+<<<<<<< HEAD
     $scope.getArea = function (arg, show_id) {
+=======
+    $scope.getArea = function(arg, show_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.titile_2 = 'Area';
         $scope.title = 'Area';
         //	var empUrl = $scope.$root.pr+"supplier/supplier/get-coverage-all-areas"; 
@@ -2234,13 +2949,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var empUrl = $scope.$root.pr + "srm/srm/get-selected-area";
         $http
             .post(empUrl, { 'token': $scope.$root.token, 'id': $scope.$root.srm_id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.record_ship = {};
                     $scope.columns_ship = [];
                     $scope.record_ship = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_ship.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2253,7 +2976,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.total = 0;
                     $scope.record = res.data.response;
                     $scope.total = res.data.total;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columnss.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2272,6 +2999,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 // templateUrl: 'app/views/_listing_modal.html',
                 className: 'ngdialog-theme-default',
                 scope: $scope
+<<<<<<< HEAD
             }).then(function (result) {
 
                 if (arg == 'sale_full') {
@@ -2301,6 +3029,37 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 }
             },
                 function (reason) {
+=======
+            }).then(function(result) {
+
+                    if (arg == 'sale_full') {
+
+                        $scope.selectedList = $scope.record.filter(function(namesDataItem) {
+                            return namesDataItem.Selected;
+                        });
+                        var test_name = '';
+                        var test_id = '';
+                        var customer_price = '';
+                        angular.forEach($scope.selectedList, function(obj) {
+
+                            for (var i = 0; i < $scope.record.length; i++) {
+                                var object = $scope.record[i];
+                                if (object.name == obj.name) {
+                                    test_name += obj.name + ",";
+                                }
+
+                                if (object.id == obj.id) {
+                                    test_id += obj.id + ",";
+                                }
+                            }
+                            document.getElementById("display_area_record").innerHTML = test_name.substring(0, test_name.length - 1);
+                            $scope.rec.coverage_area = test_name;
+                            $scope.rec.coverage_area_id = test_id;
+                        });
+                    }
+                },
+                function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
         } else if (arg == 'sale_half') {
@@ -2309,6 +3068,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 template: 'app/views/srm/_listing_employee.html',
                 className: 'ngdialog-theme-default',
                 scope: $scope
+<<<<<<< HEAD
             }).then(function (result) {
 
                 if (show_id == 1) {
@@ -2321,6 +3081,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 }
             },
                 function (reason) {
+=======
+            }).then(function(result) {
+
+                    if (show_id == 1) {
+                        $scope.rec.valid_from = result.name;
+                        $scope.rec.valid_from_id = result.id;
+                    }
+                    if (show_id == 2) {
+                        $scope.rec.valid_to = result.name;
+                        $scope.rec.valid_to_id = result.id;
+                    }
+                },
+                function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
 
@@ -2329,10 +3103,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.calculateChecked = function () {
         var count = 0;
         //item.Selected
         angular.forEach($scope.record, function (value) {
+=======
+    $scope.calculateChecked = function() {
+        var count = 0;
+        //item.Selected
+        angular.forEach($scope.record, function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //  console.log(value.Selected);
             if (value.Selected)
                 count++;
@@ -2346,6 +3127,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.area = {};
     $scope.area.spage = 1;
 
+<<<<<<< HEAD
     $scope.resetKeyword = function () {
         angular.element('#search_area_data').val('');
     }
@@ -2359,6 +3141,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     $scope.get_shipping_agent = function () {
+=======
+    $scope.resetKeyword = function() {
+        angular.element('#search_area_data').val('');
+    }
+
+    $scope.resetSaleKeyword = function() {
+        angular.element('#search_sale_area_data').val('');
+    }
+
+    $scope.setSelectPage = function(pageno) {
+        $scope.area.spage = pageno;
+    }
+
+    $scope.get_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = "Areas";
         $scope.showShipLoader = true;
@@ -2380,7 +3177,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.area.total_pages = res.data.total_pages;
@@ -2394,7 +3195,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2414,7 +3219,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.areas_tab = "country";
     $scope.areas_listing_tab = "country";
 
+<<<<<<< HEAD
     $scope.get_search_shipping_agent = function (search_agent) {
+=======
+    $scope.get_search_shipping_agent = function(search_agent) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (search_agent == 'listing') {
             if ($scope.areas_listing_tab == "country") {
                 $scope.setShipCountrySelectPage(1);
@@ -2448,7 +3257,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.unset_search_shipping_agent = function (search_agent) {
+=======
+    $scope.unset_search_shipping_agent = function(search_agent) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (search_agent == 'listing') {
             angular.element('#search_sale_listing_data').val('');
             if ($scope.areas_listing_tab == "country") {
@@ -2489,6 +3302,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_country = [];
     $scope.ship_column_country = [];
 
+<<<<<<< HEAD
     $scope.setCountrySelectPage = function (pageno) {
         $scope.areas_country.spage = pageno;
     }
@@ -2496,12 +3310,25 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.checkAllCountries = function () {
         if (angular.element('#checkAllCountries').is(':checked')) {
             angular.forEach($scope.ship_data_country, function (val, index) {
+=======
+    $scope.setCountrySelectPage = function(pageno) {
+        $scope.areas_country.spage = pageno;
+    }
+
+    $scope.checkAllCountries = function() {
+        if (angular.element('#checkAllCountries').is(':checked')) {
+            angular.forEach($scope.ship_data_country, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!angular.element('#shipping_country_' + $scope.ship_data_country[index].id).is(':checked')) {
                     angular.element('#shipping_country_' + $scope.ship_data_country[index].id).prop('checked', true);
                 }
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_country, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_country, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_country_' + $scope.ship_data_country[index].id).is(':checked')) {
                     angular.element('#shipping_country_' + $scope.ship_data_country[index].id).prop('checked', false);
                 }
@@ -2509,7 +3336,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.get_countries_shipping_agent = function () {
+=======
+    $scope.get_countries_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_tab = "country";
         $scope.title = "Countries";
         $scope.showShipLoader = true;
@@ -2526,7 +3357,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_country.total_pages = res.data.total_pages;
@@ -2540,7 +3375,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_country = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_country.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2548,7 +3387,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         });
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.countries, function (val, index) {
+=======
+                    angular.forEach(res.data.countries, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         angular.element('#shipping_country_' + res.data.countries[index]).prop('checked', true);
                     });
 
@@ -2570,6 +3413,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_region = [];
     $scope.ship_column_region = [];
 
+<<<<<<< HEAD
     $scope.setRegionSelectPage = function (pageno) {
         $scope.areas_region.spage = pageno;
     }
@@ -2577,12 +3421,25 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.checkAllRegions = function () {
         if (angular.element('#checkAllRegions').is(':checked')) {
             angular.forEach($scope.ship_data_region, function (val, index) {
+=======
+    $scope.setRegionSelectPage = function(pageno) {
+        $scope.areas_region.spage = pageno;
+    }
+
+    $scope.checkAllRegions = function() {
+        if (angular.element('#checkAllRegions').is(':checked')) {
+            angular.forEach($scope.ship_data_region, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!angular.element('#shipping_region_' + $scope.ship_data_region[index].id).is(':checked')) {
                     angular.element('#shipping_region_' + $scope.ship_data_region[index].id).prop('checked', true);
                 }
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_region, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_region, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_region_' + $scope.ship_data_region[index].id).is(':checked')) {
                     angular.element('#shipping_region_' + $scope.ship_data_region[index].id).prop('checked', false);
                 }
@@ -2590,7 +3447,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.get_regions_shipping_agent = function () {
+=======
+    $scope.get_regions_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_tab = "region";
         $scope.title = "Regions";
         $scope.showShipLoader = true;
@@ -2607,7 +3468,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_region.total_pages = res.data.total_pages;
@@ -2621,7 +3486,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_region = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_region.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2629,7 +3498,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         });
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.regions, function (val, index) {
+=======
+                    angular.forEach(res.data.regions, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         angular.element('#shipping_region_' + res.data.regions[index]).prop('checked', true);
                     });
 
@@ -2651,6 +3524,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_county = [];
     $scope.ship_column_county = [];
 
+<<<<<<< HEAD
     $scope.setCountySelectPage = function (pageno) {
         $scope.areas_county.spage = pageno;
     }
@@ -2658,12 +3532,25 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.checkAllCounties = function () {
         if (angular.element('#checkAllCounties').is(':checked')) {
             angular.forEach($scope.ship_data_county, function (val, index) {
+=======
+    $scope.setCountySelectPage = function(pageno) {
+        $scope.areas_county.spage = pageno;
+    }
+
+    $scope.checkAllCounties = function() {
+        if (angular.element('#checkAllCounties').is(':checked')) {
+            angular.forEach($scope.ship_data_county, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!angular.element('#shipping_county_' + $scope.ship_data_county[index].id).is(':checked')) {
                     angular.element('#shipping_county_' + $scope.ship_data_county[index].id).prop('checked', true);
                 }
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_county, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_county, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_county_' + $scope.ship_data_county[index].id).is(':checked')) {
                     angular.element('#shipping_county_' + $scope.ship_data_county[index].id).prop('checked', false);
                 }
@@ -2671,7 +3558,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.get_county_shipping_agent = function () {
+=======
+    $scope.get_county_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_tab = "county";
         $scope.title = "Counties";
         $scope.showShipLoader = true;
@@ -2688,7 +3579,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_county.total_pages = res.data.total_pages;
@@ -2702,7 +3597,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_county = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_county.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2710,7 +3609,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         });
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.counties, function (val, index) {
+=======
+                    angular.forEach(res.data.counties, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         angular.element('#shipping_county_' + res.data.counties[index]).prop('checked', true);
                     });
 
@@ -2731,6 +3634,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_area = [];
     $scope.ship_column_area = [];
 
+<<<<<<< HEAD
     $scope.setAreaSelectPage = function (pageno) {
         $scope.areas_area.spage = pageno;
     }
@@ -2738,12 +3642,25 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.checkAllAreas = function () {
         if (angular.element('#checkAllAreas').is(':checked')) {
             angular.forEach($scope.ship_data_area, function (val, index) {
+=======
+    $scope.setAreaSelectPage = function(pageno) {
+        $scope.areas_area.spage = pageno;
+    }
+
+    $scope.checkAllAreas = function() {
+        if (angular.element('#checkAllAreas').is(':checked')) {
+            angular.forEach($scope.ship_data_area, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!angular.element('#shipping_area_' + $scope.ship_data_area[index].id).is(':checked')) {
                     angular.element('#shipping_area_' + $scope.ship_data_area[index].id).prop('checked', true);
                 }
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_area, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_area, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_area_' + $scope.ship_data_area[index].id).is(':checked')) {
                     angular.element('#shipping_area_' + $scope.ship_data_area[index].id).prop('checked', false);
                 }
@@ -2751,7 +3668,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.get_area_shipping_agent = function () {
+=======
+    $scope.get_area_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_tab = "area";
         $scope.title = "Areas";
         $scope.showShipLoader = true;
@@ -2766,7 +3687,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_area.total_pages = res.data.total_pages;
@@ -2780,7 +3705,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_area = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_area.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2789,7 +3718,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     });
 
 
+<<<<<<< HEAD
                     angular.forEach(res.data.areas, function (val, index) {
+=======
+                    angular.forEach(res.data.areas, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         angular.element('#shipping_area_' + res.data.areas[index]).prop('checked', true);
                     });
 
@@ -2809,12 +3742,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.sale_area = {};
     $scope.sale_area.spage = 1;
 
+<<<<<<< HEAD
     $scope.setSaleSelectPage = function (pageno) {
+=======
+    $scope.setSaleSelectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.sale_area.spage = pageno;
     }
 
 
+<<<<<<< HEAD
     $scope.get_sale_shipping_agent = function () {
+=======
+    $scope.get_sale_shipping_agent = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         $scope.ship_sale_areas = [];
@@ -2837,7 +3778,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.sale_area.total_pages = res.data.total_pages;
@@ -2851,7 +3796,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_sale_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_sale_column.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2870,7 +3819,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     $scope.ship_sale_areas = [];
     $scope.checkedsale = 0;
+<<<<<<< HEAD
     $scope.selectSaleItem = function (obj) {
+=======
+    $scope.selectSaleItem = function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (angular.element('#shipping_area_' + obj.id).is(':checked')) {
             $scope.ship_sale_areas.push({
@@ -2894,7 +3847,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     };
 
+<<<<<<< HEAD
     $scope.addSaleAreas = function () {
+=======
+    $scope.addSaleAreas = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var prodApi = $scope.$root.pr + "srm/srm/srm-add-sale-areas";
 
         var postData = {
@@ -2904,7 +3861,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                     $scope.checkedsale = 0;
@@ -2917,13 +3878,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     };
 
+<<<<<<< HEAD
     $scope.addSaleArea = function (type) {
+=======
+    $scope.addSaleArea = function(type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var prodApi = $scope.$root.pr + "srm/srm/srm-add-sale-area";
         var areas = [];
         var areas_old = [];
         var message = "";
         if (type == 1) {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_country, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_country, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_country_' + $scope.ship_data_country[index].id).is(':checked')) {
                     areas.push({ 'id': $scope.ship_data_country[index].id });
                     areas_old.push({ 'id': $scope.ship_data_country[index].id });
@@ -2933,7 +3902,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
             message = "Countries";
         } else if (type == 2) {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_region, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_region, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_region_' + $scope.ship_data_region[index].id).is(':checked')) {
                     areas.push({ 'id': $scope.ship_data_region[index].id });
                     areas_old.push({ 'id': $scope.ship_data_region[index].id });
@@ -2943,7 +3916,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
             message = "Region";
         } else if (type == 3) {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_county, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_county, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_county_' + $scope.ship_data_county[index].id).is(':checked')) {
                     areas.push({ 'id': $scope.ship_data_county[index].id });
                     areas_old.push({ 'id': $scope.ship_data_county[index].id });
@@ -2953,7 +3930,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
             message = "County";
         } else if (type == 4) {
+<<<<<<< HEAD
             angular.forEach($scope.ship_data_area, function (val, index) {
+=======
+            angular.forEach($scope.ship_data_area, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (angular.element('#shipping_area_' + $scope.ship_data_area[index].id).is(':checked')) {
                     areas.push({ 'id': $scope.ship_data_area[index].id });
                     areas_old.push({ 'id': $scope.ship_data_area[index].id });
@@ -2972,7 +3953,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                     $scope.checkedsale = 0;
@@ -2983,7 +3968,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     };
 
+<<<<<<< HEAD
     $scope.deleteSaleArea = function (id) {
+=======
+    $scope.deleteSaleArea = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var prodApi = $scope.$root.pr + "srm/srm/srm-delete-sale-area";
 
@@ -2993,7 +3982,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Delete', $scope.$root.getErrorMessageByCode(103));
                     $scope.get_sale_shipping_agent();
@@ -3005,24 +3998,40 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     };
 
+<<<<<<< HEAD
     $scope.showAreas = function () {
+=======
+    $scope.showAreas = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         angular.element('#modalAreas').modal({
             show: true
         });
     }
 
+<<<<<<< HEAD
     $scope.resetSearch = function (id) {
+=======
+    $scope.resetSearch = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         angular.element('#' + id).val('');
     }
 
     $scope.location_id = 0;
 
+<<<<<<< HEAD
     $scope.showSaleLoader = function () {
+=======
+    $scope.showSaleLoader = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLocationLoader = true;
         $scope.showLocationLoader = false;
     }
 
+<<<<<<< HEAD
     $scope.get_sale_area = function (locationid) {
+=======
+    $scope.get_sale_area = function(locationid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showPriceLoader = true;
 
@@ -3040,7 +4049,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 'page': $scope.sale_area.spage,
                 'keyword': angular.element('#search_sale_price_data').val()
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.sale_area.total_pages = res.data.total_pages;
@@ -3052,7 +4065,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.record_ship = {};
                     $scope.columns_ship = [];
                     $scope.record_ship = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_ship.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3066,7 +4083,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.total = 0;
                     $scope.record = res.data.response;
                     $scope.total = res.data.total;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columnss.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3078,6 +4099,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             template: 'app/views/srm/_listing_location.html',
                             className: 'ngdialog-theme-default',
                             scope: $scope
+<<<<<<< HEAD
                         }).then(function (result) {
                             if ($scope.location_id == 1) {
                                 $scope.rec.valid_from = result.name;
@@ -3089,6 +4111,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             }
                         },
                             function (reason) {
+=======
+                        }).then(function(result) {
+                                if ($scope.location_id == 1) {
+                                    $scope.rec.valid_from = result.name;
+                                    $scope.rec.valid_from_id = result.id;
+                                }
+                                if ($scope.location_id == 2) {
+                                    $scope.rec.valid_to = result.name;
+                                    $scope.rec.valid_to_id = result.id;
+                                }
+                            },
+                            function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 console.log('Modal promise rejected. Reason: ', reason);
                             });
                     }
@@ -3109,12 +4144,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_countries = [];
     $scope.ship_column_countries = [];
 
+<<<<<<< HEAD
     $scope.setShipCountrySelectPage = function (pageno) {
+=======
+    $scope.setShipCountrySelectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_shipping_country.spage = pageno;
         $scope.areas_listing_tab = "country";
     }
 
+<<<<<<< HEAD
     $scope.get_shipping_countries = function () {
+=======
+    $scope.get_shipping_countries = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.shipinglistingShow = true;
         $scope.shipinglistingShowForm = true;
@@ -3130,7 +4173,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_shipping_country.total_pages = res.data.total_pages;
@@ -3144,7 +4191,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_countries = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_countries.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3163,12 +4214,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_regions = [];
     $scope.ship_column_regions = [];
 
+<<<<<<< HEAD
     $scope.setShipRegionSelectPage = function (pageno) {
+=======
+    $scope.setShipRegionSelectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_shipping_region.spage = pageno;
         $scope.areas_listing_tab = "region";
     }
 
+<<<<<<< HEAD
     $scope.get_shipping_regions = function () {
+=======
+    $scope.get_shipping_regions = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -3182,7 +4241,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_shipping_region.total_pages = res.data.total_pages;
@@ -3196,7 +4259,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_regions = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_regions.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3218,12 +4285,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_counties = [];
     $scope.ship_column_counties = [];
 
+<<<<<<< HEAD
     $scope.setShipCountySelectPage = function (pageno) {
+=======
+    $scope.setShipCountySelectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_shipping_county.spage = pageno;
         $scope.areas_listing_tab = "county";
     }
 
+<<<<<<< HEAD
     $scope.get_shipping_counties = function () {
+=======
+    $scope.get_shipping_counties = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -3237,7 +4312,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_shipping_county.total_pages = res.data.total_pages;
@@ -3251,7 +4330,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_counties = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_counties.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3272,12 +4355,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.ship_data_areas = [];
     $scope.ship_column_areas = [];
 
+<<<<<<< HEAD
     $scope.setShipAreaSelectPage = function (pageno) {
+=======
+    $scope.setShipAreaSelectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.areas_shipping_area.spage = pageno;
         $scope.areas_listing_tab = "area";
     }
 
+<<<<<<< HEAD
     $scope.get_shipping_areas = function () {
+=======
+    $scope.get_shipping_areas = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -3291,7 +4382,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.areas_shipping_area.total_pages = res.data.total_pages;
@@ -3305,7 +4400,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.ship_data_areas = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column_areas.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3323,7 +4422,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     //Area
+<<<<<<< HEAD
     $scope.get_shipping_agent_pre = function () {
+=======
+    $scope.get_shipping_agent_pre = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.$root.breadcrumbs[3].name = 'Shipping';
 
@@ -3337,13 +4440,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var postUrl = $scope.$root.pr + "srm/srm/srm-shipping";
         $http
             .post(postUrl, { 'token': $scope.$root.token, 'id': $scope.$root.srm_id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.response != null) {
                     $scope.ship_data = [];
                     $scope.ship_column = [];
 
                     $scope.ship_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.ship_column.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3356,7 +4467,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.add_srm_shipping = function (rec) {
+=======
+    $scope.add_srm_shipping = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec.srm_id = $scope.$root.srm_id;
         rec.token = $scope.$root.token;
@@ -3368,7 +4483,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(altAddUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //	$scope.$root.count = $scope.$root.count+1;
                 if (res.data.ack == true) {
 
@@ -3393,7 +4512,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.edit_shipping_Form = function (id) {
+=======
+    $scope.edit_shipping_Form = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = true;
         $scope.showLoader = true;
         $scope.customers_list = false;
@@ -3406,19 +4529,31 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(altcontUrl, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.rec = res.data.response;
                 $scope.rec.id = res.data.response.id;
                 $scope.rec.update_id = res.data.response.id;
 
+<<<<<<< HEAD
                 angular.forEach($scope.price_method_list, function (obj) {
+=======
+                angular.forEach($scope.price_method_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.price_method) {
                         $scope.rec.price_methods = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.shiping_list, function (obj) {
+=======
+                angular.forEach($scope.shiping_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.shipping_method) {
                         $scope.rec.shipping_methods = obj;
                     }
@@ -3427,15 +4562,26 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = false;
     }
 
+<<<<<<< HEAD
     $scope.delete_shipping = function (id, index, arr_data) {
+=======
+    $scope.delete_shipping = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.pr + "srm/srm/delete-srm-shipping";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
@@ -3443,7 +4589,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -3455,7 +4605,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.total = 0;
     $scope.selected_count = 0;
 
+<<<<<<< HEAD
     $scope.viewAllCustomers = function (id) {
+=======
+    $scope.viewAllCustomers = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData_customer = {};
         $scope.title = 'Area';
         angular.element('#model_btn_cs').modal({
@@ -3469,7 +4623,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(sale_Url, postData_sale)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.formData_customer.update_id = id;
 
@@ -3481,7 +4639,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.selected_count = res.data.selected_count;
                     $scope.from_selected = true;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columnss.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3490,9 +4652,15 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     });
 
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
                         if (value.checked == 1)
                             //  console.log('#selected_'+value.id);
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (value.checked == 1)
+                        //  console.log('#selected_'+value.id);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             angular.element('#selected_' + value.id).click();
                         //	 $(".selected_"+value.id).click(); 
                     });
@@ -3501,7 +4669,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.checkAll_cancel = function () {
+=======
+    $scope.checkAll_cancel = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var bool = true;
         if ($scope.selectedAll == false) {
@@ -3509,7 +4681,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
         $scope.from_ch_selected = true;
         $scope.from_selected = false;
+<<<<<<< HEAD
         angular.forEach($scope.selection_record, function (item) {
+=======
+        angular.forEach($scope.selection_record, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (item.Selected == true) {
 
@@ -3524,15 +4700,25 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
 
     //add_customer
+<<<<<<< HEAD
     $scope.add_customer = function (formData_customer) {
 
         $scope.selectedList = $scope.selection_record.filter(function (namesDataItem) {
+=======
+    $scope.add_customer = function(formData_customer) {
+
+        $scope.selectedList = $scope.selection_record.filter(function(namesDataItem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return namesDataItem.Selected;
         });
         var test_name = '';
         var test_id = '';
         var customer_price = '';
+<<<<<<< HEAD
         angular.forEach($scope.selectedList, function (obj) {
+=======
+        angular.forEach($scope.selectedList, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             for (var i = 0; i < $scope.selection_record.length; i++) {
                 var object = $scope.selection_record[i];
@@ -3559,7 +4745,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var updateUrl = $scope.$root.pr + "srm/srm/add-customer";
         $http
             .post(updateUrl, formData_customer)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.get_shipping_agent();
@@ -3574,7 +4764,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     //---------------- Area    ------------------------
 
+<<<<<<< HEAD
     $scope.get_area = function () {
+=======
+    $scope.get_area = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.$root.breadcrumbs[3].name = 'Area';
 
         $scope.arealistingShow = true;
@@ -3588,11 +4782,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             'token': $scope.$root.token,
             'id': $scope.$root.srm_id,
             'page': $scope.item_paging.spage
+<<<<<<< HEAD
             //'country_keyword': angular.element('#search_sale_listing_data').val()
         };
         $http
             .post(API, $scope.postData)
             .then(function (res) {
+=======
+                //'country_keyword': angular.element('#search_sale_listing_data').val()
+        };
+        $http
+            .post(API, $scope.postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.area_data = [];
                 $scope.columns = [];
@@ -3608,7 +4810,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.area_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -3624,7 +4830,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = false;
     }
 
+<<<<<<< HEAD
     $scope.area_add_Form = function () {
+=======
+    $scope.area_add_Form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.arealistingShow = false;
         $scope.arealistingShowForm = true;
 
@@ -3632,7 +4842,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         //$scope.rec = {};
     }
 
+<<<<<<< HEAD
     $scope.add_area = function (rec) {
+=======
+    $scope.add_area = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec.srm_id = $scope.$root.srm_id;
         rec.token = $scope.$root.token;
@@ -3642,7 +4856,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var altAddUrl = $scope.$root.pr + "srm/srm/add-srm-area";
         $http
             .post(altAddUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //	$scope.$root.count = $scope.$root.count+1;
                 if (res.data.ack == true) {
 
@@ -3664,7 +4882,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.edit_area = function (id) {
+=======
+    $scope.edit_area = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = true;
         $scope.showLoader = true;
 
@@ -3679,17 +4901,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(altcontUrl, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec = res.data.response;
                 $scope.rec.id = res.data.response.id;
                 $scope.rec.update_id = res.data.response.id;
 
+<<<<<<< HEAD
                 angular.forEach($scope.price_method_list, function (obj) {
+=======
+                angular.forEach($scope.price_method_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.price_method) {
                         $scope.rec.price_methods = $scope.price_method_list[index];
                     }
                 });
+<<<<<<< HEAD
                 angular.forEach($scope.shiping_list, function (obj) {
+=======
+                angular.forEach($scope.shiping_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.shipping_method) {
                         $scope.rec.shipping_methods = $scope.shiping_list[index];
                     }
@@ -3698,16 +4932,27 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = false;
     }
 
+<<<<<<< HEAD
     $scope.delete_area = function (id, index, arr_data) {
+=======
+    $scope.delete_area = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // 	var delUrl = $scope.$root.pr+"supplier/supplier/delete-supplier-area";
         var delUrl = $scope.$root.pr + "srm/srm/delete-srm-area";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
@@ -3715,7 +4960,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -3723,7 +4972,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //---------------- Area    ------------------------
     // ---------------- Shipping   	 -----------------------------------------
 
+<<<<<<< HEAD
     $scope.reload_popup = function (div_id, div_model) {
+=======
+    $scope.reload_popup = function(div_id, div_model) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         angular.element('#' + div_model).modal('hide');
@@ -3734,9 +4987,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.rec.shipping_methods = $scope.shiping_list[0];
         } else if (div_id == 3) {
             $scope.rec.offer_method_ids = $scope.price_method_list[0];
+<<<<<<< HEAD
         }
 
         else if (div_id == 7) {
+=======
+        } else if (div_id == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.formData.volume_1 = $scope.arr_volume_1[0];
         } else if (div_id == 8) {
             $scope.formData.volume_2 = $scope.arr_volume_2[0];
@@ -3755,7 +5012,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     // ------------- 	 add method    	 ----------------------------------------
 
     $scope.formData6 = {};
+<<<<<<< HEAD
     $scope.onChangmethod = function () {
+=======
+    $scope.onChangmethod = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.rec.price_methods.id;
 
@@ -3770,14 +5031,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.name = '';
     }
 
+<<<<<<< HEAD
     $scope.add_method_pop = function (formData6) {
+=======
+    $scope.add_method_pop = function(formData6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var addcountriesUrl = $scope.$root.pr + "srm/srm/add-shiping-list";
         $scope.formData6.token = $scope.$root.token;
         $scope.formData6.data = $scope.formFields;
         $http
             .post(addcountriesUrl, formData6)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     angular.element('#model_method').modal('hide');
                     toaster.pop('success', 'Add', 'Record  Inserted.');
@@ -3785,7 +5054,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $http
                         .post(method_url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data.ack == true) {
                                 $scope.price_method_list = res.data.response;
                                 if ($scope.user_type == 1) {
@@ -3800,7 +5073,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.onChangeprice = function () {
+=======
+    $scope.onChangeprice = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.rec.offer_method_ids.id;
 
@@ -3814,7 +5091,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.name = '';
     }
 
+<<<<<<< HEAD
     $scope.onChangeshipping = function () {
+=======
+    $scope.onChangeshipping = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.rec.shipping_methods.id;
 
@@ -3828,14 +5109,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.name = '';
     }
 
+<<<<<<< HEAD
     $scope.add_shipping_pop = function (formData6) {
+=======
+    $scope.add_shipping_pop = function(formData6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var add_shipping_method_url = $scope.$root.pr + "srm/srm/add-shiping-list";
         $scope.formData6.token = $scope.$root.token;
         $scope.formData6.data = $scope.formFields;
         $http
             .post(add_shipping_method_url, formData6)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     toaster.pop('success', 'Add', 'Record  Inserted.');
@@ -3843,7 +5132,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $http
                         .post(shipping_method_url, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (res.data.ack == true) {
                                 $scope.shiping_list = res.data.response;
@@ -3888,7 +5181,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.showItms = true;
     $scope.showServ = true;
     var prodApi_setup = $scope.$root.stock + "products-listing/get-products-popup";
+<<<<<<< HEAD
     $scope.getProduct = function () {
+=======
+    $scope.getProduct = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.rec.update_id != undefined) {
             if ($scope.rec.type == 1)
                 $scope.getProductListing();
@@ -3899,7 +5196,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         angular.element('#itemServModal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.getProductListing = function () {
+=======
+    $scope.getProductListing = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Items';
         $scope.rec.type = 1;
         // var prodApi = $scope.$root.stock + "products-listing/get-purchase-products-popup";
@@ -3910,14 +5211,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi_setup, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.items = res.data.response;
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.getServices = function () {
+=======
+    $scope.getServices = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Services';
         $scope.rec.type = 2;
         var postData = "";
@@ -3928,14 +5237,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.services = res.data.response;
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.addItem = function (item, type) {
+=======
+    $scope.addItem = function(item, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.product_description = item.description;
         $scope.rec.type = type;
@@ -3964,7 +5281,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.get_item_voume_list = function (arg, product_id) {
+=======
+    $scope.get_item_voume_list = function(arg, product_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //console.log(product_id);
         $scope.arr_volume_1 = [];
         $scope.arr_volume_2 = [];
@@ -3987,7 +5308,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 'product_id': product_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (arg == 1) {
                     $scope.arr_volume_1 = vol_data.data.response;
@@ -4019,7 +5344,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 'product_id': product_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (arg == 1) {
                     $scope.arr_volume_2 = vol_data.data.response;
@@ -4054,7 +5383,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 'product_id': product_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (arg == 1) {
                     $scope.arr_volume_3 = vol_data.data.response;
@@ -4083,7 +5416,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(get_unit_setup_category, { 'token': $scope.$root.token, 'product_id': product_id })
+<<<<<<< HEAD
             .then(function (unit_data) {
+=======
+            .then(function(unit_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_unit_of_measure = unit_data.data.response;
                 // $scope.arr_unit_of_measure.push({'id': '-1', 'name': '++ Add New ++'});
             });
@@ -4091,11 +5428,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.get_service_voume_list = function (arg) {
 
         $http
             .post(volumeUrl_service, { type: 'Volume 1', 'token': $scope.$root.token })
             .then(function (vol_data) {
+=======
+    $scope.get_service_voume_list = function(arg) {
+
+        $http
+            .post(volumeUrl_service, { type: 'Volume 1', 'token': $scope.$root.token })
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                 if (arg == 1) {
@@ -4124,7 +5469,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(volumeUrl_service, { type: 'Volume 2', 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (arg == 1) {
                     $scope.arr_volume_2 = vol_data.data.response;
@@ -4154,7 +5503,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(volumeUrl_service, { type: 'Volume 3', 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (arg == 1) {
                     $scope.arr_volume_3 = vol_data.data.response;
@@ -4183,7 +5536,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(unitUrl_service, { 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (unit_data) {
+=======
+            .then(function(unit_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_unit_of_measure = unit_data.data.response;
                 // $scope.arr_unit_of_measure.push({'id': '-1', 'name': '++ Add New ++'});
             });
@@ -4193,7 +5550,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
 
     $scope.formData_vol_1 = {};
+<<<<<<< HEAD
     $scope.get_category_list = function () {
+=======
+    $scope.get_category_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var pard_id = $scope.rec.product_id;
 
@@ -4207,13 +5568,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.list_unit_category = [];
         $http
             .post(get_unit_setup_category, { 'token': $scope.$root.token, 'product_id': pard_id })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.list_unit_category = vol_data.data.response;
             });
 
     }
 
+<<<<<<< HEAD
     $scope.onChange_vol_1 = function (arg_id, arg_name) {
+=======
+    $scope.onChange_vol_1 = function(arg_id, arg_name) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData_vol_1 = {};
 
@@ -4292,7 +5661,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     }
 
+<<<<<<< HEAD
     $scope.add_vol1_type = function (formData_vol_1) {
+=======
+    $scope.add_vol1_type = function(formData_vol_1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData_vol_1.token = $scope.$root.token;
         $scope.formData_vol_1.product_id = $scope.rec.product_id;
@@ -4305,7 +5678,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
         $http
             .post(addvolumeUrl_item, formData_vol_1)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(101));
                     //  $scope.show_vol_1_pop = false; 
@@ -4314,8 +5691,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     //  $scope.get_item_voume_list($scope.formData_vol_1.category,$scope.rec.product_id );
 
+<<<<<<< HEAD
                     var match_name = $scope.formData_vol_1.quantity_from + '-' + $scope.formData_vol_1.quantity_to
                         + ' ' + $scope.formData_vol_1.unit_category.name;
+=======
+                    var match_name = $scope.formData_vol_1.quantity_from + '-' + $scope.formData_vol_1.quantity_to +
+                        ' ' + $scope.formData_vol_1.unit_category.name;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                     $http
@@ -4326,6 +5708,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             'token': $scope.$root.token
                         })
 
+<<<<<<< HEAD
                         .then(function (vol_data) {
 
                             if ($scope.rec.ref_service_type == 1) {
@@ -4383,12 +5766,72 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                 });
                             }
                         });
+=======
+                    .then(function(vol_data) {
+
+                        if ($scope.rec.ref_service_type == 1) {
+                            $scope.arr_volume_1 = vol_data.data.response;
+
+                            if ($scope.arr_volume_1.length == 0) {
+                                $scope.arr_volume_1.push({ 'id': '-1', 'name': '++ Add New ++' });
+                            } else if ($scope.arr_volume_1.length > 0)
+                                if ($scope.user_type == 1)
+                                    $scope.arr_volume_1.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                            angular.forEach($scope.arr_volume_1, function(elem) {
+                                if (elem.id == res.data.id) {
+                                    $scope.rec.volume_1s = elem;
+                                    $scope.formData.volume_1 = elem;
+                                }
+                            });
+                        }
+
+                        if ($scope.rec.ref_service_type == 2) {
+                            $scope.arr_volume_2 = vol_data.data.response;
+
+
+                            if ($scope.arr_volume_2.length == 0) {
+                                $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
+                            } else if ($scope.arr_volume_2.length > 0)
+                                if ($scope.user_type == 1)
+                                    $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                            angular.forEach($scope.arr_volume_2, function(elem) {
+                                if (elem.id == res.data.id) {
+                                    $scope.rec.volume_2s = elem;
+                                    $scope.formData.volume_2 = elem;
+                                }
+                            });
+                        }
+
+                        if ($scope.rec.ref_service_type == 3) {
+                            $scope.arr_volume_3 = vol_data.data.response;
+
+                            if ($scope.arr_volume_3.length == 0) {
+                                $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
+                            } else if ($scope.arr_volume_3.length > 0)
+                                if ($scope.user_type == 1)
+                                    $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                            angular.forEach($scope.arr_volume_3, function(elem) {
+                                if (elem.id == res.data.id) {
+                                    $scope.rec.volume_3s = elem;
+                                    $scope.formData.volume_3 = elem;
+                                }
+                            });
+                        }
+                    });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 } else
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(548, ['Volume']));
             });
     }
 
+<<<<<<< HEAD
     $scope.add_vol3_service = function (formData_vol_1) {
+=======
+    $scope.add_vol3_service = function(formData_vol_1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData_vol_1.token = $scope.$root.token;
         // $scope.formData_vol_3.type = 3;
         $scope.formData_vol_1.parent_id = 0;
@@ -4400,7 +5843,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(addvolumeUrl_service, formData_vol_1)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Add', 'Record  Inserted.');
                     $('#model_vol_3').modal('hide');
@@ -4410,20 +5857,32 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             type: 'Volume ' + $scope.rec.ref_service_type,
                             'token': $scope.$root.token
                         })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if ($scope.rec.ref_service_type == 1) {
                                 $scope.arr_volume_1 = vol_data.data.response;
 
                                 if ($scope.arr_volume_1.length == 0) {
                                     $scope.arr_volume_1.push({ 'id': '-1', 'name': '++ Add New ++' });
+<<<<<<< HEAD
                                 }
                                 else if ($scope.arr_volume_1.length > 0)
+=======
+                                } else if ($scope.arr_volume_1.length > 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if ($scope.user_type == 1)
                                         $scope.arr_volume_1.push({ 'id': '-1', 'name': '++ Add New ++' });
 
 
+<<<<<<< HEAD
                                 angular.forEach($scope.arr_volume_1, function (elem) {
+=======
+                                angular.forEach($scope.arr_volume_1, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.name == $scope.formData_vol_1.description)
                                         $scope.rec.volume_1s = elem;
                                 });
@@ -4434,12 +5893,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                                 if ($scope.arr_volume_2.length == 0) {
                                     $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
+<<<<<<< HEAD
                                 }
                                 else if ($scope.arr_volume_2.length > 0)
                                     if ($scope.user_type == 1)
                                         $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
 
                                 angular.forEach($scope.arr_volume_2, function (elem) {
+=======
+                                } else if ($scope.arr_volume_2.length > 0)
+                                    if ($scope.user_type == 1)
+                                        $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                                angular.forEach($scope.arr_volume_2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.name == $scope.formData_vol_1.description)
                                         $scope.rec.volume_2s = elem;
                                 });
@@ -4450,12 +5917,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                                 if ($scope.arr_volume_3.length == 0) {
                                     $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
+<<<<<<< HEAD
                                 }
                                 else if ($scope.arr_volume_3.length > 0)
                                     if ($scope.user_type == 1)
                                         $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
 
                                 angular.forEach($scope.arr_volume_3, function (elem) {
+=======
+                                } else if ($scope.arr_volume_3.length > 0)
+                                    if ($scope.user_type == 1)
+                                        $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                                angular.forEach($scope.arr_volume_3, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.name == $scope.formData_vol_1.description)
                                         $scope.rec.volume_3s = elem;
                                 });
@@ -4466,7 +5941,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.addNewVolumePopup = function (drpdown, type, title) {
+=======
+    $scope.addNewVolumePopup = function(drpdown, type, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.type;
         //console.log($scope.rec.type);
         if ($scope.rec.type == 1) {
@@ -4489,7 +5968,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             // template: 'app/views/p_offer/add_new_volume.html',
             className: 'ngdialog-theme-default-custom-large',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             pedefined.token = $scope.$root.token;
@@ -4497,13 +5980,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(consnt_add, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         // var constUrl = $scope.$root.sales+"crm/crm/get-price-offer-volume-by-type";
                         $http
                             .post(const_list, { 'token': $scope.$root.token, type: type })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack == true) {
 
                                     if (type == 'Volume 1') {
@@ -4514,7 +6005,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     if (type == 'Volume 2') {
                                         $scope.arr_volume_2 = res.data.response;
                                         $scope.arr_volume_2.push({ 'id': '-1', 'name': '++ Add New ++' });
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_volume_2, function (elem) {
+=======
+                                        angular.forEach($scope.arr_volume_2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == ress.data.id)
                                                 $scope.rec.volume_2s = elem;
                                         });
@@ -4524,7 +6019,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                         $scope.arr_volume_3 = res.data.response;
                                         $scope.arr_volume_3.push({ 'id': '-1', 'name': '++ Add New ++' });
 
+<<<<<<< HEAD
                                         angular.forEach($scope.arr_volume_3, function (elem) {
+=======
+                                        angular.forEach($scope.arr_volume_3, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.id == ress.data.id)
                                                 $scope.rec.volume_3s = elem;
                                         });
@@ -4534,12 +6033,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     }
                 });
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.addNewUnitPopup = function (drpdown, type, title) {
+=======
+    $scope.addNewUnitPopup = function(drpdown, type, title) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.type;
         var consnt_add = "";
         var const_list = "";
@@ -4564,7 +6071,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/p_offer/add_new_unit.html',
             className: 'ngdialog-theme-default-custom-large',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*console.log(pedefined);
              return false;*/
 
@@ -4573,18 +6084,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var postUrl = $scope.$root.stock + "unit-measure/add-unit";
             $http
                 .post(consnt_add, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         var constUrl = $scope.$root.stock + "unit-measure/get-all-unit";
                         $http
                             .post(const_list, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack == true) {
                                     $scope.arr_unit_of_measure = res.data.response;
                                     $scope.arr_unit_of_measure.push({ 'id': '-1', 'title': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_unit_of_measure, function (elem) {
+=======
+                                    angular.forEach($scope.arr_unit_of_measure, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id) {
                                             if (type == 'Volume 1')
                                                 $scope.rec.unit_of_measure_1s = elem;
@@ -4599,13 +6122,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     }
                 });
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
     $scope.formData = {};
+<<<<<<< HEAD
     $scope.getOffer = function (arg) {
+=======
+    $scope.getOffer = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.columns_ship = [];
         $scope.record_ship = {};
         //var empUrl = $scope.$root.hr+"employee/listings";
@@ -4643,13 +6174,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(empUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.columns_ship = [];
                     $scope.record_ship = {};
                     $scope.record_ship = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_ship.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -4664,6 +6203,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: new_template,
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
 
             if (arg == 'emp') {
@@ -4726,12 +6266,80 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             }
         },
             function (reason) {
+=======
+        }).then(function(result) {
+
+                if (arg == 'emp') {
+                    $scope.rec.offered_by = result.contact_name;
+                    $scope.rec.offered_by_id = result.id;
+                } else if (arg == 'prd') {
+
+                    $scope.rec.product_id = result.id;
+                    $scope.rec.product_code = result.product_code;
+                    $scope.rec.product_description = result.description;
+                } else if (arg == 'price') {
+
+                    $scope.formData.price_list_id = result.id;
+                    $scope.formData.product_id = result.product_id;
+                    $scope.formData.product_code = result.product_code;
+                    $scope.formData.product_description = result.item_description;
+
+                    $scope.get_item_voume_list(1, $scope.formData.product_id);
+
+                    console.log(result.product_code);
+
+
+                    if (result.volume_1 != undefined) {
+                        angular.forEach($scope.arr_volume_1, function(elem) {
+                            if (elem.id == result.volume_1) {
+                                $scope.formData.volume_1 = elem;
+                            }
+                        });
+                    }
+
+                    if (result.volume_2 != undefined) {
+                        angular.forEach($scope.arr_volume_2, function(elem) {
+                            if (elem.id == result.volume_2) {
+                                //$scope.$root.$apply(function () {
+                                $scope.formData.volume_2 = elem;
+                                //});
+                            }
+                        });
+                    }
+
+                    if (result.volume_3 != undefined) {
+                        angular.forEach($scope.arr_volume_3, function(elem) {
+                            if (elem.id == result.volume_3) {
+                                // $scope.$root.$apply(function () {
+                                $scope.formData.volume_3 = elem;
+                                //});
+                            }
+                        });
+                    }
+
+                    if (result.volume_1_price != undefined) {
+                        $scope.formData.purchase_price_1 = result.volume_1_price;
+                    }
+                    if (result.volume_2_price != undefined) {
+                        $scope.formData.purchase_price_2 = result.volume_2_price;
+                    }
+                    if (result.volume_3_price != undefined) {
+                        $scope.formData.purchase_price_3 = result.volume_3_price;
+                    }
+                }
+            },
+            function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
     }
 
 
+<<<<<<< HEAD
     $scope.clear_purchase_offer = function () {
+=======
+    $scope.clear_purchase_offer = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = false;
 
         // $scope.rec = {};
@@ -4760,7 +6368,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.pOfferListingFormShow = true;
     }
 
+<<<<<<< HEAD
     $scope.get_price_list = function () {
+=======
+    $scope.get_price_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.$root.breadcrumbs[3].name = 'Price List';
 
@@ -4774,11 +6386,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             'token': $scope.$root.token,
             'id': $scope.$root.srm_id,
             'page': $scope.item_paging.spage
+<<<<<<< HEAD
             //'country_keyword': angular.element('#search_sale_listing_data').val()
         };
         $http
             .post(API, $scope.postData)
             .then(function (res) {
+=======
+                //'country_keyword': angular.element('#search_sale_listing_data').val()
+        };
+        $http
+            .post(API, $scope.postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.price_data = [];
                 $scope.columns = [];
@@ -4803,7 +6423,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.price_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -4820,7 +6444,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.add_form_price_list = function () {
+=======
+    $scope.add_form_price_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = false;
 
         // $scope.rec = {};
@@ -4833,7 +6461,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.pOfferListingFormShow = true;
     }
 
+<<<<<<< HEAD
     $scope.add_srm_price_list = function (rec) {
+=======
+    $scope.add_srm_price_list = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         rec.offer_method_id = $scope.rec.offer_method_ids != undefined ? $scope.rec.offer_method_ids.id : 0;
@@ -4910,7 +6542,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var altAddUrl = $scope.$root.pr + "srm/srm/add-srm-price-offer-listing";
         $http
             .post(altAddUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //	$scope.$root.count = $scope.$root.count+1;
                 if (res.data.ack == true) {
 
@@ -4933,7 +6569,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     var ProductDetailsURL = $scope.$root.stock + "products-listing/get-product-by-id";
 
+<<<<<<< HEAD
     $scope.edit_form_price_list = function (id) {
+=======
+    $scope.edit_form_price_list = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.clear_purchase_offer();
         $scope.check_readonly = true;
 
@@ -4949,7 +6589,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(altcontUrl, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.rec = res.data.response;
 
@@ -4958,7 +6602,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                 $scope.rec.offered_by = res.data.response.offered_by;
 
+<<<<<<< HEAD
                 angular.forEach($scope.price_method_list, function (obj) {
+=======
+                angular.forEach($scope.price_method_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.offer_method_id) {
                         $scope.rec.offer_method_ids = obj;
                     }
@@ -4987,7 +6635,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.rec.offer_valid_date = $scope.$root.convert_unix_date_to_angular($scope.rec.offer_valid_date);
 
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_OfferMethod, function (elem) {
+=======
+                angular.forEach($scope.arr_OfferMethod, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.offer_method_id) {
                         $scope.rec.offer_method_ids = elem;
                     }
@@ -4996,7 +6648,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 var empUrl = $scope.$root.pr + "srm/srm/get-alt-contact";
                 $http
                     .post(empUrl, { id: res.data.response.offered_by_id, 'token': $scope.$root.token })
+<<<<<<< HEAD
                     .then(function (emp_data) {
+=======
+                    .then(function(emp_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.rec.offered_by = emp_data.data.response.contact_name;
                     });
 
@@ -5010,7 +6666,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             product_id: res.data.response.product_id,
                             'token': $scope.$root.token
                         })
+<<<<<<< HEAD
                         .then(function (prod_data) {
+=======
+                        .then(function(prod_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.product_description = prod_data.data.response.description;
                             //$scope.product_barcode	= prod_data.data.response.prd_bar_code;
                             $scope.product_code = prod_data.data.response.product_code;
@@ -5025,7 +6685,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.showServ = true;
                     $http
                         .post(prodUrl, { product_id: res.data.response.product_id, 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (prod_data) {
+=======
+                        .then(function(prod_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.product_description = prod_data.data.response.description;
                             //$scope.product_barcode	= prod_data.data.response.prd_bar_code;
                             $scope.product_code = prod_data.data.response.code;
@@ -5034,59 +6698,95 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $http
                         .post(volumeUrl_service, { type: 'Volume 1', 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.arr_volume_1 = vol_data.data.response;
                             $scope.arr_volume_1.push({ 'id': '-1', 'description': '++ Add New ++' });
                         });
 
                     $http
                         .post(volumeUrl_service, { type: 'Volume 2', 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.arr_volume_2 = vol_data.data.response;
                             $scope.arr_volume_2.push({ 'id': '-1', 'description': '++ Add New ++' });
                         });
 
                     $http
                         .post(volumeUrl_service, { type: 'Volume 3', 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.arr_volume_3 = vol_data.data.response;
                             $scope.arr_volume_3.push({ 'id': '-1', 'description': '++ Add New ++' });
                         });
 
                     $http
                         .post(unitUrl_service, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (unit_data) {
+=======
+                        .then(function(unit_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.arr_unit_of_measure = unit_data.data.response;
                             $scope.arr_unit_of_measure.push({ 'id': '-1', 'title': '++ Add New ++' });
                         });
 
                 }
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_OfferMethod, function (elem) {
+=======
+                angular.forEach($scope.arr_OfferMethod, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.offer_method_id) {
                         $scope.rec.offer_method_ids = elem;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_1, function (elem) {
+=======
+                angular.forEach($scope.arr_volume_1, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.volume_1) {
                         $scope.rec.volume_1s = elem;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_2, function (elem) {
+=======
+                angular.forEach($scope.arr_volume_2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.volume_2) {
                         $scope.rec.volume_2s = elem;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_3, function (elem) {
+=======
+                angular.forEach($scope.arr_volume_3, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.volume_3) {
                         $scope.rec.volume_3s = elem;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_unit_of_measure, function (elem) {
+=======
+                angular.forEach($scope.arr_unit_of_measure, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == res.data.response.unit_of_measure_1) {
                         $scope.rec.unit_of_measure_1s = elem;
                     }
@@ -5100,16 +6800,27 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_price_list = function (id, index, arr_data) {
+=======
+    $scope.delete_price_list = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.pr + "srm/srm/delete-srm-price-offer-listing";
 
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
@@ -5117,7 +6828,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -5133,7 +6848,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     $scope.list_type = [{ name: 'Percentage', id: 1 }, { name: 'Value', id: 2 }];
 
+<<<<<<< HEAD
     $scope.onChange_volume = function (arg_id, arg_name) {
+=======
+    $scope.onChange_volume = function(arg_id, arg_name) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData_vol_1 = {};
 
@@ -5196,7 +6915,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.onChange_vol_2 = function () {
+=======
+    $scope.onChange_vol_2 = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.formData.volume_2.id;
         //console.log(id );
@@ -5211,14 +6934,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.description = '';
     }
 
+<<<<<<< HEAD
     $scope.add_vol2_type = function (formData_vol_2) {
+=======
+    $scope.add_vol2_type = function(formData_vol_2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData_vol_2.token = $scope.$root.token;
         $scope.formData_vol_2.type = 2;
 
         $http
             .post(add_saleUrl, formData_vol_2)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     toaster.pop('success', 'Add', 'Record  Inserted.');
@@ -5226,7 +6957,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $http
                         .post(volumeUrl, { type: 'Volume 2', 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.arr_volume_2 = vol_data.data.response;
                             if ($scope.user_type == 1) {
                                 $scope.arr_volume_2.push({ id: '-1', description: '++ Add New ++' });
@@ -5238,7 +6973,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.onChange_vol_3 = function () {
+=======
+    $scope.onChange_vol_3 = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = this.formData.volume_3.id;
         //console.log(id );
@@ -5253,20 +6992,32 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.description = '';
     }
 
+<<<<<<< HEAD
     $scope.add_vol3_type = function (formData_vol_1) {
+=======
+    $scope.add_vol3_type = function(formData_vol_1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData_vol_3.token = $scope.$root.token;
 
 
         $http
             .post(add_unitUrl_service, formData_vol_1)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Add', 'Record  Inserted.');
 
                     $http
                         .post(unitUrl_service, { type: 'Volume 3', 'token': $scope.$root.token })
+<<<<<<< HEAD
                         .then(function (vol_data) {
+=======
+                        .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $('#model_vol_3').modal('hide');
                             $scope.arr_volume_3 = vol_data.data.response;
                             if ($scope.user_type == 1) {
@@ -5279,11 +7030,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.show_volume_list = function () {
 
         $http
             .post(volumeUrl_item, { type: 'Volume 1', 'token': $scope.$root.token })
             .then(function (vol_data) {
+=======
+    $scope.show_volume_list = function() {
+
+        $http
+            .post(volumeUrl_item, { type: 'Volume 1', 'token': $scope.$root.token })
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_volume_1 = vol_data.data.response;
                 if ($scope.user_type == 1) {
                     $scope.arr_volume_1.push({ id: '-1', description: '++ Add New ++' });
@@ -5292,7 +7051,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(volumeUrl_item, { type: 'Volume 2', 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_volume_2 = vol_data.data.response;
                 if ($scope.user_type == 1) {
                     $scope.arr_volume_2.push({ id: '-1', description: '++ Add New ++' });
@@ -5301,7 +7064,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(volumeUrl_item, { type: 'Volume 3', 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (vol_data) {
+=======
+            .then(function(vol_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_volume_3 = vol_data.data.response;
                 if ($scope.user_type == 1) {
                     $scope.arr_volume_3.push({ id: '-1', description: '++ Add New ++' });
@@ -5310,7 +7077,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.show_price_one = function (arg) {
+=======
+    $scope.show_price_one = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var price = 0;
         var final_price = 0;
@@ -5371,7 +7142,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     var postUrl = $scope.$root.pr + "srm/srm/supplier_list";
+<<<<<<< HEAD
     $scope.getsupplier = function () {
+=======
+    $scope.getsupplier = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.$root.breadcrumbs[3].name = 'Volume';
 
@@ -5388,11 +7163,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             'token': $scope.$root.token,
             'supplier_id': $scope.$root.srm_id,
             'page': $scope.item_paging.spage
+<<<<<<< HEAD
             //'country_keyword': angular.element('#search_sale_listing_data').val()
         };
         $http
             .post(postUrl, $scope.postData)
             .then(function (res) {
+=======
+                //'country_keyword': angular.element('#search_sale_listing_data').val()
+        };
+        $http
+            .post(postUrl, $scope.postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.supplier_list = [];
                 $scope.columns = [];
@@ -5408,7 +7191,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     $scope.supplier_list = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -5423,7 +7210,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.fn_supplier_Form = function () {
+=======
+    $scope.fn_supplier_Form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.show_volume_list();
         $scope.show_supp_form = true;
         $scope.show_supplier_list = false;
@@ -5459,7 +7250,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         //	 $("#event_date").val(''); $("#event_name").val(''); $("#event_code").val(''); $("#event_description").val('');
     }
 
+<<<<<<< HEAD
     $scope.add_supplier = function (formData) {
+=======
+    $scope.add_supplier = function(formData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var updateUrl = $scope.$root.pr + "srm/srm/update_product_values";
         $scope.formData.srm_id = $scope.$root.srm_id;
         $scope.formData.token = $scope.$root.token;
@@ -5517,8 +7312,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     angular.element('#parsley-id-dp3530').hide();
                 }
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($scope.formData.discount_value_11 != "") {
                 if ($scope.formData.discount_price_11 <= 0) {
                     angular.element('#dpval ul').hide();
@@ -5536,7 +7335,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(updateUrl, $scope.formData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     if (res.data.tab_change == 'tab_supplier') {
                         $scope.getsupplier();
@@ -5550,7 +7353,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.show_sp_edit_form = function (id) {
+=======
+    $scope.show_sp_edit_form = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var postUrl = $scope.$root.pr + "srm/srm/supplier_by_id";
         var postViewBankData = {
             'token': $scope.$root.token,
@@ -5561,7 +7368,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl, postViewBankData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.response.start_date == 0)
                     $scope.formData.start_date = null;
@@ -5576,7 +7387,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.formData.discount_value = res.data.response.discount_value;
 
 
+<<<<<<< HEAD
                 angular.forEach($scope.list_type, function (index, obj) {
+=======
+                angular.forEach($scope.list_type, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.supplier_type) {
                         $scope.formData.supplier_type = $scope.list_type[index];
                     }
@@ -5584,20 +7399,32 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                 $scope.get_item_voume_list(1, res.data.response.product_id);
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_1, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_1, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log(obj.id == res.data.response.volume_1);
                     if (obj.id == res.data.response.volume_1) {
                         $scope.formData.volume_1 = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_2, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_2, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_2) {
                         $scope.formData.volume_2 = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_3, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_3, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_3) {
                         $scope.formData.volume_3 = obj;
                     }
@@ -5605,16 +7432,27 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_sp = function (id, index, arr_data) {
+=======
+    $scope.delete_sp = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var delUrl = $scope.$root.pr + "srm/srm/delete_sp_id";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         arr_data.splice(index, 1);
@@ -5622,13 +7460,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
     }
 
+<<<<<<< HEAD
     $scope.supplier_pop = function (id, pid) {
+=======
+    $scope.supplier_pop = function(id, pid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         angular.element('#model_btn_supplier').modal({
             show: true
@@ -5650,7 +7496,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl, postViewBankData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.formData.purchase_price_1 = res.data.response.purchase_price;
                 $scope.formData.discount_price_1 = res.data.response.discount_price;
                 $scope.formData.discount_value = res.data.response.discount_value;
@@ -5663,26 +7513,42 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.formData.discount_price_11 = res.data.response.discount_price;
 
 
+<<<<<<< HEAD
                 angular.forEach($scope.list_type, function (obj) {
+=======
+                angular.forEach($scope.list_type, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.supplier_type) {
                         $scope.formData.supplier_type_11 = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_1, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_1, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData.volume_id = obj;
                         //   console.log($scope.formData.volume_id);
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_2, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_2, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData.volume_id = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_3, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_3, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData.volume_id = obj;
                     }
@@ -5690,7 +7556,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.show_price_one_pop = function () {
+=======
+    $scope.show_price_one_pop = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var price = 0;
         var final_price = 0;
 
@@ -5712,7 +7582,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.formData.discount_price_11 = final_price;
     }
 
+<<<<<<< HEAD
     $scope.setSymbol_pop = function (div_id) {
+=======
+    $scope.setSymbol_pop = function(div_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = $('#type_' + div_id).val();
         if (id == 0)
@@ -5725,7 +7599,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //--------------------   Supplier End--------------------	
 
     $scope.isAdded = false;
+<<<<<<< HEAD
     $scope.check_dates = function (rem, formData_price_data) {
+=======
+    $scope.check_dates = function(rem, formData_price_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.clear_date_validation();
         $scope.isAdded = false;
@@ -5737,7 +7615,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         if (rem == 1) {
             var msg = 'Start Date .';
+<<<<<<< HEAD
             var check = dmyToDate($("#vl_sdate").val());//new Date(this.formData_price_data.start_date);
+=======
+            var check = dmyToDate($("#vl_sdate").val()); //new Date(this.formData_price_data.start_date);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             check.setHours(0);
             if (!((Date.parse(check) >= Date.parse(from)) && (Date.parse(check) <= Date.parse(to)))) {
                 $scope.isAdded = true;
@@ -5777,7 +7659,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.clear_date = function () {
+=======
+    $scope.clear_date = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $('.date_block_1').attr("disabled", false);
         $('.date_block_11').attr("disabled", false);
@@ -5788,7 +7674,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     }
 
+<<<<<<< HEAD
     $scope.check_min_max_order = function (arg) {
+=======
+    $scope.check_min_max_order = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $('.picc_block').attr("disabled", false);
         $('.max_block').attr("disabled", false);
         return;
@@ -5806,6 +7696,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(321, ['Min Order ', 'Max Order']));
                     $('.picc_block').attr("disabled", true);
                     return;
+<<<<<<< HEAD
                 }
                 else
                     $('.picc_block').attr("disabled", false);
@@ -5813,6 +7704,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
 
         else if (arg == 2) {
+=======
+                } else
+                    $('.picc_block').attr("disabled", false);
+            }
+        } else if (arg == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($scope.priceFormData.min_quantity != undefined && $scope.priceFormData.max_quantity != undefined)
                 counter++;
@@ -5825,8 +7722,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(321, ['Min Order ', 'Max Order']));
                     $('.max_block').attr("disabled", true);
                     return;
+<<<<<<< HEAD
                 }
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $('.max_block').attr("disabled", false);
             }
 
@@ -5844,39 +7745,66 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     $scope.form_before_edit = false;
     $scope.form_after_edit = false;
 
+<<<<<<< HEAD
     $scope.delete_sale_price = function (id, index, arr_data) {
+=======
+    $scope.delete_sale_price = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.stock + "products-listing/delete-purchase-info";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         //  $scope.show_price_price(remander_id);
 
                         arr_data.splice(index, 1);
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
 
                 });
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
 
     }
 
 
+<<<<<<< HEAD
     $scope.chkPrice = function () {
+=======
+    $scope.chkPrice = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.priceFormData.unit_price == undefined)
             return;
         $scope.validatePrice($scope.priceFormData.unit_price);
     }
 
+<<<<<<< HEAD
     $scope.validatePrice = function (price) {
+=======
+    $scope.validatePrice = function(price) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var isValide = true;
 
         if (Number($scope.priceFormData.unit_price) == 0 || $scope.priceFormData.purchase_measure == undefined || $scope.priceFormData.currency_id == undefined) {
@@ -5890,12 +7818,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var currencyURL = $scope.$root.sales + "customer/customer/get-currency-conversion-rate";
         $http
             .post(currencyURL, { 'id': $scope.priceFormData.currency_id.id, token: $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
                     if (res.data.response.conversion_rate == null) {
+<<<<<<< HEAD
                         toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+=======
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.priceFormData.unit_price = null;
                         $scope.priceFormData.converted_price = null;
                         return;
@@ -5910,8 +7846,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             // get the quatity according to base unit id
                             console.log('hello111111==>');
                             newPrice1 = ($scope.priceFormData.unit_price) / ($scope.priceFormData.purchase_measure.ref_quantity);
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log('hello2222222222==>');
                             newPrice1 = ($scope.priceFormData.unit_price) / ($scope.priceFormData.purchase_measure.quantity);
                         }
@@ -5926,9 +7866,14 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.priceFormData.converted_price = Number(newPrice).toFixed(2);
 
                     $('.cur_block').attr("disabled", false);
+<<<<<<< HEAD
                 }
                 else {
                     toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+=======
+                } else {
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $('.cur_block').attr("disabled", true);
                     $scope.priceFormData.unit_price = null;
                     $scope.priceFormData.converted_price = null;
@@ -5939,7 +7884,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         // return isValide;
     }
 
+<<<<<<< HEAD
     $scope.currency_list = function (val) {
+=======
+    $scope.currency_list = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = 0;
         if (val > 0)
@@ -5947,7 +7896,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         else
             id = $scope.$root.defaultCurrency;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_currency, function (elem) {
+=======
+        angular.forEach($rootScope.arr_currency, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == id)
                 $scope.priceFormData.currency_id = elem;
         });
@@ -5956,7 +7909,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.priceFormData.sale_currency = $scope.priceFormData.currency_id.code;
     };
 
+<<<<<<< HEAD
     $scope.showEditPurchasevolume_form = function () {
+=======
+    $scope.showEditPurchasevolume_form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_item_readonly_volume = false;
         $scope.perreadonly_purchase_volume = true;
 
@@ -5965,7 +7922,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.formData_price_data.discount_price = $scope.$root.number_format_remove($scope.formData_price_data.discount_price, $scope.decimal_range);
     }
 
+<<<<<<< HEAD
     $scope.get_price_sale_volume_pop = function (p_id, id, product_id) {
+=======
+    $scope.get_price_sale_volume_pop = function(p_id, id, product_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var postUrl = $scope.$root.pr + "srm/srm/supplier_list";
         var postData = {
@@ -5973,12 +7934,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             'all': "1",
             'purchase_info_id': p_id,
             'supplier_id': id,
+<<<<<<< HEAD
             'product_id': product_id//$stateParams.id
+=======
+            'product_id': product_id //$stateParams.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         };
 
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.supplier_list = [];
                 $scope.columns_sale = [];
                 $scope.clear_date();
@@ -5990,7 +7959,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.count = res.data.total;
 
                     $scope.supplier_list = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_sale.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -6003,7 +7976,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $('#model_purcase_info').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.get_price_sale_volume = function (id, product_id) {
+=======
+    $scope.get_price_sale_volume = function(id, product_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.price_volume_form = false;
         $scope.price_volume_list = true;
 
@@ -6017,7 +7994,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.supplier_list = [];
                 $scope.columns_sale = [];
                 $scope.clear_date();
@@ -6029,7 +8010,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.count = res.data.total;
 
                     $scope.supplier_list = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_sale.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -6042,7 +8027,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.fn_volume_Form = function () {
+=======
+    $scope.fn_volume_Form = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_item_readonly_volume = false;
         $scope.perreadonly_purchase_volume = true;
 
@@ -6063,7 +8052,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     };
 
 
+<<<<<<< HEAD
     $scope.purchase_info_edit_volume = function (id, pid) {
+=======
+    $scope.purchase_info_edit_volume = function(id, pid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.check_item_readonly_volume = true;
         $scope.perreadonly_purchase_volume = false;
@@ -6078,7 +8071,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.formData_price_data.update_id = id;
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.formData_price_data.purchase_price = $scope.$root.number_format(res.data.response.purchase_price, $scope.decimal_range);
                 $scope.formData_price_data.discount_value = $scope.$root.number_format(res.data.response.discount_value, $scope.decimal_range);
@@ -6096,13 +8093,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.formData_price_data.end_date = $scope.$root.convert_unix_date_to_angular(res.data.response.end_date);
 
 
+<<<<<<< HEAD
                 angular.forEach($scope.list_type, function (obj) {
+=======
+                angular.forEach($scope.list_type, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.supplier_type) {
                         $scope.formData_price_data.supplier_type = obj
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_id, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_id, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData_price_data.volume_id = obj;
                     }
@@ -6116,7 +8121,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     var volumeUrl_item = $scope.$root.stock + "unit-measure/get-sale-offer-volume-by-type";
     var addvolumeUrl_item = $scope.$root.stock + "unit-measure/add-sale-offer-volume";
 
+<<<<<<< HEAD
     $scope.onChange_volume_price = function (a, as, volume_type) {
+=======
+    $scope.onChange_volume_price = function(a, as, volume_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var volume_type = '';
         $scope.formData_vol_1 = {};
 
@@ -6147,13 +8156,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     'name': $scope.priceFormData.purchase_measure.name
                 }];
                 $scope.formData_vol_1.unit_category = $scope.list_unit_category[0];
+<<<<<<< HEAD
             }
             else
+=======
+            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Unit Of Measure']));
         }
     }
 
+<<<<<<< HEAD
     $scope.get_volume_all = function (arg, prod_id) {
+=======
+    $scope.get_volume_all = function(arg, prod_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $http
             .post(volumeUrl_purchase, {
                 category: arg,
@@ -6162,7 +8179,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 'supplier_id': $stateParams.id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.arr_volume_id = [];
                 $scope.arr_volume_id.push({ 'id': '', 'name': '' });
                 if (res.data.ack == true)
@@ -6176,7 +8197,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     var volumeUrl_purchase = $scope.$root.stock + "unit-measure/get-unit-srm-purchase-info";
     var addvolumeUrl_purchase = $scope.$root.stock + "unit-measure/add-unit-srm-purchase-info";
 
+<<<<<<< HEAD
     $scope.show_price_price = function (arg, formData_price_data) {
+=======
+    $scope.show_price_price = function(arg, formData_price_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var price = 0;
         var final_price = 0;
@@ -6188,8 +8213,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         if (f_id == 1) {
             var final_price_one = (parseFloat(this.formData_price_data.discount_value)) * (parseFloat(price)) / 100;
             final_price = (parseFloat(price)) - (parseFloat(final_price_one));
+<<<<<<< HEAD
         }
         else if (f_id == 2) {
+=======
+        } else if (f_id == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             final_price = (parseFloat(price)) - (parseFloat(this.formData_price_data.discount_value));
         }
 
@@ -6198,7 +8227,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             this.formData_price_data.discount_price = final_new;
     }
 
+<<<<<<< HEAD
     $scope.delete_volume = function (id, index, arr_data) {
+=======
+    $scope.delete_volume = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.priceFormData.item_order_check > 0) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(549));
@@ -6210,6 +8243,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -6222,12 +8256,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                 });
         }, function (reason) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        arr_data.splice(index, 1);
+                    } else
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
 
+<<<<<<< HEAD
     $scope.supplier_pop_price_sale = function (id, pid) {
+=======
+    $scope.supplier_pop_price_sale = function(id, pid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //  $scope.get_item_voume_list(1, pid);
 
         var postUrl = $scope.$root.pr + "srm/srm/supplier_by_id";
@@ -6242,7 +8293,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl, postViewBankData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.formData_price_data.purchase_price_1 = res.data.response.purchase_price;
                 $scope.formData_price_data.discount_price_1 = res.data.response.discount_price;
                 $scope.formData_price_data.discount_value = res.data.response.discount_value;
@@ -6254,26 +8309,42 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.formData_price_data.discount_value_11 = res.data.response.discount_value;
                 $scope.formData_price_data.discount_price_11 = res.data.response.discount_price;
 
+<<<<<<< HEAD
                 angular.forEach($scope.list_type, function (obj) {
+=======
+                angular.forEach($scope.list_type, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.supplier_type) {
                         $scope.formData_price_data.supplier_type_11 = $scope.list_type[index];
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_1, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_1, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData_price_data.volume_id = obj;
                         //   console.log($scope.formData.volume_id);
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_2, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_2, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData_price_data.volume_id = obj;
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.arr_volume_3, function (obj) {
+=======
+                angular.forEach($scope.arr_volume_3, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == res.data.response.volume_id) {
                         $scope.formData_price_data.volume_id = obj;
                     }
@@ -6285,7 +8356,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         });
     }
 
+<<<<<<< HEAD
     $scope.show_price_one_pop_price = function () {
+=======
+    $scope.show_price_one_pop_price = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var price = 0;
         var final_price = 0;
 
@@ -6310,12 +8385,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     var volumeUrl_item = $scope.$root.stock + "unit-measure/get-sale-offer-volume-by-type";
     var addvolumeUrl_item = $scope.$root.stock + "unit-measure/add-sale-offer-volume";
 
+<<<<<<< HEAD
     $scope.add_sale_list = function () {
+=======
+    $scope.add_sale_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var selected_sales = "";
         var sale_currency = "";
         var selected_sales_ids = "";
 
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_get, function (val, index) {
+=======
+        angular.forEach($scope.selection_record_get, function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (angular.element('#selected_' + $scope.selection_record_get[index]['id']).is(':checked')) {
                 selected_sales += $scope.selection_record_get[index]['name'] + ",";
                 sale_currency += $scope.selection_record_get[index]['sale_currency'] + ",";
@@ -6329,7 +8412,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         angular.element('#price_sale_list_modal').modal('hide');
     };
 
+<<<<<<< HEAD
     $scope.checkAll_price = function () {
+=======
+    $scope.checkAll_price = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.selectedList = '';
         $scope.Selected = '';
@@ -6341,18 +8428,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             angular.element('.pic_block').attr("disabled", false);
         }
 
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_get, function (item) {
+=======
+        angular.forEach($scope.selection_record_get, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             angular.element('#selected_' + item.id).prop('checked', bool);
 
         });
     };
 
+<<<<<<< HEAD
     $scope.shownew_get_price = function (classname) {
+=======
+    $scope.shownew_get_price = function(classname) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $(".new_button_" + classname).hide();
         $(".replace_button_" + classname).show();
         var count = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.selection_record_get, function (item) {
+=======
+        angular.forEach($scope.selection_record_get, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var bool = angular.element("#selected_" + item.id).is(':checked');
             if (bool) {
                 count++;
@@ -6367,10 +8466,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     };
 
+<<<<<<< HEAD
     $scope.calculate_price = function () {
 
         var count = 0;
         angular.forEach($scope.selection_record_get, function (value) {
+=======
+    $scope.calculate_price = function() {
+
+        var count = 0;
+        angular.forEach($scope.selection_record_get, function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (angular.element('#selected_' + value.id).prop('checked'))
                 count++;
@@ -6392,7 +8498,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //---------------------   finance   ------------------------------------------
 
 
+<<<<<<< HEAD
     $scope.getCharges = function (arg) {
+=======
+    $scope.getCharges = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (arg == 'finance')
             var getChargesUrl = $scope.$root.setup + "crm/finance-charges";
         else
@@ -6403,7 +8513,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(getChargesUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.columns = res.data.columns;
                 $scope.record = res.data.record.result;
@@ -6414,7 +8528,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'modalCustDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
+=======
+        }).then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (arg == 'finance') {
                 $scope.finance_charges_value = result['Description'];
                 $scope.rec.finance_charges_id = result.id;
@@ -6423,12 +8541,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.rec.insurance_charges_id = result.id;
             }
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.getPaymentTerms = function (arg) {
+=======
+    $scope.getPaymentTerms = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = "Payment Terms";
         var getTermUrl = $scope.$root.setup + "crm/payment-terms";
 
@@ -6438,7 +8564,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(getTermUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.columns = res.data.columns;
                 $scope.record = res.data.record.result;
@@ -6449,17 +8579,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'modalCustDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             //console.log(result);
             $scope.rec.payment_term = result.Description;
             $scope.rec.payment_terms_id = result.id;
         }, function (reason) {
+=======
+        }).then(function(result) {
+            //console.log(result);
+            $scope.rec.payment_term = result.Description;
+            $scope.rec.payment_terms_id = result.id;
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
 
+<<<<<<< HEAD
     $scope.getBankAccount = function (arg) {
+=======
+    $scope.getBankAccount = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Payable Bank';
         var getBankUrl = $scope.$root.setup + "general/bank-accounts";
         $scope.searchKeyword_sup = "";
@@ -6468,13 +8610,21 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var postData = { 'token': $scope.$root.token, 'filter_id': 152 };
         $http
             .post(getBankUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns_sup = [];
                 //	$scope.columns = res.data.columns;
                 $scope.record = res.data.response;
 
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns_sup.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -6489,7 +8639,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.confirm_bank = function (btc) {
+=======
+    $scope.confirm_bank = function(btc) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $scope.rec_finance.bank_name = btc.name;
         $scope.rec_finance.bank_name = btc.bank_name;
@@ -6498,20 +8652,32 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         // $scope.rec.bill_to_bank_id = btc.id;
         angular.element('#_model_modal_bank_order').modal('hide');
     }
+<<<<<<< HEAD
     $scope.getBankAccountdd = function (arg) {
+=======
+    $scope.getBankAccountdd = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = 'Banks';
         var postData = { 'token': $scope.$root.token, 'filter_id': 152 };
         $http
             .post(getBankUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.record = {};
                 //$scope.columns = res.data.columns;
                 // $scope.record = res.data.record.result;	
 
                 $scope.record = res.data.response;
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -6526,17 +8692,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'modalCustDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (elem) {
+=======
+        }).then(function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log(elem);
 
             $scope.rec.bank_name = elem['Account Name'];
             $scope.rec.bank_account_id = elem.id;
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
+<<<<<<< HEAD
     $scope.getsupplier_list = function () {
+=======
+    $scope.getsupplier_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = 'Suppliers';
 
@@ -6550,11 +8728,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         };
         $http
             .post(custUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 $scope.columns = [];
                 $scope.record = {};
                 $scope.record = res.data.response;
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+            .then(function(res) {
+                $scope.columns = [];
+                $scope.record = {};
+                $scope.record = res.data.response;
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (index != "country" && index != "purchase_code") {
                         $scope.columns.push({
                             'title': toTitleCase(index),
@@ -6569,19 +8755,31 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/supplier/_listing_modal_2.html',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
+=======
+        }).then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.rec_finance.bill_to_customer = result.name;
             $scope.rec_finance.bill_to_customer_id = result.id;
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
     $scope.searchKeyword_sup_gl_code = {};
 
+<<<<<<< HEAD
     $scope.getpurchaseGL = function (arg, item_paging) {
+=======
+    $scope.getpurchaseGL = function(arg, item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
@@ -6594,8 +8792,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.title = 'Purchase Account';
             //$scope.postData.cat_id = 3;
             $scope.postData.cat_id = [4];
+<<<<<<< HEAD
         }
         else if (arg == 'payable') {
+=======
+        } else if (arg == 'payable') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.type_id = 2;
             $scope.title = 'Account Payable';
             // $scope.postData.cat_id = 4;
@@ -6626,7 +8828,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl_cat, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log(res);
                 $scope.column_gl = [];
                 // $scope.record_gl = {};
@@ -6648,11 +8854,18 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.category_list = res.data.response;
                     $scope.gl_arg = arg;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (obj) {
                         $scope.gl_account.push(obj);
                     });
                 }
                 else
+=======
+                    angular.forEach(res.data.response, function(obj) {
+                        $scope.gl_account.push(obj);
+                    });
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
             });
 
@@ -6660,6 +8873,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         angular.element('#financePurchase').modal({ show: true });
     };
 
+<<<<<<< HEAD
     $scope.assignCodes = function (gl_data) {
 
         //console.log(gl_data);
@@ -6672,11 +8886,29 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.rec_finance.account_payable_id = gl_data.id;
         }
         angular.element('#financePurchase').modal('hide');
+=======
+    $scope.assignCodes = function(gl_data) {
+
+        //console.log(gl_data);
+        if ($scope.type_id == 1) {
+            $scope.rec_finance.purchase_code_number = gl_data.code + " - " + gl_data.name;
+            $scope.rec_finance.purchase_code_id = gl_data.id;
+        } else if ($scope.type_id == 2) {
+            $scope.rec_finance.account_payable_number = gl_data.code + " - " + gl_data.name;
+            $scope.rec_finance.account_payable_id = gl_data.id;
+        }
+        angular.element('#financePurchase').modal('hide');
+        angular.element('#finance_set_gl_account').modal('hide');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     };
 
     $scope.rec_finance = {};
 
+<<<<<<< HEAD
     $scope.setGenerate = function (id) {
+=======
+    $scope.setGenerate = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         for (var i = 0; i < $scope.arr_generate.length; i++) {
             if (id == $scope.arr_generate[i].id) {
                 if ($scope.arr_generate[i].chk == true)
@@ -6688,11 +8920,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.general_finance = function () {
 
         $scope.arr_generate = [{ 'id': '1', 'name': 'E-Purchase Order', 'chk': false },
         { 'id': '2', 'name': 'E-Debit Note', 'chk': false },
         { 'id': '3', 'name': 'E-Remittance Advice', 'chk': false }];
+=======
+    $scope.general_finance = function() {
+
+        $scope.arr_generate = [{ 'id': '1', 'name': 'E-Purchase Order', 'chk': false },
+            { 'id': '2', 'name': 'E-Debit Note', 'chk': false },
+            { 'id': '3', 'name': 'E-Remittance Advice', 'chk': false }
+        ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec_finance = {};
         // $scope.$root.breadcrumbs[3].name = 'Finance';
@@ -6703,7 +8944,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var getFinance = $scope.$root.pr + 'supplier/supplier/get-supplier-finance';
         $http
             .post(getFinance, { 'token': $scope.$root.token, supplier_id: $scope.$root.supplier_id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = false;
 
@@ -6719,7 +8964,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                     if (res.data.response.generate) {
                         var arrGen = res.data.response.generate.split(',');
+<<<<<<< HEAD
                         angular.forEach($scope.arr_generate, function (elem, index) {
+=======
+                        angular.forEach($scope.arr_generate, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             var indx = arrGen.indexOf(elem.id) == -1;
                             if (!indx) {
                                 $scope.arr_generate[index].chk = true;
@@ -6740,12 +8989,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             $scope.drp.payment_method_ids = elem;
                     }); */
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_srm_payment_terms, function (elem, index) {
+=======
+                    angular.forEach($rootScope.arr_srm_payment_terms, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.payment_terms_id)
                             $scope.drp.payment_terms_ids = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_srm_payment_methods, function (elem, index) {
+=======
+                    angular.forEach($rootScope.arr_srm_payment_methods, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.payment_method_id)
                             $scope.drp.payment_method_ids = elem;
                     });
@@ -6756,7 +9013,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             $scope.drp.posting_group_ids = elem2;
                     }); */
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.postingGroups, function (elem2, index) {
+=======
+                    angular.forEach($rootScope.postingGroups, function(elem2, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem2.id == res.data.response.posting_group_id)
                             $scope.drp.posting_group_ids = elem2;
                     });
@@ -6764,7 +9025,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.add_finance = function (rec, drp) {
+=======
+    $scope.add_finance = function(rec, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec.supplier_id = $scope.$root.supplier_id;
         rec.token = $scope.$root.token;
@@ -6775,6 +9040,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         rec.debitNoteEmail = drp.email_2;
         rec.remittanceAdviceEmail = drp.email_3;
 
+<<<<<<< HEAD
         if (angular.element('#genexcl_from_report').is(':checked') == false){
             rec.excl_from_report = 0;
             $scope.rec_finance.excl_from_report = false;
@@ -6783,6 +9049,15 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             rec.excl_from_report = 1;
             $scope.rec_finance.excl_from_report = true;
         } 
+=======
+        if (angular.element('#genexcl_from_report').is(':checked') == false) {
+            rec.excl_from_report = 0;
+            $scope.rec_finance.excl_from_report = false;
+        } else {
+            rec.excl_from_report = 1;
+            $scope.rec_finance.excl_from_report = true;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var strGen = [];
         for (var i = 0; i < $scope.arr_generate.length; i++) {
@@ -6808,7 +9083,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         var addFinance = $scope.$root.pr + 'supplier/supplier/update-finance';
         $http
             .post(addFinance, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = false;
                 if (res.data.ack == true) {
@@ -6824,7 +9103,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     }
 
+<<<<<<< HEAD
     $scope.addNewCharges = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewCharges = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (id > 0)
@@ -6837,7 +9120,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/supplier/add_new_charges.html',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*console.log(pedefined);
              return false;*/
 
@@ -6853,7 +9140,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         if (type == 1)
@@ -6864,12 +9155,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             var constUrl = $scope.$root.setup + "crm/overrider";
                         $http
                             .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (type == 1) {
                                     $scope.arr_finance_charges = res.data.record.result;
                                     $scope.arr_finance_charges.push({ 'id': '-1', 'Discount': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_finance_charges, function (elem) {
+=======
+                                    angular.forEach($scope.arr_finance_charges, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.finance_charges_ids = elem;
                                     });
@@ -6879,7 +9178,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     $scope.arr_insurance_charges = res.data.record.result;
                                     $scope.arr_insurance_charges.push({ 'id': '-1', 'Charge': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_insurance_charges, function (elem) {
+=======
+                                    angular.forEach($scope.arr_insurance_charges, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.insurance_charges_ids = elem;
                                     });
@@ -6890,7 +9193,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     $scope.arr_overrider = res.data.response;
                                     $scope.arr_overrider.push({ 'id': '-1', 'charge': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_overrider, function (elem) {
+=======
+                                    angular.forEach($scope.arr_overrider, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             $scope.drp.overrider_ids = elem;
                                     });
@@ -6898,12 +9205,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             });
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.addNewCharges_2 = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewCharges_2 = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (id > 0)
@@ -6916,7 +9231,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/finance_customer/add_new_charges.html',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*console.log(pedefined);
              return false;*/
 
@@ -6931,7 +9250,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         if (type == 1)
@@ -6943,12 +9266,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         $http
                             .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (type == 1) {
                                     $scope.arr_finance_charges = res.data.record.result;
                                     $scope.arr_finance_charges.push({ 'id': '-1', 'Discount': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_finance_charges, function (elem) {
+=======
+                                    angular.forEach($scope.arr_finance_charges, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.finance_charges_ids = elem;
                                     });
@@ -6958,7 +9289,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     $scope.arr_insurance_charges = res.data.record.result;
                                     $scope.arr_insurance_charges.push({ 'id': '-1', 'Charge': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_insurance_charges, function (elem) {
+=======
+                                    angular.forEach($scope.arr_insurance_charges, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.insurance_charges_ids = elem;
                                     });
@@ -6968,7 +9303,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                                     $scope.arr_payment_terms = res.data.response;
                                     $scope.arr_payment_terms.push({ 'id': '-1', 'name': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.arr_payment_terms, function (elem) {
+=======
+                                    angular.forEach($scope.arr_payment_terms, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.payment_terms_ids = elem;
                                     });
@@ -6976,12 +9315,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                             });
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.addNewPaymentTerm = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPaymentTerm = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (id > 0)
@@ -6994,7 +9341,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/payment_terms/add_payment_term.html',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*console.log(pedefined);
              return false;*/
 
@@ -7003,31 +9354,54 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var postUrl = $scope.$root.setup + "srm/srm-add-payment-term";
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         var constUrl = $scope.$root.setup + "srm/srm-get-srm-payment-terms-list";
                         $http
                             .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                             .then(function (res) {
                                 $scope.arr_payment_terms = res.data.response;
                                 $scope.arr_payment_terms.push({ 'id': '-1', 'name': '++ Add New ++' });
 
                                 angular.forEach($scope.arr_payment_terms, function (elem) {
+=======
+                            .then(function(res) {
+                                $scope.arr_payment_terms = res.data.response;
+                                $scope.arr_payment_terms.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                                angular.forEach($scope.arr_payment_terms, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.id == ress.data.id)
                                         drp.payment_terms_ids = elem;
                                 });
                             });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Info', ress.data.error);
                 });
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Info', ress.data.error);
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.addNewPaymentMethod = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPaymentMethod = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (id > 0)
@@ -7040,7 +9414,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             template: 'app/views/payment_methods/add_payment_method.html',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (pedefined) {
+=======
+        }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*console.log(pedefined);
              return false;*/
 
@@ -7049,27 +9427,46 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var postUrl = $scope.$root.setup + "srm/srm-add-payment-method";
             $http
                 .post(postUrl, pedefined)
+<<<<<<< HEAD
                 .then(function (ress) {
+=======
+                .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (ress.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         //var constUrl = $scope.$root.setup+"crm/payment-methods";
                         var constUrl = $scope.$root.setup + "srm/srm-payment-methods";
                         $http
                             .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                             .then(function (res) {
                                 $scope.paymentmet = res.data.response;
                                 $scope.paymentmet.push({ 'id': '-1', 'name': '++ Add New ++' });
 
                                 angular.forEach($scope.paymentmet, function (elem) {
+=======
+                            .then(function(res) {
+                                $scope.paymentmet = res.data.response;
+                                $scope.paymentmet.push({ 'id': '-1', 'name': '++ Add New ++' });
+
+                                angular.forEach($scope.paymentmet, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.id == ress.data.id)
                                         drp.payment_method_ids = elem;
                                 });
                             });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Info', ress.data.error);
                 });
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Info', ress.data.error);
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -7078,7 +9475,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     //---------------------  price   ------------------------------------------
 
     //dynamic datepicker
+<<<<<<< HEAD
     $scope.openDatePicker = function ($event, item) {
+=======
+    $scope.openDatePicker = function($event, item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $event.preventDefault();
         $event.stopPropagation();
 
@@ -7089,7 +9490,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     };
 
+<<<<<<< HEAD
     $scope.openDatePicker_end = function ($event, item) {
+=======
+    $scope.openDatePicker_end = function($event, item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $event.preventDefault();
         $event.stopPropagation();
 
@@ -7101,15 +9506,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         }
     };
 
+<<<<<<< HEAD
     $scope.get_sale_price = function (type) {
+=======
+    $scope.get_sale_price = function(type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $scope.$root.breadcrumbs[3].name = 'Item Price';
 
         $scope.showLoader = true;
         if (type == 1) {
             $scope.price_sale_user = "Customer(s)";
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.price_sale_user = "Supplier(s)";
         }
 
@@ -7128,7 +9541,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(prodApi_setup, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.sale_records = [];
                     $scope.sale_columns = [];
@@ -7136,7 +9553,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     //$scope.sale_records = res.data.response;
                     $scope.total = res.data.total;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.sale_columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -7144,7 +9565,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         });
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (obj_rec) {
+=======
+                    angular.forEach(res.data.response, function(obj_rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj_rec.id = $stateParams.id;
                         obj_rec.code = $scope.rec.customer_no; //obj_rec.code;
                         obj_rec.name = $scope.rec.name;
@@ -7164,7 +9589,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         else
                             obj_rec.end_date = $scope.$root.convert_unix_date_to_angular(obj_rec.end_date);
 
+<<<<<<< HEAD
                         angular.forEach($scope.list_unit_category, function (obj) {
+=======
+                        angular.forEach($scope.list_unit_category, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == obj_rec.purchase_measure)
                                 obj_rec.purchase_measure = obj;
                         });
@@ -7173,8 +9602,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     });
 
                     $scope.showLoader = false;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.sale_records = {};
                     $scope.sale_columns = [];
                     $scope.showLoader = false;
@@ -7183,7 +9616,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
     };
 
+<<<<<<< HEAD
     $scope.add_sale_price_customer = function (type, sale_records) {
+=======
+    $scope.add_sale_price_customer = function(type, sale_records) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var rec = {};
         rec.token = $scope.$root.token;
         rec.id = 0;
@@ -7196,7 +9633,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(updateUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(101));
                 } else {
@@ -7233,7 +9674,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     $scope.searchKeyword = {};
 
+<<<<<<< HEAD
     $scope.get_balance_info = function (id, item_paging) {
+=======
+    $scope.get_balance_info = function(id, item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //console.log($scope.drp.currency.code);
         if (id == undefined) {
             id = $scope.rec.id;
@@ -7271,12 +9716,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = true;
         $http
             .post(getUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.receipt_sub_list = [];
                 if (res.data.ack == true) {
                     $scope.supplierActivitytableData = res;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (obj, index) {
+=======
+                    angular.forEach(res.data.response, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.on_hold = obj.on_hold == 1 ? true : false
                     });
                     $scope.total = res.data.total;
@@ -7295,15 +9748,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.supplierCurrencyCode = $scope.drp.currency.code;
 
                     $scope.receipt_sub_list = res.data.response;
+<<<<<<< HEAD
                     angular.forEach($scope.supplierActivitytableData.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
+=======
+                    angular.forEach($scope.supplierActivitytableData.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.event && obj.event.name && obj.event.trigger) {
                             obj.generatedEvent = $scope[obj.event.name];
                         }
                     });
                     //$scope.receipt_sub_list.push({'id':'' ,currency_id:$scope.array_submit_jurnal.currency_id });
                     $scope.showLoader = false;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     // toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                 }
@@ -7315,10 +9776,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
     $scope.$root.itemselectPage(1);
     $scope.cust_id = 0;
+<<<<<<< HEAD
     $scope.getinvoice_all = function (id, item_paging) {
 
         $scope.postData_cust = {};
         $scope.postData_cust.sell_to_cust_id = id;//item.account_id;
+=======
+    $scope.getinvoice_all = function(id, item_paging) {
+
+        $scope.postData_cust = {};
+        $scope.postData_cust.sell_to_cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData_cust.token = $scope.$root.token;
         $scope.postData_cust.more_fields = 1;
 
@@ -7329,7 +9797,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             var postUrl = $scope.$root.pr + "srm/srminvoice/listings";
 
         $scope.postData_cust.parent_id = $scope.parent_id;
+<<<<<<< HEAD
         $scope.postData_cust.cust_id = id;//item.account_id;
+=======
+        $scope.postData_cust.cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.postData_cust.doc_type = 1;
         //	$scope.postData.parent_id=80;
@@ -7356,7 +9828,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(postUrl, $scope.postData_cust)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.invoice_sub = res.data.response;
@@ -7367,7 +9843,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
     $scope.final_amount = 0;
+<<<<<<< HEAD
     $scope.getInvoiceList = function (arry, id, index, p_id) {
+=======
+    $scope.getInvoiceList = function(arry, id, index, p_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.cust_id = id;
         $scope.final_amount = arry.final_amount;
@@ -7383,8 +9863,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.posting_groupmain = arry.posting_group_id;
         $scope.balance_id_main = arry.balance_id;
 
+<<<<<<< HEAD
         $scope.parent_account_id = arry.parent_id;
         ;
+=======
+        $scope.parent_account_id = arry.parent_id;;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns = [];
         $scope.ReciptInvoiceModalarr = [];
@@ -7393,19 +9877,30 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.curent_cust_index = index;
 
         if (id === undefined) {
+<<<<<<< HEAD
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(231, ['Account Type','Supplier']));
             return;
         }
         else {
+=======
+            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(231, ['Account Type', 'Supplier']));
+            return;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.postData = {};
 
 
+<<<<<<< HEAD
             $scope.postData.sell_to_cust_id = id;//item.account_id;
+=======
+            $scope.postData.sell_to_cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.postData.token = $scope.$root.token;
             $scope.postData.more_fields = 1;
 
             if ($scope.module_type_account == 2) {
+<<<<<<< HEAD
                 $scope.postData.title_invoice = 'Customer Payment';//('+item.account_code+')'; 
                 var postUrl = $scope.$root.sales + "customer/order/listings";
             }
@@ -7415,6 +9910,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             }
             $scope.postData.parent_id = $scope.parent_id;
             $scope.postData.cust_id = id;//item.account_id;
+=======
+                $scope.postData.title_invoice = 'Customer Payment'; //('+item.account_code+')'; 
+                var postUrl = $scope.$root.sales + "customer/order/listings";
+            }
+            if ($scope.module_type_account == 3) {
+                $scope.postData.title_invoice = 'Supplier Payment'; //('+item.account_code+')'; 
+                var postUrl = $scope.$root.pr + "srm/srminvoice/listings";
+            }
+            $scope.postData.parent_id = $scope.parent_id;
+            $scope.postData.cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.postData.doc_type = 1;
             //	$scope.postData.parent_id=80;
@@ -7424,7 +9930,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
             $http
                 .post(postUrl, $scope.postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         //	$scope.balance_payed = res.data.balance_payed; 
 
@@ -7441,15 +9951,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
                         angular.element('#ReciptInvoiceModal').modal({ show: true });
 
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 });
         }
 
     }
     $scope.postfianancedata = {};
+<<<<<<< HEAD
     $scope.ValidateAllocationDate = function (record) {
+=======
+    $scope.ValidateAllocationDate = function(record) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var date_parts = record.allocation_date.trim().split('/');
         var doc_to_alloc_date_parts = record.invoice_date.trim().split('/');
@@ -7462,8 +9980,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         if (doc_from_alloc_date >= doc_to_alloc_date && alloc_date < doc_from_alloc_date) {
             toaster.pop('error', 'Error', 'Allocation date cannot be earlier than ' + $scope.posting_date);
             record.allocation_date = $scope.posting_date;
+<<<<<<< HEAD
         }
         else if (doc_to_alloc_date >= doc_from_alloc_date && alloc_date < doc_to_alloc_date) {
+=======
+        } else if (doc_to_alloc_date >= doc_from_alloc_date && alloc_date < doc_to_alloc_date) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', 'Allocation date cannot be earlier than ' + record.invoice_date);
             record.allocation_date = record.invoice_date;
         }
@@ -7471,7 +9993,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     $scope.amount_total = 0;
     $scope.allocated_amount = 0;
+<<<<<<< HEAD
     $scope.getPaymentEntries = function (record, type, index) {
+=======
+    $scope.getPaymentEntries = function(record, type, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
@@ -7502,8 +10028,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             type = 14;
         if (record.on_hold) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(349));
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.disable_save = false;
             var id = record.order_id;
             var detail_id = record.detail_id;
@@ -7526,15 +10056,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.postData.title = 'Allocation of ' + record.docType + ' (' + record.invoice_code + ')';
                 var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-payment-listings";
 
+<<<<<<< HEAD
             }
             else if ($scope.entry_type == 4 || $scope.entry_type == 5 || $scope.entry_type == 10 || $scope.entry_type == 13) {
+=======
+            } else if ($scope.entry_type == 4 || $scope.entry_type == 5 || $scope.entry_type == 10 || $scope.entry_type == 13) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.module_type.value = 3;
                 $scope.doc_type = 2; // Debite note
                 var doc_type = '';
                 if (record.docType == 'Opening Balance Debit Note') {
                     doc_type = 'Opening Balance Debit Note';
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     doc_type = record.docType;
                 }
                 $scope.postData.title = 'Allocation of  ' + doc_type + ' (' + record.invoice_code + ')';
@@ -7548,8 +10086,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 $scope.payment_detail_id = 0;
                 postData.parent_id = 0;
 
+<<<<<<< HEAD
             }
             else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+=======
+            } else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.payment_id = id;
                 $scope.payment_detail_id = detail_id;
                 postData.parent_id = id;
@@ -7568,7 +10110,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.showLoader = true;
             $http
                 .post(postUrl, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.total = res.data.total;
                         $scope.item_paging.total_pages = res.data.total_pages;
@@ -7582,22 +10128,31 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         $scope.currency_arr = $scope.$root.get_obj_frm_arry($rootScope.arr_currency, record.currency_id);
                         $scope.currency_code = $scope.currency_arr.code;
                         angular.element('#InvoicesForPayments').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
                     {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                     }
                 });
         }
     }
+<<<<<<< HEAD
     $scope.openDocumentLink = function (record) {
+=======
+    $scope.openDocumentLink = function(record) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
         var url;
         if (record.docType == 'Purchase Invoice') {
             url = $state.href("app.viewsrminvoice", ({ id: record.order_id }));
+<<<<<<< HEAD
         }
         else if (record.docType == 'Debit Note') {
             url = $state.href("app.viewsrmorderreturn", ({ id: record.order_id, isInvoice: 1 }));
@@ -7621,12 +10176,33 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             url = $state.href("app.openingBalances", ({ module: 'bank' }));
         }
         else if (record.docType == 'Bank Opening Balance Refund') {
+=======
+        } else if (record.docType == 'Debit Note') {
+            url = $state.href("app.viewsrmorderreturn", ({ id: record.order_id, isInvoice: 1 }));
+        } else if (record.docType == 'Supplier Payment') {
+            url = $state.href("app.view-receipt-journal-gl-supp", ({ id: record.order_id }));
+        } else if (record.docType == 'Supplier Refund') {
+            url = $state.href("app.view-receipt-journal-gl-supp", ({ id: record.order_id }));
+        } else if (record.docType == 'General Journal') {
+            url = $state.href("app.view-receipt-journal-gl", ({ id: record.order_id }));
+        } else if (record.docType == 'Opening Balance Invoice') {
+            url = $state.href("app.openingBalances", ({ module: 'supplier' }));
+        } else if (record.docType == 'Opening Balance Debit Note') {
+            url = $state.href("app.openingBalances", ({ module: 'supplier' }));
+        } else if (record.docType == 'Bank Opening Balance Payment') {
+            url = $state.href("app.openingBalances", ({ module: 'bank' }));
+        } else if (record.docType == 'Bank Opening Balance Refund') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             url = $state.href("app.openingBalances", ({ module: 'bank' }));
         }
         window.open(url, '_blank');
 
     }
+<<<<<<< HEAD
     $scope.getPaidEntries = function (record, type, index) {
+=======
+    $scope.getPaidEntries = function(record, type, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
@@ -7675,15 +10251,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.postData.title = 'Allocation details for ' + record.docType + ' (' + record.invoice_code + ')';
             var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-payment-listings-paid";
 
+<<<<<<< HEAD
         }
         else if ($scope.entry_type == 4 || $scope.entry_type == 5 || $scope.entry_type == 10 || $scope.entry_type == 13) {
+=======
+        } else if ($scope.entry_type == 4 || $scope.entry_type == 5 || $scope.entry_type == 10 || $scope.entry_type == 13) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.module_type.value = 3;
             $scope.doc_type = 2; // credit note
             var doc_type = '';
             if (record.docType == 'Opening Balance Debit Note') {
                 doc_type = 'Opening Balance Debit Note';
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 doc_type = record.docType;
             }
             $scope.postData.title = 'Allocation details for  ' + doc_type + ' (' + record.invoice_code + ')';
@@ -7697,8 +10281,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.payment_detail_id = 0;
             postData.parent_id = 0;
 
+<<<<<<< HEAD
         }
         else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+=======
+        } else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.payment_id = id;
             $scope.payment_detail_id = detail_id;
             postData.parent_id = id;
@@ -7719,7 +10307,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = true;
         $http
             .post(postUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.total = res.data.total;
                     $scope.item_paging.total_pages = res.data.total_pages;
@@ -7735,23 +10327,37 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     $scope.currency_code = record.currency_code;
 
                     $scope.total_setteled = 0;
+<<<<<<< HEAD
                     angular.forEach($scope.ReciptInvoiceModalarrPaid, function (obj) {
+=======
+                    angular.forEach($scope.ReciptInvoiceModalarrPaid, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.total_setteled += Number(obj.paid_amount);
                     });
                     $scope.showLoader = false;
                     angular.element('#InvoicesForAllocatedPayments').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                 {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.netTotal = function () {
         var ctotal = 0;
         angular.forEach($scope.ReciptInvoiceModalarr, function (item) {
+=======
+    $scope.netTotal = function() {
+        var ctotal = 0;
+        angular.forEach($scope.ReciptInvoiceModalarr, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (item.amount >= 0)
                 ctotal += Number(item.amount);
             // ctotal += Number(item.paid_amount);
@@ -7760,7 +10366,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         return $scope.amount_left;
     }
 
+<<<<<<< HEAD
     $scope.setremainingamount = function (item, param) {
+=======
+    $scope.setremainingamount = function(item, param) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var amount2 = 0;
 
         if (item.is_infull == true) {
@@ -7772,8 +10382,12 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             if ($scope.amount_left < item.amount)
                 item.amount = Number($scope.amount_left);
 
+<<<<<<< HEAD
         }
         else if (item.amount != undefined) {
+=======
+        } else if (item.amount != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ((item.grand_total - item.paid_amount) == 0)
                 item.amount = 0;
             else if (item.grand_total - item.paid_amount > 0)
@@ -7790,15 +10404,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         }
 
+<<<<<<< HEAD
         if(Number(item.amount) > 0)
         {
+=======
+        if (Number(item.amount) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             item.amount = item.amount.toFixed(2);
             item.amount = Number(item.amount);
         }
     }
 
 
+<<<<<<< HEAD
     $scope.AddPaymentAllocation = function (module_type, doc_type) {
+=======
+    $scope.AddPaymentAllocation = function(module_type, doc_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.disable_save = true;
         var postData = {};
         postData.token = $scope.$root.token;
@@ -7812,12 +10434,20 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         postData.posting_date = $scope.posting_date;
         postData.from_entry_currency_rate = $scope.from_entry_currency_rate;
 
+<<<<<<< HEAD
         if (doc_type == 1)// purchase invoice
         {
             postData.document_type = 1;
             postData.transaction_type = 1;
         }
         else if (doc_type == 2)// debit invoice
+=======
+        if (doc_type == 1) // purchase invoice
+        {
+            postData.document_type = 1;
+            postData.transaction_type = 1;
+        } else if (doc_type == 2) // debit invoice
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             postData.document_type = 2;
             postData.transaction_type = 2;
@@ -7825,11 +10455,18 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         var selected_items = [];
         var negative_amount_check = 0;
+<<<<<<< HEAD
         angular.forEach($scope.ReciptInvoiceModalarr, function (obj) {
             if (obj.amount < 0) {
                 negative_amount_check = 1;
             }
             else if (obj.amount != undefined && Number(obj.amount) > 0) {
+=======
+        angular.forEach($scope.ReciptInvoiceModalarr, function(obj) {
+            if (obj.amount < 0) {
+                negative_amount_check = 1;
+            } else if (obj.amount != undefined && Number(obj.amount) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 var invoice_type = 0;
                 if (obj.payment_type == "Purchase Invoice")
                     invoice_type = 3;
@@ -7863,7 +10500,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         });
 
         if (negative_amount_check > 0) {
+<<<<<<< HEAD
             toaster.pop('error', 'Error',$scope.$root.getErrorMessageByCode(360, ['All the allocated amounts ', '0']));
+=======
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(360, ['All the allocated amounts ', '0']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         }
         postData.items = selected_items;
@@ -7871,15 +10512,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         $http
             .post(allocation_url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                     angular.element('#InvoicesForPayments').modal('hide');
                     $scope.get_balance_info($scope.$root.crm_id);
                     // $scope.receipt_sub_list[$scope.current_payment_index].remaining_amount = Number($scope.receipt_sub_list[$scope.current_payment_index].remaining_amount)- Number(res.data.total_allocated);
+<<<<<<< HEAD
                 }
                 else
                 {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.disable_save = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
                     angular.element('#InvoicesForPayments').modal('hide');
@@ -7889,7 +10538,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
     }
 
 
+<<<<<<< HEAD
     $scope.edit_on_hold = function (rec, idx) {
+=======
+    $scope.edit_on_hold = function(rec, idx) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.on_hold_selected_data = {};
 
         $scope.on_hold_selected_data.id = rec.id;
@@ -7897,7 +10550,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.on_hold_selected_data.index = idx;
     }
 
+<<<<<<< HEAD
     $scope.submit_on_hold = function () {
+=======
+    $scope.submit_on_hold = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var updateUrl = $scope.$root.gl + "chart-accounts/add-comment-on-for-invoice-hold";
         // module_type = 1-> customer
         // module_type = 2-> supplier
@@ -7913,7 +10570,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
         $scope.showLoader = true;
         $http
             .post(updateUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     if ($scope.on_hold_selected_data.id == undefined) {
                         $scope.showLoader = false;
@@ -7921,6 +10582,7 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         // $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold = !$scope.on_hold_selected_data.on_hold_invoice;
                         $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold = (Number($scope.on_hold_selected_data.on_hold_invoice) > 0 ? 0 : 1);
                         $scope.on_hold_selected_data.on_hold_invoice = ($scope.on_hold_selected_data.on_hold_invoice == 0) ? 1 : 0;
+<<<<<<< HEAD
                     }
                     else
                     {
@@ -7928,6 +10590,13 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                         toaster.pop('success', 'Success', 'Comment Updated Successfully');
                     }
                         
+=======
+                    } else {
+                        $scope.showLoader = false;
+                        toaster.pop('success', 'Success', 'Comment Updated Successfully');
+                    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold_message = $scope.on_hold_selected_data.comments;
 
                     $scope.on_hold_selected_data.id = undefined;
@@ -7937,21 +10606,36 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                     var updateUrl = $scope.$root.gl + "chart-accounts/get-on-hold-status";
                     $http
                         .post(updateUrl, { invoice_id: $scope.on_hold_invoice_id, invoice_type: $scope.on_hold_invoice_type, 'token': $scope.$root.token, 'status': 0, module_type: 2 })
+<<<<<<< HEAD
                         .then(function (res) {
                             if (res.data.ack == true) {
                                 $scope.on_hold_data = res.data.response;
                             }
                             else
+=======
+                        .then(function(res) {
+                            if (res.data.ack == true) {
+                                $scope.on_hold_data = res.data.response;
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(400));
 
                         });
                     // angular.element('#on_hold_comment').modal('hide');
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(106));
             });
     }
     $scope.CheckOnHold = function (record, index) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(106));
+            });
+    }
+    $scope.CheckOnHold = function(record, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
@@ -7965,15 +10649,23 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
         if (record.docType == 'Supplier Payment' || record.docType == 'Supplier Refund' || record.docType == 'General Journal') {
             $scope.on_hold_invoice_id = record.detail_id;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.on_hold_invoice_id = record.order_id;
         }
         $scope.on_hold_data = '';
         var updateUrl = $scope.$root.gl + "chart-accounts/get-on-hold-status";
         $http
             .post(updateUrl, { invoice_id: $scope.on_hold_invoice_id, invoice_type: $scope.on_hold_invoice_type, 'token': $scope.$root.token, 'status': 0, module_type: 2 })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.on_hold_data = res.data.response;
                 }
@@ -8070,11 +10762,19 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             });
         } */
     }
+<<<<<<< HEAD
     $scope.clearOnHold = function () {
         $scope.on_hold_selected_data = {};
     }
     
     $scope.addOnHoldComment = function () {
+=======
+    $scope.clearOnHold = function() {
+        $scope.on_hold_selected_data = {};
+    }
+
+    $scope.addOnHoldComment = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.on_hold_comment.comments != undefined && $scope.on_hold_comment.comments.length) {
             var updateUrl = $scope.$root.gl + "chart-accounts/add-comment-on-for-invoice-hold";
             // module_type = 1-> customer
@@ -8082,12 +10782,17 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
             $scope.showLoader = true;
             $http
                 .post(updateUrl, $scope.on_hold_comment)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.showLoader = false;
                         toaster.pop('success', 'Success', 'Comment Added Successfully');
                         $scope.receipt_sub_list[$scope.on_hold_comment.index].on_hold_message = $scope.on_hold_comment.comments;
                         angular.element('#on_hold_comment').modal('hide');
+<<<<<<< HEAD
                     }
                     else
                     {
@@ -8098,6 +10803,15 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
                 });
         }
         else {
+=======
+                    } else {
+                        $scope.showLoader = false;
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(106));
+                    }
+
+                });
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(247, ['Comments']));
         }
     }
@@ -8109,7 +10823,11 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
 
     $scope.item_paging = {};
+<<<<<<< HEAD
     $scope.itemselectPage = function (pageno) {
+=======
+    $scope.itemselectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.item_paging.spage = pageno;
 
         /*for supplier item pagination settings */
@@ -8137,14 +10855,22 @@ function SupplierEditController($scope, $filter, $resource, $timeout, $http, ngD
 
     // $scope.$root.set_email_internal($scope.$root.supplier_general_tab_module);
 
+<<<<<<< HEAD
     $scope.getAllEmails = function () {
+=======
+    $scope.getAllEmails = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var tabid = 0;
         $scope.$root.$broadcast("EmailReferenceList", $scope.account_id, $scope.row_id, $scope.module, $scope.module_id,
             $scope.module_name, $scope.module_code, $scope.subtype, tabid, $scope.module_type);
 
     }
+<<<<<<< HEAD
     $scope.ComposeEmail = function (tabid) {
+=======
+    $scope.ComposeEmail = function(tabid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $rootScope.set_email_internal(tabid, $scope.rec.name, $scope.module_name);
 

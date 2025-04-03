@@ -46,8 +46,12 @@ $app->post('/setup/attachments/attachments/updateFile', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 }); 
 
 
 
 ?>
+=======
+});
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

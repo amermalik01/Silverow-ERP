@@ -1,6 +1,9 @@
 <?php
 // error_reporting(E_ALL);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 require_once(SERVER_PATH . "/classes/Xtreme.php");
 require_once(SERVER_PATH . "/classes/General.php");
 require_once(SERVER_PATH . "/classes/Hr.php");
@@ -43,10 +46,18 @@ class Customersales extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function deleteSalesBucket ($attr){
         $Sql = "UPDATE bucket SET status = 0 WHERE id = ".$attr['id']."; ";
         $Sql2 = "DELETE FROM crm_salesperson WHERE bucket_id = ".$attr['id']."; ";
         $Sql3 = "DELETE FROM crm_bucket WHERE bucket_id = ".$attr['id']."; ";
+=======
+    function deleteSalesBucket($attr)
+    {
+        $Sql = "UPDATE bucket SET status = 0 WHERE id = " . $attr['id'] . "; ";
+        $Sql2 = "DELETE FROM crm_salesperson WHERE bucket_id = " . $attr['id'] . "; ";
+        $Sql3 = "DELETE FROM crm_bucket WHERE bucket_id = " . $attr['id'] . "; ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql3);
         $RS = $this->objsetup->CSI($Sql2);
@@ -113,7 +124,11 @@ class Customersales extends Xtreme
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -151,6 +166,7 @@ class Customersales extends Xtreme
 
 
             $Sql = "INSERT INTO crm_sale_group
+<<<<<<< HEAD
 SET  
 sale_code='$arr_attr[sale_code]' ,sale_no='$arr_attr[sale_no]' ,group_name='$arr_attr[group_name]'
 ,company_id='" . $this->arrUser['company_id'] . "',user_id='" . $this->arrUser['id'] . "',date_created='" . current_date . "',status=1 ";
@@ -158,6 +174,15 @@ sale_code='$arr_attr[sale_code]' ,sale_no='$arr_attr[sale_no]' ,group_name='$arr
         } else {
             $Sql = "UPDATE crm_sale_group
 SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $id Limit 1 ";
+=======
+                    SET  
+                    sale_code='$arr_attr[sale_code]' ,sale_no='$arr_attr[sale_no]' ,group_name='$arr_attr[group_name]'
+                    ,company_id='" . $this->arrUser['company_id'] . "',user_id='" . $this->arrUser['id'] . "',date_created='" . current_date . "',status=1 ";
+            return $response = $this->objGeneral->run_query_exception($Sql);
+        } else {
+            $Sql = "UPDATE crm_sale_group
+                    SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $id Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rs = $this->objsetup->CSI($Sql);
         }
@@ -282,7 +307,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -325,6 +354,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $where_clause = "";
         $new = "";
 
+<<<<<<< HEAD
         if (!empty($attr[normal_filter])) {
             if ($attr[normal_filter] == 1)
                 $normal_filter = 'c.name';
@@ -366,11 +396,55 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             if (($attr[operator_filter] == 1) || ($attr[operator_filter] == 8)) {
 
                 $pieces = explode(",", $attr[operator_search]);
+=======
+        if (!empty($attr['normal_filter'])) {
+            if ($attr['normal_filter'] == 1)
+                $normal_filter = 'c.name';
+            else if ($attr['normal_filter'] == 2)
+                $normal_filter = 'cn.name';    //c.country_id
+            else if ($attr['normal_filter'] == 3)
+                $normal_filter = 'c.city';
+            else if ($attr['normal_filter'] == 4)
+                $normal_filter = 'c.postcode';
+            else if ($attr['normal_filter'] == 5)
+                $normal_filter = 'c.turnover';
+            else if ($attr['normal_filter'] == 6)
+                $normal_filter = 'cr.title';    //'c.region';
+            else if ($attr['normal_filter'] == 7)
+                $normal_filter = 'sr.title';    //'c.segment';
+            else if ($attr['normal_filter'] == 8)
+                $normal_filter = 'bs.title';    //'c.buyinggroup';
+        }
+
+        if (!empty($attr['operator_filter'])) {
+            if ($attr['operator_filter'] == 1)
+                $operator_filter = 'IN';
+            else if ($attr['operator_filter'] == 2)
+                $operator_filter = '=';
+            else if ($attr['operator_filter'] == 3)
+                $operator_filter = 'LIKE';
+            else if ($attr['operator_filter'] == 4)
+                $operator_filter = '>';
+            else if ($attr['operator_filter'] == 5)
+                $operator_filter = '<';
+            else if ($attr['operator_filter'] == 6)
+                $operator_filter = '>=';
+            else if ($attr['operator_filter'] == 7)
+                $operator_filter = '<=';
+            else if ($attr['operator_filter'] == 8)
+                $operator_filter = 'NOT IN';
+        }
+        if (!empty($attr['operator_search'])) {
+            if (($attr['operator_filter'] == 1) || ($attr['operator_filter'] == 8)) {
+
+                $pieces = explode(",", $attr['operator_search']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($pieces as $key => $value) {
                     $new .= "'" . $value . "'" . ',';
                 }
                 $new = substr($new, 0, -1);
                 $operator_search = "($new)";
+<<<<<<< HEAD
             } else if ($attr[operator_filter] == 3)
                 $operator_search = " '" . $attr[operator_search] . "%' ";
             else
@@ -385,6 +459,22 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         }
 
         if (!empty($attr[normal_filter]))
+=======
+            } else if ($attr['operator_filter'] == 3)
+                $operator_search = " '" . $attr['operator_search'] . "%' ";
+            else
+                $operator_search = "'" . $attr['operator_search'] . "'";
+        }
+
+        if (!empty($attr['logical_filter'])) {
+            if ($attr['logical_filter'] == 1)
+                $logical_filter = 'AND';
+            else if ($attr['logical_filter'] == 2)
+                $logical_filter = 'OR';
+        }
+
+        if (!empty($attr['normal_filter']))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $where_clause .= "AND $normal_filter  $operator_filter $operator_search ";
 
         //if(!empty($attr[logical_search])) $where_clause .=" $logical_filter  $normal_filter = $logical_search "; 
@@ -393,6 +483,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         $response = array();
         $Sql = "SELECT  distinct c.name,c.type, c.id, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.name , c.city  , c.postcode, c.turnover , cn.name as cnname , cr.title as region  , bs.title as buying_group  , sr.title as segment 
+<<<<<<< HEAD
 	FROM  crm  c 
 	left JOIN company on company.id=c.company_id 
 	left JOIN country as cn on cn.id=c.country_id   
@@ -403,11 +494,23 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 	AND (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
 	" . $where_clause . " 
 	"; //Group by c.name DESC 
+=======
+                FROM  crm  c 
+                left JOIN country as cn on cn.id=c.country_id   
+                left JOIN crm_region as cr on cr.id =c.region_id
+                left JOIN crm_buying_group as bs on bs.id =c.buying_grp 
+                left JOIN crm_segment as sr on sr.id =c.company_type
+                WHERE " . $where_clause_type . "  AND c.company_id=" . $this->arrUser['company_id'] . " " . $where_clause . " "; //Group by c.name DESC 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //Limit 100  //Order by c.id DESC
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -449,7 +552,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         if ($type == 2) {
 
 
+<<<<<<< HEAD
             $Sql = "INSERT INTO bucket_filters (module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status) VALUES ";
+=======
+            $Sql = "INSERT INTO bucket_filters (module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status) 
+                    VALUES ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql2 = "(  '" . $module_id . "' ,'','',''," . $Sql . ",''," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . "	,$type,1), ";
             //echo $Sql2;exit;
@@ -502,7 +610,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -535,6 +647,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
     function get_sale_person_by_sale_target_id($attr)
     {
+<<<<<<< HEAD
 
         $Sql2 = "SELECT   c.sale_person_id,c.sale_type
 		FROM  crm_sale_target c
@@ -542,6 +655,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 		where  c.status=1  AND  c.sale_person_name!='' AND  c.sale_code !=''   
 		AND(c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	 
 		AND   c.id = '$attr[target_id]' Limit 1";
+=======
+        $Sql2 = "SELECT c.sale_person_id,c.sale_type
+                FROM  crm_sale_target c
+                where  c.status=1  AND  c.sale_person_name!='' AND  c.sale_code !='' AND c.company_id=" . $this->arrUser['company_id'] . " AND c.id = '$attr[target_id]' 
+                Limit 1";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rs_count = $this->objsetup->CSI($Sql2);
         $sale_person_id = $rs_count->fields['sale_person_id'];
         $sale_type = $rs_count->fields['sale_type'];
@@ -550,6 +670,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         if ($sale_person_id > 0) {
 
+<<<<<<< HEAD
             if ($sale_type == 1) {//echo '1';
                 $Sql_single = "SELECT es.id  ,es.user_code,es.first_name,es.last_name,es.job_title
 		  ,departments.name as dname
@@ -559,16 +680,35 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 		  where  (es.user_company=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
 		  AND es.id='$sale_person_id'  Limit 1
 		  ";
+=======
+            if ($sale_type == 1) { //echo '1';
+
+                $Sql_single = " SELECT es.id,es.user_code,es.first_name,es.last_name,es.job_title,departments.name as dname
+                                FROM employees es
+                                LEFT JOIN departments  on departments.id=es.department 
+                                WHERE es.user_company=" . $this->arrUser['company_id'] . " AND es.id='$sale_person_id'  
+                                Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql_single;exit;
                 $RS = $this->objsetup->CSI($Sql_single);
             }
 
+<<<<<<< HEAD
             if ($sale_type == 2) {//	echo '2';
                 $Sql_group = "SELECT c.salesperson_id FROM crm_salesperson  c
 		left JOIN company on company.id=c.company_id  
 		WHERE  (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ") 
 		AND c.module_id='$sale_person_id'  
 		order by  c.id DESC "; // c.type =2  
+=======
+            if ($sale_type == 2) { //	echo '2';
+
+                $Sql_group = " SELECT c.salesperson_id 
+                               FROM crm_salesperson  c
+                               WHERE c.company_id=" . $this->arrUser['company_id'] . " AND c.module_id='$sale_person_id'
+                               order by  c.id DESC "; // c.type =2 
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //echo $Sql_group;exit;	
                 $rs_group = $this->objsetup->CSI($Sql_group);
                 $arrIds = array();
@@ -581,6 +721,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                 $strIds = implode(',', $arrIds);
 
+<<<<<<< HEAD
                 $Sql = "SELECT es.id  ,es.user_code,es.first_name,es.last_name,es.job_title
 		,departments.name as dname
 		from employees  es
@@ -591,6 +732,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 		AND  es.id in (" . $strIds . ")
 		ORDER BY es.id DESC
 		";
+=======
+                $Sql = "SELECT es.id  ,es.user_code,es.first_name,es.last_name,es.job_title,departments.name as dname
+                        FROM employees  es
+                        LEFT JOIN departments  on departments.id=es.department 
+                        WHERE es.user_company=" . $this->arrUser['company_id'] . " AND  es.id in (" . $strIds . ")
+                        ORDER BY es.id DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql;exit;
                 $RS = $this->objsetup->CSI($Sql);
             }
@@ -640,6 +788,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
           ,( SELECT sr.title  FROM crm_segment as sr where sr.id =c.company_type ) as segment
          */
 
+<<<<<<< HEAD
         $Sql = "SELECT  c.id,  c.name , c.contact_person , c.city  , c.postcode, c.phone, c.type
 	, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.address_1 
 	  , " . $this->objGeneral->get_nested_query_list('region', $this->arrUser['company_id']) . " 
@@ -656,6 +805,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $order_by = "group by c.id DESC";
         $total_limit = pagination_limit;
         
+=======
+        $Sql = "SELECT  c.id,  c.name , c.contact_person , c.city  , c.postcode, c.phone, c.type, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.address_1,cm.is_primary, 
+                        " . $this->objGeneral->get_nested_query_list('region', $this->arrUser['company_id']) . ",
+                        " . $this->objGeneral->get_nested_query_list('buying_group', $this->arrUser['company_id']) . ", 
+                        " . $this->objGeneral->get_nested_query_list('segment', $this->arrUser['company_id']) . "
+                FROM  crm  c 
+                JOIN crm_salesperson  cm on cm.module_id=c.id  
+                where  c.name !='' AND c.company_id=" . $this->arrUser['company_id'] . " " . $where_clause . " ";
+
+        $order_by = "group by c.id DESC";
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -710,7 +872,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $where_clause .= " AND  c.type IN (1,2,3)  ";
         $where_clause .= " AND  c.type IN (2,3)  ";
 
+<<<<<<< HEAD
         $Sql = "SELECT record_id FROM crm_sale_target_types_data	WHERE module_id = $attr[target_id]  AND type = ".$attr['type']." ";
+=======
+        $Sql = "SELECT record_id FROM crm_sale_target_types_data 
+                WHERE module_id = $attr[target_id]  AND type = " . $attr['type'] . " ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
@@ -734,6 +902,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         if (!empty($attr['sale_person_id']))
             $where_clause .= " AND  cm.salesperson_id='" . $attr['sale_person_id'] . "' AND cm.type='2'   AND cm.bucket_id =c.bucket_id ";
 
+<<<<<<< HEAD
         $Sql = "SELECT  c.id,  c.name , c.contact_person , c.city  , c.postcode, c.phone, c.type
 	, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.address_1 
 	,c.region_id,c.company_type,c.buying_grp
@@ -746,14 +915,31 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 	where  c.name !='' AND (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
 	" . $where_clause . " 
 	  ";
+=======
+        $Sql = "SELECT  c.id,  c.name , c.contact_person , c.city  , c.postcode, c.phone, c.type, c.crm_no, 
+                        c.customer_code, c.crm_code, c.customer_no, c.address_1,c.region_id,c.company_type,c.buying_grp,
+                        " . $this->objGeneral->get_nested_query_list('region', $this->arrUser['company_id']) . ",
+                        " . $this->objGeneral->get_nested_query_list('buying_group', $this->arrUser['company_id']) . ",
+                        " . $this->objGeneral->get_nested_query_list('segment', $this->arrUser['company_id']) . "
+                FROM  crm  c 
+                JOIN crm_salesperson  cm on cm.module_id=c.id
+                where  c.name !='' AND c.company_id=" . $this->arrUser['company_id'] . " " . $where_clause . "";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //AND (SELECT cm.is_primary FROM crm_salesperson cm WHERE cm.module_id  =c.id AND type =2)
         //  ,cm.is_primary 
         //echo  $Sql;exit; 
 
+<<<<<<< HEAD
 
         $order_by = "group by c.id";
         $total_limit = pagination_limit;
         
+=======
+        $order_by = "group by c.id";
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -765,7 +951,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
                 $result = array();  
+=======
+                $result = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $result['id'] = $Row['id'];
                 $result['code'] = $Row['customer_code'];
@@ -817,20 +1007,34 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                        FROM units_of_measure 
                        WHERE units_of_measure.id=c.target_uom) as unit_name
                 FROM  crm_sale_target c
+<<<<<<< HEAD
                 LEFT JOIN company on company.id=c.company_id 
                 WHERE c.status=1  AND  
                       c.sale_person_name!='' AND  
                       c.sale_code !=''  AND
                       (c.company_id=" . $this->arrUser['company_id'] . " or  
                        company.parent_id=" . $this->arrUser['company_id'] . ")
+=======
+                WHERE c.status=1  AND  
+                      c.sale_person_name!='' AND  
+                      c.sale_code !=''  AND
+                      c.company_id=" . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $where_clause ";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
             $order_by = " order by c.id DESC";
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+        $order_by = " order by c.id DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_by);
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
@@ -869,7 +1073,10 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
     function get_sale_list_by_id($id)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT ct.*
                   FROM crm_sale_target ct	
                   WHERE id=$id 
@@ -887,7 +1094,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             }
 
             // fetch data from target product table.
+<<<<<<< HEAD
             if($Row['dataType'] ==1 || $Row['dataType'] ==3){
+=======
+            if ($Row['dataType'] == 1 || $Row['dataType'] == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $SqlTargetProduct = "SELECT product_ID
                                         FROM target_product
@@ -897,11 +1108,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $RSTargetProduct = $this->objsetup->CSI($SqlTargetProduct);
 
                 if ($RSTargetProduct->RecordCount() > 0) {
+<<<<<<< HEAD
                     while($RowTargetProduct = $RSTargetProduct->FetchRow()){
+=======
+                    while ($RowTargetProduct = $RSTargetProduct->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         foreach ($RowTargetProduct as $key => $value) {
                             if (is_numeric($key))
                                 unset($RowTargetProduct[$key]);
                         }
+<<<<<<< HEAD
                         $Row['targetProducts'][] =$RowTargetProduct['product_ID'];
                     }
                 }
@@ -909,6 +1125,15 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     
             // fetch data from target customer table.
             if($Row['dataType'] ==2 || $Row['dataType'] ==3){
+=======
+                        $Row['targetProducts'][] = $RowTargetProduct['product_ID'];
+                    }
+                }
+            }
+
+            // fetch data from target customer table.
+            if ($Row['dataType'] == 2 || $Row['dataType'] == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $SqlTargetCustomer = "SELECT crm_ID
                                         FROM target_customer
@@ -918,14 +1143,23 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $RSTargetCustomer = $this->objsetup->CSI($SqlTargetCustomer);
 
                 if ($RSTargetCustomer->RecordCount() > 0) {
+<<<<<<< HEAD
                     while($RowTargetCustomer = $RSTargetCustomer->FetchRow()){
                     
+=======
+                    while ($RowTargetCustomer = $RSTargetCustomer->FetchRow()) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         foreach ($RowTargetCustomer as $key => $value) {
                             if (is_numeric($key))
                                 unset($RowTargetCustomer[$key]);
                         }
 
+<<<<<<< HEAD
                         $Row['targetCustomer'][] =$RowTargetCustomer['crm_ID'];
+=======
+                        $Row['targetCustomer'][] = $RowTargetCustomer['crm_ID'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
             }
@@ -963,8 +1197,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                        DATE_FORMAT(FROM_UNIXTIME(posting_date), "%M") AS reqMonth
                 FROM orders
                 WHERE type IN (2,3) AND 
+<<<<<<< HEAD
                       sale_person_id="'.$attr['sale_person_id'].'" AND
                       sale_person_id="'.$attr['sale_person_id'].'" AND
+=======
+                      sale_person_id="' . $attr['sale_person_id'] . '" AND
+                      sale_person_id="' . $attr['sale_person_id'] . '" AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 GROUP BY reqMonth ';
         // echo $Sql;exit;
 
@@ -972,8 +1211,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         if ($RS->RecordCount() > 0) {
 
+<<<<<<< HEAD
             while ($Row = $RS->FetchRow()) 
             {
+=======
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -1039,6 +1282,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $update_check = "";
 
 
+<<<<<<< HEAD
         $data_types = (isset($arr_attr['data_types']) && $arr_attr['data_types']!='')?$arr_attr['data_types']:0;          
         $target_types = (isset($arr_attr['target_types']) && $arr_attr['target_types']!='')?$arr_attr['target_types']:0;       
         $product_promotion_type_ids = (isset($arr_attr['product_promotion_type_ids']) && $arr_attr['product_promotion_type_ids']!='')?$arr_attr['product_promotion_type_ids']:0;        
@@ -1055,6 +1299,24 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         // target_amount='$arr_attr[target_amount]',
             if ($id == 0) { 
                 $Sql = "INSERT INTO crm_sale_target
+=======
+        $data_types = (isset($arr_attr['data_types']) && $arr_attr['data_types'] != '') ? $arr_attr['data_types'] : 0;
+        $target_types = (isset($arr_attr['target_types']) && $arr_attr['target_types'] != '') ? $arr_attr['target_types'] : 0;
+        $product_promotion_type_ids = (isset($arr_attr['product_promotion_type_ids']) && $arr_attr['product_promotion_type_ids'] != '') ? $arr_attr['product_promotion_type_ids'] : 0;
+
+
+        $sale_person_id = (isset($arr_attr['sale_person_id']) && $arr_attr['sale_person_id'] != '') ? $arr_attr['sale_person_id'] : 0;
+        $sale_types = (isset($arr_attr['sale_types']) && $arr_attr['sale_types'] != '') ? $arr_attr['sale_types'] : 0;
+        $commission_types = (isset($arr_attr['commission_types']) && $arr_attr['commission_types'] != '') ? $arr_attr['commission_types'] : 0;
+        $bonus_types = (isset($arr_attr['bonus_types']) && $arr_attr['bonus_types'] != '') ? $arr_attr['bonus_types'] : 0;
+        $fix_target_types = (isset($arr_attr['fix_target_types']) && $arr_attr['fix_target_types'] != '') ? $arr_attr['fix_target_types'] : 0;
+        $target_uoms = (isset($arr_attr['target_uoms']) && $arr_attr['target_uoms'] != '') ? $arr_attr['target_uoms'] : 0;
+        $currency_ids = (isset($arr_attr['currency_ids']) && $arr_attr['currency_ids'] != '') ? $arr_attr['currency_ids'] : 0;
+
+        // target_amount='$arr_attr[target_amount]',
+        if ($id == 0) {
+            $Sql = "INSERT INTO crm_sale_target
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             SET  
                                                 sale_code='$arr_attr[sale_code]',
                                                 unique_id=UUID(),
@@ -1078,12 +1340,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                                 converted_price='$arr_attr[converted_price]',
                                                 currency_id='$currency_ids'";
 
+<<<<<<< HEAD
                 echo $Sql;exit;
                 $rs = $this->objsetup->CSI($Sql);
                 $id = $this->Conn->Insert_ID();
             } else {
 
                 $Sql = "UPDATE crm_sale_target
+=======
+            // echo $Sql;exit;
+            $rs = $this->objsetup->CSI($Sql);
+            $id = $this->Conn->Insert_ID();
+        } else {
+
+            $Sql = "UPDATE crm_sale_target
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     SET 
                                         sale_code='$arr_attr[sale_code]',
                                         unique_id=UUID(),
@@ -1105,6 +1376,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                         currency_id='$currency_ids'
                                     WHERE id = $id 
                                     Limit 1 ";
+<<<<<<< HEAD
                 // echo $Sql;exit;
                 $rs = $this->objsetup->CSI($Sql);
             }
@@ -1113,6 +1385,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         // echo $Sql;exit;
         if(($this->Conn->Affected_Rows() > 0) || $updateID>0) {
         // if ($arr_attr['target_amount'] > 0) {
+=======
+            // echo $Sql;exit;
+            $rs = $this->objsetup->CSI($Sql);
+        }
+        // }
+
+        // echo $Sql;exit;
+        if (($this->Conn->Affected_Rows() > 0) || $updateID > 0) {
+            // if ($arr_attr['target_amount'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $SqlDelProducts = "Delete from target_product where crm_sale_target_ID='$id' and company_id='" . $this->arrUser['company_id'] . "'";
             $rsDelProducts = $this->objsetup->CSI($SqlDelProducts);
@@ -1120,7 +1402,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $SqlDelCustomers = "Delete from target_customer where crm_sale_target_ID='$id' and company_id='" . $this->arrUser['company_id'] . "'";
             $rsDelCustomers = $this->objsetup->CSI($SqlDelCustomers);
 
+<<<<<<< HEAD
             if($product_promotion_type_ids ==3){
+=======
+            if ($product_promotion_type_ids == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 foreach ($selectedProducts as $prod) {
                     $SqlProducts = "INSERT INTO target_product
@@ -1175,7 +1461,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql = "SELECT c.record_id 
                 FROM crm_sale_target_types_data c
                 WHERE c.module_id = $arr_attr[module_id]  AND 
+<<<<<<< HEAD
                       c.type = ".$arr_attr['type']." ";
+=======
+                      c.type = " . $arr_attr['type'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total_limit = pagination_limit;
 
@@ -1220,7 +1510,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $msg = 'Updated';
         else
             $msg = 'Inserted';
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         foreach ($attr['salespersons'] as $item) {
             $Sql = "INSERT INTO crm_sale_target_types_data 
                                     SET 
@@ -1233,7 +1527,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
             // echo  $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         }     
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
@@ -1254,7 +1552,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 LEFT JOIN company on company.id=c.company_id 
                 where  c.status=1 AND  
                        c.module_id='$attr[module_id]' AND  
+<<<<<<< HEAD
                        c.type='".$attr['type']."' AND 
+=======
+                       c.type='" . $attr['type'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                        (c.company_id=" . $this->arrUser['company_id'] . " or  
                         company.parent_id=" . $this->arrUser['company_id'] . ")
                 ORDER BY c.id ASC  
@@ -1299,13 +1601,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 LEFT JOIN company on company.id=c.company_id 
                 where  c.status=1 AND  
                        c.module_id='$attr[module_id]' AND  
+<<<<<<< HEAD
                        c.type='".$attr['type']."' AND 
+=======
+                       c.type='" . $attr['type'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                        (c.company_id=" . $this->arrUser['company_id'] . " or  
                         company.parent_id=" . $this->arrUser['company_id'] . ")";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -1374,8 +1684,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $Sql = "INSERT INTO crm_sale_target_commision_bonus
                                         SET
                                             module_id='" . $attr['module_id'] . "',
+<<<<<<< HEAD
                                             discount_type='" . $attr['discount_type']->value. "',
                                             discount_value='" . $attr['discount_value']. "',
+=======
+                                            discount_type='" . $attr['discount_type']->value . "',
+                                            discount_value='" . $attr['discount_value'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             sale_type='" . $attr['sale_type']->value  . "',
                                             value_from='" . $attr['value_from'] . "',
                                             value_to='" . $attr['value_to'] . "',
@@ -1385,12 +1700,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                             type='" . $attr['type'] . "',
                                             target_type_comsion='" . $attr['target_type_comsion']->id . "',
                                             chk_accumlative='" . $attr['chk_accumlative'] . "'";
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $Sql = "UPDATE crm_sale_target_commision_bonus
 					                        SET  
                                                 discount_type='" . $attr['discount_type']->value . "',
+<<<<<<< HEAD
                                                 discount_value='" . $attr['discount_value']. "',
+=======
+                                                discount_value='" . $attr['discount_value'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 sale_type='" . $attr['sale_type']->value . "',
                                                 value_from='" . $attr['value_from'] . "',
                                                 value_to='" . $attr['value_to'] . "',
@@ -1423,7 +1745,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         $Sql = "INSERT INTO crm_sale_target_detail 
                                 SET 
+<<<<<<< HEAD
 		unique_id='" . $unique_id . "',company_id='" . $this->arrUser['company_id'] . "',user_id='" . $this->arrUser['id'] . "' ,date_created='" . current_date . "',status=1,type='".$attr['type']."',level_id='$attr[level_id]'
+=======
+		unique_id='" . $unique_id . "',company_id='" . $this->arrUser['company_id'] . "',user_id='" . $this->arrUser['id'] . "' ,date_created='" . current_date . "',status=1,type='" . $attr['type'] . "',level_id='$attr[level_id]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		";
         //  echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1455,12 +1781,20 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql = "SELECT   c.*,(SELECT units_of_measure.title FROM units_of_measure WHERE units_of_measure.id=c.target_uom) as unit_name
 		FROM   crm_sale_target_detail c
 		left JOIN company on company.id=c.company_id 
+<<<<<<< HEAD
 		where  c.status=1 AND (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	AND c.sale_target_id='$attr[crm_sale_target_id]' and type='".$attr['type']."'
+=======
+		where  c.status=1 AND (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	AND c.sale_target_id='$attr[crm_sale_target_id]' and type='" . $attr['type'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		 $where_clause
 		  ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -1508,7 +1842,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql = "SELECT ct.*,( SELECT Count(sf.id)  FROM crm_sale_target_commision_bonus sf 
 		where sf.module_id=ct.id   AND sf.type='$type')as comsion_status ,( SELECT Count(sf.id)  FROM crm_sale_target_commision_bonus sf 
 		where sf.module_id=ct.id   AND sf.type='$type2' )as bonus_status FROM crm_sale_target_detail ct	
+<<<<<<< HEAD
 		WHERE id=".$attr['id']." LIMIT 1";
+=======
+		WHERE id=" . $attr['id'] . " LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -1576,7 +1914,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                             commission_type='$arr_attr[commission_type]',
                                             bonus_type='$arr_attr[bonus_type]',
                                             target_uom='$arr_attr[target_uoms]',
+<<<<<<< HEAD
                                             type='".$arr_attr['type']."',
+=======
+                                            type='" . $arr_attr['type'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             level_id='$arr_attr[level_id]',
                                             created_date='$created_date' ";
             $rs = $this->objsetup->CSI($Sql);
@@ -1593,7 +1935,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                             end_date = '" . $edate . "' ,
                                             status='$arr_attr[statuss]'	,
                                             target_uom='$arr_attr[target_uoms]',
+<<<<<<< HEAD
                                             type='".$arr_attr['type']."',
+=======
+                                            type='" . $arr_attr['type'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             level_id='$arr_attr[level_id]',edit_flag=1,
                                             created_date='$arr_attr[created_date]',
                                             product_promotion_type_id='$arr_attr[product_promotion_type_ids]' ,
@@ -1607,7 +1953,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         //echo $Sql;exit;
         //$this->Conn->Affected_Rows()
+<<<<<<< HEAD
         if ($arr_attr[target_amount] > 0) {
+=======
+        if ($arr_attr['target_amount'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['id'] = $id;
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -1627,7 +1977,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql = "SELECT cd.record_id FROM crm_sale_target_types_data cd
 		left JOIN company on company.id=cd.company_id 
 		where  (cd.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
+<<<<<<< HEAD
 		AND cd.module_id = $arr_attr[module_id]  AND cd.type = ".$arr_attr['type']."
+=======
+		AND cd.module_id = $arr_attr[module_id]  AND cd.type = " . $arr_attr['type'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		  ";
 
         $total_limit = pagination_limit;
@@ -1754,7 +2108,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         // print_r($arr_attr);exit;
 
         $Sql = "SELECT c.record_id FROM crm_sale_target_type_detail c
+<<<<<<< HEAD
 		WHERE c.module_id = $arr_attr[module_id]  AND c.type = ".$arr_attr['type']." ";
+=======
+		WHERE c.module_id = $arr_attr[module_id]  AND c.type = " . $arr_attr['type'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $total_limit = pagination_limit;
@@ -1829,7 +2187,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql = "SELECT cd.record_id FROM crm_sale_target_type_detail cd
 		left JOIN company on company.id=cd.company_id 
 		where  (cd.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
+<<<<<<< HEAD
 		AND cd.module_id = $arr_attr[module_id]  AND cd.type = ".$arr_attr['type']."
+=======
+		AND cd.module_id = $arr_attr[module_id]  AND cd.type = " . $arr_attr['type'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		  ";
 
 
@@ -1974,7 +2336,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         $order_by = "group by c.id DESC";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2159,7 +2525,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2195,7 +2565,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                     $Row['item_code'] = $Row['item_no'];
                     $Row['description'] = $Row['item_name'];
                     $Row['id'] = $Row['item_id'];
+<<<<<<< HEAD
                     $response['response'][] = (object)$Row;
+=======
+                    $response['response'][] = (object) $Row;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 } else
                     $response['response'][] = $Row;
             };
@@ -2250,7 +2624,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     function convert_rejected($attr)
     {
 
+<<<<<<< HEAD
         $Sql = "UPDATE crm_sale_forcast SET forcast_status = 4  ,reject_comment = '$attr[comment]' WHERE id = ".$attr['id']."  Limit 1";
+=======
+        $Sql = "UPDATE crm_sale_forcast SET forcast_status = 4  ,reject_comment = '$attr[comment]' WHERE id = " . $attr['id'] . "  Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2262,7 +2640,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     function send_for_approval122($attr)
     {
 
+<<<<<<< HEAD
         $Sql = "UPDATE crm_sale_forcast SET forcast_status = 1   WHERE id = ".$attr['id']." Limit 1";
+=======
+        $Sql = "UPDATE crm_sale_forcast SET forcast_status = 1   WHERE id = " . $attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //	echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2274,7 +2656,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     function convert_approval($attr)
     {
 
+<<<<<<< HEAD
         $Sql = "UPDATE crm_sale_forcast SET forcast_status =2  WHERE id = ".$attr['id']." Limit 1";
+=======
+        $Sql = "UPDATE crm_sale_forcast SET forcast_status =2  WHERE id = " . $attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //	echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2287,7 +2673,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     {
         //  print_r($attr);exit;
 
+<<<<<<< HEAD
         $Sql = "UPDATE crm_sale_forcast SET type = 3  WHERE id = ".$attr['id']." Limit 1 ";
+=======
+        $Sql = "UPDATE crm_sale_forcast SET type = 3  WHERE id = " . $attr['id'] . " Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2337,8 +2727,14 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
     //----------------------crm_sale_bucket----------------
 
+<<<<<<< HEAD
     function get_sale_baket_list($attr, $arg, $isAllowed)
     {
+=======
+    function get_sale_baket_list($attr, $arg = 0, $isAllowed = 0)
+    {
+        // error_reporting(E_ALL); 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $order_by = $where_clause = "";
         $this->objGeneral->mysql_clean($attr);
 
@@ -2362,13 +2758,18 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         //or  company.parent_id=" . $this->arrUser['company_id'] . "
 
+<<<<<<< HEAD
          //echo $Sql;exit;
+=======
+        //  echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($arg == 1) $direct_limit = cache_pagination_limit;
         else $direct_limit = pagination_limit;
 
 
         $total_limit = $direct_limit;
+<<<<<<< HEAD
                 
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
         //            $total_limit = $attr['pagination_limits'];
@@ -2383,6 +2784,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         }
         else{
             $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission); 
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            //            $total_limit = $attr['pagination_limits'];
+
+            $order_by = " order by  c.id DESC";
+        $Sql = $Sql . $order_by;
+        //echo $Sql;exit;
+
+        $response['q'] = '';
+        if ($isAllowed) {
+            $RS = $this->objsetup->CSI($Sql);
+        } else {
+            $RS = $this->objsetup->CSI($Sql, "human_resource", sr_ViewPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($RS->RecordCount() > 0) {
@@ -2399,8 +2815,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
 
         return $response;
@@ -2433,7 +2853,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $response['response'] = $Row;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['bucketFail'] = 1;
         }
@@ -2451,6 +2875,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             }
         }
 
+<<<<<<< HEAD
         
         $allEmployees = $this->objHr->get_employees(array(),1);
         //print_r($result11['response']);exit;
@@ -2459,11 +2884,23 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             {
                 if ($key == "code"){
                     
+=======
+
+        $allEmployees = $this->objHr->get_employees(array(), 1);
+        //print_r($result11['response']);exit;
+        for ($i = 0; $i < sizeof($allEmployees['response']); $i++) {
+            foreach ($allEmployees['response'][$i] as $key => $value) {
+                if ($key == "code") {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $tempArray = array("Employee No." => $value);
                     $allEmployees['response'][$i] = $tempArray + $allEmployees['response'][$i];
                     unset($allEmployees['response'][$i][$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         $response['allEmployees'] = $allEmployees;
@@ -2475,6 +2912,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
     function get_sale_baket_data_preData($attr)
     {
+<<<<<<< HEAD
         $response['response'] = array();        
         $allEmployees = $this->objHr->get_employees(array(),1);
         //print_r($result11['response']);exit;
@@ -2490,6 +2928,22 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             }
         }
         
+=======
+        $response['response'] = array();
+        $allEmployees = $this->objHr->get_employees(array(), 1);
+        //print_r($result11['response']);exit;
+        for ($i = 0; $i < sizeof($allEmployees['response']); $i++) {
+            foreach ($allEmployees['response'][$i] as $key => $value) {
+                if ($key == "code") {
+
+                    $tempArray = array("Employee No." => $value);
+                    $allEmployees['response'][$i] = $tempArray + $allEmployees['response'][$i];
+                    unset($allEmployees['response'][$i][$key]);
+                }
+            }
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['allEmployees'] = $allEmployees;
         $response['ack'] = 1;
         $response['error'] = NULL;
@@ -2511,7 +2965,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         // $this->objGeneral->mysql_clean($arr_attr);
@@ -2555,7 +3013,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $Sql = "INSERT INTO bucket
                                     SET  
                                         sale_bk_code='$arr_attr[sale_bk_code]',
+<<<<<<< HEAD
                                         name='".$arr_attr['name']."',
+=======
+                                        name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         starting_date = '" . $sdate . "',
                                         ending_date = '" . $edate . "',
                                         company_id='" . $this->arrUser['company_id'] . "',
@@ -2563,11 +3025,18 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                         created_date='" . current_date . "'	,
                                         status=1";
             $msg = 'Inserted';
+<<<<<<< HEAD
         } 
         else {
             $Sql = "UPDATE bucket 	
                                 SET  
                                     name='".$arr_attr['name']."',
+=======
+        } else {
+            $Sql = "UPDATE bucket 	
+                                SET  
+                                    name='" . $arr_attr['name'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     starting_date = '" . $sdate . "',
                                     ending_date = '" . $edate . "'	
                                 WHERE id = $id 
@@ -2586,8 +3055,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $response['ack'] = 1;
             $response['id'] = $id;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record not ' . $msg;
 
@@ -2603,12 +3076,17 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
         }
 
+<<<<<<< HEAD
         if (strlen($arr_attr['employees'] > 0)){
+=======
+        if (strlen($arr_attr['employees'] > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $removeAssignments = "DELETE FROM employee_bucket 
             WHERE bucket_id = $id ";
             //echo $removeAssignments;exit;
 
             $removeAssignmentsResult = $this->objsetup->CSI($removeAssignments);
+<<<<<<< HEAD
             $empArr = explode(",",$arr_attr['employees']);
 
             //print_r($empArr);exit;
@@ -2633,6 +3111,32 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $response['reverseAssignments'] = $this->reverseSalespersonAssignments($arr_attr['id'],$arr_attr['employees'],$arr_attr['primarySalesperson']);
         }
         
+=======
+            $empArr = explode(",", $arr_attr['employees']);
+
+            //print_r($empArr);exit;
+            for ($i = 0; $i < sizeof($empArr); $i++) {
+
+                $Sql = "INSERT INTO employee_bucket
+                                set
+                                    employee_id='$empArr[$i]',
+                                    is_primary='" . ($empArr[$i] == $arr_attr['primarySalesperson'] ? 1 : 0) . "',
+                                    company_id='" . $this->arrUser['company_id'] . "',
+                                    AddedOn='" .  current_date . "',
+                                    AddedBy='" . $this->arrUser['id'] . "',
+                                    bucket_id='$id'";
+                //echo $Sql;//exit; ;\n
+                $R = $this->objsetup->CSI($Sql);
+            }
+            //exit;
+
+        }
+
+        if ($arr_attr['overwrite'] == 1) {
+            $response['reverseAssignments'] = $this->reverseSalespersonAssignments($arr_attr['id'], $arr_attr['employees'], $arr_attr['primarySalesperson']);
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
 
@@ -2646,7 +3150,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -2657,7 +3165,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $ids = "";
         $response = "";
         $where_clause = "";
+<<<<<<< HEAD
        // print_r($attr);//exit;
+=======
+        // print_r($attr);//exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // if (!empty($attr['bucket_selected_array'])) {
         foreach ($attr['bucket_selected_array'] as $item) {
 
@@ -2683,7 +3195,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2733,7 +3249,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
                 $ids .= $Row[bucket_id] . ',';
+=======
+                $ids .= $Row['bucket_id'] . ',';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -2783,32 +3303,54 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         return $response;
     }
 
+<<<<<<< HEAD
     function get_crm_bucket($arr_attr, $type)
+=======
+    function get_crm_bucket($arr_attr, $type = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $response = "";
         $order_by = "";
 
+<<<<<<< HEAD
         if ($type == 'crm'){
             $arr_attr['type'] = '1';
         }
         else if ($type == 'customer'){
             $arr_attr['type'] = 2;            
+=======
+        if ($type == 'crm') {
+            $arr_attr['type'] = '1';
+        } else if ($type == 'customer') {
+            $arr_attr['type'] = 2;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "SELECT c.* 
                 FROM crm_bucket c 
                 WHERE c.module_id = '$arr_attr[module_id]' and 
+<<<<<<< HEAD
                       c.type IN (".$arr_attr['type'].") AND  
                       (c.end_date IS NULL || c.end_date=0)";
 
 //echo $Sql;exit;
+=======
+                      c.type IN (" . $arr_attr['type'] . ") AND  
+                      (c.end_date IS NULL || c.end_date=0)";
+
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total_limit = pagination_limit;
         if ($arr_attr['pagination_limits'])
             $total_limit = $arr_attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($arr_attr, $Sql, $response, $total_limit, 'c', $order_by);
         // echo $response['q'];  exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
@@ -2842,10 +3384,17 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         foreach ($arr_attr['salesbucket'] as $item) {
 
+<<<<<<< HEAD
             if($item->isPrimary>0)
                 $is_primary=$item->isPrimary;
             else
                 $is_primary=0;
+=======
+            if ($item->isPrimary > 0)
+                $is_primary = $item->isPrimary;
+            else
+                $is_primary = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql .= "(  '" . $arr_attr['module_id'] . "' ," . $item->bucket_id . " ," . $arr_attr['type'] . ",	'" . $is_primary . "'	," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "	,'" . current_date . "' ), ";
 
@@ -2870,7 +3419,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     {
 
 
+<<<<<<< HEAD
         $Sql = "UPDATE crm_bucket SET  status=0 	WHERE id =  ".$arr_attr['id']." Limit 1";
+=======
+        $Sql = "UPDATE crm_bucket SET  status=0 	WHERE id =  " . $arr_attr['id'] . " Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -2893,12 +3446,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $where_clause_loc = '';
         $new = '';
 
+<<<<<<< HEAD
         if (!empty($attr[array_dynamic_filter]) && !empty($attr[array_dynamic_filter][0]->normal_filter->field_name) && !empty($attr[array_dynamic_filter][0]->operator_filter->id) && !empty($attr[array_dynamic_filter][0]->operator_search)
+=======
+        if (
+            !empty($attr['array_dynamic_filter']) && !empty($attr['array_dynamic_filter'][0]->normal_filter->field_name) && !empty($attr['array_dynamic_filter'][0]->operator_filter->id) && !empty($attr['array_dynamic_filter'][0]->operator_search)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         ) {
             //$where_clause = 'AND (';
             $count_location = 0;
             $count_record = 0;
+<<<<<<< HEAD
             foreach ($attr[array_dynamic_filter] as $item) {
+=======
+            foreach ($attr['array_dynamic_filter'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search))) {
 
@@ -2906,6 +3468,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                     if (!empty($item->normal_filter->field_name)) {
                         $normal_filter = $item->normal_filter->field_name;
+<<<<<<< HEAD
 //                         if ($item->normal_filter->id == 1)
 //                             $normal_filter = 'c.name';
 //                         else if ($item->normal_filter->id == 2)
@@ -2933,6 +3496,35 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 //                             $normal_filter = 'cd.city';
 //                         else if ($item->normal_filter->id == 12)
 //                             $normal_filter = 'cnl.name';     //cd.country
+=======
+                        // if ($item->normal_filter->id == 1)
+                        //     $normal_filter = 'c.name';
+                        // else if ($item->normal_filter->id == 2)
+                        //     $normal_filter = 'cn.name';    //c.country_id
+                        // else if ($item->normal_filter->id == 3)
+                        //     $normal_filter = 'c.city';
+                        // else if ($item->normal_filter->id == 4)
+                        //     $normal_filter = 'c.postcode';
+                        // else if ($item->normal_filter->id == 5)
+                        //     $normal_filter = 'c.turnover';
+                        // else if ($item->normal_filter->id == 6)
+                        //     $normal_filter = 'cr.title';    //'c.region';
+                        // else if ($item->normal_filter->id == 7)
+                        //     $normal_filter = 'sr.title';    //'c.segment';
+                        // else if ($item->normal_filter->id == 8)
+                        //     $normal_filter = 'bs.title';    //'c.buyinggroup';
+
+
+
+                        // else if ($item->normal_filter->id == 9)
+                        //     $normal_filter = 'cd.contact_name';
+                        // else if ($item->normal_filter->id == 10)
+                        //     $normal_filter = 'cd.postcode';
+                        // else if ($item->normal_filter->id == 11)
+                        //     $normal_filter = 'cd.city';
+                        // else if ($item->normal_filter->id == 12)
+                        //     $normal_filter = 'cnl.name';     //cd.country
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
 
                     if (!empty($item->operator_filter->id)) {
@@ -2976,16 +3568,25 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             $logical_filter = 'AND';
                         else if ($item->logical_filter->id == 2)
                             $logical_filter = 'OR';
+<<<<<<< HEAD
 
                             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
 
                     $count_record++;
                     if ($item->normal_filter->id <= 8) {
 
+<<<<<<< HEAD
                         if (!empty($item->normal_filter->id)){
                             $where_clause = "(" . $where_clause;
                         $where_clause .= " $normal_filter  $operator_filter $operator_search ) $logical_filter   ";
+=======
+                        if (!empty($item->normal_filter->id)) {
+                            $where_clause = "(" . $where_clause;
+                            $where_clause .= " $normal_filter  $operator_filter $operator_search ) $logical_filter   ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         }
                     }
 
@@ -3059,11 +3660,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         //Group by c.name   DESC//Limit 50  
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
             //echo $Sql;exit;
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c');
         //echo $response['q'];exit;		
         $RS = $this->objsetup->CSI($response['q']);
@@ -3079,12 +3688,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                 $result['name'] = $Row['name'];
                 $result['country'] = $Row['cnname'];
+<<<<<<< HEAD
                 $result['city'] = $Row['city']?$Row['city']:"";
                 $result['postcode'] = $Row['postcode']?$Row['postcode']:"";
                 $result['turnover'] = $Row['turnover']?$Row['turnover']:"";
                 $result['region'] = $Row['region']?$Row['region']:"";
                 $result['segment'] = $Row['segment']?$Row['segment']:"";
                 $result['buying_group'] = $Row['buying_group']?$Row['buying_group']:"";
+=======
+                $result['city'] = $Row['city'] ? $Row['city'] : "";
+                $result['postcode'] = $Row['postcode'] ? $Row['postcode'] : "";
+                $result['turnover'] = $Row['turnover'] ? $Row['turnover'] : "";
+                $result['region'] = $Row['region'] ? $Row['region'] : "";
+                $result['segment'] = $Row['segment'] ? $Row['segment'] : "";
+                $result['buying_group'] = $Row['buying_group'] ? $Row['buying_group'] : "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $result['location'] = ($Row['location_count'] > 0) ? "Yes" : "NO";
                 $result['bucket'] = $Row['bucket'];
@@ -3105,11 +3723,18 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         // print_r($arr_attr);exit;
         //	$Sql = "SELECT cust_id FROM crm_sale_bucket_data WHERE module_id = $arr_attr[module_id]  AND type = ".$arr_attr['type']." ";
 
+<<<<<<< HEAD
         $Sql = "SELECT cb.* FROM  bucket_filters  cb 
 	left JOIN company on company.id=cb.company_id 
 	WHERE cb.module_id = $arr_attr[module_id]  AND cb.type = 1 
 	AND (cb.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
 	"; //Order by cb.id DESC 
+=======
+        $Sql = "SELECT cb.* 
+                FROM  bucket_filters  cb 
+                WHERE cb.module_id = $arr_attr[module_id] AND cb.type = 1 AND cb.company_id=" . $this->arrUser['company_id'] . "";
+        //Order by cb.id DESC 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $total_limit = pagination_limit;
@@ -3147,7 +3772,10 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
     function add_sale_bucket_customer($attr)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //print_r($attr);exit;
         $new = $response = "";
         $where_clause_loc = "";
@@ -3165,8 +3793,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         foreach ($attr['array_dynamic_filter'] as $item) {
 
             if ((!empty($item->normal_filter->id)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search))) {
+<<<<<<< HEAD
                 $Sql .= "(  '" . $attr['module_id'] . "' ,'" . $item->sort_id . "','" . $item->normal_filter->id . "','" . $item->operator_filter->id . "','" . $item->operator_search . "','" . $item->logical_filter->id . "'
 ," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . ",1,1 ), ";
+=======
+                $Sql .= "(  '" . $attr['module_id'] . "' ,'" . $item->sort_id . "','" . $item->normal_filter->id . "','" . $item->operator_filter->id . "','" . $item->operator_search . "','" . $item->logical_filter->id . "'," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . ",1,1 ), ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $chk++;
             }
         }
@@ -3179,12 +3811,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
             $where_clause = '';
+<<<<<<< HEAD
             if (!empty($attr[array_dynamic_filter]) && !empty($attr[array_dynamic_filter][0]->normal_filter->id) && !empty($attr[array_dynamic_filter][0]->operator_filter->id) && !empty($attr[array_dynamic_filter][0]->operator_search)
+=======
+            if (
+                !empty($attr['array_dynamic_filter']) && !empty($attr['array_dynamic_filter'][0]->normal_filter->id) && !empty($attr['array_dynamic_filter'][0]->operator_filter->id) && !empty($attr['array_dynamic_filter'][0]->operator_search)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             ) {
                 $where_clause = 'AND (';
                 $count_location = 0;
                 $count_record = 0;
+<<<<<<< HEAD
                 foreach ($attr[array_dynamic_filter] as $item) {
+=======
+                foreach ($attr['array_dynamic_filter'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ((!empty($item->normal_filter->id)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search))) {
 
@@ -3209,8 +3850,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             else if ($item->normal_filter->id == 8)
                                 $normal_filter = 'bs.title';    //'c.buyinggroup';
 
+<<<<<<< HEAD
 
 //location filter
+=======
+                            //location filter
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             else if ($item->normal_filter->id == 9)
                                 $normal_filter = 'cd.contact_name';
                             else if ($item->normal_filter->id == 10)
@@ -3275,11 +3920,20 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             $count_location++;
 
 
+<<<<<<< HEAD
                             $where_clause .= " (SELECT count(cd.id) FROM crm_alt_depot  cd
 							LEFT JOIN company on company.id=cd.company_id 
 							left JOIN country as cnl on cnl.id=cd.country   
 							WHERE  cd.status=1 AND cd.crm_id=c.id
 							AND (cd.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ") 		 AND( $normal_filter  $operator_filter $operator_search  $logical_filter)    Limit 1) 	";
+=======
+                            $where_clause .= " (SELECT count(cd.id) 
+                                                FROM crm_alt_depot  cd
+                                                left JOIN country as cnl on cnl.id=cd.country 
+                                                WHERE  cd.status=1 AND cd.crm_id=c.id AND cd.company_id=" . $this->arrUser['company_id'] . " AND
+                                                ( $normal_filter  $operator_filter $operator_search  $logical_filter)
+                                                Limit 1)";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             //$where_clause_loc =" ( $normal_filter  $operator_filter $operator_search  $logical_filter)   "; 
                         }
@@ -3288,6 +3942,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $where_clause .= ")  ";
             }
 
+<<<<<<< HEAD
             $query_format = "SELECT  c.type, c.id, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.name , c.city  , c.postcode, c.turnover , cn.name as cnname , cr.title as region  , bs.title as buying_group  , sr.title as segment 
 	,(SELECT count(cd.id) FROM crm_alt_depot  cd
         LEFT JOIN company on company.id=cd.company_id 
@@ -3306,14 +3961,39 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $Sql .= " " . $where_clause_loc;
             $Sql .= " 
 	 	";
+=======
+            $query_format = "SELECT c.type, c.id, c.crm_no, c.customer_code, c.crm_code, c.customer_no, c.name , c.city  , c.postcode, c.turnover , 
+                                    cn.name as cnname, cr.title as region, bs.title as buying_group, sr.title as segment,
+                                    (SELECT count(cd.id) FROM crm_alt_depot  cd 
+                                     WHERE  cd.status=1 AND cd.crm_id=c.id AND cd.company_id=" . $this->arrUser['company_id'] . " 
+                                     Limit 1) as location_count
+                            FROM  crm  c 
+                            left JOIN country as cn on cn.id=c.country_id   
+                            left JOIN crm_region as cr on cr.id =c.region_id
+                            left JOIN crm_buying_group as bs on bs.id =c.buying_grp 
+                            left JOIN crm_segment as sr on sr.id =c.company_type
+                            WHERE c.name!='' AND c.type IN (2,3) AND c.company_id=" . $this->arrUser['company_id'] . "	
+                            " . $where_clause;
+
+            if ($count_location > 0)
+                $Sql .= " " . $where_clause_loc;
+
+            $Sql .= "";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //Group by c.name   DESC
             //Limit 50 
             //echo  $query_format;exit; 
             $Sql_add = $this->objGeneral->save_query_format($query_format, 1); //Order by c.id DESC
 
 
+<<<<<<< HEAD
             $Sql2 = "INSERT INTO bucket_filters (module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status) 	VALUES (  '" . $attr['module_id'] . "' ,'','',''
 ,'" . $Sql_add . "',''," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . "	,2,1) ";
+=======
+            $Sql2 = "INSERT INTO bucket_filters (module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status) 
+                     VALUES ('" . $attr['module_id'] . "' ,'','','','" . $Sql_add . "',''," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . "	,2,1) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql2;exit;
             $RS = $this->objsetup->CSI($Sql2);
         }
@@ -3382,6 +4062,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     function get_sale_baket_customize_list($attr)
     {
         //$this->objGeneral->mysql_clean($attr); 
+<<<<<<< HEAD
 
         $order_by = $where_clause = $result = "";
 
@@ -3399,6 +4080,18 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         $total_limit = pagination_limit;
         
+=======
+        $order_by = $where_clause = $result = "";
+        //if(!empty($attr['id'])) 	$where_clause .= " AND c.id != '".$attr['id']."' ";
+        $response = array();
+
+        $bucketSql = "SELECT  c.id,c.module_id, c.operator_search 
+                      FROM  bucket_filters c
+                      where  c.status=1  and c.type=2 AND c.company_id=" . $this->arrUser['company_id'] . " ";
+
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -3428,6 +4121,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         if (strlen($result) > 3) {
 
+<<<<<<< HEAD
             $finalSql = "SELECT   c.* FROM  bucket c
 		JOIN company on company.id=c.company_id where  c.status=1  AND c.sale_bk_code !=''   
 		 AND(c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")		 
@@ -3437,6 +4131,15 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $finalRS = $this->objsetup->CSI($finalSql);
 
 
+=======
+            $finalSql = "SELECT   c.* 
+                         FROM  bucket c
+                         where  c.status=1  AND c.sale_bk_code !='' AND c.company_id=" . $this->arrUser['company_id'] . " AND c.id IN ($result) 
+                         order by c.id DESC";
+
+            $finalRS = $this->objsetup->CSI($finalSql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($finalRS->RecordCount() > 0) {
                 while ($Row = $finalRS->FetchRow()) {
                     $result = array();
@@ -3465,6 +4168,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     function get_product_filter_list($attr)
     {
         //$this->objGeneral->mysql_clean($attr); 
+<<<<<<< HEAD
 //print_r($attr);exit;
 
         $new = '';
@@ -3476,6 +4180,20 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $count_record = 0;
             //print_r($attr[array_dynamic_filter_product]);exit;
             foreach ($attr[array_dynamic_filter_product] as $item) {
+=======
+
+        $new = '';
+        $where_clause = '';
+        $where_clause_loc = '';
+        if (
+            !empty($attr['array_dynamic_filter_product']) && !empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name) && !empty($attr['array_dynamic_filter_product'][0]->operator_filter->id) && !empty($attr['array_dynamic_filter_product'][0]->operator_search)
+        ) {
+
+            $count_location = 0;
+            $count_record = 0;
+            //print_r($attr[array_dynamic_filter_product]);exit;
+            foreach ($attr['array_dynamic_filter_product'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search))) {
 
@@ -3543,10 +4261,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                     // if($item->normal_filter->id<=5) 	
                     $count_record++;
+<<<<<<< HEAD
                     if (!empty($item->normal_filter->field_name)){
                         $where_clause = "(" . $where_clause;
                         $where_clause .= " $normal_filter  $operator_filter $operator_search $logical_filter   ";
                         
+=======
+                    if (!empty($item->normal_filter->field_name)) {
+                        $where_clause = "(" . $where_clause;
+                        $where_clause .= " $normal_filter  $operator_filter $operator_search $logical_filter   ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
             }
@@ -3570,6 +4294,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
           , ".$this->objGeneral->get_nested_query_list('brand',$this->arrUser['company_id'])."
           , ".$this->objGeneral->get_nested_query_list('unit',$this->arrUser['company_id'])."
          */
+<<<<<<< HEAD
 /* commented ". $this->objGeneral->current_stock_counter($this->arrUser['company_id']) ." from below query */
         $Sql = "SELECT product.id,product.product_code,product.description,country.nicename,product.status,product.standard_price
 	,units_of_measure.title as unit_name,category.name as category_name ,brand.brandname as brand_name
@@ -3587,11 +4312,31 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql .= " 
      ";
 //echo $Sql;exit;
+=======
+
+        $Sql = "SELECT product.id,product.product_code,product.description,country.nicename,product.status,product.standard_price,
+                        units_of_measure.title as unit_name,category.name as category_name ,brand.brandname as brand_name
+                From product
+                LEFT JOIN category on category.id=product.category_id 
+                LEFT JOIN brand on brand.id=product.brand_id
+                LEFT JOIN units_of_measure on units_of_measure.id=product.unit_id  
+                LEFT JOIN country on product.prd_country_origin=country.id
+                where product.product_code IS NOT NULL AND product.company_id=" . $this->arrUser['company_id'] . " " . $where_clause;
+
+        if ($count_location > 0)
+            $Sql .= " " . $where_clause_loc;
+        $Sql .= " ";
+        //echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //Group by prd.name   DESC
         //Limit 50  
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -3600,7 +4345,10 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 $result = array();
@@ -3624,13 +4372,17 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $response['ack'] = 0;
             $response['error'] = NULL;
         }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
     function getBucketFilters($arr_attr)
     {
+<<<<<<< HEAD
 
         $response = $order_by = "";
         // print_r($arr_attr);exit;
@@ -3642,13 +4394,28 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 	AND (cb.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
 	";
 //echo $Sql;exit;
+=======
+        $response = array();
+        $order_by = "";
+        // print_r($arr_attr);exit;
+        //	$Sql = "SELECT cust_id FROM crm_sale_bucket_data WHERE module_id = $arr_attr[module_id]  AND type = ".$arr_attr['type']." ";
+
+        $Sql = "SELECT cb.*
+                FROM  bucket_filters  cb 
+                WHERE cb.bucket_id = " . $arr_attr['bucket_id'] . "  AND cb.type = 1 AND cb.company_id=" . $this->arrUser['company_id'];
+        // echo $Sql.'111'; //exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total_limit = pagination_limit;
         if ($arr_attr['pagination_limits'])
             $total_limit = $arr_attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($arr_attr, $Sql, $response, $total_limit, 'cb', $order_by);
+<<<<<<< HEAD
         //   echo $response['q'];  exit;
+=======
+        // echo $response['q']; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
@@ -3670,7 +4437,10 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else
             $response['response'][] = array();
 
@@ -3681,6 +4451,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         return $response;
     }
 
+<<<<<<< HEAD
     function checkBucketValidity($input_arr, $module_id){
         //print_r($input_arr);
 
@@ -3701,6 +4472,28 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         
 
                 /* $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
+=======
+    function checkBucketValidity($input_arr, $module_id = null)
+    {
+        //print_r($input_arr);
+
+        if ($module_id == 40) {
+
+            $Sql = "SELECT  COUNT(1)
+                    from sr_crm_listing  c 
+                    where ( c.type IN (1) AND c.crm_code IS NOT NULL AND  c.name !='' AND
+                        (c.company_id=" . $this->arrUser['company_id'] . " )  AND c.statusp = 'Active' )";
+        } else if ($module_id == 48) {
+
+            $Sql = "SELECT  COUNT(1)
+                    from sr_crm_listing  c 
+                    where (c.type IN (2,3) AND c.customer_code IS NOT NULL AND  c.name !='' AND
+                            (c.company_id=" . $this->arrUser['company_id'] . " )   AND c.statusp = 'Active' )";
+        }
+
+
+        /* $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 c.primaryc_name,c.primary_city,c.primary_postcode,c.phone,c.type
         from sr_crm_general_sel  c
         where  c.type IN (1,2) AND c.crm_code IS NOT NULL AND  c.name !='' AND
@@ -3710,7 +4503,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $Sql_query = "SELECT DISTINCT sql_filter FROM bucket_filters WHERE bucket_id = $input_arr[bucket_id] AND module_id = $module_id ;";
         //echo $Sql_query;exit;
         $RS = $this->objsetup->CSI($Sql_query);
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0){
+=======
+        if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Row = $RS->FetchRow();
             $generatedSQL = $Row['sql_filter'];
             $Sql .= " AND " . $generatedSQL . " AND c.id = $input_arr[module_id]";
@@ -3718,6 +4515,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $RS = $this->objsetup->CSI($Sql);
             $Row = $RS->FetchRow();
             //echo $Sql;exit;
+<<<<<<< HEAD
             $response['query'] = trim( str_replace( PHP_EOL, ' ', $Sql ) );
             $response['valid'] = $Row[0];
         }
@@ -3729,6 +4527,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
         
+=======
+            $response['query'] = trim(str_replace(PHP_EOL, ' ', $Sql));
+            $response['valid'] = $Row[0];
+        } else {
+            $response['valid'] = 0;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response['ack'] = 1;
         $response['error'] = null;
@@ -3738,7 +4543,12 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         return $response;
     }
 
+<<<<<<< HEAD
     function reverseSalespersonAssignments($bucket_id,$salesPersons,$primarySalesperson){
+=======
+    function reverseSalespersonAssignments($bucket_id, $salesPersons, $primarySalesperson)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // print_r($salesPersons);exit;
         //echo $bucket_id;exit;
         $Sql = "SELECT distinct sql_filter,module_id FROM bucket_filters WHERE bucket_id=$bucket_id";
@@ -3750,6 +4560,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $DeleteQuery2 = "DELETE FROM crm_salesperson WHERE bucket_id = $bucket_id";
         $DeleteResp = $this->objsetup->CSI($DeleteQuery1);
         $DeleteResp = $this->objsetup->CSI($DeleteQuery2);
+<<<<<<< HEAD
         
 
         
@@ -3757,11 +4568,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         //echo PHP_EOL.$RS->RecordCount();exit;
         if ($RS->RecordCount() > 0) {
             
+=======
+
+        //print_r($RS);
+        //echo PHP_EOL.$RS->RecordCount();exit;
+        if ($RS->RecordCount() > 0) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             while ($Row = $RS->FetchRow()) {
                 //print_r($Row);
                 $result = array();
                 //print_r($r);
                 //$result['id'] = $Row['cust_id'];
+<<<<<<< HEAD
                 if ($Row['module_id'] == 40){ // crm
                     $crm_bucket_type = 1;
                     $fixedQuery = "from sr_crm_listing  c
@@ -3786,10 +4605,34 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 else if ($Row['module_id'] == 11){
                     continue;
                 }else if ($Row['module_id'] == 1){
+=======
+                if ($Row['module_id'] == 40) { // crm
+
+                    $crm_bucket_type = 1;
+                    $fixedQuery = "from sr_crm_listing  c
+                                    where  c.type IN (1) AND statusp = 'Active' AND c.crm_code IS NOT NULL AND  c.name !='' AND
+                                        c.company_id=" . $this->arrUser['company_id'] . " ";
+                } else if ($Row['module_id'] == 48) { // customer
+
+                    $crm_bucket_type = 2;
+                    $fixedQuery = "from sr_crm_listing  c
+                                    where  c.type IN (2,3) AND statusp = 'Active' AND c.customer_code IS NOT NULL AND  c.name !='' AND
+                                        c.company_id=" . $this->arrUser['company_id'] . " ";
+                } else if ($Row['module_id'] == 18) {
+                    continue;
+                } else if ($Row['module_id'] == 65) {
+                    continue;
+                } else if ($Row['module_id'] == 24) {
+                    continue;
+                } else if ($Row['module_id'] == 11) {
+                    continue;
+                } else if ($Row['module_id'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     continue;
                 }
 
 
+<<<<<<< HEAD
                 $subQueryBucket = "SELECT  c.id, $bucket_id, $crm_bucket_type, 0, ". $this->arrUser['company_id'] .", ". $this->arrUser['id'] .",".current_date.",".$this->arrUser['id'].",".current_date." $fixedQuery ";
                     $subQueryBucket .= " AND " . $Row['sql_filter'];
 
@@ -3830,10 +4673,53 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                         $salesPersonsArr = explode(",", $salesPersons);
                         for ($i = 0; $i < sizeof($salesPersonsArr); $i++){
                             /* $subQuerySalesPerson = "SELECT  c.id, $salesPersonsArr[$i], (SELECT IF(COUNT(cs.is_primary)>0,0,". ($i==0?1:0) .")), ". $this->arrUser['company_id'] .", ". $this->arrUser['id'] .", 2, $bucket_id, ". current_date ."
+=======
+                $subQueryBucket = "SELECT  c.id, $bucket_id, $crm_bucket_type, 0, " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . "," . current_date . "," . $this->arrUser['id'] . "," . current_date . " $fixedQuery ";
+                $subQueryBucket .= " AND " . $Row['sql_filter'];
+
+                $deleteSubQueryBucket = "SELECT  c.id $fixedQuery ";
+                $deleteSubQueryBucket .= " AND " . $Row['sql_filter'];
+
+                // deleting other buckets from the CRM Record..
+                // as only 1 is requirement on this stage
+                $deleteBucketSQL = "DELETE FROM crm_bucket WHERE type = $crm_bucket_type AND module_id IN ( SELECT * FROM ($deleteSubQueryBucket) as subquery)";
+                //echo $deleteBucketSQL;
+                $RS1 = $this->objsetup->CSI($deleteBucketSQL);
+                $response[$Row['module_id']]['del_all_buckets_filtered_records'] = $this->Conn->Affected_Rows();
+
+                // deleting all assignments of this bucket in CRMs
+                $deleteBucketSQL = "DELETE FROM crm_bucket WHERE type = $crm_bucket_type AND bucket_id = $bucket_id";
+                $RS2 = $this->objsetup->CSI($deleteBucketSQL);
+
+                // re-assigning this bucket to all CRMs who are in the filter
+                $InsertBucketSql = "INSERT INTO crm_bucket (module_id,bucket_id,type,is_primary,company_id,user_id,start_date,AddedBy,AddedOn)  
+                       " . $subQueryBucket . "
+                    ";
+                $RS3 = $this->objsetup->CSI($InsertBucketSql);
+                $response[$Row['module_id']]['add_this_crm_bucket_to_all_records'] = $this->Conn->Affected_Rows();
+
+
+                // deleting Salespersons from the CRM Record.. if they are not in the updated salespersons list
+                $deleteBucketSQL = "DELETE FROM crm_salesperson WHERE module_id IN ( SELECT * FROM ($deleteSubQueryBucket) as subquery)";
+                /* if (!empty($salesPersons)){
+                        //$deleteBucketSQL .= " AND salesperson_id NOT IN ($salesPersons)";
+                    } */
+                //echo $deleteBucketSQL;exit;
+                $RS4 = $this->objsetup->CSI($deleteBucketSQL);
+                $response[$Row['module_id']]['del_prev_salepersons_from_filtered_records'] = $this->Conn->Affected_Rows();
+
+
+                if (!empty($salesPersons)) {
+                    // Adding Employees as Salespersons To the CRM Records
+                    $salesPersonsArr = explode(",", $salesPersons);
+                    for ($i = 0; $i < sizeof($salesPersonsArr); $i++) {
+                        /* $subQuerySalesPerson = "SELECT  c.id, $salesPersonsArr[$i], (SELECT IF(COUNT(cs.is_primary)>0,0,". ($i==0?1:0) .")), ". $this->arrUser['company_id'] .", ". $this->arrUser['id'] .", 2, $bucket_id, ". current_date ."
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             from sr_crm_listing  c
                             LEFT JOIN crm_salesperson cs ON (c.id = cs.module_id)
                             where  c.type IN (1,2) AND c.crm_code IS NOT NULL AND  c.name !='' AND
                                 (c.company_id=" . $this->arrUser['company_id'] . " ) "; */
+<<<<<<< HEAD
                             $subQuerySalesPerson = "SELECT  c.id, $salesPersonsArr[$i], ". (($salesPersonsArr[$i]==$primarySalesperson)?1:0) .", ". $this->arrUser['company_id'] .", ". $this->arrUser['id'] .", 2, $bucket_id, ". current_date .",".$this->arrUser['id'].",".current_date." $fixedQuery ";
                             $subQuerySalesPerson .= " AND " . $Row['sql_filter'] . "; ";
 
@@ -3847,6 +4733,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                         }
                     }
                 
+=======
+                        $subQuerySalesPerson = "SELECT  c.id, $salesPersonsArr[$i], " . (($salesPersonsArr[$i] == $primarySalesperson) ? 1 : 0) . ", " . $this->arrUser['company_id'] . ", " . $this->arrUser['id'] . ", 2, $bucket_id, " . current_date . "," . $this->arrUser['id'] . "," . current_date . " $fixedQuery ";
+                        $subQuerySalesPerson .= " AND " . $Row['sql_filter'] . "; ";
+
+                        $InsertSalespersonSql = "INSERT INTO crm_salesperson (module_id, salesperson_id, is_primary, company_id, user_id, type, bucket_id, start_date, AddedBy, AddedOn)  
+                            " . $subQuerySalesPerson . "
+                            ";
+                        //echo $InsertSalespersonSql. PHP_EOL;
+                        $RS5 = $this->objsetup->CSI($InsertSalespersonSql);
+                        $response[$Row['module_id']]['add_new_salepersons_to_filtered_records'] = $this->Conn->Affected_Rows();
+                    }
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             // Resetting Caches for updating listings
@@ -3854,21 +4753,31 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $this->objsetup->CSI($SqlDelete);
             $SqlInsert = "INSERT INTO Crmcache SELECT *,NOW() FROM sr_crm_listing WHERE company_id = '" . $this->arrUser['company_id'] . "'";
             $this->objsetup->CSI($SqlInsert); */
+<<<<<<< HEAD
             
         }
 
         
         
+=======
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // codemark 1
         // Sales persons reverse assignments FROM CRM and Customer Filters
         // So, when a bucket is created for CRM where CRM Name equals "ABC"
         // The salesperson should automatically be added for the record "ABC" in the CRM
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
 
     // bucket filters results are created here..
+<<<<<<< HEAD
     function getFilterResults($attr){ 
         $this->objGeneral->mysql_clean($attr);
         if (sizeof($attr['array_dynamic_filter_product']) == 0 || sizeof($attr['array_dynamic_filter_product'][0]->operator_search) == 0){
@@ -3876,6 +4785,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             $response['ack'] = 0;
             $response['error'] = NULL;
             
+=======
+    function getFilterResults($attr)
+    {
+        $this->objGeneral->mysql_clean($attr);
+        if (sizeof($attr['array_dynamic_filter_product']) == 0 || sizeof($attr['array_dynamic_filter_product'][0]->operator_search) == 0) {
+            $response['response'] = array();
+            $response['ack'] = 0;
+            $response['error'] = NULL;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return $response;
         }
         //print_r($attr);exit;
@@ -3883,25 +4802,43 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $generatedSQL =  $this->createSQLQueryForFilter($attr);
         //echo $generatedSQL;exit;
         $Sql = "";
+<<<<<<< HEAD
         if ($attr['module_id'] == 1){ //HR
             $Sql = "SELECT * 
             FROM  sr_employee_sel as emp 
             WHERE emp.user_code IS NOT NULL AND (emp.status =1) AND 
                 (emp.company_id=" . $this->arrUser['company_id'] . " )";
             
+=======
+        if ($attr['module_id'] == 1) { //HR
+
+            $Sql = "SELECT * 
+                    FROM  sr_employee_sel as emp 
+                    WHERE emp.user_code IS NOT NULL AND (emp.status =1) AND 
+                        emp.company_id=" . $this->arrUser['company_id'] . " ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql .= " AND " . $generatedSQL;
             $Sql .= " ORDER by emp.user_code DESC";
             $response['generatedSql'] = $generatedSQL;
             //echo $Sql;exit;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
             if ($result['ack'] == 0){
+=======
+            if ($result['ack'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $result['error'];
                 $response['query'] = $Sql;
                 return $response;
             }
             $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($RS->RecordCount() > 0) {
                 while ($Row = $RS->FetchRow()) {
                     $result = array();
@@ -3921,6 +4858,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
 
         }
         else if ($attr['module_id'] == 11){ //item
@@ -3929,19 +4867,36 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             WHERE prd.product_code IS NOT NULL AND (prd.status = 1 OR prd.status = 0) AND 
                 (prd.company_id=" . $this->arrUser['company_id'] . " )";
             
+=======
+        } else if ($attr['module_id'] == 11) { //item
+
+            $Sql = "SELECT * 
+                    FROM  sr_product_sel as prd 
+                    WHERE prd.product_code IS NOT NULL AND (prd.status = 1 OR prd.status = 0) AND 
+                          prd.company_id=" . $this->arrUser['company_id'] . " ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql .= " AND " . $generatedSQL;
             $Sql .= " ORDER by prd.id DESC";
             $response['generatedSql'] = $generatedSQL;
             //echo $Sql;exit;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
             if ($result['ack'] == 0){
+=======
+            if ($result['ack'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $result['error'];
                 $response['query'] = $Sql;
                 return $response;
             }
             $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($RS->RecordCount() > 0) {
                 while ($Row = $RS->FetchRow()) {
                     $result = array();
@@ -3974,6 +4929,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
 
         }
         else if ($attr['module_id'] == 48){ // customer
@@ -3982,12 +4938,22 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                     from sr_crm_listing  c
                     where  c.type IN (2,3) AND c.customer_code IS NOT NULL AND  c.name !='' AND
                         (c.company_id=" . $this->arrUser['company_id'] . " ) ";
+=======
+        } else if ($attr['module_id'] == 48) { // customer
+
+            $Sql = "SELECT  c.id,c.customer_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
+                            c.primaryc_name,c.primary_city,c.primary_country,c.primary_postcode,c.phone,c.type,c.salesperson_name, c.turnover
+                    from sr_crm_listing  c
+                    where  c.type IN (2,3) AND c.customer_code IS NOT NULL AND  c.name !='' AND
+                        c.company_id=" . $this->arrUser['company_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql .= " AND " . $generatedSQL;
             $Sql .= "GROUP BY c.id ORDER by c.id DESC";
             $response['generatedSql'] = $generatedSQL;
             //echo $Sql;exit;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
                     if ($result['ack'] == 0){
                         $response['ack'] = 0;
                         $response['error'] = $result['error'];
@@ -3996,6 +4962,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                     }
             $RS = $this->objsetup->CSI($Sql);
             
+=======
+            if ($result['ack'] == 0) {
+                $response['ack'] = 0;
+                $response['error'] = $result['error'];
+                $response['query'] = $Sql;
+                return $response;
+            }
+            $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($RS->RecordCount() > 0) {
                 while ($Row = $RS->FetchRow()) {
                     $result = array();
@@ -4032,6 +5008,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
         }
         else if  ($attr['module_id'] == 65){ // G/L
             $Sql = "select * from gl_accountcache gl
@@ -4042,6 +5019,15 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
             $Sql .= " GROUP BY id 
                                 ORDER BY glaccountCode ASC";
+=======
+        } else if ($attr['module_id'] == 65) { // G/L
+            $Sql = "select * from gl_accountcache gl
+                    WHERE gl.company_id='" . $this->arrUser['company_id'] . "'";
+
+            $Sql .= " AND " . $generatedSQL;
+
+            $Sql .= " GROUP BY id ORDER BY glaccountCode ASC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /* print_r($generatedSQL);
             echo $Sql;exit; */
             $response['generatedSql'] = $generatedSQL;
@@ -4053,18 +5039,30 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             //             return $response;
             //         }
             $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($RS->RecordCount() > 0) {
                 while ($Row = $RS->FetchRow()) {
                     $result = array();
                     $result['id'] = $Row['id'];
 
 
+<<<<<<< HEAD
                     $Sql2="SELECT SR_GetGL_CatSubcat(".$Row['id']."," . $this->arrUser['company_id'] . ")";
                     //echo $Sql2;//exit;
                     $RS2 = $this->objsetup->CSI($Sql2);
                     $catSubCat = $RS2->fields[0];
                     $RS3=explode("[]",$catSubCat);
+=======
+                    $Sql2 = "SELECT SR_GetGL_CatSubcat(" . $Row['id'] . "," . $this->arrUser['company_id'] . ")";
+                    //echo $Sql2;//exit;
+                    $RS2 = $this->objsetup->CSI($Sql2);
+                    $catSubCat = $RS2->fields[0];
+                    $RS3 = explode("[]", $catSubCat);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['G/L No.'] = $Row['glaccountCode'];
                     $result['Name'] = $Row['sub_category_name'];
                     //$result['company_ref_gl_id'] = $Row['company_ref_gl_id'];
@@ -4084,6 +5082,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
         }
         else if ($attr['module_id'] == 40){ // crm
 
@@ -4094,6 +5093,17 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             (c.company_id=" . $this->arrUser['company_id'] . " )  AND ( c.statusp = 'Active' OR c.statusp = 'Inactive' ))";
 
                     /* $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
+=======
+        } else if ($attr['module_id'] == 40) { // crm
+
+            $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,c.primaryc_name,c.primary_city,c.primary_county,
+                            c.primary_country,c.primary_postcode,c.phone,c.type,c.salesperson_name, c.turnover
+                    from sr_crm_listing  c 
+                    where  c.type IN (1) AND c.crm_code IS NOT NULL AND  c.name !='' AND c.company_id=" . $this->arrUser['company_id'] . "  AND 
+                        ( c.statusp = 'Active' OR c.statusp = 'Inactive' )";
+
+            /* $Sql = "SELECT  c.id,c.crm_code,c.region,c.statusp,c.segment,c.buying_group,c.name,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     c.primaryc_name,c.primary_city,c.primary_postcode,c.phone,c.type
             from sr_crm_general_sel  c
             where  c.type IN (1,2) AND c.crm_code IS NOT NULL AND  c.name !='' AND
@@ -4104,7 +5114,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             //echo $Sql;exit;
             $response['generatedSql'] = $generatedSQL;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
             if ($result['ack'] == 0){
+=======
+            if ($result['ack'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $result['error'];
                 $response['query'] = $Sql;
@@ -4149,27 +5163,45 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
         }
         else if  ($attr['module_id'] == 18){ // srm
                 $Sql = "SELECT  s.* 
+=======
+        } else if ($attr['module_id'] == 18) { // srm
+
+            $Sql = "SELECT  s.* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     FROM sr_srm_general_sel as s 
                     WHERE   s.type IN (1) AND 
                             s.srm_code IS NOT NULL AND  
                             s.name !='' AND ( s.status = 1  OR  s.status = 0 ) AND 
+<<<<<<< HEAD
                             (s.company_id=" . $this->arrUser['company_id'] . " ) ";
+=======
+                            s.company_id=" . $this->arrUser['company_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql .= " AND " . $generatedSQL;
             $Sql .= " ORDER by s.id DESC";
             $response['generatedSql'] = $generatedSQL;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
             if ($result['ack'] == 0){
+=======
+            if ($result['ack'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $result['error'];
                 $response['query'] = $Sql;
                 return $response;
             }
             $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ($RS->RecordCount() > 0) {
                 while ($Row = $RS->FetchRow()) {
                     $result = array();
@@ -4194,6 +5226,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
         }
         else if  ($attr['module_id'] == 24){ // supplier
             $Sql = "SELECT  s.*,CONCAT(`purch`.`first_name`,' ',`purch`.`last_name`) AS `purchaser_code` 
@@ -4203,11 +5236,23 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                     s.supplier_code IS NOT NULL AND  
                     s.name !='' AND ( s.status = 1  OR  s.status = 0 ) AND 
                     (s.company_id=" . $this->arrUser['company_id'] . " ) ";
+=======
+        } else if ($attr['module_id'] == 24) { // supplier
+
+            $Sql = "SELECT  s.*,CONCAT(`purch`.`first_name`,' ',`purch`.`last_name`) AS `purchaser_code` 
+                    FROM sr_srm_general_sel as s
+                    LEFT JOIN `employees` `purch` ON (`purch`.`id` = `s`.salesperson_id) 
+                    WHERE   s.type IN (2,3) AND 
+                            s.supplier_code IS NOT NULL AND  
+                            s.name !='' AND ( s.status = 1  OR  s.status = 0 ) AND 
+                            s.company_id=" . $this->arrUser['company_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql .= " AND " . $generatedSQL;
             $Sql .= " ORDER by s.id DESC";
             $response['generatedSql'] = $generatedSQL;
             $result = $this->objGeneral->any_query_exception($Sql);
+<<<<<<< HEAD
                     if ($result['ack'] == 0){
                         $response['ack'] = 0;
                         $response['error'] = $result['error'];
@@ -4232,6 +5277,32 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                         $result['Segment'] = ucwords($Row['segment']);
                         $result['Selling Group'] = ucwords($Row['selling_group']);
                         /* if ($attr['type'] == '1') {
+=======
+            if ($result['ack'] == 0) {
+                $response['ack'] = 0;
+                $response['error'] = $result['error'];
+                $response['query'] = $Sql;
+                return $response;
+            }
+            $RS = $this->objsetup->CSI($Sql);
+
+            if ($RS->RecordCount() > 0) {
+                while ($Row = $RS->FetchRow()) {
+                    $result = array();
+                    $result['id'] = $Row['id'];
+                    //$result['code'] = $Row['supplier_code'];
+                    $result['Supplier No.'] = $Row['supplier_code'];
+                    $result['Name'] = $Row['name'];
+                    $result['City'] = $Row['primary_city'];
+                    $result['County'] = $Row['primary_county'];
+                    $result['Postcode'] = $Row['primary_postcode'];
+                    $result['Country'] = $Row['primary_country_name'];
+                    // $result['Contact Person'] = $Row['contact_person'];
+                    $result['Territory'] = ucwords($Row['region']);
+                    $result['Segment'] = ucwords($Row['segment']);
+                    $result['Selling Group'] = ucwords($Row['selling_group']);
+                    /* if ($attr['type'] == '1') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $result['account_payable_id'] = $Row['account_payable_id'];//$Row['account_payable_id'];
                             $result['purchase_code_id'] = $Row['purchase_code_id'];//$Row['purchase_code_id'];
         
@@ -4256,7 +5327,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             $result['Fax'] = $Row['fax'];
                             $result['Email'] = $Row['email'];
                         } */
+<<<<<<< HEAD
                         $response['response'][] = $result;
+=======
+                    $response['response'][] = $result;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
                 $response['ack'] = 1;
                 $response['error'] = NULL;
@@ -4265,14 +5340,20 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                 $response['ack'] = 0;
                 $response['error'] = NULL;
             }
+<<<<<<< HEAD
 
     }
     $Sql = trim(preg_replace('/\s+/', ' ', $Sql));
+=======
+        }
+        $Sql = trim(preg_replace('/\s+/', ' ', $Sql));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['sql'] = $Sql;
         return $response;
     }
 
 
+<<<<<<< HEAD
     function createSQLQueryForFilter($attr){
         //print_r($attr);exit;
         $new = '';
@@ -4293,6 +5374,30 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                      else{
                         $normal_filter = $item->normal_filter->field_name;
                      }
+=======
+    function createSQLQueryForFilter($attr)
+    {
+        //print_r($attr);exit;
+        $new = '';
+        $where_clause = '';
+        $where_clause_loc = '';
+        if (
+            !empty($attr['array_dynamic_filter_product']) && !empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name) && !empty($attr['array_dynamic_filter_product'][0]->operator_filter->id) && (!empty($attr['array_dynamic_filter_product'][0]->operator_search) || $attr['array_dynamic_filter_product'][0]->operator_search == 0)
+        ) {
+
+            $count_location = 0;
+            $count_record = 0;
+            //print_r($attr[array_dynamic_filter_product]);exit;
+            foreach ($attr['array_dynamic_filter_product'] as $item) {
+                if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search) || $item->operator_search == 0)) {
+                    $normal_filter = $operator_filter = $operator_search = $logical_filter = '';
+
+                    if (!empty($item->normal_filter->foreign_key_name)) {
+                        $normal_filter = $item->normal_filter->foreign_key_name;
+                    } else {
+                        $normal_filter = $item->normal_filter->field_name;
+                    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (!empty($item->operator_filter->id)) {
                         if ($item->operator_filter->id == 1)
@@ -4317,7 +5422,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                         if (($item->operator_filter->id == 1) || ($item->operator_filter->id == 8)) {
                             //echo "1,8";exit;
                             if (!empty($item->normal_filter->foreign_key_id))
+<<<<<<< HEAD
                             $normal_filter = $item->normal_filter->foreign_key_id;
+=======
+                                $normal_filter = $item->normal_filter->foreign_key_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $pieces = explode(",", $item->operator_search);
                             $new = "";
                             foreach ($pieces as $key => $value) {
@@ -4326,6 +5435,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             }
                             $new = substr($new, 0, -1);
                             $operator_search = "($new)";
+<<<<<<< HEAD
                             if ($item->operator_filter->id == 8){
                                 $normal_filter = "(" . $normal_filter;
                                 $operator_search =  $operator_search . " OR $normal_filter IS NULL ) ) ";
@@ -4356,6 +5466,30 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             }
                             
                             
+=======
+                            if ($item->operator_filter->id == 8) {
+                                $normal_filter = "(" . $normal_filter;
+                                $operator_search =  $operator_search . " OR $normal_filter IS NULL ) ) ";
+                            }
+                        } else if ($item->operator_filter->id == 3) {
+                            //echo "3";exit;
+                            $operator_search = " '" . $item->operator_search . "%' ";
+                        } else if ($item->operator_filter->id == 2) {
+                            //echo "2";exit;
+                            $operator_search = "'" . $item->operator_search . "'";
+                        } else {
+                            //echo "4,5,6,7";exit;
+                            // id = 4,5,6,7 less than and greater than stuff...
+
+                            $len = strlen($item->operator_search);
+                            if ($item->normal_filter->is_numeric && $item->normal_filter->is_numeric == 1) {
+                                $operator_search = " $item->operator_search ";
+                                $normal_filter = "$normal_filter";
+                            } else {
+                                $operator_search = "'" . $item->operator_search . "'";
+                                $normal_filter = "(substring($normal_filter,1,$len))";
+                            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         }
                     }
 
@@ -4369,6 +5503,7 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                     // if($item->normal_filter->id<=5) 	
                     $count_record++;
+<<<<<<< HEAD
                     if (!empty($item->normal_filter->field_name)){
                         $where_clause = "(" . $where_clause;
                         $where_clause .= " $normal_filter  $operator_filter $operator_search $logical_filter   ";
@@ -4376,6 +5511,13 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                     }
                 }
                 else{
+=======
+                    if (!empty($item->normal_filter->field_name)) {
+                        $where_clause = "(" . $where_clause;
+                        $where_clause .= " $normal_filter  $operator_filter $operator_search $logical_filter   ";
+                    }
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     continue;
                 }
             }
@@ -4392,13 +5534,19 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             exit;
         }
         $response = array();
+<<<<<<< HEAD
         //echo $where_clause;exit;
      return $where_clause;
+=======
+        // echo $where_clause;exit;
+        return $where_clause;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function add_sale_bucket_product($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
         $generatedSQL =  $this->createSQLQueryForFilter($attr);
         $generatedSQL = str_replace("\\","\\\\\\", $generatedSQL);
@@ -4410,19 +5558,47 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $chk = 0;
         $Sqli = "DELETE FROM bucket_filters WHERE module_id = '" . $attr['module_id'] . "' AND bucket_id= '" . $attr['bucket_id'] . "' ";
         //echo $Sqli;exit;
+=======
+
+
+        $generatedSQL =  $this->createSQLQueryForFilter($attr);
+        // echo '1 == '.$generatedSQL;
+        $generatedSQL = str_replace("\\", "\\\\\\", $generatedSQL);
+        // echo '2 == '.$generatedSQL;exit;
+        //codemark 2
+        $where_clause_loc2 = '';
+
+
+
+        $chk = 0;
+        $Sqli = "DELETE FROM bucket_filters WHERE module_id = '" . $attr['module_id'] . "' AND bucket_id= '" . $attr['bucket_id'] . "' ";
+        // echo $Sqli;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sqli);
         if ($this->Conn->Affected_Rows() > 0)
             $msg = 'Updated';
         else
             $msg = 'Inserted';
 
+<<<<<<< HEAD
             if (sizeof($attr['array_dynamic_filter_product']) == 1 && (empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name) || empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name)))
 
             if (sizeof($attr['array_dynamic_filter_product']) == 1 && (empty($item->normal_filter->field_name)) || (empty($item->operator_filter->id)) || (empty($item->operator_search))) {
+=======
+        // error_reporting(E_ERROR);
+
+        // echo $msg;
+        // echo '<pre>';print_r($attr);exit;
+
+        // if (sizeof($attr['array_dynamic_filter_product']) == 1 && (empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name) || empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name)))
+
+        /* if (sizeof($attr['array_dynamic_filter_product']) == 1 && (empty($item->normal_filter->field_name)) || (empty($item->operator_filter->id)) || (empty($item->operator_search))) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // means no filter is sent
                 $response['ack'] = 1;
                 $response['msg'] = 'Record Updated Successfully';
                 return $response;
+<<<<<<< HEAD
             }
 
         $Sql = "INSERT INTO bucket_filters (bucket_id, module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status, sql_filter) VALUES ";
@@ -4431,25 +5607,52 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
             if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search) || $item->operator_search == 0)) {
                 $Sql .= "('" . $attr['bucket_id'] . "' ,  '" . $attr['module_id'] . "' ,'" . $item->sort_id . "','" . $item->normal_filter->field_name . "','" . $item->operator_filter->id . "','" . $item->operator_search . "','" . $item->logical_filter->id . "'
 ," . $this->arrUser['company_id'] . "	," . $this->arrUser['id'] . "," . current_date . ",1,1, \"$generatedSQL\"), ";
+=======
+            } */
+
+        $Sql = "INSERT INTO bucket_filters (bucket_id, module_id, sort_id,normal_filter,operator_filter,operator_search,  logical_filter,company_id,user_id,date_created,type,status, sql_filter) VALUES ";
+
+        //print_r($attr[array_dynamic_filter_product]);exit;
+        foreach ($attr['array_dynamic_filter_product'] as $item) {
+            if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search) || $item->operator_search == 0)) {
+                $Sql .= "('" . $attr['bucket_id'] . "' ,  '" . $attr['module_id'] . "' ,'" . $item->sort_id . "','" . $item->normal_filter->field_name . "','" . $item->operator_filter->id . "','" . $item->operator_search . "','" . $item->logical_filter->id . "','" . $this->arrUser['company_id'] . "','" . $this->arrUser['id'] . "'," . current_date . ",1,1, \"$generatedSQL\"), ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $chk++;
             }
         }
         $Sql = substr_replace(substr($Sql, 0, -1), "", -1);
+<<<<<<< HEAD
         //echo $Sql;exit;
         $response['sql'] = trim(preg_replace('/\s+/', ' ', $Sql));
+=======
+        $response['sql'] = trim(preg_replace('/\s+/', ' ', $Sql));
+        // echo '3 == '.$Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($Sql);
 
 
         if ($chk > 0) { // multiple filters are added
+<<<<<<< HEAD
             $where_clause = '';
             if (!empty($attr[array_dynamic_filter_product]) && !empty($attr[array_dynamic_filter_product][0]->normal_filter->field_name) && !empty($attr[array_dynamic_filter_product][0]->operator_filter->id) && !empty($attr[array_dynamic_filter_product][0]->operator_search)
+=======
+            // $where_clause = '';
+            if (
+                !empty($attr['array_dynamic_filter_product']) && !empty($attr['array_dynamic_filter_product'][0]->normal_filter->field_name) && !empty($attr['array_dynamic_filter_product'][0]->operator_filter->id) && !empty($attr['array_dynamic_filter_product'][0]->operator_search)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             ) {
 
                 $where_clause = 'AND (';
                 $count_location = 0;
                 $count_record = 0;
+<<<<<<< HEAD
                 
                 foreach ($attr[array_dynamic_filter_product] as $item) {
+=======
+                $searchFilter = '';
+
+                foreach ($attr['array_dynamic_filter_product'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ((!empty($item->normal_filter->field_name)) && (!empty($item->operator_filter->id)) && (!empty($item->operator_search) || $item->operator_search == 0)) {
 
@@ -4475,12 +5678,22 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                                 $operator_filter = 'NOT IN';
                         }
 
+<<<<<<< HEAD
+=======
+                        // echo '<pre>';print_r($item->operator_search);
+                        // print_r($item->normal_filter->field_name);
+                        // print_r($item->operator_filter->id);
+                        // print_r($item->logical_filter);
+                        // exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (!empty($item->operator_search) || $item->operator_search == 0) {
                             if (($item->operator_filter->id == 1) || ($item->operator_filter->id == 8)) {
 
                                 $pieces = explode(",", $item->operator_search);
                                 foreach ($pieces as $key => $value) {
                                     if ($value)
+<<<<<<< HEAD
                                         $new .= "'" . $value . "'" . ',';
                                 }
                                 $new = substr($new, 0, -1);
@@ -4488,6 +5701,15 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
                             } else if ($item->operator_filter->id == 3)
                                 $operator_search = " '" . $item->operator_search . "%' ";
                             else 
+=======
+                                        $searchFilter .= "'" . $value . "'" . ',';
+                                }
+                                $searchFilter = substr($searchFilter, 0, -1);
+                                $operator_search = "($searchFilter)";
+                            } else if ($item->operator_filter->id == 3)
+                                $operator_search = " '" . $item->operator_search . "%' ";
+                            else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $operator_search = "'" . $item->operator_search . "'";
                         }
 
@@ -4500,8 +5722,20 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
                         // if($item->normal_filter->id<=5) 	
                         $count_record++;
+<<<<<<< HEAD
                         if (!empty($item->normal_filter->field_name))
                             $where_clause .= " $item->normal_filter->field_name  $operator_filter $operator_search  $logical_filter   ";
+=======
+                        // echo '1 == '.$where_clause;
+                        // echo '<br> 1a == '.$item->normal_filter->field_name;
+                        // echo '<br> 1b == '.$operator_filter;
+                        // echo '<br> 1c == '.$operator_search;
+                        // echo '<br> 1d == '.$logical_filter;
+                        if (isset($item->normal_filter->field_name))
+                            $where_clause .= $item->normal_filter->field_name . $operator_filter . $operator_search . $logical_filter;
+
+                        // echo '2 == '.$where_clause; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
                 $where_clause .= " )  ";
@@ -4525,12 +5759,21 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
         $type = $response = $order_by = "";
 
         if (!empty($arr_attr['type']))
+<<<<<<< HEAD
             $type .= "and c.type = '".$arr_attr['type']."' ";
         if (!empty($arr_attr['bucket_id']))
             $type .= "and c.bucket_id = '".$arr_attr['bucket_id']."' ";
 
 
         $Sql = "SELECT c.* FROM crm_salesperson c WHERE c.module_id = '".$arr_attr['id']."'  " . $type . " AND  c.end_date=0 ";
+=======
+            $type .= "and c.type = '" . $arr_attr['type'] . "' ";
+        if (!empty($arr_attr['bucket_id']))
+            $type .= "and c.bucket_id = '" . $arr_attr['bucket_id'] . "' ";
+
+
+        $Sql = "SELECT c.* FROM crm_salesperson c WHERE c.module_id = '" . $arr_attr['id'] . "'  " . $type . " AND  c.end_date=0 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $total_limit = pagination_limit;
@@ -4563,7 +5806,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     {
 
         if (!empty($arr_attr['bucket_id']))
+<<<<<<< HEAD
             $type = "and bucket_id = '".$arr_attr['bucket_id']."' ";
+=======
+            $type = "and bucket_id = '" . $arr_attr['bucket_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $check = false;
         $Sql = "INSERT INTO crm_salesperson (module_id,salesperson_id,type,is_primary,company_id,  user_id,bucket_id,start_date) VALUES ";
@@ -4591,7 +5838,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
     {
 
         if (!empty($arr_attr['bucket_id']))
+<<<<<<< HEAD
             $type = "and bucket_id = '".$arr_attr['bucket_id']."' ";
+=======
+            $type = "and bucket_id = '" . $arr_attr['bucket_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // print_r($arr_attr);exit;
 
@@ -4610,7 +5861,11 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
         //replace delete sp in bucket
         $presql = "UPDATE crm_salesperson  SET  end_date='" . current_date . "'  
+<<<<<<< HEAD
 	    WHERE module_id='".$arr_attr['id']."' AND type='" . $arr_attr['type'] . "'  ";
+=======
+	    WHERE module_id='" . $arr_attr['id'] . "' AND type='" . $arr_attr['type'] . "'  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // AND salesperson_id='". $arr_attr['pre_sale_person']  . "'   Limit 1 
         $this->objsetup->CSI($presql);
 
@@ -4625,8 +5880,16 @@ SET group_name='$arr_attr[group_name]',status='$arr_attr[statuss]' 	WHERE id = $
 
 
         //replace  delete sp in crm
+<<<<<<< HEAD
         $updatecrmsql = "UPDATE crm_salesperson SET  salesperson_id='" . $arr_attr['replace_sale_person'] . "',is_primary='$arr_attr[primary_sale_id]' WHERE bucket_id='".$arr_attr['id']."' AND type='2'  AND salesperson_id='" . $arr_attr['pre_sale_person'] . "' 	 AND salesperson_id!='" . $arr_attr['replace_sale_person'] . "'  AND end_date=0 
 Limit 1 ";
+=======
+        $updatecrmsql = "UPDATE crm_salesperson 
+                            SET  salesperson_id='" . $arr_attr['replace_sale_person'] . "',is_primary='$arr_attr[primary_sale_id]' 
+                         WHERE bucket_id='" . $arr_attr['id'] . "' AND type='2'  AND salesperson_id='" . $arr_attr['pre_sale_person'] . "' AND 
+                                salesperson_id!='" . $arr_attr['replace_sale_person'] . "'  AND end_date=0 
+                         Limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($ck_value > 0)
             $this->objsetup->CSI($updatecrmsql);
 
@@ -4664,7 +5927,11 @@ Limit 1 ";
 
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -4783,7 +6050,11 @@ Limit 1 ";
         }
         return $response;
     }
+<<<<<<< HEAD
 
 }
 
 ?>
+=======
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

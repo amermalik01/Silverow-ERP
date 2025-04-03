@@ -114,9 +114,15 @@ class Permissions extends Xtreme{
 				SET 
 					role_id='$arr_attr[role_id]',
 					mod_detail_id='$arr_attr[mod_detail_id]',
+<<<<<<< HEAD
 					company_id='$arr_attr[company_id]',
 					user_id='$arr_attr[user_id]',
 					status='$arr_attr[status]'";
+=======
+					company_id='".$arr_attr['company_id']."',
+					user_id='".$arr_attr['user_id']."',
+					status='".$arr_attr['status']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					
 		$RS = $this->Conn->Execute($Sql);
 		$id = $this->Conn->Insert_ID();
@@ -141,9 +147,15 @@ class Permissions extends Xtreme{
 				SET 
 					role_id='$arr_attr[role_id]',
 					mod_detail_id='$arr_attr[mod_detail_id]',
+<<<<<<< HEAD
 					company_id='$arr_attr[company_id]',
 					user_id='$arr_attr[user_id]',
 					status='$arr_attr[status]'
+=======
+					company_id='".$arr_attr['company_id']."',
+					user_id='".$arr_attr['user_id']."',
+					status='".$arr_attr['status']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					WHERE id = ".$arr_attr['id']." ";
 	
 		$RS = $this->Conn->Execute($Sql);
@@ -184,7 +196,11 @@ class Permissions extends Xtreme{
 	function status_permission($arr_attr){
 		$this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
 		$Sql = "UPDATE permission SET status='$arr_attr[status]' WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+		$Sql = "UPDATE permission SET status='".$arr_attr['status']."' WHERE id = ".$arr_attr['id']." Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		//exit;
 		$RS = $this->Conn->Execute($Sql);
 	

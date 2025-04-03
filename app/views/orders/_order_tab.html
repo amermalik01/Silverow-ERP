@@ -1,4 +1,5 @@
 <div ng-class="{'whirl no-overlay':showLoader || generatePdf.showLoader}"></div>
+<<<<<<< HEAD
 
 <div style="margin-bottom: 13px;">
 
@@ -898,10 +899,394 @@
                 x-pdf-generator="showInvoiceModal('salesOrder', 1)" x-data-obj="rec" x-button-title="SO Confirmation" x-pdf-ready="serviceVariables.generatedPDF"
                 x-html-destroy="sales_order_modal">
 
+=======
+<div style="margin-bottom: 13px;">
+    <div class="row" style="margin-bottom: 7px !important;">
+        <div class="col-md-5" ng-hide="rec.type2==2">
+            <button type="button" class="btn btn-default2" ng-click="selectItem(1)" ng-disabled="approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && items.length && show_btn_dispatch_stuff) || !(rec.sell_to_cust_no.length>0)" style="color:#2196F3;margin-left: 0;">Select Item</button>
+            <span ng-if="rec.type == 0 && rec.sale_quote_code" style="margin-left: 4px;" ng-controller="SetupController" ng-init="callbackAfterMigration = callbackAfterItemsMigration; callbackBeforeMigration = callbackBeforeItemsMigration" class="ib" ng-class="{'disable-el2':approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && items.length && show_btn_dispatch_stuff) || !(rec.sell_to_cust_no.length>0)}">
+                <button type="button" class="btn btn-default2" ng-click="show_migrate_pop('Sales-Quotes-Items')" style="color:#2196F3;margin-left: 0;">Upload Items</button>
+                <div ng-include="'app/views/import_file.html'"></div>
+            </span>
+            <span ng-if="rec.type == 1 && rec.sale_order_code" style="margin-left: 4px;" ng-controller="SetupController" ng-init="callbackAfterMigration = callbackAfterItemsMigration; callbackBeforeMigration = callbackBeforeItemsMigration" class="ib" ng-class="{'disable-el2':approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && items.length && show_btn_dispatch_stuff) || !(rec.sell_to_cust_no.length>0)}">
+                <button type="button" class="btn btn-default2" ng-click="show_migrate_pop('Sales-Orders-Items')" style="color:#2196F3;margin-left: 0;">Upload Items</button>
+                <div ng-include="'app/views/import_file.html'"></div>
+            </span>
+            <button class="btn btn-default2" type="button" ng-click="selectGL(1, rec)" ng-disabled="approvals_lock_order == 1 || check_so_readonly || !(rec.sell_to_cust_no.length>0)" style="color:#2196F3">Select G/L</button>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover narrow_table no-readonly" ng-class="{'margin-top33':rec.type2==2}">
+        <thead class="fixit">
+            <tr class="bg-col">
+                <th style="width: 44px;">Type</th>
+                <th style="width: 75px;">No.</th>
+                <th style="width: 180px;">Description</th>
+                <th class="text-right">Qty.</th>
+                <th style="width: 62px;">U.O.M</th>
+                <th style="width:10%;" ng-if="rec.type2 != '0'">Warehouse</th>
+                <th class="text-right">Unit Price</th>
+                <th style="width: 7%;">Discount<br />Type</th>
+                <th class="text-right">Discount</th>
+                <th class="text-right">Profit<br />(LCY)</th>
+                <th class="text-right">Profit %</th>
+                <th>VAT Rate</th>
+                <th class="text-right">Original<br />Amount</th>
+                <th class="text-right">Discount<br />Amount </th>
+                <th class="text-right">Total<br />Amount </th>
+                <th class="text-right">VAT</th>
+                <th style="width: 60px;">Action</th>
+            </tr>
+        </thead>
+        <tbody class="fixit">
+            <!-- ng-class="{'promotionRow': item.ref_prod_id > 0} " -->
+            <tr ng-repeat="(key,item) in items track by $index" style="position: relative;" class="rightMoreOptions" ng-class="{
+                't-partiallycllocated' : item.sale_status = 1 && item.allocated_stock > 0 && item.allocated_stock < item.qty, 
+                't-stockreceived ' : hide_dispatch_btn && show_btn_dispatch_stuff && item.item_type ==0,
+                't-allocatedstock': (item.sale_status = 1 && item.remainig_qty == 0 && item.qty>0) || (item.allocated_stock == item.qty && item.qty>0),
+                }">
+                <td ng-if="item.item_type == 0" style=" width: 44px;">
+                    <select disabled="disabled" class="form-control" style="background: none; border: 0; padding: 0;">
+                        <option>Item</option>
+                    </select>
+                </td>
+                <td ng-if="item.item_type == 2" style="width: 44px;">
+                    <select disabled="disabled" class="form-control" style="background: none; border: 0; padding: 0;">
+                        <option>Service</option>
+                    </select>
+                </td>
+                <td ng-if="item.item_type == 1" style=" width: 44px;">
+                    <select disabled="disabled" class="form-control" style="background: none; border: 0; padding: 0;">
+                        <option>G/L</option>
+                    </select>
+                </td>
+                <td style="width: 75px;" ng-if="item.item_type == 0 || item.item_type == 1" title="{{item.product_code}}">{{item.product_code}}</td>
+                <td style="width: 75px;" ng-if="item.item_type == 2" title="{{item.code}}">{{item.code}}</td>
+                <td ng-if="item.item_type == 0 || item.item_type == 1" title="{{item.description}}" style="width: 180px;">
+                    <input type="text" ng-model="item.description" class="form-control input_text" ng-readonly="approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && show_btn_dispatch_stuff)">
+                </td>
+                <td ng-if="  item.item_type == 2">
+                    <input type="text" ng-model="item.product_name" class="form-control input_text">
+                </td>
+                <td class="text-right">
+                    <input type="hidden" ng-model="item.max_quantity" ng-if="item.item_type == 0">
+                    <input type="hidden" ng-model="item.min_quantity" ng-if="item.item_type == 0">
+                    <input ng-readonly="approvals_lock_order == 1 || (hide_dispatch_btn && show_btn_dispatch_stuff && item.item_type == 0)" ng-change="check_min_max(item); calcVolume(items)" ng-blur="OnBlurQuantity(item)" type="number" step="any" ng-if="!check_so_readonly"
+                        ng-model="item.qty" min="0" oninput="validity.valid||(value='');" class="form-control input_text text-right">
+                    <span ng-if="check_so_readonly">{{item.qty | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                </td>
+                <td style=" width: 62px;">
+                    <select ng-model="item.units" ng-if="item.item_type == 0" ng-options="opt as opt.name for opt in item.arr_units" ng-readonly="item.item_type == 0 || approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && show_btn_dispatch_stuff && item.item_type == 0)"
+                        class="form-control" ng-disabled="item.item_type == 0 || approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && show_btn_dispatch_stuff)">
+                        <option style="display:none" value=""></option>
+                    </select>
+                    <select ng-model="item.units" ng-if="item.item_type == 1" ng-options="units as units.title for units in gl_arr_units track by units.id" ng-readonly="approvals_lock_order == 1 || check_so_readonly" class="form-control">
+                        <option value=""></option>
+                        <!--+'('+opt.quantity+')'-->
+                    </select>
+                </td>
+                <td ng-if="item.item_type == 2">
+                    <select ng-model="item.units" ng-options="opt as opt.title for opt in arr_service_units" ng-readonly="approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && show_btn_dispatch_stuff)" class="form-control">
+                        <option style="display:none" value=""></option>
+                    </select>
+                </td>
+                <td ng-if="item.item_type == 0 && rec.type2 != '0'" style="width:10%;" ng-attr-title="{{item.warehouse_name_qty}}">
+                    <select class="form-control" ng-if="!check_so_readonly" ng-disabled="item.sale_status || approvals_lock_order == 1 || check_so_readonly || (hide_dispatch_btn && show_btn_dispatch_stuff) ||  item.allocated_stock > 0" ng-change="checkDuplWHItem(item, $index)"
+                        ng-model="item.warehouses">
+                        <option ng-repeat="opt in item.arr_warehouse" ng-disabled="opt.disabled" ng-selected="{{opt.id == item.warehouses}}" value="{{opt.id}}"> {{opt.name}} ({{opt.available_quantity}}) </option>
+                    </select>
+                    <span style="white-space: nowrap;" ng-if="check_so_readonly" title="{{item.selectedWarehouse.name}} ({{item.selectedWarehouse.available_quantity}})">
+                    {{item.selectedWarehouse.name}}
+                  </span>
+                </td>
+                <td ng-if="item.item_type == 2" style="width:10%;">&nbsp</td>
+                <td ng-if="item.item_type == 1 && rec.type2 != '0'" style="width:10%;">&nbsp</td>
+                <td class="text-right">
+                    <input type="text" ng-model="item.standard_price" ng-readonly="approvals_lock_order == 1 || check_so_readonly" ng-blur="OnChangeUnitPrice(item);" oninput="validateDecimalPoints(this, 5)" class="form-control col-md text-right" style="color:black" ng-if="!check_so_readonly"
+                        ng-class="{ 'highlighted_unit_price' : item.item_type == 0 && item.sales_prices && item.sales_prices.standard_price && (item.sales_prices.standard_price) == (item.standard_price) }">
+                    <!-- 
+                        <x-expression-eval step="any" ng-if="!check_so_readonly" id="standard_price" x-value='item.standard_price' enable-percentage='1' title="Add expression * + - () / % and press tab to recalculate Unit Price">
+                        </x-expression-eval> -->
+                    <span ng-if="check_so_readonly" title="{{item.standard_price | unitPriceFilter}}" ng-class="{'highlighted_unit_price' : item.item_type == 0 && item.sales_prices && item.sales_prices.standard_price && (item.sales_prices.standard_price) == (item.standard_price)}">{{item.standard_price | unitPriceFilter}}</span>
+                </td>
+                <td style="width: 7%;">
+                    <select ng-model="item.discount_type_id" ng-change="onChangeDiscountType(item);" ng-options="discountType as discountType.name for discountType in arr_discount_type track by discountType.id" ng-if="!(item.ref_prod_id > 0) && item.isGLVat==false" ng-readonly="approvals_lock_order == 1 || check_so_readonly"
+                        ng-disabled="approvals_lock_order == 1 || check_so_readonly" class="form-control">
+                        <option style="display:none" value=""></option>
+                    </select>
+                </td>
+                <td class="text-right">
+                    <div class="input-symbol">
+                        <input type="number" step="any" data-parsley-trigger="keyup" ng-model="item.discount" ng-readonly="approvals_lock_order == 1 || check_so_readonly || item.discount_type_id == undefined || item.discount_type_id.id == 'None'" ng-change="onChangeDiscountType(item);"
+                            style="color:black" class="form-control input_text text-right" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"
+                            data-parsley-type="digits" ng-min="item.discount_type_id.id && item.discount_type_id.id !='None'?0:''" ng-if="!check_so_readonly">
+                    </div>
+                    <span ng-if="check_so_readonly">{{item.discount | currency:""}}</span>
+                    <span ng-show="item.discount_type_id.id == 'Percentage' && check_so_readonly">&#37;</span>
+                </td>
+                <td class="text-right">
+                    <!--  ng-if="item.item_type==0" -->
+                    <span ng-if="item.item_type == 0 || (item.item_type == 1 && item.ref_id == 0)" title="{{calcRowProfit(item) | currency:'' }} ">{{calcRowProfit(item) | currency:"" }} </span>
+                    <!-- <span ng-if="item.item_type!=0">- </span> -->
+                </td>
+                <td class="text-right">
+                    <!--  ng-if="item.item_type==0" -->
+                    <span ng-if="item.item_type == 0 || (item.item_type == 1 && item.ref_id == 0)" title="{{item.profit_percentage | currency:'' }} %">{{item.profit_percentage | currency:"" }}</span>
+                    <!-- <span ng-if="item.item_type!=0">- </span> -->
+                </td>
+                <td>
+                    <!-- title="{{item.vats.name}}"  -->
+                    <!-- <select ng-model="item.vats" ng-options="opt as opt.name for opt in arr_vat_post_grp_sales" ng-readonly="approvals_lock_order == 1 || check_so_readonly" ng-if="!check_so_readonly && item.isGLVat==false" class="form-control">
+                        <option style="display:none" value=""></option>
+                    </select> -->
+                    <select class="form-control" ng-readonly="approvals_lock_order == 1 || check_so_readonly" ng-if="!check_so_readonly && item.isGLVat==false" ng-model="item.vat_id">
+                        <option ng-repeat="opt in arr_vat_post_grp_sales" ng-selected="{{opt.id == item.vat_id}}"  value="{{opt.id}}"> {{opt.name}}</option>
+                    </select>
+                    <span ng-if="check_so_readonly && item.isGLVat==false">
+                        {{item.vats.name}}
+                        <!-- {{item.vats.vat_value}}<span ng-if="item.vats.name">% </span> -->
+                    </span>
+                    <!-- <input type="text" ng-model="item.vat" class="form-control col-md" ng-readonly="check_so_readonly" style="color:black"> -->
+                </td>
+                <td class="text-right" title="{{(item.isGLVat==true) ? 0 :item.standard_price * item.qty | currency:''}}">
+                    {{(item.isGLVat==true) ? 0 : item.standard_price * item.qty | currency:""}}</td>
+                <td class="text-right" title="{{rowDiscount(item) | currency:'' }}"> {{rowDiscount(item) | currency:"" }} </td>
+                <td class="text-right" title="{{rowTotal(item) | currency:''}}">
+                    <!-- || !item.total_price || item.total_price!=''-->
+                    {{rowTotal(item) | currency:""}}
+                    <!-- <ul class="parsley-errors-list filled" ng-show="item.total_price < 0 && item.item_type == 0">
+                        <li class="parsley-type">This value should be greater than zero.</li>
+                    </ul> -->
+                </td>
+                <td class="text-right" title="{{item.vatPrice = rowVat(item) | currency:''}}"> {{item.vatPrice = rowVat(item) | currency:""}}
+                    <!-- vat total-->
+                </td>
+                <td style="width: 60px;padding-right: 15px;padding-left: 2px;">
+                    <!-- <script>
+                        $('#moreOption').popover({
+                            html: true,
+                            content: function () {
+                                return $("#moreOptionContent").html();
+                            }
+                        });
+                    </script> -->
+                    <!-- <div id="moreOptionContent" style="width: 200px" class="hide">
+                        <form style="width: 200px;">
+                            <label class="control-label2">EU Goods/Services</label>
+                            <select class="form-control">
+                                <option>Please select</option>
+                                <option>Goods (and related services)</option>
+                                <option>Services (standalone)</option>
+                            </select>
+                            <label class="control-label2">EU Sales Description</label>
+                            <select class="form-control">
+                                <option>Please select</option>
+                                <option>This supply is an intra-community supply</option>
+                                <option>This supply is exempt from VAT</option>
+                                <option>This is a Zero rated EC Supply</option>
+                                <option>This supply is outside the scope of VAT</option>
+                            </select>
+                        </form>
+                    </div> -->
+                    <a class="moreOptionsArrow" data-toggle="modal" data-target="#myModal_{{item.update_id}}"><span class="fa fa-arrow-right"></span></a>
+                    <div id="myModal_{{item.update_id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm" dragable>
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">{{item.description}} ({{item.product_code}})</h4>
+                                </div>
+                                <div class="modal-body" style="min-height: 140px;">
+                                    <form>
+                                        <label class="control-label2" style="float:left;">EU Goods/Services</label>
+                                        <select ng-model="item.ec_goods" ng-options="opt as opt.title for opt in ec_goods_list" ng-readonly="approvals_lock_order == 1 || check_so_readonly" ng-disabled="approvals_lock_order == 1 || check_so_readonly" class="form-control">
+                                        </select>
+                                        <!-- <label class="control-label2">EU Sales Description</label>
+                                        <select ng-model="item.ec_description" ng-options="opt as opt.title for opt in ec_description_list" ng-readonly="check_so_readonly" ng-disabled="check_so_readonly" class="form-control"></select> -->
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" style="padding: 6px 12px !important;" class="btn btn_add" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a ng-if="item.item_type == 0 && item.stock_check == 1 && (rec.type2 == 1 || rec.type2 == 2)" ng-click="allocateStock(item.warehouses, item);" style="padding:3px 9px; " ng-title="{{ item.sale_status && item.remainig_qty == 0 ? 'Stock Allocation Completed' : 'Allocate Stock'}}"
+                        class="btn">
+                        <i class="fa fa-cubes"
+                           ng-class="{'in-comp-alloc' : item.sale_status = 1 && item.allocated_stock > 0 && item.allocated_stock < item.qty, 
+                        'item-dispatch' : hide_dispatch_btn && show_btn_dispatch_stuff,
+                        'comp-alloc': (item.sale_status = 1 && item.remainig_qty == 0 && item.qty>0) || (item.allocated_stock == item.qty && item.qty>0),
+                        }"></i>
+                    </a>
+                    <!-- 
+                        <a ng-if="item.item_type == 0 && item.stock_check == 0  && (rec.type2 == 1 || rec.type2 == 2)" style="padding:3px 9px;  "
+                       ng-title="{{ item.sale_status && item.remainig_qty == 0 ? 'Stock Allocation Completed' : 'Allocate Stock'}}"
+                       class="btn">
+                        <i class="fa fa-stop" style="position: relative; top: 0px " ng-class=" {'item-dispatch' : hide_dispatch_btn && show_btn_dispatch_stuff }"></i>
+                    </a> -->
+                    <x-flexi-select ng-if="items.length && item.item_type == 1 && item.promotion_id ==0" class="link-item" ng-class="{'item-alloc': (item.ref_id>0) }" x-flexi-select-title="'Select Item'" x-flexi-select-modal-id="'LinkItemSelection_'+item.update_id" x-flexi-select-match-param="'update_id'"
+                        x-flexi-select-output="item.ref_id" x-flexi-select-show-cols="linkedItemShowCols" x-flexi-select-filters="{item_type:0}" x-flexi-select-data="items" x-flexi-callback-function="LinkGLToItem(param,item)" x-flexi-select-readonly="check_so_readonly"
+                        x-flexi-select-html-template='<a class="btn"><i class="fa fa-link"></i></a>' x-flexi-select-obj-return x-flexi-radio>
+                    </x-flexi-select>
+                    <a ng-click="!check_so_readonly ?delete($index, item): return;" style="float: right;margin-right: 3px;" ng-class="{'dont-click':approvals_lock_order == 1 || check_so_readonly}" ng-if="(rec.type2 == 1 && !hide_dispatch_btn && show_btn_dispatch_stuff) ||
+                                             item.item_type != 0 || (item.stock_check == 0 && !show_btn_dispatch_stuff) || rec.type == 0" title="Delete" class="btn">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <!-- || item.stock_check == 0 -->
+                </td>
+            </tr>
+            <tr ng-show="items.length ==0 ">
+                <!-- rec.type2 == 1 -->
+                <td>
+                    <!-- <select ng-model="rec.item_types" ng-change="selectItem(rec)" ng-options="opt as opt.label for opt in arrItems" class="form-control col-md pull-left">
+                    </select> -->
+                    <select ng-disabled="1" class="form-control col-md pull-left">
+                        <option selected="selected">&nbsp; </option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="text" value="" class="form-control col-md" readonly="readonly" style="color:black">
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="text" value="" readonly="readonly" class="form-control col-md" style="color:black">
+                </td>
+                <td>
+                    <input type="text" value="" readonly="readonly" class="form-control col-md" style="color:black">
+                </td>
+                <td>
+                    <input type="text" value="" readonly="readonly" class="form-control col-md" style="color:black">
+                </td>
+                <td>
+                    <div class="input-symbol">
+                        <input type="text" value="" class="form-control col-md" readonly="readonly" style="color:black">
+                    </div>
+                </td>
+                <td>
+                    <input type="text" ng-class="{'dont-click':check_so_readonly}" readonly="readonly" value="" class="form-control col-md" style="color:black">
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- ng-class="{'col-md-2': showVolumeWeight>0, 'col-md-3': !(showVolumeWeight>0)}"  -->
+<div class="col-md-2" style="padding-left: 0;" title="Internal Note">
+    <textarea ng-model="rec.note" class="form-control" style="width:100%;height:91px !important ;resize: none; color:green; margin-bottom: 10px;" rows="4" cols="30" ng-change="showWordsLimits_invoice()" ng-disabled="check_so_readonly && !check_si_readonly"
+        maxlength="500" placeholder="Add Internal Note">{{rec.note}}</textarea>
+    <span class="word-counter">{{wordsLength}}/500</span>
+</div>
+<!-- ng-class="{'col-md-5': showVolumeWeight>0, 'col-md-6': !(showVolumeWeight>0)}"  -->
+<div class="col-md-5" style="padding-left: 0;" title="External Note">
+    <textarea ng-model="rec.externalnote" class="form-control" style="width:100%;height:91px !important ;resize: none; color:red; margin-bottom: 10px;" rows="4" cols="30" ng-change="showWordsLimits_invoice()" ng-disabled="check_so_readonly && !check_si_readonly"
+        maxlength="500" placeholder="Add External Note">{{rec.externalnote}}</textarea>
+    <span class="word-counter">{{wordsLength}}/500</span>
+</div>
+
+<div class="col-md-2 no-padding" id="total-amout">
+    <table class="invoice_total" ng-if="showVolumeWeight>0">
+        <tr ng-if="volume !=0 && volume_permission>0">
+            <td class="text-left">Total Volume</td>
+            <td class="text-right">{{TOTAL_VOLUME | quantityNum:2:''}} <span ng-if="volume_unit == 'cm3'">cm&sup3;</span><span ng-if="volume_unit != 'cm3'">{{volume_unit}}</span></td>
+        </tr>
+        <tr ng-if="weight !=0 && weight_permission>0">
+            <td class="text-left">Total Weight</td>
+            <td class="text-right">{{TOTAL_WEIGHT | quantityNum:2:''}} {{weightunit}}</td>
+        </tr>
+    </table>
+    <table class="invoice_total" ng-if="defaultCurrencyCode != rec.currency_id.code">
+        <tr>
+            <td class="text-left ">Conversion Rate </td>
+            <td class="text-right ">
+                <input type="text " class="form-control " ng-disabled="check_so_readonly " ng-model="rec.currency_rate" id="currency_rate " name="currency_rate">
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left ">Amount Incl. VAT(LCY)</td>
+            <td class="text-right ">{{onChangeCurrencyRate() | currency:""}}&nbsp;{{defaultCurrencyCode}}</td>
+        </tr>
+    </table>
+    <div></div>
+    <div class="clearfix ">&nbsp;</div>
+</div>
+
+<div class="col-md-3 no-padding" id="total-amout">
+    <table class="invoice_total">
+        <tr ng-if="calcDiscount()>0">
+            <td class="text-right">Discount</td>
+            <td class="text-right">{{calcDiscount() | currency:""}} &nbsp;{{rec.currency_id.code}} </td>
+        </tr>
+        <tr>
+            <td class="text-right">Amount</td>
+            <td class="text-right"> {{netTotal() | currency:""}}&nbsp{{rec.currency_id.code}}</td>
+        </tr>
+        <tr>
+            <td class="text-right">VAT</td>
+            <td class="text-right">{{calcVat() | currency:""}}&nbsp{{rec.currency_id.code}}</td>
+        </tr>
+        <tr>
+            <td class="text-right">Amount Incl. VAT</td>
+            <td class="text-right">{{grandTotal() | currency:""}}&nbsp{{rec.currency_id.code}}</td>
+        </tr>
+    </table>
+    <div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="row">
+    <!-- ng-show="rec.type2 == 1" -->
+    <div class="col-md-12" ng-show="submit_show_invoicee">
+        <div class="hr_line2"></div>
+        <div class="pull-left" style="margin-top: 5px;">
+            <div ng-if="show_btn_dispatch_stuff && rec.type2 != 0">
+                <span class="margin-right"><i class="fa fa-circle" style="color:#ef7372"></i> Partial Allocated Stock </span>
+                <span class="margin-right"><i class="fa fa-circle" style="color:#25b726"></i> Allocated Stock </span>
+                <span class="margin-right"><i class="fa fa-circle" style="color:#ffd351"></i> Dispatched Stock </span>
+            </div>
+            <!-- <div class="communication">
+                <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+            </div> -->
+        </div>
+        <div class="pull-right">
+            <!-- data-toggle="modal" data-target="#sendForApproval" , 'btn-danger': rec-->
+
+            <!-- ng-class="{'btn-submit' : rec.remaining_amount == 0 && rec.setteled_amount>0, 'btn-warning' : rec.remaining_amount > 0 && rec.setteled_amount>0}" -->
+            <!-- ng-class="{'btn-submit' : rec.currentAllocatedPayment>0 && rec.currentAllocatedPayment == grand_total , 'btn-warning' : rec.currentAllocatedPayment>0 && rec.currentAllocatedPayment<grand_total}"  btn-default-->
+
+            <button class="btn" type="button" ng-click="customerPayment(rec)" ng-disabled="!check_so_readonly" ng-class="{'btn-submit' : customerPaymentStatus == 'allocated', 'btn-default' : (customerPaymentStatus != 'allocated' && customerPaymentStatus != 'partial'), 'text-yellow btn-default' : customerPaymentStatus == 'partial'}">Customer Payment</button>
+
+            <button class="btn btn-default" ng-disabled="!check_so_readonly" ng-click="GetApprovalStatus()" ng-if="rec.type2 != 0 && items.length > 0 && (credit_limit_approval_req > 0 || margin_analysis_approval_req > 0)">Approval History </button>
+
+            <!-- 
+                <div class="dropup ib spinCaret" ng-if="items.length > 0  && rec.type2 == 1">
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">Sales Order<span class="caret"></span></button>
+                <ul class="dropdown-menu export-as">
+                    <li><a href="#">Export as PDF</a></li>
+                    <li><a ng-click="openEmailer('emailerBtnSalesOrders');">Send Email</a></li>
+                </ul>
+            </div> -->
+
+            <button class="btn btn-default" ng-disabled="!check_so_readonly" ng-if="items.length > 0  && rec.type2 == 1" ng-click="showInvoiceModal('salesOrder');" type="button">Sales Order</button>
+
+            <emailer ng-if="items.length > 0  && rec.type2 == 1 && check_so_readonly == true" x-hide-button="true" x-page-name="Sales_SalesOrders" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-modal-title="{{rec.sale_order_code}}" x-parent-record-id="rec.id"
+                x-record-against="Customer" x-parent-record-name="{{rec.sale_quote_code?(rec.sale_quote_code + '/'):''}}{{rec.sale_order_code}} - {{rec.bill_to_name}}" x-pdf-generator="showInvoiceModal('salesOrder', 1)" x-data-obj="rec" x-button-title="SO Confirmation"
+                x-pdf-ready="serviceVariables.generatedPDF" x-html-destroy="sales_order_modal">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             </emailer>
 
             <button class="btn btn-default" type="button" ng-click="show_list_order(1)" ng-if="rec.type2 == 2">Link to PO</button>
 
+<<<<<<< HEAD
             <button class="btn btn-default" ng-if="items.length > 0  && rec.type2 == 2" ng-click="showInvoiceModal('salesInvoice');"
                 type="button">Sales Invoice </button>
 
@@ -1046,11 +1431,71 @@
                 x-page-name="Sales_SalesPerforma" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-record-against="Customer"
                 x-modal-title="{{rec.sale_quote_code}}" x-parent-record-id="rec.id" x-parent-record-name="{{rec.sale_quote_code}} - {{rec.bill_to_name}}"
                 x-pdf-generator="showInvoiceModal('salesQuote', 1, {exportToPdf : false, isPerforma : true, directMail : true})"
+=======
+            <button class="btn btn-default" ng-if="items.length > 0  && rec.type2 == 2" ng-click="showInvoiceModal('salesInvoice');" type="button">Sales Invoice </button>
+
+            <emailer ng-if="items.length > 0  && rec.type2 == 2" x-hide-button="true" x-page-name="Sales_SalesInvoices" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-record-against="Customer" x-parent-record-id="rec.id" x-parent-record-name='{{rec.sale_quote_code + (rec.sale_quote_code?"/":"") + rec.sale_order_code +
+                    ((rec.sale_order_code && rec.sale_invioce_code)?"/":"") + (rec.sale_invioce_code?rec.sale_invioce_code:"") + " - " + rec.bill_to_name}}' x-modal-title="{{rec.sale_invioce_code}}" x-pdf-generator="showInvoiceModal('salesInvoice', 1)"
+                x-button-title="SI Confirmation" x-data-obj="rec" x-pdf-ready="serviceVariables.generatedPDF" x-html-destroy="sales_order_modal">
+            </emailer>
+
+            <!-- 
+            <div class="dropup ib spinCaret" ng-if="items.length > 0  && rec.type2 == 2">
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">Sales Invoice <span class="caret"></span></button>
+                <ul class="dropdown-menu export-as">
+                    <li><a href="#">Export as PDF</a></li>
+                    <li><a ng-click="openEmailer('emailerBtnSalesInvoices');">Send Email</a></li>
+                </ul>
+            </div> -->
+            <!-- x-hide-button="!check_so_readonly" -->
+            <!-- <emailPDFlink x-page-name="salesInvoice" x-data-obj="rec" ></emailPDFlink> -->
+            <!-- x-parent-record-id="rec.id" -->
+            <!-- {{rec.type2}} == {{items.length}} -->
+            <!-- ng-if="items.length > 0  && rec.type2 == 2"   -->
+
+            <div class="dropup ib spinCaret" ng-if="rec.type2 == 0 && rec.id > 0 && items.length > 0">
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">Sales Quote
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu export-as">
+                    <li><a ng-click="showInvoiceModal('salesQuote', undefined, {exportToPdf : true, isPerforma : false});" href>Export as PDF</a></li>
+                    <!-- <li><a ng-click="showInvoiceModal('salesQuote', 1, false);">Send Email</a></li> -->
+                    <!-- <li><a ng-click="showInvoiceModal('salesQuote', 1, {exportToPdf : false, isPerforma : false, directMail : true});">Send Email</a></li> -->
+                    <li><a ng-click="openEmailer('emailerBtnSales_SalesQuotes');">Send Email</a></li>
+                </ul>
+            </div>
+
+            <div class="dropup ib spinCaret" ng-if="rec.type2 == 0 && rec.id > 0 && items.length > 0">
+
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">Sales Proforma<span class="caret"></span></button>
+
+                <ul class="dropdown-menu export-as">
+                    <li><a ng-click="showInvoiceModal('salesQuote', undefined, {exportToPdf : true, isPerforma : true});" href>Export as PDF</a></li>
+                    <!-- "openEmailer('emailerBtnPurchases_ReceiptNote');" -->
+                    <!-- <li><a ng-click="showInvoiceModal('salesQuote', 1, {exportToPdf : false, isPerforma : true, directMail : true});">Send Email</a></li> -->
+                    <li><a ng-click="openEmailer('emailerBtnSales_SalesPerforma');">Send Email</a></li>
+                </ul>
+            </div>
+
+            <!-- <button class="btn btn-default" ng-disabled="!check_so_readonly" ng-if="rec.type2 == 0 && rec.id > 0 && items.length > 0" ng-click="showInvoiceModal('salesQuote', undefined, {isPerforma : true});" type="button">Sales Quote</button> -->
+
+            <emailer id="salesQuoteEmailer" x-hide-button="true" ng-if="rec.type2 == 0 && rec.id > 0 && items.length > 0 && check_so_readonly == true" x-page-name="Sales_SalesQuotes" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-record-against="Customer"
+                x-modal-title="{{rec.sale_quote_code}}" x-parent-record-id="rec.id" x-parent-record-name="{{rec.sale_quote_code}} - {{rec.bill_to_name}}" x-pdf-generator="showInvoiceModal('salesQuote', 1)" x-button-title="SQ Confirmation" x-data-obj="rec"
+                x-pdf-ready="serviceVariables.generatedPDF" x-html-destroy="sales_order_modal">
+
+            </emailer>
+
+            <!-- sales perform emailer -->
+            <emailer id="salesQuoteEmailer" x-hide-button="true" ng-if="rec.type2 == 0 && rec.id > 0 && items.length > 0 && check_so_readonly == true" x-page-name="Sales_SalesPerforma" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-record-against="Customer"
+                x-modal-title="{{rec.sale_quote_code}}" x-parent-record-id="rec.id" x-parent-record-name="{{rec.sale_quote_code}} - {{rec.bill_to_name}}" x-pdf-generator="showInvoiceModal('salesQuote', 1, {exportToPdf : false, isPerforma : true, directMail : true})"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 x-button-title="SQ Confirmation" x-data-obj="rec" x-pdf-ready="serviceVariables.generatedPDF" x-html-destroy="sales_order_modal">
 
             </emailer>
 
             <!-- 
+<<<<<<< HEAD
 
             <div class="dropup ib spinCaret"
 
@@ -1195,31 +1640,89 @@
                 ng-disabled="!check_so_readonly" ng-show="rec.type2 == 0 && rec.id > 0 && items.length>0">Convert to SO </button>
 
 
+=======
+            <div class="dropup ib spinCaret" ng-if="rec.type2 != 0 && show_btn_dispatch_stuff">
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">Delivery Note<span class="caret"></span></button>
+                <ul class="dropdown-menu export-as">
+                    <li><a href="#">Export as PDF</a></li>
+                    <li><a ng-click="openEmailer('emailerBtnDeliveryNotes');">Send Email</a></li>
+                </ul>
+            </div> -->
+
+            <button class="btn btn-default" ng-disabled="!check_so_readonly" ng-if="rec.type2 != 0 && show_btn_dispatch_stuff" ng-click="showInvoiceModal('salesDelivery');" type="button">Delivery Note </button>
+
+            <emailer id="deliveryNoteEmailer" ng-if="check_so_readonly == true && rec.type2 != 0 && show_btn_dispatch_stuff" x-hide-button="true" x-page-name="Sales_DeliveryNotes" x-to="customerInvoiceEmail" x-to-array="rec.customer_emails" x-record-against="Customer"
+                x-modal-title="{{rec.sale_order_code}}" x-parent-record-id="rec.id" x-parent-record-name='{{rec.sale_quote_code + (rec.sale_quote_code?"/":"") + rec.sale_order_code + ((rec.sale_order_code && rec.sale_invioce_code)?"/":"") + (rec.sale_invioce_code?rec.sale_invioce_code:"") + " - " + rec.bill_to_name}}'
+                x-pdf-generator="showInvoiceModal('salesDelivery', 1)" x-data-obj="rec" x-button-title="DN Confirmation" x-pdf-ready="serviceVariables.generatedPDF">
+            </emailer>
+
+            <!-- <div class="dropup ib spinCaret" ng-if="items.length > 0  && rec.type2 != 0 && show_btn_dispatch_stuff">
+                <button class="btn btn-default2 dropdown-toggle" ng-disabled="!check_so_readonly" type="button" data-toggle="dropdown">W/H Instructions
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu export-as">
+                    <li><a href="#">Export as PDF</a></li>
+                    <li><a ng-click="openEmailer('emailerBtnWarehouseInstructions');">Send Email</a></li>
+                </ul>
+            </div> -->
+
+            <button class="btn btn-default" ng-disabled="!check_so_readonly" ng-if="items.length > 0  && rec.type2 != 0 && show_btn_dispatch_stuff" ng-click="showInvoiceModal('salesWarehouse');" type="button">W/H Instructions </button>
+
+            <emailer id="warehouseInstructionsEmailer" ng-if="items.length > 0  && check_so_readonly == true && rec.type2 != 0 && show_btn_dispatch_stuff" x-hide-button="true" x-page-name="Sales_WarehouseInstructions" x-to="customerInvoiceEmail" x-to-array="allWarehouseEmails"
+                x-record-against="Warehouse" x-modal-title="{{rec.sale_order_code}}" x-parent-record-id="rec.id" x-parent-record-name='{{rec.sale_quote_code + (rec.sale_quote_code?"/":"") + rec.sale_order_code + ((rec.sale_order_code && rec.sale_invioce_code)?"/":"") + (rec.sale_invioce_code?rfixSummernote3ec.sale_invioce_code:"") + " - " + rec.bill_to_name}}'
+                x-pdf-generator="showInvoiceModal('salesWarehouse', 1)" x-data-obj="rec" x-button-title="W/H Instructions Confirmation" x-pdf-ready="serviceVariables.generatedPDF">
+            </emailer>
+
+            <button class="btn btn-default" ng-click="convert_post_invoice(rec, rec2)" ng-disabled="on_hold_order || !check_so_readonly || waitFormarginAnalysis" type="button" ng-show="items.length > 0  && rec.type2 == 1" ng-if="allowpost_sale_order_module">Post Invoice</button>
+
+            <button class="btn btn-default" ng-click="convert_post_invoice(rec, rec2, 1)" ng-disabled="on_hold_order || !check_so_readonly || waitFormarginAnalysis" type="button" ng-if="items.length > 0 && rec.type2 == 1 && (credit_limit_approval_req > 0 || margin_analysis_approval_req > 0)">Queue for Approval</button>
+
+            <span ng-if="show_btn_dispatch_stuff">
+                <button class="btn btn-default" ng-click="dispatchStock(rec, rec2)" ng-disabled="on_hold_order || !check_so_readonly" ng-if="!hide_dispatch_btn && allowdispatch_sale_order_module" type="button" ng-show="items.length > 0 && rec.type2 == 1">Dispatch Stock</button>
+
+                <button class="btn btn-default stockDispatchedBtn dont-click" ng-if="hide_dispatch_btn" type="button" ng-show="items.length > 0 && rec.type2 == 1">Stock Dispatched </button>
+            </span>
+
+            <button class="btn btn-default" ng-if="allowconvert_sale_qoute_module" ng-click="convertToPurchaseOrder(rec, rec2)" type="button" ng-disabled="!check_so_readonly" ng-show="rec.type2 == 0 && rec.id > 0 && items.length>0 && rec.is_whole_seller > 0">Convert to PO</button>
+
+            <button class="btn btn-default" ng-if="allowconvert_sale_qoute_module" ng-click="convert_to_sale_order(rec, rec2)" type="button" ng-disabled="!check_so_readonly" ng-show="rec.type2 == 0 && rec.id > 0 && items.length>0">Convert to SO</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             <button class="btn btn-delete active-btns dont-click" ng-if="on_hold_order" type="button">On Hold for Approval </button>
 
             <!-- ng-click="add_general(rec, rec2, 1);" -->
 
             <button class="btn btn-submit pic_block" type="button" ng-click="save_sale_order(rec, rec2, 1);" ng-show="!on_hold_order && !check_so_readonly && (rec.type2 == 0 || rec.type2 == 1)">Save</button>
+<<<<<<< HEAD
 
 
+=======
+            <button class="btn btn-submit pic_block" type="button" ng-click="autoFillInvShipp(rec);" ng-if="rec.anonymous_customer>0" ng-show="!on_hold_order && !check_so_readonly && (rec.type2 == 0 || rec.type2 == 1)">Auto Fill Inv. & Shipp.</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             <!-- if rec.type2 == 0 It is Sales Quote-->
 
             <button class="btn btn-edit" ng-if="allowedit_sale_qoute_module" type="button" ng-click="showEditForm();" ng-show="!on_hold_order && check_so_readonly  && (rec.type2 == 0)">Edit </button>
 
+<<<<<<< HEAD
 
 
             <button class="btn btn-edit" ng-if="allowedit_sale_order_module" type="button" ng-click="showEditForm();" ng-show="!on_hold_order && check_so_readonly  && (rec.type2 == 1)">Edit </button>
 
 
 
+=======
+            <button class="btn btn-edit" ng-if="allowedit_sale_order_module" type="button" ng-click="showEditForm();" ng-show="!on_hold_order && check_so_readonly  && (rec.type2 == 1)">Edit </button>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             <button class="btn btn-cancel" type="button" ui-sref="app.salesQuotes()" ng-if="rec.type2 == 0">Cancel</button>
 
             <button class="btn btn-cancel" type="button" ui-sref="app.orders()" ng-if="rec.type2 == 1">Cancel</button>
 
             <button class="btn btn-default" type="button" ng-click="NavigateOrder(rec);" ng-if="rec.type2 == 2">Navigate</button>
 
+<<<<<<< HEAD
             <button class="btn btn-cancel" type="button" ui-sref="app.sale-invoice()" ng-if="rec.type2 == 2">Cancel</button>
 
         </div>
@@ -1242,6 +1745,25 @@
 
         position: absolute !important;
 
+=======
+            <button class="btn btn-submit pic_block" type="button" ng-click="saveSaleInvoice(rec);" ng-if="rec.type2 == 2" ng-show="check_si_readonly">Save</button>
+
+            <button class="btn btn-edit" type="button" ng-click="showInvoiceEditForm();" ng-if="allowedit_sale_qoute_module && rec.type2 == 2" ng-show="!check_si_readonly">Edit</button>
+
+            <button class="btn btn-cancel" type="button" ui-sref="app.sale-invoice()" ng-if="rec.type2 == 2">Cancel</button>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .table-body input.ng-invalid {
+        border: 1px solid red;
+    }
+    
+    .table-body .parsley-errors-list.filled {
+        position: absolute !important;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         z-index: 1111;
     }
 </style>

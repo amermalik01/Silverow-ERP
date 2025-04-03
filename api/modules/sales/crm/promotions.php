@@ -104,7 +104,11 @@ $app->post('/sales/crm/promotion/delete-promotion-product', function () use ($ap
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/crm/promotion/add-promotion-segment', function () use ($app) {
+=======
+/* $app->post('/sales/crm/promotion/add-promotion-segment', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objCrm, $input;
 	$input_array = array();
  
@@ -140,9 +144,15 @@ $app->post('/sales/crm/promotion/delete-promotion-segment', function () use ($ap
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 $app->post('/sales/crm/promotion/add-promotion-customer', function () use ($app) {
+=======
+}); */
+
+/* $app->post('/sales/crm/promotion/add-promotion-customer', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objCrm, $input;
 	$input_array = array();
  
@@ -179,7 +189,11 @@ $app->post('/sales/crm/promotion/delete-promotion-customer', function () use ($a
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
 
+=======
+ */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -1,8 +1,21 @@
 <?php
+<<<<<<< HEAD
+=======
+// error_reporting(E_ALL);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 require_once(SERVER_PATH . "/classes/Xtreme.php");
 require_once(SERVER_PATH . "/classes/General.php");
 require_once(SERVER_PATH . "/classes/Setup.php");
 
+<<<<<<< HEAD
+=======
+require_once(SERVER_PATH . "/classes/aws/aws-autoloader.php");
+require 'vendor/autoload.php';
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 class Attachments extends Xtreme {
     private $Conn = null;
     private $objGeneral = null;
@@ -39,8 +52,15 @@ class Attachments extends Xtreme {
         else{
             $company_id = $this->arrUser['company_id'];
         }
+<<<<<<< HEAD
             check_dir_path(UPLOAD_PATH . 'attachments');
             $uploads_dir = UPLOAD_PATH . 'attachments';
+=======
+
+
+            // check_dir_path(UPLOAD_PATH . 'attachments');
+            // $uploads_dir = UPLOAD_PATH . 'attachments';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $files = $files['file'];
         // print_r($files);exit;
         $len = sizeof($files['name']);
@@ -65,7 +85,12 @@ class Attachments extends Xtreme {
            $explode_file = explode(".", $name);
            array_pop($explode_file);
            $alias = implode(".",$explode_file);
+<<<<<<< HEAD
            //$new_file_name = mt_rand().".".$explode_file[1];
+=======
+           $typeId = ($attr['typeId']) ? $attr['typeId'] : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
            $extension = strtolower(substr($name, strrpos($name, ".") + 1));
            if ($attr['emailAttachment']){
                $attr['type'] = $attr['moduleTypeForAttachments'];
@@ -80,6 +105,7 @@ class Attachments extends Xtreme {
                $newFileName = uniqid() . "." . $extension;// mt_rand().".".$extention;
            }
            $imageFileType = "." . $extension;
+<<<<<<< HEAD
                $path = $uploads_dir . "/" . $newFileName;
                $var_export = move_uploaded_file($tmp_name, $path);
            $typeId = ($attr['typeId']) ? $attr['typeId'] : 0;
@@ -141,6 +167,168 @@ class Attachments extends Xtreme {
                //$response['response'] = "Error in files uploading Please check Size and Format JPG, Word or PDF!".$message;
                $response['response'] = "Error !" . $msg;
            }
+=======
+            //    $path = $uploads_dir . "/" . $newFileName;
+
+
+
+            //    /*   ***********************************************      */
+            //    /*                   S3 Bucket Start                      */
+            //    /*   ***********************************************      */
+
+               
+                // Instantiate an Amazon S3 client.
+                /* $s3Client = new S3Client([
+                    // 'version' => 'latest',
+                    'region'  => 'US East (N. Virginia) us-east-1',
+                    'credentials' => [
+                        'key'    => 'AKIAX4KHUCTEW55IEN5S',
+                        'secret' => ''
+                    ]
+                ]); */
+
+                
+
+                // AWS Info
+                $bucketName = 'nevico-attachments';
+                $IAM_KEY = 'AKIAX4KHUCTEW55IEN5S';
+                $IAM_SECRET = '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';
+    
+
+                // Connect to AWS
+                try {
+                    // You may need to change the region. It will say in the URL when the bucket is open
+                    // and on creation.
+                    $s3 = S3Client::factory(
+                        array(
+                            'credentials' => array(
+                                'key' => $IAM_KEY,
+                                'secret' => $IAM_SECRET
+                            ),
+                            'version' => 'latest',
+                            'region'  => 'us-east-1'
+                        )
+                    );
+                } catch (Exception $e) {
+                    // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+                    // return a json object.
+                    die("Error: " . $e->getMessage());
+                }
+
+
+                // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+                // $keyName = 'test_example/' . basename($tmp_name);
+                // $keyName = basename($tmp_name);
+                $keyName = basename($newFileName);
+                // $pathInS3 = 'https://s3.us-east-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+                $path = 'https://s3.us-east-1.amazonaws.com/' . $bucketName . '/' . $keyName;
+
+
+                /* echo $newFileName.' === '.$keyName.' === '; 
+                echo $tmp_name.' === '.$path; 
+
+                echo '<pre>';
+                print_r($files); 
+ */
+                // Add it to S3
+                try {
+                    
+                    // Uploaded:
+                    $file = $tmp_name;//$keyName;//$_FILES["fileToUpload"]['tmp_name'];
+
+                    $s3->putObject(
+                        array(
+                            'Bucket'=>$bucketName,
+                            'Key' =>  $keyName,
+                            'SourceFile' => $file,
+                            'StorageClass' => 'REDUCED_REDUNDANCY'
+                        )
+                    );
+
+                    // echo 'Done';
+
+                    // if ($var_export) {//'$alias',
+                    $Sql = "INSERT INTO attachments SET
+                            name = '$name',
+                            alias = '$keyName',
+                            size = '$fileSize',
+                            fileType = '$extension',
+                            path = '$path',
+                            type = '".$attr['type']."',
+                            subType = '".$attr['subType']."',
+                            typeId = '$typeId',
+                            record_name = '".$attr['recordName']."',
+                            module_name = '".$attr['moduleName']."',
+                            subTypeId = '".$attr['subTypeId']."',
+                            user_id = '".$this->arrUser['id']."',
+                            company_id = ".$company_id.",
+                            date_uploaded = ".current_date_time.",
+                            date_created = ".current_date_time."
+                            ";
+                            // echo $Sql . PHP_EOL;exit;
+                            $RS = $this->objsetup->CSI($Sql);
+                            $lastId = $this->Conn->Insert_ID();
+
+                    if($attr['moduleName']){
+
+                        $associationsSql = "INSERT INTO document_association
+                                            SET
+                                                module_type     =   'document',
+                                                module_id       =   '$lastId',
+                                                record_type     =   '".$attr['moduleName']."',
+                                                additional      =   '".$attr['additional']."',
+                                                record_id       =   '$typeId',
+                                                record_name     =   '".$attr['recordName']."',
+                                                AddedBy         =   '" . $this->arrUser['id'] . "',
+                                                AddedOn         =   UNIX_TIMESTAMP (NOW())
+                                            ";
+                                            // echo $associationsSql;exit;
+                        $RSAssociation = $this->objsetup->CSI($associationsSql);
+                    }
+                    
+                    $uploadedFiles[] = $lastId;
+                    $uploadedPaths[] = $path;//WEB_PATH . "/" . explode("//", $path)[1];
+
+                    $tempResult['fileType'] = $imageFileType;
+                    $tempResult['fileName'] = $newFileName;
+                    $tempResult['status'] = 1;
+                    $response['response'][] = $tempResult;
+                    $response['uploadedFiles'] = $uploadedFiles;
+                    $response['failedFiles'] = $failedFiles;
+                    $response['uploadedPaths'] = $uploadedPaths;
+                    $response['lastId'] = $this->Conn->Insert_ID();
+
+                    return $response;
+                    // }
+
+                } catch (S3Exception $e) {
+                    die('Error:' . $e->getMessage());
+                } catch (Exception $e) {
+                    die('Error:' . $e->getMessage());
+                }                
+
+            //    /*   ***********************************************      */
+            //    /*                   S3 Bucket End                      */
+            //    /*   ***********************************************      */
+
+
+            //    $var_export = move_uploaded_file($tmp_name, $path);
+           
+            //  $result = $objdoc->update_emp_pic($new_file_name ,$employee_id); 
+            /* else {
+               
+           } */
+
+            $response['ack'] = 0;
+            $tempResult['fileType'] = $imageFileType;
+            $tempResult['fileName'] = $newFileName;
+            $response['failedFiles'] = $failedFiles;
+            $tempResult['status'] = 1;
+            $response['response'][] = $tempResult;
+            $response['lastId'] = $this->Conn->Insert_ID();
+            //$response['response'] = "Error in files uploading Please check Size and Format JPG, Word or PDF!".$message;
+            $response['response'] = "Error !" . $msg;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
            // change size to whatever key you need - error, tmp_name etc
         }

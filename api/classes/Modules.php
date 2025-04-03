@@ -91,7 +91,11 @@ class Modules extends Xtreme{
 		$Sql = "INSERT INTO modules
 				SET 
 					name='".$arr_attr['name']."',
+<<<<<<< HEAD
 					status='$arr_attr[status]'";
+=======
+					status='".$arr_attr['status']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					
 		$RS = $this->Conn->Execute($Sql);
 		$id = $this->Conn->Insert_ID();
@@ -115,7 +119,11 @@ class Modules extends Xtreme{
 		$Sql = "UPDATE modules
 				SET 
 					name='".$arr_attr['name']."',
+<<<<<<< HEAD
 					status='$arr_attr[status]'
+=======
+					status='".$arr_attr['status']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					WHERE id = ".$arr_attr['id']." ";
 	
 		$RS = $this->Conn->Execute($Sql);
@@ -156,7 +164,11 @@ class Modules extends Xtreme{
 	function status_module($arr_attr){
 		$this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
 		$Sql = "UPDATE modules SET status='$arr_attr[status]' WHERE id = ".$arr_attr['id']." Limit 1";
+=======
+		$Sql = "UPDATE modules SET status='".$arr_attr['status']."' WHERE id = ".$arr_attr['id']." Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		//exit;
 		$RS = $this->Conn->Execute($Sql);
 	
@@ -174,5 +186,9 @@ class Modules extends Xtreme{
 	}
 	############	End: Brands ################
 	
+<<<<<<< HEAD
 }	
 ?>
+=======
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

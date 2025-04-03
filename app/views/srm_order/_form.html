@@ -1,4 +1,5 @@
 <style>
+<<<<<<< HEAD
     .control-label,.control-label2 {
     font-size: 11px;
     }
@@ -145,3 +146,139 @@
         </div>
     </div>
 </div>
+=======
+    .control-label,
+    .control-label2 {
+        font-size: 11px;
+    }
+</style>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+
+<tabset id="quotes_tabs" ng-if="!check_pi_readonly">
+
+    <tab heading="General" class="general_information" ng-click="generalInformation()">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="add_general(rec)">
+            <div ng-include="'app/views/srm_order/_general.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Invoicing" class="invocing_information" ng-click="invoice_information()" ng-if="recnew>0">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="add_general(rec)">
+            <div ng-include="'app/views/srm_order/_invoicing.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Shipping" class="shiping_information" ng-click="shiping_information()" ng-if="recnew>0">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="add_general(rec)">
+            <div ng-include="'app/views/srm_order/_shipping.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Invoicing" class="contact_information dont-click" ng-if="!(recnew>0)">
+        <div class="vertical_space"></div>
+    </tab>
+
+    <tab heading="Shipping" class="shiping_information dont-click" ng-if="!(recnew>0)">
+        <div class="vertical_space"></div>
+    </tab>
+
+    <x-stage-status-bar x-none-sequencial ng-if="recnew>0" x-stages="order_stages_array" x-read-only="check_srm_readonly">
+    </x-stage-status-bar>
+
+    <x-stage-status-bar x-none-sequencial ng-if="!(recnew>0)" x-stages="order_stages_array" x-read-only="1">
+    </x-stage-status-bar>
+
+</tabset>
+
+<tabset id="quotes_tabs" ng-if="check_pi_readonly">
+
+    <tab heading="General" class="general_information" ng-click="generalInformation()">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="savePurchaseInvoice(rec)">
+            <div ng-include="'app/views/srm_order/_general.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Invoicing" class="invocing_information" ng-click="invoice_information()" ng-if="recnew>0">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="savePurchaseInvoice(rec)">
+            <div ng-include="'app/views/srm_order/_invoicing.html'"></div>
+        </form>
+    </tab>
+
+    <tab heading="Shipping" class="shiping_information" ng-click="shiping_information()" ng-if="recnew>0">
+        <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" validate-form="" ng-submit="savePurchaseInvoice(rec)">
+            <div ng-include="'app/views/srm_order/_shipping.html'"></div>
+        </form>
+    </tab>
+
+</tabset>
+
+<div style="position: absolute; z-index: 3; top: 87px; width: auto; right: 41px;">
+    <div ng-include="'app/views/orders/_order_status.html'"></div>
+</div>
+<!-- {{opentabs}}  ng-class="{'dont-click':opentabs}"-->
+
+<div class="clearfix" style="margin-top:7px;"></div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/srm_order/_saleOrdersModal.html'"></div>
+<div ng-include="'app/views/_listing_supplier_single.html'"></div>
+<div ng-include="'app/views/_customer_modal_single.html'"></div>
+<div ng-include="'app/views/_listing_shippingAgents.html'"></div>
+<div ng-include="'app/views/listing_sp_invoice_Modal.html'"></div>
+<!-- <div ng-include="'app/views/_listing_modal.html'"></div> -->
+<div ng-include="'app/views/srm/_SrmEmployee_modal.html'"></div>
+<!-- <div ng-include="'app/views/srm_order/customer_model.html'"></div> -->
+<div ng-include="'app/views/srm_order/contactModal.html'"></div>
+<div ng-include="'app/views/srm_order/deliveryLocationsModal.html'"></div>
+
+<div class="row">
+    <!-- ng-if="recnew>0" -->
+    <div class="col-md-12 col-md-12">
+        <div class="panel panel-default" style="padding-bottom: 0;margin-top: -27px;border-top: 0;border-top-right-radius: 0;border-top-left-radius: 0;">
+
+            <div class="panel-heading hidden">
+                <h3 class="panel-title">
+                    <!-- Order  -->Details</h3>
+            </div>
+
+            <div class="panel-body" style="padding-bottom: 0;padding-top: 0;" ng-if="submit_show_invoicee" ng-controller="SrmOrderTabController">
+                <div ng-class="{'whirl no-overlay':showLoader}"></div>
+
+                <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form">
+                    <div ng-include="'app/views/srm_order/_quote_tab.html'"></div>
+                </form>
+
+                <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" ng-submit="add_warehouse(formData)">
+                    <div ng-include="'app/views/srm_order/warehouse_modal.html'"></div>
+                </form>
+
+                <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form" ng-submit="addadditionalCost(formData)">
+                    <div ng-include="'app/views/srm_order/_additionalCostModal.html'"></div>
+                </form>
+
+                <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form">
+                    <div ng-include="'app/views/srm_order/payment_modal.html'"></div>
+                </form>
+
+                <!-- <div ng-include="'app/views/srm_order/location_modal.html'"></div> -->
+                <div ng-include="'app/views/_confirm_modal.html'"></div>
+                <div ng-include="'app/views/srm_order/_listing_prod_modal.html'"></div>
+                <!-- <div ng-include="'app/views/srm_order/_listing_service_model.html'"></div> -->
+                <div ng-include="'app/views/srm_order/_account_modal.html'"></div>
+                <div ng-include="'app/views/srm_order/_listingAdditionalCostModal.html'"></div>
+                <div ng-include="'app/views/_order_navigate_modal.html'"></div>
+                <div ng-include="'app/views/invoice_templates/purchase_order_modal.html'"></div>
+                <div ng-include="'app/views/_approvals_history.html'"></div>
+                <!-- <div ng-include="'app/views/product_values/prod_landing_cost_modal.html'"></div> -->
+            </div>
+
+            <div class="panel-body" ng-if="!submit_show_invoicee" ng-controller="SrmInvoiceTabController">
+                <form autocomplete="off" class="form-horizontal no-margin small_fields" role="form">
+                    <div ng-include="'app/views/srm_order/_quote_tab.html'"></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

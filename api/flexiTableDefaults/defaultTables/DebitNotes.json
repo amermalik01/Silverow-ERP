@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 [
     {
+=======
+[{
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "DN Date",
         "field_name": "supplierCreditNoteDate",
         "visible": "1",
@@ -82,7 +86,11 @@
         "color": "#ffffff",
         "width": "180",
         "data_type": "string"
+<<<<<<< HEAD
     },    
+=======
+    },
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         "title": "City",
         "field_name": "supplierCity",
@@ -363,6 +371,18 @@
         "data_type": "string"
     },
     {
+<<<<<<< HEAD
+=======
+        "title": "Linked PO",
+        "field_name": "purchaseOrderCode",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Docs. Attached",
         "field_name": "documentDNCount",
         "visible": "0",

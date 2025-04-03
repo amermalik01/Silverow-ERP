@@ -2,7 +2,11 @@
 // Crm Credit Rating Info Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/setup/credit-rating/get-all-credit_rating-list', function () use ($app) {
+=======
+/* $app->post('/setup/credit-rating/get-all-credit_rating-list', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSetup, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -12,7 +16,11 @@ $app->post('/setup/credit-rating/get-all-credit_rating-list', function () use ($
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/setup/credit-rating/listings', function () use ($app) {
@@ -76,6 +84,9 @@ $app->post('/setup/credit-rating/delete-credit_rating', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

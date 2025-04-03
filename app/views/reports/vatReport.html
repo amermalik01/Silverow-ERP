@@ -1,4 +1,5 @@
 <div ng-controller="VATReportController as table">
+<<<<<<< HEAD
   <div ng-include="'app/views/_breadcrumb.html'"></div>
   <style>
     body {
@@ -588,4 +589,994 @@
   <div ng-include="'app/views/reports/submittedVATOtherMeansModal.html'"></div>
 
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+=======
+
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+    <style>
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+        }
+    </style>
+
+
+
+
+
+    <div class="a-content">
+
+        <div class="a-label-container">
+
+            <b class="a-title">Date <span class="required"> *</span></b>
+
+            <div class="input-symbol a-date">
+
+                <input jqdatepicker class="form-control" id="dateFrom" readonly placeholder="From" ng-model="filterReport.dateFrom" style="background-color: white;">
+
+                <span>
+
+          <i class="fa fa-calendar"></i>
+
+        </span>
+
+            </div>
+
+            <div class="input-symbol a-date">
+
+                <input jqdatepicker class="form-control" id="dateTo" readonly placeholder="To" ng-model="filterReport.dateTo" style="background-color: white;">
+
+                <span>
+
+          <i class="fa fa-calendar"></i>
+
+        </span>
+
+            </div>
+
+
+
+            <!-- <b class="ib a-margin-left add-filter collapsed"
+
+         data-toggle="collapse"
+
+         data-target="#demo">Add Filter(s)
+
+      </b> -->
+
+            <div class="pull-right">
+
+                <!-- <button class="btn report-generate"
+
+                type="button"
+
+                ng-click="postVAT()">Post VAT</button> -->
+
+                <!-- <button class="btn report-generate"
+
+                type="button"
+
+                data-toggle="modal"
+
+                data-target="#obligationsModal">Click here</button> -->
+
+                <!-- ng-disabled="filterReport.vatEntriesStatus.id!=1"  -->
+
+                <!-- ng-if="reportType == 'detail'" -->
+
+                <button class="btn report-generate" type="button" ng-click="generateReport()">Generate Report</button>
+
+                <button class="btn report-clearfilter" type="button" ng-click="clearReport()">Clear Filter</button>
+
+                <button class="btn report-default" type="button" ng-click="showVATPdfModal('summary')"> Print Preview</button>
+
+                <div class="dropdown report-excel">
+
+                    <button class="btn report-default dropdown-toggle" type="button" data-toggle="dropdown">Export As
+
+            <span class="caret"></span></button>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a ng-click="showVATPdfModal('summary', 'xlsx')">Excel - VAT Report Summary</a></li>
+
+                        <li><a ng-click="showVATPdfModal('detail', 'xlsx')">Excel - Detailed VAT Report</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="margin-top: 10px;" ng-if="filterReport.vatEntriesStatus.id != 2 && filterReport.dateFrom.length > 0">
+
+                <label class="control-label">
+
+          <label class="checkdiv"
+
+                 style="margin-left: 103px;width: 334px;">
+
+            <input type="checkbox"
+
+                   ng-model="filterReport.vatEntriesPeriod"
+
+                   id="vatEntriesPeriod"
+
+                   class="pull-left" />
+
+            <span style="padding-left: 20px;display: block;font-weight: normal;">Include all open entries before
+
+              <b ng-if="!(filterReport.dateFrom.length > 0)">Date From</b>
+
+              <b ng-if="filterReport.dateFrom.length > 0">{{filterReport.dateFrom}}</b>
+
+            </span>
+
+          </label>
+
+                </label>
+
+            </div>
+
+
+
+            <div style="margin-top: 10px;margin-left: 100px;" ng-class="{'no-top-margin':filterReport.vatEntriesStatus.id != 2 && filterReport.dateFrom.length > 0}">
+
+                <button class="btn btn-default2" type="button" ng-if="reportType == 'summary'" ng-click="showVATPdfModal('detail')"> Detailed VAT Report</button>
+
+                <button class="btn btn-default2" type="button" ng-click="showOpenEntries()" ng-if="filterReport.vatEntriesStatus.id != 2 && filterReport.dateFrom.length > 0"> Open Entries Before
+
+          Date From</button>
+
+                <a class="btn btn-default2" ng-show="filterReport.dateTo && filterReport.dateFrom" ng-click="fetchObligations(1)">View Submitted VAT Returns
+
+        </a>
+
+                <a class="btn btn-default2" ng-show="filterReport.dateTo && filterReport.dateFrom" ng-click="openSubmittedVATReturnsThroughOtherMeans()">View Submitted VAT Returns Through Other Means
+
+        </a>
+
+                <a class="btn btn-submit2" ng-show="reportsDataArr.p_VATonSale && showSubmitVAT" ng-click="openSubmitVATOptions()">Submit VAT Return
+
+        </a>
+                <!-- fetchObligations() -->
+
+            </div>
+
+        </div>
+
+
+
+        <div>
+
+            <div class="report-box" style="margin-top: 10px;">
+
+                <b class="a-title">Include VAT Status</b>
+
+                <select class="select2me form-control a-date" ng-model="filterReport.vatEntriesStatus" ng-change="chkforIncludeOpenEntries(filterReport.vatEntriesStatus.id)" ng-options="opt as opt.title for opt in vatEntriesStatusArr">
+
+        </select>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="a-table" ng-if="reportType == 'summary'">
+
+
+
+        <h5 class="a-report-title">{{reportTitle}}</h5>
+
+        <small ng-if="filterReport.dateFrom" class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}</small>
+
+        <div id="dt_example" class="example_alt_pagination">
+
+            <table class="table table-condensed table-striped table-hover report-spacing" id="data-table" style="margin-top: 8px;    margin-bottom: 10px;">
+
+                <thead class="fixit">
+
+                    <tr class="bg-col">
+
+                        <th style="    width: 8%;">Row No.</th>
+
+                        <th style="width: 40%;">Description</th>
+
+                        <th style="text-align: right;    ">Amount</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody class="fixit">
+
+                    <tr>
+
+                        <td style="width: 8%;">1.</td>
+
+                        <td style="width: 40%;">VAT due on sales and other outputs</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_VATonSale | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_VATonSale">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">2.</td>
+
+                        <td style="width: 40%;">VAT due on acquisition from other EU Member States</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_VATonSaleEU | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_VATonSaleEU">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">3.</td>
+
+                        <td style="width: 40%;">Total VAT due</td>
+
+                        <td style="text-align: right;">
+
+                            {{reportsDataArr.p_totalVATDue | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_totalVATDue">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">4.</td>
+
+                        <td style="width: 40%;">VAT reclaimed on purchases (incl. EU acquisitions)</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_VATonPurchase | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_VATonPurchase">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">5.</td>
+
+                        <td style="width: 40%;">Net VAT to be paid (+) or to be reclaimed (-)</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.P_netVAT | currency : "" : decimal_range }} <span ng-if="reportsDataArr.P_netVAT ">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">6.</td>
+
+                        <td style="width: 40%;">Total value of sales excl. VAT, incl. Row 8</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_exclVATonSale | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_exclVATonSale">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">7.</td>
+
+                        <td style="width: 40%;">Total value of purchases excl. VAT, incl. Row 9</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_exclVATonPurchase | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_exclVATonPurchase">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">8.</td>
+
+                        <td style="width: 40%;">Total value of EU Sales</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_EUSale | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_EUSale">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td style="width: 8%;">9.</td>
+
+                        <td style="width: 40%;">Total value of EU Purchases</td>
+
+                        <td style="text-align: right;    ">
+
+                            {{reportsDataArr.p_EUPurchase | currency : "" : decimal_range }} <span ng-if="reportsDataArr.p_EUPurchase">{{defaultCurrencyCode}}</span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="row" style="margin-bottom: 0 !important;">
+
+        <!-- <div class="col-md-12">
+
+      <div class="nav nav-tabs" style="padding:8px;">
+
+        <div style="padding-left: 10px">
+
+          <div>
+
+            <div>
+
+            <div>VAT entries within the period</div>
+
+            <div>Silverow Ltd</div>
+
+            <div>All amounts are in LCY</div>
+
+            <div>VAT Statement Line: Date Filter: 
+
+              <i style="margin-right: 5px" ng-if="filterReport.dateFrom">from</i>
+
+              <b class="ib">{{filterReport.dateFrom}} </b>
+
+              <i style="margin-right: 5px;margin-left: 5px;" ng-if="filterReport.dateTo">to</i>
+
+              <b class="ib">{{filterReport.dateTo}}</b>
+
+            </div>
+
+          </div> 
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div> -->
+
+
+
+
+
+        <!-- VAT Report Summary -->
+
+
+
+        <div class="col-md-12 col-md-12" ng-if="reportType == 'summary'">
+
+            <div>
+
+                <style>
+                    #obligationsModal .modal-body {
+                        max-height: 65vh;
+                        overflow: auto;
+                    }
+                </style>
+
+
+
+                <!-- Modal after VAT Submision-->
+
+                <div id="obligationsModal" ng-show="VAT_Obligations.length" class="modal fade" role="dialog">
+
+                    <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <!-- <button type="button"
+
+                        class="close"
+
+                        data-dismiss="modal"
+
+                        ng-click="clearVATData()">&times;</button> -->
+
+                                <h4 class="modal-title">{{submittedVATs ? 'Submitted' : 'Open'}} VAT Returns</h4>
+
+                            </div>
+
+                            <div class="modal-body">
+
+
+
+                                <!-- OLD DESIGN -->
+
+                                <!-- <table class="table table-condensed table-striped table-hover table-bordered">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>Start</th>
+
+                      <th>End</th>
+
+                      <th>Due</th>
+
+                      <th ng-show="submittedVATs">Submitted On</th>
+
+                    </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                    <tr ng-repeat="obl in VAT_Obligations"
+
+                        ng-click="(!submittedVATs && askConfirmation(obl)) || (submittedVATs && fetchVATSummary(obl))">
+
+                      <td>{{obl.start}}</td>
+
+                      <td>{{obl.end}}</td>
+
+                      <td>{{obl.due}}</td>
+
+                      <td ng-show="submittedVATs">{{obl.received}}</td>
+
+                    </tr>
+
+                  </tbody>
+
+                </table> -->
+
+
+
+                                <!-- NEW DESIGN -->
+
+                                <table class="vatTable table table-bordered" style="width: 100%;margin-bottom: 11px;">
+
+                                    <tbody>
+
+                                        <tr ng-repeat="obl in VAT_Obligations" ng-click="(!submittedVATs && askConfirmation(obl)) || (submittedVATs && fetchVATSummary(obl))">
+
+                                            <td><b>VAT Reg. No.:</b></td>
+
+                                            <td class="text-right padright10">{{vrn}}</td>
+
+                                            <td><b>For the Period:</b></td>
+
+                                            <td class="text-right padright10">{{obl.start}} <b>to</b> {{obl.end}}</td>
+
+                                            <td><b>Due:</b></td>
+
+                                            <td class="text-right padright10">{{obl.due}}</td>
+
+                                            <td ng-show="submittedVATs"><b>Submitted On:</b></td>
+
+                                            <td class="text-right padright10" ng-show="submittedVATs">{{obl.received}}</td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+
+
+                                <div ng-show="fetchedVATSummary && fetchedVATSummary.periodKey">
+
+                                    <!-- <h4>Selected VAT Return ({{fetchedVATSummary.start}} - {{fetchedVATSummary.end}})</h4> -->
+
+                                    <table class="table vatTable table-bordered">
+
+                                        <tbody>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">1.</td>
+
+                                                <td>VAT due on sales and other outputs</td>
+
+                                                <td class="text-right">{{fetchedVATSummary.vatDueSales| currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">2.</td>
+
+                                                <td>VAT due on acquisition from other EU Member States</td>
+
+                                                <td class="text-right">{{fetchedVATSummary.vatDueAcquisitions | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">3.</td>
+
+                                                <td>Total VAT due</td>
+
+                                                <td class="text-right">{{fetchedVATSummary.totalVatDue | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">4.</td>
+
+                                                <td>VAT reclaimed on purchases (incl. EU acquisitions)</td>
+
+                                                <td class="text-right">
+
+                                                    {{fetchedVATSummary.vatReclaimedCurrPeriod | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">5.</td>
+
+                                                <td>Net VAT to be paid (+) or to be reclaimed (-)</td>
+
+                                                <td class="text-right">{{fetchedVATSummary.netVatDue | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">6.</td>
+
+                                                <td>Total value of sales excl. VAT, incl. Row 8</td>
+
+                                                <td class="text-right">
+
+                                                    {{fetchedVATSummary.totalValueSalesExVAT | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">7.</td>
+
+                                                <td>Total value of purchases excl. VAT, incl. Row 9</td>
+
+                                                <td class="text-right">
+
+                                                    {{fetchedVATSummary.totalValuePurchasesExVAT | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">8.</td>
+
+                                                <td>Total value of EU Sales</td>
+
+                                                <td class="text-right">
+
+                                                    {{fetchedVATSummary.totalValueGoodsSuppliedExVAT | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="width: 34px;">9.</td>
+
+                                                <td>Total value of EU Purchases</td>
+
+                                                <td class="text-right">
+
+                                                    {{fetchedVATSummary.totalAcquisitionsExVAT | currency : "" : decimal_range }}
+
+                                                    <span>{{defaultCurrencyCode}}</span></td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+
+
+                                <div ng-show="HMRC_Errors.length">
+
+                                    <h5><b>HMRC Errors</b></h5>
+
+                                    <table class="table table-condensed table-striped table-hover table-bordered">
+
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>Code</th>
+
+                                                <th>Message</th>
+
+                                                <th>Field</th>
+
+                                                <th>Current Value</th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr ng-repeat="error in HMRC_Errors">
+
+                                                <td>{{error.code}}</td>
+
+                                                <td>{{error.message}}</td>
+
+                                                <td>{{error.path}}</td>
+
+                                                <td>{{lastSubmittedVATData[error.path.split("/")[1]]}}</td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+
+
+                                <div ng-show="HMRC_Success && HMRC_Success.receipt_id">
+
+                                    <h5><b>VAT Submitted</b></h5>
+
+                                    <table class="vatTable table table-bordered">
+
+                                        <tr>
+
+                                            <td>Receipt ID</td>
+
+                                            <td>{{HMRC_Success.receipt_id}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>Receipt Timestamp</td>
+
+                                            <td>{{HMRC_Success.receipt_timestamp}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>Processing Date</td>
+
+                                            <td>{{HMRC_Success.processingDate}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>Payment Indicator</td>
+
+                                            <td>{{HMRC_Success.paymentIndicator}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>Form Bundle Number</td>
+
+                                            <td>{{HMRC_Success.formBundleNumber}}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>Charge Ref Number</td>
+
+                                            <td>{{HMRC_Success.chargeRefNumber}}</td>
+
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <div class="pull-right">
+
+                                    <button type="button" class="btn btn-default pull-right" ng-click="clearVATData();destroyPdfModal('obligationsModal')">Cancel</button>
+                                    <!-- data-dismiss="modal" -->
+
+
+
+                                    <label class="ib" style="margin-right: 4px;">
+
+                      <input type="checkbox"
+
+                              ng-change="updatePageOrientation(toggleLandscape)"
+
+                              ng-model="toggleLandscape">Print in Landscape Orientation
+
+                  </label>
+
+
+
+                                    <a type="button" class="btn btn-default2" title="Download PDF" ng-click="downloadReportVATSubmitted(VAT_Obligations,fetchedVATSummary)" ng-if="!jsreportLoading && VAT_Obligations.length">
+
+                                        <!-- printPdfVals.reportType == 'VATSubmitted' -->
+
+                                        <i class="fa fa-cloud-download" aria-hidden="true" style="color: #3ea756;"></i>
+
+                                    </a>
+
+                                    <a type="button" ng-if="jsreportLoading" class="btn btn-default2" title="Downloading PDF">
+
+                                        <i class='fa-spin fa fa-spinner'></i>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- VAT Report Detailed -->
+
+
+
+        <div class="col-md-12 col-md-12" ng-if="reportType == 'detail'" style="margin-top: 8px;    margin-bottom: 10px;">
+
+            <div id="dt_example" class="example_alt_pagination">
+
+                <!-- {{reportsPurchaseDataArr}} -->
+
+                <table class="table table-condensed table-striped table-hover table-bordered" id="data-table">
+
+                    <thead class="fixit">
+
+                        <tr class="bg-col">
+
+                            <th>Posting Date</th>
+
+                            <th>Document No.</th>
+
+                            <th>Document Type</th>
+
+                            <th class="rightAlign">Amount</th>
+
+                            <th class="rightAlign">VAT Amount</th>
+
+                            <th class="rightAlign" style="padding-right: 22px;">Entry No.</th>
+
+                            <th ng-if="filterReport.vatEntriesStatus.id==3" style="    padding-right: 22px;">Posting Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody class="fixit">
+
+                        <tr ng-repeat="line in reportsDataArr track by $index">
+
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.PostingGrp}}</b></td>
+
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.VATRate}}</b></td>
+
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.HeaderType}}</b></td>
+
+                            <td ng-if="line.RecordType == 'Header'"></td>
+
+                            <td ng-if="line.RecordType == 'Header'"></td>
+
+                            <td ng-if="line.RecordType == 'Header'"></td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'Header'">
+
+                            </td>
+
+
+
+                            <td ng-if="line.RecordType == 'Detail'">{{line.PostingDate}}</td>
+
+                            <td ng-if="line.RecordType == 'Detail'">{{line.DocumentNo}}</td>
+
+                            <td ng-if="line.RecordType == 'Detail'">{{line.DocumentType}}</td>
+
+                            <td ng-if="line.RecordType == 'Detail'" class="rightAlign">{{line.Base | currency : "" : decimal_range}} {{defaultCurrencyCode}}</td>
+
+                            <td ng-if="line.RecordType == 'Detail'" class="rightAlign">{{line.Amount | currency : "" : decimal_range}} {{defaultCurrencyCode}}</td>
+
+                            <td ng-if="line.RecordType == 'Detail'" style="    padding-right: 22px;" class="rightAlign">{{line.transaction_id}}</td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'Detail'" style="    padding-right: 22px;">
+
+                                <span ng-if="line.VatPosted == 0">Open</span>
+
+                                <span ng-if="line.VatPosted == 1">Close</span>
+
+                            </td>
+
+
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"><b>Total {{line.PostingGrp}} {{line.VATRate}}</b>
+
+                            </td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'" class="rightAlign"><b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'" class="rightAlign"><b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'SumSalesPostingGroupVat'"></td>
+
+
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"><b>Total {{line.HeaderType}}</b></td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'" class="rightAlign"><b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'" class="rightAlign"><b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'TotalForSalesorPurchase'"></td>
+
+
+
+
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"><b>VAT due on acquisition from other EU member states (Box
+
+                  2 figure)</b></td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'" class="rightAlign"><b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'" class="rightAlign"><b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'VatDueOnAcqEU'"></td>
+
+
+
+
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"><b>Net VAT to be paid (+) or to be reclaimed (-)</b>
+
+                            </td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'" class="rightAlign"><b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+
+                  {{defaultCurrencyCode}}</b></td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'NetVATPaidReclaimed'"></td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div ng-include="'app/views/reports/submitVATOptionsModal.html'"></div>
+
+    <div ng-include="'app/views/reports/submittedVATOtherMeansModal.html'"></div>
+
+
+
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 </div>

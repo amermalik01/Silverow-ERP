@@ -6,6 +6,7 @@
     }
 </style>
 
+<<<<<<< HEAD
 <div class="modal fade template-design"
      id="salesFigureCustomerModal2">
     <div class="modal-dialog modal-md"
@@ -34,6 +35,19 @@
                                    page='ALL'
                                    value='on'
                                    show-this-page='1' />
+=======
+<div class="modal fade template-design" id="salesFigureCustomerModal2">
+    <div class="modal-dialog modal-md" style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body" id="{{printPdfVals.reportName}}" style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index" ng-if="printPdfVals.report_type == 1" style="clear: both;margin-bottom: 24px;">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}' page='ALL' value='on' show-this-page='1' />
+
+                    <pagefooter name='MyFooter3' content-right='{DATE j-m-Y}' content-center='Page {PAGENO} of {nb}' content-left='{{known_as}}' footer-style='color:#00000;font-size: 11px' footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3' page='ALL' value='on' show-this-page='1' />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     <style ng-if="toggleLandscape">
                         @page {
@@ -47,8 +61,12 @@
                     <htmlpageheader name='MyCustomHeader{{$index}}'>
                         <div class='reportHeading'>
                             <div class='reportHeading__left'>
+<<<<<<< HEAD
                                 <div class='reportHeading__left__reportname'
                                      style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+=======
+                                <div class='reportHeading__left__reportname' style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                                 <div class="font10">
                                     <b>Customer No. :</b>
@@ -60,6 +78,7 @@
                                     <!-- <span ng-if="rec.cust_name == undefined">Not Assigned</span> -->
                                     <span ng-if="rec.cust_name != undefined">{{rec.cust_name}}</span>
                                 </div>
+<<<<<<< HEAD
                                 <div class='reportHeading__left__reportfilter'
                                      style="width: 100%;margin-bottom: 5px;">
                                      <span ng-if="printPdfVals.report_date_type == 2">Order Date</span> <span ng-if="printPdfVals.report_date_type == 1">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
@@ -69,12 +88,21 @@
                                 <img ng-src='{{imagePath+defaultLogo}}'
                                      class='reportHeading__right__img '
                                      ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+=======
+                                <div class='reportHeading__left__reportfilter' style="width: 100%;margin-bottom: 5px;">
+                                    <span ng-if="printPdfVals.report_date_type == 2">Order Date</span> <span ng-if="printPdfVals.report_date_type == 1">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}' class='reportHeading__right__img ' ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <div class='reportHeading__right__companyname'>{{company_name}}</div>
                             </div>
                         </div>
                     </htmlpageheader>
 
                     <div style="display: inline-block;height: 17px;width: 100%"></div>
+<<<<<<< HEAD
                     <h4 ng-if="rec.posted.invoices.length > 0"
                         style="    margin: 0;
     margin-bottom: 10px;
@@ -82,6 +110,13 @@
     font-weight: bold"> Posted </h4>
                     <table style="width: 100%;"
                            ng-if="rec.posted.invoices.length > 0">
+=======
+                    <h4 ng-if="rec.posted.invoices.length > 0" style="    margin: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold"> Posted </h4>
+                    <table style="width: 100%;" ng-if="rec.posted.invoices.length > 0">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <thead>
                             <tr>
                                 <th ng-if="printPdfVals.report_date_type == 1">Posting Date</th>
@@ -127,6 +162,7 @@
                         </tbody>
 
                     </table>
+<<<<<<< HEAD
                     <h4 ng-if="rec.unposted.invoices.length > 0"
                         style="    margin: 0;
     margin-bottom: 10px;
@@ -134,6 +170,13 @@
     font-weight: bold"> Unposted </h4>
                     <table style="width: 100%;"
                            ng-if="rec.unposted.invoices.length > 0">
+=======
+                    <h4 ng-if="rec.unposted.invoices.length > 0" style="    margin: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold"> Unposted </h4>
+                    <table style="width: 100%;" ng-if="rec.unposted.invoices.length > 0">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <thead>
                             <tr>
                                 <th ng-if="printPdfVals.report_date_type == 1">Posting Date</th>
@@ -191,18 +234,27 @@
                         </tr>
                         <tr>
                             <td style="text-align: right;width:20%;">
+<<<<<<< HEAD
                                 <span
                                       ng-if="rec.posted.invoices.length > 0">{{rec.posted.total_amount_ex_vat | currency:""}}
+=======
+                                <span ng-if="rec.posted.invoices.length > 0">{{rec.posted.total_amount_ex_vat | currency:""}}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     {{defaultCurrencyCode}}</span>
                                 <span ng-if="!(rec.posted.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
                             </td>
                             <td style="text-align: right;width:20%;">
+<<<<<<< HEAD
                                 <span
                                       ng-if="rec.unposted.invoices.length > 0">{{rec.unposted.total_amount_ex_vat | currency:""}}
+=======
+                                <span ng-if="rec.unposted.invoices.length > 0">{{rec.unposted.total_amount_ex_vat | currency:""}}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     {{defaultCurrencyCode}}</span>
                                 <span ng-if="!(rec.unposted.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
                             </td>
                             <td style="text-align: right;width:20%;">
+<<<<<<< HEAD
                                 {{
                                     (isNumber(rec.unposted.total_amount_ex_vat*1)? rec.unposted.total_amount_ex_vat : 0) +
                                     (isNumber(rec.posted.total_amount_ex_vat*1)? rec.posted.total_amount_ex_vat : 0)
@@ -224,10 +276,21 @@
                                     (isNumber(rec.unposted.total_rebate_price*1)? rec.unposted.total_rebate_price:0) ))
                                     | currency:"")}}
                                 {{defaultCurrencyCode}}
+=======
+                                {{ (isNumber(rec.unposted.total_amount_ex_vat*1)? rec.unposted.total_amount_ex_vat : 0) + (isNumber(rec.posted.total_amount_ex_vat*1)? rec.posted.total_amount_ex_vat : 0) | currency:"" }} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{ (isNumber(rec.unposted.total_rebate_price*1)? rec.unposted.total_rebate_price: 0)+ (isNumber(rec.posted.total_rebate_price*1)? rec.posted.total_rebate_price: 0 ) | currency:"" }} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{ ((( (isNumber(rec.posted.total_amount_ex_vat*1)? rec.posted.total_amount_ex_vat:0) + (isNumber(rec.unposted.total_amount_ex_vat*1)? rec.unposted.total_amount_ex_vat:0) ) - ((isNumber(rec.posted.total_rebate_price*1)? rec.posted.total_rebate_price:0)
+                                + (isNumber(rec.unposted.total_rebate_price*1)? rec.unposted.total_rebate_price:0) )) | currency:"")}} {{defaultCurrencyCode}}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </td>
                         </tr>
                     </table>
 
+<<<<<<< HEAD
                     <div style="page-break-after: always;"
                          ng-if="printPdfVals.total_records.length - 1 != $index"></div>
                     <div style="height: 100px;"
@@ -238,6 +301,15 @@
                 <b style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b> 
                 <table style="width:100%;"
                        ng-if="printPdfVals.report_type == 1">
+=======
+                    <div style="page-break-after: always;" ng-if="printPdfVals.total_records.length - 1 != $index"></div>
+                    <div style="height: 100px;" ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div>
+                </div>
+
+                <b ng-if="printPdfVals.report_type == 1" style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b>
+                <table style="width:100%;" ng-if="printPdfVals.report_type == 1">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <tr style="background-color: whitesmoke;">
                         <td style="text-align: right;width:20%;"><b>Posted</b></td>
                         <td style="text-align: right;width:20%;"><b>Unposted</b></td>
@@ -254,6 +326,7 @@
                             {{printPdfVals.unposted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
                         </td>
                         <td style="text-align: right;width:20%;">
+<<<<<<< HEAD
                             {{printPdfVals.posted_grand_total_amount_ex_vat*1 + printPdfVals.unposted_grand_total_amount_ex_vat*1 | currency:""}}
                             {{defaultCurrencyCode}}
                         </td>
@@ -285,6 +358,24 @@
                                    page='ALL'
                                    value='on'
                                    show-this-page='1' />
+=======
+                            {{printPdfVals.posted_grand_total_amount_ex_vat*1 + printPdfVals.unposted_grand_total_amount_ex_vat*1 | currency:""}} {{defaultCurrencyCode}}
+                        </td>
+                        <td style="text-align: right;width:20%;">
+                            {{printPdfVals.posted_grand_total_rebate_price*1 + printPdfVals.unposted_grand_total_rebate_price*1 | currency:""}} {{defaultCurrencyCode}}
+                        </td>
+                        <td style="text-align: right;width:20%;">
+                            {{printPdfVals.grand_total_amount_ex_vat*1 - printPdfVals.posted_grand_total_rebate_price*1 - printPdfVals.unposted_grand_total_rebate_price*1 | currency:""}} {{defaultCurrencyCode}}
+                        </td>
+                    </tr>
+                </table>
+                <div ng-if="printPdfVals.report_type == 2" style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader' page='ALL' value='on' show-this-page='1' />
+
+                    <pagefooter name='MyFooter3' content-right='{DATE j-m-Y}' content-center='Page {PAGENO} of {nb}' content-left='{{known_as}}' footer-style='color:#00000;font-size: 11px' footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3' page='ALL' value='on' show-this-page='1' />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     <style ng-if="toggleLandscape">
                         @page {
@@ -296,6 +387,7 @@
                     </style>
                     <div class='reportHeading'>
                         <div class='reportHeading__left'>
+<<<<<<< HEAD
                             <div class='reportHeading__left__reportname'
                                  style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
                             <div class='reportHeading__left__reportfilter'
@@ -307,6 +399,15 @@
                             <img ng-src='{{imagePath+defaultLogo}}'
                                  class='reportHeading__right__img '
                                  ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+=======
+                            <div class='reportHeading__left__reportname' style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <div class='reportHeading__left__reportfilter' style="width: 100%;margin-bottom: 5px;">
+                                <span ng-if="printPdfVals.report_date_type == 2">Order Date</span> <span ng-if="printPdfVals.report_date_type == 1">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}' class='reportHeading__right__img ' ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class='reportHeading__right__companyname'>{{company_name}}</div>
                         </div>
                     </div>
@@ -316,10 +417,17 @@
                             <thead>
                                 <tr>
                                     <th>Customer No. </td>
+<<<<<<< HEAD
                                     <th>Customer Name </th>
                                     <th style="text-align: right">Unposted ({{defaultCurrencyCode}}) </th>
                                     <th style="text-align: right">Posted ({{defaultCurrencyCode}}) </th>
                                     <th style="text-align: right">Total ({{defaultCurrencyCode}})</td>
+=======
+                                        <th>Customer Name </th>
+                                        <th style="text-align: right">Unposted ({{defaultCurrencyCode}}) </th>
+                                        <th style="text-align: right">Posted ({{defaultCurrencyCode}}) </th>
+                                        <th style="text-align: right">Total ({{defaultCurrencyCode}})</td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </tr>
                             </thead>
                             <tbody>
@@ -346,11 +454,16 @@
             </div>
             <div class="modal-footer">
                 <div class="pull-right">
+<<<<<<< HEAD
                     <button type="button"
                             class="btn btn-cancel pull-right "
                             ng-click="destroyPdfModal('salesFigureCustomerModal2')">Cancel</button>
                     <label class="ib"
                            style="margin-right: 4px;">
+=======
+                    <button type="button" class="btn btn-cancel pull-right " ng-click="destroyPdfModal('salesFigureCustomerModal2')">Cancel</button>
+                    <label class="ib" style="margin-right: 4px;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <input type="checkbox"
                                ng-change="updatePageOrientation(toggleLandscape)"
                                ng-model="toggleLandscape">Print in Landscape Orientation
@@ -376,6 +489,7 @@
                           ng-if="generatingPDF">
                         <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
                     <!-- jsreport download button -->
+<<<<<<< HEAD
                     <a type="button"
                        class="btn btn-default2"
                        ng-if="!jsreportLoading"
@@ -389,6 +503,12 @@
                        ng-if="jsreportLoading"
                        class="btn btn-default2"
                        title="Downloading PDF">
+=======
+                    <a type="button" class="btn btn-default2" ng-if="!jsreportLoading" title="Download PDF" ng-click="downloadReportSalesFiguresBCust(printPdfVals)">
+                        <i class="fa fa-cloud-download" aria-hidden="true" style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button" ng-if="jsreportLoading" class="btn btn-default2" title="Downloading PDF">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <i class='fa-spin fa fa-spinner'></i>
                     </a>
                 </div>

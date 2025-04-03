@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 [
     {
+=======
+[{
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Posting Date",
         "field_name": "posting_date",
         "visible": "1",

@@ -13,6 +13,7 @@
                                           class="required">*</span></label>
                                 <div class="col-md-8">
                                     <input type="hidden" ng-model="rec.type" />
+<<<<<<< HEAD
                                     
                                     <input type="text" class="form-control"
                                         ng-model="rec.supplier_code"
@@ -23,6 +24,12 @@
                                            ng-model="rec.supplier_code"
                                            ng-readonly="check_srm_readonly"                                           
                                            ng-if="moduleCodeType == 1" />
+=======
+
+                                    <input type="text" class="form-control" ng-model="rec.supplier_code" ng-if="moduleCodeType == 0" ng-readonly="product_type" />
+
+                                    <input type="text" class="form-control" required ng-model="rec.supplier_code" ng-readonly="check_srm_readonly" ng-if="moduleCodeType == 1" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     <input type="hidden" ng-model="rec.code_type" />
                                     <input type="hidden" ng-model="rec.supplier_no" />
@@ -50,36 +57,55 @@
                                 <label class="col-md-4 control-label">Address Line 1</label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input type="text" ng-model="rec.address_1" id="address" class="form-control" ng-readonly="check_srm_readonly" placeholder="Address Line 1"
                                     />
+=======
+                                    <input type="text" ng-model="rec.address_1" id="address" class="form-control" ng-readonly="check_srm_readonly" placeholder="Address Line 1" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Address Line 2 </label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-readonly="check_srm_readonly" placeholder="Address Line 2"
                                     />
+=======
+                                    <input type="text" ng-model="rec.address_2" id="address_2" class="form-control" ng-readonly="check_srm_readonly" placeholder="Address Line 2" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label"></label>
 
                                 <div class="col-md-4 padr6">
+<<<<<<< HEAD
                                     <input type="text" placeholder="City" title="City" ng-model="rec.city" id="city" class="form-control" ng-readonly="check_srm_readonly"
                                     />
                                 </div>
                                 <div class="col-md-4 padl6">
                                     <input type="text" ng-model="rec.county" id="county" class="form-control" ng-readonly="check_srm_readonly" placeholder="County"
                                         title="County" />
+=======
+                                    <input type="text" placeholder="City" title="City" ng-model="rec.city" id="city" class="form-control" ng-readonly="check_srm_readonly" />
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec.county" id="county" class="form-control" ng-readonly="check_srm_readonly" placeholder="County" title="County" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label"></label>
 
                                 <div class="col-md-4 padr6">
+<<<<<<< HEAD
                                     <input type="text" ng-model="rec.postcode" id="postcode" class="form-control crm-postcode" ng-readonly="check_srm_readonly"
                                         placeholder="Postcode" />
+=======
+                                    <input type="text" ng-model="rec.postcode" id="postcode" class="form-control crm-postcode" ng-readonly="check_srm_readonly" placeholder="Postcode" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
 
                                 <div class="col-md-4 padl6">
@@ -95,20 +121,32 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Telephone</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                      <input type="text" ng-model="rec.phone" id="Telephone" class="form-control" ng-readonly="check_srm_readonly" /> 
+=======
+                                    <input type="text" ng-model="rec.phone" id="Telephone" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Company Email</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                      <input type="email" ng-model="rec.email" id="Email" placeholder="info@company.com" class="form-control" ng-readonly="check_srm_readonly" /> 
+=======
+                                    <input type="email" ng-model="rec.email" id="Email" placeholder="info@company.com" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Fax</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input type="text" ng-model="rec.fax" id="fax2" class="form-control" ng-readonly="check_srm_readonly"   />
+=======
+                                    <input type="text" ng-model="rec.fax" id="fax2" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,14 +156,19 @@
                                     <div class="input-symbol">
                                         <!-- condition to create link only in view mode if link exists. -->
                                         <a href='{{rec.web_address}}' ng-if="rec.web_address.length>7 && check_srm_readonly" target='_blank' class="showpointer">
+<<<<<<< HEAD
                                             <input type="text" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_srm_readonly" ng-blur="set_link()"
                                                 placeholder="https://" />
+=======
+                                            <input type="text" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_srm_readonly" ng-blur="set_link()" placeholder="https://" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             <span>
                                                 <i class="fa fa-external-link-square" aria-hidden="true"></i>
                                             </span>
                                         </a>
 
                                         <!-- condition to not create a link only in view mode if no link exists.  -->
+<<<<<<< HEAD
                                         <input type="text" ng-if="(rec.web_address.length==7 || rec.web_address.length==0) && check_srm_readonly" ng-model="rec.web_address"
                                             id="web_address" class="form-control" ng-readonly="check_srm_readonly" ng-blur="set_link()"
                                             placeholder="https://" />
@@ -133,6 +176,12 @@
                                         <!-- condition to not create a link only in Edit mode.  -->
                                         <input type="text" ng-if="!check_srm_readonly" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_srm_readonly"
                                             ng-blur="set_link()" placeholder="https://" />
+=======
+                                        <input type="text" ng-if="(rec.web_address.length==7 || rec.web_address.length==0) && check_srm_readonly" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_srm_readonly" ng-blur="set_link()" placeholder="https://" />
+
+                                        <!-- condition to not create a link only in Edit mode.  -->
+                                        <input type="text" ng-if="!check_srm_readonly" ng-model="rec.web_address" id="web_address" class="form-control" ng-readonly="check_srm_readonly" ng-blur="set_link()" placeholder="https://" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </div>
                                 </div>
                             </div>
@@ -199,10 +248,15 @@
                                 <div class="col-md-8">
 
                                     <div class="input-symbol">
+<<<<<<< HEAD
                                         <input type="text" ng-click="get_empl_list('purchaser_code')" ng-model="rec.purchaser_code" id="purchaser_code" class="form-control"
                                             ng-disabled="check_srm_readonly" />
                                         <input type="hidden" ng-model="rec.purchaser_code_id" id="purchaser_code_id" class="form-control" ng-readonly="check_srm_readonly"
                                         />
+=======
+                                        <input type="text" ng-click="get_empl_list('purchaser_code')" ng-model="rec.purchaser_code" id="purchaser_code" class="form-control" ng-disabled="check_srm_readonly" />
+                                        <input type="hidden" ng-model="rec.purchaser_code_id" id="purchaser_code_id" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <span>
                                             <i class="fa fa-external-link"></i>
                                         </span>
@@ -274,7 +328,11 @@
                                     <!-- arr_srm_classification -->
                                 </div>
                             </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class="form-group">
                                 <label class="col-md-4 control-label ">Last PO Date </label>
 
@@ -287,8 +345,12 @@
                             <div class="form-group" style="margin-bottom: 0 !important;">
                                 <label class="col-md-4 control-label">Social Media</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <x-dynamic-select lookup-table="social_medias_general_form" fields="socialMediasGeneral" property-name="supplierSM" qty="{{qty}}" default-option-index="{{defaultOption}}"
                                         read-only="check_srm_readonly">
+=======
+                                    <x-dynamic-select lookup-table="social_medias_general_form" fields="socialMediasGeneral" property-name="supplierSM" qty="{{qty}}" default-option-index="{{defaultOption}}" read-only="check_srm_readonly">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </x-dynamic-select>
                                 </div>
                                 <!--  <div><pre>{{socialMediasGeneral | json}}</pre></div> -->
@@ -296,8 +358,12 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Additional Information</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                       <input type="text" maxlength="250" ng-model="rec.additionalInformation" id="additionalInformation" class="form-control" ng-readonly="check_srm_readonly"   
                                     /> 
+=======
+                                    <input type="text" maxlength="250" ng-model="rec.additionalInformation" id="additionalInformation" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
 
@@ -319,7 +385,11 @@
                 </div>
             </div>
             <div class="panel panel-default padb0" style="    margin-top: 13px;">
+<<<<<<< HEAD
                 <div class="panel-body" >
+=======
+                <div class="panel-body">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="col-md-5">
                         <div class="form-group">
                             <label class="col-md-4 control-label">Primary Contact Name
@@ -332,14 +402,22 @@
                             </label>
 
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <input type="text" ng-model="rec.contact_person" id="contact_person" class="form-control" ng-readonly="check_srm_readonly"
                                     ng-required="rec.cjob_title.length>0 || rec.cdirect_line.length>0 || 
+=======
+                                <input type="text" ng-model="rec.contact_person" id="contact_person" class="form-control" ng-readonly="check_srm_readonly" ng-required="rec.cjob_title.length>0 || rec.cdirect_line.length>0 || 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         rec.cdirect_line>0 || rec.cmobile.length>0 || rec.cemail.length>0 || rec.cphone.length>0 || rec.cfax.length>0 || 
                                         drp.pref_mthod_of_comm || rec.cbooking_instructions.length>0 || 
                                         (socialMediasContactGeneral.SRMprimaryContactSM.length>0 && (socialMediasContactGeneral.SRMprimaryContactSM[0].value ||
                                         socialMediasContactGeneral.SRMprimaryContactSM[1].value || socialMediasContactGeneral.SRMprimaryContactSM[2].value ||
+<<<<<<< HEAD
                                         socialMediasContactGeneral.SRMprimaryContactSM[3].value || socialMediasContactGeneral.SRMprimaryContactSM[4].value))"
                                 />
+=======
+                                        socialMediasContactGeneral.SRMprimaryContactSM[3].value || socialMediasContactGeneral.SRMprimaryContactSM[4].value))" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <input type="hidden" ng-model="rec.alt_contact_id" id="alt_contact_id" />
                             </div>
                         </div>
@@ -368,13 +446,18 @@
                             <label class="col-md-4 control-label">Telephone </label>
 
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <input type="text" ng-model="rec.cphone" id="cTelephone" class="form-control" ng-readonly="check_srm_readonly"   />
+=======
+                                <input type="text" ng-model="rec.cphone" id="cTelephone" class="form-control" ng-readonly="check_srm_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Fax </label>
 
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <input type="text" ng-model="rec.cfax" id="fax" class="form-control" ng-readonly="check_srm_readonly"  />
                             </div>
                         </div>
@@ -387,17 +470,37 @@
                                             placeholder="e.g. myname@example.com" data-email-msg="Email format is not valid" />
     
                                         <span>
+=======
+                                <input type="text" ng-model="rec.cfax" id="fax" class="form-control" ng-readonly="check_srm_readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Email </label>
+
+                            <div class="col-md-8">
+                                <div class="input-symbol">
+                                    <input type="text" ng-model="rec.cemail" id="email" data-parsley-type="email" name="email" class="form-control" ng-readonly="check_srm_readonly" placeholder="e.g. myname@example.com" data-email-msg="Email format is not valid" />
+
+                                    <span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             <a ng-if="rec.cemail != undefined" href="mailto:{{rec.cemail}}?Subject=silverow CRM&Body=silverow CRM">
                                                 <i style=" color: #3693cf;" class="fa fa-envelope-o" aria-hidden="true"> </i>
                                             </a>
                                         </span>
+<<<<<<< HEAD
                                     </div>
                                 </div>
                             </div>
+=======
+                                </div>
+                            </div>
+                        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     </div>
 
                     <div class="col-md-5 col-md-offset-2">
+<<<<<<< HEAD
                             <div class="form-group" ng-if="rec.totalLocAssigned>0">
                                     <label class="col-md-4 control-label">Assigned Location(s)</label>
         
@@ -422,6 +525,30 @@
                                         </ui-select>
                                     </div>
                                 </div>
+=======
+                        <div class="form-group" ng-if="rec.totalLocAssigned>0">
+                            <label class="col-md-4 control-label">Assigned Location(s)</label>
+
+                            <div class="col-md-2">
+                                <button style=" line-height: 18px;" class="btn btn-icon pull-right" type="button" ng-click="getGenAssinLoc(rec.alt_contact_id)" title="Total Record: ">
+                                            <span ng-if="!loadingprimaryLocModal">{{rec.totalLocAssigned}}</span>
+                                            <span class="fa fa-spinner fa-spin text-center" ng-if="loadingprimaryLocModal"></span>
+                                        </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" title="Preferred Method Of Communication">Pref. Method Of Comm.</label>
+
+                            <div class="col-md-8">
+                                <ui-select ng-model="drp.pref_mthod_of_comm" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)" ng-disabled="check_srm_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+                                    <ui-select-match placeholder="Prefer Method Of Communication">{{$select.selected.title}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in arr_pref_method_comm | filter: $select.search">
+                                        <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -429,8 +556,12 @@
                         <div class="form-group" style="margin-bottom: 0 !important;">
                             <label class="col-md-4 control-label">Social Media</label>
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <x-dynamic-select lookup-table="social_medias_contact_form" fields="socialMediasContactGeneral" property-name="SupplierPrimaryContactSM"
                                     qty="{{qty}}" default-option-index="{{defaultOption}}" read-only="check_srm_readonly">
+=======
+                                <x-dynamic-select lookup-table="social_medias_contact_form" fields="socialMediasContactGeneral" property-name="SupplierPrimaryContactSM" qty="{{qty}}" default-option-index="{{defaultOption}}" read-only="check_srm_readonly">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </x-dynamic-select>
                             </div>
                         </div>
@@ -438,8 +569,12 @@
                             <label class="col-md-4 control-label">Primary Contact Notes</label>
 
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <textarea style="height:100px !important; resize:none; " ng-model="rec.primaryc_notes" id="cnotes" class="form-control"
                                     ng-disabled="check_srm_readonly" maxlength="250" />
+=======
+                                <textarea style="height:100px !important; resize:none; " ng-model="rec.primaryc_notes" id="cnotes" class="form-control" ng-disabled="check_srm_readonly" maxlength="250" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </textarea>
                                 <!-- <span class="word-counter">{{rec.cbooking_instructions.length}}/100</span>-->
                             </div>
@@ -449,6 +584,16 @@
             </div>
             <div class="row">
                 <div class="col-md-12 affix">
+<<<<<<< HEAD
+=======
+                    <div class="pull-left">
+                        <!-- <div class="communication">
+                            <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                            <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                            <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                        </div> -->
+                    </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <div class="pull-right">
                         <div class="dropdown ib" ng-show="rec.id > 0 &amp;&amp; crm_general_tab_module > 0">
                             <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

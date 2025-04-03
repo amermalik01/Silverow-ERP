@@ -1,19 +1,30 @@
 <div ng-controller="SRMOrderReturnController as table">
     <div ng-include="'app/views/_breadcrumb.html'"></div>
+<<<<<<< HEAD
 
     <a id="prompt" ui-sref="app.addsrmorderreturn" class="btn btn_add pull-right oval" ng-if="allowadd_prucase_order_return">
         <i class="fa fa-plus"></i></a>
+=======
+    <div class="col-md-12 col-md-12">
+        <a id="prompt" ui-sref="app.addsrmorderreturn" class="btn btn_add pull-right" title="Add Debit Note" ng-if="allowadd_prucase_order_return"><i class="fa fa-plus fa_display"></i> Add</a>
+    </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     <style>
         .hideAdd {
             margin-top: 35px;
         }
+<<<<<<< HEAD
     </style>        
+=======
+    </style>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     <div class="row">
         <div class="col-md-12 col-md-12">
             <div class="widget">
                 <div class="widget-body ">
                     <div id="dt_example" class="example_alt_pagination">
+<<<<<<< HEAD
                         <div style="margin-top: -13px;">
                             <div class="flexiTable" 
                                 ng-class="{'hideAdd':!allowadd_prucase_order_return}"
@@ -25,6 +36,12 @@
                                 x-filter-object="searchKeyword"
                                 x-bulk-email-function="bulkEmailOption()"
                                 x-selected-record-preview="debitNoteCode"></div>
+=======
+                        <div>
+                            <!-- style="margin-top: -13px;" -->
+                            <div class="flexiTable" ng-class="{'hideAdd':!allowadd_prucase_order_return}" x-generate-table x-data="tableData.data" x-table-name="DebitNotes" x-filter-function="getSrmOrderReturnListing()" x-checked-records="selectedRecBulkEmail" x-filter-object="searchKeyword"
+                                x-bulk-email-function="bulkEmailOption()" x-selected-record-preview="debitNoteCode"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                 </div>

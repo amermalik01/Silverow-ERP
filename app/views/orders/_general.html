@@ -2,6 +2,7 @@
     <div class="widget-body widget_media_ipad">
         <div class="row">
             <div class="col-md-12">
+<<<<<<< HEAD
                 <h5 ng-if="rec.type2==0" style="float:left;"
                 class="sales_heading">Sales Quote</h5>
                 <h5 ng-if="rec.type2==1" style="float:left;"
@@ -9,10 +10,19 @@
                 <h5 ng-if="rec.type2==2" style="float:left;"
                     class="sales_heading">Sales Invoice</h5>
 
+=======
+                <h5 ng-if="rec.type2==0" style="float:left;" class="sales_heading">Sales Quote</h5>
+                <h5 ng-if="rec.type2==1" style="float:left;" class="sales_heading">Sales Order</h5>
+                <h5 ng-if="rec.type2==2" style="float:left;" class="sales_heading">Sales Invoice</h5>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <h5 class="sales_heading" style="float:right;margin-right: 16px; color:green; font-style: italic;" ng-if="approvals_lock_order==1 && rec.type2!=0">Approved</h5>
                 <h5 class="sales_heading" style="float:right;margin-right: 16px; color:red; font-style: italic;" ng-if="approvals_lock_order!=1 && rec.type2==1 && (credit_limit_approval_req > 0 || margin_analysis_approval_req > 0)">Not Approved</h5>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         <div class="row">
             <div class="col-md-12">
                 <!-- <div class="panel-title2">
@@ -20,6 +30,7 @@
                 </div> -->
                 <div class="col-md-3 col-md-3">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label class="col-md-4 control-label"
                                ng-if="rec.type2==0">Quote No.</label>
                         <label class="col-md-4 control-label"
@@ -58,13 +69,35 @@
                                        type="text"
                                        ng-model="rec.sale_invioce_code"
                                        class="form-control" />
+=======
+                        <label class="col-md-4 control-label" ng-if="rec.type2==0">Quote No.</label>
+                        <label class="col-md-4 control-label" ng-if="rec.type2==1">Order No.</label>
+                        <label class="col-md-4 control-label" ng-if="rec.type2==2">Invoice No.</label>
+
+                        <div class="col-md-8">
+                            <input type="hidden" ng-model="rec.type" />
+                            <input type="hidden" ng-model="rec.code_type" />
+                            <input type="hidden" id="sale_order_no" ng-model="rec.order_no" class="form-control" />
+                            <input type="hidden" id="sale_order_no" ng-model="rec.sale_invoice_no" class="form-control" />
+                            <div ng-if="rec.type2==0">
+                                <input ng-readonly="product_type" type="text" ng-model="rec.sale_quote_code" class="form-control" />
+                            </div>
+                            <div ng-if="rec.type2==1">
+                                <input ng-readonly="product_type" type="text" ng-model="rec.sale_order_code" class="form-control" />
+                            </div>
+                            <div ng-if="rec.type2==2">
+                                <input ng-readonly="product_type" type="text" ng-model="rec.sale_invioce_code" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                     </div>
                     <div class="form-group" ng-if="rec.type2 ==0">
                         <label class="col-md-4 control-label"> <span ng-if="rec.account_type == 1"> Customer</span> <span ng-if="rec.account_type == 2"> CRM</span>  No. <span ng-if="rec.id == 0" class="required"> *</span></label>
+<<<<<<< HEAD
                         
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <div class="col-md-4">
                             <select ng-model="rec.account_type" class="form-control" ng-disabled="check_so_readonly" ng-change="OnChangeAccountType()">
                                 <option value="1">Customer</option>
@@ -72,6 +105,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
+<<<<<<< HEAD
                             <div class="input-symbol"
                                 ng-class="{'dont-click':check_so_readonly}">
                                 <input type="text"
@@ -82,6 +116,10 @@
                                     ng-model="rec.sell_to_cust_no"
                                     ng-click="getCustomer(1)"
                                     readonly />
+=======
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                <input type="text" ng-class="{'white_bg':!check_so_readonly}" required id="sell_to_cust_no" class="form-control" ng-model="rec.sell_to_cust_no" ng-click="getCustomer(1)" readonly />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
@@ -89,6 +127,7 @@
 
                     <div class="form-group" ng-if="rec.type2 != 0">
                         <label class="col-md-4 control-label">Customer No. <span ng-if="rec.id == 0" class="required"> *</span></label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
                             <div class="input-symbol"
@@ -101,6 +140,11 @@
                                        ng-model="rec.sell_to_cust_no"
                                        ng-click="getCustomer(1)"
                                        readonly />
+=======
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                <input type="text" ng-class="{'white_bg':!check_so_readonly}" required id="sell_to_cust_no" class="form-control" ng-model="rec.sell_to_cust_no" ng-click="getCustomer(1)" readonly />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
@@ -108,6 +152,7 @@
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Name</label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
                             <input type="text"
@@ -209,10 +254,67 @@
                                        ng-click="getAltContact()"
                                        readonly
                                        ng-class="{'white_bg':!check_so_readonly}" />
+=======
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.sell_to_cust_name" id="sell_to_cust_name" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" tabindex="3" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 1</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.sell_to_address" id="sell_to_address" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" tabindex="4" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address Line 2</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.sell_to_address2" id="sell_to_address2" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">City</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.sell_to_city" id="sell_to_city" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">County</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.sell_to_county" id="sell_to_county" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
+                        <div class="col-md-4 pr0">
+                            <input type="text" ng-model="rec.sell_to_post_code" id="sell_to_post_code" class="form-control text-uppercase" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+                        </div>
+
+                        <div class="col-md-4" style="padding-left: 5px;">
+                            <select ng-model="rec.country_ids" ng-options="opt as opt.code for opt in country_type_arr track by opt.id" class="form-control " ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person</label>
+                        <div class="col-md-8">
+                            <input type="hidden" id="sell_to_contact_id" ng-model="rec.sell_to_contact_id" name="sell_to_contact_id">
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly && !check_si_readonly}">
+                                <input type="text" style="padding-right: 29px;" id="sell_to_contact_no" class="form-control" ng-model="rec.sell_to_contact_no" ng-click="getAltContact()" readonly ng-class="{'white_bg':(!check_so_readonly || check_si_readonly)}" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="form-group">
                         <label class="col-md-4 control-label">Telephone </label>
 
@@ -233,10 +335,27 @@
                         <div class="col-md-8">
                             <input type="text" ng-model="rec.cust_fax" id="cust_fax" class="form-control"
                                    readonly="readonly"/>
+=======
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Telephone </label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cust_phone" id="cust_phone" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-md-3">
+                    <!-- <div class="form-group">
+                        <label class="col-md-4 control-label">Fax</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cust_fax" id="cust_fax" class="form-control" readonly="readonly"/>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div> -->
                     <div class="form-group">
                         <label class="col-md-4 control-label">Email</label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
                             <input type="text"
@@ -244,11 +363,16 @@
                                    id="cust_email"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cust_email" id="cust_email" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_si_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Salesperson</label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
                             <div class="input-symbol"
@@ -265,10 +389,17 @@
                                        ng-model="rec.sale_person_id"
                                        id="sale_person_id"
                                        class="form-control" />
+=======
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly && !check_si_readonly}">
+                                <input type="text" ng-model="rec.sale_person" id="sale_person" style="padding-right: 29px;" class="form-control" ng-click="getSalePerson()" readonly ng-class="{'white_bg':(!check_so_readonly || check_si_readonly)}" />
+                                <input type="hidden" ng-model="rec.sale_person_id" id="sale_person_id" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="form-group">
                         <label class="col-md-4 control-label"
                                title="Customer Order Number">Cust. Order No.</label>
@@ -279,10 +410,18 @@
                                    id="cust_order_no"
                                    class="form-control"
                                    ng-readonly="check_so_readonly" />
+=======
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Customer Order Number">Cust. Order No.</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cust_order_no" id="cust_order_no" class="form-control" ng-readonly="check_so_readonly && !check_si_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
                     <div class="form-group">
+<<<<<<< HEAD
                         <label class="col-md-4 control-label"
                                title="Link to Purchase Order">Link to PO</label>
                         <div class="col-md-8">
@@ -306,11 +445,30 @@
                          ng-if="(rec.sale_quote_code.length>0 && rec.type2 != 0) || (rec.sale_order_code.length>0 && rec.type2 != 1)">
                         <label class="col-md-4 control-label"
                                title="Sales Quote/Order No."> 
+=======
+                        <label class="col-md-4 control-label" title="Link to Purchase Order">Link to PO</label>
+                        <div class="col-md-8">
+                            <div class="panel-info pi2" ng-class="{'dont-click readonly':check_so_readonly && !check_si_readonly ,'max-height':selectedPurchaseOrders.length>21 }">
+                                <div class="panel-body " style="    height: 28px;" ng-click="show_list_order()">
+                                    <aside></aside>
+                                    {{selectedPurchaseOrders}}
+                                </div>
+                            </div>
+                            <!-- 
+                            <input type="text" ng-model="rec.purchase_code_number" ng-click="show_list_order()" id="purchase_code_number" class="form-control" ng-readonly="check_so_readonly"/>
+                            <input type="hidden" ng-model="rec.purchase_order_id" id="purchase_order_id" class="form-control"/> -->
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="(rec.sale_quote_code.length>0 && rec.type2 != 0) || (rec.sale_order_code.length>0 && rec.type2 != 1)">
+                        <label class="col-md-4 control-label" title="Sales Quote/Order No."> 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                <span ng-if="rec.sale_quote_code.length > 0">SQ </span>
                                <span ng-if="rec.type2 == 2"><span ng-if="rec.sale_quote_code.length > 0">/</span> SO</span> No.
                         </label>
 
                         <div ng-if="rec.sale_quote_code.length > 0" ng-class="{'col-md-8':rec.sale_quote_code.length > 0 ,'col-md-4 padr6':rec.type2 == 2 && rec.sale_quote_code.length > 0 }">
+<<<<<<< HEAD
                             <input ng-readonly="product_type"
                                    type="text"
                                    style=" font-weight: normal;"
@@ -330,12 +488,25 @@
                 </div>
                 <div class="col-md-3 col-md-3">
 
+=======
+                            <input ng-readonly="product_type" type="text" style=" font-weight: normal;" ng-model="rec.sale_quote_code" class="form-control" />
+                        </div>
+
+                        <div ng-class="{'col-md-8':rec.type2 ==2 ,'col-md-4 padl6':rec.type2 == 2 && rec.sale_quote_code.length > 0 }" ng-if="rec.type2 ==2">
+                            <input ng-readonly="product_type" type="text" style="font-weight: normal;" ng-model="rec.sale_order_code" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-md-3">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     <!--   ng-change="rec.fix_target_type.id==1 && validatePrice(rec.target_amount,'level_1')"-->
                     <!--  <div class="form-group" ng-show="rec.fix_target_type.id==1">
                           <label class="col-md-4 control-label">Converted Price </label>
                           <div class="col-md-7">
                             <div class="input-symbol">
                               <input type="text" ng-model="rec.converted_price"   class="form-control "
+<<<<<<< HEAD
                                readonly />
                               <!--  <span> {{defaultCurrencyCode}} </span> </div>
                           </div>
@@ -357,12 +528,25 @@
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span
                                   id="date_msg_leave_order"
                                   style="color:#F00; display: none;">Inv Date is earlier than order Date</span>
+=======
+                               readonly /><span> {{defaultCurrencyCode}} </span> </div>
+                          </div>
+                        </div>-->
+
+                    <div class="form-group" ng-show="rec.type2 != 0">
+                        <label class="col-md-4 control-label">Posting Date </label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control " id="posting_date" ng-model="rec.posting_date" ng-change="testdate_by_id('offer_date','posting_date','date_msg_leave_order'); CalculateDueDate(rec.posting_date);" readonly="" ng-disabled="check_so_readonly"
+                                ng-class="{'pickdate':!check_so_readonly}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span id="date_msg_leave_order" style="color:#F00; display: none;">Inv Date is earlier than order Date</span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" ng-if="rec.type2==0">Quote Date</label>
                         <label class="col-md-4 control-label" ng-if="rec.type2 !=0">Order Date</label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
 
@@ -376,10 +560,18 @@
                                    ng-disabled="check_so_readonly"
                                    ng-class="{'pickdate':!check_so_readonly}">
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span></div>
+=======
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control " id="offer_date" ng-model="rec.offer_date" ng-change="testdate_by_id('offer_date','posting_date','date_msg_leave_order'); OnChangeOrderDate(); testdate_by_id('offer_date','dispatch_date','date_msg_leave_order3');"
+                                required="" readonly="" ng-disabled="check_so_readonly" ng-class="{'pickdate':!check_so_readonly}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Dispatch Date</label>
+<<<<<<< HEAD
 
                         <div class="col-md-8">
 
@@ -430,10 +622,32 @@
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span
                                   id="date_msg_leave_order2"
                                   style="color:#F00; display: none;">Delivery date is earlier than order Date</span>
+=======
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control  " id="dispatch_date" ng-model="rec.dispatch_date" readonly="" ng-class="{'pickdate':!check_so_readonly}" ng-disabled="check_so_readonly || hide_dispatch_btn" ng-change="testdate_by_id('offer_date','dispatch_date','date_msg_leave_order3')">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order3" style="color:#F00; display: none;">Dispatch date is earlier than order Date</span></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Requested Delivery Date">Req. Del. Date</label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control " id="requested_delivery_date" ng-model="rec.requested_delivery_date" ng-class="{'pickdate':!check_so_readonly}" ng-change="testdate_by_id('offer_date','requested_delivery_date','date_msg_leave_order1')"
+                                readonly="" ng-disabled="check_so_readonly">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order1" style="color:#F00; display: none;">Req. Del. is earlier than order Date</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Delivery Date</label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control  " id="delivery_date" ng-model="rec.delivery_date" readonly="" ng-disabled="check_so_readonly" ng-class="{'pickdate':!check_so_readonly}" ng-change="testdate_by_id('offer_date','delivery_date','date_msg_leave_order2'); OnChangeDeliveryDate();">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order2" style="color:#F00; display: none;">Delivery date is earlier than order Date</span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 
             <!-- ng-show="rec.type2==1"  -->
             <div class="col-md-12"
@@ -450,6 +664,17 @@
                         <button class="btn btn-edit" type="button" ng-click="showEditForm()"
                                 ng-show="check_so_readonly"> Edit
                         </button>
+=======
+            <!-- ng-show="rec.type2==1"  -->
+            <div class="col-md-12" style="margin-top:10px;">
+                <!-- <div class="col-md-12" ng-show="submit_show_invoicee" >
+                    <div class="pull-right">
+                        <button class="btn btn-delete active-btns" type="button" ng-click="delete()" ng-show="rec.id>0"> Delete
+                        </button>
+                        <button class="btn btn_add pic_block" type="submit" ng-show="!check_so_readonly"><i class="fa fa-check fa_display" aria-hidden="true"></i> Add Order Detials
+                        </button>
+                        <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_so_readonly"> Edit</button>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <button class="btn btn-cancel" type="button" ui-sref="app.orders()">Cancel</button>
                     </div>
                 </div> -->

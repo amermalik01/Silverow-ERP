@@ -38,8 +38,12 @@
                                 <!--Login-->
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input ng-readonly="check_hrvalues_readonly" type="email" required ng-model="formData.user_email" data-parsley-required="true"
                                         data-parsley-type="email" class="form-control" />
+=======
+                                    <input ng-readonly="check_hrvalues_readonly" type="email" required ng-model="formData.user_email" data-parsley-required="true" data-parsley-type="email" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
@@ -48,15 +52,23 @@
                                 </label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input ng-readonly="check_hrvalues_readonly" type="{{inputType}}" ng-change="checkPassword()" required ng-model="formData.user_password" ng-focus="clearPassword();" class="form-control"
                                     x-validity="regx.password"
                                     data-parsley-error-message="The password should contain atleast 
+=======
+                                    <input ng-readonly="check_hrvalues_readonly" type="{{inputType}}" ng-change="checkPassword()" required ng-model="formData.user_password" ng-focus="clearPassword();" class="form-control" x-validity="regx.password" data-parsley-error-message="The password should contain atleast 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                 1 Capital alphabet, 
                                                                 1 Small alphabet, 
                                                                 1 Numeric, 
                                                                 1 Special Character and 
+<<<<<<< HEAD
                                                                 length must be atleast 8 Characters"
                                     />
+=======
+                                                                length must be atleast 8 Characters" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <!-- <span class="show_password" ng-mousedown="eye_symbol_close=1; inputType='text'" ng-mouseup="eye_symbol_close=0; inputType='password'"
                                         ng-mouseleave="eye_symbol_close=0; inputType='password'">
                                         <i class="fa fa-eye f5" ng-show="eye_symbol_close==0 && !check_hrvalues_readonly" aria-hidden="true"> </i>
@@ -74,6 +86,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label ">Confirm Password  <span class="required"> *</span> </label>
                                 <div class="col-sm-8">
+<<<<<<< HEAD
                                   <div class="input-symbol">
                                     <input 
                                            ng-change="checkPassword()"
@@ -88,12 +101,24 @@
                 
                                   </div>
                               </div>
+=======
+                                    <div class="input-symbol">
+                                        <input ng-change="checkPassword()" type="password" ng-readonly="check_hrvalues_readonly" ng-model="formData.confirm_password" class="form-control" />
+
+                                        <span class="fa fa-times-circle" aria-hidden="true" ng-if="!isPasswordConfirm && !check_hrvalues_readonly && isPasswordTouched" style="color:red;font-size: 14px;"></span>
+                                        <span class="fa fa-check-circle" ng-if="isPasswordConfirm" style="color:green;font-size: 14px;"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <div class="form-group">
                                 <label class="col-md-4 control-label "> Type
                                     <span class="required">*</span>
                                 </label>
 
                                 <div class="col-md-4 padr6">
+<<<<<<< HEAD
                                     <select ng-disabled="check_hrvalues_readonly" ng-model="formData.user_id" required ng-options="opt as opt.label for opt in user_types"
                                         class="form-control">
                                     </select>
@@ -101,6 +126,13 @@
                                 <div class="col-md-4 " style=" padding-left: 5px !important;">
                                     <label class="control-label" 
                                     style="width: 100%;
+=======
+                                    <select ng-disabled="check_hrvalues_readonly" ng-model="formData.user_id" required ng-options="opt as opt.label for opt in user_types" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-md-4 " style=" padding-left: 5px !important;">
+                                    <label class="control-label" style="width: 100%;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     padding: 3.3px 8px;
                                     border-radius: 2px;
                                     background: #f4f7f7;
@@ -123,8 +155,12 @@
                                 </label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.first_name" ng-blur="updatePreferredName()" class="form-control"
                                     />
+=======
+                                    <input required ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.first_name" ng-blur="updatePreferredName()" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,6 +184,10 @@
                                     <input ng-readonly="check_hrvalues_readonly" type="text" ng-model="formData.known_as" class="form-control" />
                                 </div>
                             </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <!--<div class="form-group">
                                 <label class="col-md-4 control-label ">Line Manager </label>
 
@@ -163,25 +203,38 @@
                         <div class="col-md-5 col-md-offset-2">
                             <div class="form-group">
                                 <label class="col-md-4 control-label ">Department</label>
+<<<<<<< HEAD
                                 <x-flexi-select x-flexi-select-title="'Department'" x-flexi-select-modal-id="'DeptSelectModal'" x-flexi-select-output='formData.department'
                                     x-flexi-select-data="dept_list" x-flexi-select-readonly="check_hrvalues_readonly">
+=======
+                                <x-flexi-select x-flexi-select-title="'Department'" x-flexi-select-modal-id="'DeptSelectModal'" x-flexi-select-output='formData.department' x-flexi-select-data="dept_list" x-flexi-select-readonly="check_hrvalues_readonly">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </x-flexi-select>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Assign Roles </label>
+<<<<<<< HEAD
                                 <x-flexi-select x-flexi-select-title="'Roles'"
                                                 x-flexi-select-modal-id="'RolesSelectModal'"
                                                 x-flexi-select-output='formData.roles'
                                                 x-flexi-select-data="all_roles"
                                                 x-flexi-select-readonly="check_hrvalues_readonly">
+=======
+                                <x-flexi-select x-flexi-select-title="'Roles'" x-flexi-select-modal-id="'RolesSelectModal'" x-flexi-select-output='formData.roles' x-flexi-select-data="all_roles" x-flexi-select-readonly="check_hrvalues_readonly">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </x-flexi-select>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label ">Line Manager</label>
+<<<<<<< HEAD
                                 <x-flexi-select x-flexi-select-title="'Line Manager'" x-flexi-select-modal-id="'LineManagerSelectModal'" x-flexi-select-output='formData.line_manager_name_id'
                                     x-flexi-select-data="all_employees" 
                                     x-flexi-select-show-cols="lineManagerShowCols"
                                     x-flexi-select-readonly="check_hrvalues_readonly" x-flexi-radio>
+=======
+                                <x-flexi-select x-flexi-select-title="'Line Manager'" x-flexi-select-modal-id="'LineManagerSelectModal'" x-flexi-select-output='formData.line_manager_name_id' x-flexi-select-data="all_employees" x-flexi-select-show-cols="lineManagerShowCols" x-flexi-select-readonly="check_hrvalues_readonly"
+                                    x-flexi-radio>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </x-flexi-select>
                                 <!-- <div title="{{sel_linemanger_tooltip}}">
                                         <div class="panel-info " ng-class="{'dont-click readonly':check_hrvalues_readonly}">
@@ -209,12 +262,19 @@
                                 </label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input jqdatepicker class="2date-picker form-control" id="start_date" ng-model="formData.start_date" ng-disabled="check_hrvalues_readonly"
                                         ng-class="{'pickdate':!check_hrvalues_readonly}" ng-change="testdate_by_id('start_date','status_inactive_date','earlier_than_status')"
                                         readonly="">
                                     <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
                                     <span id="earlier_than_status"
                                           style="color:#F00; display: none;">Status change date is earlier then Start date</span>
+=======
+                                    <input jqdatepicker class="2date-picker form-control" id="start_date" ng-model="formData.start_date" ng-disabled="check_hrvalues_readonly" ng-class="{'pickdate':!check_hrvalues_readonly}" ng-change="testdate_by_id('start_date','status_inactive_date','earlier_than_status')"
+                                        readonly="">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span id="earlier_than_status" style="color:#F00; display: none;">Status change date is earlier then Start date</span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <!--ng-change="testdate(formData.start_date,formData.leave_date,1)"-->
                                 </div>
                             </div>
@@ -222,12 +282,19 @@
                                 <label class="col-md-4 control-label ">Employment Type</label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <button type="button" id="modaladdeventbtn_new" class="btn btn-info btn_blue pull-left margin_bottom" data-toggle="modal"
                                         data-target="#modaladdevent" style="display:none"> Add New
                                     </button>
                                     <!-- commented this from below line by Ahmad ng-change="onChangeEmployeetype()" -->
                                     <select ng-disabled="check_hrvalues_readonly" ng-model="formData.employee_type" ng-options="opt as opt.name for opt in employee_type_list"
                                         class="form-control">
+=======
+                                    <button type="button" id="modaladdeventbtn_new" class="btn btn-info btn_blue pull-left margin_bottom" data-toggle="modal" data-target="#modaladdevent" style="display:none"> Add New
+                                    </button>
+                                    <!-- commented this from below line by Ahmad ng-change="onChangeEmployeetype()" -->
+                                    <select ng-disabled="check_hrvalues_readonly" ng-model="formData.employee_type" ng-options="opt as opt.name for opt in employee_type_list" class="form-control">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <option disabled value="">Select</option>
                                     </select>
                                 </div>
@@ -240,8 +307,12 @@
                                     </label>
 
                                     <div class="col-md-8">
+<<<<<<< HEAD
                                         <input jqdatepicker class="2date-picker form-control" id="contract_end_date" ng-model="formData.contract_end_date" ng-disabled="check_hrvalues_readonly"
                                             required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+=======
+                                        <input jqdatepicker class="2date-picker form-control" id="contract_end_date" ng-model="formData.contract_end_date" ng-disabled="check_hrvalues_readonly" required="" readonly="" ng-class="{'pickdate':!check_hrvalues_readonly}">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
                                         <!--ng-change="testdate(formData.start_date,formData.leave_date,1)"-->
 
@@ -253,8 +324,12 @@
                                 <label class="col-md-4 control-label ">Job Status</label>
 
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <select ng-disabled="check_hrvalues_readonly" ng-model="formData.job_status" ng-options="opt as opt.name for opt in jobStatuses"
                                         class="select2me form-control" id="job_status">
+=======
+                                    <select ng-disabled="check_hrvalues_readonly" ng-model="formData.job_status" ng-options="opt as opt.name for opt in jobStatuses" class="select2me form-control" id="job_status">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <option disabled value="">Select</option>
                                     </select>
                                 </div>
@@ -263,8 +338,12 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label ">No. of Hours per week</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <input type="text" data-parsley-trigger="keyup" data-parsley-type="number" max="168" ng-model="formData.working_hours" class="form-control"
                                         ng-readonly="check_hrvalues_readonly" />
+=======
+                                    <input type="text" data-parsley-trigger="keyup" data-parsley-type="number" max="168" ng-model="formData.working_hours" class="form-control" ng-readonly="check_hrvalues_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <span class="place-gbp3">hrs</span>
                                 </div>
                             </div>
@@ -272,8 +351,12 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label ">Status</label>
                                 <div class="col-md-8">
+<<<<<<< HEAD
                                     <select ng-disabled="check_hrvalues_readonly" ng-model="formData.status" ng-options="opt as opt.title for opt in status_data"
                                         class=" form-control" ng-change="onChangestatustype()" id="status_other">
+=======
+                                    <select ng-disabled="check_hrvalues_readonly" ng-model="formData.status" ng-options="opt as opt.title for opt in status_data" class=" form-control" ng-change="onChangestatustype()" id="status_other">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     </select>
                                 </div>
                                 <!-- <div class="col-md-2">
@@ -290,9 +373,13 @@
                                     <label class="col-md-4 control-label ">Active Date</label>
 
                                     <div class="col-md-8">
+<<<<<<< HEAD
                                         <input jqdatepicker class="2date-picker form-control" id="status_date" ng-model="formData.status_date" ng-disabled="check_hrvalues_readonly"
                                             ng-change="testdate_by_id('status_date','status_inactive_date','date_msg_status',formData.status_date)"
                                             readonly="">
+=======
+                                        <input jqdatepicker class="2date-picker form-control" id="status_date" ng-model="formData.status_date" ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('status_date','status_inactive_date','date_msg_status',formData.status_date)" readonly="">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <!--required="" -->
                                         <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
                                     </div>
@@ -305,8 +392,12 @@
                                     <label class="col-md-4 control-label ">Cause of Inactivity </label>
 
                                     <div class="col-md-8">
+<<<<<<< HEAD
                                         <select ng-disabled="check_hrvalues_readonly" ng-model="formData.cause_of_inactivity" ng-options="opt.id as opt.name for opt in inactivity_types"
                                             class="select2me form-control" ng-change="onChangeCasetype()" id="cause_of_inactivity">
+=======
+                                        <select ng-disabled="check_hrvalues_readonly" ng-model="formData.cause_of_inactivity" ng-options="opt.id as opt.name for opt in inactivity_types" class="select2me form-control" ng-change="onChangeCasetype()" id="cause_of_inactivity">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             <option disabled value="">Select</option>
                                         </select>
                                     </div>
@@ -317,6 +408,7 @@
                                         <!--Inactive-->Status Change Date</label>
 
                                     <div class="col-md-8">
+<<<<<<< HEAD
                                         <input jqdatepicker class="2date-picker form-control" id="status_inactive_date" ng-model="formData.status_inactive_date"
                                             ng-class="{'pickdate':!check_hrvalues_readonly}" ng-disabled="check_hrvalues_readonly"
                                             ng-change="testdate_by_id('start_date','status_inactive_date','later_than_start')"
@@ -324,6 +416,12 @@
                                         <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
                                         <span id="later_than_start"
                                               style="color:#F00; display: none;">Status change date is earlier then Start date</span>
+=======
+                                        <input jqdatepicker class="2date-picker form-control" id="status_inactive_date" ng-model="formData.status_inactive_date" ng-class="{'pickdate':!check_hrvalues_readonly}" ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('start_date','status_inactive_date','later_than_start')"
+                                            readonly="">
+                                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        <span id="later_than_start" style="color:#F00; display: none;">Status change date is earlier then Start date</span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <span id="date_msg" ng-show="date_msg" style="color:#F00; display: none;"></span>
                                     </div>
                                 </div>
@@ -333,8 +431,12 @@
 
                                     <div class="col-md-8">
                                         <!-- min-date="newD" -->
+<<<<<<< HEAD
                                         <input jqdatepicker class="2date-picker form-control" id="leave_date" ng-disabled="check_hrvalues_readonly" ng-class="{'pickdate':!check_hrvalues_readonly}"
                                             ng-model="formData.leave_date" ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('start_date','leave_date','date_msg_leave')"
+=======
+                                        <input jqdatepicker class="2date-picker form-control" id="leave_date" ng-disabled="check_hrvalues_readonly" ng-class="{'pickdate':!check_hrvalues_readonly}" ng-model="formData.leave_date" ng-disabled="check_hrvalues_readonly" ng-change="testdate_by_id('start_date','leave_date','date_msg_leave')"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             readonly="">
                                         <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
                                         <span id="date_msg_leave" style="color:#F00; display: none;">Status change date is earlier then Start date</span>
@@ -345,8 +447,12 @@
                                     <label class="col-md-4 control-label ">Reason for Leaving</label>
 
                                     <div class="col-md-8">
+<<<<<<< HEAD
                                         <select ng-disabled="check_hrvalues_readonly" ng-model="formData.reason_of_leaving" ng-options="opt as opt.name for opt in resign_type"
                                             class="select2me form-control" id="reason_of_leaving" ng-change="onChangeResigntype()">
+=======
+                                        <select ng-disabled="check_hrvalues_readonly" ng-model="formData.reason_of_leaving" ng-options="opt as opt.name for opt in resign_type" class="select2me form-control" id="reason_of_leaving" ng-change="onChangeResigntype()">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             <option value="">Select</option>
                                         </select>
                                     </div>
@@ -515,19 +621,31 @@
     </div>
     <div class="col-md-2 padl6">
         <div class="EmployeeInfo">
+<<<<<<< HEAD
             <div class="employee-label" ng-if="formData.user_id.label!='Administrator'" 
             style="background-color:#71b9f3;">
+=======
+            <div class="employee-label" ng-if="formData.user_id.label!='Administrator'" style="background-color:#71b9f3;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <i class="fa fa-user-o" aria-hidden="true"></i> {{formData.user_id.label}} </div>
 
             <div class="employee-label" ng-if="formData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
             <div ng-controller="DocUploadDocument_single">
                 <div class="fileUpload showupload">
+<<<<<<< HEAD
                     
                     <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
                     <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
 
                     <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
                         name="file" accept=".png,.jpeg,.jpg" class="upload" data-max-size="50"/>
+=======
+
+                    <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')" name="file" accept=".png,.jpeg,.jpg" class="upload" data-max-size="50" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
                     <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
@@ -539,7 +657,11 @@
             <div ng-if="formData.emp_picture" style="display:inline-block">
                 <img class="d1img" ng-style="{'background-image':'url('+ imagePath+formData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
             </div>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             <span class="name">
                 {{formData.first_name + ' ' + formData.last_name}}
@@ -561,6 +683,9 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 </div>
 <!--<div ng-include="'app/views/mail/compose_mail.html'"></div>-->

@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 // error_reporting(E_ERROR);
+=======
+// error_reporting(E_ALL);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 require_once(SERVER_PATH . "/classes/Xtreme.php");
 require_once(SERVER_PATH . "/classes/General.php");
 require_once(SERVER_PATH . "/classes/Setup.php");
@@ -8,6 +12,10 @@ require_once(SERVER_PATH . "/classes/Hr.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 require(SERVER_PATH . "/vendor/sendgrid-php/sendgrid-php.php");
 //require_once(SERVER_PATH . "/classes/class.phpmailer.php");
 require 'vendor/autoload.php';
@@ -30,7 +38,11 @@ class Srm extends Xtreme
         $this->objsetup = new Setup($user_info);
         $this->objstock = new Stock($user_info);
         $this->objHr = new Hr($user_info);
+<<<<<<< HEAD
         $this->arrUser = $user_info;              
+=======
+        $this->arrUser = $user_info;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->sendgrid = new \SendGrid('SG.U1fh-cwZQfSPoO8WzzWe0w.0w0gH1UCAQEPbOsnipbF0iU0SPzJpGNU8C1CCPg03h0');
     }
 
@@ -64,12 +76,20 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
         $Sql = "DELETE FROM srm_invoice	
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']." 
+=======
+                WHERE id = " . $attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 Limit 1 ";
 
         //echo $Sql;exit;
@@ -80,7 +100,11 @@ class Srm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
 
             $delSql = "DELETE FROM warehouse_allocation	
+<<<<<<< HEAD
                         WHERE order_id = ".$attr['id']." AND type=1";
+=======
+                        WHERE order_id = " . $attr['id'] . " AND type=1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             //echo $Sql;exit;
             $delRS = $this->objsetup->CSI($delSql, 'purchase_order', sr_EditPermission);
@@ -93,7 +117,11 @@ class Srm extends Xtreme
                                    last_sequence_num>0";
 
             //echo $updateSeqSql;exit;
+<<<<<<< HEAD
             $updateSeqRS = $this->objsetup->CSI($updateSeqSql, 'purchase_order', sr_EditPermission);          
+=======
+            $updateSeqRS = $this->objsetup->CSI($updateSeqSql, 'purchase_order', sr_EditPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -112,7 +140,11 @@ class Srm extends Xtreme
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record cannot be deleted.';
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
             $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
@@ -139,6 +171,7 @@ class Srm extends Xtreme
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
         if($attr['item_type'] == 0){
             
             $checkAlreadyReceived = "SELECT purchaseStatus
@@ -150,6 +183,18 @@ class Srm extends Xtreme
             
             if($RsAlreadyReceived->fields['purchaseStatus'] == 2)
             {
+=======
+        if ($attr['item_type'] == 0) {
+
+            $checkAlreadyReceived = "SELECT purchaseStatus
+                                    FROM srm_invoice 
+                                    WHERE id= " . $attr['orderid'] . " AND 
+                                        company_id = '" . $this->arrUser['company_id'] . "'
+                                    LIMIT 1";
+            $RsAlreadyReceived = $this->objsetup->CSI($checkAlreadyReceived);
+
+            if ($RsAlreadyReceived->fields['purchaseStatus'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 2;
                 $response['error'] = ' Already Received';
 
@@ -166,8 +211,12 @@ class Srm extends Xtreme
                 return $response;
             }
 
+<<<<<<< HEAD
             if($RsAlreadyReceived->fields['purchaseStatus'] == 3)
             {
+=======
+            if ($RsAlreadyReceived->fields['purchaseStatus'] == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 2;
                 $response['error'] = ' Already Invoiced';
 
@@ -192,11 +241,16 @@ class Srm extends Xtreme
 
         $item_type = $attr['item_type'];
 
+<<<<<<< HEAD
         $Sql = "DELETE FROM ".$attr['table']." WHERE id = ".$attr['id']." ";
+=======
+        $Sql = "DELETE FROM " . $attr['table'] . " WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_EditPermission);
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() > 0) {            
 
             if($item_type==2){
@@ -204,36 +258,67 @@ class Srm extends Xtreme
                              WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
                                    invoice_id =".$attr['orderid']." and 
                                    orderLineID = ".$attr['id']." ";
+=======
+        if ($this->Conn->Affected_Rows() > 0) {
+
+            if ($item_type == 2) {
+                $stkSql2 = " DELETE FROM gl_account_additional_cost_txn 
+                             WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
+                                   invoice_id =" . $attr['orderid'] . " and 
+                                   orderLineID = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // echo $stkSql2."<hr>"; exit;
                 $this->objsetup->CSI($stkSql2, 'purchase_order', sr_EditPermission);
             }
 
+<<<<<<< HEAD
             if($item_type == 0){
 
                 $Sql1 = " DELETE FROM item_in_cost_entries 
                              WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
                                    invoice_id =".$attr['orderid']." and 
                                    order_detail_id = ".$attr['id']." ";
+=======
+            if ($item_type == 0) {
+
+                $Sql1 = " DELETE FROM item_in_cost_entries 
+                             WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
+                                   invoice_id =" . $attr['orderid'] . " and 
+                                   order_detail_id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // echo $Sql1."<hr>"; exit;
                 $this->objsetup->CSI($Sql1);
 
                 $Sql2 = " DELETE FROM purchaseordertxn 
                              WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
+<<<<<<< HEAD
                                    invoice_id =".$attr['orderid']." and 
                                    ObjectDetailID = ".$attr['id']." ";
+=======
+                                   invoice_id =" . $attr['orderid'] . " and 
+                                   ObjectDetailID = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // echo $Sql2."<hr>"; exit;
                 $this->objsetup->CSI($Sql2);
             }
 
             $stkSql = " DELETE FROM warehouse_allocation
+<<<<<<< HEAD
                         WHERE order_id = ".$attr['orderid']." AND
                               purchase_order_detail_id = ".$attr['id']." AND
                               company_id='" . $this->arrUser['company_id'] . "' AND
                               type=1";
             
+=======
+                        WHERE order_id = " . $attr['orderid'] . " AND
+                              purchase_order_detail_id = " . $attr['id'] . " AND
+                              company_id='" . $this->arrUser['company_id'] . "' AND
+                              type=1";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //   product_id = $attr[productid] AND
             //   warehouse_id = $attr[warehouse_id] AND  
 
@@ -244,8 +329,13 @@ class Srm extends Xtreme
             $volume_unit = '';
             $weight = 0;
             $weightunit = '';
+<<<<<<< HEAD
             $weight_permission = 0;  
             $volume_permission = 0;    
+=======
+            $weight_permission = 0;
+            $volume_permission = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql4 = "SELECT  SUM(uomsetup.volume * inv.qty) AS volume,
                         'cm3' AS volume_unit,
@@ -256,12 +346,20 @@ class Srm extends Xtreme
                     FROM srm_invoice_detail AS inv
                     LEFT JOIN units_of_measure_setup AS uomsetup ON inv.unit_measure_id = uomsetup.id
                     LEFT JOIN items_weight_setup AS w ON w.title = 'Purchase Order' AND inv.company_id = w.company_id
+<<<<<<< HEAD
                     WHERE inv.invoice_id='".$attr['id']."' AND inv.type=0";
+=======
+                    WHERE inv.invoice_id='" . $attr['id'] . "' AND inv.type=0";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql4."<hr>"; exit;
 
             $rs4 = $this->objsetup->CSI($Sql4);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
+=======
+            if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $volume = $rs4->fields['volume'];
                 $volume_unit = $rs4->fields['volume_unit'];
                 $weight = $rs4->fields['weight'];
@@ -275,8 +373,13 @@ class Srm extends Xtreme
             $response['weight'] = $weight;
             $response['weightunit'] = $weightunit;
             $response['weight_permission'] = $weight_permission;
+<<<<<<< HEAD
             $response['volume_permission'] = $volume_permission; 
             
+=======
+            $response['volume_permission'] = $volume_permission;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -320,24 +423,41 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         //echo "<pre>";	print_r($attr);exit;
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "DELETE FROM $attr[table] WHERE id = ".$attr['id']." ";
         $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_EditPermission);
 
 
         if($attr['table'] == 'srm_order_return_detail'){
+=======
+        $Sql = "DELETE FROM $attr[table] WHERE id = " . $attr['id'] . " ";
+        $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_EditPermission);
+
+
+        if ($attr['table'] == 'srm_order_return_detail') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $volume = 0;
             $volume_unit = '';
             $weight = 0;
             $weightunit = '';
+<<<<<<< HEAD
             $weight_permission = 0;  
             $volume_permission = 0;  
+=======
+            $weight_permission = 0;
+            $volume_permission = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql4 = "SELECT  SUM(uomsetup.volume * inv.qty) AS volume,
                         'cm3' AS volume_unit,
@@ -348,12 +468,20 @@ class Srm extends Xtreme
                     FROM srm_order_return_detail AS inv
                     LEFT JOIN units_of_measure_setup AS uomsetup ON inv.unit_measure_id = uomsetup.id AND inv.type=0
                     LEFT JOIN items_weight_setup AS w ON w.title = 'Debit Note' AND inv.company_id = w.company_id
+<<<<<<< HEAD
                     WHERE inv.invoice_id='".$attr['id']."' ";
+=======
+                    WHERE inv.invoice_id='" . $attr['id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql4."<hr>"; exit;
 
             $rs4 = $this->objsetup->CSI($Sql4);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
+=======
+            if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $volume = $rs4->fields['volume'];
                 $volume_unit = $rs4->fields['volume_unit'];
                 $weight = $rs4->fields['weight'];
@@ -368,16 +496,28 @@ class Srm extends Xtreme
             $response['weightunit'] = $weightunit;
             $response['weight_permission'] = $weight_permission;
             $response['volume_permission'] = $volume_permission;
+<<<<<<< HEAD
         } 
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RS = $this->objsetup->CSI($Sql);
 
         if ($this->Conn->Affected_Rows() > 0) {
+<<<<<<< HEAD
             
             $stkSql = " DELETE FROM warehouse_allocation
                         WHERE order_id = ".$attr['invoice_id']." AND
                               purchase_order_detail_id = ".$attr['id']." AND
                               product_id = ".$attr['productid']." AND
+=======
+
+            $stkSql = " DELETE FROM warehouse_allocation
+                        WHERE order_id = " . $attr['invoice_id'] . " AND
+                              purchase_order_detail_id = " . $attr['id'] . " AND
+                              product_id = " . $attr['productid'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               purchase_return_status=1 AND 
                               type=1";
 
@@ -398,7 +538,10 @@ class Srm extends Xtreme
             $srLogTrace['input_text'] = $stkSql;
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = "Record cannot be deleted";
@@ -428,12 +571,20 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
         $Sql = "DELETE FROM srm_order_return	
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']." 
+=======
+                WHERE id = " . $attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 Limit 1 ";
 
         //echo $Sql;exit;
@@ -444,10 +595,17 @@ class Srm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
 
             $delSql = "DELETE FROM warehouse_allocation	
+<<<<<<< HEAD
                         WHERE order_id = ".$attr['id']." AND purchase_return_status=1 AND type=1";
 
             //echo $Sql;exit;
             $delRS = $this->objsetup->CSI($delSql);//, 'purchase_return', sr_DeletePermission
+=======
+                        WHERE order_id = " . $attr['id'] . " AND purchase_return_status=1 AND type=1";
+
+            //echo $Sql;exit;
+            $delRS = $this->objsetup->CSI($delSql); //, 'purchase_return', sr_DeletePermission
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $updateSeqSql = "UPDATE  ref_module_category_value 
                                             SET 
@@ -457,7 +615,11 @@ class Srm extends Xtreme
                                    last_sequence_num>0";
 
             //echo $updateSeqSql;exit;
+<<<<<<< HEAD
             $updateSeqRS = $this->objsetup->CSI($updateSeqSql);//, 'purchase_return', sr_DeletePermission
+=======
+            $updateSeqRS = $this->objsetup->CSI($updateSeqSql); //, 'purchase_return', sr_DeletePermission
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -473,7 +635,10 @@ class Srm extends Xtreme
             $srLogTrace['input_text'] = $updateSeqSql;
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record cannot be deleted.';
@@ -510,12 +675,21 @@ class Srm extends Xtreme
     function get_data_by_id($table_name, $id)
     {
         $Sql = "SELECT *
+<<<<<<< HEAD
 				FROM ".$table_name."
 				WHERE id=".$id."
 				LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+				FROM " . $table_name . "
+				WHERE id=" . $id . "
+				LIMIT 1";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
 
@@ -523,10 +697,17 @@ class Srm extends Xtreme
                 if (is_numeric($key))
                     unset($Row[$key]);
                 if ($table_name == 'srm_area_selected') {
+<<<<<<< HEAD
                     $Row['price'] = number_format((float)$Row['price'], 2, '.', '');
                 }
             }
             
+=======
+                    $Row['price'] = number_format((float) $Row['price'], 2, '.', '');
+                }
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'] = $Row;
@@ -556,11 +737,19 @@ class Srm extends Xtreme
 
         $order_type = "order by rf.sorting ASC";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
             $attr['page'] = 0;
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $attr['page'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_type);
 
         $RS = $this->objsetup->CSI($response['q']);
@@ -591,11 +780,16 @@ class Srm extends Xtreme
                          
         IFNULL(SR_rep_aged_supp_sum(s.id,DATE_SUB('$upToDate', INTERVAL 14600 DAY),DATE_ADD('$upToDate', INTERVAL 14600 DAY),s.company_id,'sr_rep',2,'',DATE_ADD('$upToDate', INTERVAL 14600 DAY)), 0)*(-1) AS supplier_balance */
 
+<<<<<<< HEAD
         $upToDate = date("Y-m-d");  
+=======
+        $upToDate = date("Y-m-d");
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $moduleCodeType = 1;
 
         $balanceInSupplierCurrency = '';
 
+<<<<<<< HEAD
         if(isset($attr['defaultCurrency']) && $attr['defaultCurrency'] > 0){
 
             $balanceInSupplierCurrency = ",
@@ -605,6 +799,17 @@ class Srm extends Xtreme
         }
         
         if ($attr['type'] == "Supplier"){
+=======
+        if (isset($attr['defaultCurrency']) && $attr['defaultCurrency'] > 0) {
+
+            $balanceInSupplierCurrency = ",
+                         (CASE WHEN (s.type <> 1 AND s.currency_id <> " . $attr['defaultCurrency'] . ") THEN sr_getSupplierBalanceInActualCurrency('" . $upToDate . "',s.company_id,s.id)
+                               ELSE 0
+                               END) AS balanceInSupplierCurrency";
+        }
+
+        if ($attr['type'] == "Supplier") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $bucketType = 24;
             $gneraltab = 'supplier_gneraltab';
 
@@ -616,6 +821,7 @@ class Srm extends Xtreme
 
             $rs4 = $this->objsetup->CSI($Sqla);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
                 $moduleCodeType = $rs4->fields['type'];
             }
@@ -625,6 +831,16 @@ class Srm extends Xtreme
             $gneraltab = 'srm_gneraltab';
 
             $Sqla ="SELECT type
+=======
+            if ($rs4->RecordCount() > 0) {
+                $moduleCodeType = $rs4->fields['type'];
+            }
+        } else {
+            $bucketType = 18;
+            $gneraltab = 'srm_gneraltab';
+
+            $Sqla = "SELECT type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     FROM ref_module_category_value
                     WHERE  module_code_id = 16 AND status = 1 AND company_id=" . $this->arrUser['company_id'] . "
                     LIMIT 1";
@@ -632,7 +848,11 @@ class Srm extends Xtreme
 
             $rs4 = $this->objsetup->CSI($Sqla);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
+=======
+            if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $moduleCodeType = $rs4->fields['type'];
             }
         }
@@ -642,6 +862,7 @@ class Srm extends Xtreme
                         purch.id, 
                         (SELECT invoice_dateUnConv 
                          FROM srm_invoice 
+<<<<<<< HEAD
                          WHERE sell_to_cust_id=".$attr['id']." AND company_id=" .$this->arrUser['company_id'] . "
                          ORDER BY id DESC LIMIT 1) as lastPODate,
                          (CASE WHEN (s.type = 1) THEN '0'
@@ -658,6 +879,28 @@ class Srm extends Xtreme
         //echo $subQueryForBuckets;exit;
 
         // $Sql .= " AND s.id IN ($subQueryForBuckets) ";
+=======
+                         WHERE sell_to_cust_id=" . $attr['id'] . " AND company_id=" . $this->arrUser['company_id'] . "
+                         ORDER BY id DESC LIMIT 1) as lastPODate,
+                         (CASE WHEN (s.type = 1) THEN '0'
+                                ELSE sr_getSupplierBalance('" . $upToDate . "',s.company_id,s.id)
+                                END) AS supplier_balance " . $balanceInSupplierCurrency . "
+                FROM  sr_srm_general_sel  s 
+                LEFT JOIN `employees` `purch` ON (`purch`.`id` = `s`.salesperson_id)
+                WHERE s.id=" . $attr['id'] . " AND s.company_id=" . $this->arrUser['company_id'] . " ";
+
+        /* $subQueryForBuckets = " SELECT  c.id
+                                from sr_srm_general_sel  c
+                                where  c.id IS NOT NULL "; */
+        $subQueryForBuckets = " SELECT  c.id
+                                from srm  c
+                                where  c.id =" . $attr['id'] . "";
+
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, $bucketType);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND s.id IN ($subQueryForBuckets) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql .= " LIMIT 1 ";
         // echo $Sql;exit;
@@ -676,8 +919,13 @@ class Srm extends Xtreme
             $Row['ChangedOn'] = $this->objGeneral->convert_unix_into_date($Row['ChangedOn']);
             $Row['status_date'] = $this->objGeneral->convert_unix_into_date($Row['status_date']);
 
+<<<<<<< HEAD
             if($Row['lastPODate'] != 0 && $Row['lastPODate'] != '')
               $Row['lastPODate'] = date("d/m/Y", strtotime($Row['lastPODate']));
+=======
+            if ($Row['lastPODate'] != 0 && $Row['lastPODate'] != '')
+                $Row['lastPODate'] = date("d/m/Y", strtotime($Row['lastPODate']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // if($Row['supplier_balance'] == '333333333' || $Row['supplier_balance'] == '-333333333') 
             //     $Row['supplier_balance'] = 0;
@@ -686,7 +934,11 @@ class Srm extends Xtreme
             $response['response'] = $Row;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['bucketFail'] = 1;
         }
@@ -699,7 +951,11 @@ class Srm extends Xtreme
     function delete_srm($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
 
         $srLogTrace = array();
@@ -712,11 +968,16 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
 
+<<<<<<< HEAD
         $function = "SELECT SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 16,3)";
         $RS = $this->objsetup->CSI($function, "srm_gneraltab", sr_DeletePermission);
         $function1 = "SELECT SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 17,7)";
@@ -728,6 +989,18 @@ class Srm extends Xtreme
 
             $Sql = "UPDATE srm SET status=".DELETED_STATUS." WHERE id = ".$arr_attr['id'].";";
 
+=======
+        $function = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 16,3)";
+        $RS = $this->objsetup->CSI($function, "srm_gneraltab", sr_DeletePermission);
+        $function1 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 17,7)";
+        $RS1 = $this->objsetup->CSI($function1, "srm_gneraltab", sr_DeletePermission);
+        $function2 = "SELECT SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 18,2)";
+        $RS2 = $this->objsetup->CSI($function2, "srm_gneraltab", sr_DeletePermission);
+
+        if ($RS->fields[0] == 'success' && $RS1->fields[0] == 'success' && $RS2->fields[0] == 'success') {
+
+            $Sql = "UPDATE srm SET status=" . DELETED_STATUS . " WHERE id = " . $arr_attr['id'] . ";";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } elseif ($RS->fields[0] != 'success') {
             $response['ack'] = 0;
             $response['error'] = 'A Note already exists against this record.';
@@ -774,8 +1047,13 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $Sql = "UPDATE srm SET status=".DELETED_STATUS." 
                 WHERE id = ".$arr_attr['id']."  AND SR_CheckTransactionBeforeDelete(".$arr_attr['id'].", ".$this->arrUser['company_id'].", 2,0) = 'success'";
+=======
+        $Sql = "UPDATE srm SET status=" . DELETED_STATUS . " 
+                WHERE id = " . $arr_attr['id'] . "  AND SR_CheckTransactionBeforeDelete(" . $arr_attr['id'] . ", " . $this->arrUser['company_id'] . ", 2,0) = 'success'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql; exit;
         $RS3 = $this->objsetup->CSI($Sql, "srm_gneraltab", sr_DeletePermission);
@@ -783,7 +1061,11 @@ class Srm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -797,7 +1079,11 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
         } else {
             $response['ack'] = 0;
+<<<<<<< HEAD
             $response['error'] ='Record cannot be deleted.';
+=======
+            $response['error'] = 'Record cannot be deleted.';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
             $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
@@ -815,8 +1101,12 @@ class Srm extends Xtreme
     function add_contact_location_dropdown_general($arr_attr)
     {
         // print_r($arr_attr);exit;
+<<<<<<< HEAD
         if ($arr_attr['alt_contact_id'] > 0 && $arr_attr['alt_location_id'] > 0 && $arr_attr['acc_id'] > 0) 
         {
+=======
+        if ($arr_attr['alt_contact_id'] > 0 && $arr_attr['alt_location_id'] > 0 && $arr_attr['acc_id'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sqle = "INSERT INTO alt_depot_contact
                              set location_id= '" . $arr_attr['alt_location_id'] . "',
                                   acc_id='" . $arr_attr['acc_id'] . "',
@@ -826,7 +1116,11 @@ class Srm extends Xtreme
                                   user_id='" . $this->arrUser['id'] . "',
                                   date_created ='" . current_date . "'";
             //echo $Sqle; exit;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sqle);
             $id3 = $this->Conn->Insert_ID();
 
@@ -837,8 +1131,13 @@ class Srm extends Xtreme
         }
         return $arr_attr;
     }
+<<<<<<< HEAD
     
     function load_srm_nested_data($attr, $response)
+=======
+
+    function load_srm_nested_data($attr, $response = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $attr['srm_id'] = $attr['id'];
         $attr['value'] = $attr['id'];
@@ -852,7 +1151,11 @@ class Srm extends Xtreme
         // $response['response']['arr_pref_method_comm'] = $result1['response'];
 
         $result2 = $this->get_method($attr);
+<<<<<<< HEAD
         $response['response']['price_method_list'] = $result2['response'];        
+=======
+        $response['response']['price_method_list'] = $result2['response'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // require_once(SERVER_PATH . "/classes/Setup.php");
         // $objsetup = new Setup($this->arrUser);
@@ -861,12 +1164,17 @@ class Srm extends Xtreme
 
         // $result4 = $objsetup->get_all_status($attr, 1);
         // $response['response']['arr_srm_status'] = $result4['response'];
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $result3 = $this->objsetup->get_predefine_by_type($attr);
         $response['response']['arr_sources_of_srm'] = $result3['response'];
 
         $result4 = $this->objsetup->get_all_status($attr, 1);
         $response['response']['arr_srm_status'] = $result4['response'];
+<<<<<<< HEAD
         
         if($attr['primaryc_id']>0)
         {
@@ -876,6 +1184,16 @@ class Srm extends Xtreme
 
         // print_r($response['response']['arr_crm_status']);exit;
         return $response;        
+=======
+
+        if ($attr['primaryc_id'] > 0) {
+            $result5 = $this->getPrimaryContactLocAssigntotal($attr);
+            $response['response']['totalLocAssigned'] = $result5['showdata'];
+        }
+
+        // print_r($response['response']['arr_crm_status']);exit;
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_srm_invoice_by_id($id)
@@ -885,14 +1203,22 @@ class Srm extends Xtreme
                                          WHERE company_id = " . $this->arrUser['company_id'] . " 
                                          LIMIT 1) AS is_whole_seller,
                                          IFNULL((CASE WHEN (SELECT STATUS FROM approval_setup WHERE company_id=" . $this->arrUser['company_id'] . " AND TYPE=4) = 1 THEN
+<<<<<<< HEAD
                                         (SELECT IFNULL(status, 0) AS status FROM approval_history WHERE object_id=".$id." AND company_id=" . $this->arrUser['company_id'] . " AND TYPE=4 ORDER BY id DESC LIMIT 1)
+=======
+                                        (SELECT IFNULL(status, 0) AS status FROM approval_history WHERE object_id=" . $id . " AND company_id=" . $this->arrUser['company_id'] . " AND TYPE=4 ORDER BY id DESC LIMIT 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             WHEN (SELECT STATUS FROM approval_setup WHERE company_id=" . $this->arrUser['company_id'] . " AND TYPE=7) = 1 THEN
                                                 2
                                             ELSE
                                                 0
                                         END), 0) AS approval_type_1,
                                         IFNULL((CASE WHEN (SELECT STATUS FROM approval_setup WHERE company_id=" . $this->arrUser['company_id'] . " AND TYPE=7) = 1 THEN
+<<<<<<< HEAD
                                                 (SELECT IFNULL(status, 0) AS status FROM approval_history WHERE object_id=".$id." AND company_id=" . $this->arrUser['company_id'] . " AND TYPE=7 ORDER BY id DESC LIMIT 1)
+=======
+                                                (SELECT IFNULL(status, 0) AS status FROM approval_history WHERE object_id=" . $id . " AND company_id=" . $this->arrUser['company_id'] . " AND TYPE=7 ORDER BY id DESC LIMIT 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             WHEN (SELECT STATUS FROM approval_setup WHERE company_id=" . $this->arrUser['company_id'] . " AND TYPE=4) = 1 THEN
                                                 2
                                             ELSE
@@ -900,23 +1226,38 @@ class Srm extends Xtreme
                                         END), 0) AS approval_type_2
 
                                 FROM srm_invoice s 
+<<<<<<< HEAD
                                 WHERE id='".$id."' AND 
+=======
+                                WHERE id='" . $id . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       company_id = " . $this->arrUser['company_id'] . ") AS tbl 
                 WHERE 1 ";
 
         /* $subQueryForBuckets = " SELECT  s.id
                                 from sr_srm_general_sel  s
                                 where  s.id IS NOT NULL "; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $subQueryForBuckets = " SELECT s.id 
                                 FROM srm as s
                                 WHERE s.type IN (2,3) AND 
                                       s.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 24);
         //echo $subQueryForBuckets;exit;
 
         // $Sql .= " AND (tbl.sell_to_cust_id IN ($subQueryForBuckets) OR tbl.sell_to_cust_id =0 OR tbl.sell_to_cust_id IS NULL) ";
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 24);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.sell_to_cust_id IN ($subQueryForBuckets) OR tbl.sell_to_cust_id =0 OR tbl.sell_to_cust_id IS NULL) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql .= " LIMIT 1 ";
         // echo $Sql;exit;
 
@@ -956,13 +1297,22 @@ class Srm extends Xtreme
             $Row['shipment_date'] = $this->objGeneral->convert_unix_into_date($Row['shipment_date']);
             $Row['sup_date'] = $this->objGeneral->convert_unix_into_date($Row['sup_date']);
             $Row['due_date'] = $this->objGeneral->convert_unix_into_date($Row['due_date']);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $Row['SaleOrders'] = $this->selectLink_SO_PO($id, 1);// 2nd parameter is for type purchase/sale. 1 for purchase,2 for sale.
             // $Row['SaleOrderslisting'] = $this->getSalesOrderListings();
             $Row['selSaleOrderslisting'] = $this->getselLink_SO_PO($id, 1);
 
+<<<<<<< HEAD
             if(!($supplier_id>0)){
                 $Row['bill_to_posting_group_id'] = $this->defaultPostingGrp();                
+=======
+            if (!($supplier_id > 0)) {
+                $Row['bill_to_posting_group_id'] = $this->defaultPostingGrp();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             $temp_attr['posting_group_id'] = $Row['bill_to_posting_group_id'];
@@ -971,6 +1321,7 @@ class Srm extends Xtreme
 
             // $currencyID = $Row['currency_id'];
             // $temp_attr_currency['currency_id'] = $currencyID;
+<<<<<<< HEAD
             $currency_arr_local = $this->objsetup->get_currencies_list($temp_attr_currency);
             $response['currency_arr_local']= $currency_arr_local['response'];
 
@@ -982,6 +1333,18 @@ class Srm extends Xtreme
             }
 
         } else{
+=======
+            $currency_arr_local = $this->objsetup->get_currencies_list();
+            $response['currency_arr_local'] = $currency_arr_local['response'];
+
+            $response['response'] = $Row;
+
+            if ($supplier_id > 0) {
+                $response['response']['e_emails'] = self::get_e_emails($supplier_id);
+                $response['response']['supplier_emails'] = self::get_supplier_emails($supplier_id);
+            }
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['bucketFail'] = 1;
         }
@@ -990,14 +1353,25 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_supplier_all_emails($supplier_id){
         $response = array();
         if($supplier_id>0){
+=======
+    function get_supplier_all_emails($supplier_id)
+    {
+        $response = array();
+        if ($supplier_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response']['e_emails'] = self::get_e_emails($supplier_id);
             $response['response']['supplier_emails'] = self::get_supplier_emails($supplier_id);
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         }else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['response'] = array();
         }
@@ -1005,7 +1379,12 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function defaultPostingGrp(){
+=======
+    function defaultPostingGrp()
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT id 
                 FROM ref_posting_group 
                 WHERE company_id = " . $this->arrUser['company_id'] . " AND 
@@ -1014,6 +1393,7 @@ class Srm extends Xtreme
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->fields['id'] > 0) 
             $postingGrpID = $RS->fields['id'];
         else
@@ -1024,6 +1404,19 @@ class Srm extends Xtreme
 
     function get_e_emails($attr){
         
+=======
+        if ($RS->fields['id'] > 0)
+            $postingGrpID = $RS->fields['id'];
+        else
+            $postingGrpID = 0;
+
+        return $postingGrpID;
+    }
+
+    function get_e_emails($attr)
+    {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $EmailSql = "SELECT fin.purchaseOrderEmail, fin.debitNoteEmail, fin.remittanceAdviceEmail 
                      FROM srm c 
                      LEFT JOIN srm_finance fin ON c.id = fin.supplier_id 
@@ -1038,7 +1431,11 @@ class Srm extends Xtreme
             }
             $Emails = $Row;
         }
+<<<<<<< HEAD
         if ($Emails){
+=======
+        if ($Emails) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'] = $Emails;
@@ -1051,7 +1448,12 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function get_supplier_emails($attr){      
+=======
+    function get_supplier_emails($attr)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $EmailSql = "SELECT c.email, 
                         GROUP_CONCAT(ac.email SEPARATOR ',') as alt_contact, 
                         GROUP_CONCAT(ad.email SEPARATOR ',') as alt_depot, 
@@ -1064,12 +1466,17 @@ class Srm extends Xtreme
                     FROM (((srm c LEFT JOIN alt_contact ac ON c.id = ac.acc_id AND ac.module_type = 2) 
                         LEFT JOIN alt_depot ad ON c.id = ad.acc_id AND ad.module_type = 2) 
                         LEFT JOIN srm_finance fin ON c.id = fin.supplier_id) 
+<<<<<<< HEAD
                     WHERE c.id = ".$attr." ";
+=======
+                    WHERE c.id = " . $attr . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RSEmails = $this->objsetup->CSI($EmailSql);
 
         if ($RSEmails->RecordCount() > 0) {
             $Row = $RSEmails->FetchRow();
+<<<<<<< HEAD
             $Emails = $Row['email'] .",".$Row['alt_contact'].",".$Row['alt_depot'].",".$Row['alt_depot_booking'].",".$Row['finance_email'].",".$Row['alt_contact_email'].",".$Row['purchaseOrderEmail'].",".$Row['debitNoteEmail'].",".$Row['remittanceAdviceEmail'];
             $Emails = str_replace(";",",",$Emails);
         }
@@ -1080,6 +1487,18 @@ class Srm extends Xtreme
             $response['error'] = NULL;
             $response['Emails'] = $Emails;
             $response['id'] = $attr;//$attr['customer_id'];
+=======
+            $Emails = $Row['email'] . "," . $Row['alt_contact'] . "," . $Row['alt_depot'] . "," . $Row['alt_depot_booking'] . "," . $Row['finance_email'] . "," . $Row['alt_contact_email'] . "," . $Row['purchaseOrderEmail'] . "," . $Row['debitNoteEmail'] . "," . $Row['remittanceAdviceEmail'];
+            $Emails = str_replace(";", ",", $Emails);
+        }
+
+        $Emails = array_values(array_unique(array_filter(explode(",", $Emails))));
+        if ($Emails) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+            $response['Emails'] = $Emails;
+            $response['id'] = $attr; //$attr['customer_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'][] = array();
             $response['ack'] = 0;
@@ -1087,14 +1506,20 @@ class Srm extends Xtreme
         }
         return $response;
     }
+<<<<<<< HEAD
     
     function selectLink_SO_PO($id,$type)
+=======
+
+    function selectLink_SO_PO($id, $type)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $response = array();
         // type 1 is for Purchase Order
 
         if ($type == 1) {
             $sqld = "Select sp.* FROM link_so_po sp
+<<<<<<< HEAD
                      where  sp.purchaseOrderID='".$id."'  and 
                             sp.company_id='" . $this->arrUser['company_id'] . "'";
         }
@@ -1104,6 +1529,16 @@ class Srm extends Xtreme
                             sp.company_id='" . $this->arrUser['company_id'] . "'";
         }
         
+=======
+                     where  sp.purchaseOrderID='" . $id . "'  and 
+                            sp.company_id='" . $this->arrUser['company_id'] . "'";
+        } else if ($type == 2) {
+            $sqld = "Select sp.* FROM link_so_po sp
+                     where  sp.saleOrderID='" . $id . "'  and 
+                            sp.company_id='" . $this->arrUser['company_id'] . "'";
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $sqld;exit;
         $RS = $this->objsetup->CSI($sqld);
 
@@ -1119,6 +1554,7 @@ class Srm extends Xtreme
         } else
             $response = array();
 
+<<<<<<< HEAD
         return $response;        
     }
 
@@ -1126,25 +1562,49 @@ class Srm extends Xtreme
     {
         $response = array();
         
+=======
+        return $response;
+    }
+
+    function selectLink_SO_PO2($id, $type)
+    {
+        $response = array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($type == 1) { // type 1 is for get all linked Sale Order codes
 
             $sqld = "SELECT s.sale_order_code AS code 
 					 FROM link_so_po sp
 					 LEFT JOIN orders as s on s.id = sp.saleOrderID 
+<<<<<<< HEAD
                      WHERE  sp.purchaseOrderID='".$id."'  AND 
                             sp.company_id='" . $this->arrUser['company_id'] . "' AND
 							s.company_id='" . $this->arrUser['company_id'] . "'";
         }
         else if ($type == 2) { // type 2 is for get all linked Purchase Order codes
+=======
+                     WHERE  sp.purchaseOrderID='" . $id . "'  AND 
+                            sp.company_id='" . $this->arrUser['company_id'] . "' AND
+							s.company_id='" . $this->arrUser['company_id'] . "'";
+        } else if ($type == 2) { // type 2 is for get all linked Purchase Order codes
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $sqld = "SELECT s.order_code AS code 
 					 FROM link_so_po sp
 					 LEFT JOIN srm_invoice as s on s.id = sp.purchaseOrderID 
+<<<<<<< HEAD
                      WHERE  sp.saleOrderID='".$id."'  AND 
                             sp.company_id='" . $this->arrUser['company_id'] . "' AND
 							s.company_id='" . $this->arrUser['company_id'] . "'";
         }
 		
+=======
+                     WHERE  sp.saleOrderID='" . $id . "'  AND 
+                            sp.company_id='" . $this->arrUser['company_id'] . "' AND
+							s.company_id='" . $this->arrUser['company_id'] . "'";
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $sqld;exit;
         $RS = $this->objsetup->CSI($sqld);
 
@@ -1157,15 +1617,25 @@ class Srm extends Xtreme
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 $codesArray .= $Row['code'].', ';				
             }
 			
 			$codesArray = substr($codesArray, 0, -2);
+=======
+                $codesArray .= $Row['code'] . ', ';
+            }
+
+            $codesArray = substr($codesArray, 0, -2);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else
             $codesArray = '';
 
         return $codesArray;
+<<<<<<< HEAD
         
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_srm_order_return_by_id($attr)
@@ -1177,16 +1647,27 @@ class Srm extends Xtreme
         /* $subQueryForBuckets = "SELECT  s.id
             from sr_srm_general_sel  s
             where  s.id IS NOT NULL "; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $subQueryForBuckets = " SELECT s.id 
                                 FROM srm as s
                                 WHERE s.type IN (2,3) AND 
                                       s.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 24);
         //echo $subQueryForBuckets;exit;
 
         // $Sql .= " AND (tbl.supplierID IN ($subQueryForBuckets) OR tbl.supplierID =0 OR tbl.supplierID IS NULL )";
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 24);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.supplierID IN ($subQueryForBuckets) OR tbl.supplierID =0 OR tbl.supplierID IS NULL )";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql .= " LIMIT 1 ";
         // $RS = $this->objsetup->CSI($Sql);
@@ -1227,6 +1708,7 @@ class Srm extends Xtreme
 
             // $currencyID = $Row['currency_id'];
             // $temp_attr_currency['currency_id'] = $currencyID;
+<<<<<<< HEAD
             $currency_arr_local = $this->objsetup->get_currencies_list($temp_attr_currency);
             $response['currency_arr_local']= $currency_arr_local['response'];
 
@@ -1234,6 +1716,13 @@ class Srm extends Xtreme
             $response['response'] = array();
             $response['bucketFail'] = 1;
 
+=======
+            $currency_arr_local = $this->objsetup->get_currencies_list();
+            $response['currency_arr_local'] = $currency_arr_local['response'];
+        } else {
+            $response['response'] = array();
+            $response['bucketFail'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response['ack'] = 1;
@@ -1250,6 +1739,7 @@ class Srm extends Xtreme
         $defaultFilter = false;
 
         if (!empty($attr['searchKeyword'])) {
+<<<<<<< HEAD
             $where_clause = $this->objGeneral->flexiWhereRetriever("s.",$attr,$fieldsMeta);
             $order_clause = $this->objGeneral->flexiOrderRetriever("s.",$attr,$fieldsMeta);
         }
@@ -1258,6 +1748,16 @@ class Srm extends Xtreme
             $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("SRM",$this->arrUser);
         }
         
+=======
+            $where_clause = $this->objGeneral->flexiWhereRetriever("s.", $attr, $fieldsMeta);
+            $order_clause = $this->objGeneral->flexiOrderRetriever("s.", $attr, $fieldsMeta);
+        }
+        if (empty($where_clause)) {
+            $defaultFilter = true;
+            $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("SRM", $this->arrUser);
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response = array();
 
@@ -1271,6 +1771,7 @@ class Srm extends Xtreme
                         s.srm_code IS NOT NULL AND  
                         s.name <>'' AND 
                         (s.company_id=" . $this->arrUser['company_id'] . " )) as s where 1" . $where_clause . "";
+<<<<<<< HEAD
         //$Sql = $this->objsetup->whereClauseAppender($Sql,18);
         // echo $Sql;exit;
         //defualt Variable
@@ -1281,6 +1782,17 @@ class Srm extends Xtreme
 
         if (!empty($attr['sort_column'])) 
         {
+=======
+        $Sql = $this->objsetup->whereClauseAppender($Sql,18);
+        // echo $Sql;exit;
+        //defualt Variable
+        $total_limit = pagination_limit;
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        if (!empty($attr['sort_column'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $column = 's.' . $attr['sort_column'];
 
             if ($attr['sort_column'] == 'code')
@@ -1293,7 +1805,11 @@ class Srm extends Xtreme
                 $column = 'cu.' . 'name';
             //calculated value can be order by id
             else if ($attr['sort_column'] == 'status')
+<<<<<<< HEAD
                 $column = 's.statusp';//'s.id';
+=======
+                $column = 's.statusp'; //'s.id';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $order_type = "Order BY " . $column . " $attr[sortform]";
         }
@@ -1304,7 +1820,11 @@ class Srm extends Xtreme
             $order_type = "Order BY " . $column . " DESC";
         else
             $order_type = $order_clause;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = $this->objGeneral->preListing($attr, $Sql, $response, $total_limit, 's', $order_type);
         //echo $response['q'];exit;
         // $RS = $this->objsetup->CSI($response['q']);
@@ -1317,10 +1837,15 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($response['q'], "srm", sr_ViewPermission);
         // $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['srm_code'] = $Row['srm_code'];
@@ -1334,12 +1859,21 @@ class Srm extends Xtreme
                 $result['address_2'] = $Row['primary_address_2'];
                 $result['county'] = $Row['primary_county'];
                 $result['web_address'] = $Row['web_address'];
+<<<<<<< HEAD
                 $result['email'] = $Row['email']; 
 
                 $result['primaryc_email'] = $Row['primaryc_email'];
                 // $result['country_name'] = $Row['country_name']; 
                 $result['country_name'] = $Row['primary_country_name']; 
                 $result['srm_classification_name'] = $Row['srm_classification_name']; 
+=======
+                $result['email'] = $Row['email'];
+
+                $result['primaryc_email'] = $Row['primaryc_email'];
+                // $result['country_name'] = $Row['country_name']; 
+                $result['country_name'] = $Row['primary_country_name'];
+                $result['srm_classification_name'] = $Row['srm_classification_name'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['company_reg_no'] = $Row['company_reg_no'];
 
                 $result['primaryc_name'] = $Row['primaryc_name'];
@@ -1354,12 +1888,20 @@ class Srm extends Xtreme
                 $result['statusp'] = $Row['statusp'];
                 $result['currency'] = $Row['currency'];
 
+<<<<<<< HEAD
                 $response['total'] = $Row['totalRecordCount'];  
+=======
+                $response['total'] = $Row['totalRecordCount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'][] = array();
@@ -1382,20 +1924,36 @@ class Srm extends Xtreme
         $Sql = "SELECT  c1.name,c1.srm_code,c1.supplier_code,c1.web_address,c1.postcode,c1.primaryc_phone,c1.type,c1.primary_address_1,c1.email
                 FROM sr_srm_general_sel c1
                 WHERE   c1.company_id = '" . $this->arrUser['company_id'] . "' AND  
+<<<<<<< HEAD
                         ((IFNULL(c1.`name`,'#1') = '".$attr['name']."' AND c1.name <> '') OR 
                         (IFNULL(c1.`email`,'#1') = '".$attr['email']."' AND c1.email <> '') OR 
                         (IFNULL(c1.`postcode`,'#1') = '".$attr['postcode']."' AND c1.postcode <> '') OR 
                         (IFNULL(c1.`web_address`,'#1') = '".$attr['web_address']."' AND c1.web_address <> '') OR 
                         (IFNULL(c1.`primary_address_1`,'#1') = '".$attr['address_1']."' AND c1.primary_address_1 <> '') OR 
                         (IFNULL(c1.`primaryc_phone`,'#1') = '".$attr['phone']."' AND c1.primaryc_phone <> '')) AND 	
+=======
+                        ((IFNULL(c1.`name`,'#1') = '" . $attr['name'] . "' AND c1.name <> '') OR 
+                        (IFNULL(c1.`email`,'#1') = '" . $attr['email'] . "' AND c1.email <> '') OR 
+                        (IFNULL(c1.`postcode`,'#1') = '" . $attr['postcode'] . "' AND c1.postcode <> '') OR 
+                        (IFNULL(c1.`web_address`,'#1') = '" . $attr['web_address'] . "' AND c1.web_address <> '') OR 
+                        (IFNULL(c1.`primary_address_1`,'#1') = '" . $attr['address_1'] . "' AND c1.primary_address_1 <> '') OR 
+                        (IFNULL(c1.`primaryc_phone`,'#1') = '" . $attr['phone'] . "' AND c1.primaryc_phone <> '')) AND 	
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c1.statusp ='Active'
                 LIMIT 1";
         // echo  $Sql;exit;
 
+<<<<<<< HEAD
         if($attr['srmModuleType'] == 1)
             $RS = $this->objsetup->CSI($Sql, "srm", sr_AddPermission); 
         else
             $RS = $this->objsetup->CSI($Sql, "supplier", sr_AddPermission); 
+=======
+        if ($attr['srmModuleType'] == 1)
+            $RS = $this->objsetup->CSI($Sql, "srm", sr_AddPermission);
+        else
+            $RS = $this->objsetup->CSI($Sql, "supplier", sr_AddPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
@@ -1406,12 +1964,20 @@ class Srm extends Xtreme
 
             $response['ack'] = 1;
 
+<<<<<<< HEAD
             if($Row['type'] == 1){
                 $response['error'] = 'Same record already exist under '.$Row['name'].'('.$Row['srm_code'].'). Are you sure, you want to duplicate?';
             }
             else{
                 $response['error'] = 'Same record already exist under '.$Row['name'].'('.$Row['supplier_code'].'). Are you sure, you want to duplicate?';
             }            
+=======
+            if ($Row['type'] == 1) {
+                $response['error'] = 'Same record already exist under ' . $Row['name'] . '(' . $Row['srm_code'] . '). Are you sure, you want to duplicate?';
+            } else {
+                $response['error'] = 'Same record already exist under ' . $Row['name'] . '(' . $Row['supplier_code'] . '). Are you sure, you want to duplicate?';
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         return $response;
@@ -1430,7 +1996,11 @@ class Srm extends Xtreme
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
@@ -1446,12 +2016,20 @@ class Srm extends Xtreme
 
         if ($id > 0)
             $update_check = "  AND tst.id <> '" . $arr_attr['acc_id'] . "'";
+<<<<<<< HEAD
         
         $data_pass = " tst.type IN (2,1) AND tst.srm_code='" . $arr_attr['srm_code'] . "' $update_check";
         $total = $this->objGeneral->count_duplicate_in_sql('srm', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) 
         {
+=======
+
+        $data_pass = " tst.type IN (2,1) AND tst.srm_code='" . $arr_attr['srm_code'] . "' $update_check";
+        $total = $this->objGeneral->count_duplicate_in_sql('srm', $data_pass, $this->arrUser['company_id']);
+
+        if ($total > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'SRM No. Already Exists.';
 
@@ -1467,7 +2045,11 @@ class Srm extends Xtreme
 
             return $response;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //(  )
 
         /* $data_pass = " tst.type IN (2,1) AND tst.srm_code='" . $arr_attr['srm_code'] . "' AND tst.name='" . $arr_attr['name'] . "' $update_check";
@@ -1493,6 +2075,7 @@ class Srm extends Xtreme
         } */
 
         $social_media_arr = $arr_attr['social_media_arr'];
+<<<<<<< HEAD
         
         $social_media_str = "";
         $index = 1;
@@ -1513,12 +2096,31 @@ class Srm extends Xtreme
             {
                 $social_media_str .= " socialmedia".$index." = '0',
                 socialmedia".$index."_value = '',";
+=======
+
+        $social_media_str = "";
+        $index = 1;
+        // print_r($social_media_arr);exit;
+        foreach ($social_media_arr as $sm) {
+            if (!empty($sm) && $sm->id > 0) {
+                $social_media_str .= " socialmedia" . $index . " = '" . $sm->id . "',
+                socialmedia" . $index . "_value = '" . addslashes($sm->value) . "',";
+                $index++;
+            }
+        }
+
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
         // echo $social_media_str;exit;
         $social_media_str = substr($social_media_str, 0, -1);
 
+<<<<<<< HEAD
         $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '')?$arr_attr['pref_method_of_communication']:0;
         $purchaser_code_id  = (isset($arr_attr['purchaser_code_id']) && $arr_attr['purchaser_code_id'] != '')? $arr_attr['purchaser_code_id']: 0;
         $selling_grp_id = (isset($arr_attr['selling_grp_id']) && $arr_attr['selling_grp_id'] != '')? $arr_attr['selling_grp_id']: 0;
@@ -1534,10 +2136,28 @@ class Srm extends Xtreme
         $contactArray = $arr_attr['contact'];
         $this->objGeneral->mysql_clean($arr_attr); 
         
+=======
+        $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '') ? $arr_attr['pref_method_of_communication'] : 0;
+        $purchaser_code_id  = (isset($arr_attr['purchaser_code_id']) && $arr_attr['purchaser_code_id'] != '') ? $arr_attr['purchaser_code_id'] : 0;
+        $selling_grp_id = (isset($arr_attr['selling_grp_id']) && $arr_attr['selling_grp_id'] != '') ? $arr_attr['selling_grp_id'] : 0;
+        $region_id  = (isset($arr_attr['region_id']) && $arr_attr['region_id'] != '') ? $arr_attr['region_id'] : 0;
+        $support_person = (isset($arr_attr['support_person']) && $arr_attr['support_person'] != '') ? $arr_attr['support_person'] : 0;
+        $turnover = (isset($arr_attr['turnover']) && $arr_attr['turnover'] != '') ? $arr_attr['turnover'] : 0;
+        $internal_sales = (isset($arr_attr['internal_sales']) && $arr_attr['internal_sales'] != '') ? $arr_attr['internal_sales'] : 0;
+        $company_type = (isset($arr_attr['company_type']) && $arr_attr['company_type'] != '') ? $arr_attr['company_type'] : 0;
+        $source_of_crm = (isset($arr_attr['source_of_crm']) && $arr_attr['source_of_crm'] != '') ? $arr_attr['source_of_crm'] : 0;
+        $anonymous_supplier = (isset($arr_attr['anonymous_supplier']) && $arr_attr['anonymous_supplier'] != '') ? $arr_attr['anonymous_supplier'] : 0;
+
+        $locArray = $arr_attr['loc'];
+        $contactArray = $arr_attr['contact'];
+        $this->objGeneral->mysql_clean($arr_attr);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($id == 0) {
 
             $Sql = "INSERT INTO srm 
                                 SET
+<<<<<<< HEAD
                                     transaction_id = SR_GetNextTransactionID(".$this->arrUser['company_id'].", 2),
                                     unique_id = UUID(),
                                     srm_code='".$arr_attr['srm_code']."',
@@ -1575,6 +2195,45 @@ class Srm extends Xtreme
                                     region_id='".$region_id."',
                                     credit_limit='".$arr_attr['credit_limit']."',
                                     currency_id='".$arr_attr['currency_id']."',
+=======
+                                    transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2),
+                                    unique_id = UUID(),
+                                    srm_code='" . $arr_attr['srm_code'] . "',
+                                    pref_method_of_communication='" . $pref_method_of_communication . "',
+                                    status='" . $arr_attr['status'] . "',
+                                    status_date='" . $this->objGeneral->convert_date($arr_attr['status_date']) . "',
+                                    segment_id='" . $arr_attr['segment_id'] . "',
+                                    name='" . $arr_attr['name'] . "',
+                                    type='" . $arr_attr['type'] . "',
+                                    contact_person='" . $arr_attr['contact_person'] . "',
+                                    address_1='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_1']) . "',
+                                    address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "',
+                                    job_title='" . $arr_attr['job_title'] . "',
+                                    additionalInformation='" . $arr_attr['additionalInformation'] . "',
+                                    phone='" . $arr_attr['phone'] . "',
+                                    city='" . $arr_attr['city'] . "',
+                                    fax='" . $arr_attr['fax'] . "',
+                                    county='" . $arr_attr['county'] . "',
+                                    country_id='" . $arr_attr['country_id'] . "',
+                                    mobile='" . $arr_attr['mobile'] . "',
+                                    postcode='" . $arr_attr['postcode'] . "',
+                                    supplier_classification='$arr_attr[srm_classification]',
+                                    srm_classification='" . $arr_attr['srm_classification'] . "',
+                                    support_person='" . $support_person . "',
+                                    anonymous_supplier='" . $anonymous_supplier . "',
+                                    direct_line='" . $arr_attr['direct_line'] . "',
+                                    email='" . $arr_attr['email'] . "',
+                                    salesperson_id='" . $purchaser_code_id . "',
+                                    turnover='" . $turnover . "',
+                                    internal_sales='" . $internal_sales . "',
+                                    company_type='" . $company_type . "',
+                                    source_of_crm='" . $source_of_crm . "',
+                                    web_address='" . $arr_attr['web_address'] . "',
+                                    selling_grp_id='" . $selling_grp_id . "',
+                                    region_id='" . $region_id . "',
+                                    credit_limit='" . $arr_attr['credit_limit'] . "',
+                                    currency_id='" . $arr_attr['currency_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $social_media_str,
                                     user_id='" . $this->arrUser['id'] . "',
                                     company_id='" . $this->arrUser['company_id'] . "',
@@ -1586,6 +2245,7 @@ class Srm extends Xtreme
             $id = $this->Conn->Insert_ID();
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
 
         } else {
 
@@ -1607,11 +2267,32 @@ class Srm extends Xtreme
                     $RS_Check_billing = $this->objsetup->CSI($checkBillingSql);
                     if($RS_Check_billing->fields['total'] == 0)
                     {
+=======
+        } else {
+
+            if ((isset($locArray->depot) && $locArray->depot != "") || (isset($locArray->postcode) && $locArray->postcode != "")) {
+                $whereLocID = '';
+
+                if ($locArray->alt_loc_id  > 0)
+                    $whereLocID = 'id <>  ' . $locArray->alt_loc_id . ' AND';
+
+                if ($locArray->is_billing_address == 0) {
+                    $checkBillingSql = "SELECT COUNT(*) AS total FROM alt_depot
+                                        WHERE acc_id = " . $id . " AND 
+                                              module_type = 2 AND 
+                                              is_billing_address = 1 AND
+                                              " . $whereLocID . "
+                                              company_id=" . $this->arrUser['company_id'];
+
+                    $RS_Check_billing = $this->objsetup->CSI($checkBillingSql);
+                    if ($RS_Check_billing->fields['total'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $response['ack'] = 0;
                         $response['error'] = 'Please select billing and payment address';
                         return $response;
                     }
                 }
+<<<<<<< HEAD
                 if($locArray->is_invoice_address == 0)
                 {
                     $checkPaymentSql = "SELECT COUNT(*) AS total FROM alt_depot
@@ -1619,19 +2300,32 @@ class Srm extends Xtreme
                                               module_type = 2 AND 
                                               is_invoice_address = 1 AND
                                               ".$whereLocID."
+=======
+                if ($locArray->is_invoice_address == 0) {
+                    $checkPaymentSql = "SELECT COUNT(*) AS total FROM alt_depot
+                                        WHERE acc_id = " . $id . " AND 
+                                              module_type = 2 AND 
+                                              is_invoice_address = 1 AND
+                                              " . $whereLocID . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                               company_id=" . $this->arrUser['company_id'];
 
                     $RS_Check_payment = $this->objsetup->CSI($checkPaymentSql);
 
 
+<<<<<<< HEAD
                     if($RS_Check_payment->fields['total'] == 0 )
                     {
+=======
+                    if ($RS_Check_payment->fields['total'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $response['ack'] = 0;
                         $response['error'] = 'Please select billing and payment address';
                         return $response;
                     }
                 }
             }
+<<<<<<< HEAD
             
             $Sql = "UPDATE srm 
                             SET
@@ -1669,13 +2363,56 @@ class Srm extends Xtreme
                                 region_id='".$region_id."',
                                 credit_limit='".$arr_attr['credit_limit']."',
                                 currency_id='".$arr_attr['currency_id']."',
+=======
+
+            $Sql = "UPDATE srm 
+                            SET
+                                srm_code='" . $arr_attr['srm_code'] . "',
+                                pref_method_of_communication='" . $pref_method_of_communication . "',
+                                status='" . $arr_attr['status'] . "',
+                                status_date='" . $this->objGeneral->convert_date($arr_attr['status_date']) . "',
+                                segment_id='" . $arr_attr['segment_id'] . "',
+                                name='" . $arr_attr['name'] . "',
+                                contact_person='" . $arr_attr['contact_person'] . "',
+                                address_1='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_1']) . "',
+                                address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "',
+                                job_title='" . $arr_attr['job_title'] . "',
+                                additionalInformation='" . $arr_attr['additionalInformation'] . "',
+                                phone='" . $arr_attr['phone'] . "',
+                                city='" . $arr_attr['city'] . "',
+                                fax='" . $arr_attr['fax'] . "',
+                                county='" . $arr_attr['county'] . "',
+                                country_id='" . $arr_attr['country_id'] . "',
+                                mobile='" . $arr_attr['mobile'] . "',
+                                postcode='" . $arr_attr['postcode'] . "',
+                                supplier_classification='$arr_attr[srm_classification]',
+                                srm_classification='" . $arr_attr['srm_classification'] . "',
+                                support_person='" . $support_person . "',
+                                anonymous_supplier='" . $anonymous_supplier . "',
+                                direct_line='" . $arr_attr['direct_line'] . "',
+                                email='" . $arr_attr['email'] . "',
+                                salesperson_id='" . $purchaser_code_id . "',
+                                turnover='" . $turnover . "',
+                                internal_sales='" . $internal_sales . "',
+                                company_type='" . $company_type . "',
+                                source_of_crm='" . $source_of_crm . "',
+                                web_address='" . $arr_attr['web_address'] . "',
+                                selling_grp_id='" . $selling_grp_id . "',
+                                region_id='" . $region_id . "',
+                                credit_limit='" . $arr_attr['credit_limit'] . "',
+                                currency_id='" . $arr_attr['currency_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $social_media_str,
                                 ChangedBy='" . $this->arrUser['id'] . "',
                                 ChangedOn=UNIX_TIMESTAMP (NOW())
                                 WHERE id = " . $id . "   
                                       Limit 1";
 
+<<<<<<< HEAD
         //    echo $Sql;exit;
+=======
+            //    echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /* $RS = $this->objsetup->CSI($Sql);
             $msg = 'Updated'; */
 
@@ -1684,15 +2421,24 @@ class Srm extends Xtreme
             $response99['ack'] = 1;
             $response99['error'] = NULL;
             $response = $response99;
+<<<<<<< HEAD
         } 
         
+=======
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* ======================== */
 
         $response2[] = array();
 
         $response2['id'] = $id;
         $response['id'] = $id;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $locArray->acc_id = $id;
         $locArray->module_type = 2;
@@ -1716,6 +2462,7 @@ class Srm extends Xtreme
             else
                 $response2 = $this->update_alt_depot2($locArray, $response2);
 
+<<<<<<< HEAD
             if($response2['ack']==0 && $response2['ack']!="")  return $response2;
         }
      
@@ -1744,6 +2491,35 @@ class Srm extends Xtreme
 
         if ($arr_attr['alt_loc_id'] > 0 && $arr_attr['alt_contact_id'] > 0) 
         {
+=======
+            if ($response2['ack'] == 0 && $response2['ack'] != "")  return $response2;
+        }
+
+
+        if ((isset($contactArray->contact_name) && $contactArray->contact_name != "") || $arr_attr['alt_contact_id'] > 0) {
+
+            $contactArray->alt_contact_id = $arr_attr['alt_contact_id'];
+
+            if (empty($arr_attr['alt_contact_id']))
+                $response2 = $this->add_alt_contact2($contactArray, $response2);
+            else
+                $response2 = $this->update_alt_contact2($contactArray, $response2);
+        }
+
+        if (!($arr_attr['alt_contact_id'] > 0))
+            $arr_attr['alt_contact_id'] = $response2['alt_contact_id'];
+
+        if (!($arr_attr['alt_loc_id'] > 0))
+            $arr_attr['alt_loc_id'] = $response2['alt_location_id'];
+
+        //echo "<pre>"; print_r($response2);exit;   
+
+        $response['alt_loc_id'] = $arr_attr['alt_loc_id'];
+        $response['alt_contact_id'] = $arr_attr['alt_contact_id'];
+
+
+        if ($arr_attr['alt_loc_id'] > 0 && $arr_attr['alt_contact_id'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $sqlC = "SELECT COUNT(*) as loc_con_count
                      From alt_depot_contact
                      WHERE acc_id = '$id' and module_type = '2' and 
@@ -1753,8 +2529,12 @@ class Srm extends Xtreme
             $RSC = $this->objsetup->CSI($sqlC);
             $Row = $RSC->FetchRow();
 
+<<<<<<< HEAD
             if ($Row['loc_con_count'] == 0) 
             {
+=======
+            if ($Row['loc_con_count'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response2['srm_id'] = $id;
                 $response2['acc_id'] = $id;
                 $response2['module_type'] = 2;
@@ -1762,9 +2542,15 @@ class Srm extends Xtreme
                 $response2['alt_contact_id'] = $arr_attr['alt_contact_id'];
                 $response3 = $this->add_contact_location_dropdown_general($response2);
             }
+<<<<<<< HEAD
         } 
 
         
+=======
+        }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
         $srLogTrace = array();
@@ -1776,7 +2562,11 @@ class Srm extends Xtreme
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
         return $response;                 
+=======
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     // for insertion of unique id to enter records
@@ -1809,7 +2599,11 @@ class Srm extends Xtreme
 
         $moduleCodeType = 1;
 
+<<<<<<< HEAD
         if($attr['type'] == 1 ){
+=======
+        if ($attr['type'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT type
                     FROM ref_module_category_value
@@ -1819,10 +2613,16 @@ class Srm extends Xtreme
 
             $rs4 = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
             if ($rs4->RecordCount() > 0){
                 $moduleCodeType = $rs4->fields['type'];
             }
 
+=======
+            if ($rs4->RecordCount() > 0) {
+                $moduleCodeType = $rs4->fields['type'];
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response['ack'] = 1;
@@ -1837,6 +2637,7 @@ class Srm extends Xtreme
         //   $this->objGeneral->mysql_clean($attr);
         // print_r($attr);
         // supplier_no = " . $attr['supplier_no'] . ",
+<<<<<<< HEAD
         
         // srm_no =  " . $attr['srm_no'] . ",
 
@@ -1859,6 +2660,27 @@ class Srm extends Xtreme
                                 type = ".$attr['type'].",  
                                 srm_code =  '" . $attr['srm_code'] . "' 
                                 WHERE id = ".$attr['id']." 
+=======
+
+        // srm_no =  " . $attr['srm_no'] . ",
+
+        if ($attr['module'] == 1) {
+            $Sql = "UPDATE srm 
+                            SET 
+                                type = " . $attr['type'] . ", 
+                                supplier_code = '" . $attr['supplier_code'] . "',
+                                srm_classification = (SELECT id FROM ref_classification WHERE name = 'Supplier' AND company_id='" . $this->arrUser['company_id'] . "' LIMIT 1),
+                                supplier_classification = (SELECT id FROM ref_classification WHERE name = 'Supplier' AND company_id='" . $this->arrUser['company_id'] . "' LIMIT 1)
+                            WHERE id = " . $attr['id'] . " 
+                            limit 1";
+            $moduleForPermission = "srm_gneraltab";
+        } elseif ($attr['module'] == 2) {
+            $Sql = "UPDATE srm 
+                            SET 
+                                type = " . $attr['type'] . ",  
+                                srm_code =  '" . $attr['srm_code'] . "' 
+                                WHERE id = " . $attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 limit 1";
             $moduleForPermission = "supplier_gneraltab";
         }
@@ -1882,8 +2704,13 @@ class Srm extends Xtreme
         $current_date = date('Y-m-d H:i:s');
         $Sql = "INSERT INTO srm_status_log
 		                        SET 
+<<<<<<< HEAD
                                     status_id='".$arr_attr['status_id']."',
                                     srm_id='".$arr_attr['id']."',
+=======
+                                    status_id='" . $arr_attr['status_id'] . "',
+                                    srm_id='" . $arr_attr['id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     user_id='" . $this->arrUser['id'] . "',
                                     company_id='" . $this->arrUser['company_id'] . "', 
                                     created_date='" . strtotime($current_date) . "'";
@@ -1908,11 +2735,19 @@ class Srm extends Xtreme
 
 
             $total_limit = pagination_limit;
+<<<<<<< HEAD
             
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
                 $total_limit = $attr['pagination_limits'];
 
             $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'crm_salesperson_log', $order_by);
+=======
+
+            if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+                $total_limit = $attr['pagination_limits'];
+
+            $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'crm_salesperson_log');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //   echo $response['q'];  exit;
             $RS = $this->objsetup->CSI($response['q']);
             $response['q'] = '';
@@ -1946,11 +2781,19 @@ class Srm extends Xtreme
 
 
             $total_limit = pagination_limit;
+<<<<<<< HEAD
             
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
                 $total_limit = $attr['pagination_limits'];
 
             $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'crm_credit_limit_log', $order_by);
+=======
+
+            if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+                $total_limit = $attr['pagination_limits'];
+
+            $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'crm_credit_limit_log');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //   echo $response['q'];  exit;
             $RS = $this->objsetup->CSI($response['q']);
             $response['q'] = '';
@@ -2020,11 +2863,19 @@ class Srm extends Xtreme
                 WHERE  c.status=1";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c', $order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'c');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
@@ -2118,11 +2969,19 @@ class Srm extends Xtreme
                     AND sc.status=1 ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'sc', $order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'sc');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
@@ -2155,9 +3014,15 @@ class Srm extends Xtreme
 		INNER JOIN ref_social_media ON ref_social_media.id=sc.media_id
 		WHERE sc.company_id='" . $this->arrUser['company_id'] . "' "
             . "AND sc.user_id='" . $this->arrUser['id'] . "' AND "
+<<<<<<< HEAD
             . "sc.srm_id='" . $arr_attr[srm_id] . "' AND "
             . "sc.media_id='" . $arr_attr[media_id] . "' AND "
             . "sc.address='" . $arr_attr[address] . "'
+=======
+            . "sc.srm_id='" . $arr_attr['srm_id'] . "' AND "
+            . "sc.media_id='" . $arr_attr['media_id'] . "' AND "
+            . "sc.address='" . $arr_attr['address'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		ORDER BY sc.id DESC limit 1";
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2169,7 +3034,11 @@ class Srm extends Xtreme
         } else {
 
             $Sql = "INSERT INTO srm_social_media
+<<<<<<< HEAD
 			SET `status`=1,`srm_id`='$arr_attr[srm_id]',`media_id`='$arr_attr[media_id]',`address`='" . $arr_attr[address] . "'
+=======
+			SET `status`=1,`srm_id`='" . $arr_attr['srm_id'] . "',`media_id`='$arr_attr[media_id]',`address`='" . $arr_attr['address'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			,user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "', date_created=NOW()";
             //echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
@@ -2203,11 +3072,19 @@ class Srm extends Xtreme
 		AND ac.status=1 
 		 ";
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'ac', $order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'ac');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
@@ -2240,10 +3117,17 @@ class Srm extends Xtreme
 		INNER JOIN ref_social_media ON ref_social_media.id=ac.media_id
 		WHERE ac.company_id='" . $this->arrUser['company_id'] . "' "
             . "AND ac.user_id='" . $this->arrUser['id'] . "' AND "
+<<<<<<< HEAD
             . "ac.alt_contact_id='" . $arr_attr[alt_contact_id] . "' AND "
             . "ac.srm_id='" . $arr_attr[srm_id] . "' AND "
             . "ac.media_id='" . $arr_attr[media_id] . "' AND "
             . "ac.address='" . $arr_attr[address] . "'
+=======
+            . "ac.alt_contact_id='" . $arr_attr['alt_contact_id'] . "' AND "
+            . "ac.srm_id='" . $arr_attr['srm_id'] . "' AND "
+            . "ac.media_id='" . $arr_attr['media_id'] . "' AND "
+            . "ac.address='" . $arr_attr['address'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		ORDER BY ac.id DESC limit 1";
         //echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2257,9 +3141,15 @@ class Srm extends Xtreme
                                 SET 
                                     `status`=1,
                                     `alt_contact_id`='$arr_attr[alt_contact_id]',
+<<<<<<< HEAD
                                     `srm_id`='$arr_attr[srm_id]',
                                     `media_id`='$arr_attr[media_id]',
                                     `address`='" . $arr_attr[address] . "',
+=======
+                                    `srm_id`='" . $arr_attr['srm_id'] . "',
+                                    `media_id`='$arr_attr[media_id]',
+                                    `address`='" . $arr_attr['address'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     user_id='" . $this->arrUser['id'] . "',
                                     company_id='" . $this->arrUser['company_id'] . "', 
                                     date_created=NOW()";
@@ -2295,7 +3185,11 @@ class Srm extends Xtreme
         $order_by = "group by  c.id DESC";
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2304,10 +3198,15 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 // $result['code'] = $Row['code'];
@@ -2330,6 +3229,7 @@ class Srm extends Xtreme
                 FROM  srm_pref_method_of_communiction  c
                 where  c.status=1 and 
                        c.company_id=" . $this->arrUser['company_id'] . "
+<<<<<<< HEAD
                 group by  c.title DESC "; 
         //c.user_id=".$this->arrUser['id']."
         
@@ -2343,6 +3243,19 @@ class Srm extends Xtreme
                 $result['title'] = $Row['title'];
                 $response['response'][] = $result;
                 }
+=======
+                group by  c.title DESC ";
+        //c.user_id=".$this->arrUser['id']."
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                $result['id'] = $Row['id'];
+                $result['title'] = $Row['title'];
+                $response['response'][] = $result;
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else {
@@ -2360,7 +3273,11 @@ class Srm extends Xtreme
         if ($id > 0)
             $update_check = "  AND tst.id <> '" . $id . "'";
 
+<<<<<<< HEAD
         $data_pass = " tst.title='" . $arr_attr['title'] . "' and tst.status=1 ".$update_check." ";
+=======
+        $data_pass = " tst.title='" . $arr_attr['title'] . "' and tst.status=1 " . $update_check . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('srm_pref_method_of_communiction', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -2369,17 +3286,26 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if ($id == 0) 
         {
              $Sql = "INSERT INTO srm_pref_method_of_communiction
 									SET  
 										title='".$arr_attr['title']."',
 										description='".$arr_attr['description']."',
+=======
+        if ($id == 0) {
+            $Sql = "INSERT INTO srm_pref_method_of_communiction
+									SET  
+										title='" . $arr_attr['title'] . "',
+										description='" . $arr_attr['description'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										company_id='" . $this->arrUser['company_id'] . "',
 										user_id='" . $this->arrUser['id'] . "'";
 
             $rs = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
+<<<<<<< HEAD
         } 
         else {
             $Sql = "UPDATE srm_pref_method_of_communiction
@@ -2388,6 +3314,15 @@ class Srm extends Xtreme
 							description='".$arr_attr['description']."',
 							status='".$arr_attr['status']."'
 							WHERE id = ".$arr_attr['id']." 
+=======
+        } else {
+            $Sql = "UPDATE srm_pref_method_of_communiction
+							SET 
+							title='" . $arr_attr['title'] . "',
+							description='" . $arr_attr['description'] . "',
+							status='" . $arr_attr['status'] . "'
+							WHERE id = " . $arr_attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             Limit 1 ";
 
             $rs = $this->objsetup->CSI($Sql);
@@ -2397,7 +3332,10 @@ class Srm extends Xtreme
             $response['ack'] = 1;
             $response['id'] = $id;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'error';
@@ -2409,60 +3347,99 @@ class Srm extends Xtreme
 
     function get_alt_contact_by_id($attr)
     {
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($attr);        
+=======
+        $this->objGeneral->mysql_clean($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = " SELECT  * 
                  FROM sr_alt_contact_sel  
                  WHERE  id='" . $attr['id'] . "' and  
+<<<<<<< HEAD
                         module_type ='".$attr['module_type']."' and 
                         company_id='" .$this->arrUser['company_id'] . "' ";
+=======
+                        module_type ='" . $attr['module_type'] . "' and 
+                        company_id='" . $this->arrUser['company_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         $response['ack'] = 1;
         $response['error'] = NULL;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             $Row = $RS->FetchRow();
             foreach ($Row as $key => $value) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            $Row = $RS->FetchRow();
+            foreach ($Row as $key => $value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (is_numeric($key))
                     unset($Row[$key]);
             }
 
             $response['response'] = $Row;
 
+<<<<<<< HEAD
             $Sql2 ="SELECT c.location_id
                     FROM alt_depot_contact c
                     where  c.status=1 and  c.acc_id='".$Row['acc_id']."'  and 
                             c.module_type='".$attr['module_type']."' and
+=======
+            $Sql2 = "SELECT c.location_id
+                    FROM alt_depot_contact c
+                    where  c.status=1 and  c.acc_id='" . $Row['acc_id'] . "'  and 
+                            c.module_type='" . $attr['module_type'] . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             c.contact_id='" . $attr['id'] . "' and
                             c.company_id=" . $this->arrUser['company_id'] . " ";
             // echo $Sql2;exit;
             $RS2 = $this->objsetup->CSI($Sql2);
 
+<<<<<<< HEAD
             if ($RS2->RecordCount() > 0) 
             {
                 while ($Row2 = $RS2->FetchRow()) 
                 {
+=======
+            if ($RS2->RecordCount() > 0) {
+                while ($Row2 = $RS2->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result = array();
                     $result['id'] = $Row2['location_id'];
                     $response['response']['ContactLoc'][] = $result;
                 }
             }
 
+<<<<<<< HEAD
             $Sql3 ="SELECT c.*
                     FROM sr_alt_dept_sel c
                     where   c.acc_id='".$Row['acc_id']."'  and 
                             c.module_type='".$attr['module_type']."' and
+=======
+            $Sql3 = "SELECT c.*
+                    FROM sr_alt_dept_sel c
+                    where   c.acc_id='" . $Row['acc_id'] . "'  and 
+                            c.module_type='" . $attr['module_type'] . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             c.company_id=" . $this->arrUser['company_id'] . " ";
             // echo $Sql3;exit;
             $RS3 = $this->objsetup->CSI($Sql3);
 
+<<<<<<< HEAD
             if ($RS3->RecordCount() > 0) 
             {
                 while ($Row3 = $RS3->FetchRow()) 
                 {
+=======
+            if ($RS3->RecordCount() > 0) {
+                while ($Row3 = $RS3->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     foreach ($Row3 as $key => $value) {
                         if (is_numeric($key))
                             unset($Row3[$key]);
@@ -2470,7 +3447,10 @@ class Srm extends Xtreme
                     $response['response']['loc'][] = $Row3;
                 }
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
         }
@@ -2498,13 +3478,21 @@ class Srm extends Xtreme
                         c.contact_name <> '' and 
                         c.acc_id='" . $acc_id . "' and 
                         c.module_type='" . $attr['module_type'] . "' and 
+<<<<<<< HEAD
                         c.company_id='" .$this->arrUser['company_id'] . "'";
+=======
+                        c.company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $order_type = "order by c.is_primary DESC";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2523,18 +3511,27 @@ class Srm extends Xtreme
 
         //echo $type;exit;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['contact_name'];
                 // echo "<pre>";
                 // print_r($Row);
 
+<<<<<<< HEAD
                 if ($type == 1) 
                 {
+=======
+                if ($type == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['job_title'] = $Row['job_title'];
                     $result['direct_line'] = $Row['direct_line'];
                     $result['mobile'] = $Row['mobile'];
@@ -2546,6 +3543,7 @@ class Srm extends Xtreme
 
                     // $result['notesContact'] = $Row['notes'];
 
+<<<<<<< HEAD
                     if($attr['module_type'] == 1)
                         $result['notesContact'] = $Row['booking_instructions'];
                     else
@@ -2553,12 +3551,24 @@ class Srm extends Xtreme
                     
                     $result['notes'] = $Row['booking_instructions'];
                     
+=======
+                    if ($attr['module_type'] == 1)
+                        $result['notesContact'] = $Row['booking_instructions'];
+                    else
+                        $result['notesContact'] = $Row['notes'];
+
+                    $result['notes'] = $Row['booking_instructions'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
                 $response['response'][] = $result;
                 $record['results'][] = $result;
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $ack = 1;
@@ -2569,6 +3579,7 @@ class Srm extends Xtreme
             $response['response'][] = array();
         }
 
+<<<<<<< HEAD
         return array('filters_dropdown' => $filters_dropdown,
                      'columns' => $head,
                      'filter_dict' => $filter_dict,
@@ -2577,6 +3588,20 @@ class Srm extends Xtreme
                      'result' => $record['results'],
                      'response' => $record['response'],
                      'ack' => $ack));
+=======
+        return array(
+            'filters_dropdown' => $filters_dropdown,
+            'columns' => $head,
+            'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'],
+            'record' => array(
+                'total' => $response['total'],
+                'result' => $record['results'],
+                'response' => $record['response'],
+                'ack' => $ack
+            )
+        );
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // return $response;
     }
 
@@ -2597,16 +3622,26 @@ class Srm extends Xtreme
                              ELSE NUll  End  AS dayname
                  FROM loc_delivery_time  c
                  where  c.status=1 and  
+<<<<<<< HEAD
                         c.acc_id='".$attr['acc_id']."' and  
                         c.module_type='".$attr['module_type']."' and  
                         c.location_id='".$attr['rec_loc_location_id']."' and
+=======
+                        c.acc_id='" . $attr['acc_id'] . "' and  
+                        c.module_type='" . $attr['module_type'] . "' and  
+                        c.location_id='" . $attr['rec_loc_location_id'] . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c.company_id=" . $this->arrUser['company_id'] . " ";
 
         $order_type = "order by c.id ASC";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2614,10 +3649,15 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['day_limit'] = $Row['day_limit'];
@@ -2651,16 +3691,27 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         // $this->objGeneral->mysql_clean($arr_attr);
 
         $sqld = "DELETE FROM loc_delivery_time   
+<<<<<<< HEAD
                  where  acc_id='".$arr_attr['acc_id']."'  AND 
                         module_type = '".$arr_attr['module_type']."' AND 
                         company_id='" . $this->arrUser['company_id'] . "' AND 
                         location_id='".$arr_attr['rec_loc_location_id']."' ";
+=======
+                 where  acc_id='" . $arr_attr['acc_id'] . "'  AND 
+                        module_type = '" . $arr_attr['module_type'] . "' AND 
+                        company_id='" . $this->arrUser['company_id'] . "' AND 
+                        location_id='" . $arr_attr['rec_loc_location_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->objsetup->CSI($sqld);
 
@@ -2674,7 +3725,11 @@ class Srm extends Xtreme
             else $closed_chk = 0;
 
             $Sqle .= "('" . $arr_attr['rec_loc_location_id'] . "','" . $arr_attr['acc_id'] . "','" .
+<<<<<<< HEAD
                 $arr_attr['module_type'] . "','" .$item->day_limit->id . "' ,'" . $item->booking_start_time . "','" . $item->booking_end_time . "','" . $item->notes . "' ,'" . $this->arrUser['company_id'] . "','" . $this->arrUser['id'] . "','" . current_date . "',$closed_chk ),";
+=======
+                $arr_attr['module_type'] . "','" . $item->day_limit->id . "' ,'" . $item->booking_start_time . "','" . $item->booking_end_time . "','" . $item->notes . "' ,'" . $this->arrUser['company_id'] . "','" . $this->arrUser['id'] . "','" . current_date . "',$closed_chk ),";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         //echo $Sqle; exit;
 
@@ -2683,7 +3738,11 @@ class Srm extends Xtreme
 
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace = array();
         $srLogTrace['ErrorCode'] = '';
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
@@ -2700,13 +3759,21 @@ class Srm extends Xtreme
 
 
         //old method single record
+<<<<<<< HEAD
         $data_pass = "  tst.acc_id='".$arr_attr['acc_id']."' and 
+=======
+        $data_pass = "  tst.acc_id='" . $arr_attr['acc_id'] . "' and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         tst.location_id='$arr_attr[rec_loc_location_id]' and 
                         tst.day_limit='$arr_attr[day_limits]' and 
                         tst.booking_start_time='" . $arr_attr['booking_start_time'] . "' and 
                         tst.booking_end_time='" . $arr_attr['booking_end_time'] . "' ";
 
+<<<<<<< HEAD
         $total = $this->objGeneral->count_duplicate_in_sql('loc_delivery_time', $data_pass,$this->arrUser['company_id']);
+=======
+        $total = $this->objGeneral->count_duplicate_in_sql('loc_delivery_time', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 0;
@@ -2731,7 +3798,11 @@ class Srm extends Xtreme
         $id = $this->Conn->Insert_ID();
 
         if ($id > 0) {
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
             $response['ack'] = 1;
@@ -2753,6 +3824,7 @@ class Srm extends Xtreme
         $response = array();
         $order_type = "";
 
+<<<<<<< HEAD
         if ($arr_attr['type'] == 1)
         {
             $Sql2 ="SELECT c.*
@@ -2769,6 +3841,21 @@ class Srm extends Xtreme
                     FROM alt_depot_contact c
                     where  c.status=1 and  c.acc_id='".$arr_attr['acc_id']."'  and 
                             c.module_type='".$arr_attr['module_type']."' and
+=======
+        if ($arr_attr['type'] == 1) {
+            $Sql2 = "SELECT c.*
+                    FROM alt_depot_contact c
+                    where c.status=1 and c.acc_id='" . $arr_attr['acc_id'] . "'  and 
+                        c.module_type='" . $arr_attr['module_type'] . "' and
+                        c.location_id='" . $arr_attr['rec_id'] . "' and
+                        c.company_id=" . $this->arrUser['company_id'] . " ";
+        } else if ($arr_attr['type'] == 2) {
+            $order_type = "order by c.id  ASC";
+            $Sql2 = "SELECT c.*
+                    FROM alt_depot_contact c
+                    where  c.status=1 and  c.acc_id='" . $arr_attr['acc_id'] . "'  and 
+                            c.module_type='" . $arr_attr['module_type'] . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             c.contact_id='" . $arr_attr['rec_id'] . "' and
                             c.company_id=" . $this->arrUser['company_id'] . " ";
         }
@@ -2776,7 +3863,11 @@ class Srm extends Xtreme
         $order_type = "order by c.id ASC";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -2784,10 +3875,15 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['location_id'] = $Row['location_id'];
@@ -2799,8 +3895,12 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response = array();
         return $response;
     }
@@ -2817,7 +3917,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $this->objGeneral->mysql_clean($arr_attr);
@@ -2837,7 +3941,11 @@ class Srm extends Xtreme
         $Sql = "Update alt_depot 
                         set 
                             status=0 
+<<<<<<< HEAD
                         WHERE id = ".$arr_attr['id']." and 
+=======
+                        WHERE id = " . $arr_attr['id'] . " and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               acc_id='" . $arr_attr['acc_id'] . "' and 
                               module_type='" . $arr_attr['module_type'] . "'";
 
@@ -2848,7 +3956,11 @@ class Srm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -2860,7 +3972,10 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
@@ -2890,11 +4005,19 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $this->objGeneral->mysql_clean($arr_attr);
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);          
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+        $this->objGeneral->mysql_clean($arr_attr);
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $moduleForPermission = $moduleForPermission . "_contacttab";
 
@@ -2913,7 +4036,11 @@ class Srm extends Xtreme
         $Sql = "Update alt_contact 
                             set 
                                 status=0 
+<<<<<<< HEAD
                             WHERE   id = ".$arr_attr['id']." and  
+=======
+                            WHERE   id = " . $arr_attr['id'] . " and  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     acc_id='" . $arr_attr['acc_id'] . "' and 
                                     module_type='" . $arr_attr['module_type'] . "'";
 
@@ -2924,7 +4051,11 @@ class Srm extends Xtreme
         if ($this->Conn->Affected_Rows() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -2936,7 +4067,10 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
@@ -2956,7 +4090,11 @@ class Srm extends Xtreme
 
     function add_contact_location_dropdown($arr_attr)
     {
+<<<<<<< HEAD
        $srLogTrace = array();
+=======
+        $srLogTrace = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace['ErrorCode'] = '';
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
@@ -2966,7 +4104,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         // $this->objGeneral->mysql_clean($arr_attr);
@@ -2974,8 +4116,13 @@ class Srm extends Xtreme
 
 
             $sqld = "DELETE FROM alt_depot_contact
+<<<<<<< HEAD
                      where  acc_id='".$arr_attr['acc_id']."'  and 
                             module_type='".$arr_attr['module_type']."'  and  
+=======
+                     where  acc_id='" . $arr_attr['acc_id'] . "'  and 
+                            module_type='" . $arr_attr['module_type'] . "'  and  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             company_id='" . $this->arrUser['company_id'] . "' and 
                             location_id='" . $arr_attr['rec_id'] . "' ";
 
@@ -2991,6 +4138,7 @@ class Srm extends Xtreme
                     }
                 }
             }
+<<<<<<< HEAD
         } 
         else if ($arr_attr['type'] == 2) 
         {
@@ -2998,6 +4146,13 @@ class Srm extends Xtreme
                      FROM alt_depot_contact
                      where  acc_id='".$arr_attr['acc_id']."'  and 
                             module_type='".$arr_attr['module_type']."'  and  
+=======
+        } else if ($arr_attr['type'] == 2) {
+            $sqld = "DELETE 
+                     FROM alt_depot_contact
+                     where  acc_id='" . $arr_attr['acc_id'] . "'  and 
+                            module_type='" . $arr_attr['module_type'] . "'  and  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             company_id='" . $this->arrUser['company_id'] . "' and 
                             contact_id='" . $arr_attr['rec_id'] . "' ";
 
@@ -3013,7 +4168,11 @@ class Srm extends Xtreme
                 }
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
 
@@ -3044,10 +4203,15 @@ class Srm extends Xtreme
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['contact_name'];
@@ -3058,9 +4222,13 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
         }
         return $response;
@@ -3069,10 +4237,17 @@ class Srm extends Xtreme
     function update_alt_contact($arr_attr)
     {
         $social_media_arr_contact = $arr_attr['social_media_arr_contact'];
+<<<<<<< HEAD
         
         $this->objGeneral->mysql_clean($arr_attr);
 
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);      
+=======
+
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $moduleForPermission = $moduleForPermission . "_contacttab";
 
         $id = 0;
@@ -3084,16 +4259,24 @@ class Srm extends Xtreme
         //echo "<pre>"; print_r($arr_attr); exit;
 
         $index = 1;
+<<<<<<< HEAD
         foreach($social_media_arr_contact as $sm)
         {
             if(!empty($sm) && $sm->id>0)
             {
                 $social_media_str .= " socialmedia".$index." = '" . $sm->id . "',
                 socialmedia".$index."_value = '" . $sm->value . "',";
+=======
+        foreach ($social_media_arr_contact as $sm) {
+            if (!empty($sm) && $sm->id > 0) {
+                $social_media_str .= " socialmedia" . $index . " = '" . $sm->id . "',
+                socialmedia" . $index . "_value = '" . $sm->value . "',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
 
+<<<<<<< HEAD
         if($index<=5)
         {
             while($index <= 5)
@@ -3104,6 +4287,16 @@ class Srm extends Xtreme
             }
         }
         $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '')?$arr_attr['pref_method_of_communication']:0;
+=======
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+                $index++;
+            }
+        }
+        $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '') ? $arr_attr['pref_method_of_communication'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "UPDATE alt_contact
                         SET
                               depot='" . $arr_attr['depot'] . "',
@@ -3137,9 +4330,14 @@ class Srm extends Xtreme
         $response99['error'] = NULL;
         $response = $response99;
 
+<<<<<<< HEAD
         if($arr_attr['is_primary']== 1)
         {
             $Sql = "CALL SR_Update_Primary_Contact('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+=======
+        if ($arr_attr['is_primary'] == 1) {
+            $Sql = "CALL SR_Update_Primary_Contact('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -3147,12 +4345,21 @@ class Srm extends Xtreme
     }
 
     function update_alt_contact2($arr_attr, $response)
+<<<<<<< HEAD
     {        
         $social_media_arr_contact = $arr_attr->social_media_arr_contact;       
         $arr_attr = (array)$arr_attr;
         $this->objGeneral->mysql_clean($arr_attr);
 
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);      
+=======
+    {
+        $social_media_arr_contact = $arr_attr->social_media_arr_contact;
+        $arr_attr = (array) $arr_attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $moduleForPermission = $moduleForPermission . "_contacttab";
 
         $id = 0;
@@ -3160,6 +4367,7 @@ class Srm extends Xtreme
             $id = $arr_attr['alt_contact_id'];
         else
             $id = $arr_attr['id'];
+<<<<<<< HEAD
         
         $social_media_str = "";
         $index = 1;
@@ -3169,21 +4377,41 @@ class Srm extends Xtreme
             {
                 $social_media_str .= " socialmedia".$index." = '" . $sm->id . "',
                 socialmedia".$index."_value = '" . $sm->value . "',";
+=======
+
+        $social_media_str = "";
+        $index = 1;
+        foreach ($social_media_arr_contact as $sm) {
+            if (!empty($sm) && $sm->id > 0) {
+                $social_media_str .= " socialmedia" . $index . " = '" . $sm->id . "',
+                socialmedia" . $index . "_value = '" . $sm->value . "',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
 
+<<<<<<< HEAD
         if($index<=5)
         {
             while($index <= 5)
             {
                 $social_media_str .= " socialmedia".$index." = '0',
                 socialmedia".$index."_value = '',";
+=======
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
 
+<<<<<<< HEAD
         $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '')?$arr_attr['pref_method_of_communication']:0;
+=======
+        $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '') ? $arr_attr['pref_method_of_communication'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $social_media_str;exit;
         $Sql = "UPDATE alt_contact
                         SET
@@ -3192,7 +4420,11 @@ class Srm extends Xtreme
                               contact_name='" . $arr_attr['contact_name'] . "',
                               job_title='" . $arr_attr['job_title'] . "',
                               address_1='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_1']) . "',
+<<<<<<< HEAD
                               address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']). "',
+=======
+                              address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               phone='" . $arr_attr['phone'] . "',
                               city='" . $arr_attr['city'] . "',
                               fax='" . $arr_attr['fax'] . "',
@@ -3218,7 +4450,11 @@ class Srm extends Xtreme
             $response['alt_contact_ack'] = 1;
             $response['alt_contact_error'] = NULL;
             $response['alt_contact_id'] = $id;
+<<<<<<< HEAD
         }else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response = array();
 
         return $response;
@@ -3228,15 +4464,25 @@ class Srm extends Xtreme
     {
         $social_media_arr_contact = $arr_attr['social_media_arr_contact'];
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);      
         $moduleForPermission = $moduleForPermission . "_contacttab";
         
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
+        $moduleForPermission = $moduleForPermission . "_contacttab";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($arr_attr);
         $arr_attr['update_id'] = 0;
         // $this->objGeneral->mysql_clean($arr_attr);
         // and tst.email='$arr_attr[email]'
 
+<<<<<<< HEAD
         $data_pass = " tst.acc_id='" . $arr_attr['acc_id'] . "' and tst.module_type='" . $arr_attr['module_type'] . "' and tst.contact_name='" . $arr_attr['contact_name']. "'";
+=======
+        $data_pass = " tst.acc_id='" . $arr_attr['acc_id'] . "' and tst.module_type='" . $arr_attr['module_type'] . "' and tst.contact_name='" . $arr_attr['contact_name'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('alt_contact', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -3244,6 +4490,7 @@ class Srm extends Xtreme
             $response['error'] = 'Duplicate name for contact !';
             return $response;
         }
+<<<<<<< HEAD
         
         $social_media_str = "";
         $index = 1;
@@ -3253,10 +4500,20 @@ class Srm extends Xtreme
             {
                 $social_media_str .= " socialmedia".$index." = '" . $sm->id . "',
                 socialmedia".$index."_value = '" . $sm->value . "',";
+=======
+
+        $social_media_str = "";
+        $index = 1;
+        foreach ($social_media_arr_contact as $sm) {
+            if (!empty($sm) && $sm->id > 0) {
+                $social_media_str .= " socialmedia" . $index . " = '" . $sm->id . "',
+                socialmedia" . $index . "_value = '" . $sm->value . "',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
 
+<<<<<<< HEAD
         if($index<=5)
         {
             while($index <= 5)
@@ -3272,6 +4529,21 @@ class Srm extends Xtreme
                                 SET
                                       depot='" . $arr_attr['depot'] . "',
                                       pref_method_of_communication='" .$pref_method_of_communication. "',
+=======
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+                $index++;
+            }
+        }
+        $pref_method_of_communication = (isset($arr_attr['pref_method_of_communication']) && $arr_attr['pref_method_of_communication'] != '') ? $arr_attr['pref_method_of_communication'] : 0;
+
+        $Sql = "INSERT INTO alt_contact
+                                SET
+                                      depot='" . $arr_attr['depot'] . "',
+                                      pref_method_of_communication='" . $pref_method_of_communication . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       contact_name='" . $arr_attr['contact_name'] . "',
                                       job_title='" . $arr_attr['job_title'] . "',
                                       address_1='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_1']) . "',
@@ -3295,7 +4567,11 @@ class Srm extends Xtreme
                                       AddedOn=UNIX_TIMESTAMP (NOW()),
                                       module_type ='" . $arr_attr['module_type'] . "'
                                      ";
+<<<<<<< HEAD
                                      // country='" . $arr_attr['country'] . "',
+=======
+        // country='" . $arr_attr['country'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -3306,9 +4582,14 @@ class Srm extends Xtreme
 
         $id = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
         if($arr_attr['is_primary']== 1)
         {
             $Sql = "CALL SR_Update_Primary_Contact('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+=======
+        if ($arr_attr['is_primary'] == 1) {
+            $Sql = "CALL SR_Update_Primary_Contact('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //echo $Sql;exit; 
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -3328,7 +4609,11 @@ class Srm extends Xtreme
     function add_alt_contact2($arr_attr, $response)
     {
         // print_r($arr_attr->acc_id);echo "23";exit;
+<<<<<<< HEAD
         if (isset($arr_attr->contact_name) && $arr_attr->contact_name == "" ) {
+=======
+        if (isset($arr_attr->contact_name) && $arr_attr->contact_name == "") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['contact_error'] = 'Contact data is missing';
             return $response;
@@ -3337,25 +4622,45 @@ class Srm extends Xtreme
         // $this->objGeneral->mysql_clean($arr_attr);
         // and tst.email='$arr_attr[email]'
 
+<<<<<<< HEAD
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr->module_type, $arr_attr->acc_id);      
         $moduleForPermission = $moduleForPermission . "_contacttab";
 
         $data_pass = " tst.acc_id='" . $arr_attr->acc_id . "' and tst.module_type='" . $arr_attr->module_type . "' and tst.contact_name='" . $arr_attr->contact_name . "'";
         $total = $this->objGeneral->count_duplicate_in_sql('alt_contact', $data_pass,$this->arrUser['company_id']);
+=======
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr->module_type, $arr_attr->acc_id);
+        $moduleForPermission = $moduleForPermission . "_contacttab";
+
+        $data_pass = " tst.acc_id='" . $arr_attr->acc_id . "' and tst.module_type='" . $arr_attr->module_type . "' and tst.contact_name='" . $arr_attr->contact_name . "'";
+        $total = $this->objGeneral->count_duplicate_in_sql('alt_contact', $data_pass, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($total > 0) {
             $response['ack'] = 2;
             $response['error'] = 'Record Already Exists.';
             return $response;
+<<<<<<< HEAD
         } 
 
         if (!empty($arr_attr->is_primary)) 
         {
+=======
+        }
+
+        $add_pass2 = '';
+
+        if (!empty($arr_attr->is_primary)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // print_r($arr_attr);exit;
             $add_pass2 = ", is_primary=1 ";
 
             $data_pass2 = " tst.acc_id='" . $arr_attr->acc_id . "' and tst.is_primary=1 and tst.module_type='" . $arr_attr->module_type . "' ";
+<<<<<<< HEAD
             $total = $this->objGeneral->count_duplicate_in_sql('alt_contact', $data_pass2,$this->arrUser['company_id']);
+=======
+            $total = $this->objGeneral->count_duplicate_in_sql('alt_contact', $data_pass2, $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($total > 0) {
                 $response['ack'] = 2;
@@ -3366,6 +4671,7 @@ class Srm extends Xtreme
         //  print_r($arr_attr); exit;
         //country='" . $arr_attr->country . "',
 
+<<<<<<< HEAD
         $social_media_arr_contact = $arr_attr->social_media_arr_contact;        
         $social_media_str = "";
         $index = 1;
@@ -3376,21 +4682,42 @@ class Srm extends Xtreme
             {
                 $social_media_str .= " socialmedia".$index." = '" . $sm->id . "',
                 socialmedia".$index."_value = '" . $sm->value . "',";
+=======
+        $social_media_arr_contact = $arr_attr->social_media_arr_contact;
+        $social_media_str = "";
+        $index = 1;
+
+        foreach ($social_media_arr_contact as $sm) {
+            if (!empty($sm) && $sm->id > 0) {
+                $social_media_str .= " socialmedia" . $index . " = '" . $sm->id . "',
+                socialmedia" . $index . "_value = '" . $sm->value . "',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
 
+<<<<<<< HEAD
         if($index<=5)
         {
             while($index <= 5)
             {
                 $social_media_str .= " socialmedia".$index." = '0',
                 socialmedia".$index."_value = '',";
+=======
+        if ($index <= 5) {
+            while ($index <= 5) {
+                $social_media_str .= " socialmedia" . $index . " = '0',
+                socialmedia" . $index . "_value = '',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $index++;
             }
         }
         // echo $social_media_str;exit;
+<<<<<<< HEAD
         $pref_method_of_communication = (isset($arr_attr->pref_method_of_communication) && $arr_attr->pref_method_of_communication != '')?$arr_attr->pref_method_of_communication:'0';
+=======
+        $pref_method_of_communication = (isset($arr_attr->pref_method_of_communication) && $arr_attr->pref_method_of_communication != '') ? $arr_attr->pref_method_of_communication : '0';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "INSERT INTO alt_contact
                                 SET
                                       depot='" . $arr_attr->depot . "',
@@ -3410,7 +4737,10 @@ class Srm extends Xtreme
                                       web_add='" . $arr_attr->web_add . "',
                                       notes='" . $arr_attr->notes . "',
                                       acc_id='" . $arr_attr->acc_id . "',
+<<<<<<< HEAD
                                       is_primary=1,
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       booking_instructions= '" . $arr_attr->booking_instructions . "' ,
                                       user_id='" . $this->arrUser['id'] . "',
                                       company_id='" . $this->arrUser['company_id'] . "'  ,
@@ -3418,7 +4748,12 @@ class Srm extends Xtreme
                                       AddedBy='" . $this->arrUser['id'] . "',
                                       AddedOn=UNIX_TIMESTAMP (NOW()),
                                       module_type ='" . $arr_attr->module_type . "'
+<<<<<<< HEAD
                                       $add_pass";
+=======
+                                      $add_pass2";//
+                                      //is_primary=1,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -3454,9 +4789,15 @@ class Srm extends Xtreme
         $Sql = " SELECT  d.*
                  From sr_alt_dept_sel d
                  WHERE d.id='" . $attr['id'] . "' and 
+<<<<<<< HEAD
                        d.module_type = '".$attr['module_type']."' and 
                        d.acc_id = '".$attr['acc_id']."' and
                        d.company_id='" . $this->arrUser['company_id'] ."' ";
+=======
+                       d.module_type = '" . $attr['module_type'] . "' and 
+                       d.acc_id = '" . $attr['acc_id'] . "' and
+                       d.company_id='" . $this->arrUser['company_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;exit;
         // $RS = $this->objsetup->CSI($Sql);
@@ -3473,26 +4814,42 @@ class Srm extends Xtreme
             }
             $response['response'] = $Row;
 
+<<<<<<< HEAD
             $Sql2 ="SELECT c.contact_id
                     FROM alt_depot_contact c
                     where  c.status=1 and  c.acc_id='".$Row['acc_id']."'  and 
                             c.module_type='".$attr['module_type']."' and
+=======
+            $Sql2 = "SELECT c.contact_id
+                    FROM alt_depot_contact c
+                    where  c.status=1 and  c.acc_id='" . $Row['acc_id'] . "'  and 
+                            c.module_type='" . $attr['module_type'] . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             c.location_id='" . $attr['id'] . "' and
                             c.company_id=" . $this->arrUser['company_id'] . " ";
             // echo $Sql2;exit;
             $RS2 = $this->objsetup->CSI($Sql2);
             // $RS2 = $this->objsetup->CSI($Sql2, $moduleForPermission, sr_ViewPermission);
 
+<<<<<<< HEAD
             if ($RS2->RecordCount() > 0) 
             {
                 while ($Row2 = $RS2->FetchRow()) 
                 {
+=======
+            if ($RS2->RecordCount() > 0) {
+                while ($Row2 = $RS2->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result = array();
                     $result['id'] = $Row2['contact_id'];
                     $response['response']['ContactLoc'][] = $result;
                 }
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else {
@@ -3507,12 +4864,20 @@ class Srm extends Xtreme
     function getPrimaryContactLocAssigntotal($attr)
     {
         $where = '';
+<<<<<<< HEAD
         if($attr['id']>0) $where = ' and contLoc.acc_id='.$attr['id'];
+=======
+        if ($attr['id'] > 0) $where = ' and contLoc.acc_id=' . $attr['id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = " SELECT  contLoc.id
                  FROM alt_depot_contact as contLoc
                  where contLoc.status=1 and 
+<<<<<<< HEAD
                        contLoc.contact_id='" . $attr['primaryc_id'] . "' ".$where." ";
+=======
+                       contLoc.contact_id='" . $attr['primaryc_id'] . "' " . $where . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql; exit;                 
 
         $RS = $this->objsetup->CSI($Sql);
@@ -3547,7 +4912,11 @@ class Srm extends Xtreme
 
         if (!empty($attr['is_delivery_collection_address']))
             $where_type .= " AND ( c.is_delivery_collection_address  =1 OR is_default =1) ";
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (!empty($attr['is_billing_address']))
             $where_type .= " AND c.is_billing_address  =1   ";
 
@@ -3560,11 +4929,19 @@ class Srm extends Xtreme
                 FROM sr_alt_dept_sel c
                 left JOIN crm_region on crm_region.id=c.region_id
                 where   c.status=1 and 
+<<<<<<< HEAD
                         c.acc_id=".$acc_id." and 
                         c.module_type = '" . $attr['module_type'] . "' and 
                         c.depot<>'' and
                         c.company_id=" . $this->arrUser['company_id'] . "  
                         ".$where_type." ";
+=======
+                        c.acc_id=" . $acc_id . " and 
+                        c.module_type = '" . $attr['module_type'] . "' and 
+                        c.depot<>'' and
+                        c.company_id=" . $this->arrUser['company_id'] . "  
+                        " . $where_type . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*c.contact_name, c.direct_line, c.mobile, c.email*/
 
@@ -3575,7 +4952,11 @@ class Srm extends Xtreme
         else
             $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -3583,7 +4964,11 @@ class Srm extends Xtreme
         // echo $response['q'];exit;
         // $RS = $this->objsetup->CSI($response['q']);
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->objsetup->CSI($response['q'], $moduleForPermission, sr_ViewPermission);
 
         $response['q'] = '';
@@ -3592,10 +4977,15 @@ class Srm extends Xtreme
 
         $record['num_rows'] = $total;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['location'] = $Row['depot'];
@@ -3608,8 +4998,12 @@ class Srm extends Xtreme
                 if ($Row['is_invoice_address'] > 0)
                     $address_type .= "Payment, ";
 
+<<<<<<< HEAD
                 if ($Row['is_delivery_collection_address'] > 0) 
                 {
+=======
+                if ($Row['is_delivery_collection_address'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if ($attr['module_type'] == 2)
                         $address_type .= "Collection, ";
                     else if ($attr['module_type'] == 1)
@@ -3624,12 +5018,20 @@ class Srm extends Xtreme
                 $result['address_2'] = $Row['address_2'];
                 $result['city'] = $Row['city'];
                 $result['county'] = $Row['county'];
+<<<<<<< HEAD
                 $result['postcode'] = $Row['postcode'];  
+=======
+                $result['postcode'] = $Row['postcode'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['country'] = $Row['country'];
                 $result['countryName'] = $Row['countryName'];
                 $result['Location_type'] = $address_type;
                 $result['is_primary'] = $Row['is_primary'];
+<<<<<<< HEAD
                 $result['is_default'] = $Row['is_default'];                
+=======
+                $result['is_default'] = $Row['is_default'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (!empty($attr['is_primary'])) {
                     $result['address_1'] = $Row['address'];
@@ -3645,8 +5047,12 @@ class Srm extends Xtreme
                     $result['countryName'] = $Row['countryName'];
                 }
 
+<<<<<<< HEAD
                 if(!empty($attr['is_delivery_collection_address']))
                 {
+=======
+                if (!empty($attr['is_delivery_collection_address'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $result['clcontact_name'] = $Row['clcontact_name'];
                     $result['cldirect_line'] = $Row['cldirect_line'];
@@ -3658,6 +5064,7 @@ class Srm extends Xtreme
                 $record['results'][] = $result;
             }
             $ack = 1;
+<<<<<<< HEAD
         } 
         else   
             $response['response'][] = array();
@@ -3670,6 +5077,23 @@ class Srm extends Xtreme
                                         'result' => $record['results'], 
                                         'response' => $record['response'], 
                                         'ack' => $ack));
+=======
+        } else
+            $response['response'][] = array();
+
+        return array(
+            'filters_dropdown' => $filters_dropdown,
+            'columns' => $head,
+            'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'],
+            'record' => array(
+                'total' => $response['total'],
+                'result' => $record['results'],
+                'response' => $record['response'],
+                'ack' => $ack
+            )
+        );
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // return $response;
     }
 
@@ -3699,17 +5123,29 @@ class Srm extends Xtreme
                 left JOIN crm_region on crm_region.id = c.region_id                
                 LEFT JOIN country ON country.id = c.country
                 where   c.status=1 and 
+<<<<<<< HEAD
                         c.acc_id=".$acc_id." and 
+=======
+                        c.acc_id=" . $acc_id . " and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         c.module_type = '" . $attr['module_type'] . "' and 
                         c.depot<>'' and
                         c.is_delivery_collection_address=1 and
                         c.company_id=" . $this->arrUser['company_id'] . "  
+<<<<<<< HEAD
                         ".$where_type." ";
+=======
+                        " . $where_type . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*c.contact_name, c.direct_line, c.mobile, c.email*/
 
         //$order_type = "order by c.is_primary  DESC";
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         $response['q'] = '';
@@ -3718,10 +5154,15 @@ class Srm extends Xtreme
 
         $record['num_rows'] = $total;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['location'] = $Row['depot'];
@@ -3734,8 +5175,12 @@ class Srm extends Xtreme
                 if ($Row['is_invoice_address'] > 0)
                     $address_type .= "Payment, ";
 
+<<<<<<< HEAD
                 if ($Row['is_delivery_collection_address'] > 0) 
                 {
+=======
+                if ($Row['is_delivery_collection_address'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if ($attr['module_type'] == 2)
                         $address_type .= "Collection, ";
                     else if ($attr['module_type'] == 1)
@@ -3751,19 +5196,32 @@ class Srm extends Xtreme
                 $result['address_2'] = $Row['address_2'];
                 $result['city'] = $Row['city'];
                 $result['county'] = $Row['county'];
+<<<<<<< HEAD
                 $result['postcode'] = $Row['postcode'];  
+=======
+                $result['postcode'] = $Row['postcode'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['is_primary'] = $Row['is_primary'];
                 $result['is_default'] = $Row['is_default'];
                 $result['country_id'] = $Row['country'];
                 $result['country'] = $Row['countryName'];
 
 
+<<<<<<< HEAD
                 $result['clcontact_name'] = $Row['clcontact_name'];                
                 $result['clphone'] = $Row['clphone'];                
                 $result['clemail'] = $Row['clemail'];                
                 $result['clfax'] = $Row['clfax'];                
                 $result['cldirect_line'] = $Row['cldirect_line'];                
                 $result['contact_id'] = $Row['contact_id'];                
+=======
+                $result['clcontact_name'] = $Row['clcontact_name'];
+                $result['clphone'] = $Row['clphone'];
+                $result['clemail'] = $Row['clemail'];
+                $result['clfax'] = $Row['clfax'];
+                $result['cldirect_line'] = $Row['cldirect_line'];
+                $result['contact_id'] = $Row['contact_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (!empty($attr['is_primary'])) {
                     $result['address_1'] = $Row['address'];
@@ -3781,6 +5239,7 @@ class Srm extends Xtreme
                 $record['results'][] = $result;
             }
             $ack = 1;
+<<<<<<< HEAD
         } 
         else   
             $response['response'][] = array();
@@ -3793,12 +5252,30 @@ class Srm extends Xtreme
                                         'result' => $record['results'], 
                                         'response' => $record['response'], 
                                         'ack' => $ack));
+=======
+        } else
+            $response['response'][] = array();
+
+        return array(
+            'filters_dropdown' => $filters_dropdown,
+            'columns' => $head,
+            'filter_dict' => $filter_dict,
+            'filters' => $record['column_id'],
+            'record' => array(
+                'total' => $response['total'],
+                'result' => $record['results'],
+                'response' => $record['response'],
+                'ack' => $ack
+            )
+        );
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // return $response;
     }
 
     function add_alt_depot2($arr_attr, $response)
     {
         $attr = array();
+<<<<<<< HEAD
         $attr = (array)$arr_attr; 
         $this->objGeneral->mysql_clean($attr);  
 
@@ -3806,6 +5283,15 @@ class Srm extends Xtreme
         $moduleForPermission = $moduleForPermission . "_locationtab";      
 
         $data_pass = "   tst.acc_id='" . $attr['acc_id'] . "' and tst.module_type='" . $attr['module_type'] . "' and tst.postcode='".$attr['postcode']."' and tst.depot='".$attr['depot']."'";
+=======
+        $attr = (array) $arr_attr;
+        $this->objGeneral->mysql_clean($attr);
+
+        $moduleForPermission = $this->objsetup->moduleDecider($attr['module_type'], $attr['acc_id']);
+        $moduleForPermission = $moduleForPermission . "_locationtab";
+
+        $data_pass = "   tst.acc_id='" . $attr['acc_id'] . "' and tst.module_type='" . $attr['module_type'] . "' and tst.postcode='" . $attr['postcode'] . "' and tst.depot='" . $attr['depot'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('alt_depot', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -3815,8 +5301,13 @@ class Srm extends Xtreme
         }
 
         if (!empty($attr['is_primary']))
+<<<<<<< HEAD
             $add_pass = ", is_primary=1 "; 
             
+=======
+            $add_pass = ", is_primary=1 ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (($attr['is_billing_address'] != 0 || $attr['is_invoice_address'] != 0)) {
 
             $location_chk = $this->objGeneral->duplication_for_location_address_check($attr, $attr['acc_id'], $attr['module_type'], $this->arrUser['company_id']);
@@ -3826,6 +5317,7 @@ class Srm extends Xtreme
                 $response['error'] = $location_chk;
                 return $response;
             }
+<<<<<<< HEAD
         }        
 
         $region_id  = (isset($attr['region_ids']) && $attr['region_ids'] != '')? $attr['region_ids']: 0; 
@@ -3866,11 +5358,57 @@ class Srm extends Xtreme
                                     AddedOn=UNIX_TIMESTAMP (NOW()),
                                     gen_office_phone = '".$attr['phone']. "',
                                     gen_email_address = '".$attr['email']. "'
+=======
+        }
+
+        $region_id  = (isset($attr['region_ids']) && $attr['region_ids'] != '') ? $attr['region_ids'] : 0;
+        $country  = (isset($attr['country']) && $attr['country'] != '') ? $attr['country'] : 0;
+
+        $is_billing_address  = (isset($attr['is_billing_address']) && $attr['is_billing_address'] != '') ? $attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($attr['is_delivery_collection_address']) && $attr['is_delivery_collection_address'] != '') ? $attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($attr['is_invoice_address']) && $attr['is_invoice_address'] != '') ? $attr['is_invoice_address'] : 0;
+        $address_2  = (isset($attr['address_2']) && $attr['address_2'] != '') ? preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $attr['address_2']) : '';
+
+
+
+        $Sql = "INSERT INTO alt_depot
+                                SET
+                                    depot = '" . $attr['depot'] . "',
+                                    module_type = '" . $attr['module_type'] . "',
+                                    contact_name = '" . $attr['contact_name'] . "',
+                                    address = '" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $attr['address']) . "',
+                                    address_2 = '" . $address_2 . "',
+                                    telephone = '" . $attr['telephone'] . "',
+                                    city = '" . $attr['city'] . "',
+                                    fax = '" . $attr['fax'] . "',
+                                    county = '" . $attr['county'] . "',
+                                    country = '" . $country . "',
+                                    mobile = '" . $attr['mobile'] . "',
+                                    postcode = '" . $attr['postcode'] . "',
+                                    direct_line = '" . $attr['direct_line'] . "',
+                                    region_id = '" . $region_id . "',
+                                    email = '" . $attr['email'] . "',
+                                    acc_id = '" . $attr['acc_id'] . "',
+                                    booking_email = '" . $attr['booking_email'] . "',
+                                    user_id = '" . $this->arrUser['id'] . "',
+                                    company_id = '" . $this->arrUser['company_id'] . "',
+                                    is_billing_address = '" . $is_billing_address . "',
+                                    is_delivery_collection_address = '" . $is_delivery_collection_address . "',
+                                    is_invoice_address = '" . $is_invoice_address . "',
+                                    AddedBy='" . $this->arrUser['id'] . "',
+                                    AddedOn=UNIX_TIMESTAMP (NOW()),
+                                    gen_office_phone = '" . $attr['phone'] . "',
+                                    gen_email_address = '" . $attr['email'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $add_pass ";
 
         // echo $Sql; exit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_AddPermission);
 
         $RS = $this->objsetup->CSI($Sql);
@@ -3900,7 +5438,11 @@ class Srm extends Xtreme
 
     function add_alt_depot($arr_attr)
     {
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($arr_attr); 
+=======
+        $this->objGeneral->mysql_clean($arr_attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
         $moduleForPermission = $moduleForPermission . "_locationtab";
@@ -3918,8 +5460,12 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) 
         {
+=======
+        if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $location_chk = $this->objGeneral->check_duplication_for_location_address($arr_attr, $arr_attr['acc_id'], $arr_attr['module_type'], $this->arrUser['company_id'], $arr_attr['id'], 1);
 
             if (strlen($location_chk) > 1) {
@@ -3928,6 +5474,7 @@ class Srm extends Xtreme
                 return $response;
             }
         }
+<<<<<<< HEAD
         
 
         $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '')? $arr_attr['region_ids']: 0;
@@ -3938,6 +5485,18 @@ class Srm extends Xtreme
         $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '')? $arr_attr['is_invoice_address']: 0; 
 
         $telephone  = (isset($arr_attr['telephone']) && $arr_attr['telephone'] != '')? $arr_attr['telephone']: $arr_attr['phone'];          
+=======
+
+
+        $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '') ? $arr_attr['region_ids'] : 0;
+        $country  = (isset($arr_attr['country']) && $arr_attr['country'] != '') ? $arr_attr['country'] : 0;
+
+        $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '') ? $arr_attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '') ? $arr_attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '') ? $arr_attr['is_invoice_address'] : 0;
+
+        $telephone  = (isset($arr_attr['telephone']) && $arr_attr['telephone'] != '') ? $arr_attr['telephone'] : $arr_attr['phone'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "INSERT INTO alt_depot 
                                     SET  
@@ -3946,8 +5505,13 @@ class Srm extends Xtreme
                                         pref_method_of_communication='$arr_attr[pref_method_of_communication]', 
                                         contact_name='$arr_attr[contact_name]',   
                                         role='$arr_attr[role]', 
+<<<<<<< HEAD
                                         address='".preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address'])."',  
                                         address_2='".preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2'])."' ,  
+=======
+                                        address='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address']) . "',  
+                                        address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "' ,  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         telephone='$telephone', 
                                         city='$arr_attr[city]',  
                                         fax='$arr_attr[fax]', 
@@ -3956,7 +5520,11 @@ class Srm extends Xtreme
                                         mobile='$arr_attr[mobile]', 
                                         postcode='$arr_attr[postcode]', 
                                         direct_line='$arr_attr[direct_line]',
+<<<<<<< HEAD
                                         region_id = '".$region_id. "', 
+=======
+                                        region_id = '" . $region_id . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         email='$arr_attr[email]',   
                                         acc_id='$arr_attr[acc_id]',   
                                         alt_contact_id='$arr_attr[booking_contacts]',
@@ -3964,9 +5532,15 @@ class Srm extends Xtreme
                                         booking_email='$arr_attr[booking_email]',  
                                         user_id='" . $this->arrUser['id'] . "',
                                         company_id='" . $this->arrUser['company_id'] . "', 
+<<<<<<< HEAD
                                         is_billing_address='".$is_billing_address."',
                                         is_delivery_collection_address='".$is_delivery_collection_address."',     
                                         is_invoice_address='".$is_invoice_address."',  
+=======
+                                        is_billing_address='" . $is_billing_address . "',
+                                        is_delivery_collection_address='" . $is_delivery_collection_address . "',     
+                                        is_invoice_address='" . $is_invoice_address . "',  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         monday_start_time='" . $arr_attr['monday_start_time'] . "', 
                                         monday_end_time='" . $arr_attr['monday_end_time'] . "',     
                                         monday_notes='" . $arr_attr['monday_notes'] . "',  
@@ -3990,9 +5564,15 @@ class Srm extends Xtreme
                                         sunday_notes='" . $arr_attr['sunday_notes'] . "',
                                         gen_office_phone='" . $arr_attr['phone'] . "',
                                         gen_email_address='" . $arr_attr['email'] . "',                                        
+<<<<<<< HEAD
                                         AddedBy='".$this->arrUser['id']."',
                                         AddedOn=UNIX_TIMESTAMP (NOW())";
                                         
+=======
+                                        AddedBy='" . $this->arrUser['id'] . "',
+                                        AddedOn=UNIX_TIMESTAMP (NOW())";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql; exit;
         /*  contact_id='$arr_attr[contact_id]',
             type='".$arr_attr['type']."', 
@@ -4002,6 +5582,7 @@ class Srm extends Xtreme
 
         $id = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
         if($arr_attr['is_primary']== 1)
         {
             $Sql = "CALL SR_Update_Primary_Location('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
@@ -4013,6 +5594,17 @@ class Srm extends Xtreme
             $Sql = "CALL SR_UpdateDefaultLocation('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
             $RS = $this->objsetup->CSI($Sql);
         } 
+=======
+        if ($arr_attr['is_primary'] == 1) {
+            $Sql = "CALL SR_Update_Primary_Location('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+            $RS = $this->objsetup->CSI($Sql);
+        }
+
+        if ($arr_attr['is_default'] == 1) {
+            $Sql = "CALL SR_UpdateDefaultLocation('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+            $RS = $this->objsetup->CSI($Sql);
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($id > 0) {
             $response['ack'] = 1;
@@ -4030,7 +5622,11 @@ class Srm extends Xtreme
     function update_alt_depot($attr)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
+=======
+        $arr_attr = (array) $attr;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->objGeneral->mysql_clean($arr_attr);
 
@@ -4048,8 +5644,12 @@ class Srm extends Xtreme
 
 
         // && empty($arr_attr['is_primary'])
+<<<<<<< HEAD
         if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) 
         {
+=======
+        if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $location_chk = $this->objGeneral->check_duplication_for_location_address($arr_attr, $arr_attr['acc_id'], $arr_attr['module_type'], $this->arrUser['company_id'], $id, 0);
 
             if (strlen($location_chk) > 1) {
@@ -4057,6 +5657,7 @@ class Srm extends Xtreme
                 $response['error'] = $location_chk;
                 return $response;
             }
+<<<<<<< HEAD
         }  
 
         $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '')? $arr_attr['region_ids']: 0;
@@ -4070,6 +5671,21 @@ class Srm extends Xtreme
 
         $shipment_method_id  = (isset($arr_attr['shipment_method']->id) && $arr_attr['shipment_method']->id != '')? $arr_attr['shipment_method']->id: 0;
         $target_amount  = (isset($arr_attr['target_amount']) && $arr_attr['target_amount'] != '')? $arr_attr['target_amount']: 0;
+=======
+        }
+
+        $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '') ? $arr_attr['region_ids'] : 0;
+
+        $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '') ? $arr_attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '') ? $arr_attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '') ? $arr_attr['is_invoice_address'] : 0;
+        $is_default  = (isset($arr_attr['is_default']) && $arr_attr['is_default'] != '') ? $arr_attr['is_default'] : 0;
+
+        $telephone  = (isset($arr_attr['telephone']) && $arr_attr['telephone'] != '') ? $arr_attr['telephone'] : $arr_attr['phone'];
+
+        $shipment_method_id  = (isset($arr_attr['shipment_method']->id) && $arr_attr['shipment_method']->id != '') ? $arr_attr['shipment_method']->id : 0;
+        $target_amount  = (isset($arr_attr['target_amount']) && $arr_attr['target_amount'] != '') ? $arr_attr['target_amount'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE alt_depot  
                             SET  
@@ -4079,8 +5695,13 @@ class Srm extends Xtreme
                                 pref_method_of_communication='" . $arr_attr['pref_method_of_communication'] . "', 
                                 contact_name='" . $arr_attr['contact_name'] . "',
                                 role='" . $arr_attr['role'] . "',
+<<<<<<< HEAD
                                 address='".preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address'])."',
                                 address_2='".preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2'])."',
+=======
+                                address='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address']) . "',
+                                address_2='" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 telephone='" . $telephone . "',
                                 city='" . $arr_attr['city'] . "',
                                 fax='" . $arr_attr['fax'] . "',
@@ -4089,7 +5710,11 @@ class Srm extends Xtreme
                                 mobile='" . $arr_attr['mobile'] . "',
                                 postcode='" . $arr_attr['postcode'] . "',
                                 direct_line='" . $arr_attr['direct_line'] . "',
+<<<<<<< HEAD
                                 region_id = '".$region_id. "',
+=======
+                                region_id = '" . $region_id . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 email='" . $arr_attr['email'] . "',
                                 web_add='" . $arr_attr['web_add'] . "',
                                 alt_contact_id='" . $arr_attr['booking_contacts'] . "',
@@ -4128,7 +5753,11 @@ class Srm extends Xtreme
                                         company_id='" . $this->arrUser['company_id'] . "' and 
                                         module_type='" . $arr_attr['module_type'] . "'  
                                 limit 1";
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // print_r($Sql); exit;
         // $response = $this->objGeneral->any_query_exception($Sql);
@@ -4138,6 +5767,7 @@ class Srm extends Xtreme
         $response99['error'] = NULL;
         $response = $response99;
 
+<<<<<<< HEAD
         if($arr_attr['is_primary']== 1)
         {
             $Sql = "CALL SR_Update_Primary_Location('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
@@ -4147,6 +5777,15 @@ class Srm extends Xtreme
         if($arr_attr['is_default']== 1)
         {
             $Sql = "CALL SR_UpdateDefaultLocation('" .$id . "','" . $arr_attr['acc_id'] . "','".$this->arrUser['company_id']  . "','" .$this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+=======
+        if ($arr_attr['is_primary'] == 1) {
+            $Sql = "CALL SR_Update_Primary_Location('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+            $RS = $this->objsetup->CSI($Sql);
+        }
+
+        if ($arr_attr['is_default'] == 1) {
+            $Sql = "CALL SR_UpdateDefaultLocation('" . $id . "','" . $arr_attr['acc_id'] . "','" . $this->arrUser['company_id']  . "','" . $this->arrUser['id'] . "','" . $arr_attr['module_type'] . "')";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // echo $Sql;exit;
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -4156,10 +5795,17 @@ class Srm extends Xtreme
     function update_alt_depot2($attr, $response)
     {
         $arr_attr = array();
+<<<<<<< HEAD
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
 
         $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);          
+=======
+        $arr_attr = (array) $attr;
+        $this->objGeneral->mysql_clean($arr_attr);
+
+        $moduleForPermission = $this->objsetup->moduleDecider($arr_attr['module_type'], $arr_attr['acc_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $moduleForPermission = $moduleForPermission . "_locationtab";
 
@@ -4167,18 +5813,27 @@ class Srm extends Xtreme
         if (isset($arr_attr['alt_loc_id']))
             $id = $arr_attr['alt_loc_id'];
         else
+<<<<<<< HEAD
             $id = $arr_attr['id'];        
 
 
         if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) 
         {
             $location_chk = $this->objGeneral->check_duplication_for_location_address($arr_attr, $arr_attr['acc_id'],$arr_attr['module_type'], $this->arrUser['company_id'], $id, 0);
+=======
+            $id = $arr_attr['id'];
+
+
+        if (($arr_attr['is_billing_address'] != 0 || $arr_attr['is_invoice_address'] != 0)) {
+            $location_chk = $this->objGeneral->check_duplication_for_location_address($arr_attr, $arr_attr['acc_id'], $arr_attr['module_type'], $this->arrUser['company_id'], $id, 0);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (strlen($location_chk) > 1) {
                 $response['ack'] = '2';
                 $response['error'] = $location_chk;
                 return $response;
             }
+<<<<<<< HEAD
         }          
 
         $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '')? $arr_attr['region_ids']: 0;
@@ -4213,14 +5868,56 @@ class Srm extends Xtreme
                                     is_invoice_address = '".$is_invoice_address. "',
                                     gen_office_phone = '".$arr_attr['phone']. "',
                                     gen_email_address = '".$arr_attr['email']. "'                                                                     
+=======
+        }
+
+        $region_id  = (isset($arr_attr['region_ids']) && $arr_attr['region_ids'] != '') ? $arr_attr['region_ids'] : 0;
+
+        $is_billing_address  = (isset($arr_attr['is_billing_address']) && $arr_attr['is_billing_address'] != '') ? $arr_attr['is_billing_address'] : 0;
+        $is_delivery_collection_address  = (isset($arr_attr['is_delivery_collection_address']) && $arr_attr['is_delivery_collection_address'] != '') ? $arr_attr['is_delivery_collection_address'] : 0;
+        $is_invoice_address  = (isset($arr_attr['is_invoice_address']) && $arr_attr['is_invoice_address'] != '') ? $arr_attr['is_invoice_address'] : 0;
+
+        $Sqlu = "UPDATE alt_depot  
+                                SET
+                                    depot = '" . $arr_attr['depot'] . "',
+                                    module_type = '" . $arr_attr['module_type'] . "',
+                                    contact_name = '" . $arr_attr['contact_name'] . "',
+                                    address = '" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address']) . "',
+                                    address_2 = '" . preg_replace("/[^a-zA-Z0-9`_.,;@#%~'\"\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\s\\\\]+/", "", $arr_attr['address_2']) . "',
+                                    telephone = '" . $arr_attr['telephone'] . "',
+                                    city = '" . $arr_attr['city'] . "',
+                                    fax = '" . $arr_attr['fax'] . "',
+                                    county = '" . $arr_attr['county'] . "',
+                                    country = '" . $arr_attr['country'] . "',
+                                    mobile = '" . $arr_attr['mobile'] . "',
+                                    postcode = '" . $arr_attr['postcode'] . "',
+                                    direct_line = '" . $arr_attr['direct_line'] . "',
+                                    region_id = '" . $region_id . "',
+                                    email = '" . $arr_attr['email'] . "',
+                                    acc_id = '" . $arr_attr['acc_id'] . "',
+                                    booking_email = '" . $arr_attr['booking_email'] . "',
+                                    user_id = '" . $this->arrUser['id'] . "',
+                                    company_id = '" . $this->arrUser['company_id'] . "',
+                                    is_billing_address = '" . $is_billing_address . "',
+                                    is_delivery_collection_address = '" . $is_delivery_collection_address . "',
+                                    is_invoice_address = '" . $is_invoice_address . "',
+                                    gen_office_phone = '" . $arr_attr['phone'] . "',
+                                    gen_email_address = '" . $arr_attr['email'] . "'                                                                     
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 WHERE   id = '" . $id . "' and   
                                         acc_id= '" . $arr_attr['acc_id'] . "' and   
                                         company_id='" . $this->arrUser['company_id'] . "' and 
                                         module_type='" . $arr_attr['module_type'] . "'  
                                 limit 1";
+<<<<<<< HEAD
                                     
         // print_r($Sqlu); exit;
         
+=======
+
+        // print_r($Sqlu); exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rc = $this->objsetup->CSI($Sqlu);
         // $rc = $this->objsetup->CSI($Sqlu, $moduleForPermission, sr_EditPermission);
 
@@ -4236,7 +5933,11 @@ class Srm extends Xtreme
     //----------------- SRM Price Offer-----------------------------------
 
     // price module predata api for add form
+<<<<<<< HEAD
     function price_form_predata($attr)
+=======
+    function price_form_predata($attr = null)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $this->objGeneral->mysql_clean($attr);
         $response = array();
@@ -4256,9 +5957,15 @@ class Srm extends Xtreme
                 $result['title'] = $Row['title'];
                 $response['response']['OfferMethod'][] = $result;
             }
+<<<<<<< HEAD
         } else{
             $response['response']['OfferMethod'][]= array(); 
         }      
+=======
+        } else {
+            $response['response']['OfferMethod'][] = array();
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['ack'] = 1;
         $response['error'] = NULL;
         return $response;
@@ -4277,7 +5984,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
@@ -4285,7 +5996,11 @@ class Srm extends Xtreme
         $srm_id = $arr_attr->srm_id;
         $tab_change = 'tab_supplier';
         $sp_id = $arr_attr->sp_id;
+<<<<<<< HEAD
         if ($sp_id == 0) {// ,volume_1=1  
+=======
+        if ($sp_id == 0) { // ,volume_1=1  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql1 = "INSERT INTO srm_volume_discount SET
 											 product_id='" . $product_id . "'
 											 ,supplier_id='" . $srm_id . "' 
@@ -4296,8 +6011,13 @@ class Srm extends Xtreme
 											,discount_value='" . $arr_attr->discount_value_1 . "'  
 											 ,discount_price='" . $arr_attr->discount_price_1 . "' 
 									 		,price_list_id='" . $arr_attr->price_list_id . "' 
+<<<<<<< HEAD
 											,start_date=  '" . $this->objGeneral->convert_date($attr['start_date']) . "'
 											,end_date=  '" . $this->objGeneral->convert_date($attr['end_date']) . "'
+=======
+											,start_date=  '" . $this->objGeneral->convert_date($arr_attr->start_date) . "'
+											,end_date=  '" . $this->objGeneral->convert_date($arr_attr->end_date) . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 												,status='1'  
 											,company_id='" . $this->arrUser['company_id'] . "' 
 											,user_id='" . $this->arrUser['id'] . "'
@@ -4316,8 +6036,13 @@ class Srm extends Xtreme
 											,discount_value='" . $arr_attr->discount_value_2 . "'  
 											 ,discount_price='" . $arr_attr->discount_price_2 . "' 
 									 		,price_list_id='" . $arr_attr->price_list_id . "' 
+<<<<<<< HEAD
 									 		,start_date=  '" . $this->objGeneral->convert_date($attr['start_date']) . "'
 											,end_date= '" . $this->objGeneral->convert_date($attr['end_date']) . "'
+=======
+									 		,start_date=  '" . $this->objGeneral->convert_date($arr_attr->start_date) . "'
+											,end_date= '" . $this->objGeneral->convert_date($arr_attr->end_date) . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 												,status='1'  
 											,company_id='" . $this->arrUser['company_id'] . "' 
 											,user_id='" . $this->arrUser['id'] . "'
@@ -4334,8 +6059,13 @@ class Srm extends Xtreme
 											,discount_value='" . $arr_attr->discount_value_3 . "'  
 											 ,discount_price='" . $arr_attr->discount_price_3 . "' 
 											,price_list_id='" . $arr_attr->price_list_id . "' 
+<<<<<<< HEAD
 											,start_date= '" . $this->objGeneral->convert_date($attr['start_date']) . "'
 											 ,end_date=   '" . $this->objGeneral->convert_date($attr['end_date']) . "'
+=======
+											,start_date= '" . $this->objGeneral->convert_date($arr_attr->start_date) . "'
+											 ,end_date=   '" . $this->objGeneral->convert_date($arr_attr->end_date) . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 											,status='1'  
 											,company_id='" . $this->arrUser['company_id'] . "' 
 											,user_id='" . $this->arrUser['id'] . "'
@@ -4360,11 +6090,19 @@ class Srm extends Xtreme
             $response['product_id'] = $product_id;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['msg'] = $message;
             $response['info'] = $new;
             $response['tab_change'] = $tab_change;
 
             
+=======
+            $response['msg'] = ''; //$message;
+            $response['info'] = $new;
+            $response['tab_change'] = $tab_change;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -4376,11 +6114,18 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
             $response['msg'] = $message;
+=======
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = 'Record not updated';
+            $response['msg'] = ''; //$message;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
@@ -4443,7 +6188,11 @@ class Srm extends Xtreme
         if ($id > 0)
             $update_check = "  AND tst.id <> '" . $id . "'";
 
+<<<<<<< HEAD
         $data_pass = "  tst.name='" . $attr->name . "'  and tst.type=1 and tst.status=1 ".$update_check." ";
+=======
+        $data_pass = "  tst.name='" . $attr->name . "'  and tst.type=1 and tst.status=1 " . $update_check . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('get_method', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -4521,15 +6270,27 @@ class Srm extends Xtreme
         $end_limit = $page * 20;
 
         $response = array();
+<<<<<<< HEAD
+=======
+        $keyword_clause = '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT ar.id, ar.postcode_sector, ar.name, ar1.county, ar2.region, ar3.country FROM areas ar 
                     inner join areas_county ar1 on ar.county = ar1.id
                     inner join areas_region ar2 on ar.region = ar2.id
+<<<<<<< HEAD
                     inner join areas_country ar3 on ar.country = ar3.id WHERE ar.status=1 ".$keyword_clause." ";
 
         //defualt Variable
         $total_limit = pagination_limit;
         
+=======
+                    inner join areas_country ar3 on ar.country = ar3.id WHERE ar.status=1 " . $keyword_clause . " ";
+
+        //defualt Variable
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -4564,9 +6325,17 @@ class Srm extends Xtreme
         $start_limit = ($page - 1) * 20;
         $end_limit = $page * 20;
         $response = array();
+<<<<<<< HEAD
 
         $Sql = "SELECT ar.id, ar.country FROM areas_country ar "
             . "WHERE ar.status=1 ".$keyword_clause." ";
+=======
+        $keyword_clause = '';
+        $total = 1;
+
+        $Sql = "SELECT ar.id, ar.country FROM areas_country ar "
+            . "WHERE ar.status=1 " . $keyword_clause . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS = $this->objsetup->CSI($Sql);
 
@@ -4667,6 +6436,10 @@ class Srm extends Xtreme
 
 
         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
+=======
+        $total =1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if ($RS->RecordCount() > 0) {
@@ -4779,6 +6552,10 @@ class Srm extends Xtreme
 
 
         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
+=======
+        $total = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             $response['ack'] = 1;
@@ -4851,11 +6628,19 @@ class Srm extends Xtreme
         $start_limit = ($page - 1) * 20;
         $end_limit = $page * 20;
 
+<<<<<<< HEAD
         $limit_clause = " LIMIT ".$start_limit.",".$end_limit." ";
         $order_clause = " ORDER BY ar.name ASC";
         $keyword_clause = "";
         if (!empty($attr['name_keyword']) && $attr['name_keyword'] != "") {
             $keyword_clause .= " AND (ar.name LIKE '%".$attr['name_keyword']."%') ";
+=======
+        $limit_clause = " LIMIT " . $start_limit . "," . $end_limit . " ";
+        $order_clause = " ORDER BY ar.name ASC";
+        $keyword_clause = "";
+        if (!empty($attr['name_keyword']) && $attr['name_keyword'] != "") {
+            $keyword_clause .= " AND (ar.name LIKE '%" . $attr['name_keyword'] . "%') ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response = array();
@@ -4866,22 +6651,38 @@ class Srm extends Xtreme
             . "( sal2.company_id=" . $this->arrUser['company_id'] . "
 			or  company.parent_id=" . $this->arrUser['company_id'] . ") Limit 1";
 
+<<<<<<< HEAD
         $sql_check_total = "SELECT COUNT(*) as total FROM (".$SqlCheck.") as tabless";
+=======
+        $sql_check_total = "SELECT COUNT(*) as total FROM (" . $SqlCheck . ") as tabless";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rs_check_count = $this->objsetup->CSI($sql_check_total);
 
         $Sql = "";
         if ($rs_check_count->fields['total'] > 0) {
             $Sql = "SELECT DISTINCT ar.id, ar.name, ar.postcode_sector FROM areas ar "
                 . " INNER JOIN srm_agent_area_list sal1 on sal1.cover_area_id=ar.county"
+<<<<<<< HEAD
                 . " WHERE sal1.status=1 and sal1.type=3 and sal1.srm_id=" . $attr['id'] . " and ar.status=1 ".$keyword_clause." ";
         } else {
             $Sql = "SELECT DISTINCT ar.id, ar.name, ar.postcode_sector FROM areas ar "
                 . " WHERE ar.status=1 ".$keyword_clause." ";
+=======
+                . " WHERE sal1.status=1 and sal1.type=3 and sal1.srm_id=" . $attr['id'] . " and ar.status=1 " . $keyword_clause . " ";
+        } else {
+            $Sql = "SELECT DISTINCT ar.id, ar.name, ar.postcode_sector FROM areas ar "
+                . " WHERE ar.status=1 " . $keyword_clause . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
+=======
+        $total = 1;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -4962,13 +6763,22 @@ class Srm extends Xtreme
 
         $response = array();
 
+<<<<<<< HEAD
+=======
+        $total = 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql = "SELECT DISTINCT ar.id, ar.postcode_sector, ar.name, ar1.county, ar2.region, ar3.country FROM areas ar 
                     inner join areas_county ar1 on ar.county = ar1.id
                     inner join areas_region ar2 on ar.region = ar2.id
                     inner join areas_country ar3 on ar.country = ar3.id
                     inner join srm_agent_area_list al on al.cover_area_id=ar.id
                     inner join company on company.id=al.company_id
+<<<<<<< HEAD
                     WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=4 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='".$attr['id']."' and "
+=======
+                    WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=4 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='" . $attr['id'] . "' and "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             . "( al.company_id=" . $this->arrUser['company_id'] . "
 			or  company.parent_id=" . $this->arrUser['company_id'] . ") $keyword_clause";
 
@@ -4979,7 +6789,11 @@ class Srm extends Xtreme
                     inner join areas_country ar3 on ar.country = ar3.id
                     inner join srm_agent_area_list al on al.cover_area_id=ar1.id
                     inner join company on company.id=al.company_id
+<<<<<<< HEAD
                     WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=3 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='".$attr['id']."' and "
+=======
+                    WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=3 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='" . $attr['id'] . "' and "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 . "( al.company_id=" . $this->arrUser['company_id'] . "
 			or  company.parent_id=" . $this->arrUser['company_id'] . ") $keyword_clause";
 
@@ -4990,7 +6804,11 @@ class Srm extends Xtreme
                     inner join areas_country ar3 on ar.country = ar3.id                    
                     inner join srm_agent_area_list al on al.cover_area_id=ar2.id
                     inner join company on company.id=al.company_id
+<<<<<<< HEAD
                     WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=2 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='".$attr['id']."' and "
+=======
+                    WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=2 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='" . $attr['id'] . "' and "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     . "( al.company_id=" . $this->arrUser['company_id'] . "
 			or  company.parent_id=" . $this->arrUser['company_id'] . ") $keyword_clause";
 
@@ -5001,7 +6819,11 @@ class Srm extends Xtreme
                     inner join areas_country ar3 on ar.country = ar3.id                   
                     inner join srm_agent_area_list al on al.cover_area_id=ar3.id
                     inner join company on company.id=al.company_id
+<<<<<<< HEAD
                     WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=1 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='".$attr['id']."' and "
+=======
+                    WHERE ar.status=1 and ar1.status=1 and ar2.status=1 and ar3.status=1 and al.status=1 and al.type=1 and al.user_id=" . $this->arrUser['id'] . " and al.srm_id='" . $attr['id'] . "' and "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         . "( al.company_id=" . $this->arrUser['company_id'] . "
 			or  company.parent_id=" . $this->arrUser['company_id'] . ") $keyword_clause";
                 }
@@ -5066,7 +6888,11 @@ class Srm extends Xtreme
         $id = (isset($attr['id'])) ? $attr['id'] : 1;
 
         $Sql = "DELETE FROM srm_agent_area_list
+<<<<<<< HEAD
 				WHERE id = ".$attr['id']." LIMIT 1";
+=======
+				WHERE id = " . $attr['id'] . " LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql);
@@ -5119,7 +6945,11 @@ class Srm extends Xtreme
             $last1 = COUNT($attr['data_old']) - 1;
             $SqlDel .= $attr['data_old'][$last1]->id;
             $SqlDel .= ") and status=1 and type=" . $attr['type'] . " and user_id=" . $this->arrUser['id'] . " and
+<<<<<<< HEAD
 			 srm_id='$attr[srm_id]' and ( company_id=" . $this->arrUser['company_id'] . ")";
+=======
+			 srm_id='" . $attr['srm_id'] . "' and ( company_id=" . $this->arrUser['company_id'] . ")";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RSDel = $this->objsetup->CSI($SqlDel);
         }
         if (COUNT($attr['data']) > 0) {
@@ -5158,7 +6988,11 @@ class Srm extends Xtreme
         $order_clause = " ORDER BY ar.country ASC";
 
         if (!empty($attr['country_keyword']) && $attr['country_keyword'] != "") {
+<<<<<<< HEAD
             $keyword_clause .= " AND (ar.country LIKE '%".$attr['country_keyword']."%') ";
+=======
+            $keyword_clause .= " AND (ar.country LIKE '%" . $attr['country_keyword'] . "%') ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response = array();
@@ -5171,7 +7005,11 @@ class Srm extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5209,7 +7047,11 @@ class Srm extends Xtreme
                      `d`.`company_id`     AS `company_id`,
                     3 AS type
                 FROM warehouse as d 
+<<<<<<< HEAD
                 WHERE d.company_id = ".$this->arrUser['company_id'] . " AND d.status = 1
+=======
+                WHERE d.company_id = " . $this->arrUser['company_id'] . " AND d.status = 1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 UNION ALL
 
@@ -5226,10 +7068,17 @@ class Srm extends Xtreme
                     fax,
                     '' AS `job_title`,
                     address,
+<<<<<<< HEAD
                     ".$this->arrUser['company_id']."     AS `company_id`,
                     1 AS type
                 FROM `company`
                 WHERE id = ".$this->arrUser['company_id']."
+=======
+                    " . $this->arrUser['company_id'] . "     AS `company_id`,
+                    1 AS type
+                FROM `company`
+                WHERE id = " . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 UNION ALL
 
@@ -5246,10 +7095,17 @@ class Srm extends Xtreme
                     fax,
                     job_title AS `job_title`,
                     address_1 AS address,
+<<<<<<< HEAD
                     ".$this->arrUser['company_id']."     AS `company_id`,
                     2 AS type
                 FROM `company_addresses`
                 WHERE company_id = ".$this->arrUser['company_id'] . "
+=======
+                    " . $this->arrUser['company_id'] . "     AS `company_id`,
+                    2 AS type
+                FROM `company_addresses`
+                WHERE company_id = " . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 ORDER BY type";
 
@@ -5292,7 +7148,11 @@ class Srm extends Xtreme
                      `d`.`company_id`     AS `company_id`,
                     3 AS type
                 FROM warehouse as d 
+<<<<<<< HEAD
                 WHERE d.company_id = ".$this->arrUser['company_id'] . " AND d.status = 1
+=======
+                WHERE d.company_id = " . $this->arrUser['company_id'] . " AND d.status = 1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 ORDER BY d.id";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -5349,7 +7209,11 @@ class Srm extends Xtreme
         $order_clause = " ORDER BY ar.region ASC";
 
         if (!empty($attr['region_keyword']) && $attr['region_keyword'] != "") {
+<<<<<<< HEAD
             $keyword_clause .= " AND (ar.region LIKE '%".$attr['region_keyword']."%') ";
+=======
+            $keyword_clause .= " AND (ar.region LIKE '%" . $attr['region_keyword'] . "%') ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response = array();
@@ -5362,7 +7226,11 @@ class Srm extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5409,7 +7277,11 @@ class Srm extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5462,7 +7334,11 @@ class Srm extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -5544,7 +7420,11 @@ class Srm extends Xtreme
     function get_shipping($attr)
     {
         /* 	global $objFilters;
+<<<<<<< HEAD
           $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr[srm_id]),2=>array('document.type'=>2));
+=======
+          $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr['srm_id']),2=>array('document.type'=>2));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           return $objFilters->get_module_listing(12, "document",'','',$attr[more_fields],'',$where);
          */
 
@@ -5554,7 +7434,11 @@ class Srm extends Xtreme
 
         $Sql = "SELECT srm_agent_area_list.id,  srm_agent_area_list.coverage_area  
                 FROM srm_agent_area_list 
+<<<<<<< HEAD
                 where srm_agent_area_list.status=1 and srm_agent_area_list.srm_id='".$attr['id']."' and srm_agent_area_list.company_id=" . $this->arrUser['company_id'] . " 
+=======
+                where srm_agent_area_list.status=1 and srm_agent_area_list.srm_id='" . $attr['id'] . "' and srm_agent_area_list.company_id=" . $this->arrUser['company_id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 order by srm_agent_area_list.id DESC";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -5626,7 +7510,11 @@ class Srm extends Xtreme
             }
         } else {
 
+<<<<<<< HEAD
                 $Sql = "UPDATE  shipping_agent_sale SET  
+=======
+            $Sql = "UPDATE  shipping_agent_sale SET  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									offered_by='" . $arr_attr['offered_by'] . "'
 									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
 									,price_method='" . $arr_attr['price_method'] . "' 
@@ -5639,7 +7527,11 @@ class Srm extends Xtreme
 									,offer_method='" . $arr_attr['offer_method'] . "'
 									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
 									WHERE id = " . $doc_id . "  Limit 1";
+<<<<<<< HEAD
                 $RS = $this->objsetup->CSI($Sql);
+=======
+            $RS = $this->objsetup->CSI($Sql);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($this->Conn->Affected_Rows() > 0) {
@@ -5707,7 +7599,11 @@ class Srm extends Xtreme
 
         //	print_r($arr_attr); 	exit;
         $tab_change = 'tab_doc';
+<<<<<<< HEAD
         $doc_id = $arr_attr[update_id];
+=======
+        $doc_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($doc_id > 0) {
 
@@ -5792,17 +7688,27 @@ class Srm extends Xtreme
     {
         $Sql = "SELECT  c.id, c.coverage_price, c.coverage_area, c.cover_area_id
 		        FROM srm_agent_area_list c 
+<<<<<<< HEAD
                 where sale_id ='".$attr['id']."' and 
+=======
+                where sale_id ='" . $attr['id'] . "' and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       status=1 ";
 
         $RS = $this->objsetup->CSI($Sql);
         $selected = array();
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             $result = array();
             while ($Row = $RS->FetchRow())
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            $result = array();
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $selected[] = $Row['id'];
 
                 $result['cover_area_id'] = $Row['cover_area_id'];
@@ -5815,7 +7721,11 @@ class Srm extends Xtreme
         $limit_clause = $where_clause = "";
 
         if (!empty($attr['keyword'])) {
+<<<<<<< HEAD
             $where_clause .= " AND name LIKE '%".$attr['keyword']."%' ";
+=======
+            $where_clause .= " AND name LIKE '%" . $attr['keyword'] . "%' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if (empty($attr['all'])) {
@@ -5824,7 +7734,11 @@ class Srm extends Xtreme
 
             if (empty($attr['limit']))
                 $attr['limit'] = 10;
+<<<<<<< HEAD
             $limit_clause = " LIMIT ".$attr['start'] .",".$attr['limit']." ";
+=======
+            $limit_clause = " LIMIT " . $attr['start'] . "," . $attr['limit'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "SELECT  c.id, c.name, c.price
@@ -5836,10 +7750,15 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($Sql);
         $selected_count = 0;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['name'];
@@ -5858,8 +7777,12 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         }
          else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
         }
         $response['selected_count'] = $selected_count;
@@ -5870,6 +7793,7 @@ class Srm extends Xtreme
     {
         $Sql = "SELECT  c.id, c.coverage_area
                 FROM srm_agent_area_list c  
+<<<<<<< HEAD
                 where srm_id ='".$attr['id']."' and status=1 ";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -5879,6 +7803,15 @@ class Srm extends Xtreme
             $result = array();
             while ($Row = $RS->FetchRow())
             {
+=======
+                where srm_id ='" . $attr['id'] . "' and status=1 ";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            $result = array();
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['coverage_area'];
                 $response['response'][] = $result;
@@ -5894,10 +7827,15 @@ class Srm extends Xtreme
         $Sql = "select * from areas_country";
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow())
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['country'] = $Row['country'];
@@ -5905,8 +7843,12 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
         }
         return $response;
@@ -5926,7 +7868,11 @@ class Srm extends Xtreme
     //                                 (a.name LIKE '%$attr[searchAreas]%') OR 
     //                                 (a.county LIKE '%$attr[searchAreas]%') OR 
     //                                 (a.region LIKE '%$attr[searchAreas]%')) ";
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     //     $Sql = "SELECT a.* from sr_areas_sel as a where 1=1 $where_clause";
     //     //echo $Sql; exit;
     //     $RS = $this->objsetup->CSI($Sql);
@@ -5943,6 +7889,7 @@ class Srm extends Xtreme
     //     return $response;
     // }
 
+<<<<<<< HEAD
     function saveNewLoc($attr) {
 
         $this->objGeneral->mysql_clean($attr);
@@ -5975,6 +7922,41 @@ class Srm extends Xtreme
                 $area = 'ALL';
             else
                 $area = $attr['area'];         
+=======
+    function saveNewLoc($attr)
+    {
+
+        $this->objGeneral->mysql_clean($attr);
+
+        if (isset($attr['region']) && $attr['region'] != '') {
+
+            $region = strtolower($attr['region']);
+
+            if ($region == 'all')
+                $region = 'ALL';
+            else
+                $region = $attr['region'];
+        }
+
+        if (isset($attr['county']) && $attr['county'] != '') {
+
+            $county = strtolower($attr['county']);
+
+            if ($county == 'all')
+                $county = 'ALL';
+            else
+                $county = $attr['county'];
+        }
+
+        if (isset($attr['area']) && $attr['area'] != '') {
+
+            $area = strtolower($attr['area']);
+
+            if ($area == 'all')
+                $area = 'ALL';
+            else
+                $area = $attr['area'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($region == 'ALL' && ($county != 'ALL' || $area != 'ALL')) {
@@ -6012,12 +7994,20 @@ class Srm extends Xtreme
                                     level3='" . $area . "',
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn='" . current_date . "'";
+<<<<<<< HEAD
         
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
         if ($this->Conn->Affected_Rows() > 0) 
         {
+=======
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($this->Conn->Affected_Rows() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else {
@@ -6028,15 +8018,23 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function getHaulierLoc($attr) {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $defaultFilter = false;    
+=======
+    function getHaulierLoc($attr)
+    {
+        $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
+        $defaultFilter = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo '<pre>';print_r($attr['searchKeyword']); 
         // echo   $attr['searchKeyword']->level3;exit;     
 
         if (!empty($attr['searchKeyword'])) {
             // $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
 
+<<<<<<< HEAD
             if($attr['searchKeyword']->level1)
                 $where_clause = " AND (tbl.level1 LIKE '%".$attr['searchKeyword']->level1."%' OR 
                                         tbl.level2 LIKE '%".$attr['searchKeyword']->level1."%' OR 
@@ -6059,6 +8057,30 @@ class Srm extends Xtreme
 
             $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
         }        
+=======
+            if ($attr['searchKeyword']->level1)
+                $where_clause = " AND (tbl.level1 LIKE '%" . $attr['searchKeyword']->level1 . "%' OR 
+                                        tbl.level2 LIKE '%" . $attr['searchKeyword']->level1 . "%' OR 
+                                        tbl.level3 LIKE '%" . $attr['searchKeyword']->level1 . "%' )";
+
+            if ($attr['searchKeyword']->level2)
+                $where_clause = " AND (tbl.level1 LIKE '%" . $attr['searchKeyword']->level2 . "%' OR 
+                                        tbl.level2 LIKE '%" . $attr['searchKeyword']->level2 . "%' OR 
+                                        tbl.level3 LIKE '%" . $attr['searchKeyword']->level2 . "%' )";
+
+            if ($attr['searchKeyword']->level3)
+                $where_clause = " AND (tbl.level1 LIKE '%" . $attr['searchKeyword']->level3 . "%' OR
+                                        tbl.level2 LIKE '%" . $attr['searchKeyword']->level3 . "%' OR
+                                        tbl.level3 LIKE '%" . $attr['searchKeyword']->level3 . "%' )";
+
+            if ($attr['searchKeyword']->search)
+                $where_clause = " AND (tbl.level1 LIKE '%" . $attr['searchKeyword']->search . "%' OR
+                                        tbl.level2 LIKE '%" . $attr['searchKeyword']->search . "%' OR
+                                        tbl.level3 LIKE '%" . $attr['searchKeyword']->search . "%' )";
+
+            $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response = array();
 
@@ -6071,7 +8093,11 @@ class Srm extends Xtreme
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -6084,7 +8110,11 @@ class Srm extends Xtreme
                 $column = 'tbl.' . 'level2';
             else if ($attr['sort_column'] == "level3")
                 $column = 'tbl.' . 'level3';
+<<<<<<< HEAD
            
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $order_type = "Order BY " . $column . " ASC";
         }
 
@@ -6115,7 +8145,11 @@ class Srm extends Xtreme
                 $row['level1'] = $Row['level1'];
                 $row['level2'] = $Row['level2'];
                 $row['level3'] = $Row['level3'];
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $row;
             }
             $response['ack'] = 1;
@@ -6126,8 +8160,13 @@ class Srm extends Xtreme
             $response['response'][] = array();
         }
 
+<<<<<<< HEAD
             $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData('haulierLoc');
         
+=======
+        $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData('haulierLoc');
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['response']['tbl_meta_data']['defaultFilter'] = $defaultFilter;
         return $response;
     }
@@ -6142,14 +8181,22 @@ class Srm extends Xtreme
                  FROM sr_srm_general_sel s
                  WHERE s.type IN (2,3) AND 
                        s.company_id=" . $this->arrUser['company_id'] . " "; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $sqla = " SELECT s.id 
                     FROM srm as s
                     WHERE s.type IN (2,3) AND 
                             s.company_id=" . $this->arrUser['company_id'] . " ";
         //1<>1 AND
 
+<<<<<<< HEAD
         //$sqla = $this->objsetup->whereClauseAppender($sqla, 24);
+=======
+        $sqla = $this->objsetup->whereClauseAppender($sqla, 24);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $sqla;exit;
         $RSa = $this->objsetup->CSI($sqla);
 
@@ -6164,21 +8211,33 @@ class Srm extends Xtreme
                 $suppliersArray .= $Rowa['id'] . ',';
             }
             $suppliersArray = substr($suppliersArray, 0, -1);
+<<<<<<< HEAD
         }  
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sqlb = "SELECT  s.id
                  FROM sr_srm_general_sel as s
                  WHERE  s.type IN (1) AND 
                         s.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         //$Sqlb = $this->objsetup->whereClauseAppender($Sqlb,18);
+=======
+        $Sqlb = $this->objsetup->whereClauseAppender($Sqlb,18);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sqlb;exit;
         $RSb = $this->objsetup->CSI($Sqlb);
 
         if ($RSb->RecordCount() > 0) {
 
             // if(isset($suppliersArray))
+<<<<<<< HEAD
             if(strlen($suppliersArray)>0)
+=======
+            if (strlen($suppliersArray) > 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $suppliersArray .= ',';
 
             while ($Rowb = $RSb->FetchRow()) {
@@ -6207,7 +8266,11 @@ class Srm extends Xtreme
         $where2 = " a2.company_id=" . $this->arrUser['company_id'] . " ";
         $where3 = " a3.company_id=" . $this->arrUser['company_id'] . " ";
         // echo '<pre>';print_r($attr);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $filter = $attr['filter'];
 
         $locOptionFrom = $filter->haulierLocType_fromID;
@@ -6221,6 +8284,7 @@ class Srm extends Xtreme
 
         $areasHaulierLocToArray = $filter->areasHaulierLocTo;
         $locOptionFromType = $filter->haulierLoc_fromType;
+<<<<<<< HEAD
         $locOptionToType = $filter->haulierLoc_toType;  
        
 
@@ -6250,12 +8314,44 @@ class Srm extends Xtreme
                 $haulierLoc_to_level3 = $rec->level3; 
 
                 if($haulierLoc_to_level1 == 'ALL'){
+=======
+        $locOptionToType = $filter->haulierLoc_toType;
+
+
+        if ($locOptionTo == 2) {
+
+            $areasHaulierLocTo  = " AND (";
+            $areasHaulierLocTo1 = " AND (";
+            $areasHaulierLocTo2 = " AND (";
+            $areasHaulierLocTo3 = " AND (";
+            $areasHaulierLocToSel = " AND (";
+
+            $loopCounter = 0;
+
+            foreach ($areasHaulierLocToArray as $rec) {
+                // echo $rec->level1;
+
+                if ($loopCounter > 0) {
+                    $areasHaulierLocTo  .= " OR ";
+                    $areasHaulierLocTo1 .= " OR ";
+                    $areasHaulierLocTo2 .= " OR ";
+                    $areasHaulierLocTo3 .= " OR ";
+                    $areasHaulierLocToSel .= " OR ";
+                }
+
+                $haulierLoc_to_level1 = $rec->level1;
+                $haulierLoc_to_level2 = $rec->level2;
+                $haulierLoc_to_level3 = $rec->level3;
+
+                if ($haulierLoc_to_level1 == 'ALL') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $areasHaulierLocTo  .= " 1 ";
                     $areasHaulierLocTo1 .= " 1 ";
                     $areasHaulierLocTo2 .= " 1 ";
                     $areasHaulierLocTo3 .= " 1 ";
                     $areasHaulierLocToSel .= " 1 ";
+<<<<<<< HEAD
                 }
                 elseif($haulierLoc_to_level2 == 'ALL'){
 
@@ -6341,16 +8437,105 @@ class Srm extends Xtreme
 
                                                         '".$haulierShippingMethodID."',
                                                         '".$haulierShippingMethod."')"; 
+=======
+                } elseif ($haulierLoc_to_level2 == 'ALL') {
+
+                    $areasHaulierLocTo  .= "(halLoc.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc.haulierLoc_to_level1 = \'ALL\')";
+                    $areasHaulierLocTo1 .= "(halLoc1.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc1.haulierLoc_to_level1 = \'ALL\')";
+                    $areasHaulierLocTo2 .= "(halLoc2.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc2.haulierLoc_to_level1 = \'ALL\')";
+                    $areasHaulierLocTo3 .= "(halLoc3.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc3.haulierLoc_to_level1 = \'ALL\')";
+                    $areasHaulierLocToSel .= "(selHL.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR selHL.haulierLoc_to_level1 = \'ALL\')";
+                } elseif ($haulierLoc_to_level3 == 'ALL') {
+
+                    $areasHaulierLocTo .= "((halLoc.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc.haulierLoc_to_level1 = \'ALL\')   AND
+                                            (halLoc.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc.haulierLoc_to_level2 = \'ALL\'))";
+
+                    $areasHaulierLocTo1 .= "((halLoc1.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc1.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc1.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc1.haulierLoc_to_level2 = \'ALL\'))";
+
+                    $areasHaulierLocTo2 .= "((halLoc2.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc2.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc2.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc2.haulierLoc_to_level2 = \'ALL\'))";
+
+                    $areasHaulierLocTo3 .= "((halLoc3.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc3.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc3.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc3.haulierLoc_to_level2 = \'ALL\'))";
+
+                    $areasHaulierLocToSel .= "((selHL.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR selHL.haulierLoc_to_level1 = \'ALL\') AND
+                                                (selHL.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR selHL.haulierLoc_to_level2 = \'ALL\'))";
+                } else {
+
+                    $areasHaulierLocTo .= "((halLoc.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc.haulierLoc_to_level1 = \'ALL\')   AND
+                                            (halLoc.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc.haulierLoc_to_level2 = \'ALL\') AND
+                                            (halLoc.haulierLoc_to_level3 = \'" . $haulierLoc_to_level3 . "\' OR halLoc.haulierLoc_to_level3 = \'ALL\'))";
+
+                    $areasHaulierLocTo1 .= "((halLoc1.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc1.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc1.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc1.haulierLoc_to_level2 = \'ALL\') AND
+                                             (halLoc1.haulierLoc_to_level3 = \'" . $haulierLoc_to_level3 . "\' OR halLoc1.haulierLoc_to_level3 = \'ALL\'))";
+
+                    $areasHaulierLocTo2 .= "((halLoc2.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc2.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc2.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc2.haulierLoc_to_level2 = \'ALL\') AND
+                                             (halLoc2.haulierLoc_to_level3 = \'" . $haulierLoc_to_level3 . "\' OR halLoc2.haulierLoc_to_level3 = \'ALL\'))";
+
+                    $areasHaulierLocTo3 .= "((halLoc3.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR halLoc3.haulierLoc_to_level1 = \'ALL\') AND
+                                             (halLoc3.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR halLoc3.haulierLoc_to_level2 = \'ALL\') AND
+                                             (halLoc3.haulierLoc_to_level3 = \'" . $haulierLoc_to_level3 . "\' OR halLoc3.haulierLoc_to_level3 = \'ALL\'))";
+
+                    $areasHaulierLocToSel .= "((selHL.haulierLoc_to_level1 = \'" . $haulierLoc_to_level1 . "\' OR selHL.haulierLoc_to_level1 = \'ALL\') AND
+                                                (selHL.haulierLoc_to_level2 = \'" . $haulierLoc_to_level2 . "\' OR selHL.haulierLoc_to_level2 = \'ALL\') AND
+                                                (selHL.haulierLoc_to_level3 = \'" . $haulierLoc_to_level3 . "\' OR selHL.haulierLoc_to_level3 = \'ALL\'))";
+                }
+
+                $loopCounter++;
+            }
+
+            $areasHaulierLocTo  .= " )";
+            $areasHaulierLocTo1  .= " )";
+            $areasHaulierLocTo2 .= " )";
+            $areasHaulierLocTo3 .= " )";
+            $areasHaulierLocToSel .= " )";
+        }
+
+        $qty = (isset($filter->qty) && $filter->qty != '') ? $filter->qty : 0;
+
+        $Sql = "CALL srrep_HaulierDatabaseSearchReport(" . $this->arrUser['company_id'] . ",
+                                                        '" . $qty . "',
+                                                        '" . $suppliersArray . "',
+                                                        '" . $areasHaulierLocTo . "',
+                                                        '" . $areasHaulierLocTo1 . "',
+                                                        '" . $areasHaulierLocTo2 . "',
+                                                        '" . $areasHaulierLocTo3 . "',
+                                                        '" . $areasHaulierLocToSel . "',
+
+                                                        '" . $locOptionFrom . "',
+                                                        '" . $locOptionTo . "',
+
+                                                        '" . $locOptionFromType . "',
+                                                        '" . $locOptionToType . "',
+
+                                                        '" . $locFromID . "',
+                                                        '" . $locToID . "',
+
+                                                        '" . $filter->haulierLoc_from_level1 . "',
+                                                        '" . $filter->haulierLoc_from_level2 . "',
+                                                        '" . $filter->haulierLoc_from_level3 . "',
+
+                                                        '" . $haulierShippingMethodID . "',
+                                                        '" . $haulierShippingMethod . "')";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
         // $RS = $this->objsetup->CSI($Sql, "srm_pricetab", sr_ViewPermission);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['supplierNo'] = $Row['supplierNo'];
@@ -6368,7 +8553,11 @@ class Srm extends Xtreme
                 $result['minPrice'] = $Row['minPrice'];
                 $result['maxPrice'] = $Row['maxPrice'];
                 $result['avgPrice'] = $Row['avgPrice'];
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
@@ -6443,16 +8632,25 @@ class Srm extends Xtreme
                 FROM haulier a
                 LEFT JOIN  employees AS emp ON a.PriceAddedByEmployeeID = emp.id
                 WhERE a.status IN (0,1) and 
+<<<<<<< HEAD
                       a.srm_id='".$attr['srmID']."' and 
+=======
+                      a.srm_id='" . $attr['srmID'] . "' and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       a.company_id=" . $this->arrUser['company_id'] . " ";
         //echo $Sql;
         $RS = $this->objsetup->CSI($Sql);
         // $RS = $this->objsetup->CSI($Sql, "srm_pricetab", sr_ViewPermission);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['received_by'] = $Row['received_by'];
@@ -6461,9 +8659,15 @@ class Srm extends Xtreme
                 $result['location_to'] = $Row['location_to'];
 
                 $result['shipping_method'] = $Row['haulierShippingMethod_Name'];
+<<<<<<< HEAD
                 $result['shipping_quantity'] = $Row['shipQtyMin'].' - '.$Row['shipQtyMax'];//$Row['shipping_quantity'];
                 $result['price'] = number_format((float)$Row['price'], 2, '.', '');
                 
+=======
+                $result['shipping_quantity'] = $Row['shipQtyMin'] . ' - ' . $Row['shipQtyMax']; //$Row['shipping_quantity'];
+                $result['price'] = number_format((float) $Row['price'], 2, '.', '');
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['status'] = $Row['aStatus'];
                 $response['response'][] = $result;
             }
@@ -6484,11 +8688,19 @@ class Srm extends Xtreme
         $Sql = "SELECT a.*,CONCAT(emp.first_name,' ',emp.last_name) AS received_by 
                 FROM haulier a
                 LEFT JOIN  employees AS emp ON a.PriceAddedByEmployeeID = emp.id
+<<<<<<< HEAD
 				WHERE a.id=".$attr['id']."
 				LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
         
+=======
+				WHERE a.id=" . $attr['id'] . "
+				LIMIT 1";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             $Row = $RS->FetchRow();
 
@@ -6496,17 +8708,28 @@ class Srm extends Xtreme
                 if (is_numeric($key))
                     unset($Row[$key]);
             }
+<<<<<<< HEAD
             
             $Row['price'] = number_format((float)$Row['price'], 2, '.', '');
 
             $Row['priceDate'] = $this->objGeneral->convert_unix_into_date($Row['priceDate']);
             
+=======
+
+            $Row['price'] = number_format((float) $Row['price'], 2, '.', '');
+
+            $Row['priceDate'] = $this->objGeneral->convert_unix_into_date($Row['priceDate']);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'] = $Row;
             $response['areasLocTo'] = $this->getHaulierAreasLocTo($attr['id']);
+<<<<<<< HEAD
 
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = NULL;
@@ -6526,6 +8749,7 @@ class Srm extends Xtreme
                                     status=-1,
                                     ChangedBy='" . $this->arrUser['id'] . "',                                        
                                     ChangedOn='" . current_date . "'
+<<<<<<< HEAD
                                 WHERE id = ".$attr['id']."   
                                 Limit 1";
         // echo $Sql; exit;
@@ -6537,6 +8761,16 @@ class Srm extends Xtreme
             $response['error'] = NULL;
 
             
+=======
+                                WHERE id = " . $attr['id'] . "   
+                                Limit 1";
+        // echo $Sql; exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
@@ -6545,6 +8779,7 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function getHaulierAreasLocTo($haulierID){
 
         $Sql = "SELECT *
@@ -6556,6 +8791,19 @@ class Srm extends Xtreme
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+    function getHaulierAreasLocTo($haulierID)
+    {
+
+        $Sql = "SELECT *
+				FROM haulierloc_to_selected
+				WHERE haulier_id=" . $haulierID . " ";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -6568,13 +8816,19 @@ class Srm extends Xtreme
                 $result['level3'] = $Row['haulierLoc_to_level3'];
                 $response[] = $result;
             }
+<<<<<<< HEAD
 
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response = array();
         }
         return $response;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function addNewHaulier($arr_attr)
@@ -6586,10 +8840,17 @@ class Srm extends Xtreme
 
         $this->objGeneral->mysql_clean($arr_attr);
 
+<<<<<<< HEAD
         if ($update_id > 0){
             
             $update_check = "  AND hal.id <> '" . $update_id . "'";
             $update_check2 = "  AND tst.id <> '" . $update_id . "'";        
+=======
+        if ($update_id > 0) {
+
+            $update_check = "  AND hal.id <> '" . $update_id . "'";
+            $update_check2 = "  AND tst.id <> '" . $update_id . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $priceDate = $this->objGeneral->convert_date($arr_attr['priceDate']);
@@ -6597,8 +8858,13 @@ class Srm extends Xtreme
         $areasLocToError = array();
         $areasLocToErrorLabel = '';
         $areasLocToErrorCounter = 0;
+<<<<<<< HEAD
         
         foreach($areasLocToArray as $areasLocTo){
+=======
+
+        foreach ($areasLocToArray as $areasLocTo) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $query = " SELECT count(hal.id)
                         FROM  haulier AS hal
@@ -6609,14 +8875,22 @@ class Srm extends Xtreme
                                     hal.haulierLoc_from_level3='" . $arr_attr['haulierLoc_from_level3'] . "' AND
                                     hal.haulierLocType_to_name='" . $arr_attr['haulierLocType_to_name'] . "' AND
                                     halLocToSel.haulierloc_id='" . $areasLocTo->id . "' AND
+<<<<<<< HEAD
                                     hal.priceDate='".$priceDate ."' AND 
                                     hal.srm_id=". $arr_attr['srm_id']." AND 
                                     hal.status=1 AND 
                                     hal.company_id = '" . $this->arrUser['company_id'] . "' ".$update_check." ";
+=======
+                                    hal.priceDate='" . $priceDate . "' AND 
+                                    hal.srm_id=" . $arr_attr['srm_id'] . " AND 
+                                    hal.status=1 AND 
+                                    hal.company_id = '" . $this->arrUser['company_id'] . "' " . $update_check . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rs_count = $this->objsetup->CSI($query);
 
             if ($rs_count->fields['total'] > 0) {
+<<<<<<< HEAD
                 array_push($areasLocToError,$areasLocTo->level3);
                 $areasLocToErrorLabel .= $areasLocTo->level3.', ';
                 $areasLocToErrorCounter++;
@@ -6630,6 +8904,21 @@ class Srm extends Xtreme
         }
 
         if($arr_attr['haulierLocType_to_name'] == 'Company Warehouse' ){
+=======
+                array_push($areasLocToError, $areasLocTo->level3);
+                $areasLocToErrorLabel .= $areasLocTo->level3 . ', ';
+                $areasLocToErrorCounter++;
+            }
+        }
+
+        if ($areasLocToErrorCounter > 0) {
+            $response['ack'] = 0;
+            $response['error'] = "Record already exists for following locations To (" . $areasLocToErrorLabel . ")";
+            return $response;
+        }
+
+        if ($arr_attr['haulierLocType_to_name'] == 'Company Warehouse') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $data_pass = "  tst.haulierLocType_from_name='" . $arr_attr['haulierLocType_from_name'] . "' AND
                             tst.haulierLoc_from_level1='" . $arr_attr['haulierLoc_from_level1'] . "' AND
@@ -6638,8 +8927,13 @@ class Srm extends Xtreme
                             tst.haulierLocType_to_name='" . $arr_attr['haulierLocType_to_name'] . "' AND
                             tst.haulierLoc_to_warehouse_id = '" . $arr_attr['warehouseLocToID'] . "' AND
                             tst.haulierLoc_to_warehouse_type ='" . $arr_attr['warehouseLocToType'] . "' AND    
+<<<<<<< HEAD
                             tst.priceDate='".$priceDate ."' AND                       
                             tst.srm_id=". $arr_attr['srm_id']."  ".$update_check2." "; 
+=======
+                            tst.priceDate='" . $priceDate . "' AND                       
+                            tst.srm_id=" . $arr_attr['srm_id'] . "  " . $update_check2 . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $total = $this->objGeneral->count_duplicate_in_sql('haulier', $data_pass, $this->arrUser['company_id']);
 
@@ -6650,9 +8944,15 @@ class Srm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         $price = (isset($arr_attr['price']) && $arr_attr['price'] != '')?$arr_attr['price']:0;
         $price_lcy = (isset($arr_attr['price_lcy']) && $arr_attr['price_lcy'] != '')?$arr_attr['price_lcy']:0;
         $currency_history_conversion_rate = (isset($arr_attr['currency_history_conversion_rate']) && $arr_attr['currency_history_conversion_rate'] != '')?$arr_attr['currency_history_conversion_rate']:0;
+=======
+        $price = (isset($arr_attr['price']) && $arr_attr['price'] != '') ? $arr_attr['price'] : 0;
+        $price_lcy = (isset($arr_attr['price_lcy']) && $arr_attr['price_lcy'] != '') ? $arr_attr['price_lcy'] : 0;
+        $currency_history_conversion_rate = (isset($arr_attr['currency_history_conversion_rate']) && $arr_attr['currency_history_conversion_rate'] != '') ? $arr_attr['currency_history_conversion_rate'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($update_id == 0) {
 
@@ -6688,9 +8988,13 @@ class Srm extends Xtreme
                                         company_id='" . $this->arrUser['company_id'] . "',
                                         AddedBy='" . $this->arrUser['id'] . "',                                        
                                         AddedOn='" . current_date . "'";
+<<<<<<< HEAD
         } 
         else 
         {           
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "UPDATE haulier 
                                 SET
 									PriceAddedByEmployeeID='" . $arr_attr['price_received_by'] . "',
@@ -6727,6 +9031,7 @@ class Srm extends Xtreme
 
         // echo $Sql;exit;
 
+<<<<<<< HEAD
         $RS = $this->objsetup->CSI($Sql);        
 
         if ($this->Conn->Affected_Rows() > 0) 
@@ -6736,11 +9041,20 @@ class Srm extends Xtreme
             $response['id'] = $update_id;
 
             
+=======
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+            $response['id'] = $update_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated!';
         }
 
+<<<<<<< HEAD
         if($update_id > 0 || $response['ack'] == 1){
 
             if($update_id > 0){
@@ -6755,12 +9069,31 @@ class Srm extends Xtreme
                 $update_id = $this->Conn->Insert_ID();
 
             foreach($areasLocToArray as $areasLocTo){
+=======
+        if ($update_id > 0 || $response['ack'] == 1) {
+
+            if ($update_id > 0) {
+
+                $sql2 = "DELETE FROM haulierloc_to_selected 
+                         WHERE haulier_id = " . $update_id . " AND 
+                               company_id = '" . $this->arrUser['company_id'] . "'";
+
+                $rs = $this->objsetup->CSI($sql2);
+            } else
+                $update_id = $this->Conn->Insert_ID();
+
+            foreach ($areasLocToArray as $areasLocTo) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $insertSql = "INSERT INTO haulierloc_to_selected 
                                             SET
                                                 haulier_id='" . $update_id . "',
                                                 haulierloc_id='" . $areasLocTo->id . "',
+<<<<<<< HEAD
                                                 haulierLoc_to_level1='" . $areasLocTo->level1. "',
+=======
+                                                haulierLoc_to_level1='" . $areasLocTo->level1 . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 haulierLoc_to_level2='" . $areasLocTo->level2 . "',
                                                 haulierLoc_to_level3='" . $areasLocTo->level3 . "',                                        
                                                 company_id='" . $this->arrUser['company_id'] . "',
@@ -6773,7 +9106,10 @@ class Srm extends Xtreme
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['id'] = $update_id;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         return $response;
@@ -6788,6 +9124,7 @@ class Srm extends Xtreme
         $Sql = "SELECT  c.*
                 FROM  units_of_measure_setup  c 
                 where   c.product_id= '" . $attr['product_id'] . "' and 
+<<<<<<< HEAD
                         c.unit_id=".$attr['unit_id']."  and 
                         c.status=1 and 
                         c.company_id=" . $this->arrUser['company_id'] . "		 
@@ -6800,6 +9137,18 @@ class Srm extends Xtreme
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+                        c.unit_id=" . $attr['unit_id'] . "  and 
+                        c.status=1 and 
+                        c.company_id=" . $this->arrUser['company_id'] . "		 
+                order by  c.quantity DESC ";
+        //c.user_id=".$this->arrUser['id']." 
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -6808,7 +9157,11 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['total'] = $total;
+=======
+            $response['total'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         //print_r($response2['response_selected']);exit;
@@ -6825,10 +9178,15 @@ class Srm extends Xtreme
         $selected_count = 0;
         $first_count = 0;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['title'] = $Row['title'];
@@ -6836,6 +9194,7 @@ class Srm extends Xtreme
                 $result['quantity'] = 'a';
 
                 if ($first_count == 0)
+<<<<<<< HEAD
                     $result['quantity'] = (float)1; //else $result['quantity'] ='';
                 $first_count++;
 
@@ -6852,6 +9211,22 @@ class Srm extends Xtreme
 
                         if ($selected_count == 0)
                             $result['quantity'] = (float)1;
+=======
+                    $result['quantity'] = (float) 1; //else $result['quantity'] ='';
+                $first_count++;
+
+                $value_count = 0;
+                foreach ($response2['response_selected'] as $key => $m_id) {
+                    if ($Row['id'] == $m_id['record_id']) {
+                        $value_count = 1;
+                        $result['check_id'] = $value_count;
+                        //	if($m_id['quantity']!=0)
+                        $result['quantity'] = (float) $m_id['quantity'];
+                        $result['cat_id'] = $m_id['cat_id'];
+
+                        if ($selected_count == 0)
+                            $result['quantity'] = (float) 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $selected_count++;
                     }
                 }
@@ -6877,7 +9252,11 @@ class Srm extends Xtreme
 
     function orderBy($data, $field)
     {
+<<<<<<< HEAD
         $code = "return strnatcmp(\$a['".$field."'], \$b['".$field."']);";
+=======
+        $code = "return strnatcmp(\$a['" . $field . "'], \$b['" . $field . "']);";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         usort($data, create_function('$a,$b', $code));
         return $data;
     }
@@ -6887,17 +9266,28 @@ class Srm extends Xtreme
         //$this->objGeneral->mysql_clean($arr_attr);
         //print_r($arr_attr);exit;
         $chk = 0;
+<<<<<<< HEAD
         $Sqli = "DELETE FROM units_of_measure_setup WHERE product_id = ".$arr_attr['product_id']." ";
         $RS = $this->objsetup->CSI($Sqli);
 
         foreach ($arr_attr['Data'] as $item) 
         {
+=======
+        $Sqli = "DELETE FROM units_of_measure_setup WHERE product_id = " . $arr_attr['product_id'] . " ";
+        $RS = $this->objsetup->CSI($Sqli);
+
+        foreach ($arr_attr['Data'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // if($item->check_id>0)	
             if ($chk == 0)
                 $item->cat_id = $arr_attr['unit_id'];
 
+<<<<<<< HEAD
             if ($item->cat_id > 0) 
             {
+=======
+            if ($item->cat_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $SqlQuote = "INSERT INTO units_of_measure_setup
                                             SET 
                                                 product_id='" . $arr_attr['product_id'] . "',
@@ -6910,8 +9300,13 @@ class Srm extends Xtreme
                                                 company_id='" . $this->arrUser['company_id'] . "',
                                                 user_id='" . $this->arrUser['id'] . "'";
 
+<<<<<<< HEAD
                                             //,unit_id='".$arr_attr['unit_id']."' ,
                                             //cat_id='".$item->cat_id->id."' 
+=======
+                //,unit_id='".$arr_attr['unit_id']."' ,
+                //cat_id='".$item->cat_id->id."' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $RS = $this->objsetup->CSI($SqlQuote);
 
                 if ($this->Conn->Affected_Rows() > 0)
@@ -6942,6 +9337,7 @@ class Srm extends Xtreme
                 where   c.status=1  and 
                         product_id='" . $attr['product_id'] . "' and 
                         c.company_id=" . $this->arrUser['company_id'] . "
+<<<<<<< HEAD
                 order by  c.id DESC "; 
         
         //c.user_id=".$this->arrUser['id']."
@@ -6951,6 +9347,15 @@ class Srm extends Xtreme
         {
             while ($Row = $RS->FetchRow())
              {
+=======
+                order by  c.id DESC ";
+
+        //c.user_id=".$this->arrUser['id']."
+
+        $RS = $this->objsetup->CSI($Sql);
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -6959,7 +9364,11 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['total'] = $total;
+=======
+            $response['total'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         // print_r($response);exit;
@@ -6975,6 +9384,7 @@ class Srm extends Xtreme
                         Left JOIN units_of_measure as wh ON wh.id = st.cat_id
                         where st.id =p.unit_category ) as cat_name 
                 FROM srm_rebate_volume p
+<<<<<<< HEAD
                 WHERE p.type='".$attr['type']."'  AND p.category= '".$attr['category']."'  AND p.status=1 AND p.srm_id='".$attr['srm_id']."'
                 AND p.product_id='".$attr['product_id']."' ";
 
@@ -6984,6 +9394,15 @@ class Srm extends Xtreme
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+                WHERE p.type='" . $attr['type'] . "'  AND p.category= '" . $attr['category'] . "'  AND p.status=1 AND p.srm_id='" . $attr['srm_id'] . "'
+                AND p.product_id='" . $attr['product_id'] . "' ";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['quantity_from'] . '-' . $Row['quantity_to'] . ' ' . $Row['cat_name'];
@@ -7018,15 +9437,23 @@ class Srm extends Xtreme
 
         $total = $this->objGeneral->count_duplicate_in_sql('srm_rebate_volume', $data_pass, $this->arrUser['company_id']);
 
+<<<<<<< HEAD
         if ($total > 0) 
         {
+=======
+        if ($total > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
 
+<<<<<<< HEAD
         if ($id == 0) 
         {
+=======
+        if ($id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // Insert record into the document
             $Sql = "INSERT INTO srm_rebate_volume 
                                     SET
@@ -7063,6 +9490,7 @@ class Srm extends Xtreme
                        (SELECT wh.title  FROM units_of_measure_setup st 
                         Left JOIN units_of_measure as wh ON wh.id = st.cat_id
                         where st.id =p.unit_category AND 
+<<<<<<< HEAD
                               st.product_id='$attr[product_id]'  
                               limit 1) as cat_name 
                 FROM srm_revenue_volume p
@@ -7078,6 +9506,21 @@ class Srm extends Xtreme
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+                              st.product_id='" . $attr['product_id'] . "'  
+                              limit 1) as cat_name 
+                FROM srm_revenue_volume p
+                WHERE p.type='" . $attr['type'] . "' AND 
+                      p.category= '$attr[category]'  AND 
+                      p.status=1 AND 
+                      p.srm_id='" . $attr['srm_id'] . "' AND 
+                      p.product_id='" . $attr['product_id'] . "'  ";
+
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['quantity_from'] . '-' . $Row['quantity_to'] . ' ' . $Row['cat_name'];
@@ -7085,9 +9528,13 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['ack'] = 0;
             $response['error'] = NULL;
@@ -7114,15 +9561,23 @@ class Srm extends Xtreme
 
         $total = $this->objGeneral->count_duplicate_in_sql('srm_revenue_volume', $data_pass, $this->arrUser['company_id']);
 
+<<<<<<< HEAD
         if ($total > 0) 
         {
+=======
+        if ($total > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
             return $response;
         }
 
+<<<<<<< HEAD
         if ($id == 0) 
         {
+=======
+        if ($id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO srm_revenue_volume 
                                     SET
 										type='" . $arr_attr['type'] . "', 
@@ -7138,6 +9593,7 @@ class Srm extends Xtreme
         //	echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() > 0) 
         {
             $response['ack'] = 1;
@@ -7146,6 +9602,13 @@ class Srm extends Xtreme
         } 
         else 
         {
+=======
+        if ($this->Conn->Affected_Rows() > 0) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+            $response['error'] = 'Record Inserted Successfully';
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record not inserted';
         }
@@ -7158,12 +9621,20 @@ class Srm extends Xtreme
         $Sql = "SELECT sr.*,st.rebate_id,st.product_id
 				FROM srm_rebate sr
 				left join srm_rebate_items st on st.rebate_id= sr.id
+<<<<<<< HEAD
 				WHERE sr.id=".$attr['id']."
 				LIMIT 1";
         $RS = $this->objsetup->CSI($Sql);
 
         if ($RS->RecordCount() > 0) 
         {
+=======
+				WHERE sr.id=" . $attr['id'] . "
+				LIMIT 1";
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Row = $RS->FetchRow();
 
             foreach ($Row as $key => $value) {
@@ -7187,26 +9658,41 @@ class Srm extends Xtreme
         $response = array();
 
         if ($attr['type'] == 3)
+<<<<<<< HEAD
             $add = "AND d.type in (".$attr['type'].") ";
         else
             $add = "AND d.type in (2,".$attr['type'].") ";
+=======
+            $add = "AND d.type in (" . $attr['type'] . ") ";
+        else
+            $add = "AND d.type in (2," . $attr['type'] . ") ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT  d.*,srm.id as ids
                 FROM srm_invoice  d
                 left  JOIN company on company.id=d.company_id 
                 left  JOIN srm on srm.id=d.sell_to_cust_id 
                 where d.status=1 AND 
+<<<<<<< HEAD
                       d.company_id=" . $this->arrUser['company_id'] . "  ".$add."  " . $where_clause . " 
+=======
+                      d.company_id=" . $this->arrUser['company_id'] . "  " . $add . "  " . $where_clause . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 order by d.id DESC";
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_ViewPermission);
 
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['ids'];
                 $result['invoice_id'] = $Row['id'];
@@ -7219,8 +9705,12 @@ class Srm extends Xtreme
                 $result['country'] = $Row['country']; // $Row['cuname'];
                 $result['contact_person'] = $Row['sell_to_contact_no'];
 
+<<<<<<< HEAD
                 if ($attr[more_fields] == '1') 
                 {
+=======
+                if ($attr['more_fields'] == '1') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['outstanding'] = $Row['outstanding'];
                     $result['account_payable_id'] = $Row['account_payable_id'];
                     $result['purchase_code_id'] = $Row['purchase_code_id'];
@@ -7255,7 +9745,11 @@ class Srm extends Xtreme
         }
         return $response;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_supplier_invoice_listings_for_refund($attr)
     {
         // print_r($attr);exit;
@@ -7263,7 +9757,15 @@ class Srm extends Xtreme
 
         $response = array();
         $Sql = "SELECT  
+<<<<<<< HEAD
                 d.id, d.invoice_code as code, 
+=======
+                d.id, 
+                (CASE WHEN d.type <> 3 THEN d.invoice_code
+                        ELSE ''
+                        END) AS code,
+                d.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 d.invoice_date AS posting_date, 
                 d.sell_to_cust_name as name, 
                 d.grand_total as total_amount, 
@@ -7286,7 +9788,13 @@ class Srm extends Xtreme
                                         )
                                     ) + 
                         d.setteled_amount AS paid_amount,
+<<<<<<< HEAD
                 'Purchase Invoice' AS payment_type,
+=======
+                (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 '0' AS cust_payment_id,
                 d.on_hold,
                 (CASE
@@ -7298,15 +9806,25 @@ class Srm extends Xtreme
                 FROM srm_invoice  d
                 WHERE d.type IN(2,3) AND 
                       d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                       d.sell_to_cust_id = ".$attr['account_id']." AND 
                       d.currency_id = ".$attr['currency_id']." AND 
+=======
+                      d.sell_to_cust_id = " . $attr['account_id'] . " AND 
+                      d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       ROUND(d.remaining_amount, 2) > 0
 
                 UNION
                 
                 SELECT  
                     d.id, 
+<<<<<<< HEAD
                     d.invoiceNo as code, 
+=======
+                    d.invoiceNo as code,
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -7346,8 +9864,13 @@ class Srm extends Xtreme
                             d.docType = 1 AND
                             d.postStatus = 1 AND
                             d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                             d.moduleID = ".$attr['account_id']." AND 
                             d.currency_id = ".$attr['currency_id']." AND 
+=======
+                            d.moduleID = " . $attr['account_id'] . " AND 
+                            d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (CASE
                                 WHEN d.creditAmount > 0 THEN d.creditAmount
                                 WHEN d.debitAmount > 0 THEN d.debitAmount
@@ -7358,6 +9881,10 @@ class Srm extends Xtreme
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -7397,8 +9924,13 @@ class Srm extends Xtreme
                             d.docType = 2 AND
                             d.postStatus = 1 AND
                             d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                             d.moduleID = ".$attr['account_id']." AND 
                             d.currency_id = ".$attr['currency_id']." AND 
+=======
+                            d.moduleID = " . $attr['account_id'] . " AND 
+                            d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (CASE
                                 WHEN d.creditAmount > 0 THEN d.creditAmount
                                 WHEN d.debitAmount > 0 THEN d.debitAmount
@@ -7408,6 +9940,10 @@ class Srm extends Xtreme
                 
                 SELECT pd.id, 
                         pd.document_no AS code, 
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.posting_date, 
                         pd.account_name as cust_name, 
                         (CASE
@@ -7437,12 +9973,20 @@ class Srm extends Xtreme
                     pd.document_type IN (1, 3) AND
                     pd.credit_amount > 0 AND
                     pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                     pd.currency_id = ".$attr['currency_id']." AND 
+=======
+                    pd.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     (CASE
                         WHEN pd.credit_amount > 0 THEN pd.credit_amount
                         WHEN pd.debit_amount > 0 THEN pd.debit_amount
                     END ) > ROUND(pd.allocated_amount, 2) AND
+<<<<<<< HEAD
                     pd.account_id = ".$attr['account_id']."
+=======
+                    pd.account_id = " . $attr['account_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     
                 order by posting_date DESC";
         // echo $Sql;exit;
@@ -7454,6 +9998,10 @@ class Srm extends Xtreme
 
                 $result['order_id']             = $Row['id'];
                 $result['code']                 = $Row['code'];
+<<<<<<< HEAD
+=======
+                $result['order_code']                 = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['invoice_date']         = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                 $result['name']                 = $Row['name'];
                 $result['grand_total']          = $Row['total_amount'];
@@ -7461,14 +10009,22 @@ class Srm extends Xtreme
                 $result['paid_amount']          = $Row['paid_amount'];
                 $result['outstanding_amount']   = $Row['total_amount'] - $Row['paid_amount'];
                 $result['currency_code']        = $Row['currency_code'];
+<<<<<<< HEAD
                 $result['converted_currency_code']= ($Row['converted_currency_code'] != null) ? $Row['converted_currency_code'] : $Row['currency_code'];
                 $result['currency_id']          = $Row['currency_id'];
                 $result['currency_rate']        = $Row['currency_rate'];
                 $result['converted_currency_id']= $Row['converted_currency_id'];
+=======
+                $result['converted_currency_code'] = ($Row['converted_currency_code'] != null) ? $Row['converted_currency_code'] : $Row['currency_code'];
+                $result['currency_id']          = $Row['currency_id'];
+                $result['currency_rate']        = $Row['currency_rate'];
+                $result['converted_currency_id'] = $Row['converted_currency_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['payment_type']         = $Row['payment_type'];
                 $result['cust_payment_id']      = $Row['cust_payment_id'];
                 $result['on_hold']              = $Row['on_hold'];
                 $result['on_hold_message']      = $Row['on_hold_message'];
+<<<<<<< HEAD
                 
                 if($posting_date > strtotime(date('Y-m-d')) || $Row['posting_date'] > strtotime(date('Y-m-d')))
                 {
@@ -7476,6 +10032,12 @@ class Srm extends Xtreme
                 }
                 else
                 {
+=======
+
+                if ($posting_date > strtotime(date('Y-m-d')) || $Row['posting_date'] > strtotime(date('Y-m-d'))) {
+                    $result['allocation_date'] = ($posting_date >=  $Row['posting_date']) ? $this->objGeneral->convert_unix_into_date($posting_date) : $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['allocation_date'] = $this->objGeneral->convert_unix_into_date(strtotime(date('Y-m-d')));
                 }
 
@@ -7485,7 +10047,11 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } else
             $response['response'][] = array();
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -7494,8 +10060,15 @@ class Srm extends Xtreme
         // print_r($attr);exit;
         $response = array();
         $posting_date = $this->objGeneral->convert_date($attr['posting_date']);
+<<<<<<< HEAD
         
         $Sql = "SELECT  d.id, d.invoice_code as code, 
+=======
+
+        $Sql = "SELECT  d.id, 
+                        d.invoice_code as code, 
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         d.supplierCreditNoteDate as posting_date, 
                         d.supplierName as cust_name, 
                         d.grand_total as total_amount, 
@@ -7531,14 +10104,23 @@ class Srm extends Xtreme
                 LEFT JOIN currency on currency.id=d.currency_id
                 WHERE d.type IN(2,3) AND 
                       d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                       d.supplierID = ".$attr['account_id']." AND 
                       d.currency_id = ".$attr['currency_id']." AND 
+=======
+                      d.supplierID = " . $attr['account_id'] . " AND 
+                      d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       ROUND(d.remaining_amount, 2) > 0
                 UNION
                 
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -7578,8 +10160,13 @@ class Srm extends Xtreme
                             d.docType = 2 AND
                             d.postStatus = 1 AND
                             d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                             d.moduleID = ".$attr['account_id']." AND 
                             d.currency_id = ".$attr['currency_id']." AND 
+=======
+                            d.moduleID = " . $attr['account_id'] . " AND 
+                            d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (CASE
                                 WHEN d.creditAmount > 0 THEN d.creditAmount
                                 WHEN d.debitAmount > 0 THEN d.debitAmount
@@ -7591,6 +10178,10 @@ class Srm extends Xtreme
                 SELECT  
                     d.id, 
                     d.invoiceNo as code, 
+<<<<<<< HEAD
+=======
+                    '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     d.posting_date, 
                     d.moduleNo as name, 
                     (CASE
@@ -7630,8 +10221,13 @@ class Srm extends Xtreme
                             d.docType = 1 AND
                             d.postStatus = 1 AND
                             d.company_id=" . $this->arrUser['company_id'] . " AND 
+<<<<<<< HEAD
                             d.moduleID = ".$attr['account_id']." AND 
                             d.currency_id = ".$attr['currency_id']." AND 
+=======
+                            d.moduleID = " . $attr['account_id'] . " AND 
+                            d.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (CASE
                                 WHEN d.creditAmount > 0 THEN d.creditAmount
                                 WHEN d.debitAmount > 0 THEN d.debitAmount
@@ -7640,7 +10236,13 @@ class Srm extends Xtreme
                 
                 UNION
                 
+<<<<<<< HEAD
                 SELECT pd.id, pd.document_no AS code, 
+=======
+                SELECT pd.id, 
+                        pd.document_no AS code, 
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.posting_date, 
                         pd.account_name as cust_name, 
                         (CASE
@@ -7670,12 +10272,20 @@ class Srm extends Xtreme
                     pd.document_type IN (1, 2) AND
                     pd.debit_amount > 0 AND
                     pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                     pd.currency_id = ".$attr['currency_id']." AND 
+=======
+                    pd.currency_id = " . $attr['currency_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     (CASE
                         WHEN pd.credit_amount > 0 THEN pd.credit_amount
                         WHEN pd.debit_amount > 0 THEN pd.debit_amount
                     END ) > ROUND(pd.allocated_amount, 2) AND
+<<<<<<< HEAD
                     pd.account_id = ".$attr['account_id']."
+=======
+                    pd.account_id = " . $attr['account_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     
                     
                 ORDER BY posting_date DESC
@@ -7696,21 +10306,34 @@ class Srm extends Xtreme
                 $result['paid_amount']          = $Row['paid_amount'];
                 $result['outstanding_amount']   = $Row['total_amount'] - $Row['paid_amount'];
                 $result['currency_code']        = $Row['currency_code'];
+<<<<<<< HEAD
                 $result['converted_currency_code']= ($Row['converted_currency_code'] != null) ? $Row['converted_currency_code'] : $Row['currency_code'];
                 $result['currency_id']          = $Row['currency_id'];
                 $result['currency_rate']        = $Row['currency_rate'];
                 $result['converted_currency_id']= $Row['converted_currency_id'];
+=======
+                $result['converted_currency_code'] = ($Row['converted_currency_code'] != null) ? $Row['converted_currency_code'] : $Row['currency_code'];
+                $result['currency_id']          = $Row['currency_id'];
+                $result['currency_rate']        = $Row['currency_rate'];
+                $result['converted_currency_id'] = $Row['converted_currency_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['payment_type']         = $Row['payment_type'];
                 $result['cust_payment_id']      = $Row['cust_payment_id'];
                 $result['on_hold']              = $Row['on_hold'];
                 $result['on_hold_message']      = $Row['on_hold_message'];
 
+<<<<<<< HEAD
                 if($posting_date > strtotime(date('Y-m-d')) || $Row['posting_date'] > strtotime(date('Y-m-d')))
                 {
                     $result['allocation_date'] = ($posting_date >=  $Row['posting_date']) ? $this->objGeneral->convert_unix_into_date($posting_date) : $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                 }
                 else
                 {
+=======
+                if ($posting_date > strtotime(date('Y-m-d')) || $Row['posting_date'] > strtotime(date('Y-m-d'))) {
+                    $result['allocation_date'] = ($posting_date >=  $Row['posting_date']) ? $this->objGeneral->convert_unix_into_date($posting_date) : $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['allocation_date'] = $this->objGeneral->convert_unix_into_date(strtotime(date('Y-m-d')));
                 }
                 $response['response'][] = $result;
@@ -7719,21 +10342,36 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } else
             $response['response'][] = array();
+<<<<<<< HEAD
         
         return $response;
     }
   
+=======
+
+        return $response;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_supplier_invoice_listings_for_payment_paid($attr)
     {
         // print_r($attr);exit;
         $response = array();
         // invoices and refund
+<<<<<<< HEAD
         if($attr['invoice_type'] == 3) // Purchase invoices
+=======
+        if ($attr['invoice_type'] == 3) // Purchase invoices
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7746,7 +10384,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id =o.id   AND 
                                 pa.invoice_type= 3 AND
                                 pa.`document_type` = 4 AND
@@ -7757,6 +10399,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7769,7 +10415,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 4 AND
                                 pa.`document_type` = 3 AND
                                 pa.payment_type = 2
@@ -7779,6 +10429,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7801,7 +10455,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type= 3 AND
                                 pa.payment_type = 1
@@ -7813,6 +10471,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -7834,7 +10496,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 3 AND
                                 pa.document_type= 5 AND
                                 pa.payment_type = 2
@@ -7846,6 +10512,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7861,7 +10531,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 3 AND
                                 pa.document_type= 10 AND
@@ -7872,6 +10546,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7888,7 +10566,11 @@ class Srm extends Xtreme
                              
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 3 AND
                                 pa.payment_type = 1
@@ -7898,6 +10580,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7913,7 +10599,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 3 AND
                                 pa.document_type= 13 AND
@@ -7924,6 +10614,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7940,19 +10634,31 @@ class Srm extends Xtreme
                              
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 3 AND
                                 pa.payment_type = 1
                             )             
                     "; //
+<<<<<<< HEAD
         }
         else if($attr['invoice_type'] == 6)
         {
+=======
+        } else if ($attr['invoice_type'] == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7965,7 +10671,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 4 AND
                                 pa.`document_type` = 6 AND
@@ -7976,6 +10686,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -7989,7 +10703,11 @@ class Srm extends Xtreme
                              
                             (
                                 pa.invoice_id = o.id AND
+<<<<<<< HEAD
                                 pa.payment_detail_id = ".$attr['detail_id']." AND 
+=======
+                                pa.payment_detail_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 6 AND
                                 pa.`document_type` = 4 AND
                                 pa.payment_type = 1
@@ -7999,6 +10717,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8019,7 +10741,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 6
                             )
@@ -8031,6 +10757,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8051,7 +10781,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.payment_detail_id = ".$attr['detail_id']." AND 
+=======
+                                pa.payment_detail_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 6 AND
                                 pa.document_type = 5
                             )
@@ -8065,6 +10799,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8079,7 +10817,11 @@ class Srm extends Xtreme
                         WHERE
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']."   AND
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . "   AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 6 AND
@@ -8091,6 +10833,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8106,7 +10852,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
                                 pa.payment_detail_id = ".$attr['detail_id']."  AND
+=======
+                                pa.payment_detail_id = " . $attr['detail_id'] . "  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 6 AND
                                 pa.document_type= 10 AND
@@ -8117,6 +10867,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8132,7 +10886,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
 				                pa.payment_detail_id = ".$attr['detail_id']." AND
+=======
+				                pa.payment_detail_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 6 AND
                                 pa.document_type= 13 AND
@@ -8143,6 +10901,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8159,19 +10921,31 @@ class Srm extends Xtreme
                              
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 6 AND
                                 pa.payment_type = 1
                             )        
                     "; //
+<<<<<<< HEAD
         }        
         else if($attr['invoice_type'] == 9)
         {
+=======
+        } else if ($attr['invoice_type'] == 9) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8185,7 +10959,11 @@ class Srm extends Xtreme
                              
                             (
                                 pa.payment_id = o.id  AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 4 AND
                                 pa.`document_type` = 9 AND
                                 pa.payment_type = 2 
@@ -8196,6 +10974,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8208,7 +10990,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                              
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.`document_type` = 4 AND
@@ -8220,6 +11006,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8241,7 +11031,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 9
                             )                                
@@ -8254,6 +11048,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8275,7 +11073,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 9 AND
                                 pa.document_type = 5
                             )                            
@@ -8288,6 +11090,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8304,7 +11110,11 @@ class Srm extends Xtreme
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']."  AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . "  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 9 AND
                                 pa.payment_type = 1
@@ -8314,6 +11124,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8329,7 +11143,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']."  AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . "  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 10 AND
@@ -8340,6 +11158,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8355,7 +11177,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 13 AND
@@ -8366,6 +11192,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8382,19 +11212,31 @@ class Srm extends Xtreme
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 9 AND
                                 pa.payment_type = 1
                             )
                     "; //
+<<<<<<< HEAD
         }        
         else if($attr['invoice_type'] == 14)
         {
+=======
+        } else if ($attr['invoice_type'] == 14) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8408,7 +11250,11 @@ class Srm extends Xtreme
                             
                             (
                                 pa.payment_id = o.id  AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 4 AND
                                 pa.`document_type` = 14 AND
                                 pa.payment_type = 2 
@@ -8419,6 +11265,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.supplierCreditNoteDate AS posting_date,                        
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8431,7 +11281,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.`document_type` = 4 AND
@@ -8443,6 +11297,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8464,7 +11322,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 14
                             )                                
@@ -8477,6 +11339,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8498,7 +11364,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 2) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 14 AND
                                 pa.document_type = 5
                             )                          
@@ -8511,6 +11381,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8526,7 +11400,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']."  AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . "  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 14 AND
                                 pa.payment_type = 1
@@ -8536,6 +11414,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8551,7 +11433,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']."  AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . "  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 10 AND
@@ -8562,6 +11448,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8576,7 +11466,11 @@ class Srm extends Xtreme
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 13 AND
@@ -8587,6 +11481,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8603,29 +11501,49 @@ class Srm extends Xtreme
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 14 AND
                                 pa.payment_type = 1
                             )
                     "; //
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
 
+<<<<<<< HEAD
                 if($Row['id'] > 0)
                 {
                     $result = array();
                     $result['order_id']         = $Row['id'];
                     $result['code']             = $Row['code'];
+=======
+                if ($Row['id'] > 0) {
+                    $result = array();
+                    $result['order_id']         = $Row['id'];
+                    $result['code']             = $Row['code'];
+                    $result['order_code']       = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['original_amount']  = $Row['original_amount'];
                     $result['paid_amount']      = $Row['paid_amount'];
                     $result['payment_type']     = $Row['payment_type'];
                     $result['currency_code']    = $Row['currency_code'];
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['invoice_date']     = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                     $result['allocation_date']     = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
 
@@ -8636,7 +11554,11 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } else
             $response['response'][] = array();
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -8644,25 +11566,43 @@ class Srm extends Xtreme
     {
         // print_r($attr);exit;
         $response = array();
+<<<<<<< HEAD
         if($attr['invoice_type'] == 4) // Debit Note
+=======
+        if ($attr['invoice_type'] == 4) // Debit Note
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 4 AND
                                 pa.document_type= 3 AND
@@ -8675,20 +11615,34 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE 
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 3 AND
                                 pa.document_type= 4 AND
                                 pa.payment_type = 2
@@ -8699,6 +11653,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8720,7 +11678,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']."  AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . "  AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 6 AND
                                 pa.`document_type`=4
                             )
@@ -8732,6 +11694,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8753,7 +11719,11 @@ class Srm extends Xtreme
                                 pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 4 AND
                                 pa.document_type= 6
                                 
@@ -8767,6 +11737,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8781,7 +11755,11 @@ class Srm extends Xtreme
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+				                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 4 AND
@@ -8793,6 +11771,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8808,7 +11790,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 4 AND
                                 pa.document_type= 9 AND
@@ -8819,6 +11805,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8834,7 +11824,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+				                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 4 AND
@@ -8845,6 +11839,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -8860,7 +11858,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 4 AND
                                 pa.document_type= 14 AND
@@ -8869,25 +11871,43 @@ class Srm extends Xtreme
                     "; //
 
         }
+<<<<<<< HEAD
         if($attr['invoice_type'] == 5) // Payment
+=======
+        if ($attr['invoice_type'] == 5) // Payment
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_detail_id = ".$attr['detail_id']." AND
+=======
+                                pa.payment_detail_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type  = 5 AND
                                 pa.`document_type` = 3 AND
@@ -8898,20 +11918,34 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type  = 3 AND
                                 pa.`document_type` = 5 AND
                                 pa.payment_type = 2
@@ -8921,6 +11955,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8942,7 +11980,11 @@ class Srm extends Xtreme
                                 -- pd.document_type IN (1, 3) AND
                                 pd.debit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 5 AND
                                 pa.document_type = 6
                             )
@@ -8954,6 +11996,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -8975,7 +12021,11 @@ class Srm extends Xtreme
 				                -- pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 6 AND
                                 pa.document_type = 5
                             )
@@ -8988,6 +12038,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9003,7 +12057,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['detail_id']." AND
+=======
+                                pa.invoice_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 5 AND
@@ -9014,6 +12072,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9029,7 +12091,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_detail_id = ".$attr['detail_id']." AND
+=======
+				                pa.payment_detail_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 5 AND
                                 pa.document_type= 9 AND
@@ -9040,6 +12106,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9055,7 +12125,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = ".$attr['detail_id']." AND
+=======
+				                pa.invoice_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 5 AND
@@ -9066,6 +12140,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9081,7 +12159,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_detail_id = ".$attr['detail_id']." AND
+=======
+				                pa.payment_detail_id = " . $attr['detail_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 5 AND
                                 pa.document_type= 14 AND
@@ -9089,25 +12171,43 @@ class Srm extends Xtreme
                             )                           
                     "; //
         }
+<<<<<<< HEAD
         if($attr['invoice_type'] == 10) // Opening balance credit note
+=======
+        if ($attr['invoice_type'] == 10) // Opening balance credit note
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type = 10 AND
                                 pa.document_type = 3 AND
@@ -9118,20 +12218,34 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type = 3 AND
                                 pa.document_type = 10 AND
                                 pa.payment_type = 2
@@ -9141,6 +12255,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9156,7 +12274,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
                                 pa.invoice_id = o.id AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 9 AND
                                 pa.payment_type = 1
@@ -9166,6 +12288,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9181,7 +12307,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 10 AND
@@ -9192,6 +12322,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -9210,7 +12344,11 @@ class Srm extends Xtreme
                         (
                             (
 				                pd.id = `pa`.`payment_detail_id` AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
@@ -9225,6 +12363,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -9243,7 +12385,11 @@ class Srm extends Xtreme
                         (
                             (
                                 pd.id = `pa`.`invoice_id` AND
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
@@ -9259,6 +12405,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9273,7 +12423,11 @@ class Srm extends Xtreme
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+				                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 10 AND
@@ -9285,6 +12439,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9300,7 +12458,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 10 AND
                                 pa.document_type= 14 AND
@@ -9308,25 +12470,43 @@ class Srm extends Xtreme
                             )      
                     ";
         }
+<<<<<<< HEAD
         if($attr['invoice_type'] == 13) // Bank Opening balance payment
+=======
+        if ($attr['invoice_type'] == 13) // Bank Opening balance payment
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $Sql = "SELECT 
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type = 13 AND
                                 pa.document_type = 3 AND
@@ -9337,20 +12517,34 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoice_code AS code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.invoice_date AS posting_date,
                         o.currency_rate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
                         (SELECT code from currency where id = o.converted_currency_id) as converted_currency_code,
                         pa.allocation_date,
                         o.grand_total AS original_amount,
+<<<<<<< HEAD
                         'Purchase Invoice' AS payment_type
+=======
+                        (CASE WHEN d.type = 3 THEN 'Purchase Order'
+                        ELSE 'Purchase Invoice'
+                        END) AS payment_type
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         FROM srm_invoice AS o, payment_allocation AS pa
                         WHERE  
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
                                 pa.payment_id = o.id AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type = 3 AND
                                 pa.document_type = 13 AND
                                 pa.payment_type = 2
@@ -9360,6 +12554,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -9379,7 +12577,11 @@ class Srm extends Xtreme
                            
                             (
 				                pd.id = `pa`.`payment_detail_id` AND
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
@@ -9394,6 +12596,10 @@ class Srm extends Xtreme
                         gjr.id AS id,
                         amount_allocated AS paid_amount,
                         pd.document_no AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         pd.`posting_date`,
                         pd.cnv_rate,
                         (SELECT code from currency where id = pd.currency_id) as currency_code,
@@ -9412,7 +12618,11 @@ class Srm extends Xtreme
                         (
                             (
                                 pd.id = `pa`.`invoice_id` AND
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND 
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				                pd.document_type IN (1, 3) AND
                                 pd.credit_amount > 0 AND
                                 pd.transaction_type = 3 AND 
@@ -9428,6 +12638,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9444,7 +12658,11 @@ class Srm extends Xtreme
                             
                             (
                                 pa.invoice_id = o.id AND 
+<<<<<<< HEAD
                                 pa.payment_id = ".$attr['invoice_id']." AND
+=======
+                                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 9 AND
                                 pa.payment_type = 1
@@ -9454,6 +12672,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9469,7 +12691,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
                                 pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+                                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 9 AND
                                 pa.document_type= 13 AND
@@ -9481,6 +12707,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9496,7 +12726,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.invoice_id = ".$attr['invoice_id']." AND
+=======
+				                pa.invoice_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.payment_id = o.id AND 
                                 pa.invoice_type= 14 AND
                                 pa.document_type= 13 AND
@@ -9507,6 +12741,10 @@ class Srm extends Xtreme
                         o.id AS id,
                         amount_allocated AS paid_amount,
                         o.invoiceNo AS code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         o.`posting_date`,
                         o.convRate,
                         (SELECT code from currency where id = o.currency_id) as currency_code,
@@ -9522,7 +12760,11 @@ class Srm extends Xtreme
                             pa.company_id = " . $this->arrUser['company_id'] . " AND
                             
                             (
+<<<<<<< HEAD
 				                pa.payment_id = ".$attr['invoice_id']." AND
+=======
+				                pa.payment_id = " . $attr['invoice_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 pa.invoice_id = o.id AND 
                                 pa.invoice_type= 13 AND
                                 pa.document_type= 14 AND
@@ -9534,16 +12776,28 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($Sql);
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
+<<<<<<< HEAD
                 if($Row['id'] > 0)
                 {
                     $result = array();
                     $result['order_id']         = $Row['id'];
                     $result['code']             = $Row['code'];
+=======
+                if ($Row['id'] > 0) {
+                    $result = array();
+                    $result['order_id']         = $Row['id'];
+                    $result['code']             = $Row['code'];
+                    $result['order_code']       = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['original_amount']  = $Row['original_amount'];
                     $result['paid_amount']      = $Row['paid_amount'];
                     $result['payment_type']     = $Row['payment_type'];
                     $result['currency_code']    = $Row['currency_code'];
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['invoice_date']     = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
                     $result['allocation_date']     = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
 
@@ -9554,7 +12808,11 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } else
             $response['response'][] = array();
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -9564,6 +12822,7 @@ class Srm extends Xtreme
         $order_clause = "";
         $response = array();
 
+<<<<<<< HEAD
          if (!empty($attr['searchKeyword'])) {
             // echo 'here'; exit;            
             $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
@@ -9576,6 +12835,20 @@ class Srm extends Xtreme
 
         if ($attr['type'] == 3)
             $where_clause .= " AND tbl.type in ('".$attr['type']."')  "; // AND d.order_no LIKE '%$val%'
+=======
+        if (!empty($attr['searchKeyword'])) {
+            // echo 'here'; exit;            
+            $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
+            $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+        }
+
+        //echo $where_clause;exit;
+        // echo '<pre>'; print_r($attr);exit;
+
+
+        if ($attr['type'] == 3)
+            $where_clause .= " AND tbl.type in ('" . $attr['type'] . "')  "; // AND d.order_no LIKE '%$val%'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else
             $where_clause .= " AND tbl.type=2 ";    //AND d.invoice_no LIKE '%$val%'
 
@@ -9584,11 +12857,16 @@ class Srm extends Xtreme
                      FROM sr_srm_general_sel as s
                      WHERE  s.type IN (2,3) AND 
                             (s.company_id=" . $this->arrUser['company_id'] . " ) "; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $subQuery = "SELECT  s.id 
                      FROM srm as s
                      WHERE  s.type IN (2,3) AND 
                             s.company_id=" . $this->arrUser['company_id'] . " ";
+<<<<<<< HEAD
         
         //$subQuery = $this->objsetup->whereClauseAppender($subQuery,24);
         // sr_link_po_so(d.id) AS LinkToSo,
@@ -9600,6 +12878,16 @@ class Srm extends Xtreme
                                      link.purchaseOrderID = d.id) AS LinkToSo,
                                 (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '%order' AND da.record_type = 'Purchase') as documentPOCount, 
                                 (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '%invoice' AND da.record_type = 'Purchase') as documentPICount, 
+=======
+
+        $subQuery = $this->objsetup->whereClauseAppender($subQuery,24);
+        // sr_link_po_so(d.id) AS LinkToSo,
+
+            /* 
+
+            (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '%order' AND da.record_type = 'Purchase') as documentPOCount, 
+                                            (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '%invoice' AND da.record_type = 'Purchase') as documentPICount, 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 (SELECT COUNT(*) FROM document_association AS da, email_save as es WHERE es.id = da.module_id and es.type = 1 and da.record_id = d.id AND da.module_type='email' AND da.record_type = 'Purchase') as emailCount,
                                 (SELECT (CASE 
                                         WHEN status = 0 THEN 
@@ -9634,6 +12922,7 @@ class Srm extends Xtreme
                                     END)
                                 FROM approval_history AS ah 
                                 WHERE ah.object_id=d.id AND ah.type = 7 ORDER BY ah.id DESC LIMIT 1
+<<<<<<< HEAD
                             ) AS l2_approval_status
                             FROM srm_invoicecache AS d 
                             where  d.status=1 AND 
@@ -9641,15 +12930,46 @@ class Srm extends Xtreme
                                     " . $where_clause . " ";//
                             //and (d.sell_to_cust_no is null OR d.sell_to_cust_no = '' OR d.sell_to_cust_id IN ($subQuery))
                             //where  d.status=1 and (d.sell_to_cust_no is null OR d.sell_to_cust_no = '' OR d.sell_to_cust_no IN ($subQuery)) AND 
+=======
+                            ) AS l2_approval_status,
+                            (CASE WHEN COALESCE((SELECT gltxn.vatPosted   FROM gl_account_txn AS gltxn  
+                             WHERE gltxn.object_id = d.id AND gltxn.company_id = d.company_id AND gltxn.type = 3 AND gltxn.vatPosted = 1 LIMIT 1),0)>0 THEN 'Yes'
+                             ELSE 'No' END) AS vatPosted*/
+
+
+        $Sql = "select * FROM (SELECT d.*,
+                                (SELECT COALESCE(GROUP_CONCAT(orders.sale_order_code),'') 
+                                 FROM orders, link_so_po AS link 
+                                 WHERE orders.id=link.saleOrderID AND 
+                                     link.purchaseOrderID = d.id) AS LinkToSo,
+                                (SELECT COUNT(*) FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '%order' AND da.record_type = 'Purchase') as documentPOCount, 
+                                0 as documentPICount, 
+                                0 as emailCount,
+                                'Approved' AS l1_approval_status,
+                                'Approved' AS l2_approval_status,
+                                '' AS vatPosted  
+                            FROM srm_invoicecache AS d 
+                            where  d.status=1 AND 
+                                   d.company_id=" . $this->arrUser['company_id'] . " and 
+                                   (d.sell_to_cust_no is null OR d.sell_to_cust_no = '' OR d.sell_to_cust_id IN ($subQuery)) ) as tbl where 1
+                                    " . $where_clause . " "; //
+        //
+        //where  d.status=1 and (d.sell_to_cust_no is null OR d.sell_to_cust_no = '' OR d.sell_to_cust_no IN ($subQuery)) AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //defualt Variable
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $column = 'tbl.id';
+<<<<<<< HEAD
         if ($order_clause == ""){
 
             // $order_type = "Order BY " . $column . " DESC";
@@ -9658,11 +12978,24 @@ class Srm extends Xtreme
             else $order_type = "ORDER BY tbl.order_date DESC,tbl.order_code DESC";
         }
         else
+=======
+        if ($order_clause == "") {
+
+            // $order_type = "Order BY " . $column . " DESC";
+            if ($attr['type'] == 2 || $attr['type'] == 0)
+                $order_type = "ORDER BY tbl.invoice_date DESC,tbl.invoice_code DESC";
+            else $order_type = "ORDER BY tbl.order_date DESC,tbl.order_code DESC";
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $order_type = $order_clause;
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'tbl', $order_type);
         //  echo $response['q'];  exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($response['q']);
 
         if ($attr['type'] == 2 || $attr['type'] == 0) $moduleForPermission = "purchase_invoice";
@@ -9671,7 +13004,11 @@ class Srm extends Xtreme
 
         $RS = $this->objsetup->CSI($response['q'], $moduleForPermission, sr_ViewPermission);
 
+<<<<<<< HEAD
         $response['q'] = '';
+=======
+        // $response['q'] = '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
@@ -9679,7 +13016,12 @@ class Srm extends Xtreme
                 $result['id'] = $Row['id'];
                 $result['type'] = $Row['type'];
                 /* $result['name'] = $Row['sell_to_cust_name']; */
+<<<<<<< HEAD
                 $result['current_stage'] =$Row['current_stage'];
+=======
+                $result['current_stage'] = $Row['current_stage'];
+                $result['vatPosted'] = $Row['vatPosted'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //$result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['order_code'] = $Row['order_code'];
@@ -9694,7 +13036,11 @@ class Srm extends Xtreme
                 $result['invoice_code'] = $Row['invoice_code'];
 
                 //$result['order_code'] = $Row['order_code'];
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['sell_to_cust_no'] = $Row['sell_to_cust_no'];
                 $result['sell_to_cust_name'] = $Row['sell_to_cust_name'];
                 $result['sell_to_address'] = $Row['sell_to_address'];
@@ -9707,14 +13053,23 @@ class Srm extends Xtreme
                 $result['cust_phone'] = $Row['cust_phone'];
                 $result['cust_email'] = $Row['cust_email'];
                 $result['srm_purchase_code'] = $Row['srm_purchase_code'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount'];//number_format($Row['net_amount'], 2);
+=======
+                $result['net_amount'] = $Row['net_amount']; //number_format($Row['net_amount'], 2);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['crcode'] = $Row['crcode'];
                 $result['sale_person'] = $Row['sale_person'];
                 // $result['order_value_in_LCY'] = $Row['net_amount_converted'];
                 $result['grand_total'] = $Row['grand_total']; //Amount (incl VAT) // number_format($Row['grand_total'], 2);
+<<<<<<< HEAD
                 
                 
+=======
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 /* if($Row['type'] == 2 || $Row['type'] == 3){
 
                     // $result['Link to So'] = $this->selectLink_SO_PO2($Row['id'], 1);
@@ -9753,7 +13108,11 @@ class Srm extends Xtreme
                 $result['emailCount'] = $Row['emailCount'];
                 $result['l1_approval_status'] = $Row['l1_approval_status'];
                 $result['l2_approval_status'] = $Row['l2_approval_status'];
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 /* if ($attr['type'] == 3){
                     $Sql2 = "SELECT SUM(total_price) AS netAmount
                              FROM srm_invoice_detail 
@@ -9770,14 +13129,22 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'][] = array();
         }
         $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($attr['tableMetaData']);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -9785,11 +13152,19 @@ class Srm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $net_amount = (isset($attr['netTotal']) && $attr['netTotal']!='')?$attr['netTotal']:0; 
         $tax_amount = (isset($attr['calcVat']) && $attr['calcVat']!='')?$attr['calcVat']:0; 
         $grand_total = (isset($attr['grandTotal']) && $attr['grandTotal']!='')?$attr['grandTotal']:0; 
         $order_id = (isset($attr['order_id']) && $attr['order_id']!='')?$attr['order_id']:0;
         $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID']!='')?$attr['invoiceCurrencyID']:0;
+=======
+        $net_amount = (isset($attr['netTotal']) && $attr['netTotal'] != '') ? $attr['netTotal'] : 0;
+        $tax_amount = (isset($attr['calcVat']) && $attr['calcVat'] != '') ? $attr['calcVat'] : 0;
+        $grand_total = (isset($attr['grandTotal']) && $attr['grandTotal'] != '') ? $attr['grandTotal'] : 0;
+        $order_id = (isset($attr['order_id']) && $attr['order_id'] != '') ? $attr['order_id'] : 0;
+        $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID'] != '') ? $attr['invoiceCurrencyID'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $conversion_rate = 1;
 
@@ -9798,11 +13173,19 @@ class Srm extends Xtreme
         else
             $current_date = current_date;
 
+<<<<<<< HEAD
         if($invoiceCurrencyID != $attr['defaultCurrencyID']){            
 
             $Sql = "SELECT d.conversion_rate  
                     FROM currency_histroy d 
                     WHERE d.currency_id = '".$invoiceCurrencyID."' AND  
+=======
+        if ($invoiceCurrencyID != $attr['defaultCurrencyID']) {
+
+            $Sql = "SELECT d.conversion_rate  
+                    FROM currency_histroy d 
+                    WHERE d.currency_id = '" . $invoiceCurrencyID . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'
                     order by d.start_date DESC, d.action_date desc LIMIT 1  ";
@@ -9810,13 +13193,18 @@ class Srm extends Xtreme
             // $RS = $this->objsetup->CSI($Sql);
             $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
              if ($RS->RecordCount() > 0) {
+=======
+            if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Row = $RS->FetchRow();
                 $conversion_rate = $Row['conversion_rate'];
 
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
                 $response['ack'] = 0;
@@ -9837,6 +13225,25 @@ class Srm extends Xtreme
                                 net_amount='" . $net_amount. "', 
                                 grand_total='" . $grand_total . "', 
                                 tax_amount='" . $tax_amount . "',	
+=======
+            } else {
+                $response['ack'] = 0;
+                $response['error'] = 'Please set the currency conversion rate!';
+                return $response;
+            }
+        } else {
+            $net_amount_converted = $net_amount;
+            $tax_amount_converted = $tax_amount;
+            $grand_total_converted = $grand_total;
+        }
+
+        if ($order_id > 0) {
+            $Sql = "UPDATE srm_invoice
+                            SET 
+                                net_amount='" . $net_amount . "', 
+                                grand_total='" . $grand_total . "', 
+                                tax_amount='" . $tax_amount . "',                                
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 net_amount_converted='" . $net_amount_converted . "', 
                                 grand_total_converted='" . $grand_total_converted . "', 
                                 tax_amount_converted='" . $tax_amount_converted . "'
@@ -9844,20 +13251,56 @@ class Srm extends Xtreme
                     limit 1";
 
             // echo $Sql;exit;
+<<<<<<< HEAD
             
             $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
+=======
+
+            $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
+
+
+            $Sql2 = "UPDATE srm_invoice SET 
+                                    remaining_amount='" . $grand_total . "',
+                                    setteled_amount='0'
+                        WHERE id = '".$order_id."' AND 
+                            company_id='" . $this->arrUser['company_id'] . "' AND 
+                            (setteled_amount = 0 OR setteled_amount IS NULL)  
+                        limit 1";
+
+            // echo $Sql2;exit;
+            $this->objsetup->CSI($Sql2);
+
+
+            $Sqldel = " DELETE FROM payment_allocation 
+                        WHERE invoice_id = '" . $order_id . "' AND 
+                            company_id =	'" . $this->arrUser['company_id'] . "' AND 
+                            invoice_type =5 AND 
+                            document_type = 3 AND 
+                            module_type =2 AND 
+                            transaction_type = 1 ";
+            // echo $Sqldel ;exit;
+            $RS = $this->objsetup->CSI($Sqldel);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response['ack'] = 1;
         $response['error'] = NULL;
 
         return $response;
+<<<<<<< HEAD
 
     }
 
     function update_srminvoice($attr)
     { 
        // echo '<pre>';print_r($attr);exit;
+=======
+    }
+
+    function update_srminvoice($attr)
+    {
+        // echo '<pre>';print_r($attr);exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace = array();
         $srLogTrace['ErrorCode'] = '';
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
@@ -9865,7 +13308,11 @@ class Srm extends Xtreme
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
 
+<<<<<<< HEAD
         $this->objsetup->SRTraceLogsPHP($srLogTrace);    
+=======
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo '<pre>';  print_r($attr['SaleOrderArr']);exit;
         $SaleOrderArr = $attr['SaleOrderArr'];
         //echo '<pre>';  print_r($SaleOrderArr);exit;
@@ -9877,11 +13324,18 @@ class Srm extends Xtreme
         if ($update_id > 0)
             $update_check = "  AND tst.id <> '" . $update_id . "'";
 
+<<<<<<< HEAD
         $data_pass = " tst.status=1 and tst.type IN (2,3)  AND tst.order_code='" . $attr['order_code'] . "'  ".$update_check." ";
         $total = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) 
         {
+=======
+        $data_pass = " tst.status=1 and tst.type IN (2,3)  AND tst.order_code='" . $attr['order_code'] . "'  " . $update_check . " ";
+        $total = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
+
+        if ($total > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record Already Exists.';
 
@@ -9896,6 +13350,7 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
         }
+<<<<<<< HEAD
         
         $unique_id = (isset($attr['unique_id']) && $attr['unique_id']!='')?$attr['unique_id']:0;
         $invoice_code = (isset($attr['invoice_code']) && $attr['invoice_code']!='')?$attr['invoice_code']:0;
@@ -9933,6 +13388,45 @@ class Srm extends Xtreme
         
         if(!($currency_id>0)){
             $currency_id = (isset($attr['currency_ids']) && $attr['currency_ids']!='')?$attr['currency_ids']:0;               
+=======
+
+        $unique_id = (isset($attr['unique_id']) && $attr['unique_id'] != '') ? $attr['unique_id'] : 0;
+        $invoice_code = (isset($attr['invoice_code']) && $attr['invoice_code'] != '') ? $attr['invoice_code'] : 0;
+        $invoice_no = (isset($attr['invoice_no']) && $attr['invoice_no'] != '') ? $attr['invoice_no'] : 0;
+        $order_no = (isset($attr['order_no']) && $attr['order_no'] != '') ? $attr['order_no'] : 0;
+        $sell_to_contact_id = (isset($attr['sell_to_contact_id']) && $attr['sell_to_contact_id'] != '') ? $attr['sell_to_contact_id'] : 0;
+        $delivery_time = (isset($attr['delivery_time']) && $attr['delivery_time'] != '') ? $attr['delivery_time'] : 0;
+        $campaign_id = (isset($attr['campaign_id']) && $attr['campaign_id'] != '') ? $attr['campaign_id'] : 0;
+        $sale_person_id = (isset($attr['sale_person_id']) && $attr['sale_person_id'] != '') ? $attr['sale_person_id'] : 0;
+        $converted_currency_id = (isset($attr['converted_currency_id']) && $attr['converted_currency_id'] != '') ? $attr['converted_currency_id'] : 0;
+        $converted_unit_price = (isset($attr['converted_unit_price']) && $attr['converted_unit_price'] != '') ? Round($attr['converted_unit_price'], 2) : 0;
+        $supplierID = (isset($attr['sell_to_cust_id']) && $attr['sell_to_cust_id'] != '') ? $attr['sell_to_cust_id'] : 0;
+
+        $bill_to_cust_id = (isset($attr['bill_to_cust_id']) && $attr['bill_to_cust_id'] != '') ? $attr['bill_to_cust_id'] : 0;
+        $bill_to_contact_id = (isset($attr['bill_to_contact_id']) && $attr['bill_to_contact_id'] != '') ? $attr['bill_to_contact_id'] : 0;
+        $payment_discount = (isset($attr['payment_discount']) && $attr['payment_discount'] != '') ? Round($attr['payment_discount'], 2) : 0;
+        $price_including_vat = (isset($attr['price_including_vat']) && $attr['price_including_vat'] != '') ? Round($attr['price_including_vat'], 2) : 0;
+        $alt_depo_id = (isset($attr['alt_depo_id']) && $attr['alt_depo_id'] != '') ? $attr['alt_depo_id'] : 0;
+        $shipment_method_id = (isset($attr['shipment_method_id']) && $attr['shipment_method_id'] != '') ? $attr['shipment_method_id'] : 0;
+        $shipment_method = (isset($attr['shipment_method']) && $attr['shipment_method'] != '') ? $attr['shipment_method'] : 0;
+        $shipping_agent_id = (isset($attr['shipping_agent_id']) && $attr['shipping_agent_id'] != '') ? $attr['shipping_agent_id'] : 0;
+        $freight_charges = (isset($attr['freight_charges']) && $attr['freight_charges'] != '') ? Round($attr['freight_charges'], 2) : 0;
+        //$sale_person_id = (isset($attr['sale_person_id']) && $attr['sale_person_id']!='')?$attr['sale_person_id']:0; 
+
+        $billToSupplierCountry = (isset($attr['billToSupplierCountrys']) && $attr['billToSupplierCountrys'] != '') ? $attr['billToSupplierCountrys'] : 0;
+        $shipToSupplierLocCountry = (isset($attr['shipToSupplierLocCountrys']) && $attr['shipToSupplierLocCountrys'] != '') ? $attr['shipToSupplierLocCountrys'] : 0;
+        //$attr[countrys]
+
+        $account_payable_id = (isset($attr['account_payable_id']) && $attr['account_payable_id'] != '') ? $attr['account_payable_id'] : 0;
+        $purchase_code_id = (isset($attr['purchase_code_id']) && $attr['purchase_code_id'] != '') ? $attr['purchase_code_id'] : 0;
+
+        $posting_group_id = (isset($attr['posting_group_id']) && $attr['posting_group_id'] != '') ? $attr['posting_group_id'] : 0;
+        // $currency_id = (isset($attr['currency_id']) && $attr['currency_id']!='')?$attr['currency_id']:0;      
+        $currency_id = (isset($attr['currency_id']->id) && $attr['currency_id']->id != '') ? $attr['currency_id']->id : 0;
+
+        if (!($currency_id > 0)) {
+            $currency_id = (isset($attr['currency_ids']) && $attr['currency_ids'] != '') ? $attr['currency_ids'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if (!empty($attr['currencyExchangeRateDate']) || $attr['currencyExchangeRateDate'] != '')
@@ -9943,7 +13437,11 @@ class Srm extends Xtreme
             $current_date = current_date;
 
 
+<<<<<<< HEAD
         if($currency_id == 0 && $supplierID>0){
+=======
+        if ($currency_id == 0 && $supplierID > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Currency is missing!';
 
@@ -9959,6 +13457,7 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $net_amount = (isset($attr['net_amount']) && $attr['net_amount']!='')? Round($attr['net_amount'],2) :0; 
         $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount']!='')? Round($attr['tax_amount'],2) :0; 
         $grand_total = (isset($attr['grand_total']) && $attr['grand_total']!='')? Round($attr['grand_total'],2) :0; 
@@ -9980,10 +13479,24 @@ class Srm extends Xtreme
              if ($RS->RecordCount() > 0) {
                 $Row = $RS->FetchRow();
                 $conversion_rate = $Row['conversion_rate'];
+=======
+        $net_amount = (isset($attr['net_amount']) && $attr['net_amount'] != '') ? Round($attr['net_amount'], 2) : 0;
+        $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount'] != '') ? Round($attr['tax_amount'], 2) : 0;
+        $grand_total = (isset($attr['grand_total']) && $attr['grand_total'] != '') ? Round($attr['grand_total'], 2) : 0;
+
+        $conversion_rate = 1;
+
+        if ($currency_id != $attr['defaultCurrencyID'] && $supplierID > 0) {
+
+            $conversion_rate = (isset($attr['currency_rate']) && $attr['currency_rate'] != '') ? $attr['currency_rate'] : 0;
+
+            if ($conversion_rate != 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
                 $response['ack'] = 0;
@@ -10002,12 +13515,51 @@ class Srm extends Xtreme
             }             
         }
         else{
+=======
+            } else {
+
+                $Sql = "SELECT d.conversion_rate  
+                        FROM currency_histroy d 
+                        WHERE d.currency_id = '" . $currency_id . "' AND  
+                            (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
+                            d.company_id =	'" . $this->arrUser['company_id'] . "'
+                        order by d.start_date DESC, d.action_date desc LIMIT 1  ";
+
+                // $RS = $this->objsetup->CSI($Sql);
+                $RS = $this->objsetup->CSI($Sql);
+
+                if ($RS->RecordCount() > 0) {
+                    $Row = $RS->FetchRow();
+                    $conversion_rate = $Row['conversion_rate'];
+
+                    $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
+                    $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
+                    $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+                } else {
+                    $response['ack'] = 0;
+                    $response['error'] = 'Please set the currency conversion rate!';
+
+                    $srLogTrace = array();
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['ErrorMessage'] = 'Please set the currency conversion rate!';
+
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                }
+            }
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $net_amount_converted = $net_amount;
             $tax_amount_converted = $tax_amount;
             $grand_total_converted = $grand_total;
         }
 
         // $country = (isset($attr['country']->id) && $attr['country']->id!='')?$attr['country']->id:0;
+<<<<<<< HEAD
         $country = (isset($attr['countrys']) && $attr['countrys']!='')?$attr['countrys']:0; 
         $payment_method_id = (isset($attr['payment_method_id']) && $attr['payment_method_id']!='')?$attr['payment_method_id']:0;  
         $sell_to_anonymous_supplier = (isset($attr['sell_to_anonymous_supplier']) && $attr['sell_to_anonymous_supplier']!='')?$attr['sell_to_anonymous_supplier']:0; 
@@ -10038,19 +13590,60 @@ class Srm extends Xtreme
         if($converted_currency_id == 0) $converted_currency_id = $defaultCurrencyID;
 
         if($supplierID == 0) {
+=======
+        $country = (isset($attr['countrys']) && $attr['countrys'] != '') ? $attr['countrys'] : 0;
+        $payment_method_id = (isset($attr['payment_method_id']) && $attr['payment_method_id'] != '') ? $attr['payment_method_id'] : 0;
+        $sell_to_anonymous_supplier = (isset($attr['sell_to_anonymous_supplier']) && $attr['sell_to_anonymous_supplier'] != '') ? $attr['sell_to_anonymous_supplier'] : 0;
+        $bill_to_anonymous_supplier = (isset($attr['bill_to_anonymous_supplier']) && $attr['bill_to_anonymous_supplier'] != '') ? $attr['bill_to_anonymous_supplier'] : 0;
+        $bank_account_id = (isset($attr['bank_account_id']) && $attr['bank_account_id'] != '') ? $attr['bank_account_id'] : 0;
+        $shippingPONotReq = (isset($attr['shippingPONotReq']) && $attr['shippingPONotReq'] != '') ? $attr['shippingPONotReq'] : 0;
+        $selectedShippingPOid = (isset($attr['selectedShippingPOid']) && $attr['selectedShippingPOid'] != '') ? $attr['selectedShippingPOid'] : 0;
+
+        $postponed_vat = (isset($attr['postponed_vat']) && $attr['postponed_vat'] != '') ? $attr['postponed_vat'] : 0;
+
+        // marketing promotion fields addition                      
+        $linktoCustID = (isset($attr['linktoCustID']) && $attr['linktoCustID'] != '') ? $attr['linktoCustID'] : 0;
+        $marketingProm = (isset($attr['marketingProm']) && $attr['marketingProm'] != '') ? $attr['marketingProm'] : 0;
+
+        $order_dateUnConv = "";
+        $invoice_dateUnConv = "";
+
+        if ($attr['order_date'] > 0) {
+            $order_dateUnConv = " order_dateUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['order_date']) . "',";
+        }
+
+        if ($attr['invoice_date'] > 0) {
+            $invoice_dateUnConv = " invoice_dateUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['invoice_date']) . "',";
+        }
+
+        $defaultCurrencyID = (isset($attr['defaultCurrencyID']) && $attr['defaultCurrencyID'] != '') ? $attr['defaultCurrencyID'] : 0;
+
+        if ($converted_currency_id == 0) $converted_currency_id = $defaultCurrencyID;
+
+        if ($supplierID == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $supplierID = 'NULL';
             $currency_id = 'NULL';
         }
 
+<<<<<<< HEAD
         if ($update_id == 0) 
         {          
+=======
+        if ($update_id == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $tab_msg = 'Inserted';
 
             $Sql = "INSERT INTO srm_invoice
                                 SET
+<<<<<<< HEAD
                                     transaction_id = SR_GetNextTransactionID(".$this->arrUser['company_id'].", 2),
                                     type='".$attr['type']."',
+=======
+                                    transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2),
+                                    type='" . $attr['type'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     unique_id='$unique_id',
                                     invoice_code='$invoice_code',
                                     invoice_no='$invoice_no',
@@ -10168,10 +13761,15 @@ class Srm extends Xtreme
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn=UNIX_TIMESTAMP (NOW()),
                                     company_id='" . $this->arrUser['company_id'] . "'
+<<<<<<< HEAD
                                     ";                                   
         } 
         else 
         {             
+=======
+                                    ";
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "UPDATE srm_invoice
                             SET 
@@ -10277,7 +13875,11 @@ class Srm extends Xtreme
                                 shipment_date='" . $this->objGeneral->convert_date($attr['shipment_date']) . "',
                                 recpt_date='" . $this->objGeneral->convert_date($attr['recpt_date']) . "', 
                                 converted_currency_id = '" . $attr['defaultCurrencyID'] . "', 
+<<<<<<< HEAD
                                 net_amount='" . $net_amount. "', 
+=======
+                                net_amount='" . $net_amount . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 grand_total='" . $grand_total . "', 
                                 tax_amount='" . $tax_amount . "',	
                                 net_amount_converted='" . $net_amount_converted . "', 
@@ -10298,6 +13900,7 @@ class Srm extends Xtreme
 
         // $RS = $this->objsetup->CSI($Sql);  
 
+<<<<<<< HEAD
         if ($update_id == 0){
             $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddPermission);
 
@@ -10318,6 +13921,24 @@ class Srm extends Xtreme
 
                 if($update_id > 0)
                 {
+=======
+        if ($update_id == 0) {
+            $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddPermission);
+        } else {
+            $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
+        }
+
+
+        // echo $this->Conn->Affected_Rows();
+
+        $is_whole_seller = 0;
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            if ($update_id == 0) {
+                $update_id = $this->Conn->Insert_ID();
+
+                if ($update_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $Sql2 = "SELECT id,(SELECT is_whole_seller 
                                          FROM financial_settings 
                                          WHERE company_id = " . $this->arrUser['company_id'] . " 
@@ -10338,6 +13959,7 @@ class Srm extends Xtreme
                                                     SET    
                                                         order_id = $update_id,
                                                         ref_stage_id = $Row2[id],
+<<<<<<< HEAD
                                                         company_id = ".$this->arrUser['company_id'].", 
                                                         user_id = ".$this->arrUser['id'].", ";
 
@@ -10348,16 +13970,31 @@ class Srm extends Xtreme
                                         }
                                         else
                                         $Sql3 .=" state = 'outstanding'";
+=======
+                                                        company_id = " . $this->arrUser['company_id'] . ", 
+                                                        user_id = " . $this->arrUser['id'] . ", ";
+
+                            if ($stage_count == 0) {
+                                $stage_count = 1;
+                                $Sql3 .= " state = 'active'";
+                            } else
+                                $Sql3 .= " state = 'outstanding'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             // echo $Sql3;exit;
                             $RS3 = $this->objsetup->CSI($Sql3);
 
                             $is_whole_seller = $Row2['is_whole_seller'];
+<<<<<<< HEAD
                         }                    
+=======
+                        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                     // just to update cache
                     $Sql1 = "update srm_invoice set changedOn=UNIX_TIMESTAMP (NOW()) WHERE id=$update_id; -- just to update cache for order stage";
                     // echo $Sql1;exit;
+<<<<<<< HEAD
                     $RS1 = $this->objsetup->CSI($Sql1); 
                 }
             }
@@ -10369,6 +14006,18 @@ class Srm extends Xtreme
                 $response2 = $this->removeLink_SO_PO($update_id,1);
             }
                 
+=======
+                    $RS1 = $this->objsetup->CSI($Sql1);
+                }
+            }
+            // exit
+            if (sizeof($SaleOrderArr) > 0) {
+                $response2 = $this->addLink_SO_PO($SaleOrderArr, $update_id, 1);
+            } else {
+                $response2 = $this->removeLink_SO_PO($update_id, 1);
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['is_whole_seller'] = $is_whole_seller;
             $response['id'] = $update_id;
@@ -10383,6 +14032,7 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         else {
                         
@@ -10390,12 +14040,178 @@ class Srm extends Xtreme
                 $response2 = $this->addLink_SO_PO($SaleOrderArr, $update_id,1);
             }else{
                 $response2 = $this->removeLink_SO_PO($update_id,1);
+=======
+        } else {
+
+            if (sizeof($SaleOrderArr) > 0) {
+                $response2 = $this->addLink_SO_PO($SaleOrderArr, $update_id, 1);
+            } else {
+                $response2 = $this->removeLink_SO_PO($update_id, 1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             // just to update cache table
             $Sql1 = "UPDATE srm_invoice SET changedOn=UNIX_TIMESTAMP (NOW()) WHERE id=$update_id";
             // echo $Sql1;exit;
+<<<<<<< HEAD
             $RS1 = $this->objsetup->CSI($Sql1); 
+=======
+            $RS1 = $this->objsetup->CSI($Sql1);
+
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated';
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = 'Record is Not updated!';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        }
+
+        return $response;
+    }
+
+    function update_posted_invoice($attr)
+    {
+        $srLogTrace = array();
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        $SaleOrderArr = $attr['SaleOrderArr'];
+
+        $this->objGeneral->mysql_clean($attr);
+
+        $update_id = $attr['id'];
+        $update_check = "";
+
+        if ($update_id > 0)
+            $update_check = "  AND tst.id <> '" . $update_id . "'";
+
+
+        $order_dateUnConv = "";
+        $invoice_dateUnConv = "";
+
+        /* if($attr['order_date'] > 0){
+            $order_dateUnConv = " order_dateUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['order_date']) . "',";            
+        }  
+
+        if($attr['invoice_date'] > 0){
+            $invoice_dateUnConv = " invoice_dateUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['invoice_date']) . "',";            
+        }   
+        
+
+        invoiceRec.shipment_method = (rec.shipment_method_code != undefined && rec.shipment_method_code != '') ? rec.shipment_method_code.name : 0;     
+        */
+
+        $purchase_code_id = (isset($attr['purchase_code_id']) && $attr['purchase_code_id'] != '') ? $attr['purchase_code_id'] : 0;
+        $sale_person_id = (isset($attr['sale_person_id']) && $attr['sale_person_id'] != '') ? $attr['sale_person_id'] : 0;
+        $bank_account_id = (isset($attr['bank_account_id']) && $attr['bank_account_id'] != '') ? $attr['bank_account_id'] : 0;
+        $payment_method_id = (isset($attr['payment_method_id']) && $attr['payment_method_id'] != '') ? $attr['payment_method_id'] : 0;
+        $linktoCustID = (isset($attr['linktoCustID']) && $attr['linktoCustID'] != '') ? $attr['linktoCustID'] : 0;
+        $marketingProm = (isset($attr['marketingProm']) && $attr['marketingProm'] != '') ? $attr['marketingProm'] : 0;
+        $shipment_method_id = (isset($attr['shipment_method_id']) && $attr['shipment_method_id'] != '') ? $attr['shipment_method_id'] : 0;
+        $shipment_method = (isset($attr['shipment_method']) && $attr['shipment_method'] != '') ? $attr['shipment_method'] : 0;
+        $shipping_agent_id = (isset($attr['shipping_agent_id']) && $attr['shipping_agent_id'] != '') ? $attr['shipping_agent_id'] : 0;
+        $shippingPONotReq = (isset($attr['shippingPONotReq']) && $attr['shippingPONotReq'] != '') ? $attr['shippingPONotReq'] : 0;
+        $selectedShippingPOid = (isset($attr['selectedShippingPOid']) && $attr['selectedShippingPOid'] != '') ? $attr['selectedShippingPOid'] : 0;
+
+        if ($update_id > 0) {
+
+            $Sql = "UPDATE srm_invoice
+                            SET 
+                                srm_purchase_code='$attr[srm_purchase_code]',
+                                purchase_code_id='$purchase_code_id',
+                                prev_code='$attr[prev_code]',
+                                supp_order_no='$attr[supp_order_no]',
+                                cust_order_no='$attr[cust_order_no]',
+                                comm_book_in_no='$attr[comm_book_in_no]',
+                                sale_person_id='$sale_person_id',
+                                sale_person='$attr[sale_person]',                                
+                                bank_account_id='$bank_account_id',
+                                payable_bank='$attr[payable_bank]',
+                                payment_terms_code='$attr[payment_terms_code]',
+                                payment_method_id='$payment_method_id',
+                                payment_method_code='$attr[payment_method_code]',
+                                due_date='" . $this->objGeneral->convert_date($attr['due_date']) . "',
+                                linktoCustID='$linktoCustID',
+                                linktoCustName='$attr[linktoCustName]',
+                                marketingProm='$marketingProm',                                
+                                ship_to_contact='$attr[ship_to_contact]',
+                                ship_to_phone='$attr[ship_to_phone]',
+                                ship_to_email='$attr[ship_to_email]',                                
+                                shipment_method_id='$shipment_method_id',
+                                shipping_agent='$attr[shipping_agent]',
+                                ship_to_name='$attr[ship_to_name]',
+                                shipping_agent_id='$shipping_agent_id',
+                                container_no='$attr[container_no]',
+                                warehouse_booking_ref='$attr[warehouse_booking_ref]',                                
+                                shippingPONotReq = '$shippingPONotReq',
+                                ReasonForshippingNotReq = '$attr[ReasonForshippingNotReq]',
+                                selectedShippingPO = '$attr[selectedShippingPO]',
+                                selectedShippingPOid = '$selectedShippingPOid',
+                                note='$attr[note]' ,
+                                externalnote='$attr[externalnote]',
+
+                                ChangedBy='" . $this->arrUser['id'] . "',
+                                ChangedOn=UNIX_TIMESTAMP (NOW())
+                        WHERE id = $update_id   
+                        limit 1";
+        }
+
+        // echo $Sql;exit;
+
+        // $RS = $this->objsetup->CSI($Sql);
+        $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            // just to update cache  -- just to update cache for order stage
+            $Sql1 = "update srm_invoice set changedOn=UNIX_TIMESTAMP (NOW()) WHERE id=$update_id;";
+            // echo $Sql1;exit;
+            $RS1 = $this->objsetup->CSI($Sql1);
+
+
+            // exit
+            if (sizeof($SaleOrderArr) > 0) {
+                $response2 = $this->addLink_SO_PO($SaleOrderArr, $update_id, 1);
+            } else {
+                $response2 = $this->removeLink_SO_PO($update_id, 1);
+            }
+
+            $response['ack'] = 1;
+            // $response['is_whole_seller'] = $is_whole_seller;
+            $response['id'] = $update_id;
+            // $response['info'] = $tab_msg;
+            $response['error'] = NULL;
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        } else {
+
+            if (sizeof($SaleOrderArr) > 0) {
+                $response2 = $this->addLink_SO_PO($SaleOrderArr, $update_id, 1);
+            } else {
+                $response2 = $this->removeLink_SO_PO($update_id, 1);
+            }
+
+            // just to update cache table
+            $Sql1 = "UPDATE srm_invoice SET changedOn=UNIX_TIMESTAMP (NOW()) WHERE id=$update_id";
+            // echo $Sql1;exit;
+            $RS1 = $this->objsetup->CSI($Sql1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 0;
             $response['error'] = 'Record is Not updated';
@@ -10416,6 +14232,7 @@ class Srm extends Xtreme
 
     function getSalesOrderListings($attr)
     {
+<<<<<<< HEAD
         $response = array();  
 
         $where_clause = "";      
@@ -10432,6 +14249,24 @@ class Srm extends Xtreme
                                     c.company_id=" . $this->arrUser['company_id'] . ""; */
 
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+=======
+        $response = array();
+
+        $where_clause = "";
+        $where_clause = " AND d.type in (1,2) ";
+
+        /* $subQueryForBuckets = "SELECT  c.id
+                                FROM sr_crm_listing c
+                                WHERE c.type IN (2,3) AND 
+                                    c.company_id=" . $this->arrUser['company_id'] . ""; */
+
+        $subQueryForBuckets = "SELECT  c.id
+                                FROM crm c
+                                WHERE c.type IN (2,3) AND 
+                                    c.company_id=" . $this->arrUser['company_id'] . "";
+
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT  d.id,d.type,
                         d.sale_invioce_code,
@@ -10457,7 +14292,11 @@ class Srm extends Xtreme
                        d.sale_order_code <> ''  AND 
                        d.sell_to_cust_no IS NOT NULL
                        " . $where_clause . "    
+<<<<<<< HEAD
                 Order by d.id DESC";
+=======
+                Order by d.sale_order_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*   AND 
                        (d.sell_to_cust_id = 0 OR 
@@ -10480,7 +14319,11 @@ class Srm extends Xtreme
                 /* if ($attr['type'] == 1)
                     $result['code'] = $Row['sale_order_code']; */
 
+<<<<<<< HEAD
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);                
+=======
+                $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['order_date'] = $this->objGeneral->convert_unix_into_date($Row['offer_date']);
                 $result['rq_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -10491,7 +14334,11 @@ class Srm extends Xtreme
                 $result['cust_order_no'] = $Row['cust_order_no'];
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 // $result['order_code'] = $Row['order_code'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -10511,7 +14358,11 @@ class Srm extends Xtreme
     {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $defaultFilter = false;
+<<<<<<< HEAD
         $cond = $attr['cond'];       
+=======
+        $cond = $attr['cond'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!empty($attr['searchKeyword'])) {
             $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
@@ -10523,6 +14374,7 @@ class Srm extends Xtreme
             $where_clause = $this->objGeneral->flexiDefaultFilterRetriever("SalesOrderListingsForPO", $this->arrUser);
         }
 
+<<<<<<< HEAD
         $response = array(); 
 
         $where_clause2 = "";      
@@ -10532,11 +14384,26 @@ class Srm extends Xtreme
         // if ($this->arrUser['user_type'] != 1 && $this->arrUser['user_type'] != 2){
 
             $subQueryForBuckets = "SELECT  c.id
+=======
+        $response = array();
+
+        $where_clause2 = "";
+        $where_clause2 = " AND d.type in (1,2) ";
+        $subQueryForBuckets = "";
+
+        // if ($this->arrUser['user_type'] != 1 && $this->arrUser['user_type'] != 2){
+
+        $subQueryForBuckets = "SELECT  c.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     FROM crm c
                                     WHERE c.type IN (2,3) AND 
                                         c.company_id=" . $this->arrUser['company_id'] . "";
 
+<<<<<<< HEAD
             //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // }
 
         $Sql = "SELECT * FROM (SELECT   d.id,d.type,
@@ -10561,6 +14428,7 @@ class Srm extends Xtreme
                                     d.company_id=" . $this->arrUser['company_id'] . " AND 
                                     d.sale_order_code IS NOT NULL AND 
                                     d.sale_order_code <> ''  AND 
+<<<<<<< HEAD
                                     d.sell_to_cust_no IS NOT NULL
                                     " . $where_clause2 . "    
                                 Order by d.id DESC) AS tbl  where 1 " . $where_clause . " ";
@@ -10574,6 +14442,21 @@ class Srm extends Xtreme
         //defualt Variable
         $total_limit = pagination_limit;
         
+=======
+                                    d.sell_to_cust_no IS NOT NULL  AND 
+                                    (d.sell_to_cust_id = 0 OR 
+                                        d.sell_to_cust_id IS NULL OR 
+                                        d.sell_to_cust_id IN ($subQueryForBuckets)) 
+                                    " . $where_clause2 . "    
+                                Order by d.sale_order_code DESC) AS tbl  where 1 " . $where_clause . " ";
+        //echo $Sql;exit;
+
+        /*   */
+
+        //defualt Variable
+        $total_limit = pagination_limit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -10596,10 +14479,16 @@ class Srm extends Xtreme
                 $column = 'tbl.selling_group'; */
 
             $order_type = "Order BY " . $column . " DESC";
+<<<<<<< HEAD
         }
         else{
             $column = 'tbl.sale_invioce_code';
         }        
+=======
+        } else {
+            $column = 'tbl.sale_invioce_code';
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($order_clause == "")
             $order_type = "Order BY " . $column . " ASC";
@@ -10609,7 +14498,11 @@ class Srm extends Xtreme
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'tbl', $order_type);
         // echo $response['q'];exit;
         $RS = $this->objsetup->CSI($response['q'], 'purchase_order', sr_ViewPermission);
+<<<<<<< HEAD
         $response['q'] = '';        
+=======
+        $response['q'] = '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
@@ -10618,7 +14511,11 @@ class Srm extends Xtreme
                     if (is_numeric($key))
                         unset($Row[$key]);
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['type'] = $Row['type'];
@@ -10634,7 +14531,11 @@ class Srm extends Xtreme
                 $result['sale_order_code'] = $Row['sale_order_code'];
                 $result['cust_order_no'] = $Row['cust_order_no'];
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -10656,11 +14557,19 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function getselLink_SO_PO($id,$type)
     {
         $response = array();  
 
         $where_clause = "";      
+=======
+    function getselLink_SO_PO($id, $type)
+    {
+        $response = array();
+
+        $where_clause = "";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $where_clause = " AND d.type in (1,2) ";
 
         $subQueryForBuckets = "SELECT  c.id
@@ -10668,7 +14577,11 @@ class Srm extends Xtreme
                                 WHERE c.type IN (2,3) AND 
                                     c.company_id=" . $this->arrUser['company_id'] . "";
 
+<<<<<<< HEAD
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets, 48);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // type 1 is for Purchase Order
         $sqld = "SELECT d.id,d.type,
@@ -10690,9 +14603,18 @@ class Srm extends Xtreme
                         d.sell_to_cust_id AS ids 
                  FROM link_so_po sp
                  LEFT JOIN orders AS d ON d.id=sp.saleOrderID    
+<<<<<<< HEAD
                  WHERE  sp.purchaseOrderID='".$id."'  AND 
                         sp.company_id='" . $this->arrUser['company_id'] . "'";
         
+=======
+                 WHERE  sp.purchaseOrderID='" . $id . "'  AND 
+                        sp.company_id='" . $this->arrUser['company_id'] . "'AND 
+                        (d.sell_to_cust_id = 0 OR 
+                            d.sell_to_cust_id IS NULL OR 
+                            d.sell_to_cust_id IN ($subQueryForBuckets)) ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $sqld;exit;
         $RS = $this->objsetup->CSI($sqld);
 
@@ -10711,7 +14633,11 @@ class Srm extends Xtreme
                 $result['type'] = $Row['type'];
                 $result['sale_invioce_code'] = $Row['sale_invioce_code'];
 
+<<<<<<< HEAD
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);                
+=======
+                $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['offer_date'] = $this->objGeneral->convert_unix_into_date($Row['offer_date']);
                 $result['requested_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -10721,7 +14647,11 @@ class Srm extends Xtreme
                 $result['sale_order_code'] = $Row['sale_order_code'];
                 $result['cust_order_no'] = $Row['cust_order_no'];
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -10735,21 +14665,34 @@ class Srm extends Xtreme
             $response = array();
 
         return $response;
+<<<<<<< HEAD
         
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function getSalesOrderListingsbyPurchaseID($attr)
     {
+<<<<<<< HEAD
         $response = array(); 
+=======
+        $response = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT  orders.*,crm.id AS ids
                 FROM link_so_po d 
                 LEFT JOIN orders ON orders.id=d.saleOrderID   
                 LEFT JOIN crm ON crm.id=orders.sell_to_cust_id      
                 WHERE  d.status=1   AND 
+<<<<<<< HEAD
 			           d.purchaseOrderID = ".$attr['id']." AND
                        d.company_id=" . $this->arrUser['company_id'] . "   
                 ORDER BY d.id DESC";
+=======
+			           d.purchaseOrderID = " . $attr['id'] . " AND
+                       d.company_id=" . $this->arrUser['company_id'] . "   
+                ORDER BY d.sale_order_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
         // $RS = $this->objsetup->CSI($Sql);
@@ -10762,7 +14705,11 @@ class Srm extends Xtreme
                 $result['type'] = $Row['type'];
                 $result['sale_invioce_code'] = $Row['sale_invioce_code'];
 
+<<<<<<< HEAD
                 $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);                
+=======
+                $result['invoice_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['offer_date'] = $this->objGeneral->convert_unix_into_date($Row['offer_date']);
                 $result['requested_delivery_date'] = $this->objGeneral->convert_unix_into_date($Row['requested_delivery_date']);
 
@@ -10772,7 +14719,11 @@ class Srm extends Xtreme
                 $result['cust_order_no'] = $Row['cust_order_no'];
                 $result['sell_to_contact_no'] = $Row['sell_to_contact_no'];
                 $result['order_code'] = $Row['order_code'];
+<<<<<<< HEAD
                 $result['net_amount'] = $Row['net_amount']; 
+=======
+                $result['net_amount'] = $Row['net_amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_rate'] = $Row['currency_rate'];
                 $result['net_amount_converted'] = $Row['net_amount_converted'];
@@ -10788,7 +14739,11 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function addLink_SO_PO($SaleOrderArr,$update_id,$type)
+=======
+    function addLink_SO_PO($SaleOrderArr, $update_id, $type)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     {
         $srLogTrace = array();
 
@@ -10800,14 +14755,22 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
         // type 1 is for Purchase Order
         if ($type == 1) {
             $sqld = "DELETE FROM link_so_po
+<<<<<<< HEAD
                      where  purchaseOrderID='".$update_id."'  and 
+=======
+                     where  purchaseOrderID='" . $update_id . "'  and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             company_id='" . $this->arrUser['company_id'] . "'";
 
             $this->objsetup->CSI($sqld);
@@ -10818,8 +14781,13 @@ class Srm extends Xtreme
                     if ($order->id > 0) {
                         $Sqle = "INSERT INTO  link_so_po 
                                                 SET
+<<<<<<< HEAD
                                                     saleOrderID='".$order->id."',
                                                     purchaseOrderID='".$update_id."',
+=======
+                                                    saleOrderID='" . $order->id . "',
+                                                    purchaseOrderID='" . $update_id . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     status=1,
                                                     company_id='" . $this->arrUser['company_id'] . "',
                                                     user_id='" . $this->arrUser['id'] . "',
@@ -10830,6 +14798,7 @@ class Srm extends Xtreme
 
                         // echo $Sqle;
                         $RS = $this->objsetup->CSI($Sqle);
+<<<<<<< HEAD
                     } 
                 }
                 // exit;
@@ -10840,6 +14809,17 @@ class Srm extends Xtreme
             $sqld = "DELETE 
                      FROM link_so_po
                      where  saleOrderID='".$update_id."'  and 
+=======
+                    }
+                }
+                // exit;
+            }
+        } else if ($type == 2) // type 2 is for Sale Order
+        {
+            $sqld = "DELETE 
+                     FROM link_so_po
+                     where  saleOrderID='" . $update_id . "'  and 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             company_id='" . $this->arrUser['company_id'] . "' ";
 
             $this->objsetup->CSI($sqld);
@@ -10849,8 +14829,13 @@ class Srm extends Xtreme
                     if ($order->id > 0) {
                         $Sqle = "INSERT INTO  link_so_po 
                                                 SET
+<<<<<<< HEAD
                                                     saleOrderID='".$update_id."',
                                                     purchaseOrderID='".$order->id."',
+=======
+                                                    saleOrderID='" . $update_id . "',
+                                                    purchaseOrderID='" . $order->id . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     status=1,
                                                     company_id='" . $this->arrUser['company_id'] . "',
                                                     user_id='" . $this->arrUser['id'] . "',
@@ -10859,12 +14844,20 @@ class Srm extends Xtreme
                                                     ChangedBy='" . $this->arrUser['id'] . "',
                                                     ChangedOn=UNIX_TIMESTAMP (NOW())";
                         // echo $Sqle;exit;
+<<<<<<< HEAD
                         $RS = $this->objsetup->CSI($Sqle); 
+=======
+                        $RS = $this->objsetup->CSI($Sqle);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
 
@@ -10879,8 +14872,13 @@ class Srm extends Xtreme
         return true;
     }
 
+<<<<<<< HEAD
     function removeLink_SO_PO($update_id,$type)
     {        
+=======
+    function removeLink_SO_PO($update_id, $type)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->autoCommit = false;
 
         // type 1 is for Purchase Order
@@ -10890,8 +14888,12 @@ class Srm extends Xtreme
                             company_id='" . $this->arrUser['company_id'] . "'";
 
             $this->objsetup->CSI($sqld);
+<<<<<<< HEAD
         } 
         else if ($type == 2) // type 2 is for Sale Order
+=======
+        } else if ($type == 2) // type 2 is for Sale Order
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $sqld = "DELETE 
                      FROM link_so_po
@@ -10900,7 +14902,11 @@ class Srm extends Xtreme
 
             $this->objsetup->CSI($sqld);
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->commitTrans();
         $this->Conn->autoCommit = true;
         return true;
@@ -10908,7 +14914,11 @@ class Srm extends Xtreme
 
     function get_invoice_number($attr)
     {
+<<<<<<< HEAD
         $sql_total = "SELECT  count(id) as total FROM srm_invoice where  supp_order_no=".$attr['id']." ";
+=======
+        $sql_total = "SELECT  count(id) as total FROM srm_invoice where  supp_order_no=" . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rs_count = $this->objsetup->CSI($sql_total);
         $total = $rs_count->fields['total'];
 
@@ -10940,7 +14950,11 @@ class Srm extends Xtreme
             $code_name = 'PI';
         else
             $code_name = 'PO';
+<<<<<<< HEAD
         return array('code' => $code_name . $this->objGeneral->module_invoice_prefix($nubmer), 'number' => $nubmer, 'prefix' => $code['prefix']);
+=======
+        return array('code' => $code_name, 'number' => $nubmer, 'prefix' => $code['prefix']); //. $this->objGeneral->module_invoice_prefix($nubmer)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_contact_code($attr)
@@ -10952,11 +14966,16 @@ class Srm extends Xtreme
 
     function convert_purchase_to_sale_order($attr)
     {
+<<<<<<< HEAD
         $InvoiceSql = "CALL SR_Convert_Purchase_To_Sales_Order(".$attr['order_id'].",".$this->arrUser['company_id'].",".$this->arrUser['id'].")";
+=======
+        $InvoiceSql = "CALL SR_Convert_Purchase_To_Sales_Order(" . $attr['order_id'] . "," . $this->arrUser['company_id'] . "," . $this->arrUser['id'] . ")";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $InvoiceSql;exit;
         // $RS = $this->objsetup->CSI($InvoiceSql);
         $RS = $this->objsetup->CSI($InvoiceSql, 'purchase_order', sr_ConvertPermission);
 
+<<<<<<< HEAD
         if($RS->fields['SaleOrderID'] > 1)
         {
             $response['ack'] = 1;
@@ -10969,6 +14988,16 @@ class Srm extends Xtreme
             $response['error'] = 'Could not convert to Sales Order';
         }
         
+=======
+        if ($RS->fields['SaleOrderID'] > 1) {
+            $response['ack'] = 1;
+            $response['SaleOrderID'] = $RS->fields['SaleOrderID'];
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = 'Could not convert to Sales Order';
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -10976,7 +15005,11 @@ class Srm extends Xtreme
     {
         // print_r($attr['defaultCurrencyID']);
         // echo $attr['orderDate']; exit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace = array();
 
         $srLogTrace['ErrorCode'] = '';
@@ -10984,7 +15017,11 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'invoice_id:'.$attr['invoice_id'];
+=======
+        $srLogTrace['Parameter2'] = 'invoice_id:' . $attr['invoice_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
@@ -10997,6 +15034,7 @@ class Srm extends Xtreme
         $NoStockAllocReqArray = $attr['NoStockAllocReqArray'];
         $recReceivedMode = $attr['recReceivedMode']; // 1 means Goods are going to be received first but not invoiced
         $supplierID = $attr['supplierID'];
+<<<<<<< HEAD
         $directInvoice = (isset($attr['directInvoice']) && $attr['directInvoice']!='')?$attr['directInvoice']:0;
         $recGoodsReceived = (isset($attr['recGoodsReceived']) && $attr['recGoodsReceived']!='')?$attr['recGoodsReceived']:0;
         $purchaseInvoice_id = (isset($attr['invoice_id']) && $attr['invoice_id']!='')?$attr['invoice_id']:0;
@@ -11005,20 +15043,38 @@ class Srm extends Xtreme
         
         $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID']!='')?$attr['invoiceCurrencyID']:0;
         $defaultCurrencyID = $attr['defaultCurrencyID'];   
+=======
+        $directInvoice = (isset($attr['directInvoice']) && $attr['directInvoice'] != '') ? $attr['directInvoice'] : 0;
+        $recGoodsReceived = (isset($attr['recGoodsReceived']) && $attr['recGoodsReceived'] != '') ? $attr['recGoodsReceived'] : 0;
+        $purchaseInvoice_id = (isset($attr['invoice_id']) && $attr['invoice_id'] != '') ? $attr['invoice_id'] : 0;
+
+        $suppInvNo = (isset($attr['suppInvNo']) && $attr['suppInvNo'] != '') ? trim(addslashes(stripslashes($attr['suppInvNo']))) : '0';
+
+        $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID'] != '') ? $attr['invoiceCurrencyID'] : 0;
+        $defaultCurrencyID = $attr['defaultCurrencyID'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* 
         (SELECT s.purchaseStatus 
                                                                                        FROM srm_invoice AS s 
                                                                                        WHERE s.id = si.selectedShippingPOid AND
                                                                                              s.company_id = si.company_id )
+<<<<<<< HEAD
                                                                                               */ 
+=======
+                                                                                              */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $checkAlreadyReceived = "SELECT si.purchaseStatus,
                                         (CASE WHEN (si.selectedShippingPOid > 0) THEN 3
                                               ELSE 3
                                               END) AS postedLinkedShippingPO
                                  FROM srm_invoice AS si
+<<<<<<< HEAD
                                  WHERE si.id= " . $attr['invoice_id']. " AND 
+=======
+                                 WHERE si.id= " . $attr['invoice_id'] . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                        si.company_id = '" . $this->arrUser['company_id'] . "'
                                  LIMIT 1";
         // echo $checkAlreadyReceived; exit;        
@@ -11026,9 +15082,14 @@ class Srm extends Xtreme
 
         $purchaseStatus = $RsAlreadyReceived->fields['purchaseStatus'];
         $postedLinkedShippingPO = $RsAlreadyReceived->fields['postedLinkedShippingPO'];
+<<<<<<< HEAD
         
         if($purchaseStatus == 2 && $directInvoice == 0)
         {
+=======
+
+        if ($purchaseStatus == 2 && $directInvoice == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = ' Already Received';
 
@@ -11043,9 +15104,13 @@ class Srm extends Xtreme
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
+<<<<<<< HEAD
         }
         elseif($purchaseStatus == 3)
         {
+=======
+        } elseif ($purchaseStatus == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 3;
             $response['error'] = ' Already Posted';
 
@@ -11062,8 +15127,12 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if($postedLinkedShippingPO != 3)
         {
+=======
+        if ($postedLinkedShippingPO != 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = 'Linked Shipping PO is Not Posted Yet!';
 
@@ -11080,21 +15149,36 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if($purchaseStatus == 2){
+=======
+        if ($purchaseStatus == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $recReceivedMode = 0;
             $recGoodsReceived = 1;
         }
 
+<<<<<<< HEAD
         if($suppInvNo != '0'){
+=======
+        if ($suppInvNo != '0') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $data_pass = " tst.status=1 and 
                         tst.supp_order_no='" . $suppInvNo . "' AND 
                         tst.sell_to_cust_id='" . $supplierID . "' AND 
+<<<<<<< HEAD
                         tst.id <> " . $purchaseInvoice_id . ""; 
             $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
 
             if ($totalREC > 0) 
             {
+=======
+                        tst.id <> " . $purchaseInvoice_id . "";
+            $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
+
+            if ($totalREC > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $this->objsetup->terminateWithMessage("Supplier Invoice No. Already Exists!");
                 $response['ack'] = 0;
                 $response['error'] = 'Supplier Invoice No. Already Exists!';
@@ -11108,6 +15192,7 @@ class Srm extends Xtreme
                 $srLogTrace['ErrorMessage'] = 'Supplier Invoice No. Already Exists!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
                 return $response;                 
             }
         }
@@ -11116,6 +15201,16 @@ class Srm extends Xtreme
         $conversion_rate = 1;
 
         if($invoiceCurrencyID == 0){
+=======
+                return $response;
+            }
+        }
+        $posting_grp = '';
+        $ref_posting = '';
+        $conversion_rate = 1;
+
+        if ($invoiceCurrencyID == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->objsetup->terminateWithMessage("Currency is missing!");  
             $response['ack'] = 0;
             $response['error'] = 'Currency is missing!';
@@ -11130,6 +15225,7 @@ class Srm extends Xtreme
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
             return $response; 
         }
 
@@ -11156,6 +15252,32 @@ class Srm extends Xtreme
             $currencyExchangeRateDate = current_date;
             $date_ReceiveUnConvNoStockAllocReq = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate(current_date) . "',";     
         }     
+=======
+            return $response;
+        }
+
+        $date_ReceiveUnConvNoStockAllocReq = "";
+
+        if (!empty($attr['currencyExchangeRateDate']) || $attr['currencyExchangeRateDate'] != '') {
+
+            $currencyExchangeRateDate = $this->objGeneral->convert_date($attr['currencyExchangeRateDate']);
+
+            if ($attr['currencyExchangeRateDate'] > 0) {
+                $date_ReceiveUnConvNoStockAllocReq = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['currencyExchangeRateDate']) . "',";
+            }
+        } elseif (!empty($attr['orderDate']) || $attr['orderDate'] != '') {
+
+            $currencyExchangeRateDate = $this->objGeneral->convert_date($attr['orderDate']);
+
+            if ($attr['orderDate'] > 0) {
+                $date_ReceiveUnConvNoStockAllocReq = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['orderDate']) . "',";
+            }
+        } else {
+
+            $currencyExchangeRateDate = current_date;
+            $date_ReceiveUnConvNoStockAllocReq = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate(current_date) . "',";
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!empty($attr['orderDate']) || $attr['orderDate'] != '')
             $orderDate = $this->objGeneral->convert_date($attr['orderDate']);
@@ -11167,6 +15289,7 @@ class Srm extends Xtreme
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
         $srLogTrace['Parameter1'] = 'orderDate:'.$orderDate;
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);        
@@ -11179,14 +15302,32 @@ class Srm extends Xtreme
                           (FLOOR(d.start_date/86400)*86400) <= '" . $currencyExchangeRateDate . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'	
                     order by d.start_date DESC, d.action_date desc LIMIT 1  ";       
+=======
+        $srLogTrace['Parameter1'] = 'orderDate:' . $orderDate;
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        if ($invoiceCurrencyID != $defaultCurrencyID) {
+
+            $Sqla = "SELECT d.conversion_rate  
+                    FROM currency_histroy d 
+                    WHERE d.currency_id='" . $invoiceCurrencyID . "' AND 
+                          (FLOOR(d.start_date/86400)*86400) <= '" . $currencyExchangeRateDate . "' AND
+                          d.company_id =	'" . $this->arrUser['company_id'] . "'	
+                    order by d.start_date DESC, d.action_date desc LIMIT 1  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $RSa = $this->objsetup->CSI($Sqla);
 
             if ($RSa->RecordCount() > 0) {
                 $Rowa = $RSa->FetchRow();
                 $conversion_rate = $Rowa['conversion_rate'];
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = "Please set the currency conversion rate!";
 
@@ -11199,9 +15340,15 @@ class Srm extends Xtreme
                 $srLogTrace['ErrorMessage'] = 'Please set the currency conversion rate!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
                 return $response; 
             }             
         }  
+=======
+                return $response;
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $SqlSupp = "SELECT d.posting_group_id,
                         ref_posting_group.name as ref_posting
@@ -11209,16 +15356,26 @@ class Srm extends Xtreme
                     LEFT JOIN ref_posting_group on ref_posting_group.id=d.posting_group_id
                     WHERE d.supplier_id=$supplierID
                     LIMIT 1";
+<<<<<<< HEAD
                     
         //echo 	$SqlSupp;exit;
         $RSSupp = $this->objsetup->CSI($SqlSupp);      
+=======
+
+        //echo 	$SqlSupp;exit;
+        $RSSupp = $this->objsetup->CSI($SqlSupp);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RSSupp->RecordCount() > 0) {
             $RowSupp = $RSSupp->FetchRow();
             $posting_grp = $RowSupp['posting_group_id'];
             $ref_posting = $RowSupp['ref_posting'];
+<<<<<<< HEAD
         } 
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Supplier Posting Group is not selected!';
 
@@ -11231,6 +15388,7 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Supplier Posting Group is not selected!';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             return $response; 
         }         
      
@@ -11257,13 +15415,44 @@ class Srm extends Xtreme
                 $primary_unit_qty = (isset($item->primary_unit_qty) && $item->primary_unit_qty!='')?$item->primary_unit_qty:0;          
                 $unit_measure_id = (isset($item->unit_measure_id) && $item->unit_measure_id!='')?$item->unit_measure_id:0;          
                 $unit_measure_qty = (isset($item->unit_measure_qty) && $item->unit_measure_qty!='')?$item->unit_measure_qty:1;        
+=======
+            return $response;
+        }
+
+        if ($NoStockAllocReqArray) {
+            foreach ($NoStockAllocReqArray as $item) {
+
+                $purchase_return_status = "";
+                $itemPurchase_return_status = (isset($item->purchase_return_status) && $item->purchase_return_status != '') ? $item->purchase_return_status : 0;
+
+                if ($itemPurchase_return_status > 0)
+                    $purchase_return_status .= "  purchase_return_status = 1 ";
+                else
+                    $purchase_return_status .= "  purchase_return_status = 0 ";
+
+                $purchase_order_detail_id = (isset($item->update_id) && $item->update_id != '') ? $item->update_id : 0;
+                $qty = (isset($item->qty) && $item->qty != '') ? $item->qty : 0;
+                $invoice_id = (isset($item->invoice_id) && $item->invoice_id != '') ? $item->invoice_id : 0;
+                $productid = (isset($item->productid) && $item->productid != '') ? $item->productid : 0;
+                $warehouse_id = (isset($item->warehouse_id) && $item->warehouse_id != '') ? $item->warehouse_id : 0;
+                $type = (isset($item->type) && $item->type != '') ? $item->type : 0;
+                $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 0;
+                $primary_unit_id = (isset($item->primary_unit_id) && $item->primary_unit_id != '') ? $item->primary_unit_id : 0;
+                $primary_unit_qty = (isset($item->primary_unit_qty) && $item->primary_unit_qty != '') ? $item->primary_unit_qty : 0;
+                $unit_measure_id = (isset($item->unit_measure_id) && $item->unit_measure_id != '') ? $item->unit_measure_id : 0;
+                $unit_measure_qty = (isset($item->unit_measure_qty) && $item->unit_measure_qty != '') ? $item->unit_measure_qty : 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $data_pass = "  tst.type='" . $type . "' and
                                 tst.order_id='" . $invoice_id . "'  and
                                 tst.product_id='" . $productid . "' and
                                 tst.supplier_id='" . $supplier_id . "' and
                                 tst.warehouse_id='" . $warehouse_id . "' and
+<<<<<<< HEAD
                                 tst.purchase_order_detail_id='" . $purchase_order_detail_id. "' and
+=======
+                                tst.purchase_order_detail_id='" . $purchase_order_detail_id . "' and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 tst.purchase_return_status = 0"; //tst.purchase_return_status = 0
 
                 $duplicateRecordID = $this->objGeneral->getDuplicateRecordID('warehouse_allocation', $data_pass, $this->arrUser['company_id']);
@@ -11275,7 +15464,11 @@ class Srm extends Xtreme
                 if($attr['currencyExchangeRateDate'] > 0){
                     $date_receivedUnConv = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['currencyExchangeRateDate']) . "',";            
                 } */
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ($duplicateRecordID == 0) {
 
@@ -11301,13 +15494,21 @@ class Srm extends Xtreme
                                             unit_measure_name='" . $item->unit_measure_name . "',
                                             unit_measure_qty='" . $unit_measure_qty . "',
                                             dispatch_date='" . $orderDate . "',
+<<<<<<< HEAD
                                             date_received='" . $currencyExchangeRateDate. "',
+=======
+                                            date_received='" . $currencyExchangeRateDate . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             $date_ReceiveUnConvNoStockAllocReq
                                             item_trace_unique_id = UUID(),
                                             user_id='" . $this->arrUser['id'] . "',
                                             company_id='" . $this->arrUser['company_id'] . "'";
                 } else {
+<<<<<<< HEAD
                      $Sql1 = "UPDATE warehouse_allocation
+=======
+                    $Sql1 = "UPDATE warehouse_allocation
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     SET
                                         quantity='" . $qty . "',
                                         remaining_qty = '" . $qty . "',
@@ -11316,12 +15517,17 @@ class Srm extends Xtreme
                                         primary_unit_qty='" . $primary_unit_qty . "',
                                         purchase_status='2',
                                         dispatch_date='" . $orderDate . "',
+<<<<<<< HEAD
                                         date_received='" . $currencyExchangeRateDate. "',
+=======
+                                        date_received='" . $currencyExchangeRateDate . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $date_ReceiveUnConvNoStockAllocReq
                                         unit_measure_id='" . $unit_measure_id . "',
                                         unit_measure_name='" . $item->unit_measure_name . "',
                                         unit_measure_qty='" . $unit_measure_qty . "'
                                     WHERE id = " . $duplicateRecordID . "   
+<<<<<<< HEAD
                                     Limit 1"; 
                 }
 
@@ -11331,6 +15537,17 @@ class Srm extends Xtreme
                     $duplicateRecordID = $this->Conn->Insert_ID();                    
             } 
         } 
+=======
+                                    Limit 1";
+                }
+
+                $RS1 = $this->objsetup->CSI($Sql1);
+
+                if ($duplicateRecordID == 0)
+                    $duplicateRecordID = $this->Conn->Insert_ID();
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* 
         (CASE WHEN (SR_CURRENT_OR_AVAILABLE_STOCK(endlink.product_id,'" . $this->arrUser['company_id'] . "',2) > (endlink.raw_material_qty * sid.qty))
@@ -11339,9 +15556,15 @@ class Srm extends Xtreme
                                     END )AS availRawMaterailStock
          */
 
+<<<<<<< HEAD
         if($purchaseStatus != 2){
             
             $sqlRawMaterialChk="SELECT sid.id,prd.description,prd.product_code,sid.qty,sid.unit_measure,sid.product_code AS finishedGoodItemCode,
+=======
+        if ($purchaseStatus != 2) {
+
+            $sqlRawMaterialChk = "SELECT sid.id,prd.description,prd.product_code,sid.qty,sid.unit_measure,sid.product_code AS finishedGoodItemCode,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     (CASE WHEN (COALESCE((SELECT SUM(remaining_qty) 
                                                     FROM item_in_cost_entries 
                                                     WHERE company_id = sid.company_id AND product_id = endlink.product_id AND remaining_qty > 0),0)+1 > 
@@ -11357,7 +15580,11 @@ class Srm extends Xtreme
                                     sid.rawMaterialProduct = 0 AND
                                     sid.type = 0 AND 
                                     endlink.product_id >0";
+<<<<<<< HEAD
                                     /* 
+=======
+            /* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 HAVING availRawMaterailStock>0 */
 
             $RsRawMaterialChk = $this->objsetup->CSI($sqlRawMaterialChk);
@@ -11377,6 +15604,7 @@ class Srm extends Xtreme
 
                     $noofRecCounter++;
 
+<<<<<<< HEAD
                     if($RowRawMaterialChk['availRawMaterailStock'] == 0){
 
                         $lineId = $RowRawMaterialChk['id'];
@@ -11387,33 +15615,64 @@ class Srm extends Xtreme
                                 $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg,",");
 
                                 $rawMaterialErrorMsg .= ' to purchase '.$RowRawMaterialChk['qty'].' '.$RowRawMaterialChk['unit_measure']. ' of '.$rawMaterialErrorMsgFinishedGood. '. ';
+=======
+                    if ($RowRawMaterialChk['availRawMaterailStock'] == 0) {
+
+                        $lineId = $RowRawMaterialChk['id'];
+
+                        if ($prevLineItem != $lineId) {
+
+                            if ($prevLineItem > 0) {
+                                $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg, ",");
+
+                                $rawMaterialErrorMsg .= ' to purchase ' . $RowRawMaterialChk['qty'] . ' ' . $RowRawMaterialChk['unit_measure'] . ' of ' . $rawMaterialErrorMsgFinishedGood . '. ';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 // $rawMaterialErrorMsg .= 'to purchase '.$RowRawMaterialChk['qty'].' '.$RowRawMaterialChk['unit_measure']. ' of '.$RowRawMaterialChk['finishedGoodItemCode']. '. ';
                             }
 
                             $rawMaterialErrorMsg .= 'There is not enough Qty available of raw material ';
 
+<<<<<<< HEAD
                             $prevLineItem = $lineId; 
+=======
+                            $prevLineItem = $lineId;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         }
 
                         $rawMaterialErrorCounter++;
                         // $rawMaterialErrorMsg .= ' '.$RowRawMaterialChk['description'].'('.$RowRawMaterialChk['product_code'].'),';
+<<<<<<< HEAD
                         $rawMaterialErrorMsg .= ' '.$RowRawMaterialChk['product_code'].',';
+=======
+                        $rawMaterialErrorMsg .= ' ' . $RowRawMaterialChk['product_code'] . ',';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rawMaterialErrorMsgFinishedGood = $RowRawMaterialChk['finishedGoodItemCode'];
                     }
 
+<<<<<<< HEAD
                     if($noofRec == $noofRecCounter && $rawMaterialErrorCounter>0){
                         // $rawMaterialErrorMsg .= 'to purchase '.$RowRawMaterialChk['qty'].' '.$RowRawMaterialChk['unit_measure']. ' of '.$RowRawMaterialChk['finishedGoodItemCode']. '. ';
                         $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg,",");
                         $rawMaterialErrorMsg .= ' to purchase '.$RowRawMaterialChk['qty'].' '.$RowRawMaterialChk['unit_measure']. ' of '.$rawMaterialErrorMsgFinishedGood. '. ';
+=======
+                    if ($noofRec == $noofRecCounter && $rawMaterialErrorCounter > 0) {
+                        // $rawMaterialErrorMsg .= 'to purchase '.$RowRawMaterialChk['qty'].' '.$RowRawMaterialChk['unit_measure']. ' of '.$RowRawMaterialChk['finishedGoodItemCode']. '. ';
+                        $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg, ",");
+                        $rawMaterialErrorMsg .= ' to purchase ' . $RowRawMaterialChk['qty'] . ' ' . $RowRawMaterialChk['unit_measure'] . ' of ' . $rawMaterialErrorMsgFinishedGood . '. ';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
             }
 
             // $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg,",");
 
+<<<<<<< HEAD
             if($rawMaterialErrorCounter > 0){
+=======
+            if ($rawMaterialErrorCounter > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $rawMaterialErrorMsg;
 
@@ -11429,6 +15688,7 @@ class Srm extends Xtreme
                 return $response;
             }
         }
+<<<<<<< HEAD
           
         $additionalCostCurr = 0;
 
@@ -11455,6 +15715,33 @@ class Srm extends Xtreme
                 $itemAmount = $qty*$price;
 
                 if($productid>0 && $supplier_id>0 && $item_type==0){
+=======
+
+        $additionalCostCurr = 0;
+
+        if ($allItemsArray) {
+            foreach ($allItemsArray as $item) {
+
+                $productid = (isset($item->productid) && $item->productid != '') ? $item->productid : 0;
+                $item_type = (isset($item->item_type) && $item->item_type != '') ? $item->item_type : 0;
+                $qty = (isset($item->qty) && $item->qty != '') ? $item->qty : 0;
+                $price = (isset($item->price) && $item->price != '') ? $item->price : 0;
+                $consignmentNo = (isset($item->consignmentNo) && $item->consignmentNo != '') ? $item->consignmentNo : 0;
+                $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 0;
+                $invoice_id = (isset($item->invoice_id) && $item->invoice_id != '') ? $item->invoice_id : 0;
+                $orderLineID = (isset($item->update_id) && $item->update_id != '') ? $item->update_id : 0;
+                $itemDiscountAmount = (isset($item->itemDiscountAmount) && $item->itemDiscountAmount != '') ? $item->itemDiscountAmount : 0;
+                $unit_measure_id = (isset($item->unit_measure_id) && $item->unit_measure_id != '') ? $item->unit_measure_id : 0;
+                $VATID = (isset($item->VATID) && $item->VATID != '') ? $item->VATID : 0;
+                $warehouse_id = (isset($item->warehouse_id) && $item->warehouse_id != '') ? $item->warehouse_id : 0;
+
+                $rawMaterialProduct = (isset($item->rawMaterialProduct) && $item->rawMaterialProduct != '') ? $item->rawMaterialProduct : 0;
+                $raw_material_gl_id = (isset($item->raw_material_gl_id) && $item->raw_material_gl_id != '') ? $item->raw_material_gl_id : 0;
+
+                $itemAmount = $qty * $price;
+
+                if ($productid > 0 && $supplier_id > 0 && $item_type == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $Sql4 = "SELECT addCost.priceID,
                                     addCost.itemID,
@@ -11488,6 +15775,7 @@ class Srm extends Xtreme
                             $result = array();
                             $id = $Row['id'];
                             // $descriptionID = $Row['descriptionID'];
+<<<<<<< HEAD
                             $descriptionID = (isset($Row['descriptionID']) && $Row['descriptionID']!='')?$Row['descriptionID']:0; 
                             $addPriceCurrencyID = (isset($Row['currencyID']) && $Row['currencyID']!='')?$Row['currencyID']:0; 
 
@@ -11507,6 +15795,27 @@ class Srm extends Xtreme
                             $cost_gl_code = explode("-",$cost_gl_code);
                             $costGLNumber =$cost_gl_code[0];
                             $costGLName =$cost_gl_code[1];
+=======
+                            $descriptionID = (isset($Row['descriptionID']) && $Row['descriptionID'] != '') ? $Row['descriptionID'] : 0;
+                            $addPriceCurrencyID = (isset($Row['currencyID']) && $Row['currencyID'] != '') ? $Row['currencyID'] : 0;
+
+                            $priceID = (isset($Row['priceID']) && $Row['priceID'] != '') ? $Row['priceID'] : 0;
+
+                            $description = $Row['description'];
+                            $cost = $Row['cost'];
+
+                            $amount = $cost * $qty;
+
+                            $cost_gl_code_id = $Row['cost_gl_code_id'];
+                            $cost_gl_code = $Row['cost_gl_code'];
+
+                            // $addPriceCurrencyID = $Row['currencyID'];
+                            // $addPricecurrencyCode = $Row['currencyCode'];
+
+                            $cost_gl_code = explode("-", $cost_gl_code);
+                            $costGLNumber = $cost_gl_code[0];
+                            $costGLName = $cost_gl_code[1];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             $data_pass = "  tst.invoice_id='" . $invoice_id . "' and
                                             tst.transactionType=1  and
@@ -11517,11 +15826,16 @@ class Srm extends Xtreme
                                             tst.gl_account_id='" . $cost_gl_code_id . "'";
 
                             $duplicateCHK = $this->objGeneral->getDuplicateRecordID('gl_account_additional_cost_txn', $data_pass, $this->arrUser['company_id']);
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if ($duplicateCHK == 0) {
 
                                 // $costTtl += $cost;
 
+<<<<<<< HEAD
                                 if( $addPriceCurrencyID == $defaultCurrencyID){
                                     $currencyRate = 1;
                                 }
@@ -11529,6 +15843,14 @@ class Srm extends Xtreme
                                     $currencyRate = -1;
 
                                     $sqlb=" SELECT COALESCE((SELECT conversion_rate
+=======
+                                if ($addPriceCurrencyID == $defaultCurrencyID) {
+                                    $currencyRate = 1;
+                                } else {
+                                    $currencyRate = -1;
+
+                                    $sqlb = " SELECT COALESCE((SELECT conversion_rate
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                              FROM currency_histroy
                                                              WHERE currency_id = $addPriceCurrencyID AND  
                                                                    (FLOOR(start_date/86400)*86400) <= $currencyExchangeRateDate AND
@@ -11540,14 +15862,24 @@ class Srm extends Xtreme
                                     $Rowb = $RSb->FetchRow();
                                     $currencyRate =  $Rowb['retVal'];
 
+<<<<<<< HEAD
                                     if($currencyRate == -1){
+=======
+                                    if ($currencyRate == -1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         /* $response['ack'] = 0;
                                         $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
                                         $additionalCostCurr++;
                                         return $response; */
+<<<<<<< HEAD
                                         $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
                                     }
                                 }                                
+=======
+                                        // $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
+                                    }
+                                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 //SR_GetConversionRateByDate('".$orderDate."', '" . $addPriceCurrencyID . "', '" . $this->arrUser['company_id'] . "'),
 
@@ -11556,6 +15888,7 @@ class Srm extends Xtreme
                                                             gl_account_id='" . $cost_gl_code_id . "',
                                                             gl_account_name='" . $costGLName . "',
                                                             gl_account_code='" . $costGLNumber . "',
+<<<<<<< HEAD
                                                             postingDate='" . $orderDate. "',
                                                             transactionType='1',
                                                             invoice_id='".$invoice_id."',
@@ -11565,6 +15898,17 @@ class Srm extends Xtreme
                                                             uomID='".$unit_measure_id."',
                                                             consignmentNo='" . $consignmentNo . "',
                                                             qty='" . $qty. "',
+=======
+                                                            postingDate='" . $orderDate . "',
+                                                            transactionType='1',
+                                                            invoice_id='" . $invoice_id . "',
+                                                            priceoffer_id='" . $priceID . "',
+                                                            descriptionID='" . $descriptionID . "',
+                                                            description='" . $description . "',
+                                                            uomID='" . $unit_measure_id . "',
+                                                            consignmentNo='" . $consignmentNo . "',
+                                                            qty='" . $qty . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             unitPrice='" . $cost . "',
                                                             currencyID='" . $addPriceCurrencyID . "',
                                                             currency_rate = '" . $currencyRate . "',
@@ -11583,12 +15927,18 @@ class Srm extends Xtreme
                                 $RS5 = $this->objsetup->CSI($Sql5);
 
                                 // mysqli_free_result($RS5);
+<<<<<<< HEAD
                             }                                                     
                         }                        
+=======
+                            }
+                        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                     // echo "###############".$recReceivedMode;
 
                     // 1 means Goods are going to be received first but not invoiced.
+<<<<<<< HEAD
                     if($recReceivedMode>0){
 
                         $rawMaterialProduct = 0;
@@ -11599,6 +15949,18 @@ class Srm extends Xtreme
                                                             invoice_id='".$invoice_id."',
                                                             itemID='".$productid."',
                                                             itemAmount='".$itemDiscountAmount."',
+=======
+                    if ($recReceivedMode > 0) {
+
+                        $rawMaterialProduct = 0;
+
+
+                        $Sql6 = "INSERT INTO purchaseordertxn
+                                                        SET 
+                                                            invoice_id='" . $invoice_id . "',
+                                                            itemID='" . $productid . "',
+                                                            itemAmount='" . $itemDiscountAmount . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             postStatus='0',
                                                             user_id='" . $this->arrUser['id'] . "',
                                                             company_id='" . $this->arrUser['company_id'] . "',
@@ -11607,7 +15969,11 @@ class Srm extends Xtreme
                                                             ObjectDetailID='" . $orderLineID . "',
                                                             VATID='" . $VATID . "',
                                                             VATName='" . $item->VATName . "',
+<<<<<<< HEAD
                                                             rawMaterialProduct = '" . $rawMaterialProduct. "',
+=======
+                                                            rawMaterialProduct = '" . $rawMaterialProduct . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             raw_material_gl_id = '" . $raw_material_gl_id . "',
                                                             raw_material_gl_code = '" . $item->raw_material_gl_code . "',
                                                             raw_material_gl_name = '" . $item->raw_material_gl_name . "'
@@ -11617,12 +15983,21 @@ class Srm extends Xtreme
                         GLorProductCode='" . $item->code . "',
                         GlorProductName='" . $item->product_name . "', */
                         // echo $Sql6;exit;
+<<<<<<< HEAD
                         $RS6 = $this->objsetup->CSI($Sql6);                      
                     } 
 
                     // Raw Material Allocation To finished goods
 
                     if($rawMaterialProduct == 0){
+=======
+                        $RS6 = $this->objsetup->CSI($Sql6);
+                    }
+
+                    // Raw Material Allocation To finished goods
+
+                    if ($rawMaterialProduct == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         /* $sqlAllocatedRow = "SELECT id,ref_po_id,item_trace_unique_id
                                             FROM warehouse_allocation
@@ -11737,9 +16112,15 @@ class Srm extends Xtreme
                             }
                         } */
                     }
+<<<<<<< HEAD
                 }              
 
                 $item_converted_price = Round(($price/$conversion_rate),3); // bcdiv($price, $conversion_rate, 3);
+=======
+                }
+
+                $item_converted_price = Round(($price / $conversion_rate), 3); // bcdiv($price, $conversion_rate, 3);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $sql3 = "UPDATE srm_invoice_detail 
                                     SET 
@@ -11749,6 +16130,7 @@ class Srm extends Xtreme
                                     WHERE id = " . $orderLineID . " 
                                     LIMIT 1";
                 //echo $sql3;
+<<<<<<< HEAD
                 $RS3 = $this->objsetup->CSI($sql3, 'purchase_order', sr_EditPermission);                               
             }           
         }
@@ -11758,13 +16140,28 @@ class Srm extends Xtreme
             $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
             return $response; */
             $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
+=======
+                $RS3 = $this->objsetup->CSI($sql3, 'purchase_order', sr_EditPermission);
+            }
+        }
+
+        if ($additionalCostCurr > 0) {
+            /* $response['ack'] = 0;
+            $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
+            return $response; */
+            // $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
 
         // 1 means Goods are going to be received first but not invoiced
 
         //  echo $recReceivedMode;exit;
+<<<<<<< HEAD
         if($recReceivedMode>0){
+=======
+        if ($recReceivedMode > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql4 = "UPDATE srm_invoice 
                             SET 
@@ -11774,6 +16171,7 @@ class Srm extends Xtreme
                      limit 1";
 
             // echo $Sql4;exit;
+<<<<<<< HEAD
             $RS4 = $this->objsetup->CSI($Sql4);            
 
             $Sqlnew = "CALL SR_Purchase_order_received('".$purchaseInvoice_id."',
@@ -11787,19 +16185,42 @@ class Srm extends Xtreme
                                                         ".$defaultCurrencyID.",
                                                         ".$conversion_rate.",
                                                         ".$orderDate.",
+=======
+            $RS4 = $this->objsetup->CSI($Sql4);
+
+            $Sqlnew = "CALL SR_Purchase_order_received('" . $purchaseInvoice_id . "',
+                                                        3,
+                                                        " . $this->arrUser['company_id'] . ",
+                                                        " . $this->arrUser['id'] . ",
+                                                        " . $posting_grp . ",
+                                                        " . $directInvoice . ",
+                                                        0,
+                                                        " . $invoiceCurrencyID . ",
+                                                        " . $defaultCurrencyID . ",
+                                                        " . $conversion_rate . ",
+                                                        " . $orderDate . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         @errorNo,
                                                         @param1,
                                                         @param2,
                                                         @param3,
                                                         @param4);";
             // echo $Sqlnew;exit;
+<<<<<<< HEAD
             $RSnew = $this->objsetup->CSI($Sqlnew); 
+=======
+            $RSnew = $this->objsetup->CSI($Sqlnew);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $RSnew->close();
             // mysqli_free_result($RSnew); 
             // print_r($RSnew); 
 
+<<<<<<< HEAD
             if($RSnew->msg == 1)
             {             
+=======
+            if ($RSnew->msg == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 1;
                 $response['error'] = NULL;
                 $this->Conn->commitTrans();
@@ -11815,9 +16236,13 @@ class Srm extends Xtreme
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
                 return $response;
                 // $this->objsetup->terminateWithMessage("postPurchaseInvoice");
+<<<<<<< HEAD
             } 
             else
             { 
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = $RSnew->Error;
 
@@ -11832,9 +16257,14 @@ class Srm extends Xtreme
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
                 return $response;
+<<<<<<< HEAD
             }           
         }
         else{
+=======
+            }
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -11849,15 +16279,23 @@ class Srm extends Xtreme
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
+<<<<<<< HEAD
 
         } 
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $recGoodsReceived; exit;
     }
 
     // Post Purchase Invoice function
 
     function postPurchaseInvoice($attr)
+<<<<<<< HEAD
     {       
+=======
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace = array();
 
         $srLogTrace['ErrorCode'] = '';
@@ -11865,7 +16303,11 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'order_id:'.$attr['rec']->order_id;
+=======
+        $srLogTrace['Parameter2'] = 'order_id:' . $attr['rec']->order_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
@@ -11874,6 +16316,7 @@ class Srm extends Xtreme
                                 FROM srm_invoice 
                                 WHERE id= " . $attr['rec']->order_id . " AND 
                                       company_id = '" . $this->arrUser['company_id'] . "'
+<<<<<<< HEAD
                                 LIMIT 1";        
         $RsAlreadyPosted = $this->objsetup->CSI($checkAlreadyPosted);
 
@@ -11884,6 +16327,17 @@ class Srm extends Xtreme
             // $this->objsetup->terminateWithMessage("Journal already Posted");
             $response['ack'] = 2;
             $response['error'] = ' Already posted with Invoice No. '.$RsAlreadyPosted->fields['invoice_code'];
+=======
+                                LIMIT 1";
+        $RsAlreadyPosted = $this->objsetup->CSI($checkAlreadyPosted);
+
+        $purchaseStatus = $RsAlreadyPosted->fields['purchaseStatus'];
+
+        if ($purchaseStatus == 3) {
+            // $this->objsetup->terminateWithMessage("Journal already Posted");
+            $response['ack'] = 2;
+            $response['error'] = ' Already posted with Invoice No. ' . $RsAlreadyPosted->fields['invoice_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $srLogTrace = array();
 
@@ -11899,28 +16353,50 @@ class Srm extends Xtreme
         }
         // else
         // {
+<<<<<<< HEAD
         
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
               
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $conversion_rate = 1;
         $itemsArray = $attr['itemsArray'];
         $noItemExist = $attr['noItemExist'];
 
+<<<<<<< HEAD
         $recReceivedMode = (isset($attr['recReceivedMode']) && $attr['recReceivedMode']!='')?$attr['recReceivedMode']:0;
         // $suppInvNo = (isset($attr['suppInvNo']) && $attr['suppInvNo']!='')?$attr['suppInvNo']:0; 
         $suppInvNo = (isset($attr['suppInvNo']) && $attr['suppInvNo']!='')?trim(addslashes(stripslashes($attr['suppInvNo']))):'0';  
         $supplierID = (isset($attr['supplier_id']) && $attr['supplier_id']!='')?$attr['supplier_id']:0;        
         $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID']!='')?$attr['invoiceCurrencyID']:0;        
+=======
+        $recReceivedMode = (isset($attr['recReceivedMode']) && $attr['recReceivedMode'] != '') ? $attr['recReceivedMode'] : 0;
+        // $suppInvNo = (isset($attr['suppInvNo']) && $attr['suppInvNo']!='')?$attr['suppInvNo']:0; 
+        $suppInvNo = (isset($attr['suppInvNo']) && $attr['suppInvNo'] != '') ? trim(addslashes(stripslashes($attr['suppInvNo']))) : '0';
+        $supplierID = (isset($attr['supplier_id']) && $attr['supplier_id'] != '') ? $attr['supplier_id'] : 0;
+        $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID'] != '') ? $attr['invoiceCurrencyID'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $data_pass = "  tst.status=1 and 
                         tst.supp_order_no='" . $suppInvNo . "' AND 
                         tst.sell_to_cust_id='" . $supplierID . "' AND 
+<<<<<<< HEAD
                         tst.id <> " . $attr['rec']->order_id . ""; 
         $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
 
         if ($totalREC > 0) 
         {
+=======
+                        tst.id <> " . $attr['rec']->order_id . "";
+        $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_invoice', $data_pass, $this->arrUser['company_id']);
+
+        if ($totalREC > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->objsetup->terminateWithMessage("Supplier Invoice No. Already Exists!");
 
             $response['ack'] = 0;
@@ -11938,8 +16414,12 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         if($purchaseStatus == 2)
         {
+=======
+        if ($purchaseStatus == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $recReceivedMode = 0;
         }
 
@@ -11953,18 +16433,30 @@ class Srm extends Xtreme
         if (!empty($attr['orderDate']) || $attr['orderDate'] != '')
             $current_date = $this->objGeneral->convert_date($attr['orderDate']);
         else
+<<<<<<< HEAD
             $current_date = current_date; 
+=======
+            $current_date = current_date;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace = array();
         $srLogTrace['ErrorCode'] = '';
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
         $srLogTrace['Parameter1'] = 'current_date:'.$current_date;
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);        
         
         if($invoiceCurrencyID == 0){
+=======
+        $srLogTrace['Parameter1'] = 'current_date:' . $current_date;
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        if ($invoiceCurrencyID == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->objsetup->terminateWithMessage("Currency is missing!"); 
             $response['ack'] = 0;
             $response['error'] = "Currency is missing!";
@@ -11978,6 +16470,7 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Currency is missing!';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             return $response;           
         } 
 
@@ -11990,6 +16483,20 @@ class Srm extends Xtreme
             $Sql = "SELECT d.conversion_rate  
                     FROM currency_histroy d 
                     WHERE d.currency_id='".$attr['invoiceCurrencyID']."' AND 
+=======
+            return $response;
+        }
+
+        $net_amount = (isset($attr['rec']->net_amount) && $attr['rec']->net_amount != '') ? $attr['rec']->net_amount : 0;
+        $tax_amount = (isset($attr['rec']->tax_amount) && $attr['rec']->tax_amount != '') ? $attr['rec']->tax_amount : 0;
+        $grand_total = (isset($attr['rec']->grand_total) && $attr['rec']->grand_total != '') ? $attr['rec']->grand_total : 0;
+
+        if ($attr['invoiceCurrencyID'] != $attr['defaultCurrencyID']) {
+
+            $Sql = "SELECT d.conversion_rate  
+                    FROM currency_histroy d 
+                    WHERE d.currency_id='" . $attr['invoiceCurrencyID'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $currencyExchangeRateDate . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'	
                     order by d.start_date DESC, d.action_date desc LIMIT 1  ";
@@ -12005,8 +16512,12 @@ class Srm extends Xtreme
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $this->objsetup->terminateWithMessage("Please set the currency conversion rate!");
                 $response['ack'] = 0;
                 $response['error'] = "Please set the currency conversion rate!";
@@ -12020,6 +16531,7 @@ class Srm extends Xtreme
                 $srLogTrace['ErrorMessage'] = 'Please set the currency conversion rate!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
                 return $response; 
             }             
         }
@@ -12034,6 +16546,20 @@ class Srm extends Xtreme
             foreach($itemsArray as $item){
                 
                 $item_converted_price = Round(($item->standard_price/$conversion_rate),3); //bcdiv($item->standard_price, $conversion_rate, 3);
+=======
+                return $response;
+            }
+        } else {
+            $net_amount_converted = $net_amount;
+            $tax_amount_converted = $tax_amount;
+            $grand_total_converted = $grand_total;
+        }
+
+        if ($itemsArray) {
+            foreach ($itemsArray as $item) {
+
+                $item_converted_price = Round(($item->standard_price / $conversion_rate), 3); //bcdiv($item->standard_price, $conversion_rate, 3);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $sql3 = "UPDATE srm_invoice_detail 
                                     SET 
@@ -12045,6 +16571,7 @@ class Srm extends Xtreme
                                     limit 1";
                 //echo $sql3;
                 // $RS3 = $this->objsetup->CSI($sql3);          
+<<<<<<< HEAD
                 $RS3 = $this->objsetup->CSI($sql3, 'purchase_order', sr_PostPermission);                             
             }
         }
@@ -12053,23 +16580,45 @@ class Srm extends Xtreme
         $ref_posting = '';        
 
         if($supplierID>0){
+=======
+                $RS3 = $this->objsetup->CSI($sql3, 'purchase_order', sr_PostPermission);
+            }
+        }
+
+        $posting_grp = 0;
+        $ref_posting = '';
+
+        if ($supplierID > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $SqlSupp = "SELECT d.posting_group_id,
                                ref_posting_group.name as ref_posting
                         FROM srm_finance d
                         LEFT JOIN ref_posting_group on ref_posting_group.id=d.posting_group_id
+<<<<<<< HEAD
                         WHERE d.supplier_id=".$supplierID."
                         LIMIT 1";
                         
             //echo 	$SqlSupp;exit;
             $RSSupp = $this->objsetup->CSI($SqlSupp);      
+=======
+                        WHERE d.supplier_id=" . $supplierID . "
+                        LIMIT 1";
+
+            //echo 	$SqlSupp;exit;
+            $RSSupp = $this->objsetup->CSI($SqlSupp);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($RSSupp->RecordCount() > 0) {
                 $RowSupp = $RSSupp->FetchRow();
                 $posting_grp = $RowSupp['posting_group_id'];
                 $ref_posting = $RowSupp['ref_posting'];
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $this->objsetup->terminateWithMessage("Supplier Posting Group is not Selected!");
                 $response['ack'] = 0;
                 $response['error'] = "Supplier Posting Group is not Selected!";
@@ -12084,6 +16633,7 @@ class Srm extends Xtreme
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
                 return $response; 
             }
         }
@@ -12103,6 +16653,26 @@ class Srm extends Xtreme
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
                 return $response; 
+=======
+                return $response;
+            }
+        } else {
+            // $this->objsetup->terminateWithMessage("Supplier is not Selected!");
+            $response['ack'] = 0;
+            $response['error'] = "Supplier is not Selected!";
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = 'Supplier is not Selected!';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+            return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         /* 
@@ -12133,6 +16703,7 @@ class Srm extends Xtreme
         // Already received stock before invoice.
         // echo $recReceivedMode;exit;
 
+<<<<<<< HEAD
         if($recReceivedMode == 0 && $attr['rec']->order_id>0){
 
             $SqlGoodsReceived = "CALL SR_PurchaseInvoiceGoodsReceived('".$attr['rec']->order_id."',
@@ -12142,6 +16713,17 @@ class Srm extends Xtreme
                                                                       ".$attr['invoiceCurrencyID'].",
                                                                       ".$attr['defaultCurrencyID'].",
                                                                       ".$this->objGeneral->convert_date($attr['orderDate']).",
+=======
+        if ($recReceivedMode == 0 && $attr['rec']->order_id > 0) {
+
+            $SqlGoodsReceived = "CALL SR_PurchaseInvoiceGoodsReceived('" . $attr['rec']->order_id . "',
+                                                                      " . $this->arrUser['company_id'] . ",
+                                                                      " . $this->arrUser['id'] . ",
+                                                                      1,
+                                                                      " . $attr['invoiceCurrencyID'] . ",
+                                                                      " . $attr['defaultCurrencyID'] . ",
+                                                                      " . $this->objGeneral->convert_date($attr['orderDate']) . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                         @errorNo,
                                                                         @param1,
                                                                         @param2,
@@ -12149,7 +16731,11 @@ class Srm extends Xtreme
                                                                         @param4);";
             // echo $SqlGoodsReceived;
             // exit;
+<<<<<<< HEAD
             $RSGoodsReceived = $this->objsetup->CSI($SqlGoodsReceived); 
+=======
+            $RSGoodsReceived = $this->objsetup->CSI($SqlGoodsReceived);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql4 = "UPDATE srm_invoice 
@@ -12157,17 +16743,27 @@ class Srm extends Xtreme
                                 converted_currency_id = '" . $attr['defaultCurrencyID'] . "', 
                                 bill_to_posting_group_id = '" . $posting_grp . "', 
                                 bill_to_posting_group_name = '" . $ref_posting . "',
+<<<<<<< HEAD
                                 net_amount='" . $net_amount. "', 
                                 grand_total='" . $grand_total . "', 
                                 tax_amount='" . $tax_amount . "',	
                                 net_amount_converted='" . $net_amount_converted . "', 
                                 grand_total_converted='" . $grand_total_converted . "', 
                                 tax_amount_converted='".$tax_amount_converted."',
+=======
+                                net_amount='" . $net_amount . "', 
+                                grand_total='" . $grand_total . "',                                
+                                tax_amount='" . $tax_amount . "',	
+                                net_amount_converted='" . $net_amount_converted . "', 
+                                grand_total_converted='" . $grand_total_converted . "', 
+                                tax_amount_converted='" . $tax_amount_converted . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 ChangedBy='" . $this->arrUser['id'] . "',
                                 ChangedOn=UNIX_TIMESTAMP (NOW()),
                                 currency_rate ='" . $conversion_rate . "' 
                 WHERE id = " . $attr['rec']->order_id . " 
                 limit 1";
+<<<<<<< HEAD
             
         // $RS4 = $this->objsetup->CSI($Sql4);
         
@@ -12184,6 +16780,46 @@ class Srm extends Xtreme
                                                                         ".$items_net_discount.", 
                                                                         ".$attr['rec']->grand_total.",
                                                                         ".$recReceivedMode.",
+=======
+
+        // $RS4 = $this->objsetup->CSI($Sql4);
+
+        $RS4 = $this->objsetup->CSI($Sql4, 'purchase_order', sr_PostPermission);
+
+        $Sql5 = "UPDATE srm_invoice SET 
+                                    remaining_amount='" . $grand_total . "',
+                                    setteled_amount='0'
+                        WHERE id = '".$attr['rec']->order_id."' AND 
+                            company_id='" . $this->arrUser['company_id'] . "' AND 
+                            (setteled_amount = 0 OR setteled_amount IS NULL)  
+                        limit 1";
+
+        // echo $Sql5;exit;
+        $this->objsetup->CSI($Sql5);
+
+
+        $Sqldel = " DELETE FROM payment_allocation 
+                    WHERE invoice_id = '" . $attr['rec']->order_id. "' AND 
+                        company_id =	'" . $this->arrUser['company_id'] . "' AND 
+                        invoice_type =5 AND 
+                        document_type = 3 AND 
+                        module_type =2 AND 
+                        transaction_type = 1 ";
+        // echo $Sqldel ;exit;
+        $RS = $this->objsetup->CSI($Sqldel);
+
+        $items_net_discount = (isset($attr['rec']->items_net_discount) && $attr['rec']->items_net_discount != '') ? $attr['rec']->items_net_discount : 0;
+
+        $SqlPostAdditionalItemCosts = "CALL SR_PurchaseInvPostAddItemCosts('" . $attr['rec']->order_id . "',
+                                                                        " . $this->arrUser['company_id'] . ",
+                                                                        " . $this->arrUser['id'] . ", 
+                                                                        " . $posting_grp . ", 
+                                                                        " . $attr['rec']->items_net_total . ", 
+                                                                        " . $attr['rec']->items_net_vat . ", 
+                                                                        " . $items_net_discount . ", 
+                                                                        " . $attr['rec']->grand_total . ",
+                                                                        " . $recReceivedMode . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                         @errorNo,
                                                                         @param1,
                                                                         @param2,
@@ -12191,11 +16827,18 @@ class Srm extends Xtreme
                                                                         @param4);";
         // echo $SqlPostAdditionalItemCosts;
         // exit;
+<<<<<<< HEAD
       
         $RsPostAddItemCosts = $this->objsetup->CSI($SqlPostAdditionalItemCosts);
 
         if($RsPostAddItemCosts->msg == 1)
         {             
+=======
+
+        $RsPostAddItemCosts = $this->objsetup->CSI($SqlPostAdditionalItemCosts);
+
+        if ($RsPostAddItemCosts->msg == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -12211,9 +16854,13 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
             // $this->objsetup->terminateWithMessage("postPurchaseInvoice");
+<<<<<<< HEAD
         }        
         else
         { 
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // print_r($RsPostAddItemCosts);exit
             $response['ack'] = 0;
             $response['error'] = $RsPostAddItemCosts->Error;
@@ -12230,9 +16877,15 @@ class Srm extends Xtreme
 
             return $response;
             // $this->objsetup->terminateWithMessage("Cannot convert into invoice");
+<<<<<<< HEAD
         }                
     } 
     
+=======
+        }
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     //--------- srm order   details-----------------------------
 
     function get_location($attr)
@@ -12247,19 +16900,32 @@ class Srm extends Xtreme
                         warehouse.status = 1 " . $where_clause . " ";
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'warehouse', $order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'warehouse');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -12269,7 +16935,11 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['total'] = $total;
+=======
+            $response['total'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
             $response['ack'] = 0;
@@ -12283,7 +16953,11 @@ class Srm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
         $limit_clause = $where_clause = "";
         $response = array();
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($attr['orderType'] == 1) $moduleForPermission = "purchase_invoice";
         else  $moduleForPermission = "purchase_order";
 
@@ -12295,19 +16969,31 @@ class Srm extends Xtreme
                                   wa.company_id=" . $this->arrUser['company_id'] . "),0) AS allocQty
                 FROM srm_invoice_detail es   
                 WHERE   es.status=1 and 
+<<<<<<< HEAD
                         es.invoice_id='".$attr['invoice_id']."'";
+=======
+                        es.invoice_id='" . $attr['invoice_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql;  exit;
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, $moduleForPermission, sr_ViewPermission);
 
         $Sql3 = "SELECT sell_to_cust_id,bill_to_posting_group_id From srm_invoice
+<<<<<<< HEAD
                  WHERE id='".$attr['invoice_id']."'";
+=======
+                 WHERE id='" . $attr['invoice_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql3."<hr>"; exit;
 
         $rs3 = $this->objsetup->CSI($Sql3);
 
+<<<<<<< HEAD
         if ($rs3->RecordCount() > 0){
+=======
+        if ($rs3->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $bill_to_posting_group_id = $rs3->fields['bill_to_posting_group_id'];
             $supplierId = $rs3->fields['sell_to_cust_id'];
 
@@ -12320,8 +17006,13 @@ class Srm extends Xtreme
         $volume_unit = '';
         $weight = 0;
         $weightunit = '';
+<<<<<<< HEAD
         $weight_permission = 0;  
         $volume_permission = 0;    
+=======
+        $weight_permission = 0;
+        $volume_permission = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql4 = "SELECT  SUM(uomsetup.volume * inv.qty) AS volume,
                     'cm3' AS volume_unit,
@@ -12332,18 +17023,27 @@ class Srm extends Xtreme
                 FROM srm_invoice_detail AS inv
                 LEFT JOIN units_of_measure_setup AS uomsetup ON inv.unit_measure_id = uomsetup.id
                 LEFT JOIN items_weight_setup AS w ON w.title = 'Purchase Order' AND inv.company_id = w.company_id
+<<<<<<< HEAD
                 WHERE inv.invoice_id='".$attr['invoice_id']."' AND inv.type=0";
+=======
+                WHERE inv.invoice_id='" . $attr['invoice_id'] . "' AND inv.type=0";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql4."<hr>"; exit;
 
         $rs4 = $this->objsetup->CSI($Sql4);
 
+<<<<<<< HEAD
         if ($rs4->RecordCount() > 0){
+=======
+        if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $volume = $rs4->fields['volume'];
             $volume_unit = $rs4->fields['volume_unit'];
             $weight = $rs4->fields['weight'];
             $weightunit = $rs4->fields['weightunit'];
             $weight_permission = $rs4->fields['weight_permission'];
             $volume_permission = $rs4->fields['volume_permission'];
+<<<<<<< HEAD
         }   
 
         if (!($supplierId>0)){
@@ -12359,6 +17059,21 @@ class Srm extends Xtreme
 
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        }
+
+        if (!($supplierId > 0)) {
+            $bill_to_posting_group_id  = $this->defaultPostingGrp();
+            // $bill_to_posting_group_id = 0;
+        }
+
+
+        if ($RS->RecordCount() > 0) {
+            // require_once(SERVER_PATH . "/classes/Stock.php");
+            // $this->objstock = new Stock($this->arrUser);
+
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -12367,9 +17082,15 @@ class Srm extends Xtreme
                 $attr['product_id'] = $Row['product_id'];
                 $attr['warehouse_id'] = $Row['warehouse_id'];
 
+<<<<<<< HEAD
                  if ($Row['type'] == '1') {
 
                     if($this->arrUser['company_id'] == 133){
+=======
+                if ($Row['type'] == '1') {
+
+                    if ($this->arrUser['company_id'] == 133) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         // PBI: Requirment In GL For Vat GL Calculation in Vat column instead of general calculation. 
                         $sqlvat = " SELECT gl1.id AS gl1ID,gl1.accountCode AS gl1AccountCode,
@@ -12383,10 +17104,15 @@ class Srm extends Xtreme
                                         gl1.company_id='" . $this->arrUser['company_id'] . "' AND
                                         gl2.company_id='" . $this->arrUser['company_id'] . "' AND
                                         gl3.company_id='" . $this->arrUser['company_id'] . "'  ";
+<<<<<<< HEAD
 
                     }
                     else{
                     
+=======
+                    } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // PBI: Requirment In GL For Vat GL Calculation in Vat column instead of general calculation. 
                         $sqlvat = "SELECT startRangeCode,endRangeCode 
                             FROM gl_account 
@@ -12396,7 +17122,11 @@ class Srm extends Xtreme
                     }
 
                     $RSV = $this->objsetup->CSI($sqlvat);
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if ($RSV->RecordCount() > 0) {
                         while ($RowVat = $RSV->FetchRow()) {
                             foreach ($RowVat as $key => $value) {
@@ -12404,18 +17134,27 @@ class Srm extends Xtreme
                                     unset($RowVat[$key]);
                             }
 
+<<<<<<< HEAD
                             if($this->arrUser['company_id'] == 133){
                                 $Row['vatRange']['gl1AccountCode'] = $RowVat['gl1AccountCode'];
                                 $Row['vatRange']['gl2AccountCode'] = $RowVat['gl2AccountCode'];
                                 $Row['vatRange']['gl3AccountCode'] = $RowVat['gl3AccountCode'];
                             }
                             else{ 
+=======
+                            if ($this->arrUser['company_id'] == 133) {
+                                $Row['vatRange']['gl1AccountCode'] = $RowVat['gl1AccountCode'];
+                                $Row['vatRange']['gl2AccountCode'] = $RowVat['gl2AccountCode'];
+                                $Row['vatRange']['gl3AccountCode'] = $RowVat['gl3AccountCode'];
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 //  print_r($RowVat);
                                 $Row['vatRange']['startRangeCode'] = $RowVat['startRangeCode'];
                                 $Row['vatRange']['endRangeCode'] = $RowVat['endRangeCode'];
                             }
                         }
                     }
+<<<<<<< HEAD
                     
                 }
                 if($Row['type'] == 0){
@@ -12435,17 +17174,41 @@ class Srm extends Xtreme
                                 from gl_account_additional_cost_txn as atc
                                 where atc.inOutTransaction=1 AND
                                       atc.invoice_id ='".$attr['invoice_id']."' AND
+=======
+                }
+                if ($Row['type'] == 0) {
+                    $Row['arr_warehouse'] = $this->objstock->get_all_product_warehouses($attr);
+                    $Row['arr_units'] = $this->objstock->get_unit_setup_list_category_by_item($attr);
+                    // $Row['currentStock'] = self::getCurrentStockByProductID($attr);   
+                    $Row['currentStock'] = self::getCurrentStockByProductIDwarehouseID($attr);
+
+                    if ($supplierId > 0) {
+                        $Row['supplier_id'] = $supplierId;
+                        $Row['priceOfferArray'] = self::getArrVolumeDiscounts($Row);
+                        $Row['pricePurchaseInfoArray'] = self::getPricePurchaseInfo($Row);
+                    }
+                } elseif ($Row['type'] == 2) {
+                    $Sql2 = "select Coalesce(SUM(atc.amount),0) as additionAmount
+                                from gl_account_additional_cost_txn as atc
+                                where atc.inOutTransaction=1 AND
+                                      atc.invoice_id ='" . $attr['invoice_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       atc.orderLineID='" . $Row['id'] . "' AND
                                       atc.company_id='" . $this->arrUser['company_id'] . "' AND 
                                       atc.descriptionID='" . $Row['descriptionID'] . "'";
 
                     // echo $Sql2;  exit;
                     // $RS2 = $this->objsetup->CSI($Sql2);
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $RS2 = $this->objsetup->CSI($Sql2);
 
                     $Row2 = $RS2->FetchRow();
                     $Row['alreadyAddedAmount'] = $Row2['additionAmount'];
+<<<<<<< HEAD
                 }
                 else{
                     $Row['arr_warehouse'] = '';  
@@ -12457,13 +17220,29 @@ class Srm extends Xtreme
                 
                 // echo "<pre>";print_r($Row); exit;
                 
+=======
+                } else {
+                    $Row['arr_warehouse'] = '';
+                    $Row['arr_units'] = '';
+                    $Row['currentStock'] = 0;
+                }
+
+                $Row['bill_to_posting_group_id'] = $bill_to_posting_group_id;
+
+                // echo "<pre>";print_r($Row); exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
             $response['ack'] = 0;
             $response['error'] = NULL;
@@ -12480,17 +17259,31 @@ class Srm extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
     function getArrVolumeDiscounts($attr){
+=======
+    function getArrVolumeDiscounts($attr)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
 
         // echo '<pre>';print_r($attr);exit;
 
+<<<<<<< HEAD
         $whereCond='';
         $whereCond="po.moduleID = ".$attr['supplier_id']." AND  po.moduleType = 2 AND";
 
         $Sql2 = "select order_date
                  from srm_invoice
                  where  id ='" . $Row['invoice_id'] . "'";
+=======
+        $whereCond = '';
+        $whereCond = "po.moduleID = " . $attr['supplier_id'] . " AND  po.moduleType = 2 AND";
+
+        $Sql2 = "select order_date
+                 from srm_invoice
+                 where  id ='" . $attr['invoice_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql2;  exit;        
         $RS2 = $this->objsetup->CSI($Sql2);
@@ -12499,6 +17292,7 @@ class Srm extends Xtreme
         $order_date = $Row2['order_date'];
 
 
+<<<<<<< HEAD
         if(isset($order_date))
         {
             // $order_date = $this->objGeneral->convert_date($attr['order_date']);
@@ -12511,6 +17305,17 @@ class Srm extends Xtreme
         else
         {
             $whereCond .=" UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+=======
+        if (isset($order_date)) {
+            // $order_date = $this->objGeneral->convert_date($attr['order_date']);
+
+            $whereCond .= " $order_date BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+                            CASE WHEN po.end_date = 0 THEN 4099299120 
+                                 ELSE (FLOOR(po.end_date/86400)*86400)
+                            END AND ";
+        } else {
+            $whereCond .= " UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                  ELSE (FLOOR(po.end_date/86400)*86400) 
                             END AND ";
@@ -12529,8 +17334,13 @@ class Srm extends Xtreme
                 FROM priceofferitem AS poi 
                 JOIN `priceoffer` AS po ON po.id = poi.`priceID`
                 LEFT JOIN `priceofferitemvolume` AS poiv ON poiv.priceID = po.id  AND poiv.`itemID` = poi.`itemID`
+<<<<<<< HEAD
                 WHERE ".$whereCond." 
                       po.priceType IN (2,3) AND poi.itemID = ".$attr['product_id']."
+=======
+                WHERE " . $whereCond . " 
+                      po.priceType IN (2,3) AND poi.itemID = " . $attr['product_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 ORDER BY poi.`itemID`, poiv.min";
 
         // echo $Sql."<hr>"; exit;
@@ -12540,19 +17350,28 @@ class Srm extends Xtreme
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 $result = array();
+<<<<<<< HEAD
                 if($prev_item_id != $Row['item_id'])
                 {
+=======
+                if ($prev_item_id != $Row['item_id']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $prev_item_id = $Row['item_id'];
                     $count++;
                     $temp_arr['id']             = $Row['id'];
                     $temp_arr['price_offer']    = $Row['price_offer'];
                     $temp_arr['minSaleQty']     = $Row['minSaleQty'];
+<<<<<<< HEAD
                     $temp_arr['maxSaleQty']     = $Row['maxSaleQty'];                    
+=======
+                    $temp_arr['maxSaleQty']     = $Row['maxSaleQty'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $temp_arr['uom_id']         = $Row['uom_id'];
                     $temp_arr['item_id']        = $Row['item_id'];
                     $response['response'][$count] = $temp_arr;
                 }
 
+<<<<<<< HEAD
                 if($prev_item_id == $Row['item_id'] && $Row['item_volume_id'] != null )
                 {
                     $temp['volume_discount'] = $Row['volume_discount'];
@@ -12560,6 +17379,14 @@ class Srm extends Xtreme
                     $temp['min_qty']         = $Row['min_qty'];
                     
                     $response['response'][$count]['arr_volume_discounts'][]= $temp;
+=======
+                if ($prev_item_id == $Row['item_id'] && $Row['item_volume_id'] != null) {
+                    $temp['volume_discount'] = $Row['volume_discount'];
+                    $temp['discount_type']   = $Row['discount_type'];
+                    $temp['min_qty']         = $Row['min_qty'];
+
+                    $response['response'][$count]['arr_volume_discounts'][] = $temp;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
             $response['ack'] = 1;
@@ -12570,21 +17397,37 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         }
 
+<<<<<<< HEAD
         return $response['response']; 
 
     }
 
     function getPricePurchaseInfo($attr){
+=======
+        return $response['response'];
+    }
+
+    function getPricePurchaseInfo($attr)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->objGeneral->mysql_clean($attr);
 
         // echo '<pre>';print_r($attr);exit;
 
+<<<<<<< HEAD
         $whereCond='';
 
         $Sql2 = "select order_date
                  from srm_invoice
                  where  id ='" . $Row['invoice_id'] . "'";
+=======
+        $whereCond = '';
+
+        $Sql2 = "select order_date
+                 from srm_invoice
+                 where  id ='" . $attr['invoice_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $Sql2;  exit;        
         $RS2 = $this->objsetup->CSI($Sql2);
@@ -12593,6 +17436,7 @@ class Srm extends Xtreme
         $order_date = $Row2['order_date'];
 
 
+<<<<<<< HEAD
         if(isset($order_date))
         {
             $whereCond .=" $order_date BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
@@ -12603,6 +17447,15 @@ class Srm extends Xtreme
         else
         {
             $whereCond .=" UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+=======
+        if (isset($order_date)) {
+            $whereCond .= " $order_date BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+                            CASE WHEN po.end_date = 0 THEN 4099299120 
+                                 ELSE (FLOOR(po.end_date/86400)*86400)
+                            END AND ";
+        } else {
+            $whereCond .= " UNIX_TIMESTAMP (NOW()) BETWEEN (FLOOR(po.start_date/86400)*86400) AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             CASE WHEN po.end_date = 0 THEN 4099299120 
                                  ELSE (FLOOR(po.end_date/86400)*86400) 
                             END AND ";
@@ -12610,12 +17463,20 @@ class Srm extends Xtreme
 
         $Sql = "SELECT  po.max_qty,po.min_max_sale_price AS maxPurchasePrice,po.min_qty,po.standard_price,po.uom_id
                 FROM product_price AS po
+<<<<<<< HEAD
                 WHERE ".$whereCond."  po.type = 2 and po.product_id=".$attr['product_id']." 
+=======
+                WHERE " . $whereCond . "  po.type = 2 and po.product_id=" . $attr['product_id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 LIMIT 1";
 
         // echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 foreach ($Row as $key => $value) {
@@ -12623,18 +17484,30 @@ class Srm extends Xtreme
                         unset($Row[$key]);
                 }
 
+<<<<<<< HEAD
                 $response['response']= $Row;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
         } 
         else {
+=======
+                $response['response'] = $Row;
+            }
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             $response['ack'] = 0;
             $response['error'] = NULL;
         }
 
+<<<<<<< HEAD
         return $response['response']; 
+=======
+        return $response['response'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 
@@ -12659,7 +17532,11 @@ class Srm extends Xtreme
         else
             $currentStock = 0;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $currentStock;
     }
 
@@ -12669,7 +17546,11 @@ class Srm extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "SELECT prd.id,
+<<<<<<< HEAD
                       " . $this->objGeneral->current_stock_counter_warehouse($this->arrUser['company_id'],$attr['warehouse_id']) . "
+=======
+                      " . $this->objGeneral->current_stock_counter_warehouse($this->arrUser['company_id'], $attr['warehouse_id']) . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 From product as prd
                 WHERE prd.status=1  and 
                       prd.product_code IS NOT NULL and 
@@ -12685,11 +17566,16 @@ class Srm extends Xtreme
         else
             $currentStock = 0;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $currentStock;
     }
 
     function getWarehouseAllocOrderLine($attr)
+<<<<<<< HEAD
     {        
         $item = $attr['itemData'];     
 
@@ -12700,6 +17586,18 @@ class Srm extends Xtreme
         $update_id = (isset($item->update_id) && $item->update_id!='')?$item->update_id:0;      
 
             
+=======
+    {
+        $item = $attr['itemData'];
+
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 0;
+        $selWarehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+        $selProduct_id = (isset($item->id) && $item->id != '') ? $item->id : 0;
+        $update_id = (isset($item->update_id) && $item->update_id != '') ? $item->update_id : 0;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         require_once(SERVER_PATH . "/classes/Warehouse.php");
         $this->objWarehouse = new Warehouse($this->arrUser);
 
@@ -12711,13 +17609,20 @@ class Srm extends Xtreme
         $attr['warehouses_id'] = $selWarehousesid;
         $attr['product_id'] = $selProduct_id;
         $attr['order_id'] = $invoice_id;
+<<<<<<< HEAD
         $attr['type_id'] = 1;// 1 for purchase order and 2 for sale order.
 
         $response['stockAlloc'] = $this->objWarehouse->get_stock_allocation($attr,$update_id);
+=======
+        $attr['type_id'] = 1; // 1 for purchase order and 2 for sale order.
+
+        $response['stockAlloc'] = $this->objWarehouse->get_stock_allocation($attr, $update_id);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response['ack'] = 1;
         $response['orderLineID'] = $update_id;
         // $response['orderLineID'] = $selRecordID;
+<<<<<<< HEAD
         $response['error'] = NULL; 
         return $response;
     } 
@@ -12728,6 +17633,18 @@ class Srm extends Xtreme
         $tempOrderLineitemsArray = $attr['tempOrderLineitems'];
         $updateRec=0; 
         $selRecordID=0;
+=======
+        $response['error'] = NULL;
+        return $response;
+    }
+
+    function insertNewOrderLine($attr)
+    {
+        $tempOrderData = $attr['tempOrderData'];
+        $tempOrderLineitemsArray = $attr['tempOrderLineitems'];
+        $updateRec = 0;
+        $selRecordID = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace = array();
 
@@ -12739,10 +17656,17 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;  
         
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo "<pre>";
         // print_r($tempOrderData);
@@ -12750,12 +17674,21 @@ class Srm extends Xtreme
         // print_r($tempOrderLineitemsArray);
         // exit;     
 
+<<<<<<< HEAD
         $invoice_id = (isset($tempOrderData->orderID) && $tempOrderData->orderID!='')?$tempOrderData->orderID:0;
         $supplier_id = (isset($tempOrderData->supplier_id) && $tempOrderData->supplier_id!='')?$tempOrderData->supplier_id:0;
         $selWarehousesid = (isset($tempOrderData->warehouses->id) && $tempOrderData->warehouses->id!='')?$tempOrderData->warehouses->id:0;
         $itemType = (isset($tempOrderData->type_id) && $tempOrderData->type_id!='')?$tempOrderData->type_id:0;
 
         if(!($invoice_id>0)){
+=======
+        $invoice_id = (isset($tempOrderData->orderID) && $tempOrderData->orderID != '') ? $tempOrderData->orderID : 0;
+        $supplier_id = (isset($tempOrderData->supplier_id) && $tempOrderData->supplier_id != '') ? $tempOrderData->supplier_id : 0;
+        $selWarehousesid = (isset($tempOrderData->warehouses->id) && $tempOrderData->warehouses->id != '') ? $tempOrderData->warehouses->id : 0;
+        $itemType = (isset($tempOrderData->type_id) && $tempOrderData->type_id != '') ? $tempOrderData->type_id : 0;
+
+        if (!($invoice_id > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record Not Updated.';
 
@@ -12776,6 +17709,7 @@ class Srm extends Xtreme
                                 FROM srm_invoice 
                                 WHERE id= " . $invoice_id . " AND 
                                       company_id = '" . $this->arrUser['company_id'] . "'
+<<<<<<< HEAD
                                 LIMIT 1";        
         $RsAlreadyPosted = $this->objsetup->CSI($checkAlreadyPosted);
         $purchaseStatus = $RsAlreadyPosted->fields['purchaseStatus'];
@@ -12784,6 +17718,15 @@ class Srm extends Xtreme
         {
             $response['ack'] = 2;
             $response['error'] = ' Already posted with Invoice No. '.$RsAlreadyPosted->fields['invoice_code'];
+=======
+                                LIMIT 1";
+        $RsAlreadyPosted = $this->objsetup->CSI($checkAlreadyPosted);
+        $purchaseStatus = $RsAlreadyPosted->fields['purchaseStatus'];
+
+        if ($purchaseStatus == 3) {
+            $response['ack'] = 2;
+            $response['error'] = ' Already posted with Invoice No. ' . $RsAlreadyPosted->fields['invoice_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
@@ -12797,11 +17740,18 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($tempOrderLineitemsArray); 
 
 
         if($purchaseStatus == 2 && ($tempOrderLineitemsArray[0]->item_type == 0 || $tempOrderLineitemsArray[0]->item_type == 2))
         {
+=======
+        $this->objGeneral->mysql_clean($tempOrderLineitemsArray);
+
+
+        if ($purchaseStatus == 2 && ($tempOrderLineitemsArray[0]->item_type == 0 || $tempOrderLineitemsArray[0]->item_type == 2)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 2;
             $response['error'] = 'Already Received';
 
@@ -12817,6 +17767,7 @@ class Srm extends Xtreme
             return $response;
         }
 
+<<<<<<< HEAD
         foreach ($tempOrderLineitemsArray as $item2) 
         {
 
@@ -12877,6 +17828,67 @@ class Srm extends Xtreme
 
             $rawMaterialProduct = (isset($item2->rawMaterialProduct) && $item2->rawMaterialProduct!='')?$item2->rawMaterialProduct:0;
             $raw_material_gl_id = (isset($item2->raw_material_gl_id) && $item2->raw_material_gl_id!='')?$item2->raw_material_gl_id:0;
+=======
+        foreach ($tempOrderLineitemsArray as $item2) {
+
+            $max_quantity = (isset($item2->max_quantity) && $item2->max_quantity != '') ? $item2->max_quantity : 0;
+            $min_quantity = (isset($item2->min_quantity) && $item2->min_quantity != '') ? $item2->min_quantity : 0;
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 0;
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : '';
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? Round($item2->total_price, 2) : 0;
+            $cat_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+            $primary_unit_of_measure_name = (isset($item2->primary_unit_of_measure_name) && $item2->primary_unit_of_measure_name != '') ? $item2->primary_unit_of_measure_name : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+            $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id != '') ? $item2->warehouses->id : 0;
+            $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name != '') ? $item2->warehouses->name : 0;
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $descriptionID = (isset($item2->descriptionID) && $item2->descriptionID != '') ? $item2->descriptionID : 0;
+            $item_type = (isset($item2->item_type) && $item2->item_type != '') ? $item2->item_type : 0;
+
+            if ($unit_measure_id == 0) {
+                $unit_measure_id = (isset($item2->arr_units[0]->id) && $item2->arr_units[0]->id != '') ? $item2->arr_units[0]->id : 0;
+                $unit_measure = (isset($item2->unit_name) && $item2->unit_name != '') ? $item2->unit_name : '';
+            }
+
+            if ($primary_unit_of_measure_id == 0) {
+                $primary_unit_of_measure_id = (isset($item2->unit_id) && $item2->unit_id != '') ? $item2->unit_id : 0;
+                $primary_unit_of_measure_name = (isset($item2->unit_name) && $item2->unit_name != '') ? $item2->unit_name : 0;
+            }
+
+            if ($item_type == 2) {
+                $unit_measure_id = (isset($item2->uomID) && $item2->uomID != '') ? $item2->uomID : 0;
+                $unit_measure = (isset($item2->uom) && $item2->uom != '') ? $item2->uom : '';
+            }
+
+            if ($item_type == 0) {
+
+                $max_quantity = (isset($item2->maxPurchaseQty) && $item2->maxPurchaseQty != '') ? $item2->maxPurchaseQty : 0;
+                $min_quantity = (isset($item2->minPurchaseQty) && $item2->minPurchaseQty != '') ? $item2->minPurchaseQty : 0;
+            }
+
+            $vat_price = 0;
+
+            if ($vat_value > 0) {
+                $vat_price = ($vat_value / 100) * $unit_price;
+            }
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+
+            $rawMaterialProduct = (isset($item2->rawMaterialProduct) && $item2->rawMaterialProduct != '') ? $item2->rawMaterialProduct : 0;
+            $raw_material_gl_id = (isset($item2->raw_material_gl_id) && $item2->raw_material_gl_id != '') ? $item2->raw_material_gl_id : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "INSERT INTO srm_invoice_detail
                                     SET
@@ -12884,6 +17896,7 @@ class Srm extends Xtreme
                                         invoice_code='" . $tempOrderData->invoice_code . "',
                                         invoice_type='" . $tempOrderData->invoice_type . "',
                                         supplier_id='" . $supplier_id . "',
+<<<<<<< HEAD
                                         product_id='" .$item2->id . "',
                                         product_name='" .$item2->product_name . "',
                                         product_code='" .$item2->product_code . "',
@@ -12894,15 +17907,32 @@ class Srm extends Xtreme
                                         uom_id='" .$unit_measure_id . "',
                                         qty='" .$qty. "',
                                         unit_price='" .$unit_price . "',
+=======
+                                        product_id='" . $item2->id . "',
+                                        product_name='" . $item2->product_name . "',
+                                        product_code='" . $item2->product_code . "',
+                                        descriptionID='" . $descriptionID . "',
+                                        invoice_order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
+                                        max_quantity='" . $max_quantity . "',
+                                        min_quantity='" . $min_quantity . "',
+                                        uom_id='" . $unit_measure_id . "',
+                                        qty='" . $qty . "',
+                                        unit_price='" . $unit_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         vat='" . $item2->vats->name . "',
                                         vat_id='" . $vatsid . "',
                                         vat_price='" . $vat_price . "',
                                         vat_value='" . $vat_value . "',
+<<<<<<< HEAD
                                         total_price='" .$total_price . "',
+=======
+                                        total_price='" . $total_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         unit_measure='" . $unit_measure . "',
                                         unit_measure_id='" . $unit_measure_id . "',
                                         unit_qty='" . $unit_qty . "',
                                         unit_parent_id='" . $unit_parent_id . "',
+<<<<<<< HEAD
                                         cat_id='" .$cat_id . "',
                                         type='" .$item2->item_type . "',
                                         discount_type='" . $discount_type_id . "',
@@ -12917,10 +17947,27 @@ class Srm extends Xtreme
                                         raw_material_gl_id='" .$raw_material_gl_id . "', 
                                         raw_material_gl_code='" .$item2->raw_material_gl_code . "',
                                         raw_material_gl_name='" .$item2->raw_material_gl_name . "',                                           
+=======
+                                        cat_id='" . $cat_id . "',
+                                        type='" . $item2->item_type . "',
+                                        discount_type='" . $discount_type_id . "',
+                                        discount='" . $discount . "',
+                                        sale_unit_id='" . $sale_unit_id . "',
+                                        warehouse_id='" . $warehousesid . "',
+                                        warehouse='" . $warehousesname . "',
+                                        primary_unit_of_measure_name ='" . $primary_unit_of_measure_name . "',
+                                        primary_unit_of_measure_id ='" . $primary_unit_of_measure_id . "',
+                                        stock_check='" . $stock_check . "',                                            
+                                        rawMaterialProduct='" . $rawMaterialProduct . "',                                            
+                                        raw_material_gl_id='" . $raw_material_gl_id . "', 
+                                        raw_material_gl_code='" . $item2->raw_material_gl_code . "',
+                                        raw_material_gl_name='" . $item2->raw_material_gl_name . "',                                           
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         user_id='" . $this->arrUser['id'] . "', 
                                         company_id='" . $this->arrUser['company_id'] . "',
                                         AddedBy='" . $this->arrUser['id'] . "',
                                         AddedOn=UNIX_TIMESTAMP (NOW())";
+<<<<<<< HEAD
             
                 // echo $Sql;exit;  
                 // $RS = $this->objsetup->CSI($Sql);
@@ -12941,10 +17988,33 @@ class Srm extends Xtreme
         // exit;
 
         if ($updateRec > 0){
+=======
+
+            // echo $Sql;exit;  
+            // $RS = $this->objsetup->CSI($Sql);
+            $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddPermission);
+
+            $update_id = $this->Conn->Insert_ID();
+            $item2->update_id = $update_id;
+
+
+            if ($update_id > 0) {
+                $updateRec++;
+
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+        // exit;
+
+        if ($updateRec > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             // $response['orderLineID'] = $update_id;
             $this->updateItemCacheTableInPO($invoice_id);
 
+<<<<<<< HEAD
             foreach ($tempOrderLineitemsArray as $item2) 
             {
                 $item2->product_name = stripslashes($item2->product_name);
@@ -12953,6 +18023,15 @@ class Srm extends Xtreme
             $response['allitemArray'] = $tempOrderLineitemsArray;
             $response['error'] = NULL;
             
+=======
+            foreach ($tempOrderLineitemsArray as $item2) {
+                $item2->product_name = stripslashes($item2->product_name);
+            }
+
+            $response['allitemArray'] = $tempOrderLineitemsArray;
+            $response['error'] = NULL;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -12977,6 +18056,7 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Record not updated';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         }  
         return $response;
     }
@@ -12986,6 +18066,18 @@ class Srm extends Xtreme
                 WHERE id IN (SELECT product_id 
                              FROM srm_invoice_detail 
                              WHERE invoice_id = ".$invoice_id." AND 
+=======
+        }
+        return $response;
+    }
+
+    function updateItemCacheTableInPO($invoice_id)
+    {
+        $sql = "DELETE FROM productcache 
+                WHERE id IN (SELECT product_id 
+                             FROM srm_invoice_detail 
+                             WHERE invoice_id = " . $invoice_id . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     company_id= " . $this->arrUser['company_id'] . " AND 
                                     type = 0 )";
 
@@ -12994,12 +18086,17 @@ class Srm extends Xtreme
         $sql2 = "INSERT INTO productcache SELECT *,NOW() FROM sr_product_sel 
                  WHERE id IN (SELECT product_id 
                               FROM srm_invoice_detail 
+<<<<<<< HEAD
                               WHERE invoice_id = ".$invoice_id." AND 
+=======
+                              WHERE invoice_id = " . $invoice_id . " AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     company_id= " . $this->arrUser['company_id'] . " AND 
                                     type = 0)";
 
         $RS = $this->objsetup->CSI($sql2);
         return 1;
+<<<<<<< HEAD
     }  
 
     function saveOrderLine($attr)
@@ -13008,6 +18105,16 @@ class Srm extends Xtreme
         $allitemArray = $attr['itemDataArr'];
         $updateRec=0; 
         $selRecordID=0; 
+=======
+    }
+
+    function saveOrderLine($attr)
+    {
+        $item = $attr['itemData'];
+        $allitemArray = $attr['itemDataArr'];
+        $updateRec = 0;
+        $selRecordID = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace = array();
 
@@ -13019,6 +18126,7 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;      
@@ -13029,11 +18137,24 @@ class Srm extends Xtreme
         $selProduct_id = (isset($item->id) && $item->id!='')?$item->id:0;      
         $itemType = (isset($item->type_id) && $item->type_id!='')?$item->type_id:0;    
              
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 0;
+        $selWarehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+        $selProduct_id = (isset($item->id) && $item->id != '') ? $item->id : 0;
+        $itemType = (isset($item->type_id) && $item->type_id != '') ? $item->type_id : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo "<pre>";
         // print_r($allitemArray);exit;
 
         $this->objGeneral->mysql_clean($allitemArray);
 
+<<<<<<< HEAD
         foreach ($allitemArray as $item2) 
         {
             $update_id = $item2->update_id;
@@ -13091,10 +18212,69 @@ class Srm extends Xtreme
                                             vat_id='" . $vatsid . "',
                                             vat_value='" . $vat_value . "',
                                             total_price='" .$total_price . "',
+=======
+        foreach ($allitemArray as $item2) {
+            $update_id = $item2->update_id;
+            $updateCHK = '';
+
+            if ($update_id > 0)
+                $updateCHK = ' AND tst.id!=' . $update_id;
+
+            $max_quantity = (isset($item2->max_quantity) && $item2->max_quantity != '') ? $item2->max_quantity : 0;
+            $min_quantity = (isset($item2->min_quantity) && $item2->min_quantity != '') ? $item2->min_quantity : 0;
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 0;
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : '';
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '' && $item2->discount_type_id->id != 'None') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? Round($item2->total_price, 2) : 0;
+            $cat_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+            $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id != '') ? $item2->warehouses->id : 0;
+            $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name != '') ? $item2->warehouses->name : 0;
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $descriptionID = (isset($item2->descriptionID) && $item2->descriptionID != '') ? $item2->descriptionID : 0;
+            $item_type = (isset($item2->item_type) && $item2->item_type != '') ? $item2->item_type : 0;
+
+            if ($item_type == 2) {
+                $unit_measure_id = (isset($item2->uomID) && $item2->uomID != '') ? $item2->uomID : 0;
+                $unit_measure = (isset($item2->uom) && $item2->uom != '') ? $item2->uom : '';
+            }
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+
+            $rawMaterialProduct = (isset($item2->rawMaterialProduct) && $item2->rawMaterialProduct != '') ? $item2->rawMaterialProduct : 0;
+            $raw_material_gl_id = (isset($item2->raw_material_gl_id) && $item2->raw_material_gl_id != '') ? $item2->raw_material_gl_id : 0;
+
+            if ($update_id > 0) {
+                $Sql = "UPDATE srm_invoice_detail
+                                        SET
+                                            supplier_id='" . $supplier_id . "',
+                                            product_name='" . $item2->product_name . "',
+                                            descriptionID='" . $descriptionID . "',
+                                            invoice_order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
+                                            uom_id='" . $unit_measure_id . "',
+                                            qty='" . $qty . "',
+                                            unit_price='" . $unit_price . "',
+                                            vat='" . $item2->vats->name . "',
+                                            vat_id='" . $vatsid . "',
+                                            vat_value='" . $vat_value . "',
+                                            total_price='" . $total_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             unit_measure='" . $unit_measure . "',
                                             unit_measure_id='" . $unit_measure_id . "',
                                             unit_qty='" . $unit_qty . "',
                                             unit_parent_id='" . $unit_parent_id . "',
+<<<<<<< HEAD
                                             cat_id='" .$cat_id . "',
                                             discount_type='" . $discount_type_id . "',
                                             discount='" .$discount . "',
@@ -13112,11 +18292,31 @@ class Srm extends Xtreme
                                             stock_check='" .$stock_check . "'
                         WHERE id=".$update_id." ";
             
+=======
+                                            cat_id='" . $cat_id . "',
+                                            discount_type='" . $discount_type_id . "',
+                                            discount='" . $discount . "',
+                                            sale_unit_id='" . $sale_unit_id . "',
+                                            warehouse_id='" . $warehousesid . "',
+                                            warehouse='" . $warehousesname . "',
+                                            primary_unit_of_measure_name ='" . $item2->primary_unit_of_measure_name . "',
+                                            primary_unit_of_measure_id ='" . $primary_unit_of_measure_id . "',
+                                            ChangedBy='" . $this->arrUser['id'] . "',
+                                            ChangedOn=UNIX_TIMESTAMP (NOW()),
+                                            rawMaterialProduct='" . $rawMaterialProduct . "',                                            
+                                            raw_material_gl_id='" . $raw_material_gl_id . "', 
+                                            raw_material_gl_code='" . $item2->raw_material_gl_code . "',
+                                            raw_material_gl_name='" . $item2->raw_material_gl_name . "', 
+                                            stock_check='" . $stock_check . "'
+                        WHERE id=" . $update_id . " ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql;//exit; 
                 // $RS = $this->objsetup->CSI($Sql);
                 $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_EditPermission);
             }
 
+<<<<<<< HEAD
             if ($update_id > 0){
                 $updateRec++;
 
@@ -13128,6 +18328,19 @@ class Srm extends Xtreme
 
         if ($updateRec > 0){
             
+=======
+            if ($update_id > 0) {
+                $updateRec++;
+
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+
+        if ($updateRec > 0) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             require_once(SERVER_PATH . "/classes/Warehouse.php");
             $this->objWarehouse = new Warehouse($this->arrUser);
 
@@ -13142,7 +18355,11 @@ class Srm extends Xtreme
             $attr['warehouses_id'] = $selWarehousesid;
             $attr['product_id'] = $selProduct_id;
             $attr['order_id'] = $invoice_id;
+<<<<<<< HEAD
             $attr['type_id'] = 1;// 1 for purchase order and 2 for sale order.
+=======
+            $attr['type_id'] = 1; // 1 for purchase order and 2 for sale order.
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $attr['orderLineID'] = $selRecordID;
 
             $response['stockAlloc'] = $this->getPurchaseStockAllocation($attr);
@@ -13150,7 +18367,11 @@ class Srm extends Xtreme
             // $response['orderLineID'] = $update_id;
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['allitemArray'] = $allitemArray;
             $response['error'] = NULL;
 
@@ -13175,9 +18396,15 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Record not updated';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         }  
         return $response;
     } 
+=======
+        }
+        return $response;
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function getPurchaseStockAllocation($attr)
     {
@@ -13244,13 +18471,19 @@ class Srm extends Xtreme
 
         if (!empty($attr['purchase_return_status'])) {
             $sql_total_purchase_return = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
+<<<<<<< HEAD
                                             where  c.product_id=".$attr['product_id']."  and  c.status=1 and c.type=1 and
                                                    c.order_id=".$attr['order_id']." and c.warehouse_id=".$attr['warehouses_id']." and
+=======
+                                            where  c.product_id=" . $attr['product_id'] . "  and  c.status=1 and c.type=1 and
+                                                   c.order_id=" . $attr['order_id'] . " and c.warehouse_id=" . $attr['warehouses_id'] . " and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                    purchase_return_status = 1  and 
                                                    c.company_id=" . $this->arrUser['company_id'] . " ";
 
             $rs_count_pr = $this->objsetup->CSI($sql_total_purchase_return);
             $response['total_pr'] = $rs_count_pr->fields['total'];
+<<<<<<< HEAD
 
         }
         $sql_total = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
@@ -13260,6 +18493,16 @@ class Srm extends Xtreme
                                c.order_id=".$attr['order_id']." and 
                                c.purchase_order_detail_id='" . $attr['orderLineID'] . "' and
                                c.warehouse_id=".$attr['warehouses_id']." AND
+=======
+        }
+        $sql_total = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
+                        where  c.product_id=" . $attr['product_id'] . "  and  
+                               c.status=1 and 
+                               c.type=1 and
+                               c.order_id=" . $attr['order_id'] . " and 
+                               c.purchase_order_detail_id='" . $attr['orderLineID'] . "' and
+                               c.warehouse_id=" . $attr['warehouses_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                purchase_return_status = 0 and 
                                c.company_id=" . $this->arrUser['company_id'] . " ";
 
@@ -13270,11 +18513,19 @@ class Srm extends Xtreme
     }
 
     function saveAdditionalCostOrderLine($attr)
+<<<<<<< HEAD
     {        
         $item = $attr['itemData'];
         $allitemArray = $attr['itemDataArr'];
         $updateRec=0; 
         $selRecordID=0;  
+=======
+    {
+        $item = $attr['itemData'];
+        $allitemArray = $attr['itemDataArr'];
+        $updateRec = 0;
+        $selRecordID = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = array();
 
         $srLogTrace = array();
@@ -13287,6 +18538,7 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;       
@@ -13298,11 +18550,25 @@ class Srm extends Xtreme
         $itemType = (isset($item->type_id) && $item->type_id!='')?$item->type_id:0;
         
         $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID']!='')?$attr['currenctOrderLineID']:0;     
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 0;
+        $selWarehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+        $selProduct_id = (isset($item->id) && $item->id != '') ? $item->id : 0;
+        $itemType = (isset($item->type_id) && $item->type_id != '') ? $item->type_id : 0;
+
+        $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID'] != '') ? $attr['currenctOrderLineID'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo "<pre>";
         // print_r($allitemArray);exit;
 
         $this->objGeneral->mysql_clean($allitemArray);
 
+<<<<<<< HEAD
         foreach ($allitemArray as $item2) 
         {
             $update_id = $item2->update_id;
@@ -13354,12 +18620,68 @@ class Srm extends Xtreme
                             tst.warehouse_id='" .$warehousesid . "' AND 
                             tst.supplier_id='" .$supplier_id. "'
                             ".$updateCHK." ";
+=======
+        foreach ($allitemArray as $item2) {
+            $update_id = $item2->update_id;
+            $updateCHK = '';
+
+            if ($update_id > 0)
+                $updateCHK = ' AND tst.id <>' . $update_id;
+
+            $max_quantity = (isset($item2->max_quantity) && $item2->max_quantity != '') ? $item2->max_quantity : 0;
+            $min_quantity = (isset($item2->min_quantity) && $item2->min_quantity != '') ? $item2->min_quantity : 0;
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 0;
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : '';
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '' && $item2->discount_type_id->id != 'None') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? Round($item2->total_price, 2) : 0;
+            $cat_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+            $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id != '') ? $item2->warehouses->id : 0;
+            $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name != '') ? $item2->warehouses->name : 0;
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $item_type = (isset($item2->item_type) && $item2->item_type != '') ? $item2->item_type : 0;
+            $descriptionID = (isset($item2->descriptionID) && $item2->descriptionID != '') ? $item2->descriptionID : 0;
+
+            $rawMaterialProduct = (isset($item2->rawMaterialProduct) && $item2->rawMaterialProduct != '') ? $item2->rawMaterialProduct : 0;
+            $raw_material_gl_id = (isset($item2->raw_material_gl_id) && $item2->raw_material_gl_id != '') ? $item2->raw_material_gl_id : 0;
+
+
+            if ($item_type == 2) {
+                $unit_measure_id = (isset($item2->uomID) && $item2->uomID != '') ? $item2->uomID : 0;
+                // $unit_measure = (isset($item->uom) && $item->uom!='')?$item->uom:0;              
+                $unit_measure = (isset($item2->uom) && $item2->uom != '') ? $item2->uom : '';
+            }
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+
+            $data_pass = "  tst.invoice_id='" . $invoice_id . "' AND 
+                            tst.product_id='" . $item2->id . "' AND
+                            tst.stock_check <> 0 AND 
+                            tst.warehouse_id='" . $warehousesid . "' AND 
+                            tst.supplier_id='" . $supplier_id . "'
+                            " . $updateCHK . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $total = $this->objGeneral->count_duplicate_in_sql('srm_invoice_detail', $data_pass, $this->arrUser['company_id']);
 
             if ($total == 1) {
                 $response['ack'] = 0;
+<<<<<<< HEAD
                 $response['error'] = '"'.$item2->product_name.'"  Product Qty already allocated in this warehouse!';
+=======
+                $response['error'] = '"' . $item2->product_name . '"  Product Qty already allocated in this warehouse!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $srLogTrace = array();
                 $srLogTrace['ErrorCode'] = '';
@@ -13367,6 +18689,7 @@ class Srm extends Xtreme
                 $srLogTrace['Function'] = __FUNCTION__;
                 $srLogTrace['CLASS'] = __CLASS__;
                 $srLogTrace['Parameter1'] = 'Exit';
+<<<<<<< HEAD
                 $srLogTrace['ErrorMessage'] = '"'.$item2->product_name.'"  Product Qty already allocated in this warehouse!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
@@ -13387,10 +18710,33 @@ class Srm extends Xtreme
                                             vat_id='" . $vatsid . "',
                                             vat_value='" . $vat_value . "',
                                             total_price='" .$total_price . "',
+=======
+                $srLogTrace['ErrorMessage'] = '"' . $item2->product_name . '"  Product Qty already allocated in this warehouse!';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }
+
+            if ($update_id > 0) {
+                $Sql = "UPDATE srm_invoice_detail
+                                        SET
+                                            supplier_id='" . $supplier_id . "',
+                                            product_name='" . $item2->product_name . "',
+                                            descriptionID='" . $descriptionID . "',
+                                            invoice_order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
+                                            uom_id='" . $unit_measure_id . "',
+                                            qty='" . $qty . "',
+                                            unit_price='" . $unit_price . "',
+                                            vat='" . $item2->vats->name . "',
+                                            vat_id='" . $vatsid . "',
+                                            vat_value='" . $vat_value . "',
+                                            total_price='" . $total_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             unit_measure='" . $unit_measure . "',
                                             unit_measure_id='" . $unit_measure_id . "',
                                             unit_qty='" . $unit_qty . "',
                                             unit_parent_id='" . $unit_parent_id . "',
+<<<<<<< HEAD
                                             cat_id='" .$cat_id . "',
                                             discount_type='" . $discount_type_id . "',
                                             discount='" .$discount . "',
@@ -13408,11 +18754,31 @@ class Srm extends Xtreme
                                             stock_check='" .$stock_check . "'
                         WHERE id=".$update_id." ";
             
+=======
+                                            cat_id='" . $cat_id . "',
+                                            discount_type='" . $discount_type_id . "',
+                                            discount='" . $discount . "',
+                                            sale_unit_id='" . $sale_unit_id . "',
+                                            warehouse_id='" . $warehousesid . "',
+                                            warehouse='" . $warehousesname . "',
+                                            primary_unit_of_measure_name ='" . $item2->primary_unit_of_measure_name . "',
+                                            primary_unit_of_measure_id ='" . $primary_unit_of_measure_id . "',
+                                            ChangedBy='" . $this->arrUser['id'] . "',
+                                            ChangedOn=UNIX_TIMESTAMP (NOW()),
+                                            rawMaterialProduct='" . $rawMaterialProduct . "',                                            
+                                            raw_material_gl_id='" . $raw_material_gl_id . "', 
+                                            raw_material_gl_code='" . $item2->raw_material_gl_code . "',
+                                            raw_material_gl_name='" . $item2->raw_material_gl_name . "', 
+                                            stock_check='" . $stock_check . "'
+                        WHERE id=" . $update_id . " ";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql;//exit; 
                 // $RS = $this->objsetup->CSI($Sql);
                 $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_EditPermission);
             }
 
+<<<<<<< HEAD
             if ($update_id > 0){
                 $updateRec++;
                 if($selItemChk>1){
@@ -13425,6 +18791,20 @@ class Srm extends Xtreme
 
         //if ($this->Conn->Affected_Rows() > 0){
         if ($updateRec > 0){
+=======
+            if ($update_id > 0) {
+                $updateRec++;
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+        // exit;
+
+
+        //if ($this->Conn->Affected_Rows() > 0){
+        if ($updateRec > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $attr['product_id'] = $selProduct_id;
             $attr['order_id'] = $invoice_id;
@@ -13435,7 +18815,11 @@ class Srm extends Xtreme
 
             $this->updateItemCacheTableInPO($invoice_id);
 
+<<<<<<< HEAD
             if($itemType==3){
+=======
+            if ($itemType == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['itemAddCostPurchaseOrder'] = $this->getItemAddCostPurchaseOrder($attr);
             }
 
@@ -13467,18 +18851,30 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Record not updated';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         // echo "<pre>";
         //     print_r($response); exit; 
         return $response;
     } 
+=======
+        }
+        // echo "<pre>";
+        //     print_r($response); exit; 
+        return $response;
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function getItemAddCostPurchaseOrder($attr)
     {
         /*      echo "<pre>";
         print_r($attr['itemData']);
         exit; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
@@ -13492,18 +18888,31 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'orderID:'.$item->orderID;
+=======
+        $srLogTrace['Parameter2'] = 'orderID:' . $item->orderID;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
 
+<<<<<<< HEAD
         $invoice_id = (isset($item->orderID) && $item->orderID!='')?$item->orderID:0;
         $uomID = (isset($item->uomID) && $item->uomID!='')?$item->uomID:0;
         $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID']!='')?$attr['currenctOrderLineID']:0;         
         $invoiceRec = (isset($attr['invoiceRec']) && $attr['invoiceRec']!='')?$attr['invoiceRec']:0;    
         $defaultCurrencyID = (isset($attr['defaultCurrencyID']) && $attr['defaultCurrencyID']!='')?$attr['defaultCurrencyID']:0;    
         
+=======
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $uomID = (isset($item->uomID) && $item->uomID != '') ? $item->uomID : 0;
+        $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID'] != '') ? $attr['currenctOrderLineID'] : 0;
+        $invoiceRec = (isset($attr['invoiceRec']) && $attr['invoiceRec'] != '') ? $attr['invoiceRec'] : 0;
+        $defaultCurrencyID = (isset($attr['defaultCurrencyID']) && $attr['defaultCurrencyID'] != '') ? $attr['defaultCurrencyID'] : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $sql1 = "SELECT sid.id,sid.invoice_id,sid.supplier_id,sid.product_id,sid.unit_measure_id,sid.qty,si.comm_book_in_no,si.invoice_date
                  FROM srm_invoice_detail as sid
@@ -13526,7 +18935,11 @@ class Srm extends Xtreme
                 $consignmentNo = $Row1['comm_book_in_no'];
                 $invoice_date = $Row1['invoice_date'];
 
+<<<<<<< HEAD
                 if($product_id>0 && $supplier_id>0){
+=======
+                if ($product_id > 0 && $supplier_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $Sql4 = "SELECT addCost.priceID,
                                     addCost.itemID,
@@ -13556,6 +18969,7 @@ class Srm extends Xtreme
                         while ($Row = $RS4->FetchRow()) {
                             $result = array();
                             $id = $Row['id'];
+<<<<<<< HEAD
                             $descriptionID = (isset($Row['descriptionID']) && $Row['descriptionID']!='')?$Row['descriptionID']:0; 
                             $addPriceCurrencyID = (isset($Row['currencyID']) && $Row['currencyID']!='')?$Row['currencyID']:0;
 
@@ -13571,6 +18985,23 @@ class Srm extends Xtreme
                             $cost_gl_code = explode("-",$cost_gl_code);
                             $costGLNumber =$cost_gl_code[0];
                             $costGLName =$cost_gl_code[1];
+=======
+                            $descriptionID = (isset($Row['descriptionID']) && $Row['descriptionID'] != '') ? $Row['descriptionID'] : 0;
+                            $addPriceCurrencyID = (isset($Row['currencyID']) && $Row['currencyID'] != '') ? $Row['currencyID'] : 0;
+
+                            $priceID = (isset($Row['priceID']) && $Row['priceID'] != '') ? $Row['priceID'] : 0;
+                            $description = $Row['description'];
+                            $cost = $Row['cost'];
+
+                            $amount = $cost * $qty;
+
+                            $cost_gl_code_id = $Row['cost_gl_code_id'];
+                            $cost_gl_code = $Row['cost_gl_code'];
+
+                            $cost_gl_code = explode("-", $cost_gl_code);
+                            $costGLNumber = $cost_gl_code[0];
+                            $costGLName = $cost_gl_code[1];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             $data_pass = "  tst.invoice_id='" . $invoice_id . "' and
                                             tst.transactionType=1  and
@@ -13582,15 +19013,25 @@ class Srm extends Xtreme
                                             tst.gl_account_id='" . $cost_gl_code_id . "'";
 
                             $duplicateCHK = $this->objGeneral->getDuplicateRecordID('gl_account_additional_cost_txn', $data_pass, $this->arrUser['company_id']);
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if ($duplicateCHK == 0) {
 
                                 // $costTtl += $cost;
 
+<<<<<<< HEAD
                                 if($addPriceCurrencyID == $defaultCurrencyID){
                                     $currencyRate = 1;
 
                                 }else{
+=======
+                                if ($addPriceCurrencyID == $defaultCurrencyID) {
+                                    $currencyRate = 1;
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $currencyRate = -1;
 
                                     /* $sqlb=" SELECT COALESCE(conversion_rate,-1) AS retVal
@@ -13600,10 +19041,17 @@ class Srm extends Xtreme
                                                 company_id = '" . $this->arrUser['company_id'] . "'
                                             ORDER BY start_date DESC, action_date DESC 
                                             LIMIT 1"; */
+<<<<<<< HEAD
                                     $sqlb=" SELECT COALESCE((SELECT conversion_rate
                                                              FROM currency_histroy
                                                              WHERE currency_id = ".$addPriceCurrencyID." AND  
                                                                    (FLOOR(start_date/86400)*86400) <= ".$invoice_date." AND
+=======
+                                    $sqlb = " SELECT COALESCE((SELECT conversion_rate
+                                                             FROM currency_histroy
+                                                             WHERE currency_id = " . $addPriceCurrencyID . " AND  
+                                                                   (FLOOR(start_date/86400)*86400) <= " . $invoice_date . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                    company_id = '" . $this->arrUser['company_id'] . "'
                                                              ORDER BY start_date DESC, action_date DESC 
                                                              LIMIT 1),-1) AS retVal";
@@ -13612,12 +19060,20 @@ class Srm extends Xtreme
                                     $Rowb = $RSb->FetchRow();
                                     $currencyRate =  $Rowb['retVal'];
 
+<<<<<<< HEAD
                                     if($currencyRate == -1){
+=======
+                                    if ($currencyRate == -1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         // $response['ack'] = 0;
                                         // $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
                                         $additionalCostCurr++;
                                         // return $response;
+<<<<<<< HEAD
                                         $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
+=======
+                                        // $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for Additional Cost Currency!");
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         // $response['ack'] = 0;
                                         // $response['error'] = "Conversion Rate Is not defined for Additional Cost Currency!";
                                         // return $response;
@@ -13630,6 +19086,7 @@ class Srm extends Xtreme
                                                             gl_account_id='" . $cost_gl_code_id . "',
                                                             gl_account_name='" . $costGLName . "',
                                                             gl_account_code='" . $costGLNumber . "',
+<<<<<<< HEAD
                                                             postingDate='" . current_date. "',
                                                             transactionType='1',
                                                             invoice_id='".$invoice_id."',                                                            
@@ -13639,6 +19096,17 @@ class Srm extends Xtreme
                                                             uomID='".$unit_measure_id."',
                                                             consignmentNo='" . $consignmentNo . "',
                                                             qty='" . $qty. "',
+=======
+                                                            postingDate='" . current_date . "',
+                                                            transactionType='1',
+                                                            invoice_id='" . $invoice_id . "',                                                            
+                                                            priceoffer_id='" . $priceID . "',
+                                                            descriptionID='" . $descriptionID . "',
+                                                            description='" . $description . "',
+                                                            uomID='" . $unit_measure_id . "',
+                                                            consignmentNo='" . $consignmentNo . "',
+                                                            qty='" . $qty . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             unitPrice='" . $cost . "',
                                                             currencyID='" . $addPriceCurrencyID . "',                                                            
                                                             currency_rate = '" . $currencyRate . "', 
@@ -13655,14 +19123,23 @@ class Srm extends Xtreme
                                 // echo $Sql5;exit;
                                 // $RS5 = $this->objsetup->CSI($Sql5);
                                 $RS5 = $this->objsetup->CSI($Sql5, 'purchase_order', sr_AddPermission);
+<<<<<<< HEAD
                             }                                                     
                         }                        
+=======
+                            }
+                        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 }
             }
         }
 
+<<<<<<< HEAD
         if($additionalCostCurr>0){
+=======
+        if ($additionalCostCurr > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             /*$response['ack'] = 0;
             $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
             return $response; */
@@ -13685,6 +19162,7 @@ class Srm extends Xtreme
 
         $where = '';
 
+<<<<<<< HEAD
         if($invoiceRec>0)
             $where = " AND atc.invoice_id = '" . $attr['order_id'] . "' AND atc.orderLineID = '" . $currenctOrderLineID . "'";
         
@@ -13697,21 +19175,45 @@ class Srm extends Xtreme
             $searchKeyword2['wa.container_no'] = $attr['searchKeyword']->wa->container_no;
         }
         if ($attr['searchKeyword']->si->invoice_code){
+=======
+        if ($invoiceRec > 0)
+            $where = " AND atc.invoice_id = '" . $attr['order_id'] . "' AND atc.orderLineID = '" . $currenctOrderLineID . "'";
+
+        // this is for flexi filter for reference no.
+        $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
+
+        $searchKeyword2 = array();
+
+        if ($attr['searchKeyword']->wa->container_no) {
+            $searchKeyword2['wa.container_no'] = $attr['searchKeyword']->wa->container_no;
+        }
+        if ($attr['searchKeyword']->si->invoice_code) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $searchKeyword2['si.invoice_code'] = $attr['searchKeyword']->si->invoice_code;
         }
         $attr['searchKeyword'] = $searchKeyword2;
 
         // print_r($searchKeyword2);
 
+<<<<<<< HEAD
         $ifWhereParam ='';
 
         if (count($searchKeyword2)>0){
+=======
+        $ifWhereParam = '';
+
+        if (count($searchKeyword2) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $ifWhereParam = " OR COALESCE((SELECT atc.unitPrice
                                            FROM gl_account_additional_cost_txn as atc
                                            WHERE atc.inOutTransaction=1 AND
                                                  atc.originaltxnID = addcosttbl.id AND
+<<<<<<< HEAD
                                                  atc.invoice_id ='".$attr['order_id']."' AND
+=======
+                                                 atc.invoice_id ='" . $attr['order_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                  atc.orderLineID='" . $currenctOrderLineID . "' AND
                                                  atc.company_id='" . $this->arrUser['company_id'] . "' AND
                                                  atc.allocationID = wa.id ),0) > 0";
@@ -13719,10 +19221,17 @@ class Srm extends Xtreme
 
 
         //print_r($searchKeyword2);exit;
+<<<<<<< HEAD
         $where_clause = $this->objGeneral->flexiWhereRetriever("",$attr,$fieldsMeta,$ifWhereParam);
 
         if(!($uomID>0)){
             $uomID = (isset($attr['uomID']) && $attr['uomID']!='')?$attr['uomID']:0;   
+=======
+        $where_clause = $this->objGeneral->flexiWhereRetriever("", $attr, $fieldsMeta, $ifWhereParam);
+
+        if (!($uomID > 0)) {
+            $uomID = (isset($attr['uomID']) && $attr['uomID'] != '') ? $attr['uomID'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         /* 
                        addcosttbl.postingDate, */
@@ -13750,7 +19259,11 @@ class Srm extends Xtreme
                                  FROM gl_account_additional_cost_txn as atc
                                  WHERE atc.inOutTransaction=1 AND
                                        atc.originaltxnID = addcosttbl.id AND
+<<<<<<< HEAD
                                        atc.invoice_id ='".$attr['order_id']."' AND
+=======
+                                       atc.invoice_id ='" . $attr['order_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                        atc.orderLineID='" . $currenctOrderLineID . "' AND
                                        atc.company_id='" . $this->arrUser['company_id'] . "' AND
                                        atc.allocationID = wa.id ),0) as additionAmount,
@@ -13802,14 +19315,22 @@ class Srm extends Xtreme
                       addcosttbl.paymentStatus=0 AND
                       addcosttbl.inOutTransaction=0 AND
                       addcosttbl.descriptionID='" . $attr['descriptionID'] . "' AND 
+<<<<<<< HEAD
                       uom.unit_id='" . $uomID . "' ".$where_clause." 
+=======
+                      uom.unit_id='" . $uomID . "' " . $where_clause . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 GROUP BY wa.id
                 ORDER BY addcosttbl.invoice_id DESC,wa.id ASC ";
         // echo $sql;exit;
         // poDetail.invoice_id=addcosttbl.invoice_id AND poDetail.product_id=addcosttbl.product_id
         // GROUP BY addcosttbl.orderLineID 
         //
+<<<<<<< HEAD
                     //   addcosttbl.uomID='" . $uomID . "'
+=======
+        //   addcosttbl.uomID='" . $uomID . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* (select count(atc.id) as posted
                                 from gl_account_additional_cost_txn as atc
@@ -13828,8 +19349,13 @@ class Srm extends Xtreme
         if ($rs->RecordCount() > 0) {
             while ($Row = $rs->FetchRow()) {
                 $result = array();
+<<<<<<< HEAD
                 
                 if($Row['allocationRecID']>0){
+=======
+
+                if ($Row['allocationRecID'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     /* $postedCount = $Row['postedCount'];
 
                         if($warehouseAllocationsCount > $postedCount){
@@ -13838,6 +19364,7 @@ class Srm extends Xtreme
                     else{
                             $result['postedChk'] = 1;
                     } */
+<<<<<<< HEAD
                         $result['postedChk'] = $Row['postedCount'];
 
                     // foreach($WarehouseAllocations as $warehouseRec){
@@ -13905,12 +19432,84 @@ class Srm extends Xtreme
                     // }                      
                 }
                 else{
+=======
+                    $result['postedChk'] = $Row['postedCount'];
+
+                    // foreach($WarehouseAllocations as $warehouseRec){
+                    $result['originaltxnID'] = $Row['id'];
+                    // $result['postedAmount'] = $Row['postedAmount'];
+                    // $result['postedCalcAmount']=$Row['postedAmount']*$Row['postedQty'];
+                    $result['order_code'] = $Row['order_code'];
+
+                    // $result['qty'] = $Row['qty'];
+
+                    $result['allocationRecID'] = $Row['allocationRecID'];
+                    $result['ref_no'] = $Row['ref_no'];
+                    $result['qty'] = $Row['quantity'];
+
+                    // $result['allocationRecID'] = $warehouseRec['id'];
+                    // $result['ref_no'] = $warehouseRec['container_no'];
+                    // $result['qty'] = $warehouseRec['quantity'];
+                    // $result['postedQty'] = $Row['postedQty'];
+
+                    $result['invoice_id'] = $Row['invoice_id'];
+                    $result['gl_account_id'] = $Row['gl_account_id'];
+                    $result['gl_account_name'] = $Row['gl_account_name'];
+                    $result['gl_account_code'] = $Row['gl_account_code'];
+                    $result['invoice_code'] = $Row['invoice_code'];
+                    $result['consignmentNo'] = $Row['consignmentNo'];
+
+                    $result['additionAmount'] = $Row['additionAmount'];
+                    $result['allocatedAmount'] = $Row['additionAmount'];
+
+                    $result['AllocPurchaseCode'] = $Row['AllocPurchaseCode'];
+                    $result['AllocPurchaseInv'] = $Row['AllocPurchaseInv'];
+
+                    // $result['additionAmount'] = $Row['unitPrice'];
+                    // $result['allocatedAmount'] = $Row['unitPrice'];
+
+                    // $result['allocatedAmount'] = $Row['allocatedAmount'];
+                    // $result['allocatedQty'] = $Row['allocatedQty'];
+                    // $result['allocatedQty'] = $Row['qty'];
+                    $result['allocatedQty'] = $Row['quantity'];
+
+                    // $result['calcAmount']=$Row['additionAmount']*$Row['qty'];                
+                    $result['calcAmount'] = $Row['additionAmount'] * $Row['quantity'];
+                    // $result['calcAmount']=$Row['unitPrice']*$Row['qty'];                
+                    // $result['calcAmount'] = $Row['additionAmount']*$Row['allocatedQty'];                
+                    $result['postingDate'] = $this->objGeneral->convert_unix_into_date($Row['postingDate']);
+                    $result['product_id'] = $Row['product_id'];
+
+                    if ($invoiceRec > 0)
+                        $result['postedChk'] =  $Row['postedCount'];
+
+                    $result['prddescription'] = $Row['prddescription'];
+                    $result['product_code'] = $Row['product_code'];
+
+                    $result['price'] = $Row['unitPrice'];
+                    $result['amount'] = $Row['amount'];
+                    $result['currencyID'] = $Row['currencyID'];
+                    $result['uomID'] = $Row['uomID'];
+                    $result['uom'] = $Row['unit_measure'];
+                    $result['descriptionID'] = $Row['descriptionID'];
+                    $result['addcostDesc'] = $Row['addcostDesc'];
+                    $result['paymentStatus'] = $Row['paymentStatus'];
+                    $result['inOutTransaction'] = $Row['inOutTransaction'];
+                    $response['response'][] = $result;
+
+                    // }                      
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['postedChk'] = 0;
 
                     $result['originaltxnID'] = $Row['id'];
                     // $result['postedAmount'] = $Row['postedAmount'];
                     // $result['postedCalcAmount']=$Row['postedAmount']*$Row['postedQty'];
+<<<<<<< HEAD
                     $result['order_code'] = $Row['order_code'];                       
+=======
+                    $result['order_code'] = $Row['order_code'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $result['ref_no'] = '-';
                     $result['qty'] = $this->getOrderQtyForAddCost($Row['orderLineID']);
@@ -13928,6 +19527,7 @@ class Srm extends Xtreme
                     $result['AllocPurchaseCode'] = $Row['AllocPurchaseCode'];
                     $result['AllocPurchaseInv'] = $Row['AllocPurchaseInv'];
 
+<<<<<<< HEAD
                     $result['allocatedQty'] = $Row['qty'];             
                     $result['calcAmount'] = $Row['additionAmount']*$Row['qty'];                
                     // $result['calcAmount'] = $Row['unitPrice']*$Row['qty'];                
@@ -13935,6 +19535,15 @@ class Srm extends Xtreme
                     $result['product_id'] = $Row['product_id'];                        
 
                     if($invoiceRec>0)
+=======
+                    $result['allocatedQty'] = $Row['qty'];
+                    $result['calcAmount'] = $Row['additionAmount'] * $Row['qty'];
+                    // $result['calcAmount'] = $Row['unitPrice']*$Row['qty'];                
+                    $result['postingDate'] = $this->objGeneral->convert_unix_into_date($Row['postingDate']);
+                    $result['product_id'] = $Row['product_id'];
+
+                    if ($invoiceRec > 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $result['postedChk'] =  $Row['postedCount'];
 
                     $result['prddescription'] = $Row['prddescription'];
@@ -13950,13 +19559,21 @@ class Srm extends Xtreme
                     $result['paymentStatus'] = $Row['paymentStatus'];
                     $result['inOutTransaction'] = $Row['inOutTransaction'];
                     $response['response'][] = $result;
+<<<<<<< HEAD
                     }           
+=======
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
             $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
@@ -13965,8 +19582,12 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
             // echo "<pre>";
             // print_r($response); exit;
@@ -13979,28 +19600,50 @@ class Srm extends Xtreme
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
         }
+<<<<<<< HEAD
             
         return $response;
     }
 
     function getAllWarehouseAllocations($invoiceID,$invoiceDetailID,$descriptionID){  
+=======
+
+        return $response;
+    }
+
+    function getAllWarehouseAllocations($invoiceID, $invoiceDetailID, $descriptionID)
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $sql = 'SELECT wa.id,wa.container_no,wa.batch_no,wa.quantity,wrh_loc.title as prdloc,
                 warehouse.name as warehouseName,warehouse.wrh_code,
                        (SELECT count(gltxn.id) 
                         FROM gl_account_additional_cost_txn as gltxn 
                         WHERE gltxn.allocationID = wa.id and 
+<<<<<<< HEAD
                               gltxn.company_id="'.$this->arrUser['company_id'].'" AND 
                               gltxn.transactionType=1 AND
                               gltxn.inOutTransaction=1 AND 
                               gltxn.descriptionID="'.$descriptionID.'") as AllocatedLoc
+=======
+                              gltxn.company_id="' . $this->arrUser['company_id'] . '" AND 
+                              gltxn.transactionType=1 AND
+                              gltxn.inOutTransaction=1 AND 
+                              gltxn.descriptionID="' . $descriptionID . '") as AllocatedLoc
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 FROM warehouse_allocation as wa
                 LEFT JOIN product_warehouse_location as prdLoc on prdLoc.id=wa.location
                 LEFT JOIN warehouse_bin_location as wrh_loc on wrh_loc.id=prdLoc.warehouse_loc_id
                 LEFT JOIN warehouse on warehouse.id=prdLoc.warehouse_id
+<<<<<<< HEAD
                 WHERE wa.company_id="'.$this->arrUser['company_id'].'" AND 
                       wa.order_id="'.$invoiceID.'" AND 
                       wa.purchase_order_detail_id="'.$invoiceDetailID.'" AND 
+=======
+                WHERE wa.company_id="' . $this->arrUser['company_id'] . '" AND 
+                      wa.order_id="' . $invoiceID . '" AND 
+                      wa.purchase_order_detail_id="' . $invoiceDetailID . '" AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       wa.type=1 AND 
                       wa.status=1';
         // echo $sql;exit;
@@ -14009,6 +19652,7 @@ class Srm extends Xtreme
         if ($rs->RecordCount() > 0) {
             while ($Row = $rs->FetchRow()) {
                 foreach ($Row as $key => $value) {
+<<<<<<< HEAD
                     if (is_numeric($key)) 
                     unset($Row[$key]);
                 }
@@ -14026,6 +19670,25 @@ class Srm extends Xtreme
         $sql = 'SELECT COALESCE(qty,0) as quantity
                 FROM srm_invoice_detail
                 WHERE company_id="'.$this->arrUser['company_id'].'" AND  id="'.$invoiceDetailID.'"';
+=======
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $response[] = $Row;
+            }
+        } else
+            $response = array();
+
+        return $response;
+    }
+
+    function getOrderQtyForAddCost($invoiceDetailID)
+    {
+
+        $sql = 'SELECT COALESCE(qty,0) as quantity
+                FROM srm_invoice_detail
+                WHERE company_id="' . $this->arrUser['company_id'] . '" AND  id="' . $invoiceDetailID . '"';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $sql;exit;
         $rs = $this->objsetup->CSI($sql);
 
@@ -14033,15 +19696,22 @@ class Srm extends Xtreme
 
             $Row = $rs->FetchRow();
             $qty = $Row['quantity'];
+<<<<<<< HEAD
         } 
 
         return $qty;        
+=======
+        }
+
+        return $qty;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function getAdditionalCostPurchaseOrder($attr)
     {
         $item = $attr['itemData'];
 
+<<<<<<< HEAD
         $invoice_id = (isset($item->orderID) && $item->orderID!='')?$item->orderID:0;
         $uomID = (isset($item->uomID) && $item->uomID!='')?$item->uomID:0;
         $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID']!='')?$attr['currenctOrderLineID']:0;         
@@ -14059,6 +19729,25 @@ class Srm extends Xtreme
             /* 
                        addcosttbl.postingDate, */
         
+=======
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $uomID = (isset($item->uomID) && $item->uomID != '') ? $item->uomID : 0;
+        $currenctOrderLineID = (isset($attr['currenctOrderLineID']) && $attr['currenctOrderLineID'] != '') ? $attr['currenctOrderLineID'] : 0;
+        $invoiceRec = (isset($attr['invoiceRec']) && $attr['invoiceRec'] != '') ? $attr['invoiceRec'] : 0;
+
+        $where = '';
+
+        if (!($uomID > 0)) {
+            $uomID = (isset($attr['uomID']) && $attr['uomID'] != '') ? $attr['uomID'] : 0;
+        }
+
+
+        if ($invoiceRec > 0)
+            $where = " AND atc.invoice_id = '" . $attr['order_id'] . "' AND atc.orderLineID = '" . $currenctOrderLineID . "'";
+        /* 
+                       addcosttbl.postingDate, */
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $sql = "SELECT addcosttbl.id,
                        addcosttbl.invoice_id,
                        addcosttbl.gl_account_id,
@@ -14081,7 +19770,11 @@ class Srm extends Xtreme
                                 from gl_account_additional_cost_txn as atc
                                 where atc.inOutTransaction=1 AND
                                       atc.originaltxnID = addcosttbl.id AND
+<<<<<<< HEAD
                                       atc.invoice_id ='".$attr['order_id']."' AND
+=======
+                                      atc.invoice_id ='" . $attr['order_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       atc.orderLineID='" . $currenctOrderLineID . "' AND
                                       atc.company_id='" . $this->arrUser['company_id'] . "' AND
                                       atc.allocationID = wa.id ) as additionAmount,
@@ -14120,7 +19813,11 @@ class Srm extends Xtreme
                                 from gl_account_additional_cost_txn as atc
                                 where atc.inOutTransaction=1 AND
                                       atc.originaltxnID = addcosttbl.id AND
+<<<<<<< HEAD
                                       atc.invoice_id ='".$attr['order_id']."' AND
+=======
+                                      atc.invoice_id ='" . $attr['order_id'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       atc.orderLineID='" . $currenctOrderLineID . "' AND
                                       atc.company_id='" . $this->arrUser['company_id'] . "' AND
                                       atc.allocationID = wa.id limit 1)>0 AND 
@@ -14136,6 +19833,7 @@ class Srm extends Xtreme
         if ($rs->RecordCount() > 0) {
             while ($Row = $rs->FetchRow()) {
                 $result = array();
+<<<<<<< HEAD
                     if($Row['allocationRecID']>0){
                             $result['postedChk'] = $Row['postedCount'];
                             
@@ -14225,13 +19923,628 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } 
         else 
+=======
+                if ($Row['allocationRecID'] > 0) {
+                    $result['postedChk'] = $Row['postedCount'];
+
+                    $result['originaltxnID'] = $Row['id'];
+                    $result['order_code'] = $Row['order_code'];
+
+                    $result['allocationRecID'] = $Row['allocationRecID'];
+                    $result['ref_no'] = $Row['ref_no'];
+                    $result['qty'] = $Row['quantity'];
+
+
+                    $result['invoice_id'] = $Row['invoice_id'];
+                    $result['gl_account_id'] = $Row['gl_account_id'];
+                    $result['gl_account_name'] = $Row['gl_account_name'];
+                    $result['gl_account_code'] = $Row['gl_account_code'];
+                    $result['invoice_code'] = $Row['invoice_code'];
+                    $result['consignmentNo'] = $Row['consignmentNo'];
+
+
+                    $result['additionAmount'] = $Row['additionAmount'];
+                    $result['allocatedAmount'] = $Row['additionAmount'];
+                    $result['allocatedQty'] = $Row['quantity'];
+
+                    $result['calcAmount'] = $Row['additionAmount'] * $Row['quantity'];
+                    $result['postingDate'] = $this->objGeneral->convert_unix_into_date($Row['postingDate']);
+                    $result['product_id'] = $Row['product_id'];
+
+                    if ($invoiceRec > 0)
+                        $result['postedChk'] =  $Row['postedCount'];
+
+                    $result['prddescription'] = $Row['prddescription'];
+                    $result['product_code'] = $Row['product_code'];
+
+                    $result['price'] = $Row['unitPrice'];
+                    $result['amount'] = $Row['amount'];
+                    $result['currencyID'] = $Row['currencyID'];
+                    $result['uomID'] = $Row['uomID'];
+                    $result['uom'] = $Row['unit_measure'];
+                    $result['descriptionID'] = $Row['descriptionID'];
+                    $result['addcostDesc'] = $Row['addcostDesc'];
+                    $result['paymentStatus'] = $Row['paymentStatus'];
+                    $result['inOutTransaction'] = $Row['inOutTransaction'];
+                    $response['response'][] = $result;
+                } else {
+                    $result['postedChk'] = 0;
+
+                    $result['originaltxnID'] = $Row['id'];
+                    $result['order_code'] = $Row['order_code'];
+
+                    $result['ref_no'] = '-';
+                    $result['qty'] = $this->getOrderQtyForAddCost($Row['orderLineID']);
+
+
+                    $result['invoice_id'] = $Row['invoice_id'];
+                    $result['gl_account_id'] = $Row['gl_account_id'];
+                    $result['gl_account_name'] = $Row['gl_account_name'];
+                    $result['gl_account_code'] = $Row['gl_account_code'];
+                    $result['invoice_code'] = $Row['invoice_code'];
+                    $result['consignmentNo'] = $Row['consignmentNo'];
+                    $result['additionAmount'] = $Row['additionAmount'];
+                    $result['allocatedAmount'] = $Row['additionAmount'];
+                    $result['allocatedQty'] = $Row['qty'];
+                    $result['calcAmount'] = $Row['additionAmount'] * $Row['qty'];
+                    $result['postingDate'] = $this->objGeneral->convert_unix_into_date($Row['postingDate']);
+                    $result['product_id'] = $Row['product_id'];
+
+                    if ($invoiceRec > 0)
+                        $result['postedChk'] =  $Row['postedCount'];
+
+                    $result['prddescription'] = $Row['prddescription'];
+                    $result['product_code'] = $Row['product_code'];
+                    $result['qty'] = $Row['qty'];
+                    $result['price'] = $Row['unitPrice'];
+                    $result['amount'] = $Row['amount'];
+                    $result['currencyID'] = $Row['currencyID'];
+                    $result['uomID'] = $Row['uomID'];
+                    $result['uom'] = $Row['unit_measure'];
+                    $result['descriptionID'] = $Row['descriptionID'];
+                    $result['addcostDesc'] = $Row['addcostDesc'];
+                    $result['paymentStatus'] = $Row['paymentStatus'];
+                    $result['inOutTransaction'] = $Row['inOutTransaction'];
+                    $response['response'][] = $result;
+                }
+            }
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'] = array();
         return $response;
     }
 
+<<<<<<< HEAD
     function saveSelAdditionalCostPurchaseOrder($attr)
     {
          /* echo "<pre>";
+=======
+    function addSuppJournalInvoice($attr)
+    {
+        // error_reporting(E_ERROR);
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+        $dataArray = $attr['selectdata'];
+        // echo '<pre>'; print_r($dataArray);
+        $parent_id = $dataArray->parent_id;
+
+        $update_check = '';
+
+        if ($parent_id > 0)
+            $update_check = " AND tst.id <> '" . $parent_id . "'";
+
+        $data_pass = "  tst.acc_code='" . $dataArray->acc_code . "'  and 
+                        tst.module_type='2' and
+                        tst.status=1 and  
+                        tst.type=1  $update_check ";
+
+        // echo $data_pass;
+
+        $total = $this->objGeneral->count_duplicate_in_sql('gl_journal_receipt', $data_pass, $this->arrUser['company_id']);
+
+        if ($total > 0) {
+            $response['ack'] = 0;
+            $response['error'] = 'Record Already Exists. ';
+            return $response;
+        }
+
+        // $moduleForPermission = "supplier_journal";
+
+        $modulePermission = "";
+        $invoice_id = (isset($dataArray->invoice_id) && $dataArray->invoice_id != '') ? $dataArray->invoice_id : '0';
+        $account_id = (isset($dataArray->account_id) && $dataArray->account_id != '') ? $dataArray->account_id : '0';
+        $account_no = addslashes($dataArray->account_no);
+        $account_name = addslashes($dataArray->account_name);
+
+        $acc_code = addslashes($dataArray->acc_code);
+
+        $balancing_account_id = (isset($dataArray->balancing_account_id) && $dataArray->balancing_account_id != '') ? $dataArray->balancing_account_id : '0';
+        $balancing_account_code = addslashes($dataArray->balancing_account_code);
+        $balancing_account_name = addslashes($dataArray->balancing_account_name);
+
+        $converted_price = (isset($dataArray->converted_price) && floatval($dataArray->converted_price) > 0) ? Round($dataArray->converted_price, 2) : '0';
+        $debit_amount = (isset($dataArray->debit_amount) && $dataArray->debit_amount != '') ? Round($dataArray->debit_amount, 2) : 'NULL';
+        $allocated_amount = (isset($dataArray->allocated_amount) && $dataArray->allocated_amount != '') ? Round($dataArray->allocated_amount, 2) : 0;
+        $credit_amount = 'NULL';
+
+        $transaction_type = (isset($dataArray->transaction_type) && $dataArray->transaction_type != '') ? $dataArray->transaction_type : '0';
+        $document_type = (isset($dataArray->document_type) && $dataArray->document_type != '') ? $dataArray->document_type : '0';
+        $cnv_rate = (isset($dataArray->cnv_rate) && $dataArray->cnv_rate != '') ? $dataArray->cnv_rate : '0';
+        $converted_currency_id = (isset($dataArray->converted_currency_id) && $dataArray->converted_currency_id != '') ? $dataArray->converted_currency_id : '0';
+        $posting_date = $this->objGeneral->convert_date($dataArray->posting_date);
+        $allocation_date = $this->objGeneral->convert_date($dataArray->allocation_date);
+
+        $payment_detail_id = (isset($dataArray->payment_detail_id) && $dataArray->payment_detail_id != '') ? $dataArray->payment_detail_id : '0';
+        $posting_group_id = (isset($dataArray->posting_group_id) && $dataArray->posting_group_id != '') ? $dataArray->posting_group_id : '0';
+        $currency_id = (isset($dataArray->currency_id) && $dataArray->currency_id->id != '') ? $dataArray->currency_id->id : '0';
+        $document_no = addslashes($dataArray->document_no);
+
+        if ($parent_id > 0) {
+
+
+            if ($payment_detail_id == 0) {
+
+                // $modulePermission = sr_AddPermission;
+                $Sql = "INSERT INTO payment_details
+                            (parent_id,
+                            transaction_type,
+                            document_type,
+                            document_no,
+                            company_id,
+                            user_id,
+                            account_id,
+                            account_no,
+                            account_name,
+                            posting_date,
+                            created_date,
+                            currency_id,
+                            posting_group_id,
+                            debit_amount,
+                            credit_amount,
+                            converted_price,
+                            converted_currency_id,
+                            cnv_rate,
+                            balancing_account_id,
+                            balancing_account_code,
+                            balancing_account_name,
+                            invoice_id,
+                            status,
+                            posting_dateUnConv)
+                        SELECT 
+                            \"" . $parent_id . "\",
+                                $transaction_type,
+                                $document_type,
+                                \"$document_no\",
+                                " . $this->arrUser['company_id'] . ",
+                                " . $this->arrUser['id'] . ",
+                                $account_id,
+                                \"$account_no\",
+                                \"$account_name\",
+                                \"$posting_date\",
+                            " . current_date . " ,
+                                " . $currency_id . ",
+                                " . $posting_group_id . ",
+                                $debit_amount,
+                                $credit_amount,
+                                $converted_price,
+                            $converted_currency_id,
+                                $cnv_rate,
+                                $balancing_account_id,
+                            \"$balancing_account_code\",
+                            \"$balancing_account_name\",
+                            '".$invoice_id."',
+                            1,
+                            DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                        FROM widgetone
+                        WHERE
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=" . $parent_id . " LIMIT 1) = 1 
+                        LIMIT 1";
+
+                // echo $Sql;exit;
+                $RS = $this->objsetup->CSI($Sql);//, $moduleForPermission, sr_AddPermission
+
+                $payment_detail_id = $this->Conn->Insert_ID();
+            } else {
+
+                // $modulePermission = sr_AddEditPermission;
+                $Sql = "UPDATE payment_details SET
+                            transaction_type =  $transaction_type,
+                            document_type =  $document_type,
+                            document_no =  '" . $document_no . "',
+                            account_id =  $account_id,
+                            account_no =  '" . $account_no . "',
+                            account_name =  '" . $account_name . "',
+                            posting_date =  '" . $posting_date . "',
+                            currency_id =  " . $currency_id . ",
+                            posting_group_id =  " . $posting_group_id . ",
+                            debit_amount =  $debit_amount,
+                            credit_amount =  $credit_amount,
+                            converted_price =  $converted_price,
+                            converted_currency_id = $converted_currency_id,
+                            cnv_rate =  $cnv_rate,
+                            balancing_account_id =   $balancing_account_id,
+                            balancing_account_code = '" . $balancing_account_code . "',
+                            balancing_account_name = '" . $balancing_account_name . "',
+                            posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                            invoice_id = '".$invoice_id."'
+                            WHERE id = $payment_detail_id AND status = 1 AND
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=" . $parent_id . " LIMIT 1) = 1 
+                                AND company_id = " . $this->arrUser['company_id'] . " LIMIT 1";
+
+                // echo $Sql;//exit;
+                $RS = $this->objsetup->CSI($Sql);//, $moduleForPermission, sr_AddEditPermission
+            }
+
+            if ($payment_detail_id > 0) {
+
+                $response['ack'] = 1;
+
+                /* $invoice_type = 5;
+                $module_type = 2;
+                $transaction_type = 1;
+                $document_type = 3;
+                $total_allocated = 0;
+
+                $TRANSACTION_UNSUCCESSFUL = 0;
+
+                $del_allocation_entry = "DELETE FROM payment_allocation 
+                                         WHERE  payment_id = $parent_id AND payment_detail_id = $payment_detail_id AND invoice_id = $invoice_id AND
+                                                payment_type =1 AND invoice_type = 5 AND document_type = 3 AND module_type = 2 AND transaction_type =1 AND
+                                                company_id = " . $this->arrUser['company_id'] . " AND status =0";
+
+                $RS = $this->objsetup->CSI($del_allocation_entry);
+
+                $total_allocated += $allocated_amount;
+                $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01'," . $this->arrUser['company_id'] . ", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";
+                // echo $Check_Sql; 
+                $RS1 = $this->objsetup->CSI($Check_Sql);
+                if ($RS1->fields['invoice_value'] < 0) {
+                    $TRANSACTION_UNSUCCESSFUL = 1;
+                }
+
+                if ($TRANSACTION_UNSUCCESSFUL == 0) {
+                    $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                            VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                            " . $this->arrUser['company_id'] . "," . $this->arrUser['id'] . ", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), " . $this->arrUser['id'] . ", UNIX_TIMESTAMP (NOW()))";
+                    $RS = $this->objsetup->CSI($Sql);
+
+                    // echo $Sql; 
+                    $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                    $RS = $this->objsetup->CSI($allocation_entries);
+
+
+                    $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                    $RS = $this->objsetup->CSI($allocation_entries);
+                } else {
+
+                    $response['ack'] = 0;
+                    $response['error'] = 'Journal can not be created';
+
+                    $srLogTrace = array();
+
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['Parameter2'] = 'parent:';
+                    $srLogTrace['ErrorMessage'] = 'Journal can not be created';
+
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                } */
+            } else {
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 1';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 1';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }
+        } else {
+
+            $modulePermission = sr_AddPermission;
+            // $msg = 'Inserted';
+            $Sql = "INSERT INTO gl_journal_receipt 
+                                        SET 
+                                            create_date='" . current_date . "',
+                                            acc_code='" . $acc_code . "',
+                                            company_id='" . $this->arrUser['company_id'] . "',  
+                                            user_id='" . $this->arrUser['id'] . "',
+                                            type=1,
+                                            template_id='0',
+                                            module_type= '2',
+                                            sub_module_type= '0',
+                                            invoice_id='" . $invoice_id . "',
+                                            transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2)";
+            // echo  $Sql;exit;
+            $RS = $this->objsetup->CSI($Sql);//, $moduleForPermission, $modulePermission
+            $parent_id = $this->Conn->Insert_ID();
+
+            if ($parent_id > 0) {
+
+                if ($payment_detail_id == 0) {
+
+                    // $modulePermission = sr_AddPermission;
+                    $Sql = "INSERT INTO payment_details
+                                (parent_id,
+                                transaction_type,
+                                document_type,
+                                document_no,
+                                company_id,
+                                user_id,
+                                account_id,
+                                account_no,
+                                account_name,
+                                posting_date,
+                                created_date,
+                                currency_id,
+                                posting_group_id,
+                                debit_amount,
+                                credit_amount,
+                                converted_price,
+                                converted_currency_id,
+                                cnv_rate,
+                                balancing_account_id,
+                                balancing_account_code,
+                                balancing_account_name,
+                                invoice_id,
+                                status,
+                                posting_dateUnConv)
+                            SELECT 
+                                \"" . $parent_id . "\",
+                                    $transaction_type,
+                                    $document_type,
+                                    \"$document_no\",
+                                    " . $this->arrUser['company_id'] . ",
+                                    " . $this->arrUser['id'] . ",
+                                    $account_id,
+                                    \"$account_no\",
+                                    \"$account_name\",
+                                    \"$posting_date\",
+                                " . current_date . " ,
+                                    " . $currency_id . ",
+                                    " . $posting_group_id . ",
+                                    $debit_amount,
+                                    $credit_amount,
+                                    $converted_price,
+                                $converted_currency_id,
+                                    $cnv_rate,
+                                    $balancing_account_id,
+                                \"$balancing_account_code\",
+                                \"$balancing_account_name\",
+                                '".$invoice_id."',
+                                1,
+                                DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
+                            FROM widgetone
+                            WHERE
+                                (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=" . $parent_id . " LIMIT 1) = 1 
+                            LIMIT 1";
+
+                    // echo $Sql;exit;
+                    $RS = $this->objsetup->CSI($Sql);//, $moduleForPermission, sr_AddPermission
+
+                    $payment_detail_id = $this->Conn->Insert_ID();
+                } else {
+
+                    // $modulePermission = sr_AddEditPermission;
+                    $Sql = "UPDATE payment_details SET
+                                transaction_type =  $transaction_type,
+                                document_type =  $document_type,
+                                document_no =  '" . $document_no . "',
+                                account_id =  $account_id,
+                                account_no =  '" . $account_no . "',
+                                account_name =  '" . $account_name . "',
+                                posting_date =  '" . $posting_date . "',
+                                currency_id =  " . $currency_id . ",
+                                posting_group_id =  " . $posting_group_id . ",
+                                debit_amount =  $debit_amount,
+                                credit_amount =  $credit_amount,
+                                converted_price =  $converted_price,
+                                converted_currency_id = $converted_currency_id,
+                                cnv_rate =  $cnv_rate,
+                                balancing_account_id =   $balancing_account_id,
+                                balancing_account_code = '" . $balancing_account_code . "',
+                                balancing_account_name = '" . $balancing_account_name . "',
+                                posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                                invoice_id = '".$invoice_id."'
+                                WHERE id = $payment_detail_id AND status = 1 AND
+                                (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=" . $parent_id . " LIMIT 1) = 1 
+                                    AND company_id = " . $this->arrUser['company_id'] . " LIMIT 1";
+
+                    // echo $Sql;exit;
+                    $RS = $this->objsetup->CSI($Sql);//, $moduleForPermission, sr_AddEditPermission
+                }
+
+                if ($payment_detail_id > 0) {
+
+                    $response['ack'] = 1;
+
+                    /* $invoice_type = 5;
+                    $module_type = 2;
+                    $transaction_type = 1;
+                    $document_type = 3;
+                    $total_allocated = 0;
+
+                    $TRANSACTION_UNSUCCESSFUL = 0;
+
+                    $total_allocated += $allocated_amount;
+                    $Check_Sql = "SELECT (grand_total - ROUND((SR_CalculateSetteledAmount($invoice_id,0,'1971-01-01', '2099-01-01'," . $this->arrUser['company_id'] . ", $document_type) + $allocated_amount), 2)) AS invoice_value FROM srm_invoice WHERE id=$invoice_id";
+
+                    $RS1 = $this->objsetup->CSI($Check_Sql);
+                    if ($RS1->fields['invoice_value'] < 0) {
+                        $TRANSACTION_UNSUCCESSFUL = 1;
+                    }
+
+                    if ($TRANSACTION_UNSUCCESSFUL == 0) {
+                        $Sql = "INSERT INTO payment_allocation (payment_id, payment_detail_id, payment_type, invoice_id, invoice_type, document_type, module_type, transaction_type, amount_allocated, company_id, user_id, status, date_created, allocation_date, allocation_dateUnConv, AddedBy, AddedOn) 
+                                VALUES ( $parent_id, $payment_detail_id, 1, $invoice_id, $invoice_type, $document_type, $module_type, $transaction_type, $allocated_amount, 
+                                " . $this->arrUser['company_id'] . "," . $this->arrUser['id'] . ", 0, UNIX_TIMESTAMP (NOW()), $allocation_date, DATE_FORMAT(FROM_UNIXTIME($allocation_date), '%Y-%m-%d'), " . $this->arrUser['id'] . ", UNIX_TIMESTAMP (NOW()))";
+                        $RS = $this->objsetup->CSI($Sql);
+
+
+                        $allocation_entries = "UPDATE payment_details SET allocated_amount = IFNULL(allocated_amount,0) + $allocated_amount WHERE id= $payment_detail_id";
+                        $RS = $this->objsetup->CSI($allocation_entries);
+
+
+                        $allocation_entries = "UPDATE payment_details SET temp_allocated_amount = IFNULL(temp_allocated_amount,0) + $allocated_amount WHERE id= $invoice_id";
+                        $RS = $this->objsetup->CSI($allocation_entries);
+                    } else {
+
+                        $response['ack'] = 0;
+                        $response['error'] = 'Journal can not be created 2';
+                        $srLogTrace = array();
+
+                        $srLogTrace['ErrorCode'] = '';
+                        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                        $srLogTrace['Function'] = __FUNCTION__;
+                        $srLogTrace['CLASS'] = __CLASS__;
+                        $srLogTrace['Parameter1'] = 'Exit';
+                        $srLogTrace['Parameter2'] = 'parent:';
+                        $srLogTrace['ErrorMessage'] = 'Journal can not be created 2';
+
+                        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                        return $response;
+                    } */
+                } else {
+
+                    $response['ack'] = 0;
+                    $response['error'] = 'Journal can not be created 3';
+                    $srLogTrace = array();
+
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['Parameter2'] = 'parent:';
+                    $srLogTrace['ErrorMessage'] = 'Journal can not be created 3';
+
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                }
+            } else {
+
+                $response['ack'] = 0;
+                $response['error'] = 'Journal can not be created 4 ';
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'parent:';
+                $srLogTrace['ErrorMessage'] = 'Journal can not be created 4';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }
+        }
+
+        $response['ack'] = 1;
+        $response['error'] = 'Journal created successfully';
+        $response['parent_id'] = $parent_id;
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = 'Journal created successfully';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    }
+
+    function getSuppJournalInvoice($attr)
+    {
+        // print_r($attr);exit;
+        $this->objGeneral->mysql_clean($attr);
+
+        $Sql = "SELECT  pd.parent_id, pd.id AS payment_detail_id,pd.allocated_amount,
+                        pd.cnv_rate,pd.currency_id,pd.posting_date,pd.debit_amount,pd.converted_price,
+                        pd.temp_allocated_amount,pd.document_no,pd.account_name,pd.balancing_account_id,
+                        pd.balancing_account_code,pd.balancing_account_name,glJ.acc_code AS glcode,glJ.type AS postedStatus
+                FROM gl_journal_receipt AS glJ
+                LEFT JOIN payment_details AS pd ON glJ.id = pd.parent_id 
+                WHERE   glJ.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        pd.invoice_id =  '" . $attr['invoice_id'] . "' AND 
+                        glJ.company_id= '" . $this->arrUser['company_id'] . "' AND 
+                        pd.transaction_type = 3 AND 
+                        pd.document_type = 2 AND 
+                        pd.status IN (1,2)";
+                        // pd.status = 1";
+
+        /* $Sql = "SELECT pa.payment_id AS parent_id, pa.id AS paid, pa.payment_detail_id, pa.amount_allocated,pa.allocation_date,
+                        pd.cnv_rate,pd.currency_id,pd.posting_date,pd.debit_amount,pd.converted_price,
+                        pd.temp_allocated_amount,pd.document_no,pd.account_name,pd.balancing_account_id,
+                        pd.balancing_account_code,pd.balancing_account_name,glJ.acc_code AS glcode,glJ.type AS postedStatus
+                FROM payment_allocation AS pa
+                LEFT JOIN payment_details AS pd ON pa.payment_detail_id = pd.id 
+                LEFT JOIN gl_journal_receipt AS glJ ON pa.payment_id = glJ.id 
+                WHERE pa.invoice_id =  " . $attr['invoice_id'] . " AND 
+                        pa.company_id= '" . $this->arrUser['company_id'] . "' AND 
+                        pa.payment_type = 1 AND 
+                        pa.invoice_type = 5 AND 
+                        pa.document_type = 3 AND 
+                        pa.module_type =  2 AND 
+                        pa.transaction_type = 1"; */
+
+        // echo $Sql;exit;
+        $RS = $this->objsetup->CSI($Sql);
+
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+                $Row['allocation_date'] = $this->objGeneral->convert_unix_into_date($Row['allocation_date']);
+                $Row['posting_date'] = $this->objGeneral->convert_unix_into_date($Row['posting_date']);
+                $response['response'] = $Row;
+            }
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else
+            $response['response'][] = array();
+
+        return $response;
+    }
+
+
+    function saveSelAdditionalCostPurchaseOrder($attr)
+    {
+        /* echo "<pre>";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         print_r($attr['seladditionalcostPurchaseOrder']);
         print_r($attr['supplierID']); exit; */
 
@@ -14242,6 +20555,7 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'order_id:'.$attr['order_id'];
         $srLogTrace['ErrorMessage'] = "";
 
@@ -14259,19 +20573,45 @@ class Srm extends Xtreme
                 WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
                     invoice_id =".$order_id." and 
                     orderLineID = ".$orderLineID." ";
+=======
+        $srLogTrace['Parameter2'] = 'order_id:' . $attr['order_id'];
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $supplierID = (isset($attr['supplierID']) && $attr['supplierID'] != '') ? $attr['supplierID'] : 0;
+        $order_id = (isset($attr['order_id']) && $attr['order_id'] != '') ? $attr['order_id'] : 0;
+        $orderLineID = (isset($attr['orderLineID']) && $attr['orderLineID'] != '') ? $attr['orderLineID'] : 0;
+        $defaultCurrencyID = (isset($attr['defaultCurrencyID']) && $attr['defaultCurrencyID'] != '') ? $attr['defaultCurrencyID'] : 0;
+
+        $sql2 = " DELETE FROM gl_account_additional_cost_txn 
+                WHERE company_id='" . $this->arrUser['company_id'] . "' AND 
+                    invoice_id =" . $order_id . " and 
+                    orderLineID = " . $orderLineID . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $RS2 = $this->objsetup->CSI($sql2);
         // $RS2 = $this->objsetup->CSI($sql2, 'purchase_order', sr_DeletePermission);
 
+<<<<<<< HEAD
         $sqla=" SELECT invoice_date,order_date
                 FROM srm_invoice 
                 WHERE id = ".$order_id." ";
+=======
+        $sqla = " SELECT invoice_date,order_date
+                FROM srm_invoice 
+                WHERE id = " . $order_id . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RSa = $this->objsetup->CSI($sqla);
         $RSa = $this->objsetup->CSI($sqla, 'purchase_order', sr_ViewPermission);
 
         $Rowa = $RSa->FetchRow();
 
+<<<<<<< HEAD
         if($Rowa['invoice_date']>0) $invoice_date =  $Rowa['invoice_date'];
         else $invoice_date =  $Rowa['order_date'];
 
@@ -14303,6 +20643,38 @@ class Srm extends Xtreme
                 $currencyRate = 1;
             }
             else{
+=======
+        if ($Rowa['invoice_date'] > 0) $invoice_date =  $Rowa['invoice_date'];
+        else $invoice_date =  $Rowa['order_date'];
+
+        $additionalCostCurr = 0;
+
+
+        foreach ($attr['seladditionalcostPurchaseOrder'] as $item) {
+
+            $invoice_id = (isset($item->invoice_id) && $item->invoice_id != '') ? $item->invoice_id : 0;
+            $descriptionID = (isset($item->descriptionID) && $item->descriptionID != '') ? $item->descriptionID : 0;
+            $productid = (isset($item->product_id) && $item->product_id != '') ? $item->product_id : 0;
+            // $productid = (isset($item->productid) && $item->productid!='')?$item->productid:0;  
+            $gl_account_id = (isset($item->gl_account_id) && $item->gl_account_id != '') ? $item->gl_account_id : 0;
+            $gl_account_code = (isset($item->gl_account_code) && $item->gl_account_code != '') ? $item->gl_account_code : 0;
+            $qty = (isset($item->qty) && $item->qty != '') ? $item->qty : 0;
+            $cost = (isset($item->additionAmount) && $item->additionAmount != '') ? $item->additionAmount : 0;
+            $calcAmount = (isset($item->calcAmount) && $item->calcAmount != '') ? $item->calcAmount : 0;
+            $originaltxnID = (isset($item->originaltxnID) && $item->originaltxnID != '') ? $item->originaltxnID : 0;
+            $currencyID = (isset($item->currencyID) && $item->currencyID != '') ? $item->currencyID : 0;
+            $unit_measure_id = (isset($item->unit_measure_id) && $item->unit_measure_id != '') ? $item->unit_measure_id : 0;
+            $allocationRecID = (isset($item->allocationRecID) && $item->allocationRecID != '') ? $item->allocationRecID : 0;
+
+            if (!($unit_measure_id > 0)) {
+                $unit_measure_id = (isset($item->uomID) && $item->uomID != '') ? $item->uomID : 0;
+            }
+
+
+            if ($currencyID == $defaultCurrencyID) {
+                $currencyRate = 1;
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $currencyRate = -1;
 
                 /* $sqlb=" SELECT COALESCE(conversion_rate,-1) AS retVal
@@ -14312,10 +20684,17 @@ class Srm extends Xtreme
                             company_id = '" . $this->arrUser['company_id'] . "'
                         ORDER BY start_date DESC, action_date DESC 
                         LIMIT 1"; */
+<<<<<<< HEAD
                 $sqlb=" SELECT COALESCE((SELECT conversion_rate
                                          FROM currency_histroy
                                          WHERE currency_id = ".$currencyID." AND  
                                                (FLOOR(start_date/86400)*86400) <= ".$invoice_date." AND
+=======
+                $sqlb = " SELECT COALESCE((SELECT conversion_rate
+                                         FROM currency_histroy
+                                         WHERE currency_id = " . $currencyID . " AND  
+                                               (FLOOR(start_date/86400)*86400) <= " . $invoice_date . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                company_id = '" . $this->arrUser['company_id'] . "'
                                          ORDER BY start_date DESC, action_date DESC 
                                          LIMIT 1),-1) AS retVal";
@@ -14324,6 +20703,7 @@ class Srm extends Xtreme
                 $Rowb = $RSb->FetchRow();
                 $currencyRate =  $Rowb['retVal'];
 
+<<<<<<< HEAD
                 if($currencyRate == -1){
                     $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for '".$item->addcostDesc."' Additional Cost Currency");
                     $additionalCostCurr++;
@@ -14331,6 +20711,14 @@ class Srm extends Xtreme
                 }
             }         
  
+=======
+                if ($currencyRate == -1) {
+                    // $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for '" . $item->addcostDesc . "' Additional Cost Currency");
+                    $additionalCostCurr++;
+                }
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $data_pass = "  tst.invoice_id='" . $order_id . "' and
                             tst.transactionType=1  and
@@ -14340,7 +20728,11 @@ class Srm extends Xtreme
                             tst.originaltxnID='" . $originaltxnID . "' and
                             tst.allocationID='" . $allocationRecID . "' and
                             tst.product_id='" . $productid . "' and
+<<<<<<< HEAD
                             tst.supplier_id='" . $supplierID . "'";//item_additional_cost_purchase_order
+=======
+                            tst.supplier_id='" . $supplierID . "'"; //item_additional_cost_purchase_order
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $duplicateCHK = $this->objGeneral->getDuplicateRecordID('gl_account_additional_cost_txn', $data_pass, $this->arrUser['company_id']);
 
@@ -14352,6 +20744,7 @@ class Srm extends Xtreme
                                             gl_account_id='" . $gl_account_id . "',
                                             gl_account_name='" . $item->gl_account_name . "',
                                             gl_account_code='" . $gl_account_code . "',
+<<<<<<< HEAD
                                             postingDate='" . $this->objGeneral->convert_date($item->postingDate) ."',
                                             transactionType='1',
                                             invoice_id='".$order_id."',
@@ -14360,6 +20753,16 @@ class Srm extends Xtreme
                                             uomID='".$unit_measure_id."',
                                             consignmentNo='" . $item->consignmentNo . "',
                                             qty='" . $qty. "',
+=======
+                                            postingDate='" . $this->objGeneral->convert_date($item->postingDate) . "',
+                                            transactionType='1',
+                                            invoice_id='" . $order_id . "',
+                                            descriptionID='" . $descriptionID . "',
+                                            description='" . $item->addcostDesc . "',
+                                            uomID='" . $unit_measure_id . "',
+                                            consignmentNo='" . $item->consignmentNo . "',
+                                            qty='" . $qty . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             unitPrice='" . $cost . "',
                                             amount='" . $calcAmount . "',
                                             product_id='" . $productid . "',
@@ -14374,22 +20777,37 @@ class Srm extends Xtreme
                                             company_id='" . $this->arrUser['company_id'] . "',
                                             AddedBy='" . $this->arrUser['id'] . "',
                                             AddedOn=UNIX_TIMESTAMP (NOW())";
+<<<<<<< HEAD
                     //  echo $Sql5;//exit;
                 // $RS5 = $this->objsetup->CSI($Sql5);
                 $RS5 = $this->objsetup->CSI($Sql5, 'purchase_order', sr_AddPermission);
 
             }
             else{
+=======
+                //  echo $Sql5;//exit;
+                // $RS5 = $this->objsetup->CSI($Sql5);
+                $RS5 = $this->objsetup->CSI($Sql5, 'purchase_order', sr_AddPermission);
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Sql5 = "UPDATE  gl_account_additional_cost_txn
                                         SET 
                                             gl_account_id='" . $gl_account_id . "',
                                             gl_account_name='" . $item->gl_account_name . "',
                                             gl_account_code='" . $gl_account_code . "',
+<<<<<<< HEAD
                                             postingDate='" . $this->objGeneral->convert_date($item->postingDate) ."',
                                             description='".$item->addcostDesc."',
                                             uomID='".$unit_measure_id."',
                                             consignmentNo='" . $item->consignmentNo. "',
                                             qty='" . $qty. "',
+=======
+                                            postingDate='" . $this->objGeneral->convert_date($item->postingDate) . "',
+                                            description='" . $item->addcostDesc . "',
+                                            uomID='" . $unit_measure_id . "',
+                                            consignmentNo='" . $item->consignmentNo . "',
+                                            qty='" . $qty . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             unitPrice='" . $cost . "',
                                             amount='" . $calcAmount . "',
                                             currencyID='" . $currencyID . "',                                                           
@@ -14408,17 +20826,28 @@ class Srm extends Xtreme
                 // echo $Sql5;//exit;
                 // $RS5 = $this->objsetup->CSI($Sql5);
                 $RS5 = $this->objsetup->CSI($Sql5, 'purchase_order', sr_EditPermission);
+<<<<<<< HEAD
 
             }                                             
         }
 
         if($additionalCostCurr>0){
+=======
+            }
+        }
+
+        if ($additionalCostCurr > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $response['ack'] = 0;
             // $response['error'] = 'Conversion Rate Is not defined for Additional Cost Currency!';
             // $this->objsetup->terminateWithMessage("Conversion Rate Is not defined for '".$item->addcostDesc."' Additional Cost Currency");
             $response['ack'] = 0;
             $response['error'] = "Conversion Rate Is not defined for Additional Cost Currency";
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
@@ -14431,7 +20860,11 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
             return $response;
+<<<<<<< HEAD
         }else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -14455,7 +20888,11 @@ class Srm extends Xtreme
         $itemsArray = $attr['items'];
 
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace = array();
 
@@ -14467,7 +20904,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
@@ -14475,6 +20916,7 @@ class Srm extends Xtreme
         // print_r($attr);
         // exit;
 
+<<<<<<< HEAD
         $net_amount = (isset($attr['net_amount']) && $attr['net_amount']!='')? Round($attr['net_amount'],2):0; 
         $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount']!='')? Round($attr['tax_amount'],2) :0; 
         $grand_total = (isset($attr['grand_total']) && $attr['grand_total']!='')? Round($attr['grand_total'],2) :0; 
@@ -14485,12 +20927,25 @@ class Srm extends Xtreme
         $items_net_vat = (isset($attr['items_net_vat']) && $attr['items_net_vat']!='')? Round($attr['items_net_vat'],2):0; 
 
         if($attr['currency_id'] != $attr['defaultCurrencyID']){
+=======
+        $net_amount = (isset($attr['net_amount']) && $attr['net_amount'] != '') ? Round($attr['net_amount'], 2) : 0;
+        $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount'] != '') ? Round($attr['tax_amount'], 2) : 0;
+        $grand_total = (isset($attr['grand_total']) && $attr['grand_total'] != '') ? Round($attr['grand_total'], 2) : 0;
+        $tax_rate = (isset($attr['tax_rate']) && $attr['tax_rate'] != '') ? $attr['tax_rate'] : 0;
+
+        $items_net_total = (isset($attr['items_net_total']) && $attr['items_net_total'] != '') ? Round($attr['items_net_total'], 2) : 0;
+        $items_net_discount = (isset($attr['items_net_discount']) && $attr['items_net_discount'] != '') ? Round($attr['items_net_discount'], 2) : 0;
+        $items_net_vat = (isset($attr['items_net_vat']) && $attr['items_net_vat'] != '') ? Round($attr['items_net_vat'], 2) : 0;
+
+        if ($attr['currency_id'] != $attr['defaultCurrencyID']) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (!empty($attr['orderDate']) || $attr['orderDate'] != '')
                 $current_date = $this->objGeneral->convert_date($attr['orderDate']);
             else
                 $current_date = current_date;
 
+<<<<<<< HEAD
             $Sql = "SELECT d.conversion_rate  
                     FROM currency_histroy d 
                     WHERE d.currency_id='".$attr['currency_id']."' AND  
@@ -14507,10 +20962,16 @@ class Srm extends Xtreme
             if ($RS->RecordCount() > 0) {
                 $Row = $RS->FetchRow();
                 $conversion_rate = $Row['conversion_rate'];
+=======
+            $conversion_rate = (isset($attr['currency_rate']) && $attr['currency_rate'] != '') ? $attr['currency_rate'] : 0;
+
+            if ($conversion_rate != 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
                 $response['ack'] = 0;
@@ -14533,10 +20994,56 @@ class Srm extends Xtreme
             $tax_amount_converted = $tax_amount;
             $grand_total_converted = $grand_total;
         } 
+=======
+            } else {
+
+                $Sql = "SELECT d.conversion_rate  
+                        FROM currency_histroy d 
+                        WHERE d.currency_id='" . $attr['currency_id'] . "' AND  
+                            (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
+                            d.company_id =	'" . $this->arrUser['company_id'] . "'		
+                        order by d.start_date DESC, d.action_date desc LIMIT 1  ";
+
+                // echo $Sql;exit;
+
+                // $RS = $this->objsetup->CSI($Sql);
+                $RS = $this->objsetup->CSI($Sql);
+
+
+                if ($RS->RecordCount() > 0) {
+                    $Row = $RS->FetchRow();
+                    $conversion_rate = $Row['conversion_rate'];
+
+                    $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
+                    $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
+                    $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+                } else {
+                    $response['ack'] = 0;
+                    $response['error'] = 'Please set the currency conversion rate!';
+
+                    $srLogTrace = array();
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['ErrorMessage'] = "Please set the currency conversion rate!";
+
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                }
+            }
+        } else {
+            $net_amount_converted = $net_amount;
+            $tax_amount_converted = $tax_amount;
+            $grand_total_converted = $grand_total;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         $Sql = "UPDATE srm_invoice 
                         SET 
+<<<<<<< HEAD
                             net_amount='".$net_amount."', 
                             grand_total='".$grand_total."', 
                             tax_amount='".$tax_amount."',
@@ -14551,18 +21058,62 @@ class Srm extends Xtreme
                             items_net_discount='".$items_net_discount."',
                             items_net_vat='".$items_net_vat."'
                 WHERE id = ".$attr['invoice_id']." 
+=======
+                            net_amount='" . $net_amount . "', 
+                            grand_total='" . $grand_total . "', 
+                            tax_amount='" . $tax_amount . "',
+                            tax_rate='" . $tax_rate . "',
+                            note='" . $attr['note'] . "',
+                            net_amount_converted='" . $net_amount_converted . "', 
+                            grand_total_converted='" . $grand_total_converted . "',
+                            tax_amount_converted='" . $tax_amount_converted . "',
+                            ChangedBy='" . $this->arrUser['id'] . "',
+                            ChangedOn=UNIX_TIMESTAMP (NOW()),
+                            items_net_total='" . $items_net_total . "',
+                            items_net_discount='" . $items_net_discount . "',
+                            items_net_vat='" . $items_net_vat . "'
+                WHERE id = " . $attr['invoice_id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 limit 1";
         // echo    $Sql ;exit;
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
 
+<<<<<<< HEAD
         $chk = false;
         $updateCHK2 = false;  
+=======
+
+        $Sql5 = "UPDATE srm_invoice SET 
+                                    remaining_amount='" . $grand_total . "',
+                                    setteled_amount='0'
+                        WHERE id = '".$attr['invoice_id'] ."' AND 
+                            company_id='" . $this->arrUser['company_id'] . "' AND 
+                            (setteled_amount = 0 OR setteled_amount IS NULL)  
+                        limit 1";
+
+        // echo $Sql5;exit;
+        $this->objsetup->CSI($Sql5);
+
+        $Sqldel = " DELETE FROM payment_allocation 
+                    WHERE invoice_id = '" . $attr['invoice_id'] . "' AND 
+                        company_id =	'" . $this->arrUser['company_id'] . "' AND 
+                        invoice_type =5 AND 
+                        document_type = 3 AND 
+                        module_type =2 AND 
+                        transaction_type = 1 ";
+        // echo $Sqldel ;exit;
+        $RS = $this->objsetup->CSI($Sqldel);
+
+        $chk = false;
+        $updateCHK2 = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $this->objGeneral->mysql_clean($attr['items']);
         $this->objGeneral->mysql_clean($itemsArray);
 
+<<<<<<< HEAD
         foreach ($itemsArray as $item) 
         {              
             $max_quantity = (isset($item->max_quantity) && $item->max_quantity!='')?$item->max_quantity:0;
@@ -14614,25 +21165,91 @@ class Srm extends Xtreme
 
 
             if($update_id>0){
+=======
+        foreach ($itemsArray as $item) {
+            $max_quantity = (isset($item->max_quantity) && $item->max_quantity != '') ? $item->max_quantity : 0;
+            $min_quantity = (isset($item->min_quantity) && $item->min_quantity != '') ? $item->min_quantity : 0;
+            $unit_measure_id = (isset($item->units->id) && $item->units->id != '') ? $item->units->id : 0;
+            $unit_qty = (isset($item->units->quantity) && $item->units->quantity != '') ? $item->units->quantity : 0;
+            $unit_parent_id = (isset($item->units->parent_id) && $item->units->parent_id != '') ? $item->units->parent_id : 0;
+            $unit_measure = (isset($item->units->name) && $item->units->name != '') ? $item->units->name : '';
+            $conv_unit_price = (isset($item->conv_unit_price) && $item->conv_unit_price != '') ? $item->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item->purchase_unit_id) && $item->purchase_unit_id != '') ? $item->purchase_unit_id : 0;
+            $discount_type_id = (isset($item->discount_type_id->id) && $item->discount_type_id->id != '' && $item->discount_type_id->id != 'None') ? $item->discount_type_id->id : 0;
+            $discount = (isset($item->discount) && $item->discount != '') ? Round($item->discount, 2) : 0;
+            $stock_check = (isset($item->stock_check) && $item->stock_check != '') ? $item->stock_check : 0;
+            $category_id = (isset($item->category_id) && $item->category_id != '') ? $item->category_id : 0;
+            $sale_unit_id = (isset($item->sale_unit_id) && $item->sale_unit_id != '') ? $item->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item->primary_unit_of_measure_id) && $item->primary_unit_of_measure_id != '') ? $item->primary_unit_of_measure_id : 0;
+
+            $vatsid = (isset($item->vats->id) && $item->vats->id != '') ? $item->vats->id : 0;
+            $vat_value = (isset($item->vats->vat_value) && $item->vats->vat_value != '') ? $item->vats->vat_value : 0;
+            $warehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+            $warehousesname = (isset($item->warehouses->name) && $item->warehouses->name != '') ? $item->warehouses->name : 0;
+            $descriptionID = (isset($item->descriptionID) && $item->descriptionID != '') ? $item->descriptionID : 0;
+
+            $invoice_id = (isset($attr['invoice_id']) && $attr['invoice_id'] != '') ? $attr['invoice_id'] : 0;
+            $invoice_no = (isset($attr['invoice_no']) && $attr['invoice_no'] != '') ? $attr['invoice_no'] : 0;
+            $supplier_id = (isset($attr['supplier_id']) && $attr['supplier_id'] != '') ? $attr['supplier_id'] : 0;
+
+            $qty = (isset($item->qty) && $item->qty != '') ? $item->qty : 0;
+            $unit_price = (isset($item->standard_price) && $item->standard_price != '') ? round($item->standard_price, 5) : 0; //3
+            $total_price = (isset($item->total_price) && $item->total_price != '') ? $item->total_price : 0;
+            $vat_price   = ($item->vat_price != '') ? $item->vat_price : '0';
+            $discount_price = ($item->discount_price != '') ? $item->discount_price : '0';
+
+            $item_type = (isset($item->item_type) && $item->item_type != '') ? $item->item_type : 0;
+
+            if ($item_type == 2) {
+                $unit_measure_id = (isset($item->uomID) && $item->uomID != '') ? $item->uomID : 0;
+                $unit_measure = (isset($item->uom) && $item->uom != '') ? $item->uom : '';
+            }
+
+            $rawMaterialProduct = (isset($item->rawMaterialProduct) && $item->rawMaterialProduct != '') ? $item->rawMaterialProduct : 0;
+            $raw_material_gl_id = (isset($item->raw_material_gl_id) && $item->raw_material_gl_id != '') ? $item->raw_material_gl_id : 0;
+
+            $update_id = (isset($item->update_id) && $item->update_id != '') ? $item->update_id : 0;
+            $updateCHK = '';
+
+            if ($update_id > 0 && $item->item_type == 0)
+                $updateCHK = ' AND tst.id <> ' . $update_id;
+
+
+            if ($update_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $Sql = "UPDATE srm_invoice_detail
                                 SET
                                     supplier_id='" . $supplier_id . "',
+<<<<<<< HEAD
                                     product_name='" .$item->product_name . "',
                                     descriptionID='" .$descriptionID . "',
                                     invoice_order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
                                     uom_id='" .$unit_measure_id . "',
                                     qty='" .$qty . "',
                                     unit_price='" .$unit_price . "',
+=======
+                                    product_name='" . $item->product_name . "',
+                                    descriptionID='" . $descriptionID . "',
+                                    invoice_order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
+                                    uom_id='" . $unit_measure_id . "',
+                                    qty='" . $qty . "',
+                                    unit_price='" . $unit_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     vat='" . $item->vats->name . "',
                                     vat_id='" . $vatsid . "',
                                     vat_price=" . $vat_price . ",
                                     vat_value='" . $vat_value . "',
+<<<<<<< HEAD
                                     total_price='" .$total_price . "',
+=======
+                                    total_price='" . $total_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     unit_measure='" . $unit_measure . "',
                                     unit_measure_id='" . $unit_measure_id . "',
                                     unit_qty='" . $unit_qty . "',
                                     unit_parent_id='" . $unit_parent_id . "',
+<<<<<<< HEAD
                                     cat_id='" .$category_id . "',
                                     discount_type='" . $discount_type_id . "',
                                     discount='" .$discount . "',
@@ -14663,6 +21280,37 @@ class Srm extends Xtreme
             }                    
             else
                 $chk = false;                              
+=======
+                                    cat_id='" . $category_id . "',
+                                    discount_type='" . $discount_type_id . "',
+                                    discount='" . $discount . "',
+                                    discount_price='$discount_price',
+                                    sale_unit_id='" . $sale_unit_id . "',
+                                    warehouse_id='" . $warehousesid . "',
+                                    warehouse='" . $warehousesname . "',
+                                    primary_unit_of_measure_name ='" . $item->primary_unit_of_measure_name . "',
+                                    primary_unit_of_measure_id ='" . $primary_unit_of_measure_id  . "',
+                                    ChangedBy='" . $this->arrUser['id'] . "',
+                                    ChangedOn=UNIX_TIMESTAMP (NOW()),
+                                    rawMaterialProduct='" . $rawMaterialProduct . "',                                            
+                                    raw_material_gl_id='" . $raw_material_gl_id . "', 
+                                    raw_material_gl_code='" . $item->raw_material_gl_code . "',
+                                    raw_material_gl_name='" . $item->raw_material_gl_name . "', 
+                                    stock_check='" . $stock_check . "'
+                        WHERE id=" . $update_id . " ";
+
+                // echo $Sql;//exit; 
+                // $RS = $this->objsetup->CSI($Sql);
+                $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_AddEditPermission);
+                $updateCHK2 = true;
+            }
+
+            if ($this->Conn->Affected_Rows() > 0) {
+                $item->orderLineID = $update_id;
+                $chk = true;
+            } else
+                $chk = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if ($chk) {
@@ -14671,7 +21319,11 @@ class Srm extends Xtreme
             $response['returnItems'] = $itemsArray;
 
             $this->updateItemCacheTableInPO($attr['invoice_id']);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -14683,12 +21335,20 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         elseif($updateCHK2) {
             $response['ack'] = 2;
             $response['error'] = 'Record Updated Successfully';// with no Changes
             $response['returnItems'] = $itemsArray;
             
+=======
+        } elseif ($updateCHK2) {
+            $response['ack'] = 2;
+            $response['error'] = 'Record Updated Successfully'; // with no Changes
+            $response['returnItems'] = $itemsArray;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -14700,8 +21360,12 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
 
@@ -14726,15 +21390,24 @@ class Srm extends Xtreme
                                     status=0,
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn=UNIX_TIMESTAMP (NOW())
+<<<<<<< HEAD
                                 WHERE id = ".$attr['id']." 
+=======
+                                WHERE id = " . $attr['id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 LIMIT 1";
         //echo $Sql."<hr>"; exit;
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_EditPermission);
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() > 0) 
         {
             $this->updateItemCacheTableInPO($invoice_id);
+=======
+        if ($this->Conn->Affected_Rows() > 0) {
+            // $this->updateItemCacheTableInPO($attr['id']);//$invoice_id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
         } else {
@@ -14760,18 +21433,30 @@ class Srm extends Xtreme
         else
             $invoiceDate = current_date;
 
+<<<<<<< HEAD
         if(($attr['currencyID'] != $attr['defaultCurrencyID']) && ($orderDate != $invoiceDate)){            
+=======
+        if (($attr['currencyID'] != $attr['defaultCurrencyID']) && ($orderDate != $invoiceDate)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql = "SELECT d.conversion_rate AS orderRate,
                            (SELECT d.conversion_rate
                             FROM currency_histroy d 
+<<<<<<< HEAD
                             WHERE d.currency_id='".$attr['currencyID']."' AND  
+=======
+                            WHERE d.currency_id='" . $attr['currencyID'] . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 (FLOOR(d.start_date/86400)*86400) <= '" . $invoiceDate . "' AND
                                 d.company_id =	'" . $this->arrUser['company_id'] . "'		
                             ORDER BY d.start_date DESC, d.action_date desc 
                             LIMIT 1) AS invoiceRate
                     FROM currency_histroy d 
+<<<<<<< HEAD
                     WHERE d.currency_id='".$attr['currencyID']."' AND  
+=======
+                    WHERE d.currency_id='" . $attr['currencyID'] . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $orderDate . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'		
                     ORDER BY d.start_date DESC, d.action_date desc 
@@ -14784,6 +21469,7 @@ class Srm extends Xtreme
                 // $orderRate = $Row['orderRate'];
                 // $invoiceRate = $Row['invoiceRate'];
                 $response['response'] = $Row;
+<<<<<<< HEAD
             }
             else{
                 $response['ack'] = 0;
@@ -14796,6 +21482,18 @@ class Srm extends Xtreme
             $Sql = "SELECT d.conversion_rate AS orderRate
                     FROM currency_histroy d 
                     WHERE d.currency_id='".$attr['currencyID']."' AND  
+=======
+            } else {
+                $response['ack'] = 0;
+                $response['error'] = 'Please set the currency conversion rate!';
+                return $response;
+            }
+        } elseif ($attr['currencyID'] != $attr['defaultCurrencyID']) {
+
+            $Sql = "SELECT d.conversion_rate AS orderRate
+                    FROM currency_histroy d 
+                    WHERE d.currency_id='" . $attr['currencyID'] . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $orderDate . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'		
                     ORDER BY d.start_date DESC, d.action_date desc 
@@ -14808,14 +21506,22 @@ class Srm extends Xtreme
                 // $orderRate = $Row['orderRate'];
                 $Row['invoiceRate'] = $Row['orderRate'];
                 $response['response'] = $Row;
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'Please set the currency conversion rate!';
                 return $response;
             }
+<<<<<<< HEAD
         }
         else{
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // Will Do it from Stored Procedure.
             /* $Sql = "UPDATE srm_invoice 
                                 SET 
@@ -14845,6 +21551,7 @@ class Srm extends Xtreme
         $response = array();
 
         $where_clause = "";
+<<<<<<< HEAD
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
 
@@ -14855,6 +21562,17 @@ class Srm extends Xtreme
         }
         else{
             $where_clause .= "AND tbl.type in (3,".$attr['type'].") ";
+=======
+        $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+
+        if ($attr['type'] == 1) {
+            $where_clause .= "AND tbl.type in (" . $attr['type'] . ") ";
+            $moduleNameForCount = "Debit Note";
+            $moduleNameForRoles = "purchase_return";
+        } else {
+            $where_clause .= "AND tbl.type in (3," . $attr['type'] . ") ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $moduleNameForCount = "Debit Note";
             $moduleNameForRoles = "posted_debit_note";
         }
@@ -14863,9 +21581,15 @@ class Srm extends Xtreme
             $where_clauseperson = "and wa.parent_id=  " . $attr['parent_id'] . "";
 
         if (!empty($attr['supplierID'])) {
+<<<<<<< HEAD
             $where_clause2 .= " AND tbl.supplierID  = '".$attr['supplierID']."'";
         } 
              
+=======
+            $where_clause2 .= " AND tbl.supplierID  = '" . $attr['supplierID'] . "'";
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "select * from (SELECT d.*,
                        d.crcode AS currency_code,
@@ -14875,9 +21599,21 @@ class Srm extends Xtreme
                        sr_sel_postingGrp(d.company_id,d.supplierID) AS posting_grp,
                        sr_sel_segment(d.company_id,srm.segment_id) AS segment,  
                        d.grand_total AS 'Amount (incl VAT)',
+<<<<<<< HEAD
                        (SELECT COUNT(record_id) AS D1 FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '% unposted' AND da.record_type = '".$moduleNameForCount."') AS documentDNCount,
                        (SELECT COUNT(record_id) AS D2 FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '% posted' AND da.record_type = '".$moduleNameForCount."') AS documentPDNCount,
                             (SELECT COUNT(record_id) AS D3 FROM document_association AS da, email_save as es WHERE es.id = da.module_id and es.type = 1 and da.record_id = d.id AND da.module_type='email' AND da.record_type = '".$moduleNameForCount."') AS emailCount
+=======
+                       (SELECT COUNT(record_id) AS D1 FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '% unposted' AND da.record_type = '" . $moduleNameForCount . "') AS documentDNCount,
+                       (SELECT COUNT(record_id) AS D2 FROM document_association AS da WHERE da.record_id = d.id AND da.module_type='document' AND da.additional like '% posted' AND da.record_type = '" . $moduleNameForCount . "') AS documentPDNCount,
+                            (SELECT COUNT(record_id) AS D3 FROM document_association AS da, email_save as es WHERE es.id = da.module_id and es.type = 1 and da.record_id = d.id AND da.module_type='email' AND da.record_type = '" . $moduleNameForCount . "') AS emailCount,
+                            (CASE WHEN COALESCE((SELECT gltxn.vatPosted   FROM gl_account_txn AS gltxn  
+                             WHERE gltxn.object_id = d.id AND gltxn.company_id = d.company_id AND gltxn.type = 4 AND gltxn.vatPosted = 1 LIMIT 1),0)>0 THEN 'Yes'
+                             ELSE 'No' END) AS vatPosted,
+                             (SELECT order_code FROM srm_invoice AS ord 
+                              WHERE ord.id = d.purchaseInvoiceID AND ord.company_id = d.company_id
+                              LIMIT 1) AS purchaseOrderCode 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 FROM srm_order_returncache d
                 LEFT JOIN country ON country.id = d.supplierCountry   
                 LEFT JOIN shipment_methods ON shipment_methods.id = d.shipment_method_id
@@ -14889,12 +21625,17 @@ class Srm extends Xtreme
         /* $subQueryForBuckets = " SELECT  s.id 
                                 FROM sr_srm_general_sel as s
                                 WHERE s.id IS NOT NULL "; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $subQueryForBuckets = " SELECT s.id 
                                 FROM srm as s
                                 WHERE s.type IN (2,3) AND 
                                       s.company_id=" . $this->arrUser['company_id'] . " ";
 
+<<<<<<< HEAD
         //$subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets,24);
         //echo $subQueryForBuckets;exit;
 
@@ -14913,11 +21654,33 @@ class Srm extends Xtreme
             }
         }            
         else
+=======
+        $subQueryForBuckets = $this->objsetup->whereClauseAppender($subQueryForBuckets,24);
+        //echo $subQueryForBuckets;exit;
+
+        $Sql .= " AND (tbl.supplierID is null OR tbl.supplierID = '' OR tbl.supplierID IN ($subQueryForBuckets)) ";
+
+        //echo $Sql;exit;                      
+
+        if ($order_clause == "") {
+
+            // $order_type = "order by tbl.id DESC";
+            if ($attr['type'] == 1) {
+                $order_type = "ORDER BY tbl.supplierCreditNoteDate DESC,tbl.debitNoteCode DESC";
+            } else {
+                $order_type = "ORDER BY tbl.supplierCreditNoteDate DESC,tbl.invoice_code DESC";
+            }
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $order_type = $order_clause;
 
         //defualt Variable
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -14932,19 +21695,35 @@ class Srm extends Xtreme
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['type'] = $Row['type'];
+<<<<<<< HEAD
 
                 if($Row['supplierNo'] == '')
                     $result['current_stage'] ='';
                 else
                     $result['current_stage'] = $Row['current_stage'];
                 
+=======
+                $result['vatPosted'] = $Row['vatPosted'];
+
+                if ($Row['supplierNo'] == '')
+                    $result['current_stage'] = '';
+                else
+                    $result['current_stage'] = $Row['current_stage'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['supplierCreditNoteDate'] = $this->objGeneral->convert_unix_into_date($Row['supplierCreditNoteDate']);
                 $result['dispatchDate'] = $this->objGeneral->convert_unix_into_date($Row['dispatchDate']);
                 $result['receipt_date'] = $this->objGeneral->convert_unix_into_date($Row['supplierReceiptDate']);
                 $result['deliveryDate'] = $this->objGeneral->convert_unix_into_date($Row['deliveryDate']);
+<<<<<<< HEAD
                 
                 // $result['Invoice No.'] = $Row['invoice_code'];
                 
+=======
+
+                // $result['Invoice No.'] = $Row['invoice_code'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result['debitNoteCode'] = $Row['debitNoteCode'];
                 $result['invoice_code'] = $Row['invoice_code'];
                 $result['supplierNo'] = $Row['supplierNo'];
@@ -14977,6 +21756,10 @@ class Srm extends Xtreme
                 $result['supplierContactEmail'] = $Row['supplierContactEmail'];
                 $result['warehouse_booking_ref'] = $Row['warehouse_booking_ref'];
                 $result['purchaseInvoice'] = $Row['purchaseInvoice'];
+<<<<<<< HEAD
+=======
+                $result['purchaseOrderCode'] = $Row['purchaseOrderCode'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $result['net_amount'] = number_format($Row['net_amount'], 2);//$Row['net_amount']; 
                 $result['currency_id'] = $Row['currency_id'];
                 $result['currency_code'] = $Row['crcode'];
@@ -15036,8 +21819,12 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['response'][] = array();
@@ -15046,7 +21833,12 @@ class Srm extends Xtreme
         $tableName = "";
         if ($attr['type'] == 1) $tableName = "DebitNotes";
         else if ($attr['type'] == 2) $tableName = "PostedDebitNotes";
+<<<<<<< HEAD
         $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($tableName);return $response;
+=======
+        $response['response']['tbl_meta_data'] = $this->objsetup->GetTableMetaData($tableName);
+        return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_order_return_code($attr)
@@ -15064,13 +21856,22 @@ class Srm extends Xtreme
 
         $code_name = 'PR';
 
+<<<<<<< HEAD
         return array('code' => $code_name . $this->objGeneral->module_invoice_prefix($nubmer), 
                      'number' => $nubmer, 
                      'prefix' => $code['prefix']);
+=======
+        return array(
+            'code' => $code_name,
+            'number' => $nubmer,
+            'prefix' => $code['prefix']
+        );//. $this->objGeneral->module_invoice_prefix($nubmer)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function get_number_order_return($attr)
     {
+<<<<<<< HEAD
         $sql_total = "SELECT  count(id) as total FROM srm_order_return where supp_order_no=".$attr['id']."";
         $rs_count = $this->objsetup->CSI($sql_total);
         $total = $rs_count->fields['total'];
@@ -15081,6 +21882,16 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         } 
         else {
+=======
+        $sql_total = "SELECT  count(id) as total FROM srm_order_return where supp_order_no=" . $attr['id'] . "";
+        $rs_count = $this->objsetup->CSI($sql_total);
+        $total = $rs_count->fields['total'];
+
+        if ($total == 0) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Invoice Number is Record Already Exists';
         }
@@ -15091,11 +21902,19 @@ class Srm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $net_amount = (isset($attr['netTotal']) && $attr['netTotal']!='')?$attr['netTotal']:0; 
         $tax_amount = (isset($attr['calcVat']) && $attr['calcVat']!='')?$attr['calcVat']:0; 
         $grand_total = (isset($attr['grandTotal']) && $attr['grandTotal']!='')?$attr['grandTotal']:0; 
         $order_id = (isset($attr['order_id']) && $attr['order_id']!='')?$attr['order_id']:0;
         $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID']!='')?$attr['invoiceCurrencyID']:0;
+=======
+        $net_amount = (isset($attr['netTotal']) && $attr['netTotal'] != '') ? $attr['netTotal'] : 0;
+        $tax_amount = (isset($attr['calcVat']) && $attr['calcVat'] != '') ? $attr['calcVat'] : 0;
+        $grand_total = (isset($attr['grandTotal']) && $attr['grandTotal'] != '') ? $attr['grandTotal'] : 0;
+        $order_id = (isset($attr['order_id']) && $attr['order_id'] != '') ? $attr['order_id'] : 0;
+        $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID'] != '') ? $attr['invoiceCurrencyID'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $conversion_rate = 1;
 
@@ -15104,11 +21923,19 @@ class Srm extends Xtreme
         else
             $current_date = current_date;
 
+<<<<<<< HEAD
         if($invoiceCurrencyID != $attr['defaultCurrencyID']){            
 
             $Sql = "SELECT d.conversion_rate  
                     FROM currency_histroy d 
                     WHERE d.currency_id = '".$invoiceCurrencyID."' AND  
+=======
+        if ($invoiceCurrencyID != $attr['defaultCurrencyID']) {
+
+            $Sql = "SELECT d.conversion_rate  
+                    FROM currency_histroy d 
+                    WHERE d.currency_id = '" . $invoiceCurrencyID . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'
                     order by d.start_date DESC, d.action_date desc LIMIT 1  ";
@@ -15116,13 +21943,18 @@ class Srm extends Xtreme
             // $RS = $this->objsetup->CSI($Sql);
             $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
              if ($RS->RecordCount() > 0) {
+=======
+            if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Row = $RS->FetchRow();
                 $conversion_rate = $Row['conversion_rate'];
 
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
                 $response['ack'] = 0;
@@ -15141,16 +21973,41 @@ class Srm extends Xtreme
             $Sql = "UPDATE srm_order_return
                             SET 
                                 net_amount='" . $net_amount. "', 
+=======
+            } else {
+                $response['ack'] = 0;
+                $response['error'] = 'Please set the currency conversion rate!';
+                return $response;
+            }
+        } else {
+            $net_amount_converted = $net_amount;
+            $tax_amount_converted = $tax_amount;
+            $grand_total_converted = $grand_total;
+        }
+
+        if ($order_id > 0) {
+            $Sql = "UPDATE srm_order_return
+                            SET 
+                                net_amount='" . $net_amount . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 grand_total='" . $grand_total . "', 
                                 tax_amount='" . $tax_amount . "',	
                                 net_amount_converted='" . $net_amount_converted . "', 
                                 grand_total_converted='" . $grand_total_converted . "', 
                                 tax_amount_converted='" . $tax_amount_converted . "'
+<<<<<<< HEAD
                     WHERE id = ".$order_id."  
                     limit 1";
 
             // echo $Sql;exit;
             
+=======
+                    WHERE id = " . $order_id . "  
+                    limit 1";
+
+            // echo $Sql;exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddEditPermission);
         }
 
@@ -15158,7 +22015,10 @@ class Srm extends Xtreme
         $response['error'] = NULL;
 
         return $response;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function convertInToReturnInovice($attr)
@@ -15170,6 +22030,7 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'id:'.$attr['id'];
         $srLogTrace['ErrorMessage'] = "";
 
@@ -15191,12 +22052,36 @@ class Srm extends Xtreme
         $defaultCurrencyID = $attr['converted_currency_id']; 
 
         $allItemsArray = $attr['allItemsArray'];         
+=======
+        $srLogTrace['Parameter2'] = 'id:' . $attr['id'];
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+        //print_r($attr);exit;
+        $posting_grp = (isset($attr['posting_grp']) && $attr['posting_grp'] != '') ? $attr['posting_grp'] : 0;
+        $converted_currency_id = (isset($attr['converted_currency_id']) && $attr['converted_currency_id'] != '') ? $attr['converted_currency_id'] : 0;
+        $recReceivedMode = (isset($attr['recReceivedMode']) && $attr['recReceivedMode'] != '') ? $attr['recReceivedMode'] : 0;
+
+        $items_net_amt = (isset($attr['items_net_amt']) && $attr['items_net_amt'] != '') ? $attr['items_net_amt'] : 0;
+        $items_net_vat = (isset($attr['items_net_vat']) && $attr['items_net_vat'] != '') ? $attr['items_net_vat'] : 0;
+        $items_net_disc = (isset($attr['items_net_disc']) && $attr['items_net_disc'] != '') ? $attr['items_net_disc'] : 0;
+        $grand_total = (isset($attr['grand_total']) && $attr['grand_total'] != '') ? $attr['grand_total'] : 0;
+
+        $invoiceCurrencyID = (isset($attr['invoiceCurrencyID']) && $attr['invoiceCurrencyID'] != '') ? $attr['invoiceCurrencyID'] : 0;
+        $defaultCurrencyID = $attr['converted_currency_id'];
+
+        $allItemsArray = $attr['allItemsArray'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $srLogTrace = array();
         $srLogTrace['ErrorCode'] = '';
         $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_3;
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
+<<<<<<< HEAD
         $srLogTrace['Parameter1'] = 'grand_total:'.$grand_total;
         $srLogTrace['Parameter2'] = 'posting_grp:'.$posting_grp;
         $srLogTrace['Parameter3'] = 'ref_posting:'.$attr['ref_posting'];
@@ -15207,6 +22092,18 @@ class Srm extends Xtreme
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
         if($invoiceCurrencyID == 0){
+=======
+        $srLogTrace['Parameter1'] = 'grand_total:' . $grand_total;
+        $srLogTrace['Parameter2'] = 'posting_grp:' . $posting_grp;
+        $srLogTrace['Parameter3'] = 'ref_posting:' . $attr['ref_posting'];
+        $srLogTrace['Parameter4'] = 'items_net_amt:' . $items_net_amt;
+        $srLogTrace['Parameter5'] = 'items_net_vat:' . $items_net_vat;
+        $srLogTrace['Parameter6'] = 'items_net_disc:' . $items_net_disc;
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        if ($invoiceCurrencyID == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->objsetup->terminateWithMessage("Currency is missing!");  
             $response['ack'] = 0;
             $response['error'] = 'Currency is missing!';
@@ -15219,6 +22116,7 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
             $srLogTrace['ErrorMessage'] = 'Currency is missing!';
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             return $response; 
         }
 
@@ -15227,10 +22125,21 @@ class Srm extends Xtreme
         // $grand_total = (isset($attr['grand_total']) && $attr['grand_total']!='')?$attr['grand_total']:0; 
 
         $supplierID = (isset($attr['supplier_id']) && $attr['supplier_id']!='')?$attr['supplier_id']:0;      
+=======
+            return $response;
+        }
+
+        $net_amount = (isset($attr['net_amount']) && $attr['net_amount'] != '') ? $attr['net_amount'] : 0;
+        $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount'] != '') ? $attr['tax_amount'] : 0;
+        // $grand_total = (isset($attr['grand_total']) && $attr['grand_total']!='')?$attr['grand_total']:0; 
+
+        $supplierID = (isset($attr['supplier_id']) && $attr['supplier_id'] != '') ? $attr['supplier_id'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!empty($attr['supplierCreditNoteDate']) || $attr['supplierCreditNoteDate'] != '')
             $current_date = $this->objGeneral->convert_date($attr['supplierCreditNoteDate']);
         else
+<<<<<<< HEAD
             $current_date = current_date;        
 
         $conversion_rate = 1;
@@ -15240,21 +22149,40 @@ class Srm extends Xtreme
             $Sql = "SELECT d.conversion_rate  
                     FROM currency_histroy d 
                     WHERE d.currency_id='".$invoiceCurrencyID."' AND  
+=======
+            $current_date = current_date;
+
+        $conversion_rate = 1;
+
+        if ($invoiceCurrencyID != $defaultCurrencyID) {
+
+            $Sql = "SELECT d.conversion_rate  
+                    FROM currency_histroy d 
+                    WHERE d.currency_id='" . $invoiceCurrencyID . "' AND  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                           (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
                           d.company_id =	'" . $this->arrUser['company_id'] . "'		
                     order by d.start_date DESC, d.action_date desc LIMIT 1  ";
 
             $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
              if ($RS->RecordCount() > 0) {
+=======
+            if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $Row = $RS->FetchRow();
                 $conversion_rate = $Row['conversion_rate'];
 
                 $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
                 $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
                 $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'Please set the currency conversion rate!';
 
@@ -15268,14 +22196,20 @@ class Srm extends Xtreme
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
                 return $response;
+<<<<<<< HEAD
             }             
         }
         else{
+=======
+            }
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $net_amount_converted = $net_amount;
             $tax_amount_converted = $tax_amount;
             $grand_total_converted = $grand_total;
         }
 
+<<<<<<< HEAD
         $supplierCreditNoteNo = (isset($attr['supplierCreditNoteNo']) && $attr['supplierCreditNoteNo']!='')?trim(addslashes(stripslashes($attr['supplierCreditNoteNo']))):'0'; 
 
         if($supplierCreditNoteNo != '0'){
@@ -15288,6 +22222,19 @@ class Srm extends Xtreme
 
             if ($totalREC > 0)
             {
+=======
+        $supplierCreditNoteNo = (isset($attr['supplierCreditNoteNo']) && $attr['supplierCreditNoteNo'] != '') ? trim(addslashes(stripslashes($attr['supplierCreditNoteNo']))) : '0';
+
+        if ($supplierCreditNoteNo != '0') {
+
+            $data_pass = " tst.supplierCreditNoteNo = '" . $supplierCreditNoteNo . "' AND 
+                           tst.supplierID = '" . $supplierID . "' AND 
+                           tst.id <> " . $attr['id'] . " ";
+
+            $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_order_return', $data_pass, $this->arrUser['company_id']);
+
+            if ($totalREC > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'Supplier Credit Note No. Already Exists!';
 
@@ -15300,22 +22247,38 @@ class Srm extends Xtreme
                 $srLogTrace['ErrorMessage'] = 'Supplier Credit Note No. Already Exists!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
                 return $response;                
+=======
+                return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
         $purchaseInvoiceIDChk = '';
 
+<<<<<<< HEAD
         if(isset($attr['purchaseInvoiceID']) && $attr['purchaseInvoiceID']>0){
             $purchaseInvoiceIDChk = "invoice_id = '" . $attr['purchaseInvoiceID'] . "' AND ";
         } 
         
         $sqlRawMaterialChk="SELECT sid.id,sid.product_name,sid.product_code,
+=======
+        if (isset($attr['purchaseInvoiceID']) && $attr['purchaseInvoiceID'] > 0) {
+            $purchaseInvoiceIDChk = "invoice_id = '" . $attr['purchaseInvoiceID'] . "' AND ";
+        }
+
+        $sqlRawMaterialChk = "SELECT sid.id,sid.product_name,sid.product_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 (CASE WHEN (COALESCE((SELECT SUM(remaining_qty) 
                                                       FROM item_in_cost_entries 
                                                       WHERE company_id = sid.company_id AND 
                                                             product_id = sid.product_id AND 
+<<<<<<< HEAD
                                                             ".$purchaseInvoiceIDChk."
+=======
+                                                            " . $purchaseInvoiceIDChk . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             remaining_qty > 0),0) + 1 > sid.qty)
                                     THEN 1
                                     ELSE 0
@@ -15333,17 +22296,30 @@ class Srm extends Xtreme
         if ($RsRawMaterialChk->RecordCount() > 0) {
             while ($RowRawMaterialChk = $RsRawMaterialChk->FetchRow()) {
 
+<<<<<<< HEAD
                 if($RowRawMaterialChk['availRawMaterailStock'] == 0){
 
                     $rawMaterialErrorCounter++;
                     $rawMaterialErrorMsg .= ' '.$RowRawMaterialChk['product_name'].'('.$RowRawMaterialChk['product_code'].'),';
+=======
+                if ($RowRawMaterialChk['availRawMaterailStock'] == 0) {
+
+                    $rawMaterialErrorCounter++;
+                    $rawMaterialErrorMsg .= ' ' . $RowRawMaterialChk['product_name'] . '(' . $RowRawMaterialChk['product_code'] . '),';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
         }
 
+<<<<<<< HEAD
         $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg,",");
 
         if($rawMaterialErrorCounter > 0){
+=======
+        $rawMaterialErrorMsg = rtrim($rawMaterialErrorMsg, ",");
+
+        if ($rawMaterialErrorCounter > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = $rawMaterialErrorMsg;
 
@@ -15360,11 +22336,18 @@ class Srm extends Xtreme
         }
 
 
+<<<<<<< HEAD
         if($allItemsArray)
         {
             foreach($allItemsArray as $item){
                 
                 $item_converted_price = Round(($item->standard_price/$conversion_rate),3);//bcdiv($item->standard_price, $conversion_rate, 3);
+=======
+        if ($allItemsArray) {
+            foreach ($allItemsArray as $item) {
+
+                $item_converted_price = Round(($item->standard_price / $conversion_rate), 3); //bcdiv($item->standard_price, $conversion_rate, 3);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $sql3 = "UPDATE srm_order_return_detail 
                                     SET 
@@ -15374,31 +22357,53 @@ class Srm extends Xtreme
                                     where id = " . $item->update_id . " 
                                     limit 1";
                 //echo $sql3;        
+<<<<<<< HEAD
                 $RS3 = $this->objsetup->CSI($sql3, 'purchase_return', sr_PostPermission);                             
+=======
+                $RS3 = $this->objsetup->CSI($sql3, 'purchase_return', sr_PostPermission);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
         $posting_grp = 0;
+<<<<<<< HEAD
         $ref_posting = '';        
 
         if($supplierID>0){
+=======
+        $ref_posting = '';
+
+        if ($supplierID > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $SqlSupp = "SELECT d.posting_group_id,
                                ref_posting_group.name as ref_posting
                         FROM srm_finance d
                         LEFT JOIN ref_posting_group on ref_posting_group.id=d.posting_group_id
+<<<<<<< HEAD
                         WHERE d.supplier_id = ".$supplierID."
                         LIMIT 1";
                         
             //echo 	$SqlSupp;exit;
             $RSSupp = $this->objsetup->CSI($SqlSupp);      
+=======
+                        WHERE d.supplier_id = " . $supplierID . "
+                        LIMIT 1";
+
+            //echo 	$SqlSupp;exit;
+            $RSSupp = $this->objsetup->CSI($SqlSupp);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($RSSupp->RecordCount() > 0) {
                 $RowSupp = $RSSupp->FetchRow();
                 $posting_grp = $RowSupp['posting_group_id'];
                 $ref_posting = $RowSupp['ref_posting'];
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $this->objsetup->terminateWithMessage("Supplier Posting Group is not Selected!");
                 $response['ack'] = 0;
                 $response['error'] = "Supplier Posting Group is not Selected!";
@@ -15413,6 +22418,7 @@ class Srm extends Xtreme
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
+<<<<<<< HEAD
                 return $response; 
             }
         }
@@ -15431,6 +22437,25 @@ class Srm extends Xtreme
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
 
                 return $response; 
+=======
+                return $response;
+            }
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = "Supplier is not Selected!";
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = 'Supplier is not Selected!';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+            return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $Sql = "UPDATE srm_order_return 
@@ -15445,6 +22470,7 @@ class Srm extends Xtreme
                             converted_currency_id = '" . $converted_currency_id . "', 
                             bill_to_posting_group_id = '" . $posting_grp . "', 
                             bill_to_posting_group_name = '" . $ref_posting . "' 
+<<<<<<< HEAD
                 WHERE id = ".$attr['id']." ";
        // echo $Sql;exit; // $attr['ref_posting'] 
 
@@ -15459,6 +22485,22 @@ class Srm extends Xtreme
                                                     ".$items_net_disc.", 
                                                     ".$grand_total.",
                                                     ".$recReceivedMode.",
+=======
+                WHERE id = " . $attr['id'] . " ";
+        // echo $Sql;exit; // $attr['ref_posting'] 
+
+        $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_PostPermission);
+
+        $Sql2 = "CALL SR_DebitNote_Invoice_Post(" . $attr['id'] . ", 
+                                                    " . $this->arrUser['company_id'] . ", 
+                                                    " . $this->arrUser['id'] . ", 
+                                                    " . $posting_grp . ", 
+                                                    " . $items_net_amt . ", 
+                                                    " . $items_net_vat . ", 
+                                                    " . $items_net_disc . ", 
+                                                    " . $grand_total . ",
+                                                    " . $recReceivedMode . ",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     @errorNo,
                                                     @param1,
                                                     @param2,
@@ -15470,13 +22512,21 @@ class Srm extends Xtreme
 
         // echo '<pre>';print_r($RS2);exit;
 
+<<<<<<< HEAD
         if($RS2->msg == 1)
         {             
+=======
+        if ($RS2->msg == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $srLogTrace = array();
             $srLogTrace['ErrorCode'] = '';
             $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
@@ -15487,9 +22537,13 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
             // $this->objsetup->terminateWithMessage("postPurchaseInvoice");
+<<<<<<< HEAD
         }        
         else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $this->objsetup->terminateWithMessage("Cannot convert into invoice");
             $response['ack'] = 0;
             $response['error'] = $RS2->Error;
@@ -15503,7 +22557,11 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = $RS2->Error;
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             return $response;            
+=======
+            return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
     }
 
@@ -15528,7 +22586,11 @@ class Srm extends Xtreme
                                         purchase_status=2,
                                         ChangedBy='" . $this->arrUser['id'] . "',
                                         ChangedOn=UNIX_TIMESTAMP (NOW()) 
+<<<<<<< HEAD
                                     WHERE invoice_id = ".$attr['invoice_id']." ";
+=======
+                                    WHERE invoice_id = " . $attr['invoice_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_EditPermission);
 
@@ -15536,20 +22598,32 @@ class Srm extends Xtreme
         $Sql2 = "UPDATE warehouse_allocation	
                                     SET  
                                         purchase_status=2 
+<<<<<<< HEAD
                                     WHERE order_id = ".$attr['invoice_id']." ";
+=======
+                                    WHERE order_id = " . $attr['invoice_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS2 = $this->objsetup->CSI($Sql2);
 
         $Sql3 = "UPDATE srm_order_return 
                                     SET 
                                         type=2 
+<<<<<<< HEAD
                                     WHERE id = ".$attr['invoice_id']." 
+=======
+                                    WHERE id = " . $attr['invoice_id'] . " 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     Limit 1";
         // $RS = $this->objsetup->CSI($Sql3);
         $RS = $this->objsetup->CSI($Sql3, 'purchase_return', sr_EditPermission);
 
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() > 0) 
         {
+=======
+        if ($this->Conn->Affected_Rows() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -15581,7 +22655,11 @@ class Srm extends Xtreme
     }
 
     function update_order_return($attr)
+<<<<<<< HEAD
     {        
+=======
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->objGeneral->mysql_clean($attr);
         //echo '<pre>';  print_r($attr);exit;
 
@@ -15595,7 +22673,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
 
@@ -15606,7 +22688,11 @@ class Srm extends Xtreme
             $update_check = "  AND tst.id <> '" . $update_id . "'";
         //tst.type IN (2,3)  AND 
 
+<<<<<<< HEAD
         $data_pass = " tst.status=1 and tst.debitNoteCode='" . $attr['debitNoteCode'] . "'  ".$update_check." ";
+=======
+        $data_pass = " tst.status=1 and tst.debitNoteCode='" . $attr['debitNoteCode'] . "'  " . $update_check . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('srm_order_return', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -15624,6 +22710,7 @@ class Srm extends Xtreme
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
             return $response;
         }
+<<<<<<< HEAD
         
 
         $debitNoteCode = (isset($attr['debitNoteCode']) && $attr['debitNoteCode']!='')?$attr['debitNoteCode']:0;
@@ -15661,6 +22748,44 @@ class Srm extends Xtreme
 
             if ($totalREC > 0) 
             {
+=======
+
+
+        $debitNoteCode = (isset($attr['debitNoteCode']) && $attr['debitNoteCode'] != '') ? $attr['debitNoteCode'] : 0;
+        $supplierID = (isset($attr['supplierID']) && $attr['supplierID'] != '') ? $attr['supplierID'] : 0;
+        $supplierCountry = (isset($attr['supplierCountrys']) && $attr['supplierCountrys'] != '') ? $attr['supplierCountrys'] : 0;
+        $supplierContactID = (isset($attr['supplierContactID']) && $attr['supplierContactID'] != '') ? $attr['supplierContactID'] : 0;
+        $purchaserID = (isset($attr['purchaserID']) && $attr['purchaserID'] != '') ? $attr['purchaserID'] : 0;
+        $billToSupplierID = (isset($attr['billToSupplierID']) && $attr['billToSupplierID'] != '') ? $attr['billToSupplierID'] : 0;
+        $billToSupplierCountry = (isset($attr['billToSupplierCountrys']) && $attr['billToSupplierCountrys'] != '') ? $attr['billToSupplierCountrys'] : 0;
+        $shipToSupplierLocCountry = (isset($attr['shipToSupplierLocCountrys']) && $attr['shipToSupplierLocCountrys'] != '') ? $attr['shipToSupplierLocCountrys'] : 0;
+        $billToSupplierContactID = (isset($attr['billToSupplierContactID']) && $attr['billToSupplierContactID'] != '') ? $attr['billToSupplierContactID'] : 0;
+        // $currency_id = (isset($attr['currency_id']) && $attr['currency_id']!='')?$attr['currency_id']:0;        
+        $currency_id = (isset($attr['currency_ids']) && $attr['currency_ids'] != '') ? $attr['currency_ids'] : 0;
+        $shipToSupplierLocID = (isset($attr['shipToSupplierLocID']) && $attr['shipToSupplierLocID'] != '') ? $attr['shipToSupplierLocID'] : 0;
+        $payment_method_id = (isset($attr['payment_method_id']) && $attr['payment_method_id'] != '') ? $attr['payment_method_id'] : 0;
+        $shipment_method_id = (isset($attr['shipment_method_id']) && $attr['shipment_method_id'] != '') ? $attr['shipment_method_id'] : 0;
+        $shipping_agent_id = (isset($attr['shipping_agent_id']) && $attr['shipping_agent_id'] != '') ? $attr['shipping_agent_id'] : 0;
+        $freight_charges = (isset($attr['freight_charges']) && $attr['freight_charges'] != '') ? Round($attr['freight_charges'], 2) : 0;
+        $payment_discount = (isset($attr['payment_discount']) && $attr['payment_discount'] != '') ? Round($attr['payment_discount'], 2) : 0;
+        $type = (isset($attr['type']) && $attr['type'] != '') ? $attr['type'] : 0;
+        $bank_account_id = (isset($attr['bank_account_id']) && $attr['bank_account_id'] != '') ? $attr['bank_account_id'] : 0;
+        $purchaseInvoiceID = (isset($attr['purchaseInvoiceID']) && $attr['purchaseInvoiceID'] != '') ? $attr['purchaseInvoiceID'] : 0;
+        $purchaseInvoiceType = (isset($attr['purchaseInvoiceType']) && $attr['purchaseInvoiceType'] != '') ? $attr['purchaseInvoiceType'] : 0;
+        // $shipToSupplierLocID = (isset($attr['shipToSupplierLocID']) && $attr['shipToSupplierLocID']!='')?$attr['shipToSupplierLocID']:0;     
+
+
+        $supplierCreditNoteNo = (isset($attr['supplierCreditNoteNo']) && $attr['supplierCreditNoteNo'] != '') ? trim(addslashes(stripslashes($attr['supplierCreditNoteNo']))) : '0';
+
+        if ($supplierCreditNoteNo != '0' && $update_id > 0) {
+
+            $data_pass = " tst.supplierCreditNoteNo='" . $supplierCreditNoteNo . "' AND 
+                           tst.supplierID='" . $supplierID . "' AND 
+                           tst.id <> " . $update_id . " ";
+            $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_order_return', $data_pass, $this->arrUser['company_id']);
+
+            if ($totalREC > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
                 $response['error'] = 'Supplier Credit Note No. Already Exists!';
 
@@ -15673,11 +22798,16 @@ class Srm extends Xtreme
                 $srLogTrace['ErrorMessage'] = 'Supplier Credit Note No. Already Exists!';
 
                 $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
                 return $response;                
+=======
+                return $response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
 
+<<<<<<< HEAD
         $posting_group_id = (isset($attr['posting_group_id']) && $attr['posting_group_id']!='')?$attr['posting_group_id']:0;  
 
         $anonymous_supplier = (isset($attr['supplierAnonymousSupplier']) && $attr['supplierAnonymousSupplier']!='')?$attr['supplierAnonymousSupplier']:0;               
@@ -15688,12 +22818,26 @@ class Srm extends Xtreme
         $grand_total = (isset($attr['grand_total']) && $attr['grand_total']!='')? Round($attr['grand_total'],2):0;
 
         $postponed_vat = (isset($attr['postponed_vat']) && $attr['postponed_vat']!='')?$attr['postponed_vat']:0;      
+=======
+        $posting_group_id = (isset($attr['posting_group_id']) && $attr['posting_group_id'] != '') ? $attr['posting_group_id'] : 0;
+
+        $anonymous_supplier = (isset($attr['supplierAnonymousSupplier']) && $attr['supplierAnonymousSupplier'] != '') ? $attr['supplierAnonymousSupplier'] : 0;
+        $bill_anonymousSupplier = (isset($attr['bill_to_anonymous_supplier']) && $attr['bill_to_anonymous_supplier'] != '') ? $attr['bill_to_anonymous_supplier'] : 0;
+
+        $net_amount = (isset($attr['net_amount']) && $attr['net_amount'] != '') ? Round($attr['net_amount'], 2) : 0;
+        $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount'] != '') ? Round($attr['tax_amount'], 2) : 0;
+        $grand_total = (isset($attr['grand_total']) && $attr['grand_total'] != '') ? Round($attr['grand_total'], 2) : 0;
+
+
+        $postponed_vat = (isset($attr['postponed_vat']) && $attr['postponed_vat'] != '') ? $attr['postponed_vat'] : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!empty($attr['supplierCreditNoteDate']) || $attr['supplierCreditNoteDate'] != '')
             $current_date = $this->objGeneral->convert_date($attr['supplierCreditNoteDate']);
         else
             $current_date = current_date;
 
+<<<<<<< HEAD
 
         if($currency_id != $attr['defaultCurrencyID']  && $supplierID>0){            
 
@@ -15731,11 +22875,58 @@ class Srm extends Xtreme
             }             
         }
         else{
+=======
+        $currency_rate = (isset($attr['currency_rate']) && $attr['currency_rate'] != '') ? $attr['currency_rate'] : 0;
+
+        if ($currency_id != $attr['defaultCurrencyID']  && $supplierID > 0) {
+
+            if ($currency_rate != 0) {
+
+                $net_amount_converted = bcdiv($net_amount, $currency_rate, 2);
+                $tax_amount_converted = bcdiv($tax_amount, $currency_rate, 2);
+                $grand_total_converted = bcdiv($grand_total, $currency_rate, 2);
+            } else {
+
+                $Sql = "SELECT d.conversion_rate  
+                        FROM currency_histroy d 
+                        WHERE d.currency_id='" . $currency_id . "' AND  
+                            (FLOOR(d.start_date/86400)*86400) <= '" . $current_date . "' AND
+                            d.company_id =	'" . $this->arrUser['company_id'] . "'		
+                        order by d.start_date DESC, d.action_date desc LIMIT 1  ";
+
+                $RS = $this->objsetup->CSI($Sql);
+
+                if ($RS->RecordCount() > 0) {
+                    $Row = $RS->FetchRow();
+                    $conversion_rate = $Row['conversion_rate'];
+
+                    $net_amount_converted = bcdiv($net_amount, $conversion_rate, 2);
+                    $tax_amount_converted = bcdiv($tax_amount, $conversion_rate, 2);
+                    $grand_total_converted = bcdiv($grand_total, $conversion_rate, 2);
+                } else {
+                    $response['ack'] = 0;
+                    $response['error'] = 'Please set the currency conversion rate!';
+
+                    $srLogTrace = array();
+                    $srLogTrace['ErrorCode'] = '';
+                    $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                    $srLogTrace['Function'] = __FUNCTION__;
+                    $srLogTrace['CLASS'] = __CLASS__;
+                    $srLogTrace['Parameter1'] = 'Exit';
+                    $srLogTrace['ErrorMessage'] = 'Please set the currency conversion rate!';
+
+                    $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                    return $response;
+                }
+            }
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $net_amount_converted = $net_amount;
             $tax_amount_converted = $tax_amount;
             $grand_total_converted = $grand_total;
         }
 
+<<<<<<< HEAD
         $supplierCreditNoteDateUnConv = ""; 
 
         if($attr['supplierCreditNoteDate'] > 0){
@@ -15751,6 +22942,22 @@ class Srm extends Xtreme
             $Sql = "INSERT INTO srm_order_return
                                     SET
                                         transaction_id = SR_GetNextTransactionID(".$this->arrUser['company_id'].", 2), 
+=======
+        $supplierCreditNoteDateUnConv = "";
+
+        if ($attr['supplierCreditNoteDate'] > 0) {
+            $supplierCreditNoteDateUnConv = "supplierCreditNoteDateUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['supplierCreditNoteDate']) . "',";
+        }
+
+        if ($supplierID == 0) {
+            $supplierID = 'NULL';
+        }
+
+        if ($update_id == 0) {
+            $Sql = "INSERT INTO srm_order_return
+                                    SET
+                                        transaction_id = SR_GetNextTransactionID(" . $this->arrUser['company_id'] . ", 2), 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         debitNoteCode='$debitNoteCode',
                                         prev_code='$attr[prev_code]',
                                         supplierNo='$attr[supplierNo]',
@@ -15811,7 +23018,11 @@ class Srm extends Xtreme
                                         shipment_method_code='$attr[shipment_method_code]',
                                         shipping_agent_code='$attr[shipping_agent_code]',
                                         type='$type',
+<<<<<<< HEAD
                                         note='".$attr['note']."',
+=======
+                                        note='" . $attr['note'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         status=1,
                                         shipping_agent_id='$shipping_agent_id',
                                         freight_charges='$freight_charges',
@@ -15837,8 +23048,12 @@ class Srm extends Xtreme
                                         AddedOn=UNIX_TIMESTAMP (NOW()),
                                         ChangedBy='" . $this->arrUser['id']  . "',
                                         ChangedOn=UNIX_TIMESTAMP (NOW())";
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "UPDATE srm_order_return
                                 SET 
                                     supplierNo='$attr[supplierNo]',
@@ -15899,7 +23114,11 @@ class Srm extends Xtreme
                                     shipment_method_id='$shipment_method_id',
                                     shipment_method_code='$attr[shipment_method_code]',
                                     shipping_agent_code='$attr[shipping_agent_code]',
+<<<<<<< HEAD
                                     note='".$attr['note']."',
+=======
+                                    note='" . $attr['note'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     type='$type',
                                     shipping_agent_id='$shipping_agent_id',
                                     freight_charges='$freight_charges',
@@ -15919,7 +23138,11 @@ class Srm extends Xtreme
                                     warehouse_booking_ref='$attr[warehouse_booking_ref]', 
                                     customer_warehouse_ref='$attr[customer_warehouse_ref]',
                                     converted_currency_id = '" . $attr['defaultCurrencyID'] . "', 
+<<<<<<< HEAD
                                     net_amount='" . $net_amount. "', 
+=======
+                                    net_amount='" . $net_amount . "', 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     grand_total='" . $grand_total . "', 
                                     tax_amount='" . $tax_amount . "',	
                                     net_amount_converted='" . $net_amount_converted . "', 
@@ -15935,6 +23158,7 @@ class Srm extends Xtreme
 
         // $RS = $this->objsetup->CSI($Sql);  
 
+<<<<<<< HEAD
         if ($update_id == 0){
             $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddPermission);
         }else{
@@ -15949,6 +23173,20 @@ class Srm extends Xtreme
 
                 if($update_id > 0)
                 {
+=======
+        if ($update_id == 0) {
+            $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddPermission);
+        } else {
+            $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddEditPermission);
+        }
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            if ($update_id == 0) {
+
+                $update_id = $this->Conn->Insert_ID();
+
+                if ($update_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $Sql2 = "SELECT id 
                              FROM ref_crm_order_stages 
                              WHERE module_id = 3 and 
@@ -15966,6 +23204,7 @@ class Srm extends Xtreme
                                                     SET    
                                                         order_id = $update_id,
                                                         ref_stage_id = $Row2[id],
+<<<<<<< HEAD
                                                         company_id = ".$this->arrUser['company_id'].", 
                                                         user_id = ".$this->arrUser['id'].", ";
 
@@ -15988,6 +23227,203 @@ class Srm extends Xtreme
                 }
             }
                 
+=======
+                                                        company_id = " . $this->arrUser['company_id'] . ", 
+                                                        user_id = " . $this->arrUser['id'] . ", ";
+
+                            if ($stage_count == 0) {
+                                $stage_count = 1;
+                                $Sql3 .= " state = 'active'";
+                            } else
+                                $Sql3 .= " state = 'outstanding'";
+
+                            // echo $Sql3;exit;
+                            $RS3 = $this->objsetup->CSI($Sql3);
+                        }
+                    }
+                    // just to update cache
+                    $Sql1 = "update srm_order_return set changedOn=UNIX_TIMESTAMP (NOW()) WHERE id=$update_id; -- just to update cache for order stage";
+                    // echo $Sql1;exit;
+                    $RS1 = $this->objsetup->CSI($Sql1);
+                }
+            }
+
+
+            $response['ack'] = 1;
+            $response['id'] = $update_id;
+            $this->Conn->commitTrans();
+            $this->Conn->autoCommit = true;
+            $response['error'] = NULL;
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = 'Record is Not updated!';
+            $response['id'] = $update_id;
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = 'Record is Not updated!';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        }
+
+        return $response;
+    }
+
+    function updatePostedDebitNote($attr)
+    {
+        // error_reporting(E_ALL);    
+
+        // echo '<pre>';  print_r($attr);exit;
+        $this->objGeneral->mysql_clean($attr);
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $update_id = $attr['id'];
+
+        // echo $update_id; exit;
+
+
+        $supplierCountry = (isset($attr['supplierCountrys']) && $attr['supplierCountrys'] != '') ? $attr['supplierCountrys'] : 0;
+        $supplierContactID = (isset($attr['supplierContactID']) && $attr['supplierContactID'] != '') ? $attr['supplierContactID'] : 0;
+        $purchaserID = (isset($attr['purchaserID']) && $attr['purchaserID'] != '') ? $attr['purchaserID'] : 0;
+        $billToSupplierID = (isset($attr['billToSupplierID']) && $attr['billToSupplierID'] != '') ? $attr['billToSupplierID'] : 0;
+        $billToSupplierCountry = (isset($attr['billToSupplierCountrys']) && $attr['billToSupplierCountrys'] != '') ? $attr['billToSupplierCountrys'] : 0;
+        $shipToSupplierLocCountry = (isset($attr['shipToSupplierLocCountrys']) && $attr['shipToSupplierLocCountrys'] != '') ? $attr['shipToSupplierLocCountrys'] : 0;
+        $billToSupplierContactID = (isset($attr['billToSupplierContactID']) && $attr['billToSupplierContactID'] != '') ? $attr['billToSupplierContactID'] : 0;
+        // $currency_id = (isset($attr['currency_id']) && $attr['currency_id']!='')?$attr['currency_id']:0;        
+        $currency_id = (isset($attr['currency_ids']) && $attr['currency_ids'] != '') ? $attr['currency_ids'] : 0;
+        $shipToSupplierLocID = (isset($attr['shipToSupplierLocID']) && $attr['shipToSupplierLocID'] != '') ? $attr['shipToSupplierLocID'] : 0;
+        $payment_method_id = (isset($attr['payment_method_id']) && $attr['payment_method_id'] != '') ? $attr['payment_method_id'] : 0;
+        $shipment_method_id = (isset($attr['shipment_method_id']) && $attr['shipment_method_id'] != '') ? $attr['shipment_method_id'] : 0;
+        $shipping_agent_id = (isset($attr['shipping_agent_id']) && $attr['shipping_agent_id'] != '') ? $attr['shipping_agent_id'] : 0;
+        $freight_charges = (isset($attr['freight_charges']) && $attr['freight_charges'] != '') ? Round($attr['freight_charges'], 2) : 0;
+        $payment_discount = (isset($attr['payment_discount']) && $attr['payment_discount'] != '') ? Round($attr['payment_discount'], 2) : 0;
+        $bank_account_id = (isset($attr['bank_account_id']) && $attr['bank_account_id'] != '') ? $attr['bank_account_id'] : 0;
+        $purchaseInvoiceID = (isset($attr['purchaseInvoiceID']) && $attr['purchaseInvoiceID'] != '') ? $attr['purchaseInvoiceID'] : 0;
+        $purchaseInvoiceType = (isset($attr['purchaseInvoiceType']) && $attr['purchaseInvoiceType'] != '') ? $attr['purchaseInvoiceType'] : 0;
+        // $shipToSupplierLocID = (isset($attr['shipToSupplierLocID']) && $attr['shipToSupplierLocID']!='')?$attr['shipToSupplierLocID']:0;     
+
+
+        $supplierCreditNoteNo = (isset($attr['supplierCreditNoteNo']) && $attr['supplierCreditNoteNo'] != '') ? trim(addslashes(stripslashes($attr['supplierCreditNoteNo']))) : '0';
+
+        if ($supplierCreditNoteNo != '0' && $update_id > 0) {
+
+            $data_pass = " tst.supplierCreditNoteNo='" . $supplierCreditNoteNo . "' AND 
+                           tst.supplierID='" . $billToSupplierID . "' AND 
+                           tst.id <> " . $update_id . " ";
+            $totalREC = $this->objGeneral->count_duplicate_in_sql('srm_order_return', $data_pass, $this->arrUser['company_id']);
+
+            if ($totalREC > 0) {
+                $response['ack'] = 0;
+                $response['error'] = 'Supplier Credit Note No. Already Exists!';
+
+                $srLogTrace = array();
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['ErrorMessage'] = 'Supplier Credit Note No. Already Exists!';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                return $response;
+            }
+        }
+
+        $Sql = "UPDATE srm_order_return
+                            SET 
+                                supplierName='$attr[supplierName]',
+                                supplierAddress='$attr[supplierAddress]',
+                                supplierAddress2='$attr[supplierAddress2]',
+                                supplierCity='$attr[supplierCity]',
+                                supplierCounty='$attr[supplierCounty]',
+                                supplierPostCode='$attr[supplierPostCode]',
+                                supplierCountry='$supplierCountry',
+                                supplierContactID='$supplierContactID',
+                                supplierContactName='$attr[supplierContactName]',
+                                supplierContactTelephone='$attr[supplierContactTelephone]',
+                                supplierContactEmail='$attr[supplierContactEmail]', 
+                                supplierCreditNoteNo='$attr[supplierCreditNoteNo]',
+                                purchaserID='$purchaserID',
+                                purchaser='$attr[Purchaser]',
+                                billToSupplierName='$attr[billToSupplierName]',
+                                billToSupplierAddress='$attr[billToSupplierAddress]',
+                                billToSupplierAddress2='$attr[billToSupplierAddress2]',
+                                billToSupplierCity='$attr[billToSupplierCity]',
+                                billToSupplierCounty='$attr[billToSupplierCounty]',
+                                billToSupplierPostCode='$attr[billToSupplierPostCode]',
+                                billToSupplierContactID='$billToSupplierContactID',
+                                billToSupplierContact='$attr[billToSupplierContact]',
+                                billToSupplierTelephone='$attr[billToSupplierTelephone]',
+                                billToSupplierEmail='$attr[billToSupplierEmail]',  
+                                payment_method_id='$payment_method_id',
+                                bank_account_id='$bank_account_id',
+                                payment_terms_code='$attr[payment_terms_code]',
+                                payable_bank='$attr[payable_bank]',
+                                shipToSupplierLocID='$shipToSupplierLocID',
+                                shipToSupplierLocName='$attr[shipToSupplierLocName]',
+                                shipToSupplierLocAddress='$attr[shipToSupplierLocAddress]',
+                                shipToSupplierLocAaddress2='$attr[shipToSupplierLocAaddress2]',
+                                shipToSupplierLocCity='$attr[shipToSupplierLocCity]',
+                                shipToSupplierLocCounty='$attr[shipToSupplierLocCounty]',
+                                shipToSupplierLocPostCode='$attr[shipToSupplierLocPostCode]',
+                                shipToSupplierLocContact='$attr[shipToSupplierLocContact]',
+                                ship_to_contact_shiping='$attr[shipToSupplierLocContact]',
+                                shipment_method_id='$shipment_method_id',
+                                shipment_method_code='$attr[shipment_method]',
+                                shipping_agent_code='$attr[shipping_agent_code]',
+                                note='" . $attr['note'] . "',                               
+                                shipping_agent_id='$shipping_agent_id',
+                                freight_charges='$freight_charges',                                     
+                                shipment_date='" . $this->objGeneral->convert_date($attr['shipment_date']) . "',
+                                deliveryDate='" . $this->objGeneral->convert_date($attr['deliveryDate']) . "',
+                                ship_delivery_time='$attr[ship_delivery_time]',
+                                shippingAgentRefNo='$attr[shippingAgentRefNo]', 
+                                book_in_tel='$attr[book_in_tel]',                                   
+                                book_in_contact='$attr[book_in_contact]',                                   
+                                book_in_email='$attr[book_in_email]',
+                                warehouse_booking_ref='$attr[warehouse_booking_ref]', 
+                                customer_warehouse_ref='$attr[customer_warehouse_ref]',                                  
+                                ChangedBy='" . $this->arrUser['id']  . "',
+                                ChangedOn=UNIX_TIMESTAMP (NOW())
+                        WHERE id = $update_id 
+                        limit 1";
+
+        // echo $Sql;
+        // $RS = $this->objsetup->CSI($Sql);
+        $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddEditPermission);
+
+        // echo '<pre>';print_r($RS);
+        // echo $this->Conn->Affected_Rows();exit;
+
+
+        if ($update_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['id'] = $update_id;
@@ -16027,6 +23463,7 @@ class Srm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         if (!empty($attr['searchKeyword'])) 
         {
             $val = intval(preg_replace("/[^0-9]/", '', $attr['searchKeyword']));
@@ -16035,6 +23472,15 @@ class Srm extends Xtreme
                 $where_clause .= " AND  prd.product_no LIKE '%".$val."%'  ";
             else
                 $where_clause .= "   AND prd.description LIKE '%".$attr['searchKeyword']."%'";
+=======
+        if (!empty($attr['searchKeyword'])) {
+            $val = intval(preg_replace("/[^0-9]/", '', $attr['searchKeyword']));
+
+            if ($val != 0)
+                $where_clause .= " AND  prd.product_no LIKE '%" . $val . "%'  ";
+            else
+                $where_clause .= "   AND prd.description LIKE '%" . $attr['searchKeyword'] . "%'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if (!empty($attr['units']))
@@ -16078,24 +23524,41 @@ class Srm extends Xtreme
                 From product  prd
                 JOIN srm_invoice_detail sd on sd.product_id=prd.id
                 where sd.status = 1 and  
+<<<<<<< HEAD
                       sd.invoice_id='".$attr['invoice_id']."' AND 
+=======
+                      sd.invoice_id='" . $attr['invoice_id'] . "' AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       prd.company_id='" . $this->arrUser['company_id'] . "' " . $where_clause . " ";
 
         $total_limit = pagination_limit;
 
+<<<<<<< HEAD
         
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'prd', $order_by);
+=======
+
+        if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
+            $total_limit = $attr['pagination_limits'];
+
+        $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'prd');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //   echo $response['q'];  exit;
         $RS = $this->objsetup->CSI($response['q']);
         $response['q'] = '';
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 foreach ($Row as $key => $value) {
                     if (is_numeric($key))
                         unset($Row[$key]);
@@ -16118,8 +23581,13 @@ class Srm extends Xtreme
         $volume_unit = '';
         $weight = 0;
         $weightunit = '';
+<<<<<<< HEAD
         $weight_permission = 0;  
         $volume_permission = 0;  
+=======
+        $weight_permission = 0;
+        $volume_permission = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql4 = "SELECT  SUM(uomsetup.volume * inv.qty) AS volume,
                     'cm3' AS volume_unit,
@@ -16130,12 +23598,20 @@ class Srm extends Xtreme
                 FROM srm_order_return_detail AS inv
                 LEFT JOIN units_of_measure_setup AS uomsetup ON inv.unit_measure_id = uomsetup.id AND inv.type=0
                 LEFT JOIN items_weight_setup AS w ON w.title = 'Debit Note' AND inv.company_id = w.company_id
+<<<<<<< HEAD
                 WHERE inv.invoice_id='".$attr['invoice_id']."' ";
+=======
+                WHERE inv.invoice_id='" . $attr['invoice_id'] . "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql4."<hr>"; exit;
 
         $rs4 = $this->objsetup->CSI($Sql4);
 
+<<<<<<< HEAD
         if ($rs4->RecordCount() > 0){
+=======
+        if ($rs4->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $volume = $rs4->fields['volume'];
             $volume_unit = $rs4->fields['volume_unit'];
             $weight = $rs4->fields['weight'];
@@ -16149,7 +23625,11 @@ class Srm extends Xtreme
 
         $Sql = "SELECT es.*,(SELECT wh.item_trace_unique_id 
                              FROM warehouse_allocation AS wh
+<<<<<<< HEAD
                              WHERE wh.order_id= '".$attr['purchaseInvoiceID']."' AND
+=======
+                             WHERE wh.order_id= '" . $attr['purchaseInvoiceID'] . "' AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                    wh.product_id= es.product_id AND  
                                    wh.type=1 AND 
                                    wh.purchase_status=3 AND 
@@ -16157,12 +23637,18 @@ class Srm extends Xtreme
                                    LIMIT 1) as item_trace_unique_id 
                 FROM srm_order_return_detail es
                 WHERE es.status=1 and 
+<<<<<<< HEAD
                       es.invoice_id='".$attr['invoice_id']."'"; 
          //echo $Sql; exit;
+=======
+                      es.invoice_id='" . $attr['invoice_id'] . "'";
+        //echo $Sql; exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_ViewPermission);
 
+<<<<<<< HEAD
         
         if ($RS->RecordCount() > 0) 
         {
@@ -16175,6 +23661,18 @@ class Srm extends Xtreme
                     if (is_numeric($key))
                         unset($Row[$key]);
                 } 
+=======
+
+        if ($RS->RecordCount() > 0) {
+            // require_once(SERVER_PATH . "/classes/Stock.php");
+            // $this->objstock = new Stock($this->arrUser);
+
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $attr['product_id'] = $Row['product_id'];
                 $attr['item_trace_unique_id'] = $Row['item_trace_unique_id'];
 
@@ -16185,9 +23683,15 @@ class Srm extends Xtreme
                 $temp_attr['item_id']   = $Row['product_id'];
                 $temp_attr['order_id']  = $Row['invoice_id'];
                 $temp_attr['wh_id']     = $Row['warehouse_id'];
+<<<<<<< HEAD
                 $temp_attr['purchaseReturn']= 1;
                 $temp_attr['purchase_order_detail_id']= $Row['id'];
                     
+=======
+                $temp_attr['purchaseReturn'] = 1;
+                $temp_attr['purchase_order_detail_id'] = $Row['id'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 require_once(SERVER_PATH . "/classes/Saleswarehouse.php");
                 $ObjWH = new Saleswarehouse($this->arrUser);
                 $Row['item_stock_allocation'] = $ObjWH->getPurchaseOrderStockAllocation($temp_attr);
@@ -16196,11 +23700,19 @@ class Srm extends Xtreme
                 $Row['arr_warehouse'] = $this->objstock->get_all_product_warehouses($attr);
                 $Row['arr_units'] = $this->objstock->get_unit_setup_list_category_by_item($attr);
                 // $Row['currentStock'] = self::getCurrentStockByProductID($attr);
+<<<<<<< HEAD
                 $Row['currentStock'] =$Row['prodQty'];
 
                 if ($Row['type'] == '1') {
 
                     if($this->arrUser['company_id'] == 133){
+=======
+                $Row['currentStock'] = $Row['prodQty'];
+
+                if ($Row['type'] == '1') {
+
+                    if ($this->arrUser['company_id'] == 133) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         // PBI: Requirment In GL For Vat GL Calculation in Vat column instead of general calculation. 
                         $sqlvat = " SELECT gl1.id AS gl1ID,gl1.accountCode AS gl1AccountCode,
@@ -16214,10 +23726,15 @@ class Srm extends Xtreme
                                         gl1.company_id='" . $this->arrUser['company_id'] . "' AND
                                         gl2.company_id='" . $this->arrUser['company_id'] . "' AND
                                         gl3.company_id='" . $this->arrUser['company_id'] . "'  ";
+<<<<<<< HEAD
 
                     }
                     else{
                     
+=======
+                    } else {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // PBI: Requirment In GL For Vat GL Calculation in Vat column instead of general calculation. 
                         $sqlvat = "SELECT startRangeCode,endRangeCode 
                             FROM gl_account 
@@ -16225,9 +23742,15 @@ class Srm extends Xtreme
                                             FROM financial_settings
                                             WHERE company_id='" . $this->arrUser['company_id'] . "')";
                     }
+<<<<<<< HEAD
                     
                     $RSV = $this->objsetup->CSI($sqlvat);
                     
+=======
+
+                    $RSV = $this->objsetup->CSI($sqlvat);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if ($RSV->RecordCount() > 0) {
                         while ($RowVat = $RSV->FetchRow()) {
                             foreach ($RowVat as $key => $value) {
@@ -16235,25 +23758,39 @@ class Srm extends Xtreme
                                     unset($RowVat[$key]);
                             }
 
+<<<<<<< HEAD
                             if($this->arrUser['company_id'] == 133){
                                 $Row['vatRange']['gl1AccountCode'] = $RowVat['gl1AccountCode'];
                                 $Row['vatRange']['gl2AccountCode'] = $RowVat['gl2AccountCode'];
                                 $Row['vatRange']['gl3AccountCode'] = $RowVat['gl3AccountCode'];
                             }
                             else{ 
+=======
+                            if ($this->arrUser['company_id'] == 133) {
+                                $Row['vatRange']['gl1AccountCode'] = $RowVat['gl1AccountCode'];
+                                $Row['vatRange']['gl2AccountCode'] = $RowVat['gl2AccountCode'];
+                                $Row['vatRange']['gl3AccountCode'] = $RowVat['gl3AccountCode'];
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 //  print_r($RowVat);
                                 $Row['vatRange']['startRangeCode'] = $RowVat['startRangeCode'];
                                 $Row['vatRange']['endRangeCode'] = $RowVat['endRangeCode'];
                             }
                         }
                     }
+<<<<<<< HEAD
                     
                 }
                  
+=======
+                }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $Row;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         }
          else {
             $response['response'][] = array();
@@ -16261,6 +23798,14 @@ class Srm extends Xtreme
             $response['error'] = NULL;
         }        
             
+=======
+        } else {
+            $response['response'][] = array();
+            $response['ack'] = 0;
+            $response['error'] = NULL;
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['volume'] = $volume;
         $response['volume_unit'] = $volume_unit;
         $response['weight'] = $weight;
@@ -16295,7 +23840,11 @@ class Srm extends Xtreme
 
     // Debit Note Order line save 
     function saveDebitNoteLine($attr)
+<<<<<<< HEAD
     { 
+=======
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo "<pre>";
         // print_r($attr);  
         // exit;    
@@ -16307,6 +23856,7 @@ class Srm extends Xtreme
         $srLogTrace['Function'] = __FUNCTION__;
         $srLogTrace['CLASS'] = __CLASS__;
         $srLogTrace['Parameter1'] = 'Enter';
+<<<<<<< HEAD
         $srLogTrace['Parameter2'] = 'id:'.$attr['id'];
         $srLogTrace['ErrorMessage'] = "";
 
@@ -16331,12 +23881,38 @@ class Srm extends Xtreme
 
         foreach ($allitemArray as $item2) 
         {
+=======
+        $srLogTrace['Parameter2'] = 'id:' . $attr['id'];
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $item = $attr['item'];
+        $allitemArray = $attr['itemDataArr'];
+        // $allitemArray = $attr['itemArray'];
+        $updateRec = 0;
+        $selRecordID = 0;
+        $this->objGeneral->mysql_clean($item);
+
+        $invoice_id = (isset($item->orderID) && $item->orderID != '') ? $item->orderID : 0;
+        $supplier_id = (isset($item->supplier_id) && $item->supplier_id != '') ? $item->supplier_id : 'NULL';
+        $selWarehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+        // $selWarehousesid = (isset($item->warehouses) && $item->warehouses!='')?$item->warehouses:0;
+        $selProduct_id = (isset($item->product_id) && $item->product_id != '') ? $item->product_id : 0;
+        // $selProduct_id = (isset($item->id) && $item->id!='')?$item->id:0;        
+
+        foreach ($allitemArray as $item2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->objGeneral->mysql_clean($item2);
             // echo '<pre>';print_r($item2);exit;
 
             $update_id = $item2->update_id;
             $updateCHK = '';
 
+<<<<<<< HEAD
             if($update_id>0)
                 $updateCHK = ' AND tst.id!='.$update_id;              
             
@@ -16349,6 +23925,20 @@ class Srm extends Xtreme
             $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id!='')?$item2->discount_type_id->id:0;
             $discount = (isset($item2->discount) && $item2->discount!='')? Round($item2->discount,2):0;            
             
+=======
+            if ($update_id > 0)
+                $updateCHK = ' AND tst.id!=' . $update_id;
+
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 'NULL';
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : 0;
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $warehousesid = (isset($item->warehouses->id) && $item->warehouses->id!='')?$item->warehouses->id:0;
             /* $warehousesid = (isset($item2->warehouses) && $item2->warehouses!='')?$item2->warehouses:0;
             $warehousesname = (isset($item2->warehouse_name) && $item2->warehouse_name!='')?$item2->warehouse_name:0; */
@@ -16357,6 +23947,7 @@ class Srm extends Xtreme
             // $warehousesid = (isset($item2->warehouse_id) && $item2->warehouse_id!='')?$item2->warehouse_id:0;
             // $warehousesname = (isset($item2->warehouse_name) && $item2->warehouse_name!='')?$item2->warehouse_name:0;
 
+<<<<<<< HEAD
             $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id!='')?$item2->warehouses->id:0;
             $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name!='')?$item2->warehouses->name:0;
 
@@ -16402,6 +23993,53 @@ class Srm extends Xtreme
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn=UNIX_TIMESTAMP (NOW())
                                     WHERE id=".$update_id." ";
+=======
+            $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id != '') ? $item2->warehouses->id : 0;
+            $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name != '') ? $item2->warehouses->name : 0;
+
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? $item2->total_price : 0;
+
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $category_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+            $vat_name = (isset($item2->vats->name) && $item2->vats->name != '') ? $item2->vats->name : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+            $actualPrice = (isset($item2->actualPrice) && $item2->actualPrice != '') ? $item2->actualPrice : 0;
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+            $update_id = (isset($item2->update_id) && $item2->update_id != '') ? $item2->update_id : 0;
+            $prdInvQty = (isset($item2->prdInvQty) && $item2->prdInvQty != '') ? $item2->prdInvQty : 0;
+            // $prdInvQty  = ($item->prdInvQty != '') ? $item->prdInvQty : '0';            
+
+            if ($update_id > 0) {
+                $Sql = "UPDATE srm_order_return_detail
+                                SET
+                                    supplier_id=" . $supplier_id . ",
+                                    prdInvQty='" . $prdInvQty . "',
+                                    product_name='" . $item2->product_name . "',
+                                    qty='" . $item2->qty . "',
+                                    unit_price='" . $unit_price . "',
+                                    actualPrice='" . $actualPrice . "',
+                                    vat='" . $vat_name . "',
+                                    vat_id='" . $vatsid . "',
+                                    vat_value='" . $vat_value . "',
+                                    total_price='" . $total_price . "',                                    
+                                    discount_type='" . $discount_type_id . "',
+                                    discount='" . $discount . "',
+                                    sale_unit_id='" . $sale_unit_id . "',
+                                    warehouse_id='" . $warehousesid . "',
+                                    warehouse='" . $warehousesname . "',
+                                    stock_check='" . $stock_check . "',
+                                    ChangedBy='" . $this->arrUser['id'] . "',
+                                    ChangedOn=UNIX_TIMESTAMP (NOW())
+                                    WHERE id=" . $update_id . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //  echo $Sql;exit; 
 
@@ -16415,6 +24053,7 @@ class Srm extends Xtreme
                 // $RS = $this->objsetup->CSI($Sql);
                 $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddEditPermission);
                 // $updateCHK2 = true;
+<<<<<<< HEAD
                         
             }
             // exit;
@@ -16430,6 +24069,23 @@ class Srm extends Xtreme
             
         if ($update_id > 0){
             
+=======
+
+            }
+            // exit;
+
+            if ($update_id > 0) {
+                $updateRec++;
+
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+
+        if ($update_id > 0) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             require_once(SERVER_PATH . "/classes/Warehouse.php");
             $this->objWarehouse = new Warehouse($this->arrUser);
 
@@ -16443,7 +24099,11 @@ class Srm extends Xtreme
             $attr['product_id'] = $selProduct_id;
             $attr['supplier_id'] = $supplier_id;
             $attr['invoice_id'] = $invoice_id;
+<<<<<<< HEAD
             $attr['type_id'] = 1;// 1 for purchase order and 2 for sale order.
+=======
+            $attr['type_id'] = 1; // 1 for purchase order and 2 for sale order.
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['stockAlloc'] = $this->getAllStockAllocation($attr);
 
@@ -16461,6 +24121,7 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
         } else {
             $response['ack'] = 0;
@@ -16648,6 +24309,8 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
@@ -16661,6 +24324,7 @@ class Srm extends Xtreme
             $srLogTrace['ErrorMessage'] = 'Record is Not updated!';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         }  
         return $response;
     } 
@@ -16704,17 +24368,256 @@ class Srm extends Xtreme
             
             if ($update_id > 0){
                 $updateRec++;
+=======
+        }
+        return $response;
+    }
+
+    // Debit Note Order line Insert New Line 
+    function insertDebitNoteNewOrderLine($attr)
+    {
+        // echo "<pre>";
+        // print_r($attr);  
+        // exit;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['Parameter2'] = 'id:' . $attr['id'];
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+        $tempOrderData = $attr['tempOrderData'];
+        $tempOrderLineitemsArray = $attr['tempOrderLineitems'];
+
+        $updateRec = 0;
+        $selRecordID = 0;
+
+        $invoice_id = (isset($tempOrderData->orderID) && $tempOrderData->orderID != '') ? $tempOrderData->orderID : 'NULL';
+        $supplier_id = (isset($tempOrderData->supplier_id) && $tempOrderData->supplier_id != '') ? $tempOrderData->supplier_id : 'NULL';
+        $selWarehousesid = (isset($tempOrderData->warehouses->id) && $tempOrderData->warehouses->id != '') ? $tempOrderData->warehouses->id : 'NULL';
+        $selProduct_id = (isset($tempOrderData->type_id) && $tempOrderData->type_id != '') ? $tempOrderData->type_id : 'NULL';
+
+        foreach ($tempOrderLineitemsArray as $item2) {
+            $this->objGeneral->mysql_clean($item2);
+
+            $max_quantity = (isset($item2->max_quantity) && $item2->max_quantity != '') ? $item2->max_quantity : 0;
+            $min_quantity = (isset($item2->min_quantity) && $item2->min_quantity != '') ? $item2->min_quantity : 0;
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 'NULL';
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : '';
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? Round($item2->total_price, 2) : 0;
+            $category_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+
+            $costing_method_id = (isset($item2->costing_method_id) && $item2->costing_method_id != '') ? $item2->costing_method_id : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+
+            $vat_name = (isset($item2->vats->name) && $item2->vats->name != '') ? $item2->vats->name : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+            // $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id!='')?$item2->warehouses->id:0;
+            // $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name!='')?$item2->warehouses->name:0;
+
+            $warehousesid = (isset($item2->warehouse_id) && $item2->warehouse_id != '') ? $item2->warehouse_id : 0;
+            $warehousesname = (isset($item2->warehouse) && $item2->warehouse != '') ? $item2->warehouse : 0;
+
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+            $actualPrice = (isset($item2->actualPrice) && $item2->actualPrice != '') ? Round($item2->actualPrice, 2) : 0;
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $descriptionID = (isset($item2->descriptionID) && $item2->descriptionID != '') ? $item2->descriptionID : 0;
+            $item_type = (isset($item2->item_type) && $item2->item_type != '') ? $item2->item_type : 0;
+
+            $invoiceDetailID = (isset($item2->invoiceDetailID) && $item2->invoiceDetailID != '') ? $item2->invoiceDetailID : 0;
+
+            if ($item_type == 2) {
+                $unit_measure_id = (isset($item2->uomID) && $item2->uomID != '') ? $item2->uomID : 'NULL';
+                $unit_measure = (isset($item2->uom) && $item2->uom != '') ? $item2->uom : '';
+            }
+
+            if ($item_type == 0) {
+
+                $max_quantity = (isset($item2->maxPurchaseQty) && $item2->maxPurchaseQty != '') ? $item2->maxPurchaseQty : 0;
+                $min_quantity = (isset($item2->minPurchaseQty) && $item2->minPurchaseQty != '') ? $item2->minPurchaseQty : 0;
+            }
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+
+            $rawMaterialProduct = (isset($item2->rawMaterialProduct) && $item2->rawMaterialProduct != '') ? $item2->rawMaterialProduct : 0;
+            $raw_material_gl_id = (isset($item2->raw_material_gl_id) && $item2->raw_material_gl_id != '') ? $item2->raw_material_gl_id : 0;
+
+            /* ==================== */
+            $prdInvQty = (isset($item2->prdInvQty) && $item2->prdInvQty != '') ? $item2->prdInvQty : 0;
+            $product_id = (isset($item2->product_id) && $item2->product_id != '') ? $item2->product_id : 'NULL';
+
+            // $update_id = (isset($item->update_id) && $item->update_id!='')?$item->update_id:0; 
+            // $prdInvQty  = ($item->prdInvQty != '') ? $item->prdInvQty : '0';            
+
+            $SqlQuote = "INSERT INTO srm_order_return_detail
+                                        SET
+                                            stock_check='" . $stock_check . "',
+                                            product_id=" . $product_id . ",
+                                            product_name='" . $item2->product_name . "',
+                                            product_code='" . $item2->product_code . "',
+                                            prdInvQty='" . $prdInvQty . "',
+                                            qty='" . $item2->qty . "',                                              
+                                            unit_measure='" . $unit_measure . "',
+                                            unit_measure_id=" . $unit_measure_id . ",
+                                            unit_parent_id='" . $unit_parent_id . "',
+                                            unit_qty='" . $unit_qty . "',                                              
+                                            warehouse_id='" . $warehousesid . "',
+                                            warehouse='" . $warehousesname . "',
+                                            discount_type='" . $discount_type_id . "',
+                                            discount='" . $discount . "',
+                                            unit_price='" . $unit_price . "',
+                                            actualPrice='" . $actualPrice . "',
+                                            total_price='" . $total_price . "',
+                                            vat='" . $vat_name . "',
+                                            vat_id='" . $vatsid . "',
+                                            vat_value='" . $vat_value . "',
+                                            cat_id='" . $category_id . "',
+                                            type='" . $item2->item_type . "',
+                                            sale_unit_id='" . $sale_unit_id . "',
+                                            primary_unit_of_measure_name ='" . $item2->primary_unit_of_measure_name . "',
+                                            primary_unit_of_measure_id ='" . $primary_unit_of_measure_id . "',
+                                            supplier_id=" . $supplier_id . ",
+                                            invoice_id=" . $invoice_id . ",
+                                            costing_method_id=" . $costing_method_id . ", 
+                                            rawMaterialProduct='" . $rawMaterialProduct . "',                                            
+                                            raw_material_gl_id='" . $raw_material_gl_id . "', 
+                                            raw_material_gl_code='" . $item2->raw_material_gl_code . "',
+                                            raw_material_gl_name='" . $item2->raw_material_gl_name . "', 
+                                            srm_invoice_detail='" . $invoiceDetailID . "',
+                                            debitNoteCode='" . $item2->invoice_code . "',
+                                            user_id='" . $this->arrUser['id'] . "', 
+                                            company_id='" . $this->arrUser['company_id'] . "',
+                                            AddedBy='" . $this->arrUser['id'] . "',
+                                            AddedOn=UNIX_TIMESTAMP (NOW())";
+
+            // echo $SqlQuote;exit;
+            // $RS = $this->objsetup->CSI($SqlQuote);
+            $RS = $this->objsetup->CSI($SqlQuote, 'purchase_return', sr_AddPermission);
+
+            $update_id = $this->Conn->Insert_ID();
+            $item2->update_id = $update_id;
+            $item2->id = $update_id;
+            // exit; 
+
+            if ($update_id > 0) {
+                $updateRec++;
+
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+
+        if ($updateRec > 0) {
+            $response['ack'] = 1;
+            $response['allitemArray'] = $tempOrderLineitemsArray;
+            $response['error'] = NULL;
+
+            $this->Conn->commitTrans();
+            $this->Conn->autoCommit = true;
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = 'Record not updated';
+
+            $srLogTrace = array();
+            $srLogTrace['ErrorCode'] = '';
+            $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_1;
+            $srLogTrace['Function'] = __FUNCTION__;
+            $srLogTrace['CLASS'] = __CLASS__;
+            $srLogTrace['Parameter1'] = 'Exit';
+            $srLogTrace['ErrorMessage'] = 'Record is Not updated!';
+
+            $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        }
+        return $response;
+    }
+
+    function nousefunction($allitemArray = null)
+    {
+
+        foreach ($allitemArray as $item2) {
+            $update_id = $item2->update_id;
+            $updateCHK = '';
+
+            if ($update_id > 0)
+                $updateCHK = ' AND tst.id!=' . $update_id;
+
+            $unit_measure_id = (isset($item2->units->id) && $item2->units->id != '') ? $item2->units->id : 0;
+            $unit_qty = (isset($item2->units->quantity) && $item2->units->quantity != '') ? $item2->units->quantity : 0;
+            $unit_parent_id = (isset($item2->units->parent_id) && $item2->units->parent_id != '') ? $item2->units->parent_id : 0;
+            $unit_measure = (isset($item2->units->name) && $item2->units->name != '') ? $item2->units->name : 0;
+            $conv_unit_price = (isset($item2->conv_unit_price) && $item2->conv_unit_price != '') ? $item2->conv_unit_price : 0;
+            $purchase_unit_id = (isset($item2->purchase_unit_id) && $item2->purchase_unit_id != '') ? $item2->purchase_unit_id : 0;
+            $discount_type_id = (isset($item2->discount_type_id->id) && $item2->discount_type_id->id != '') ? $item2->discount_type_id->id : 0;
+            $discount = (isset($item2->discount) && $item2->discount != '') ? Round($item2->discount, 2) : 0;
+
+            $warehousesid = (isset($item2->warehouses->id) && $item2->warehouses->id != '') ? $item2->warehouses->id : 0;
+            $warehousesname = (isset($item2->warehouses->name) && $item2->warehouses->name != '') ? $item2->warehouses->name : 0;
+            $total_price = (isset($item2->total_price) && $item2->total_price != '') ? Round($item2->total_price, 2) : 0;
+
+            $stock_check = (isset($item2->stock_check) && $item2->stock_check != '') ? $item2->stock_check : 0;
+            $category_id = (isset($item2->category_id) && $item2->category_id != '') ? $item2->category_id : 0;
+            $sale_unit_id = (isset($item2->sale_unit_id) && $item2->sale_unit_id != '') ? $item2->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item2->primary_unit_of_measure_id) && $item2->primary_unit_of_measure_id != '') ? $item2->primary_unit_of_measure_id : 0;
+
+            $vatsid = (isset($item2->vats->id) && $item2->vats->id != '') ? $item2->vats->id : 0;
+            $vat_value = (isset($item2->vats->vat_value) && $item2->vats->vat_value != '') ? $item2->vats->vat_value : 0;
+
+            $qty = (isset($item2->qty) && $item2->qty != '') ? $item2->qty : 0;
+            $unit_price = (isset($item2->standard_price) && $item2->standard_price != '') ? round($item2->standard_price, 5) : 0; //$item2->standard_price
+
+            $selItemChk = (isset($item2->chk) && $item2->chk != '') ? $item2->chk : 0;
+            $update_id = (isset($item2->update_id) && $item2->update_id != '') ? $item2->update_id : 0;
+
+
+            if ($update_id > 0) {
+                // $updateRec++;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 //$item2->update_id=$update_id;
 
                 // echo "===".$selItemChk."####".$update_id."####".$item2->product_name;
 
                 // if($selWarehousesid == $warehousesid && $selProduct_id==$item2->id){
+<<<<<<< HEAD
                 if($selItemChk>1){
                     $selRecordID = $update_id;
                 }                    
             }
         } 
+=======
+                if ($selItemChk > 1) {
+                    $selRecordID = $update_id;
+                }
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function update_sublist_return($attr)
@@ -16734,6 +24637,7 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false; 
@@ -16752,6 +24656,26 @@ class Srm extends Xtreme
         $items_net_total = (isset($attr['items_net_total']) && $attr['items_net_total']!='')? Round($attr['items_net_total'],2):0;
         $items_net_discount = (isset($attr['items_net_discount']) && $attr['items_net_discount']!='')? Round($attr['items_net_discount'],2):0;
         $items_net_vat = (isset($attr['items_net_vat']) && $attr['items_net_vat']!='')? Round($attr['items_net_vat'],2):0;
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $invoice_id = (isset($attr['invoice_id']) && $attr['invoice_id'] != '') ? $attr['invoice_id'] : 'NULL';
+        $mode = (isset($attr['mode']) && $attr['mode'] != '') ? $attr['mode'] : 0;
+
+        $net_amount = (isset($attr['net_amount']) && $attr['net_amount'] != '') ? Round($attr['net_amount'], 2) : 0;
+        $grand_total = (isset($attr['grand_total']) && $attr['grand_total'] != '') ? Round($attr['grand_total'], 2) : 0;
+        $tax_amount = (isset($attr['tax_amount']) && $attr['tax_amount'] != '') ? Round($attr['tax_amount'], 2) : 0;
+        $tax_rate = (isset($attr['tax_rate']) && $attr['tax_rate'] != '') ? $attr['tax_rate'] : 0;
+
+        $net_amount_converted = (isset($attr['net_amount_converted']) && $attr['net_amount_converted'] != '') ? Round($attr['net_amount_converted'], 2) : 0;
+        $grand_total_converted = (isset($attr['grand_total_converted']) && $attr['grand_total_converted'] != '') ? Round($attr['grand_total_converted'], 2) : 0;
+        $tax_amount_converted = (isset($attr['tax_amount_converted']) && $attr['tax_amount_converted'] != '') ? Round($attr['tax_amount_converted'], 2) : 0;
+        $items_net_total = (isset($attr['items_net_total']) && $attr['items_net_total'] != '') ? Round($attr['items_net_total'], 2) : 0;
+        $items_net_discount = (isset($attr['items_net_discount']) && $attr['items_net_discount'] != '') ? Round($attr['items_net_discount'], 2) : 0;
+        $items_net_vat = (isset($attr['items_net_vat']) && $attr['items_net_vat'] != '') ? Round($attr['items_net_vat'], 2) : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->objGeneral->mysql_clean($attr['note']);
 
@@ -16761,7 +24685,11 @@ class Srm extends Xtreme
                             grand_total='$grand_total', 
                             tax_amount='$tax_amount',
                             tax_rate='$tax_rate',
+<<<<<<< HEAD
                             note='".$attr['note']."',
+=======
+                            note='" . $attr['note'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             net_amount_converted='$net_amount_converted', 
                             grand_total_converted='$grand_total_converted',
                             tax_amount_converted='$tax_amount_converted',
@@ -16778,6 +24706,7 @@ class Srm extends Xtreme
         $chk = false;
         $updateCHK2 = false;
 
+<<<<<<< HEAD
         foreach ($attr['items'] as $item) 
         {
             $this->objGeneral->mysql_clean($item);
@@ -16796,10 +24725,30 @@ class Srm extends Xtreme
             $primary_unit_of_measure_id = (isset($item->primary_unit_of_measure_id) && $item->primary_unit_of_measure_id!='')?$item->primary_unit_of_measure_id:0;
 
             $total_price = (isset($item->total_price) && $item->total_price!='')? Round($item->total_price,2):0;
+=======
+        foreach ($attr['items'] as $item) {
+            $this->objGeneral->mysql_clean($item);
+
+            $unit_measure_id = (isset($item->units->id) && $item->units->id != '') ? $item->units->id : 'NULL';
+            $unit_qty = (isset($item->units->quantity) && $item->units->quantity != '') ? $item->units->quantity : 0;
+            $unit_parent_id = (isset($item->units->parent_id) && $item->units->parent_id != '') ? $item->units->parent_id : 0;
+            $unit_measure = (isset($item->units->name) && $item->units->name != '') ? $item->units->name : '';
+            $conv_unit_price = (isset($item->conv_unit_price) && $item->conv_unit_price != '') ? Round($item->conv_unit_price, 2) : 0;
+            $purchase_unit_id = (isset($item->purchase_unit_id) && $item->purchase_unit_id != '') ? $item->purchase_unit_id : 0;
+            $discount_type_id = (isset($item->discount_type_id->id) && $item->discount_type_id->id != '' && $item->discount_type_id->id != 'None') ? $item->discount_type_id->id : 0;
+            $discount = (isset($item->discount) && $item->discount != '') ? Round($item->discount, 2) : 0;
+            $stock_check = (isset($item->stock_check) && $item->stock_check != '') ? $item->stock_check : 0;
+            $category_id = (isset($item->category_id) && $item->category_id != '') ? $item->category_id : 0;
+            $sale_unit_id = (isset($item->sale_unit_id) && $item->sale_unit_id != '') ? $item->sale_unit_id : 0;
+            $primary_unit_of_measure_id = (isset($item->primary_unit_of_measure_id) && $item->primary_unit_of_measure_id != '') ? $item->primary_unit_of_measure_id : 0;
+
+            $total_price = (isset($item->total_price) && $item->total_price != '') ? Round($item->total_price, 2) : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $warehousesid = (isset($item->warehouses) && $item->warehouses!='')?$item->warehouses:0;
             // // $warehousesname = (isset($item->warehouses->name) && $item->warehouses->name!='')?$item->warehouses->name:0;
             // $warehousesname = (isset($item->warehouse) && $item->warehouse!='')?$item->warehouse:0;
 
+<<<<<<< HEAD
             
             $warehousesid = (isset($item->warehouses->id) && $item->warehouses->id!='')?$item->warehouses->id:0;
             $warehousesname = (isset($item->warehouses->name) && $item->warehouses->name!='')?$item->warehouses->name:0;
@@ -16820,12 +24769,35 @@ class Srm extends Xtreme
             $srm_invoice_detailID = (isset($item->invoiceDetailID) && $item->invoiceDetailID!='')?$item->invoiceDetailID:0;
             $product_id = (isset($item->product_id) && $item->product_id!='')?$item->product_id :'NULL';
             $supplier_id = (isset($attr['supplier_id']) && $attr['supplier_id']!='')?$attr['supplier_id']:'NULL';
+=======
+
+            $warehousesid = (isset($item->warehouses->id) && $item->warehouses->id != '') ? $item->warehouses->id : 0;
+            $warehousesname = (isset($item->warehouses->name) && $item->warehouses->name != '') ? $item->warehouses->name : 0;
+
+            $vat_id = (isset($item->vats->id) && $item->vats->id != '') ? $item->vats->id : 0;
+            $vat = (isset($item->vats->name) && $item->vats->name != '') ? $item->vats->name : 0;
+            $vat_value = (isset($item->vats->vat_value) && $item->vats->vat_value != '') ? $item->vats->vat_value : 0;
+
+            $update_id = (isset($item->update_id) && $item->update_id != '') ? $item->update_id : 0;
+            $unit_price = (isset($item->standard_price) && $item->standard_price != '') ? Round($item->standard_price, 5) : 0;
+            $actualPrice = (isset($item->actualPrice) && $item->actualPrice != '') ? Round($item->actualPrice, 2) : 0;
+
+            $vat_price = (isset($item->vat_price) && $item->vat_price != '') ? Round($item->vat_price, 2) : 0;
+            $discount_price = (isset($item->discount_price) && $item->discount_price != '') ? Round($item->discount_price, 2) : 0;
+            $prdInvQty = (isset($item->prdInvQty) && $item->prdInvQty != '') ? $item->prdInvQty : 0;
+
+            // $srm_invoice_detailID = (isset($item->id) && $item->id!='')?$item->id:0;
+            $srm_invoice_detailID = (isset($item->invoiceDetailID) && $item->invoiceDetailID != '') ? $item->invoiceDetailID : 0;
+            $product_id = (isset($item->product_id) && $item->product_id != '') ? $item->product_id : 'NULL';
+            $supplier_id = (isset($attr['supplier_id']) && $attr['supplier_id'] != '') ? $attr['supplier_id'] : 'NULL';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             // $vat_price       = ($item->vat_price != '') ? $item->vat_price : '0';
             // $discount_price  = ($item->discount_price != '') ? $item->discount_price : '0';              
             // $prdInvQty  = ($item->prdInvQty != '') ? $item->prdInvQty : '0';             
 
+<<<<<<< HEAD
             if($update_id>0){
                 $Sql = "UPDATE srm_order_return_detail
                                 SET
@@ -16839,10 +24811,26 @@ class Srm extends Xtreme
                                     vat_id='" . $vat_id . "',
                                     vat_value='" . $vat_value . "',
                                     total_price='" .$total_price . "',
+=======
+            if ($update_id > 0) {
+                $Sql = "UPDATE srm_order_return_detail
+                                SET
+                                    supplier_id=" . $supplier_id . ",
+                                    product_name='" . $item->product_name . "',
+                                    prdInvQty='" . $prdInvQty . "',
+                                    qty='" . $item->qty . "',
+                                    unit_price='" . $unit_price . "',
+                                    actualPrice='" . $actualPrice . "',
+                                    vat='" . $vat . "',
+                                    vat_id='" . $vat_id . "',
+                                    vat_value='" . $vat_value . "',
+                                    total_price='" . $total_price . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     unit_measure='" . $unit_measure . "',
                                     unit_measure_id=" . $unit_measure_id . ",
                                     unit_qty='" . $unit_qty . "',
                                     unit_parent_id='" . $unit_parent_id . "',
+<<<<<<< HEAD
                                     cat_id='" .$category_id . "',
                                     discount_type='" . $discount_type_id . "',
                                     discount='" .$discount . "',
@@ -16858,10 +24846,28 @@ class Srm extends Xtreme
                                     ChangedOn=UNIX_TIMESTAMP (NOW())
                                     WHERE id=$update_id";
     
+=======
+                                    cat_id='" . $category_id . "',
+                                    discount_type='" . $discount_type_id . "',
+                                    discount='" . $discount . "',
+                                    discount_price='$discount_price',
+                                    vat_price=" . $vat_price . ",
+                                    sale_unit_id='" . $sale_unit_id . "',
+                                    warehouse_id='" . $warehousesid . "',
+                                    warehouse='" . $warehousesname . "',
+                                    primary_unit_of_measure_name ='" . $item->primary_unit_of_measure_name . "',
+                                    primary_unit_of_measure_id ='" . $primary_unit_of_measure_id  . "',
+                                    stock_check='" . $stock_check . "',
+                                    ChangedBy='" . $this->arrUser['id'] . "',
+                                    ChangedOn=UNIX_TIMESTAMP (NOW())
+                                    WHERE id=$update_id";
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // echo $Sql;exit; 
                 // $RS = $this->objsetup->CSI($Sql);
                 $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_AddEditPermission);
                 $updateCHK2 = true;
+<<<<<<< HEAD
                 
             }else{
                 $SqlQuote = "INSERT INTO srm_order_return_detail
@@ -16872,6 +24878,17 @@ class Srm extends Xtreme
                                             prdInvQty='" .$prdInvQty . "',
                                             product_code='" .$item->product_code . "',
                                             qty='" .$item->qty . "',                                              
+=======
+            } else {
+                $SqlQuote = "INSERT INTO srm_order_return_detail
+                                        SET
+                                            stock_check='" . $stock_check . "',
+                                            product_id=" . $product_id . ",
+                                            product_name='" . $item->product_name . "',
+                                            prdInvQty='" . $prdInvQty . "',
+                                            product_code='" . $item->product_code . "',
+                                            qty='" . $item->qty . "',                                              
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             unit_measure='" . $unit_measure . "',
                                             unit_measure_id=" . $unit_measure_id . ",
                                             unit_parent_id='" . $unit_parent_id . "',
@@ -16879,6 +24896,7 @@ class Srm extends Xtreme
                                             warehouse_id='" . $warehousesid . "',
                                             warehouse='" . $warehousesname . "',
                                             discount_type='" . $discount_type_id . "',
+<<<<<<< HEAD
                                             discount='" .$discount . "',
                                             discount_price='$discount_price',
                                             vat_price=" . $vat_price . ",
@@ -16893,6 +24911,22 @@ class Srm extends Xtreme
                                             sale_unit_id='" .$sale_unit_id . "',
                                             primary_unit_of_measure_name ='" .$item->primary_unit_of_measure_name . "',
                                             primary_unit_of_measure_id ='" .$primary_unit_of_measure_id . "',
+=======
+                                            discount='" . $discount . "',
+                                            discount_price='$discount_price',
+                                            vat_price=" . $vat_price . ",
+                                            unit_price='" . $unit_price . "',
+                                            actualPrice='" . $actualPrice . "',
+                                            total_price='" . $total_price . "',
+                                            vat='" . $vat . "',
+                                            vat_id='" . $vat_id . "',
+                                            vat_value='" . $vat_value . "',
+                                            cat_id='" . $category_id . "',
+                                            type='" . $item->item_type . "',
+                                            sale_unit_id='" . $sale_unit_id . "',
+                                            primary_unit_of_measure_name ='" . $item->primary_unit_of_measure_name . "',
+                                            primary_unit_of_measure_id ='" . $primary_unit_of_measure_id . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             supplier_id=" . $supplier_id . ",
                                             invoice_id=" . $invoice_id . ",
                                             srm_invoice_detail='" . $srm_invoice_detailID . "',
@@ -16901,12 +24935,17 @@ class Srm extends Xtreme
                                             company_id='" . $this->arrUser['company_id'] . "',
                                             AddedBy='" . $this->arrUser['id'] . "',
                                             AddedOn=UNIX_TIMESTAMP (NOW())";
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //  echo $SqlQuote;exit;
                 // $RS = $this->objsetup->CSI($SqlQuote);
                 $RS = $this->objsetup->CSI($SqlQuote, 'purchase_return', sr_AddPermission);
 
                 $lastInsertid = $this->Conn->Insert_ID();
+<<<<<<< HEAD
             } 
             
             if ($this->Conn->Affected_Rows() > 0){
@@ -16915,6 +24954,16 @@ class Srm extends Xtreme
                 if(!($update_id>0)) $update_id = $lastInsertid;
 
                 if($srm_invoice_detailID >0 && $item->item_type == 0 && $stock_check == 0){                
+=======
+            }
+
+            if ($this->Conn->Affected_Rows() > 0) {
+                $item->orderLineID = $lastInsertid;
+
+                if (!($update_id > 0)) $update_id = $lastInsertid;
+
+                if ($srm_invoice_detailID > 0 && $item->item_type == 0 && $stock_check == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $Purchase_SQL = "SELECT wh.item_trace_unique_id,wh.id AS whID,wh.product_id,wh.batch_no,wh.bl_shipment_no,
                                             wh.container_no,COALESCE(wh.date_received,0) AS date_received,COALESCE(wh.prod_date,0) AS prod_date,
@@ -16927,7 +24976,11 @@ class Srm extends Xtreme
                                            sid.company_id ='" . $this->arrUser['company_id'] . "'";
 
                     //  echo $Purchase_SQL;//exit;                                       
+<<<<<<< HEAD
                                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $RS = $this->objsetup->CSI($Purchase_SQL);
 
                     if ($RS->RecordCount() > 0) {
@@ -16942,11 +24995,19 @@ class Srm extends Xtreme
                             $prod_date   = $Row['prod_date'];
                             $use_by_date   = $Row['use_by_date'];
 
+<<<<<<< HEAD
                             if($date_received>0)
                                 $date_receivedUnConv = "'".$Row['date_receivedUnConv']."'";
                             else
                                 $date_receivedUnConv = 'NULL';
                         }  
+=======
+                            if ($date_received > 0)
+                                $date_receivedUnConv = "'" . $Row['date_receivedUnConv'] . "'";
+                            else
+                                $date_receivedUnConv = 'NULL';
+                        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $duplicate_SQL = "SELECT id 
                                           FROM warehouse_allocation 
@@ -16959,17 +25020,29 @@ class Srm extends Xtreme
                                                 product_id = '$product_id'";
 
                         // echo $duplicate_SQL;exit;                                                
+<<<<<<< HEAD
                                                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $RS = $this->objsetup->CSI($duplicate_SQL);
 
                         if ($RS->RecordCount() > 0) {
                             while ($Row = $RS->FetchRow()) {
                                 $wa_id = $Row['id'];
+<<<<<<< HEAD
                             }  
                         } 
                                
 
                         if($wa_id >0){ 
+=======
+                            }
+                        }
+
+
+                        if ($wa_id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $Sql = "UPDATE warehouse_allocation 
                                                         SET
                                                             quantity = '$item->qty',
@@ -16983,10 +25056,15 @@ class Srm extends Xtreme
                                             purchase_return_status = 1 AND
                                             item_trace_unique_id='" . $item_trace_unique_id . "' AND
                                             purchase_order_detail_id='$update_id' AND
+<<<<<<< HEAD
                                             type='1'";          
                         }
                         else
                         {        
+=======
+                                            type='1'";
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $Sql = "INSERT INTO warehouse_allocation 
                                                         SET 
                                                             batch_no='$batch_no',
@@ -17002,13 +25080,21 @@ class Srm extends Xtreme
                                                             status=1,
                                                             quantity='$item->qty',
                                                             remaining_qty = '$item->qty',
+<<<<<<< HEAD
                                                             unit_measure_id='" . $unit_measure_id. "',
+=======
+                                                            unit_measure_id='" . $unit_measure_id . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             unit_measure_qty=1,
                                                             unit_measure_name='" . $unit_measure . "',
                                                             primary_unit_id='" . $primary_unit_of_measure_id . "',
                                                             primary_unit_qty='1',
                                                             primary_unit_name='" . $item->primary_unit_of_measure_name . "',
+<<<<<<< HEAD
                                                             order_date='" . current_date. "',
+=======
+                                                            order_date='" . current_date . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             type=1,
                                                             ref_po_id='$ref_po_id',
                                                             company_id='" . $this->arrUser['company_id'] . "',
@@ -17017,7 +25103,11 @@ class Srm extends Xtreme
                                                             purchase_return_status =1,
                                                             purchase_status =1,
                                                             AddedBy='" . $this->arrUser['id'] . "',
+<<<<<<< HEAD
                                                             AddedOn='" . current_date . "'";            
+=======
+                                                            AddedOn='" . current_date . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         }
                         /* 
                                                             prod_date='" . $prod_date . "',
@@ -17025,6 +25115,7 @@ class Srm extends Xtreme
 
                         // echo $Sql; exit;
                         $RS = $this->objsetup->CSI($Sql);
+<<<<<<< HEAD
                     } 
                 }
 
@@ -17036,6 +25127,17 @@ class Srm extends Xtreme
         }
 
         if($mode>0){
+=======
+                    }
+                }
+
+                $chk = true;
+            } else
+                $chk = false;
+        }
+
+        if ($mode > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $Sql3 = "UPDATE warehouse_allocation	
                                     SET 
@@ -17065,10 +25167,16 @@ class Srm extends Xtreme
             // $RS4 = $this->objsetup->CSI($Sql4);
             $RS4 = $this->objsetup->CSI($Sql4, 'purchase_return', sr_EditPermission);
 
+<<<<<<< HEAD
             if(is_array($RS4) && $RS4['Error'] == 1){
                 return $RS4;
             }
             else if (is_array($RS4) && $RS4['Access'] == 0){
+=======
+            if (is_array($RS4) && $RS4['Error'] == 1) {
+                return $RS4;
+            } else if (is_array($RS4) && $RS4['Access'] == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return $RS4;
             }
         }
@@ -17076,7 +25184,11 @@ class Srm extends Xtreme
         if ($chk) {
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -17088,12 +25200,20 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         }
         elseif($updateCHK2) {
             $response['ack'] = 2;
             $response['error'] = 'Record Updated Successfully';
 
             
+=======
+        } elseif ($updateCHK2) {
+            $response['ack'] = 2;
+            $response['error'] = 'Record Updated Successfully';
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $this->Conn->commitTrans();
             $this->Conn->autoCommit = true;
 
@@ -17105,8 +25225,12 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
 
@@ -17173,7 +25297,11 @@ class Srm extends Xtreme
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_ViewPermission);
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
@@ -17217,14 +25345,21 @@ class Srm extends Xtreme
         if (!empty($attr['purchase_return_status'])) {
 
             $sql_total_purchase_return = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
+<<<<<<< HEAD
                                             where  c.product_id=".$attr['product_id']."  and  c.status=1 and c.type=1 and
                                                    c.order_id=".$attr['orderLineID']." and 
                                                    c.warehouse_id=".$attr['warehouses_id']." and
+=======
+                                            where  c.product_id=" . $attr['product_id'] . "  and  c.status=1 and c.type=1 and
+                                                   c.order_id=" . $attr['orderLineID'] . " and 
+                                                   c.warehouse_id=" . $attr['warehouses_id'] . " and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                    c.purchase_return_status = 1  and 
                                                    c.company_id=" . $this->arrUser['company_id'] . " ";
 
             $rs_count_pr = $this->objsetup->CSI($sql_total_purchase_return);
             $response['total_pr'] = $rs_count_pr->fields['total'];
+<<<<<<< HEAD
 
         }
 
@@ -17232,6 +25367,14 @@ class Srm extends Xtreme
                         where  c.product_id=".$attr['product_id']."  and  c.status=1 and c.type=1 and
                                c.order_id=".$attr['invoice_id']." and 
                                c.warehouse_id=".$attr['warehouses_id']." AND
+=======
+        }
+
+        $sql_total = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
+                        where  c.product_id=" . $attr['product_id'] . "  and  c.status=1 and c.type=1 and
+                               c.order_id=" . $attr['invoice_id'] . " and 
+                               c.warehouse_id=" . $attr['warehouses_id'] . " AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                c.purchase_return_status = 0 and 
                                c.company_id=" . $this->arrUser['company_id'] . " ";
 
@@ -17244,13 +25387,21 @@ class Srm extends Xtreme
     function getDebitNoteItems($attr)
     {
         $this->objGeneral->mysql_clean($attr);
+<<<<<<< HEAD
         $response = array();  
+=======
+        $response = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* $Sql = "SELECT od.*,wh.item_trace_unique_id
                 FROM srm_invoice_detail AS od
                 left join warehouse_allocation as wh on wh.order_id= od.invoice_id AND wh.type=1 AND wh.purchase_status IN(2,3) AND wh.purchase_return_status=0 
                 WHERE  od.invoice_id = ".$attr['purchaseInvoiceID']." AND  od.type=0
+<<<<<<< HEAD
                 GROUP BY od.product_id";  */ 
+=======
+                GROUP BY od.product_id";  */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* 
                                                                         wa.ref_po_id =od.invoice_id AND  */
         $Sql = "SELECT od.*,p.costing_method_id,
@@ -17370,14 +25521,21 @@ class Srm extends Xtreme
                 FROM srm_invoice_detail AS od
                 LEFT JOIN warehouse_allocation AS wh ON wh.order_id = od.invoice_id AND wh.purchase_order_detail_id = od.id AND wh.type=1 AND wh.purchase_status IN(2,3) AND wh.purchase_return_status = 0 
                 LEFT JOIN product AS p ON p.id = od.product_id
+<<<<<<< HEAD
                 WHERE od.invoice_id = ".$attr['purchaseInvoiceID']." AND od.type = 0 AND p.status > 0
                 GROUP BY od.id";   // od.product_id //wa.warehouse_id=od.warehouse_id AND
         
+=======
+                WHERE od.invoice_id = " . $attr['purchaseInvoiceID'] . " AND od.type = 0 AND p.status > 0
+                GROUP BY od.id";   // od.product_id //wa.warehouse_id=od.warehouse_id AND
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_return', sr_ViewPermission);
 
         if ($RS->RecordCount() > 0) {
+<<<<<<< HEAD
             while ($Row = $RS->FetchRow()) 
             {
                 foreach ($Row as $key => $value) {
@@ -17407,13 +25565,45 @@ class Srm extends Xtreme
                          
             }
             if(empty($response['response'])){
+=======
+            while ($Row = $RS->FetchRow()) {
+                foreach ($Row as $key => $value) {
+                    if (is_numeric($key))
+                        unset($Row[$key]);
+                }
+
+                // require_once(SERVER_PATH . "/classes/Stock.php");
+                // $this->objstock = new Stock($this->arrUser);
+
+                // $Row['id'] = $Row['product_id'];
+                $attr['product_id'] = $Row['product_id'];
+
+                $temp =  $this->objstock->get_all_product_warehouses($attr);
+
+                if (count($temp['response']) > 0)
+                    $Row['arr_warehouse'] = $temp['response'];
+
+                $Row['arr_units'] = $this->objstock->get_unit_setup_list_category_by_item($attr);
+
+                if ($Row['remainingQty'] > 0) {
+                    $Row['qty'] = $Row['remainingQty'];
+                    $response['response'][] = $Row;
+                }
+            }
+            if (empty($response['response'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['ack'] = 0;
             } else {
                 $response['ack'] = 1;
             }
+<<<<<<< HEAD
             
         } else 
             $response['response'] = array();      
+=======
+        } else
+            $response['response'] = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         return $response;
     }
@@ -17431,6 +25621,7 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
@@ -17448,6 +25639,23 @@ class Srm extends Xtreme
 
                 if($attr['date_received'] > 0){
                     $date_receivedUnConv = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['order_date']) . "',";            
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+        // echo "<pre>"; print_r($attr); exit;
+        foreach ($attr['items'] as $item) {
+            $data_pass = "  tst.order_id='" . $attr['order_id'] . "' AND 
+                            tst.product_id='$item->id' AND 
+                            warehouse_id= '" . $item->warehouses->id . "'";
+            $total = $this->objGeneral->count_duplicate_in_sql('warehouse_allocation', $data_pass, $this->arrUser['company_id']);
+
+            if ($total == 0) {
+                $date_receivedUnConv = "";
+
+                if ($attr['date_received'] > 0) {
+                    $date_receivedUnConv = "date_receivedUnConv = '" . $this->objGeneral->convertUnixDateIntoConvDate($attr['order_date']) . "',";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
                 $SqlQuote = "INSERT INTO warehouse_allocation 
                                           SET 
@@ -17472,7 +25680,11 @@ class Srm extends Xtreme
                                                 primary_unit_name='" . $item->default_units->name . "',
                                                 sale_return_status=0,
                                                 order_date='" . $this->objGeneral->convert_date($order_date) . "',
+<<<<<<< HEAD
                                                 order_id='$attr[invoice_id]',
+=======
+                                                order_id='" . $attr['invoice_id'] . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 purchase_status=3,
                                                 purchase_return_status=0,
                                                 product_id='$item->id',
@@ -17501,7 +25713,11 @@ class Srm extends Xtreme
     function getPurchaseInvoicesforDebitNote($attr)
     {
         // print_r($attr);exit;
+<<<<<<< HEAD
         $this->objGeneral->mysql_clean($attr);       
+=======
+        $this->objGeneral->mysql_clean($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response = array();
 
         $Sql = "SELECT o.id, 
@@ -17512,12 +25728,21 @@ class Srm extends Xtreme
                        o.invoice_date, 
                        o.order_date, 
                        o.receiptDate, 
+<<<<<<< HEAD
+=======
+                       o.tax_amount, 
+                       o.net_amount,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                        o.grand_total, 
                        '1' AS docType,
                        currency.code AS currency_code
                 FROM srm_invoice o 
                 LEFT JOIN currency ON currency.id = currency_id
+<<<<<<< HEAD
                 WHERE o.sell_to_cust_id = ".$attr['supplierID']."  AND
+=======
+                WHERE o.sell_to_cust_id = " . $attr['supplierID'] . "  AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                       o.type IN (1,2) AND 
                       o.status = 1 AND 
                       o.invoice_code IS NOT NULL
@@ -17529,16 +25754,29 @@ class Srm extends Xtreme
                        o.posting_date, 
                        o.posting_date AS invoice_date, 
                        '-' AS order_date, 
+<<<<<<< HEAD
                        '-' AS receiptDate, 
+=======
+                       '-' AS receiptDate,  
+                       0 AS tax_amount,
+                       o.creditAmount AS net_amount,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                        o.creditAmount AS grand_total,
                        '2' AS docType, 
                        currency.code AS currency_code
                 FROM opening_balance_customer AS o
                 LEFT JOIN currency ON currency.id = currency_id
+<<<<<<< HEAD
                 WHERE   o.moduleID = ".$attr['supplierID']."  AND 
                         o.docType = 1 AND
                         o.type = 2 AND
                         postStatus = 1";     
+=======
+                WHERE   o.moduleID = " . $attr['supplierID'] . "  AND 
+                        o.docType = 1 AND
+                        o.type = 2 AND
+                        postStatus = 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
         // $RS = $this->objsetup->CSI($Sql);
@@ -17557,8 +25795,15 @@ class Srm extends Xtreme
                 $result['order_date']       = $this->objGeneral->convert_unix_into_date($Row['order_date']);
                 $result['delivery_date']    = $this->objGeneral->convert_unix_into_date($Row['receiptDate']);
                 $result['currency_code']    = $Row['currency_code'];
+<<<<<<< HEAD
                 $result['amount']           = $Row['grand_total'];
                 
+=======
+                $result['tax_amount'] = $Row['tax_amount'];
+                $result['net_amount'] = $Row['net_amount'];
+                $result['amount']           = $Row['grand_total'];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
@@ -17566,7 +25811,11 @@ class Srm extends Xtreme
         } else {
             $response['ack'] = 0;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 
@@ -17609,7 +25858,11 @@ class Srm extends Xtreme
                     <table width="100%">
                     <tr>
                     <td style="text-align:center;font-weight:bolder;font-size:18px;">' . ucfirst($college_id) . ' <br> ' . $departmnet_id .
+<<<<<<< HEAD
                                 '<br>' . $atd_year . "" . '</td>
+=======
+            '<br>' . $atd_year . "" . '</td>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </tr>
                     <tr height="20px;">
                     <td><div align="center" style="margin-bottom:10px;">&nbsp;&nbsp;</div>
@@ -17685,6 +25938,7 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
@@ -17698,6 +25952,21 @@ class Srm extends Xtreme
         $tax_amount_converted = (isset($attr['currency_data']->tax_amount_converted) && $attr['currency_data']->tax_amount_converted!='')?$attr['currency_data']->tax_amount_converted:0;
         
         
+=======
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $netAmount = (isset($attr['currency_data']->net_amount) && $attr['currency_data']->net_amount != '') ? $attr['currency_data']->net_amount : 0;
+        $grand_total = (isset($attr['currency_data']->grand_total) && $attr['currency_data']->grand_total != '') ? $attr['currency_data']->grand_total : 0;
+        $tax_amount = (isset($attr['currency_data']->tax_amount) && $attr['currency_data']->tax_amount != '') ? $attr['currency_data']->tax_amount : 0;
+
+        $net_amount_converted = (isset($attr['currency_data']->net_amount_converted) && $attr['currency_data']->net_amount_converted != '') ? $attr['currency_data']->net_amount_converted : 0;
+        $grand_total_converted = (isset($attr['currency_data']->grand_total_converted) && $attr['currency_data']->grand_total_converted != '') ? $attr['currency_data']->grand_total_converted : 0;
+        $tax_amount_converted = (isset($attr['currency_data']->tax_amount_converted) && $attr['currency_data']->tax_amount_converted != '') ? $attr['currency_data']->tax_amount_converted : 0;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "UPDATE " . $attr['currency_data']->table . " 
                             SET	
@@ -17713,10 +25982,16 @@ class Srm extends Xtreme
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         foreach ($attr['items_rate'] as $data) 
         {
             $item_converted_price = (isset($data->item_converted_price) && $data->item_converted_price!='')?$data->item_converted_price:0;
             $update_id = (isset($data->update_id) && $data->update_id!='')?$data->update_id:0;
+=======
+        foreach ($attr['items_rate'] as $data) {
+            $item_converted_price = (isset($data->item_converted_price) && $data->item_converted_price != '') ? $data->item_converted_price : 0;
+            $update_id = (isset($data->update_id) && $data->update_id != '') ? $data->update_id : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $sql = "UPDATE " . $attr['tbs'] . " 
                                 SET 
@@ -17729,8 +26004,12 @@ class Srm extends Xtreme
 
         $chk = true;
 
+<<<<<<< HEAD
         if ($chk) 
         {
+=======
+        if ($chk) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $this->Conn->commitTrans();
@@ -17744,7 +26023,10 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated';
@@ -17775,13 +26057,21 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         //echo "<pre>";	print_r($attr);exit;
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "DELETE FROM ".$attr['table']." WHERE id = ".$attr['id']." ";
+=======
+        $Sql = "DELETE FROM " . $attr['table'] . " WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $RS = $this->objsetup->CSI($Sql);
         $RS = $this->objsetup->CSI($Sql, 'purchase_order', sr_EditPermission);
@@ -17790,8 +26080,13 @@ class Srm extends Xtreme
             $response['ack'] = 1;
             $response['error'] = NULL;
             $stkSql = " DELETE FROM warehouse_allocation
+<<<<<<< HEAD
                         WHERE order_id = ".$attr['order_id']." AND 
                               product_id = ".$attr['id']." ";
+=======
+                        WHERE order_id = " . $attr['order_id'] . " AND 
+                              product_id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             //echo $stkSql."<hr>"; exit;
             $this->objsetup->CSI($stkSql);
@@ -17806,7 +26101,10 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
             
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['ack'] = 0;
             $response['error'] = "Record cannot be deleted";
@@ -17856,12 +26154,20 @@ class Srm extends Xtreme
 
                 FROM srm_rebate as rebt
                 LEFT JOIN srm ON srm.id = rebt.srm_id
+<<<<<<< HEAD
                 WHERE rebt.srm_id = '".$attr['value']."'";
+=======
+                WHERE rebt.srm_id = '" . $attr['value'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
 
         $total_limit = pagination_limit;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -17881,7 +26187,11 @@ class Srm extends Xtreme
                         $SqlItem = "SELECT prd.description
                                     FROM rebate_items as rbt
                                     JOIN product as prd ON rbt.item_id = prd.id
+<<<<<<< HEAD
                                     WHERE rbt.rebate_id = ".$Row['id']." ";/*limit 1*/
+=======
+                                    WHERE rbt.rebate_id = " . $Row['id'] . " ";/*limit 1*/
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         //echo '<hr>'.$SqlItem;
 
                         $RS1 = $this->objsetup->CSI($SqlItem);
@@ -17897,7 +26207,11 @@ class Srm extends Xtreme
                         $SqlItem = "SELECT prd.description
                                     FROM rebate_items as rbt
                                     JOIN services as prd ON rbt.item_id = prd.id
+<<<<<<< HEAD
                                     WHERE rbt.rebate_id = ".$Row['id']."      ";/*limit 1*/
+=======
+                                    WHERE rbt.rebate_id = " . $Row['id'] . "      ";/*limit 1*/
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         //echo $SqlItem;
 
                         $RS1 = $this->objsetup->CSI($SqlItem);
@@ -17908,15 +26222,23 @@ class Srm extends Xtreme
                         }
                         $result['offer_to'] = $items;
                     }
+<<<<<<< HEAD
                 } 
                 else if ($Row['rebate_type'] == 2) {
+=======
+                } else if ($Row['rebate_type'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ($Row['category_type'] == 1) {
                         $cats = array();
                         $SqlCat = "SELECT cat.name, cat.description
                                    FROM rebate_categories as rbt
                                    JOIN category as cat ON rbt.category_id = cat.id
+<<<<<<< HEAD
                                    WHERE rbt.rebate_id = ".$Row['id']." ";/*limit 1 */
+=======
+                                   WHERE rbt.rebate_id = " . $Row['id'] . " ";/*limit 1 */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $RS2 = $this->objsetup->CSI($SqlCat);
                         while ($Row2 = $RS2->FetchRow()) {
@@ -17933,7 +26255,11 @@ class Srm extends Xtreme
                         $SqlCat = "SELECT cat.name, cat.description
                                    FROM rebate_categories as rbt
                                    JOIN service_catagory as cat ON rbt.category_id = cat.id
+<<<<<<< HEAD
                                    WHERE rbt.rebate_id = ".$Row['id']." limit 1 ";
+=======
+                                   WHERE rbt.rebate_id = " . $Row['id'] . " limit 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $RS2 = $this->objsetup->CSI($SqlCat);
                         while ($Row2 = $RS2->FetchRow()) {
@@ -17944,8 +26270,12 @@ class Srm extends Xtreme
                         }
                         $result['offer_to'] = $cats;
                     }
+<<<<<<< HEAD
                 } 
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['offer_to'] = $Row['cust_name'];
                 }
 
@@ -17967,8 +26297,12 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['response'][] = array();
             $response['ack'] = 0;
@@ -17985,7 +26319,11 @@ class Srm extends Xtreme
         $Sql = "SELECT srm_rebate.*,employees.first_name, employees.last_name
                 FROM srm_rebate
                 left JOIN employees ON employees.id=srm_rebate.user_id
+<<<<<<< HEAD
                 WHERE srm_rebate.id='".$attr['id']."' 
+=======
+                WHERE srm_rebate.id='" . $attr['id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 LIMIT 1";
         /* echo $Sql;
           exit; */
@@ -17993,8 +26331,12 @@ class Srm extends Xtreme
         $response['ack'] = 1;
         $response['error'] = NULL;
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
+=======
+        if ($RS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Row = $RS->FetchRow();
 
             foreach ($Row as $key => $value) {
@@ -18028,7 +26370,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         /* $this->objGeneral->mysql_clean($attr); */
@@ -18054,10 +26400,15 @@ class Srm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3) 
         {
             foreach ($attr['items'] as $item) 
             {
+=======
+        if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3) {
+            foreach ($attr['items'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $DupCHKSql = "SELECT reb.id,product.description
                                 FROM srm_rebate as reb
                                 left JOIN rebate_items ON rebate_items.rebate_id=reb.id
@@ -18070,8 +26421,12 @@ class Srm extends Xtreme
                  exit;*/
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
 
+<<<<<<< HEAD
                 if ($DupCHKRS->RecordCount() > 0) 
                 {
+=======
+                if ($DupCHKRS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $DupCHKRow = $DupCHKRS->FetchRow();
 
                     $response['ack'] = 0;
@@ -18089,11 +26444,16 @@ class Srm extends Xtreme
                     return $response;
                 }
             }
+<<<<<<< HEAD
         } 
         elseif ($attr['type'] == 2) 
         {
             foreach ($attr['categories'] as $cat) 
             {
+=======
+        } elseif ($attr['type'] == 2) {
+            foreach ($attr['categories'] as $cat) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $DupCHKcatSql = "SELECT reb.id,category.name
                                 FROM srm_rebate as reb
                                 left JOIN rebate_categories ON rebate_categories.rebate_id=reb.id
@@ -18106,8 +26466,12 @@ class Srm extends Xtreme
                  exit;*/
                 $DupCHKcatRS = $this->objsetup->CSI($DupCHKcatSql);
 
+<<<<<<< HEAD
                 if ($DupCHKcatRS->RecordCount() > 0) 
                 {
+=======
+                if ($DupCHKcatRS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $DupCHKcatRow = $DupCHKcatRS->FetchRow();
                     $response['ack'] = 0;
                     $response['error'] = 'Record Already Exists for "' . $DupCHKcatRow['name'] . '" Category!';
@@ -18124,9 +26488,13 @@ class Srm extends Xtreme
                     return $response;
                 }
             }
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $DupCHKSql = "SELECT reb.id
                                 FROM srm_rebate as reb
                                 WHERE reb.srm_id='" . $attr['srm_id'] . "' and reb.rebate_type = '" . $attr['type'] . "' and
@@ -18136,8 +26504,12 @@ class Srm extends Xtreme
              exit;*/
             $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
 
+<<<<<<< HEAD
             if ($DupCHKRS->RecordCount() > 0) 
             {
+=======
+            if ($DupCHKRS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $DupCHKRow = $DupCHKRS->FetchRow();
 
                 $response['ack'] = 0;
@@ -18173,14 +26545,22 @@ class Srm extends Xtreme
                             user_id = '" . $this->arrUser['id'] . "',
                             company_id = '" . $this->arrUser['company_id'] . "'";
 
+<<<<<<< HEAD
          /*echo $Sql . " < hr>";
+=======
+        /*echo $Sql . " < hr>";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           exit;*/
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
 
 
+<<<<<<< HEAD
         if ($id > 0) 
         {
+=======
+        if ($id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['edit'] = 0;
@@ -18237,7 +26617,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
@@ -18247,8 +26631,12 @@ class Srm extends Xtreme
             $RS = $this->objsetup->CSI($Sql);
         }
 
+<<<<<<< HEAD
         foreach ($items as $item) 
         {
+=======
+        foreach ($items as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO rebate_items
                                     SET
                                         rebate_id = '" . $id . "',
@@ -18286,19 +26674,31 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $current_date = $this->objGeneral->convert_date(date('Y-m-d'));
 
+<<<<<<< HEAD
         if ($isEdit == 1) 
         {
+=======
+        if ($isEdit == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "DELETE FROM rebate_categories WHERE rebate_id = " . $id;
             $RS = $this->objsetup->CSI($Sql);
         }
 
+<<<<<<< HEAD
         foreach ($categories as $cat) 
         {
+=======
+        foreach ($categories as $cat) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "INSERT INTO rebate_categories
                                       SET
                                             rebate_id = '" . $id . "',
@@ -18331,10 +26731,15 @@ class Srm extends Xtreme
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['item_id'] = $Row['item_id'];
                 $response['response'][] = $result;
@@ -18342,8 +26747,12 @@ class Srm extends Xtreme
 
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
         }
         return $response;
@@ -18357,18 +26766,27 @@ class Srm extends Xtreme
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['category_id'] = $Row['category_id'];
                 $response['response'][] = $result;
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
         }
         return $response;
@@ -18386,7 +26804,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $start_date = $this->objGeneral->convert_date($attr['offer_date']);
@@ -18411,10 +26833,15 @@ class Srm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3) 
         {
             foreach ($attr['items'] as $item) 
             {
+=======
+        if ($attr['universal_type'] == 2 || $attr['universal_type'] == 3 || $attr['type'] == 3) {
+            foreach ($attr['items'] as $item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $DupCHKSql = "SELECT reb.id,product.description
                                 FROM srm_rebate as reb
                                 left JOIN rebate_items ON rebate_items.rebate_id=reb.id
@@ -18429,8 +26856,12 @@ class Srm extends Xtreme
                  exit;*/
                 $DupCHKRS = $this->objsetup->CSI($DupCHKSql);
 
+<<<<<<< HEAD
                 if ($DupCHKRS->RecordCount() > 0) 
                 {
+=======
+                if ($DupCHKRS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $DupCHKRow = $DupCHKRS->FetchRow();
                     $response['ack'] = 0;
                     $response['error'] = 'Record Already Exists for "' . $DupCHKRow['description'] . '" Item!';
@@ -18447,11 +26878,16 @@ class Srm extends Xtreme
                     return $response;
                 }
             }
+<<<<<<< HEAD
         } 
         elseif ($attr['type'] == 2) 
         {
             foreach ($attr['categories'] as $cat) 
             {
+=======
+        } elseif ($attr['type'] == 2) {
+            foreach ($attr['categories'] as $cat) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $DupCHKcatSql = "   SELECT reb.id,category.name
                                     FROM srm_rebate as reb
                                     left JOIN rebate_categories ON rebate_categories.rebate_id=reb.id
@@ -18467,8 +26903,12 @@ class Srm extends Xtreme
                  exit;*/
                 $DupCHKcatRS = $this->objsetup->CSI($DupCHKcatSql);
 
+<<<<<<< HEAD
                 if ($DupCHKcatRS->RecordCount() > 0) 
                 {
+=======
+                if ($DupCHKcatRS->RecordCount() > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $DupCHKcatRow = $DupCHKcatRS->FetchRow();
                     $response['ack'] = 0;
                     $response['error'] = 'Record Already Exists for "' . $DupCHKcatRow['name'] . '" Category!';
@@ -18485,9 +26925,13 @@ class Srm extends Xtreme
                     return $response;
                 }
             }
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $DupCHKSql = "  SELECT reb.id
                             FROM srm_rebate as reb
                             WHERE reb.srm_id='" . $attr['srm_id'] . "' and 
@@ -18568,7 +27012,10 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
             $srLogTrace['ErrorMessage'] = 'Record cannot be updated';
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         return $response;
     }
@@ -18577,7 +27024,11 @@ class Srm extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         $Sql = "update crm_rebate set status = 0 WHERE id = ".$attr['id']." ";
+=======
+        $Sql = "update crm_rebate set status = 0 WHERE id = " . $attr['id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql." < hr>"; exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -18612,10 +27063,15 @@ class Srm extends Xtreme
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['rebate_volume_revenue_history'] = $Row['rebate_volume_revenue_history'];
@@ -18632,9 +27088,13 @@ class Srm extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['response'][] = array();
             $response['ack'] = 0;
             $response['error'] = NULL;
@@ -18656,10 +27116,15 @@ class Srm extends Xtreme
         //echo $Sql; exit;
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow())
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['created_date'] = $this->objGeneral->convert_unix_into_date($Row['create_date']);
@@ -18697,7 +27162,11 @@ class Srm extends Xtreme
         $srLogTrace['ErrorMessage'] = "";
 
         $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
         $this->objGeneral->mysql_clean($attr);
@@ -18743,10 +27212,16 @@ class Srm extends Xtreme
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
         if ($id > 0) 
         {
             $attr['rebate_volume_revenue_id'] = $id;
             $this->add_srm_rebate_volume_revenue_history($attr);
+=======
+        if ($id > 0) {
+            $attr['rebate_volume_revenue_id'] = $id;
+            // $this->add_srm_rebate_volume_revenue_history($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
@@ -18762,9 +27237,13 @@ class Srm extends Xtreme
             $srLogTrace['Parameter1'] = 'Exit';
 
             $this->objsetup->SRTraceLogsPHP($srLogTrace);
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['error'] = 'Record not inserted!';
             $response['edit'] = 0;
@@ -18811,17 +27290,27 @@ class Srm extends Xtreme
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($this->Conn->Affected_Rows() > 0) 
         {
             $attr['rebate_volume_revenue_id'] = $attr['id'];
             $this->add_srm_rebate_volume_revenue_history($attr);
+=======
+        if ($this->Conn->Affected_Rows() > 0) {
+            $attr['rebate_volume_revenue_id'] = $attr['id'];
+            // $this->add_srm_rebate_volume_revenue_history($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $response['ack'] = 1;
             $response['error'] = NULL;
             $response['edit'] = 1;
+<<<<<<< HEAD
         } 
         else 
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['ack'] = 0;
             $response['edit'] = 0;
             $response['error'] = 'Record Updated Successfully';
@@ -18841,16 +27330,25 @@ class Srm extends Xtreme
                           JOIN units_of_measure as wh ON wh.id = st.cat_id
                           where st.id =p.uom and st.status=1 ) as cat_name
                 FROM rebate_volume_revenue_detail as p
+<<<<<<< HEAD
                 WHERE p.rebate_id = '".$attr['rebate_id']."'";
+=======
+                WHERE p.rebate_id = '" . $attr['rebate_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql; exit;
 
         $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
             {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $result = array();
                 $result['id'] = $Row['id'];
                 $result['name'] = $Row['range_from'] . " - " . $Row['range_to'] . ' ' . $Row['cat_name'];
@@ -18962,10 +27460,17 @@ class Srm extends Xtreme
                 FROM srm_rebate_history as rebt
                 LEFT JOIN srm ON srm.id = rebt.srm_id
                 WHERE rebt.srm_rebate_id = '" . $attr['id'] . "'";
+<<<<<<< HEAD
         
         $total_limit = pagination_limit;
 
         
+=======
+
+        $total_limit = pagination_limit;
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (isset($attr['pagination_limits']) && $attr['pagination_limits'])
             $total_limit = $attr['pagination_limits'];
 
@@ -18975,6 +27480,7 @@ class Srm extends Xtreme
         $response['q'] = '';
 
 
+<<<<<<< HEAD
         if ($RS->RecordCount() > 0) 
         {
             while ($Row = $RS->FetchRow()) 
@@ -18984,6 +27490,13 @@ class Srm extends Xtreme
                 {
                     if ($Row['item_type'] == 1) 
                     {
+=======
+        if ($RS->RecordCount() > 0) {
+            while ($Row = $RS->FetchRow()) {
+                $result = array();
+                if ($Row['rebate_type'] == 3 || ($Row['universal_type'] == 2 || $Row['universal_type'] == 3)) {
+                    if ($Row['item_type'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $items = array();
                         $SqlItem = "SELECT prd.description
                                     FROM rebate_items as rbt
@@ -18992,16 +27505,24 @@ class Srm extends Xtreme
                         //echo '<hr>'.$SqlItem;
 
                         $RS1 = $this->objsetup->CSI($SqlItem);
+<<<<<<< HEAD
                         while ($Row1 = $RS1->FetchRow()) 
                         {
+=======
+                        while ($Row1 = $RS1->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $rsitem = array();
                             $rsitem['item_description'] = $Row1['description'];
                             $items[] = $rsitem;
                         }
                         $result['offer_to'] = $items;
                     }
+<<<<<<< HEAD
                     if ($Row['item_type'] == 2) 
                     {
+=======
+                    if ($Row['item_type'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $items = array();
                         $SqlItem = "SELECT prd.description
                                     FROM rebate_items as rbt
@@ -19010,18 +27531,27 @@ class Srm extends Xtreme
                         //echo $SqlItem;
 
                         $RS1 = $this->objsetup->CSI($SqlItem);
+<<<<<<< HEAD
                         while ($Row1 = $RS1->FetchRow()) 
                         {
+=======
+                        while ($Row1 = $RS1->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $rsitem = array();
                             $rsitem['item_description'] = $Row1['description'];
                             $items[] = $rsitem;
                         }
                         $result['offer_to'] = $items;
                     }
+<<<<<<< HEAD
                 } else if ($Row['rebate_type'] == 2) 
                 {
                     if ($Row['category_type'] == 1) 
                     {
+=======
+                } else if ($Row['rebate_type'] == 2) {
+                    if ($Row['category_type'] == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $cats = array();
                         $SqlCat = "SELECT cat.name, cat.description
                                    FROM rebate_categories as rbt
@@ -19029,8 +27559,12 @@ class Srm extends Xtreme
                                    WHERE rbt.rebate_id = '" . $Row['id'] . "' limit 1 ";
 
                         $RS2 = $this->objsetup->CSI($SqlCat);
+<<<<<<< HEAD
                         while ($Row2 = $RS2->FetchRow()) 
                         {
+=======
+                        while ($Row2 = $RS2->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $rscat = array();
                             $rscat['cat_name'] = $Row2['name'];
                             $rscat['cat_description'] = $Row2['description'];
@@ -19039,8 +27573,12 @@ class Srm extends Xtreme
                         $result['offer_to'] = $cats;
                     }
 
+<<<<<<< HEAD
                     if ($Row['category_type'] == 2) 
                     {
+=======
+                    if ($Row['category_type'] == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $cats = array();
                         $SqlCat = "SELECT cat.name, cat.description
                                    FROM rebate_categories as rbt
@@ -19048,8 +27586,12 @@ class Srm extends Xtreme
                                    WHERE rbt.rebate_id = '" . $Row['id'] . "' limit 1 ";
 
                         $RS2 = $this->objsetup->CSI($SqlCat);
+<<<<<<< HEAD
                         while ($Row2 = $RS2->FetchRow()) 
                         {
+=======
+                        while ($Row2 = $RS2->FetchRow()) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $rscat = array();
                             $rscat['cat_name'] = $Row2['name'];
                             $rscat['cat_description'] = $Row2['description'];
@@ -19091,6 +27633,7 @@ class Srm extends Xtreme
     //----------------------------------------------------
     function priceListEmail($attr)
     {
+<<<<<<< HEAD
         $mainRec = $attr['mainRec'];  
 
         if($mainRec->moduleType == 1) $accountCode = $mainRec->Customer_Code;
@@ -19115,6 +27658,32 @@ class Srm extends Xtreme
                        $singleItemRec->UOM = $singleUOMRec->name;
                    }
                }
+=======
+        $mainRec = $attr['mainRec'];
+
+        if ($mainRec->moduleType == 1) $accountCode = $mainRec->Customer_Code;
+        else $accountCode = $mainRec->Supplier_Code;
+
+        // $file_name = 'priceList.'.$accountCode.'.'.$this->arrUser['company_id'] .'.pdf';
+        $file_name = $accountCode . '.priceList.' . $this->arrUser['company_id'] . '.pdf';
+        $basePath = UPLOAD_PATH . 'attachments/';
+        $file_url = $basePath . $file_name;
+
+        $result = "";
+        $server_output = "";
+        $relatedRec = "";
+        $relatedRec->reportsDataArr = $mainRec->items;
+        $invoiceEmail = $mainRec->emailPriceList;
+        $priceListName = $mainRec->name;
+
+        foreach ($relatedRec->reportsDataArr as $singleItemRec) {
+            if (isset($singleItemRec->uomID) && is_array($singleItemRec->arr_units)) {
+                foreach ($singleItemRec->arr_units as $singleUOMRec) {
+                    if ($singleUOMRec->id == $singleItemRec->uomID) {
+                        $singleItemRec->UOM = $singleUOMRec->name;
+                    }
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
@@ -19122,8 +27691,13 @@ class Srm extends Xtreme
         // $relatedRec->Customer_Name = $mainRec->Supplier_Name;
         // $relatedRec->Customer_Code = $mainRec->Supplier_Code;
         $relatedRec->dateFrom = $mainRec->offer_date;
+<<<<<<< HEAD
         $relatedRec->dateTo = $mainRec->offer_valid_date;  
         $relatedRec->company_name = $attr['company_name'];  
+=======
+        $relatedRec->dateTo = $mainRec->offer_valid_date;
+        $relatedRec->company_name = $attr['company_name'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $relatedRec->company_logo_url = $attr['company_logo_url'];
         $relatedRec->reportName = $mainRec->name;
         $relatedRec->reportType = $mainRec->name;
@@ -19154,12 +27728,20 @@ class Srm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         if($mainRec->moduleType == 1) $relatedRec->accountName = $mainRec->Customer_Name;
+=======
+        if ($mainRec->moduleType == 1) $relatedRec->accountName = $mainRec->Customer_Name;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $relatedRec->accountName = $mainRec->Supplier_Name;
 
         $result->template->shortid = "HkgalmDSpB";
         $result->interceptorHeaders = $attr['interceptorHeaders'];
+<<<<<<< HEAD
         $result->data = $relatedRec;      
+=======
+        $result->data = $relatedRec;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // print_r(json_encode($result));exit;
 
         // $url = 'http://silverowreports.azurewebsites.net/api/report';
@@ -19168,6 +27750,7 @@ class Srm extends Xtreme
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
+<<<<<<< HEAD
         curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($result));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
@@ -19189,24 +27772,63 @@ class Srm extends Xtreme
             // Write the contents back to the file 
             file_put_contents($file_url, $server_output); 
 
+=======
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($result));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $reqheaders = [
+            'Authorization: "Basic ' . base64_encode("admin:admin123") . '"',
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $reqheaders);
+        $server_output = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $errors = curl_error($ch);
+        // print_r($errors);exit;
+        curl_close($ch);
+
+        try {
+            // echo $file_url;
+            $open = file_get_contents($file_url);
+            // Write the contents back to the file 
+            file_put_contents($file_url, $server_output);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } catch (HttpException $ex) {
             echo $ex;
             $response['file_url'] = $ex;
             exit;
+<<<<<<< HEAD
         }         
 
         if(file_exists($file_url)){
             $response['ack'] = 1; 
+=======
+        }
+
+        if (file_exists($file_url)) {
+            $response['ack'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $key = hash('sha256', SECRET_KEY);
             $iv = substr(hash('sha256', SECRET_IV), 0, 16);
             $outputInvName = openssl_encrypt($file_name, SECRET_METHOD, $key, 0, $iv);
             $outputInvName = base64_encode($outputInvName);
 
+<<<<<<< HEAD
             $response['file_url'] = WEB_PATH . '/api/setup/PriceList?alpha='.$outputInvName; //
 
 
             if(isset($response['file_url'])){
+=======
+            $response['file_url'] = WEB_PATH . '/api/setup/PriceList?alpha=' . $outputInvName;
+
+            $rejectedInvoicesCounter = 0;
+            $sendEmailInvoicesCounter = 0;
+
+
+            if (isset($response['file_url'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $fileActualUrl = $response['file_url'];
 
                 $Sql = "SELECT username,alias
@@ -19219,6 +27841,7 @@ class Srm extends Xtreme
 
                 if ($RS->RecordCount() > 0) {
                     while ($row = $RS->FetchRow()) {
+<<<<<<< HEAD
                         $clientConfiguration = array('username' => $row['username'],
                                                     'alias' => $row['alias']);
                     }
@@ -19238,21 +27861,51 @@ class Srm extends Xtreme
 
                     $emailDetails = array(
                         "to" => array_unique(explode(';',$invoiceEmail)),
+=======
+                        $clientConfiguration = array(
+                            'username' => $row['username'],
+                            'alias' => $row['alias']
+                        );
+                    }
+                } else {
+                    $clientConfiguration = array();
+                }
+
+                if (!empty($clientConfiguration)) {
+                    //Mail object initialization
+
+                    $response2 = [];
+                    $mail = new \SendGrid\Mail\Mail();
+
+                    $emailSubject = $priceListName; //'Price List';
+                    $emailBody = "<p><span style=\"font-size: 12px;\">Dear Sir / Madam,</span></p><p><span style=\"font-size: 12px;\">Please click on this link to check the Price List '$priceListName'.&nbsp;</span> <a target='_blank' href='$fileActualUrl'> View Price List </a></p><p><span style=\"font-size: 12px;\"><i>Please do not reply to this email. This is an auto generated&nbsp;email.&nbsp;</i></span><br><br></p><p><span style=\"font-size: 12px;\">Kind regards</span></p><p>Finance Team</p>";
+
+                    $emailDetails = array(
+                        "to" => array_unique(explode(';', $invoiceEmail)),
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         "cc" => '',
                         "from" => $clientConfiguration['username'],
                         "fromName" => $clientConfiguration['alias'],
                         "subject" => $emailSubject,
                         "body" =>  $emailBody,
                         "attachment" => ''
+<<<<<<< HEAD
                     );   
                 
                     if($invoiceEmail){
                         try {                    
+=======
+                    );
+
+                    if ($invoiceEmail) {
+                        try {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             //Recipients
                             $mail->setFrom($emailDetails['from'], $emailDetails['fromName']);
                             for ($k = 0; $k < count($emailDetails['to']); $k++) {
                                 //echo '<br>'. $emailDetails['to'][$k];
                                 $mail->AddTo($emailDetails['to'][$k]);
+<<<<<<< HEAD
                             }                                
                             
                             //Content
@@ -19269,10 +27922,28 @@ class Srm extends Xtreme
                                         $statusCode['statusCode'] = $value;
                                     }
                                     else if (strpos($key, "body") > -1){
+=======
+                            }
+
+                            //Content
+                            $mail->setSubject($emailDetails['subject']);
+                            $mail->addContent("text/html", $emailDetails['body']);
+
+                            // echo '<pre>';print_r($attachment);
+                            try {
+                                $result2 = $this->sendgrid->send($mail);
+                                $result2 =  (array) $result2;
+                                $statusCode = [];
+                                foreach ($result2 as $key => $value) {
+                                    if (strpos($key, "statusCode") > -1) {
+                                        $statusCode['statusCode'] = $value;
+                                    } else if (strpos($key, "body") > -1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $response2['body'] = json_decode($value);
                                     }
                                 }
 
+<<<<<<< HEAD
                                 if ($statusCode['statusCode'] == 202){
                                     $response2['message'] =  "E-mail sent successfully";
                                     $response2['ack'] = 1;
@@ -19281,20 +27952,37 @@ class Srm extends Xtreme
                                     array_push($response2['sendEmailInvoices'],$file_name); 
                                 }
                                 else{
+=======
+                                if ($statusCode['statusCode'] == 202) {
+                                    $response2['message'] =  "E-mail sent successfully";
+                                    $response2['ack'] = 1;
+                                    // $response2['id'] = $res['id'];
+                                    $sendEmailInvoicesCounter++;
+                                    array_push($response2['sendEmailInvoices'], $file_name);
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $response2['mailObj'] = $mail;
                                     $response2['ack'] = 0;
                                     $response2['message'] =  $response['body']->errors[0]->message;
                                 }
+<<<<<<< HEAD
                                 $response2['sentData'][] = $response2;                                                   
                                         
                             } catch (Exception $e) {
                                 array_push($response2['sendFailedEmailInvoices'],$file_name);                                    
                             } 
 
+=======
+                                $response2['sentData'][] = $response2;
+                            } catch (Exception $e) {
+                                array_push($response2['sendFailedEmailInvoices'], $file_name);
+                            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         } catch (Exception $e) {
                             $response2['configIssue'] = 1;
                             $response2['message'] =   $mail->ErrorInfo;
                             $response2['mailObj'] = $mail;
+<<<<<<< HEAD
                             $response2['debug'] = $mail->smtp->smtp_errors;                            
                             $rejectedInvoicesReason .= 'Email sending Failed, ';
                             $rejectedInvoicesCounter++; 
@@ -19343,12 +28031,56 @@ class Srm extends Xtreme
         // print_r($response2);exit;                               
           
         return $response2; 
+=======
+                            $response2['debug'] = $mail->smtp->smtp_errors;
+                            $rejectedInvoicesReason .= 'Email sending Failed, ';
+                            $rejectedInvoicesCounter++;
+                        }
+                    } else {
+                        $rejectedInvoicesReason .= ' Email is Missing, '; //$customer_name.
+                        $rejectedInvoicesCounter++;
+                    }
+
+                    // echo $sendEmailInvoicesCounter;
+                    if ($sendEmailInvoicesCounter > 0 && $rejectedInvoicesCounter > 0) {
+                        $response2['ack'] = 0;
+                        $response2['error'] = $rejectedInvoicesReason;
+                    } elseif ($sendEmailInvoicesCounter > 0) {
+                        $response2['ack'] = 1;
+                    } elseif ($rejectedInvoicesCounter > 0) {
+                        $response2['ack'] = 0;
+                        $response2['error'] = $rejectedInvoicesReason;
+                    } else {
+                        $response2['ack'] = 0;
+                        $response2['error'] = $rejectedInvoicesReason;
+                        $response2['response'] = array();
+                    }
+                } else {
+
+                    $response2['error'] = 'Email configuration does not exist.';
+                    $response2['rejectedInvoices'] .= 'Email configuration does not exist.';
+                    $rejectedInvoicesCounter++;
+                }
+            } else {
+                $response2['ack'] = 0;
+                $response2['file_url'] = '';
+            }
+        } else {
+            $response2['ack'] = 0;
+            $response2['file_url'] = '';
+        }
+        // echo '<pre>';
+        // print_r($response2);exit;                               
+
+        return $response2;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     // price List PDF Download
     //----------------------------------------------------
     function priceListPDFDownload($attr)
     {
+<<<<<<< HEAD
         $mainRec = $attr['mainRec'];  
 
         if($mainRec->moduleType == 1) $accountCode = $mainRec->Customer_Code;
@@ -19372,13 +28104,43 @@ class Srm extends Xtreme
                        $singleItemRec->UOM = $singleUOMRec->name;
                    }
                }
+=======
+        $mainRec = $attr['mainRec'];
+
+        if ($mainRec->moduleType == 1) $accountCode = $mainRec->Customer_Code;
+        else $accountCode = $mainRec->Supplier_Code;
+
+        $file_name = $accountCode . '.priceList.' . $this->arrUser['company_id'] . '.pdf';
+        $basePath = UPLOAD_PATH . 'attachments/';
+        $file_url = $basePath . $file_name;
+
+        $result = "";
+        $server_output = "";
+        $relatedRec = "";
+        $relatedRec->reportsDataArr = $mainRec->items;
+        // $invoiceEmail = $mainRec->emailPriceList;
+        $priceListName = $mainRec->name;
+
+        foreach ($relatedRec->reportsDataArr as $singleItemRec) {
+            if (isset($singleItemRec->uomID) && is_array($singleItemRec->arr_units)) {
+                foreach ($singleItemRec->arr_units as $singleUOMRec) {
+                    if ($singleUOMRec->id == $singleItemRec->uomID) {
+                        $singleItemRec->UOM = $singleUOMRec->name;
+                    }
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
 
         $relatedRec->priceListName = $mainRec->name;
         $relatedRec->dateFrom = $mainRec->offer_date;
+<<<<<<< HEAD
         $relatedRec->dateTo = $mainRec->offer_valid_date;  
         $relatedRec->company_name = $attr['company_name'];  
+=======
+        $relatedRec->dateTo = $mainRec->offer_valid_date;
+        $relatedRec->company_name = $attr['company_name'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $relatedRec->company_logo_url = $attr['company_logo_url'];
         $relatedRec->reportName = $mainRec->name;
         $relatedRec->reportType = $mainRec->name;
@@ -19409,12 +28171,20 @@ class Srm extends Xtreme
             }
         }
 
+<<<<<<< HEAD
         if($mainRec->moduleType == 1) $relatedRec->accountName = $mainRec->Customer_Name;
+=======
+        if ($mainRec->moduleType == 1) $relatedRec->accountName = $mainRec->Customer_Name;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else $relatedRec->accountName = $mainRec->Supplier_Name;
 
         $result->template->shortid = "HkgalmDSpB";
         $result->interceptorHeaders = $attr['interceptorHeaders'];
+<<<<<<< HEAD
         $result->data = $relatedRec;      
+=======
+        $result->data = $relatedRec;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // print_r(json_encode($result));exit;
 
         // $url = 'http://silverowreports.azurewebsites.net/api/report';
@@ -19423,6 +28193,7 @@ class Srm extends Xtreme
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
+<<<<<<< HEAD
         curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($result));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
@@ -19444,20 +28215,50 @@ class Srm extends Xtreme
             // Write the contents back to the file 
             file_put_contents($file_url, $server_output); 
 
+=======
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($result));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $reqheaders = [
+            'Authorization: "Basic ' . base64_encode("admin:admin123") . '"',
+            'Content-Type: application/json'
+        ];
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $reqheaders);
+        $server_output = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $errors = curl_error($ch);
+        // print_r($errors);exit;
+        curl_close($ch);
+
+        try {
+            // echo $file_url;
+            $open = file_get_contents($file_url);
+            // Write the contents back to the file 
+            file_put_contents($file_url, $server_output);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } catch (HttpException $ex) {
             echo $ex;
             $response['file_url'] = $ex;
             exit;
+<<<<<<< HEAD
         }         
 
         if(file_exists($file_url)){
             $response['ack'] = 1; 
+=======
+        }
+
+        if (file_exists($file_url)) {
+            $response['ack'] = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $key = hash('sha256', SECRET_KEY);
             $iv = substr(hash('sha256', SECRET_IV), 0, 16);
             $outputInvName = openssl_encrypt($file_name, SECRET_METHOD, $key, 0, $iv);
             $outputInvName = base64_encode($outputInvName);
 
+<<<<<<< HEAD
             $response['file_url'] = WEB_PATH . '/api/setup/PriceList?alpha='.$outputInvName;
             $response2['ack'] = 1; 
             $response2['file_url'] = $response['file_url']; 
@@ -19473,3 +28274,18 @@ class Srm extends Xtreme
     }
 }
 ?>
+=======
+            $response['file_url'] = WEB_PATH . '/api/setup/PriceList?alpha=' . $outputInvName;
+            $response2['ack'] = 1;
+            $response2['file_url'] = $response['file_url'];
+        } else {
+            $response2['ack'] = 0;
+            $response2['file_url'] = '';
+        }
+        // echo '<pre>';
+        // print_r($response2);exit;                               
+
+        return $response2;
+    }
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

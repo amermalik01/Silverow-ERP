@@ -2,10 +2,17 @@
 <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 <!-- Row starts -->
 <div class="row">
+<<<<<<< HEAD
 <div class="col-md-12 col-md-12">
 <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs"> 
   
   <!--<tabset> <tab ng-repeat="tab in rec" heading="{{tab.tab_name}}"  >
+=======
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+
+            <!--<tabset> <tab ng-repeat="tab in rec" heading="{{tab.tab_name}}"  >
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     
               <div >
               <div class="vertical_space"></div>
@@ -58,6 +65,7 @@
             </tab>
     
   </tabset>-->
+<<<<<<< HEAD
   
   <tabset> <tab heading="General Information" class="disabled disabledTab  general_information"  ng-click="generalInformation()" >
     <div >
@@ -114,6 +122,70 @@
           </div>
           </tab> 
     <!--<tab  class="dynamic dont-click"   ng-repeat="tab in rec" heading="{{tab.tab_name}}" ng-click="getFormFields(tab.id)">
+=======
+
+            <tabset>
+                <tab heading="General Information" class="disabled disabledTab  general_information" ng-click="generalInformation()">
+                    <div>
+                        <div class="vertical_space"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)" ng-init="getCode(formData)" ng-hide="showLoader">
+                            <div ng-include="'app/views/hr_values/general_form.html'"></div>
+                        </form>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="add_employee_type(formData2)">
+                            <div ng-include="'app/views/hr_values/add_employee_type.html'"></div>
+                        </form>
+                    </div>
+                </tab>
+                <tab heading="Contact Information" class="contact_setting dont-click" ng-click="getcontact()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Personal Information" class="personal_setting dont-click" ng-click="getpersonalhr()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Salary " class="salary_setting dont-click" ng-click="getsalaryhr()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Benefits" class="benifits_setting dont-click" ng-click="getBenifits()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Expenses" class="expenses dont-click" ng-click="getexpenses()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Roles & Permissions" class="roles dont-click" ng-click="getRoles()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Documents" class="document dont-click" ng-click="itemselectPage(1);getDocuments()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <tab heading="Comments" class="comments dont-click" ng-click="itemselectPage(1);getComments()">
+                    <div>
+                        <div class="vertical_space"></div>
+
+                    </div>
+                </tab>
+                <!--<tab  class="dynamic dont-click"   ng-repeat="tab in rec" heading="{{tab.tab_name}}" ng-click="getFormFields(tab.id)">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
       	           <div  ng-repeat="formFields in fields_rec" > 
       				  <div ng-show="fields_rec.length != 0"> 
              <div ng-show="formFields.length != 0">
@@ -181,6 +253,7 @@
           </div>
       </div>
       				</div>
+<<<<<<< HEAD
              </tab>--> 
     
   </tabset>
@@ -188,6 +261,28 @@
 <div ng-include="'app/views/_confirm_modal.html'"></div>
 
 <!--<div  ng-repeat="formFields in fields_rec" >
+=======
+             </tab>-->
+
+            </tabset>
+            <div class="row">
+                <div class="col-md-12 affix">
+                    <div class="pull-left">
+                        <!-- <div class="communication">
+                            <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                            <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                            <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                        </div> -->
+                    </div>
+                    <div class="pull-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-include="'app/views/_confirm_modal.html'"></div>
+
+        <!--<div  ng-repeat="formFields in fields_rec" >
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         <div ng-show="fields_rec.length != 0"> 
              <div ng-show="formFields.length != 0">
           <div class="form-group">

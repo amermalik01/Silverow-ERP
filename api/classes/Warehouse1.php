@@ -235,7 +235,11 @@ class Warehouse extends Xtreme
                                       internal_sales='$arr_attr[internal_sales]',
                                       company_type='$arr_attr[company_type]',
                                       source_of_crm='$arr_attr[source_of_crm]',
+<<<<<<< HEAD
                                       status='$arr_attr[status]',
+=======
+                                      status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       web_address='$arr_attr[web_address]',
                                       buying_grp='$arr_attr[buying_grp]',
                                       credit_limit='$arr_attr[credit_limit]',
@@ -1125,8 +1129,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         if ($attr[parent_id] > 0)
             $selpar = "and c.parent_id=" . $attr[parent_id] . " ";
+=======
+        if ($attr['parent_id'] > 0)
+            $selpar = "and c.parent_id=" . $attr['parent_id'] . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         else
             $selpar = "and c.parent_id=0";
 
@@ -1166,7 +1175,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
     {
         $this->objGeneral->mysql_clean($attr);
 
+<<<<<<< HEAD
         /*if ($attr[parent_id] > 0)
+=======
+        /*if ($attr['parent_id'] > 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $sel_parent = "";
         else
             $sel_parent = "and c.parent_id=0";*/
@@ -1184,7 +1197,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                 left JOIN currency as curr on curr.id=c.currency_id
                 left JOIN units_of_measure as dim on dim.id=c.dimensions_id
                 left JOIN company on company.id=c.company_id
+<<<<<<< HEAD
                 where  c.status=1  and c.id=" . $attr[location_id] . "  and
+=======
+                where  c.status=1  and c.id=" . $attr['location_id'] . "  and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                  (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
                  limit 1 ";
 
@@ -1275,8 +1292,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                 SET
                                       warehouse_id='$arr_attr[wrh_id]',
                                       title='".$arr_attr['title']."',
+<<<<<<< HEAD
                                       description='$arr_attr[description]',
                                       parent_id='$arr_attr[parent_id]',
+=======
+                                      description='".$arr_attr['description']."',
+                                      parent_id='".$arr_attr['parent_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       bin_cost='$arr_attr[bin_cost]',
                                       currency_id='$arr_attr[currency_id]',
                                       dimensions_id='$arr_attr[dimensions_id]',
@@ -1284,7 +1306,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                       warehouse_loc_sdate='" . $this->objGeneral->convert_date($arr_attr[warehouse_loc_sdate]) . "',
                                       user_id='" . $this->arrUser[id] . "',
                                       company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                       status='$arr_attr[status]',
+=======
+                                      status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       AddedBy='" . $this->arrUser['id'] . "',
                                       AddedOn='" . current_date . "'";
             // warehouse_loc_edate='" . $this->objGeneral->convert_date($arr_attr[warehouse_loc_edate]) . "',
@@ -1339,8 +1365,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                               SET
 									warehouse_id='$arr_attr[wrh_id]',
                                     title='".$arr_attr['title']."',
+<<<<<<< HEAD
                                     description='$arr_attr[description]',
                                     parent_id='$arr_attr[parent_id]',
+=======
+                                    description='".$arr_attr['description']."',
+                                    parent_id='".$arr_attr['parent_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     bin_cost='$arr_attr[bin_cost]',
                                     currency_id='$arr_attr[currency_id]',
                                     dimensions_id='$arr_attr[dimensions_id]',
@@ -1348,7 +1379,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                     warehouse_loc_sdate='" . $this->objGeneral->convert_date($arr_attr[warehouse_loc_sdate]) . "',
                                     user_id='" . $this->arrUser[id] . "',
                                     company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                     status='$arr_attr[status]',
+=======
+                                    status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn='" . current_date . "'
                                     WHERE id = " . $id . "   Limit 1";
@@ -1396,7 +1431,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         $Sql = "INSERT INTO warehouse_bin_loc_history
                                 SET
                                       warehouse_loc_id='$arr_attr[warehouse_loc_id]',
+<<<<<<< HEAD
                                       parent_id='$arr_attr[parent_id]',
+=======
+                                      parent_id='".$arr_attr['parent_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       cost='$arr_attr[bin_cost]',
                                       uom_id='$arr_attr[dimensions_id]',
                                       cost_type='$arr_attr[cost_type_id]',
@@ -1704,14 +1743,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                       warehouse_bin_loc_id='$arr_attr[bin_loc_id]',
                                       title='".$arr_attr['title']."',
                                       add_cost_title_id='$arr_attr[title_id]',
+<<<<<<< HEAD
                                       description='$arr_attr[description]',
+=======
+                                      description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       cost='$arr_attr[cost]',
                                       dimensions_id='$arr_attr[dimensions_id]',
                                       cost_type_id='$arr_attr[cost_type_id]',
                                       start_date='" . $this->objGeneral->convert_date($arr_attr[additional_cost_sdate]) . "',
                                       user_id='" . $this->arrUser[id] . "',
                                       company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                       status='$arr_attr[status]',
+=======
+                                      status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       AddedBy='" . $this->arrUser['id'] . "',
                                       AddedOn='" . current_date . "'";
 
@@ -1769,14 +1816,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                     warehouse_bin_loc_id='$arr_attr[bin_loc_id]',
                                     title='".$arr_attr['title']."',
                                     add_cost_title_id='$arr_attr[title_id]',
+<<<<<<< HEAD
                                     description='$arr_attr[description]',
+=======
+                                    description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     cost='$arr_attr[cost]',
                                     dimensions_id='$arr_attr[dimensions_id]',
                                     cost_type_id='$arr_attr[cost_type_id]',
                                     start_date='" . $this->objGeneral->convert_date($arr_attr[additional_cost_sdate]) . "',
                                     user_id='" . $this->arrUser[id] . "',
                                     company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                     status='$arr_attr[status]',
+=======
+                                    status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn='" . current_date . "'
                                     WHERE id = " . $id . "   Limit 1";
@@ -1927,19 +1982,32 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
 
             $Sql = "INSERT INTO product_warehouse_location
                                 SET
+<<<<<<< HEAD
                                       item_id='$arr_attr[product_id]',
                                       warehouse_id='$arr_attr[warehouse_id]',
                                       warehouse_loc_id='$arr_attr[location_id]',
                                       default_warehouse='$arr_attr[default_warehouse_id]',
                                       cost='$arr_attr[cost]',
                                       description='$arr_attr[description]',
+=======
+                                      item_id='".$arr_attr['product_id']."',
+                                      warehouse_id='".$arr_attr['warehouse_id']."',
+                                      warehouse_loc_id='$arr_attr[location_id]',
+                                      default_warehouse='$arr_attr[default_warehouse_id]',
+                                      cost='$arr_attr[cost]',
+                                      description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       uom_id='$arr_attr[dimensions_id]',
                                       currency_id='$arr_attr[currency_id]',
                                       cost_type_id='$arr_attr[cost_type_id]',
                                       warehouse_loc_sdate='" . $this->objGeneral->convert_date($arr_attr[warehouse_loc_sdate]) . "',
                                       user_id='" . $this->arrUser[id] . "',
                                       company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                       status='$arr_attr[status]',
+=======
+                                      status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       AddedBy='" . $this->arrUser['id'] . "',
                                       AddedOn='" . current_date . "'";
 
@@ -1986,19 +2054,32 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
 
             $Sql = "UPDATE product_warehouse_location
                               SET
+<<<<<<< HEAD
 									item_id='$arr_attr[product_id]',
 									warehouse_id='$arr_attr[warehouse_id]',
                                     warehouse_loc_id='$arr_attr[location_id]',
                                     default_warehouse='$arr_attr[default_warehouse_id]',
                                     cost='$arr_attr[cost]',
                                     description='$arr_attr[description]',
+=======
+									item_id='".$arr_attr['product_id']."',
+									warehouse_id='".$arr_attr['warehouse_id']."',
+                                    warehouse_loc_id='$arr_attr[location_id]',
+                                    default_warehouse='$arr_attr[default_warehouse_id]',
+                                    cost='$arr_attr[cost]',
+                                    description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     uom_id='$arr_attr[dimensions_id]',
                                     currency_id='$arr_attr[currency_id]',
                                     cost_type_id='$arr_attr[cost_type_id]',
                                     warehouse_loc_sdate='" . $this->objGeneral->convert_date($arr_attr[warehouse_loc_sdate]) . "',
                                     user_id='" . $this->arrUser[id] . "',
                                     company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                     status='$arr_attr[status]',
+=======
+                                    status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn='" . current_date . "'
                                     WHERE id = " . $id . "   Limit 1";
@@ -2030,7 +2111,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         $Sql = "INSERT INTO product_warehouse_loc_history
                                 SET
                                       product_warehouse_id='$arr_attr[prod_warehouse_loc_id]',
+<<<<<<< HEAD
                                       warehouse_id='$arr_attr[warehouse_id]',
+=======
+                                      warehouse_id='".$arr_attr['warehouse_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       location_id='$arr_attr[location_id]',
                                       cost='$arr_attr[cost]',
                                       uom_id='$arr_attr[dimensions_id]',
@@ -2260,7 +2345,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                 From warehouse_bin_location  c
                 left JOIN units_of_measure_setup as uom on uom.cat_id=c.dimensions_id
                 left JOIN company on company.id=c.company_id
+<<<<<<< HEAD
                 where  c.status=1  and c.id=" . $attr[location_id] . " and uom.product_id=" . $attr[prod_id] . "  and
+=======
+                where  c.status=1  and c.id=" . $attr['location_id'] . " and uom.product_id=" . $attr['prod_id'] . "  and
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                  (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
                  limit 1 ";
 
@@ -2414,14 +2503,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                       product_warehouse_loc_id='$arr_attr[warehouse_loc_id]',
                                       title='".$arr_attr['title']."',
                                       add_cost_title_id='$arr_attr[title_id]',
+<<<<<<< HEAD
                                       description='$arr_attr[description]',
+=======
+                                      description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       cost='$arr_attr[cost]',
                                       dimensions_id='$arr_attr[dimensions_id]',
                                       cost_type_id='$arr_attr[cost_type_id]',
                                       start_date='" . $this->objGeneral->convert_date($arr_attr[additional_cost_sdate]) . "',
                                       user_id='" . $this->arrUser[id] . "',
                                       company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                       status='$arr_attr[status]',
+=======
+                                      status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       AddedBy='" . $this->arrUser['id'] . "',
                                       AddedOn='" . current_date . "'";
 
@@ -2438,14 +2535,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                     product_warehouse_loc_id='$arr_attr[warehouse_loc_id]',
                                     title='".$arr_attr['title']."',
                                     add_cost_title_id='$arr_attr[title_id]',
+<<<<<<< HEAD
                                     description='$arr_attr[description]',
+=======
+                                    description='".$arr_attr['description']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     cost='$arr_attr[cost]',
                                     dimensions_id='$arr_attr[dimensions_id]',
                                     cost_type_id='$arr_attr[cost_type_id]',
                                     start_date='" . $this->objGeneral->convert_date($arr_attr[additional_cost_sdate]) . "',
                                     user_id='" . $this->arrUser[id] . "',
                                     company_id='" . $this->arrUser[company_id] . "',
+<<<<<<< HEAD
                                     status='$arr_attr[status]',
+=======
+                                    status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ChangedBy='" . $this->arrUser['id'] . "',
                                     ChangedOn='" . current_date . "'
                                     WHERE id = " . $id . "   Limit 1";
@@ -2766,7 +2871,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
 		From warehouse_allocation  c 
 		left JOIN company on company.id=c.company_id 
 		left JOIN warehouse w on w.id=c.warehouse_id 
+<<<<<<< HEAD
 		where  c.product_id='$attr[item_id]' AND   c.order_id='$attr[order_id]' AND   c.warehouse_id='$attr[ware_id]'
+=======
+		where  c.product_id='$attr[item_id]' AND   c.order_id='".$attr['order_id']."' AND   c.warehouse_id='$attr[ware_id]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		AND   c.status=1 and c.type=1 		
 		AND(c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")		 
 		$where_clause 
@@ -2855,8 +2964,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                         From warehouse_allocation  c
                         left JOIN company on company.id=c.company_id
                         left JOIN warehouse w on w.id=c.warehouse_id
+<<<<<<< HEAD
                         where  c.product_id='$attr[product_id]' and   c.order_id='$attr[order_id]'
                         and w.id = '$attr[warehouses_id]'
+=======
+                        where  c.product_id='".$attr['product_id']."' and   c.order_id='".$attr['order_id']."'
+                        and w.id = '".$attr['warehouses_id']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         and  c.status=1 and c.type='$attr[type_id]'
                         $where_clause
                         and(c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")
@@ -2888,8 +3002,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         if (!empty($attr['purchase_return_status'])) {
             $sql_total_purchase_return = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
 			left JOIN company on company.id=c.company_id 
+<<<<<<< HEAD
 			where  c.product_id=$attr[product_id]  and  c.status=1 and c.type=1
 			 and   c.order_id=$attr[order_id] and c.warehouse_id=$attr[warehouses_id] 
+=======
+			where  c.product_id=".$attr['product_id']."  and  c.status=1 and c.type=1
+			 and   c.order_id=".$attr['order_id']." and c.warehouse_id=".$attr['warehouses_id']." 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			AND purchase_return_status = 1 
 			and (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")";
             $rs_count_pr = $this->Conn->Execute($sql_total_purchase_return);
@@ -2898,8 +3017,13 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         }
         $sql_total = "SELECT  sum(quantity) as total  From warehouse_allocation  c 
 			left JOIN company on company.id=c.company_id 
+<<<<<<< HEAD
 			where  c.product_id=$attr[product_id]  and  c.status=1 and c.type=1
 			 and   c.order_id=$attr[order_id] and c.warehouse_id=$attr[warehouses_id] 
+=======
+			where  c.product_id=".$attr['product_id']."  and  c.status=1 and c.type=1
+			 and   c.order_id=".$attr['order_id']." and c.warehouse_id=".$attr['warehouses_id']." 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 			AND purchase_return_status = 0
 			and (c.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")";
         $rs_count = $this->Conn->Execute($sql_total);
@@ -2919,7 +3043,11 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         $id = $arr_attr['id'];
         if ($arr_attr['id'] > 0) $update_check = "  AND tst.id != " . $id . " ";
 
+<<<<<<< HEAD
         $data_pass = "   tst.type=".$arr_attr['type']." and tst.order_id='$arr_attr[order_id]'  and tst.product_id='$arr_attr[product_id]'
+=======
+        $data_pass = "   tst.type=".$arr_attr['type']." and tst.order_id='$arr_attr[order_id]'  and tst.product_id='".$arr_attr['product_id']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and tst.warehouse_id='" . $arr_attr['warehouses_id'] . "'
 		 and purchase_return_status='$arr_attr[purchase_return_status]' and container_no='$arr_attr[container_no]'
 		 $update_check";
@@ -2948,10 +3076,17 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
                                       quantity='$arr_attr[stock_qty]',
                                       batch_no='$arr_attr[batch_no]',
                                       order_id='$arr_attr[order_id]',
+<<<<<<< HEAD
                                       product_id='$arr_attr[product_id]',
                                       warehouse_id='".$arr_attr['warehouses_id']."',
                                       type='".$arr_attr['type']."',
                                       supplier_id='$arr_attr[supplier_id]',
+=======
+                                      product_id='".$arr_attr['product_id']."',
+                                      warehouse_id='".$arr_attr['warehouses_id']."',
+                                      type='".$arr_attr['type']."',
+                                      supplier_id='".$arr_attr['supplier_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                       order_date='" . $this->objGeneral->convert_date($arr_attr[order_date]) . "',
                                       unit_measure='$arr_attr[unit_of_measure_name]',
                                       primary_unit_id='$arr_attr[primary_unit_id]',
@@ -3086,14 +3221,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
 
 
             $Sql = "INSERT INTO warehouse_alt_depot SET
+<<<<<<< HEAD
 									depot='$arr_attr[depot]',depot_address='$arr_attr[depot_address]',role='$arr_attr[role]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',book_in_contact='$arr_attr[book_in_contact]',book_in_tel='$arr_attr[book_in_tel]',book_in_email='$arr_attr[book_in_email]',book_in_fax='$arr_attr[book_in_fax]',booking_instructions='$arr_attr[booking_instructions]',booking_start_time='$arr_attr[booking_start_time]',booking_end_time='$arr_attr[booking_end_time]',user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
+=======
+									depot='$arr_attr[depot]',depot_address='$arr_attr[depot_address]',role='$arr_attr[role]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',book_in_contact='$arr_attr[book_in_contact]',book_in_tel='$arr_attr[book_in_tel]',book_in_email='$arr_attr[book_in_email]',book_in_fax='$arr_attr[book_in_fax]',booking_instructions='$arr_attr[booking_instructions]',booking_start_time='$arr_attr[booking_start_time]',booking_end_time='$arr_attr[booking_end_time]',user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $RS = $this->Conn->Execute($Sql);
             $id = $this->Conn->Insert_ID();
             // }
         } else {
             $Sql = "UPDATE warehouse_alt_depot SET  
+<<<<<<< HEAD
 								depot='$arr_attr[depot]',depot_address='$arr_attr[job]',role='$arr_attr[role]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',book_in_contact='$arr_attr[book_in_contact]',book_in_tel='$arr_attr[book_in_tel]',book_in_email='$arr_attr[book_in_email]',book_in_fax='$arr_attr[book_in_fax]',booking_instructions='$arr_attr[booking_instructions]',booking_start_time='$arr_attr[booking_start_time]',booking_end_time='$arr_attr[booking_end_time]' 
+=======
+								depot='$arr_attr[depot]',depot_address='$arr_attr[job]',role='$arr_attr[role]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',book_in_contact='$arr_attr[book_in_contact]',book_in_tel='$arr_attr[book_in_tel]',book_in_email='$arr_attr[book_in_email]',book_in_fax='$arr_attr[book_in_fax]',booking_instructions='$arr_attr[booking_instructions]',booking_start_time='$arr_attr[booking_start_time]',booking_end_time='$arr_attr[booking_end_time]' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $id . "   Limit 1";
             $RS = $this->Conn->Execute($Sql);
         }
@@ -3203,13 +3346,21 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
     {
 
         //	print_r($attr);exit;
+<<<<<<< HEAD
         $id = $attr[update_id];
+=======
+        $id = $attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $update_check = "";
         if ($attr['id'] > 0)
             $update_check = "  AND tst.id != " . $id . " ";
 
+<<<<<<< HEAD
         $data_pass = "   tst.offered_by='" . $attr[offered_by] . "' and tst.type = '".$attr['type']."' and tst.module_id='" . $attr[crm_id] . "'    $update_check";
+=======
+        $data_pass = "   tst.offered_by='" . $attr['offered_by'] . "' and tst.type = '".$attr['type']."' and tst.module_id='" . $attr['crm_id'] . "'    $update_check";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('warehouse_price_offer_listing', $data_pass, $this->arrUser['company_id']);
 
 
@@ -3222,14 +3373,22 @@ location='$arr_attr[location]',location_adress='$arr_attr[location_adress]',depo
         if ($id == 0) {
 
             $Sql = "INSERT INTO warehouse_price_offer_listing
+<<<<<<< HEAD
 SET crm_id = '$attr[crm_id]',offered_by = '$attr[offered_by]',product_id = '$attr[product_id]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "',offer_valid_date ='" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',`volume_1_price` = '$attr[volume_1_price]',`volume_2_price` = '$attr[volume_2_price]',`volume_3_price` = '$attr[volume_3_price]',`unit_of_measure_1` = '$attr[unit_of_measure_1]',`unit_of_measure_2` = '$attr[unit_of_measure_2]',`unit_of_measure_3` = '$attr[unit_of_measure_3]',comment = '$attr[comment]'
+=======
+SET crm_id = '".$attr['crm_id']."',offered_by = '".$attr['offered_by']."',product_id = '".$attr['product_id']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "',offer_valid_date ='" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',`volume_1_price` = '$attr[volume_1_price]',`volume_2_price` = '$attr[volume_2_price]',`volume_3_price` = '$attr[volume_3_price]',`unit_of_measure_1` = '$attr[unit_of_measure_1]',`unit_of_measure_2` = '$attr[unit_of_measure_2]',`unit_of_measure_3` = '$attr[unit_of_measure_3]',comment = '$attr[comment]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ,type = '".$attr['type']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]' ,user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
             // }
         } else {
 
 
             $Sql = "UPDATE warehouse_price_offer_listing
+<<<<<<< HEAD
 SET product_id = '$attr[product_id]',offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "',offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',`volume_1_price` = '$attr[volume_1_price]',`volume_2_price` = '$attr[volume_2_price]',`volume_3_price` = '$attr[volume_3_price]',`unit_of_measure_1` = '$attr[unit_of_measure_1]',`unit_of_measure_2` = '$attr[unit_of_measure_2]',`unit_of_measure_3` = '$attr[unit_of_measure_3]',comment = '$attr[comment]'
+=======
+SET product_id = '".$attr['product_id']."',offered_by = '".$attr['offered_by']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "',offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',`volume_1_price` = '$attr[volume_1_price]',`volume_2_price` = '$attr[volume_2_price]',`volume_3_price` = '$attr[volume_3_price]',`unit_of_measure_1` = '$attr[unit_of_measure_1]',`unit_of_measure_2` = '$attr[unit_of_measure_2]',`unit_of_measure_3` = '$attr[unit_of_measure_3]',comment = '$attr[comment]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ,type = '".$attr['type']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]' 
 WHERE id = $id ";
         }
@@ -3349,7 +3508,11 @@ WHERE id = $id ";
 		,srm_volume_discount.product_code
 		FROM warehouse_volume_discount 
 		Left JOIN price_offer_volume  v ON v.id = srm_volume_discount.volume_id 
+<<<<<<< HEAD
 		WHERE srm_volume_discount.crm_id='$attr[crm_id]' and srm_volume_discount.status=1
+=======
+		WHERE srm_volume_discount.crm_id='".$attr['crm_id']."' and srm_volume_discount.status=1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		order by srm_volume_discount.id ASC"; //,srm_volume_discount.type
 
         $RS = $this->Conn->Execute($Sql);
@@ -3390,13 +3553,21 @@ WHERE id = $id ";
     function add_warehouse_volume_discount_listing($attr)
     {
 
+<<<<<<< HEAD
         $doc_id = $attr[update_id];
+=======
+        $doc_id = $attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $update_check = "";
         if ($doc_id > 0)
             $update_check = "  AND tst.id != " . $doc_id . " ";
 
+<<<<<<< HEAD
         $data_pass = "   tst.offered_by='" . $attr[offered_by] . "' and tst.type = '".$attr['type']."' and tst.module_id='" . $attr[crm_id] . "'    $update_check";
+=======
+        $data_pass = "   tst.offered_by='" . $attr['offered_by'] . "' and tst.type = '".$attr['type']."' and tst.module_id='" . $attr['crm_id'] . "'    $update_check";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('warehouse_volume_discount_listing', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -3409,7 +3580,11 @@ WHERE id = $id ";
 
 
             $Sql = "INSERT INTO warehouse_volume_discount_listing
+<<<<<<< HEAD
 						SET crm_id = '$attr[crm_id]',offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',product_id = '$attr[product_id]',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "' ,type = '".$attr['type']."' ,user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
+=======
+						SET crm_id = '".$attr['crm_id']."',offered_by = '".$attr['offered_by']."',offered_by_id = '".$attr['offered_by_id']."',product_id = '".$attr['product_id']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "' ,type = '".$attr['type']."' ,user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             //	$doc_id = $this->Conn->Insert_ID();$new='insert';
@@ -3420,7 +3595,11 @@ WHERE id = $id ";
 
 
             $Sql = "UPDATE warehouse_volume_discount_listing
+<<<<<<< HEAD
 SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',product_id = '$attr[product_id]',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "'  where id='".$attr['id']."'";
+=======
+SET offered_by = '".$attr['offered_by']."',offered_by_id = '".$attr['offered_by_id']."',product_id = '".$attr['product_id']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "'  where id='".$attr['id']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         $RS = $this->Conn->Execute($Sql);
         //echo $Sql;  exit;
@@ -3743,7 +3922,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
     function get_shipping($attr)
     {
         /* 	global $objFilters;
+<<<<<<< HEAD
           $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr[crm_id]),2=>array('document.type'=>2));
+=======
+          $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr['crm_id']),2=>array('document.type'=>2));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           return $objFilters->get_module_listing(12, "document",'','',$attr[more_fields],'',$where);
          */
 
@@ -3786,6 +3969,7 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
     {
 
 
+<<<<<<< HEAD
         $doc_id = $arr_attr[update_id];
         if ($doc_id == 0) {
 
@@ -3793,6 +3977,15 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 									 coverage_area='" . $arr_attr[coverage_area] . "'
 									,coverage_area_id='" . $arr_attr[coverage_area_id] . "'
 									,crm_id='" . $arr_attr[crm_id] . "'
+=======
+        $doc_id = $arr_attr['update_id'];
+        if ($doc_id == 0) {
+
+            $Sql = "INSERT INTO warehouse_agent_area SET  
+									 coverage_area='" . $arr_attr['coverage_area'] . "'
+									,coverage_area_id='" . $arr_attr['coverage_area_id'] . "'
+									,crm_id='" . $arr_attr['crm_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									,status='1'  
 									,company_id='" . $this->arrUser['company_id'] . "' 
 									,user_id='" . $this->arrUser['id'] . "'
@@ -3802,14 +3995,23 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
             $sale_id = $this->Conn->Insert_ID();
 
             //$price_id= explode(",",  $arr_attr[coverage_price]);
+<<<<<<< HEAD
             $sale_name_id = explode(",", $arr_attr[coverage_area_id]);
             $area_name = explode(",", $arr_attr[coverage_area]);
+=======
+            $sale_name_id = explode(",", $arr_attr['coverage_area_id']);
+            $area_name = explode(",", $arr_attr['coverage_area']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($sale_name_id as $key => $area_id) {
                 if (is_numeric($area_id)) {
                     $sql = "SELECT  count(id)  as total FROM warehouse_agent_area_list	
+<<<<<<< HEAD
 												WHERE cover_area_id='" . $area_id . "'   and  crm_id='" . $arr_attr[crm_id] . "'
+=======
+												WHERE cover_area_id='" . $area_id . "'   and  crm_id='" . $arr_attr['crm_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 												and company_id='" . $this->arrUser['company_id'] . "' ";
                     $rs_count = $this->Conn->Execute($sql);
                     $total = $rs_count->fields['total'];
@@ -3818,7 +4020,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 														cover_area_id='" . $area_id . "'
 														,coverage_area='" . $area_name[$i] . "'    
 														,sale_id='" . $sale_id . "' 
+<<<<<<< HEAD
 														,crm_id='" . $arr_attr[crm_id] . "' 
+=======
+														,crm_id='" . $arr_attr['crm_id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 														,status='1'   
 														,company_id='" . $this->arrUser['company_id'] . "' 
 														,user_id='" . $this->arrUser['id'] . "',
@@ -3836,6 +4042,7 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
                 //	$RS = $this->Conn->Execute($Sql);
 
                 $Sql = "UPDATE  shipping_agent_sale SET  
+<<<<<<< HEAD
 									offered_by='" . $arr_attr[offered_by] . "'
 									,offered_by_id='" . $arr_attr[offered_by_id] . "'
 									,price_method='" . $arr_attr[price_method] . "' 
@@ -3847,6 +4054,19 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 									,valid_to_id='" . $arr_attr[valid_to_id] . "' 
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
+=======
+									offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $doc_id . "  Limit 1";
                 $RS = $this->Conn->Execute($Sql);
             }
@@ -3869,15 +4089,25 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
         //  print_r($arr_attr);   	exit; 
         //$counter_supplier++;
         $tab_change = 'tab_doc';
+<<<<<<< HEAD
         $sale_customer_id = $arr_attr[update_id];
+=======
+        $sale_customer_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($sale_customer_id > 0) {
             $Sql = "DELETE FROM shipping_agent WHERE sale_id = $sale_customer_id";
             $RS = $this->Conn->Execute($Sql);
 
+<<<<<<< HEAD
             $coverage_area2 = explode(",", $arr_attr[coverage_area2]);
             $coverage_area_id2 = explode(",", $arr_attr[coverage_area_id2]);
             $coverage_price2 = explode(",", $arr_attr[coverage_price2]);
+=======
+            $coverage_area2 = explode(",", $arr_attr['coverage_area2']);
+            $coverage_area_id2 = explode(",", $arr_attr['coverage_area_id2']);
+            $coverage_price2 = explode(",", $arr_attr['coverage_price2']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($coverage_area_id2 as $key => $customer_id) {
@@ -3896,7 +4126,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
                 $i++;
             }
 
+<<<<<<< HEAD
             $Sql = "UPDATE  shipping_agent_sale SET coverage_area='" . $arr_attr[coverage_area2] . "'  
+=======
+            $Sql = "UPDATE  shipping_agent_sale SET coverage_area='" . $arr_attr['coverage_area2'] . "'  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $sale_customer_id . "  Limit 1";
             $RS = $this->Conn->Execute($Sql);
         }
@@ -3919,7 +4153,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
         print_r($arr_attr);
         exit;
         $tab_change = 'tab_doc';
+<<<<<<< HEAD
         $doc_id = $arr_attr[update_id];
+=======
+        $doc_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($doc_id > 0) {
             //  $Sql = "DELETE FROM shipping_agent WHERE id = $sp_id";
@@ -3928,6 +4166,7 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
             //	$RS = $this->Conn->Execute($Sql);
 
             $Sql = "UPDATE  shipping_agent_sale SET  
+<<<<<<< HEAD
 									offered_by='" . $arr_attr[offered_by] . "'
 									,offered_by_id='" . $arr_attr[offered_by_id] . "'
 									,price_method='" . $arr_attr[price_method] . "' 
@@ -3939,12 +4178,26 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 									,valid_to_id='" . $arr_attr[valid_to_id] . "' 
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
+=======
+									offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $doc_id . "  Limit 1";
             $RS = $this->Conn->Execute($Sql);
         } else {
 
             $Sql = "INSERT INTO shipping_agent_sale SET  							
 									
+<<<<<<< HEAD
 									 coverage_area='" . $arr_attr[coverage_area] . "'
 									,coverage_area_id='" . $arr_attr[coverage_area_id] . "'
 									,coverage_price='" . $arr_attr[coverage_price] . "'
@@ -3960,6 +4213,23 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
 									,crm_id='" . $arr_attr[crm_id] . "'
+=======
+									 coverage_area='" . $arr_attr['coverage_area'] . "'
+									,coverage_area_id='" . $arr_attr['coverage_area_id'] . "'
+									,coverage_price='" . $arr_attr['coverage_price'] . "'
+									,offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+									,crm_id='" . $arr_attr['crm_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									,status='1'  
 									,company_id='" . $this->arrUser['company_id'] . "' 
 									,user_id='" . $this->arrUser['id'] . "'
@@ -3969,9 +4239,15 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
             $RS = $this->Conn->Execute($Sql);
             $sale_id = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
             $customer_price_id = explode(",", $arr_attr[coverage_price]);
             $sale_name_id = explode(",", $arr_attr[coverage_area_id]);
             $customer_area = explode(",", $arr_attr[coverage_area]);
+=======
+            $customer_price_id = explode(",", $arr_attr['coverage_price']);
+            $sale_name_id = explode(",", $arr_attr['coverage_area_id']);
+            $customer_area = explode(",", $arr_attr['coverage_area']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($sale_name_id as $key => $customer_id) {
@@ -4099,7 +4375,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
     function get_area($attr)
     {
         /* 	global $objFilters;
+<<<<<<< HEAD
           $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr[crm_id]),2=>array('document.type'=>2));
+=======
+          $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr['crm_id']),2=>array('document.type'=>2));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           return $objFilters->get_module_listing(12, "document",'','',$attr[more_fields],'',$where);
          */
 
@@ -4149,13 +4429,21 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
     {
 
         // print_r($arr_attr); 	exit; 
+<<<<<<< HEAD
         $up_id = $arr_attr[update_id];
+=======
+        $up_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $update_check = "";
         if ($arr_attr['id'] > 0)
             $update_check = "  AND tst.id != " . $up_id . " ";
 
+<<<<<<< HEAD
         $data_pass = "   tst.offered_by='" . $arr_attr[offered_by] . "' and tst.shipping_quantity='" . $arr_attr[shipping_quantity] . "'	and tst.price='" . $arr_attr[price] . "'	and tst.crm_id='" . $arr_attr[crm_id] . "'    $update_check";
+=======
+        $data_pass = "   tst.offered_by='" . $arr_attr[offered_by] . "' and tst.shipping_quantity='" . $arr_attr[shipping_quantity] . "'	and tst.price='" . $arr_attr[price] . "'	and tst.crm_id='" . $arr_attr['crm_id'] . "'    $update_check";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('warehouse_area_selected', $data_pass, $this->arrUser['company_id']);
 
 
@@ -4176,9 +4464,15 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
 										,valid_to_id='" . $arr_attr[valid_to_id] . "' 
 										,price_method='" . $arr_attr[price_method] . "' 
 										,shipping_method='" . $arr_attr[shipping_method] . "' 
+<<<<<<< HEAD
 										,shipping_quantity='" . $arr_attr[shipping_quantity] . "'
 										,price='" . $arr_attr[price] . "'
 										,crm_id='" . $arr_attr[crm_id] . "' 
+=======
+										,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+										,price='" . $arr_attr['price'] . "'
+										,crm_id='" . $arr_attr['crm_id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 										,company_id='" . $this->arrUser['company_id'] . "'
 										 ,user_id='" . $this->arrUser['id'] . "'
 										,date_added='" . current_date . "'";
@@ -4330,16 +4624,27 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
     {
 
 
+<<<<<<< HEAD
         $id = $attr[update_id];
+=======
+        $id = $attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $update_check = "";
         if ($id > 0)
             $update_check = "  AND tst.id != " . $id . " ";
 
+<<<<<<< HEAD
         $data_pass = "   tst.price_offered='" . $attr[price_offered] . "' and tst.universal_type='" . $attr[universal_type] . "'
 		                 and tst.offer_date='" . $this->objGeneral->convert_date($attr[offer_date]) . "'
 		                 and tst.offer_date='" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "'
 		                 and tst.crm_id='" . $attr[crm_id] . "'    $update_check";
+=======
+        $data_pass = "   tst.price_offered='" . $attr['price_offered'] . "' and tst.universal_type='" . $attr['universal_type'] . "'
+		                 and tst.offer_date='" . $this->objGeneral->convert_date($attr['offer_date']) . "'
+		                 and tst.offer_date='" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "'
+		                 and tst.crm_id='" . $attr['crm_id'] . "'    $update_check";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('warehouse_rebate', $data_pass, $this->arrUser['company_id']);
 
 
@@ -4352,7 +4657,11 @@ SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',prod
         if ($id == 0) {
 
             $Sql = "INSERT INTO warehouse_rebate
+<<<<<<< HEAD
 SET crm_id = '$attr[crm_id]',type = '".$attr['type']."',item_type = '$attr[item_type]',category_type = '$attr[category_type]',universal_type = '$attr[universal_type]',price_offered = '$attr[price_offered]',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',volume_rebate_1 = '$attr[volume_rebate_1]',volume_rebate_2 = '$attr[volume_rebate_2]',volume_rebate_3 = '$attr[volume_rebate_3]',revenue_1 = '$attr[revenue_1]',revenue_2 = '$attr[revenue_2]',revenue_3 = '$attr[revenue_3]',revenue_rebate_1 = '$attr[revenue_rebate_1]',revenue_rebate_2 = '$attr[revenue_rebate_2]',revenue_rebate_3 = '$attr[revenue_rebate_3]',created_date = '" . $this->objGeneral->convert_date(NOW()) . "',offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "'
+=======
+SET crm_id = '".$attr['crm_id']."',type = '".$attr['type']."',item_type = '$attr[item_type]',category_type = '$attr[category_type]',universal_type = '$attr[universal_type]',price_offered = '$attr[price_offered]',volume_1 = '$attr[volume_1]',volume_2 = '$attr[volume_2]',volume_3 = '$attr[volume_3]',volume_rebate_1 = '$attr[volume_rebate_1]',volume_rebate_2 = '$attr[volume_rebate_2]',volume_rebate_3 = '$attr[volume_rebate_3]',revenue_1 = '$attr[revenue_1]',revenue_2 = '$attr[revenue_2]',revenue_3 = '$attr[revenue_3]',revenue_rebate_1 = '$attr[revenue_rebate_1]',revenue_rebate_2 = '$attr[revenue_rebate_2]',revenue_rebate_3 = '$attr[revenue_rebate_3]',created_date = '" . $this->objGeneral->convert_date(NOW()) . "',offer_valid_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ,offer_date = '" . $this->objGeneral->convert_date($attr[offer_date]) . "',user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
             $RS = $this->Conn->Execute($Sql);
             $id = $this->Conn->Insert_ID();
@@ -4539,7 +4848,11 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
         $this->objGeneral->mysql_clean($arr_attr);
 
         // print_r($attr); 	exit;
+<<<<<<< HEAD
         $id = $arr_attr[update_id];
+=======
+        $id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $update_check = "";
         if ($id > 0)
@@ -4558,14 +4871,22 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
         if ($id == 0) {
 
             $Sql = "INSERT INTO warehouse_rebate_volume SET
+<<<<<<< HEAD
 								SET name='".$arr_attr['name']."',description='$arr_attr[description]'
+=======
+								SET name='".$arr_attr['name']."',description='".$arr_attr['description']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 								,user_id='" . $this->arrUser[id] . "',company_id='" . $this->arrUser[company_id] . "'";
             $RS = $this->Conn->Execute($Sql);
             $id = $this->Conn->Insert_ID();
             // }
         } else {
             $Sql = "UPDATE warehouse_rebate_volume
+<<<<<<< HEAD
 							SET name='".$arr_attr['name']."',description='$arr_attr[description]'
+=======
+							SET name='".$arr_attr['name']."',description='".$arr_attr['description']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 							WHERE id = " . $id . "   Limit 1";
             $RS = $this->Conn->Execute($Sql);
         }
@@ -4613,7 +4934,11 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
 		 WHERE  
 		  purchase_status in (2,3) and    warehouse_allocation.status = 1 
 		and product_id = ' . $attr['product_id'] . ' and warehouse_id = ' . $attr['warehouse_id'] . ' 
+<<<<<<< HEAD
 		AND   warehouse_allocation.order_id=$attr[order_id]
+=======
+		AND   warehouse_allocation.order_id=".$attr['order_id']."
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and (warehouse_allocation.company_id=' . $this->arrUser['company_id'] . ' or 
 		company.parent_id=' . $this->arrUser['company_id'] . ') 
 		group by warehouse_allocation.container_no';
@@ -4672,8 +4997,13 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
         $update_check = "";
         if ($id > 0) $update_check = "  AND tst.id != " . $id . " ";
 
+<<<<<<< HEAD
         $data_pass = "  	tst.type=".$attr['type']." and tst.status=1 and	tst.order_id=$attr[order_id]
 		and tst.product_id=$attr[item_id]	and tst.warehouse_id=$attr[warehouses_id]    $update_check ";
+=======
+        $data_pass = "  	tst.type=".$attr['type']." and tst.status=1 and	tst.order_id=".$attr['order_id']."
+		and tst.product_id=$attr[item_id]	and tst.warehouse_id=".$attr['warehouses_id']."    $update_check ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $total = $this->objGeneral->count_duplicate_in_sql('warehouse_allocation', $data_pass, $this->arrUser['company_id']);
 
         if ($total > 0) {
@@ -4684,8 +5014,13 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
         }
 
         $Sql = "INSERT INTO warehouse_allocation SET batch_no='$attr[batch_no]',warehouse_id='$attr[warehouse_id]'
+<<<<<<< HEAD
 		, bl_shipment_no='$attr[bl_shipment_no]',container_no='$attr[container_no]',order_id='$attr[order_id]'
 		,product_id='$attr[product_id]',status=1,quantity='$attr[req_qty]',,unit_measure='$attr[unit_measure]'
+=======
+		, bl_shipment_no='$attr[bl_shipment_no]',container_no='$attr[container_no]',order_id='".$attr['order_id']."'
+		,product_id='".$attr['product_id']."',status=1,quantity='$attr[req_qty]',,unit_measure='$attr[unit_measure]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		,sale_return_status='" . $sale_return_status . "' 	,type='".$attr['type']."'
 		,company_id='" . $this->arrUser['company_id'] . "' ,user_id='" . $this->arrUser['id'] . "' 
 		,prod_date='" . $this->objGeneral->convert_date($attr['prod_date']) . "'
@@ -4782,7 +5117,11 @@ SET type = '".$attr['type']."',universal_type = '$attr[universal_type]',price_of
     function dispatch_stock($attr)
     {
         //echo "<pre>"; print_r($attr); exit;
+<<<<<<< HEAD
         $Sql = "UPDATE warehouse_allocation	SET sale_status=2 WHERE order_id = $attr[order_id] AND type = 2";
+=======
+        $Sql = "UPDATE warehouse_allocation	SET sale_status=2 WHERE order_id = ".$attr['order_id']." AND type = 2";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->Conn->Execute($Sql);
 
 

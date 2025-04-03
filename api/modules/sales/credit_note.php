@@ -55,7 +55,11 @@ $app->post('/sales/credit-note/update-credit-note', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/credit-note/change-credit-note-status', function () use ($app) {
+=======
+/* $app->post('/sales/credit-note/change-credit-note-status', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSales, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -65,7 +69,11 @@ $app->post('/sales/credit-note/change-credit-note-status', function () use ($app
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/credit-note/delete-credit-note', function () use ($app) {
 	global $objSales, $input;
@@ -114,7 +122,11 @@ $app->post('/sales/credit-note/shipping', function () use ($app) {
 // Comment
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/sales/credit-note/comment', function () use ($app) {
+=======
+/* $app->post('/sales/credit-note/comment', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSales, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -125,7 +137,12 @@ $app->post('/sales/credit-note/comment', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
 
+=======
+ */
+?>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

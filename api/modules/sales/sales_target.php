@@ -3,15 +3,23 @@
 
 $app->post('/sales/customer/sale-target/get-sale-list', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_target($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
   
 $app->post('/sales/customer/sale-target/get-sale-list-by-id', function () use ($app) {
 	global $objcustomersale, $input;	 
@@ -21,10 +29,22 @@ $app->post('/sales/customer/sale-target/get-sale-list-by-id', function () use ($
 	}
 	
 	$result = $objcustomersale->get_sale_list_by_id($input_array['id']);		 
+=======
+
+$app->post('/sales/customer/sale-target/get-sale-list-by-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+
+	$result = $objcustomersale->get_sale_list_by_id($input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
  
 $app->post('/sales/customer/sale-target/generate-target', function () use ($app) {
 	global $objcustomersale, $input;
@@ -32,17 +52,34 @@ $app->post('/sales/customer/sale-target/generate-target', function () use ($app)
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	
+=======
+
+$app->post('/sales/customer/sale-target/generate-target', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->generateTarget($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/add-sale-list', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/add-sale-list', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_target($input_array);
 	$app->response->setStatus(200);
@@ -50,11 +87,19 @@ $app->post('/sales/customer/sale-target/add-sale-list', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/update-sale-list', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/update-sale-list', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_target($input_array);
 	$app->response->setStatus(200);
@@ -63,22 +108,38 @@ $app->post('/sales/customer/sale-target/update-sale-list', function () use ($app
 });
 $app->post('/sales/customer/sale-target/delete-sale-list', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}
 	$result = $objcustomersale->delete_update_status('crm_sale_target','status',$input_array['id']);
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_target', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/get-unique-id', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/get-unique-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->get_unique_id_add($input_array);
 	$app->response->setStatus(200);
@@ -88,6 +149,7 @@ $app->post('/sales/customer/sale-target/get-unique-id', function () use ($app) {
 
 
 
+<<<<<<< HEAD
   
 $app->post('/sales/customer/sale-target/get-prevoius-data', function () use ($app) {
 	global $objcustomersale, $input;
@@ -95,23 +157,41 @@ $app->post('/sales/customer/sale-target/get-prevoius-data', function () use ($ap
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+
+$app->post('/sales/customer/sale-target/get-prevoius-data', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_privous_data($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/get-sale-comision', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/get-sale-comision', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->get_sale_comision($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/get-sale-comision-by-id', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
@@ -120,16 +200,34 @@ $app->post('/sales/customer/sale-target/get-sale-comision-by-id', function () us
 	} 
 	
 	$result = $objcustomersale->get_data_by_id('crm_sale_target_commision_bonus',$input_array['id']); 
+=======
+$app->post('/sales/customer/sale-target/get-sale-comision-by-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+
+	$result = $objcustomersale->get_data_by_id('crm_sale_target_commision_bonus', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/add-sale-comision', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/add-sale-comision', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_comision($input_array);
 	$app->response->setStatus(200);
@@ -137,6 +235,7 @@ $app->post('/sales/customer/sale-target/add-sale-comision', function () use ($ap
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/delete-sale-comision', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
@@ -144,6 +243,15 @@ $app->post('/sales/customer/sale-target/delete-sale-comision', function () use (
 		$input_array[$key] = $val;	
 	} 
 	$result = $objcustomersale->delete_update_status('crm_sale_target_commision_bonus','status',$input_array['id']);
+=======
+$app->post('/sales/customer/sale-target/delete-sale-comision', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_target_commision_bonus', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
@@ -153,11 +261,19 @@ $app->post('/sales/customer/sale-target/delete-sale-comision', function () use (
 
 
 $app->post('/sales/customer/sale-target/get-prodcuts-sale-target', function () use ($app) {
+<<<<<<< HEAD
 	global $objcustomersale, $input;	
 	$input_array = array();
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_target_type_data($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -166,9 +282,15 @@ $app->post('/sales/customer/sale-target/get-prodcuts-sale-target', function () u
 $app->post('/sales/customer/sale-target/add-prodcuts-sale-target', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->add_sale_target_type_data($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -179,11 +301,19 @@ $app->post('/sales/customer/sale-target/add-prodcuts-sale-target', function () u
 
 
 $app->post('/sales/customer/sale-target/get-targettype-sale-target', function () use ($app) {
+<<<<<<< HEAD
 	global $objcustomersale, $input;	
 	$input_array = array();
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_target_type_data($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -192,9 +322,15 @@ $app->post('/sales/customer/sale-target/get-targettype-sale-target', function ()
 $app->post('/sales/customer/sale-target/add-targettype-sale-target', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->add_sale_target_type_data($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -205,15 +341,23 @@ $app->post('/sales/customer/sale-target/add-targettype-sale-target', function ()
 
 $app->post('/sales/customer/sale-target/get-sale-target-list-by-sale-person-id', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_target_by_sale_person_id($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
   
   
   $app->post('/sales/customer/sale-target/get-sale-person-sale-target-id', function () use ($app) {
@@ -222,11 +366,22 @@ $app->post('/sales/customer/sale-target/get-sale-target-list-by-sale-person-id',
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+
+
+$app->post('/sales/customer/sale-target/get-sale-person-sale-target-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_person_by_sale_target_id($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
   
   
     
@@ -236,6 +391,17 @@ $app->post('/sales/customer/sale-target/get-sale-target-list-by-sale-person-id',
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+
+
+
+$app->post('/sales/customer/sale-target/get-customer-crm-sale-person-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_customer_crm_by_sale_person_id($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -243,12 +409,21 @@ $app->post('/sales/customer/sale-target/get-sale-target-list-by-sale-person-id',
 });
 
 
+<<<<<<< HEAD
  $app->post('/sales/customer/sale-target/get-customer-crm-sale-target', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+$app->post('/sales/customer/sale-target/get-customer-crm-sale-target', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_customer_crm_by_sale_target($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -259,22 +434,38 @@ $app->post('/sales/customer/sale-target/get-sale-target-list-by-sale-person-id',
 
 $app->post('/sales/customer/sale-target/calculate-total-target-amount', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->calcute_total_target_amount($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
  
 $app->post('/sales/customer/sale-target/calculate-level-remaining', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+
+$app->post('/sales/customer/sale-target/calculate-level-remaining', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->calcute_level_remaining($input_array);
 	$app->response->setStatus(200);
@@ -284,10 +475,17 @@ $app->post('/sales/customer/sale-target/calculate-level-remaining', function () 
 
 $app->post('/sales/customer/sale-target/get-sale-detail-list', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_detail_list($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -295,20 +493,36 @@ $app->post('/sales/customer/sale-target/get-sale-detail-list', function () use (
 });
 $app->post('/sales/customer/sale-group/get-sale-group-list-by-group-id', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_group_list_by_group_id($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 }); 
 $app->post('/sales/customer/sale-target/get-sale-detail-list-by-id', function () use ($app) {
 	global $objcustomersale, $input;	 
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+});
+$app->post('/sales/customer/sale-target/get-sale-detail-list-by-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->get_sale_detail_list_by_id($input_array);
 	//$result = $objcustomersale->get_data_by_id('crm_sale_target_detail',$input_array['id']); 
@@ -316,6 +530,7 @@ $app->post('/sales/customer/sale-target/get-sale-detail-list-by-id', function ()
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
  
  
 $app->post('/sales/customer/sale-target/get-unique-id-detail', function () use ($app) { 
@@ -323,6 +538,15 @@ $app->post('/sales/customer/sale-target/get-unique-id-detail', function () use (
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+
+
+$app->post('/sales/customer/sale-target/get-unique-id-detail', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->get_unique_id_add_detail($input_array);
 	$app->response->setStatus(200);
@@ -331,11 +555,19 @@ $app->post('/sales/customer/sale-target/get-unique-id-detail', function () use (
 });
 
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/add-sale-detail', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/add-sale-detail', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_detail($input_array);
 	$app->response->setStatus(200);
@@ -343,11 +575,19 @@ $app->post('/sales/customer/sale-target/add-sale-detail', function () use ($app)
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-target/update-sale-detail', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+$app->post('/sales/customer/sale-target/update-sale-detail', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_detail($input_array);
 	$app->response->setStatus(200);
@@ -356,11 +596,19 @@ $app->post('/sales/customer/sale-target/update-sale-detail', function () use ($a
 });
 $app->post('/sales/customer/sale-target/delete-sale-detail', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}
 	$result = $objcustomersale->delete_update_status('crm_sale_target_detail','status',$input_array['id']);
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_target_detail', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
@@ -370,22 +618,38 @@ $app->post('/sales/customer/sale-target/delete-sale-detail', function () use ($a
 
 
 $app->post('/sales/customer/sale-target/get-crm-sale-target-type-all', function () use ($app) {
+<<<<<<< HEAD
 	global $objcustomersale, $input;	
 	$input_array = array();
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_crm_sale_target_type_all($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
 $app->post('/sales/customer/sale-target/get-crm-sale-target-type-detail', function () use ($app) {
+<<<<<<< HEAD
 	global $objcustomersale, $input;	
 	$input_array = array();
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_crm_sale_target_type_detail($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -394,9 +658,15 @@ $app->post('/sales/customer/sale-target/get-crm-sale-target-type-detail', functi
 $app->post('/sales/customer/sale-target/add-crm-sale-target-type-detail', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->add_crm_sale_target_type_detail($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -405,9 +675,15 @@ $app->post('/sales/customer/sale-target/add-crm-sale-target-type-detail', functi
 $app->post('/sales/customer/sale-target/add-crm-sale-target-type-detail-second', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->add_crm_sale_target_type_detail($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -416,11 +692,19 @@ $app->post('/sales/customer/sale-target/add-crm-sale-target-type-detail-second',
 
 
 $app->post('/sales/customer/sale-target/get-crm-sale-target-type-all-level', function () use ($app) {
+<<<<<<< HEAD
 	global $objcustomersale, $input;	
 	$input_array = array();
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_crm_sale_target_type_all_level($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -431,6 +715,7 @@ $app->post('/sales/customer/sale-target/get-crm-sale-target-type-all-level', fun
 
 
 
+<<<<<<< HEAD
 	
 $app->post('/sales/customer/sale-forcast/get-sale-forcast-list', function () use ($app) {
 	global $objcustomersale, $input;
@@ -438,6 +723,15 @@ $app->post('/sales/customer/sale-forcast/get-sale-forcast-list', function () use
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+
+$app->post('/sales/customer/sale-forcast/get-sale-forcast-list', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_forcast_list($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -446,9 +740,15 @@ $app->post('/sales/customer/sale-forcast/get-sale-forcast-list', function () use
 
 $app->post('/sales/customer/sale-forcast/get-sale-forcast-by-id', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->get_sale_forcast_by_id($input_array['id']);
 	//$result = $objcustomersale->get_data_by_id('crm_sale_forcast',$input_array['id']); 
@@ -457,7 +757,11 @@ $app->post('/sales/customer/sale-forcast/get-sale-forcast-by-id', function () us
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-forcast/add-sale-forcast-list', function () use ($app) {
+=======
+/* $app->post('/sales/customer/sale-forcast/add-sale-forcast-list', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	 foreach($input as $key => $val){
@@ -467,14 +771,24 @@ $app->post('/sales/customer/sale-forcast/add-sale-forcast-list', function () use
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/customer/sale-forcast/update-sale-forcast-list', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->update_sale_forcast_list($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -484,10 +798,17 @@ $app->post('/sales/customer/sale-forcast/update-sale-forcast-list', function () 
 $app->post('/sales/customer/sale-forcast/delete-sale-forcast-list', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
 	$result = $objcustomersale->delete_update_status('crm_sale_forcast','status',$input_array['id']);
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_forcast', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
@@ -502,23 +823,39 @@ $app->post('/sales/customer/sale-forcast/delete-sale-forcast-list', function () 
 $app->post('/sales/customer/sale-forcast/add-sale-forcast-items', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->add_sale_forcast_list_items($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/sales/customer/sale-forcast/get-sale-forcast-items-details', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_forcast_list_items($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
@@ -528,10 +865,17 @@ $app->post('/sales/customer/sale-forcast/get-sale-forcast-items-details', functi
 $app->post('/sales/customer/sale-forcast/delete-sale-forcast-items', function () use ($app) {
 	global $objcustomersale, $input;
 	$input_array = array();
+<<<<<<< HEAD
 	 foreach($input as $key => $val){
 	  $input_array[$key] = $val; 
 	 }
 	$result = $objcustomersale->delete_update_status('crm_sale_forcast_detail','status',$input_array['id']);
+=======
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_forcast_detail', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
@@ -544,9 +888,15 @@ $app->post('/sales/customer/sale-forcast/delete-sale-forcast-items', function ()
 
 $app->post('/sales/customer/sale-forcast/convert-approval', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->convert_approval($input_array);
 	$app->response->setStatus(200);
@@ -556,9 +906,15 @@ $app->post('/sales/customer/sale-forcast/convert-approval', function () use ($ap
 
 $app->post('/sales/customer/sale-forcast/convert-rejected', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->convert_rejected($input_array);
 	$app->response->setStatus(200);
@@ -569,9 +925,15 @@ $app->post('/sales/customer/sale-forcast/convert-rejected', function () use ($ap
 
 $app->post('/sales/customer/sale-forcast/convert-to-order', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->convert_to_order($input_array);
 	$app->response->setStatus(200);
@@ -580,7 +942,11 @@ $app->post('/sales/customer/sale-forcast/convert-to-order', function () use ($ap
 });
 
 
+<<<<<<< HEAD
 $app->post('/sales/customer/sale-forcast/send-for-approval', function () use ($app) {
+=======
+/* $app->post('/sales/customer/sale-forcast/send-for-approval', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
@@ -590,36 +956,58 @@ $app->post('/sales/customer/sale-forcast/send-for-approval', function () use ($a
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
 
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/sales/customer/sale-forcast/add-multiple-approval', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_multiple_approval($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ############	 Sales Group ###########
 
 $app->post('/sales/customer/sale-group/get-sale-group-list', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}	 
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$result = $objcustomersale->get_sale_group_list($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 }); 
 
 
@@ -639,17 +1027,47 @@ $app->post('/sales/customer/sale-group/add-sale-group-list', function () use ($a
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+});
+
+
+$app->post('/sales/customer/sale-group/get-sale-group-list-by-id', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->get_data_by_id('crm_sale_group', $input_array['id']);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+});
+$app->post('/sales/customer/sale-group/add-sale-group-list', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_group_list($input_array);
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 }); 
 $app->post('/sales/customer/sale-group/update-sale-group-list', function () use ($app) { 
 	global $objcustomersale, $input;
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
+=======
+});
+$app->post('/sales/customer/sale-group/update-sale-group-list', function () use ($app) {
+	global $objcustomersale, $input;
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	}
 	$result = $objcustomersale->add_sale_group_list($input_array);
 	$app->response->setStatus(200);
@@ -658,18 +1076,29 @@ $app->post('/sales/customer/sale-group/update-sale-group-list', function () use 
 });
 $app->post('/sales/customer/sale-group/delete-sale-group-list', function () use ($app) {
 	global $objcustomersale, $input;
+<<<<<<< HEAD
 	$input_array = array(); 
 	foreach($input as $key => $val){
 		$input_array[$key] = $val;	
 	}
 	$result = $objcustomersale->delete_update_status('crm_sale_group','status',$input_array['id']);
+=======
+	$input_array = array();
+	foreach ($input as $key => $val) {
+		$input_array[$key] = $val;
+	}
+	$result = $objcustomersale->delete_update_status('crm_sale_group', 'status', $input_array['id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 
 
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

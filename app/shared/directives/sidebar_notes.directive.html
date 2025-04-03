@@ -9,6 +9,7 @@
 <toaster-container toaster-options="{'toaster-id': 3,'position-class': 'toast-top-right', 'close-button':true}">
 </toaster-container>
 
+<<<<<<< HEAD
 <span class="mbri-edit2"
       ng-click="openNotesModal()"></span>
 <span ng-show="total > 0 && moduleTracker.module.record"
@@ -78,6 +79,42 @@
                     <div class="col-md-8 ipwe righttoleft"
                          ng-hide="addNote || editMode"
                          style="padding-left: 0;">
+=======
+<span class="mbri-edit2 comm-btn" ng-click="openNotesModal()"> </span>
+<!-- Notes -->
+<span ng-show="total > 0 && moduleTracker.module.record" class="sidebarNotification" ng-click="openNotesModal()">{{total}}</span>
+
+<div id="sidebar-notes" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg2 leftsidebar-container leftsidebar-notes" style="    margin-top: 50px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" ng-click="clearNotesVars()" class="close" data-dismiss="modal">&times;</button>
+                <a class="btn btn-default2 pull-left" style="margin: -4px 0 !important;" ng-click="showAddNote()" ng-show="addNote">
+                    <i style="font-size: 14px;" class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <h4 class="modal-title">Notes</h4>
+            </div>
+            <div class="modal-body" style="    min-height: 263px;">
+                <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader || showLoader}"></div>
+
+                <div class="row" style="margin-bottom: 0 !important;    padding-bottom: 8px;">
+                    <div class="col-md-4" ng-hide="addNote">
+                        <div class="input-symbol" style="display: inline">
+                            <input type="text" tabindex="1" ng-keydown="$event.keyCode === 13 && resetPageAndGetComments()" ng-model="filterObject.multipleColumnSearch" placeholder="Search" class="form-control pull-left" style="width: calc(100% - 89px);" />
+                            <i class="material-icons" ng-click="filterObject.multipleColumnSearch = '';clearFilterAndGetComments()" ng-if="filterObject.multipleColumnSearch">
+                                clear
+                            </i>
+                        </div>
+                        <button ng-click="resetPageAndGetComments()" tabindex="2" class="btn btn-default2 btn-focus" style="box-shadow: none;" type="button"><i class="fa fa-search"></i>
+                        </button>
+                        <a ng-click="bringNamesForNotes(moduleTracker.module.name); showAddNote()" class="pull-right btn btn_add2" tabindex="3">
+                            Add
+                        </a>
+                    </div>
+                    <div class="col-md-8 ipwe righttoleft" ng-show="addNote" style=" margin-bottom: 13px;"><b style="font-size: 14px;">{{editMode == true?"Edit":"Add a
+                            new"}} Note</b></div>
+                    <div class="col-md-8 ipwe righttoleft" ng-hide="addNote || editMode" style="padding-left: 0;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <span style="   float: left;
                                         display: block;
                                         overflow: hidden;
@@ -85,9 +122,13 @@
                                         text-overflow: ellipsis;
                                         color: black;"><b ng-if="focused.subject">Subject:&nbsp</b><span
                                   style="font-weight: normal">{{focused.subject}}</span></span>
+<<<<<<< HEAD
                         <span class="pull-right"
                               ng-show="focused.subject"
                               style="
+=======
+                        <span class="pull-right" ng-show="focused.subject" style="
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             
                                             display: block;
                                             overflow: hidden;
@@ -100,6 +141,7 @@
 
                 <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader}"></div>
 
+<<<<<<< HEAD
                 <div class="row"
                      style="margin-bottom: 0 !important;    padding-bottom: 8px;">
                     <div class="col-md-4 righttoleft"
@@ -116,12 +158,20 @@
                                      class="{{file.fileType}}clr"
                                      ng-repeat="comment in recod_coments"
                                      ng-class="focused.id == comment.id?'highlightdoc':''">
+=======
+                <div class="row" style="margin-bottom: 0 !important;    padding-bottom: 8px;">
+                    <div class="col-md-4 righttoleft" ng-hide="addNote">
+                        <tabset class="modaltabs" style="    margin-top: -6px;">
+                            <tab active="bringingLimitedRecords" ng-init="getComments()" ng-click="getComments()" ng-if="moduleTracker.module.record" heading="{{moduleTracker.module.recordName}}">
+                                <div class="mydocs" ng-click="updateFocusedNote(comment)" class="{{file.fileType}}clr" ng-repeat="comment in recod_coments" ng-class="focused.id == comment.id?'highlightdoc':''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div class="mynotessubject">
                                         <b>{{comment.receiver_name}}</b>
                                     </div>
                                     <div class="mynotesrecord">{{comment.subject}}</div>
                                     <div class="mynotescomment">{{comment.description}}</div>
                                     <div class="mynotesmodule">{{comment.module_name}}</div>
+<<<<<<< HEAD
                                     <div class="createdby"><b>{{comment.created_by_email}}</b> on
                                         {{comment.date_created_without_seconds}}</div>
                                 </div>
@@ -134,25 +184,43 @@
                                      class="{{file.fileType}}clr"
                                      ng-repeat="comment in recod_coments"
                                      ng-class="focused.id == comment.id?'highlightdoc':''">
+=======
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on {{comment.date_created_without_seconds}}
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab ng-click="getComments(1)" ng-if="!moduleTracker.module.record" heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                <div class="mydocs" ng-click="updateFocusedNote(comment)" class="{{file.fileType}}clr" ng-repeat="comment in recod_coments" ng-class="focused.id == comment.id?'highlightdoc':''">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <div class="mynotessubject">
                                         <b>{{comment.receiver_name}} </b>
                                     </div>
                                     <div class="mynotesrecord">{{comment.subject}} </div>
                                     <div class="mynotescomment">{{comment.description}}</div>
                                     <div class="mynotesmodule">{{comment.module_name}}</div>
+<<<<<<< HEAD
                                     <div class="createdby"><b>{{comment.created_by_email}}</b> on
                                         {{comment.date_created_without_seconds}}</div>
+=======
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on {{comment.date_created_without_seconds}}
+                                    </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 </div>
                             </tab>
 
                         </tabset>
+<<<<<<< HEAD
                         <div class="text-center norecordmessage"
                              ng-if="recod_coments.length == 0">
+=======
+                        <div class="text-center norecordmessage" ng-if="recod_coments.length == 0">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <span class="mbri-edit2"></span>
                             <div>No Notes found! Add one now!</div>
                         </div>
                         <div style="margin-top: 8px;">{{total || '0'}} Record(s)
                         </div>
+<<<<<<< HEAD
                         <div id="pagination_wrapper" ng-show="item_paging.total_pages > 1"> 
                             <ul class="pagination"
                                 style=" margin: 0 auto;
@@ -182,20 +250,47 @@
                                     ng-class="{'active': value == item_paging.cpage}">
                                     <a ng-click="filterObject.selectedPage = value; getComments();"
                                        href="javascript: void(0);">
+=======
+                        <div id="pagination_wrapper" ng-show="item_paging.total_pages > 1">
+                            <ul class="pagination" style=" margin: 0 auto;
+                                    padding: 0 !important;
+                                    float: left !important;
+                                    margin-top: -7px;
+                                    display: table !important;">
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = 1; getComments();" href="javascript: void(0);" ng-class="{'disable-el dont-click': item_paging.cpage == 1}">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i><i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ng-click="filterObject.selectedPage = item_paging.ppage; getComments();" href="javascript: void(0);" ng-class="{'disable-el dont-click': item_paging.cpage == 1}" class="">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                </li>
+                                <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}">
+                                    <a ng-click="filterObject.selectedPage = value; getComments();" href="javascript: void(0);">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         <span ng-bind="value"></span>
                                     </a>
                                 </li>
                                 <li>
+<<<<<<< HEAD
                                     <a ng-click="filterObject.selectedPage = item_paging.npage; getComments();"
                                        href="javascript: void(0);"
                                        ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+=======
+                                    <a ng-click="filterObject.selectedPage = item_paging.npage; getComments();" href="javascript: void(0);" ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                            class="fa fa-angle-right"
                                            aria-hidden="true"></i></a>
                                 </li>
                                 <li>
+<<<<<<< HEAD
                                     <a ng-click="filterObject.selectedPage = item_paging.total_pages; getComments();"
                                        href="javascript: void(0);"
                                        ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+=======
+                                    <a ng-click="filterObject.selectedPage = item_paging.total_pages; getComments();" href="javascript: void(0);" ng-class="{'disable-el dont-click': item_paging.cpage == item_paging.total_pages}"><i
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                            class="fa fa-angle-right"
                                            aria-hidden="true"></i><i class="fa fa-angle-right"
                                            aria-hidden="true"></i></a>
@@ -203,24 +298,34 @@
                             </ul>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-8 righttoleft"
                          ng-show="focused.id && !addNote"
                          style="padding-left: 0;">
                         <div class="focusedcomments"
                              ng-bind-html="formatComment(focused.description)"></div>
+=======
+                    <div class="col-md-8 righttoleft" ng-show="focused.id && !addNote" style="padding-left: 0;">
+                        <div class="focusedcomments" ng-bind-html="formatComment(focused.description)"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         <!-- <div class="pull-right"
                              ng-click="editThis(focused.id)">
                             <a class="btn btn-edit">Edit</a>
                         </div> -->
                         <div class="cleafix">
                             <div class="pull-left focusedcreated">
+<<<<<<< HEAD
                                 by {{focused.created_by}} on {{focused.date_created}} | <b
                                    ng-click="editThis(focused.id)"
                                    class="edit-notes"><i class="fa fa-edit"></i> Edit Note</b>
+=======
+                                by {{focused.created_by}} on {{focused.date_created}} | <b ng-click="editThis(focused.id)" class="edit-notes"><i class="fa fa-edit"></i> Edit Note</b>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <div class="col-md-12 righttoleft"
                          ng-show="addNote && !editMode">
                         <div class="email-area">
@@ -233,6 +338,13 @@
                                         id=""
                                         class="form-control"
                                         style="width: 30%;">
+=======
+                    <div class="col-md-12 righttoleft" ng-show="addNote && !editMode">
+                        <div class="email-area">
+                            <b>Module</b>
+                            <div class="email-input">
+                                <select ng-init="moduleTracker.module.name?(bringAttachmentNames()):'0'" ng-model="selectedNotesModule" ng-change="bringNamesForNotes()" name="" id="" class="form-control" style="width: 30%;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <option selected
                                             disabled
                                             value="">Select Module</option>
@@ -250,6 +362,7 @@
                                 </select>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="email-area"
                              ng-show="allNames.length">
                             <b> Record</b>
@@ -257,6 +370,12 @@
                                 <ui-select ng-model="selectedNotesRecord"
                                            ng-change="updateNotesRecord(selectedNotesRecord)"
                                            style="width: 30%;">
+=======
+                        <div class="email-area" ng-show="allNames.length">
+                            <b> Record</b>
+                            <div class="email-input">
+                                <ui-select ng-model="selectedNotesRecord" ng-change="updateNotesRecord(selectedNotesRecord)" style="width: 30%;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     <ui-select-match placeholder="Select Record Name">{{$select.selected.name}}
                                     </ui-select-match>
                                     <ui-select-choices repeat="opt in allNames | filter: $select.search">
@@ -267,14 +386,20 @@
                         </div>
                     </div>
                     <div class="col-md-8"></div>
+<<<<<<< HEAD
                     <div class="col-md-12 righttoleft"
                          ng-show="addNote">
                         <div class="email-area"
                              ng-show="selectedNotesRecord.id || editMode">
+=======
+                    <div class="col-md-12 righttoleft" ng-show="addNote">
+                        <div class="email-area" ng-show="selectedNotesRecord.id || editMode">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <b>Subject
                                 <span class="required">*</span>
                             </b>
                             <div class="email-input">
+<<<<<<< HEAD
                                 <input type="text"
                                        maxlength="100"
                                        ng-model="coment_data.subject"
@@ -284,10 +409,17 @@
                         </div>
                         <div class="email-area"
                              ng-show="selectedNotesRecord.id || editMode">
+=======
+                                <input type="text" maxlength="100" ng-model="coment_data.subject" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="email-area" ng-show="selectedNotesRecord.id || editMode">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <b>Comments
                                 <span class="required">*</span>
                             </b>
                             <div class="email-input">
+<<<<<<< HEAD
                                 <textarea maxlength="1000"
                                           name=""
                                           id=""
@@ -296,11 +428,15 @@
                                           class="form-control"
                                           ng-model="coment_data.description"
                                           required></textarea>
+=======
+                                <textarea maxlength="1000" name="" id="" cols="30" rows="10" class="form-control" ng-model="coment_data.description" required></textarea>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="modal-footer clearfix"
                  style="border-top: 1px solid #eaeaea;">
                 <a ng-show="editMode"
@@ -311,6 +447,11 @@
                    ng-class="{'disable-el2': !coment_data.subject || !coment_data.description}"
                    ng-show="addNote"
                    ng-click="addcomment(coment_data)">Save</a>
+=======
+            <div class="modal-footer clearfix" style="border-top: 1px solid #eaeaea;">
+                <a ng-show="editMode" href="#" class="btn btn-delete" ng-click="delete_coment(focused.id)">Delete</a>
+                <a class="btn btn-submit2" ng-class="{'disable-el2': !coment_data.subject || !coment_data.description}" ng-show="addNote" ng-click="addcomment(coment_data)">Save</a>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 <!-- <button type="button"
                         ng-click="clearNotesVars()"

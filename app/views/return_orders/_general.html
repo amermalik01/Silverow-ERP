@@ -1,7 +1,11 @@
 <div class="widget">
     <div class="widget-body widget_media_ipad">
         <div class="row">
+<<<<<<< HEAD
             <div class="col-md-12">    
+=======
+            <div class="col-md-12">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <h5 class="sales_heading" style="float:left;" ng-if="rec.type2==1">Credit Note</h5>
                 <h5 class="sales_heading" style="float:left;" ng-if="rec.type2==2">Posted Credit Note</h5>
 
@@ -11,6 +15,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+<<<<<<< HEAD
                 
                 <div class="col-md-3 col-md-3">
                     <div class="form-group">
@@ -31,6 +36,20 @@
                                        type="text"
                                        ng-model="rec.return_invoice_code"
                                        class="form-control" />
+=======
+
+                <div class="col-md-3 col-md-3">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" ng-if="rec.type2==1">Credit Note No.</label>
+                        <label class="col-md-4 control-label" ng-if="rec.type2==2">Posted CN No.</label>
+
+                        <div class="col-md-8">
+                            <div ng-if="rec.type2==1">
+                                <input ng-readonly="product_type" type="text" ng-model="rec.return_order_code" class="form-control" />
+                            </div>
+                            <div ng-show="rec.type2==2">
+                                <input ng-readonly="product_type" type="text" ng-model="rec.return_invoice_code" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </div>
                         </div>
                     </div>
@@ -38,6 +57,7 @@
                         <label class="col-md-4 control-label">Customer No.<span ng-if="rec.id == 0"class="required"> *</span></label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <div class="input-symbol"
                                  ng-class="{'dont-click':check_so_readonly}">
                                 <input type="text"
@@ -48,10 +68,15 @@
                                        ng-model="rec.sell_to_cust_no"
                                        ng-click="getCustomer(1)"
                                        readonly />
+=======
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                <input type="text" ng-class="{'white_bg':!check_so_readonly}" required id="sell_to_cust_no" class="form-control" ng-model="rec.sell_to_cust_no" ng-click="getCustomer(1)" readonly />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
 
 
+<<<<<<< HEAD
                             <input type="hidden"
                                    id="hdn_currency_code"
                                    class="hdn_currency_code"
@@ -73,12 +98,20 @@
                                    id="hdn_customer_posting_group"
                                    ng-model="hdn_customer_posting_group"
                                    name="hdn_customer_posting_group">
+=======
+                            <input type="hidden" id="hdn_currency_code" class="hdn_currency_code" ng-model="hdn_currency_code" name="hdn_currency_code">
+                            <input type="hidden" id="sell_to_cust_id" ng-model="rec.sell_to_cust_id" name="sell_to_cust_id">
+                            <input type="hidden" id="hdn_gen_bus_posting_group" ng-model="hdn_gen_bus_posting_group" name="hdn_gen_bus_posting_group">
+                            <input type="hidden" id="hdn_vat_bus_posting_group" ng-model="hdn_vat_bus_posting_group" name="hdn_vat_bus_posting_group">
+                            <input type="hidden" id="hdn_customer_posting_group" ng-model="hdn_customer_posting_group" name="hdn_customer_posting_group">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Name</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_cust_name"
                                    id="sell_to_cust_name"
@@ -100,6 +133,16 @@
                                        ng-click="getSalesInvoices()"
                                        readonly
                                        ng-class="{'white_bg':!check_so_readonly}" />
+=======
+                            <input type="text" ng-model="rec.sell_to_cust_name" id="sell_to_cust_name" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" tabindex="3" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Apply to Sales Invoices">Apply to SI</label>
+                        <div class="col-md-8">
+                            <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                <input type="text" ng-model="rec.sale_invoice" id="sale_invoice" class="form-control" ng-click="getSalesInvoices()" readonly ng-class="{'white_bg':!check_so_readonly}" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
@@ -110,50 +153,67 @@
                         <label class="col-md-4 control-label">Address Line 1</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_address"
                                    id="sell_to_address"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer"
                                    tabindex="4" />
+=======
+                            <input type="text" ng-model="rec.sell_to_address" id="sell_to_address" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" tabindex="4" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Address Line 2</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_address2"
                                    id="sell_to_address2"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                            <input type="text" ng-model="rec.sell_to_address2" id="sell_to_address2" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">City</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_city"
                                    id="sell_to_city"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                            <input type="text" ng-model="rec.sell_to_city" id="sell_to_city" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">County</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_county"
                                    id="sell_to_county"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                            <input type="text" ng-model="rec.sell_to_county" id="sell_to_county" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" title="Postcode/Country">Postcode/Co.</label>
                         <div class="col-md-4 pr0">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.sell_to_post_code"
                                    id="sell_to_post_code"
@@ -166,6 +226,12 @@
                                     ng-options="opt as opt.code for opt in country_type_arr track by opt.id"
                                     class="form-control "
                                     disabled>
+=======
+                            <input type="text" ng-model="rec.sell_to_post_code" id="sell_to_post_code" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+                        </div>
+                        <div class="col-md-4" style="padding-left: 5px;">
+                            <select ng-model="rec.country_ids" ng-options="opt as opt.code for opt in country_type_arr track by opt.id" class="form-control " disabled>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             </select>
                         </div>
                     </div>
@@ -177,11 +243,15 @@
                         <label class="col-md-4 control-label">Telephone </label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.cust_phone"
                                    id="cust_phone"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                            <input type="text" ng-model="rec.cust_phone" id="cust_phone" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
                     <div class="form-group">
@@ -189,6 +259,7 @@
 
                         <div class="col-md-8">
 
+<<<<<<< HEAD
                             <input type="hidden"
                                    id="sell_to_contact_id"
                                    ng-model="rec.sell_to_contact_id"
@@ -204,6 +275,12 @@
                                        ng-click="getAltContact()"
                                        readonly
                                        ng-class="{'white_bg':!check_so_readonly}" />
+=======
+                            <input type="hidden" id="sell_to_contact_id" ng-model="rec.sell_to_contact_id" name="sell_to_contact_id">
+
+                            <div class="input-symbol" ng-class="{'dont-click':(check_so_readonly && !check_cn_readonly)}">
+                                <input type="text" style="padding-right: 29px;" id="sell_to_contact_no" class="form-control" ng-model="rec.sell_to_contact_no" ng-click="getAltContact()" readonly ng-class="{'white_bg':!check_so_readonly}" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
@@ -220,11 +297,15 @@
                         <label class="col-md-4 control-label">Email</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <input type="text"
                                    ng-model="rec.cust_email"
                                    id="cust_email"
                                    class="form-control"
                                    ng-disabled="check_so_readonly || !rec.anonymous_customer" />
+=======
+                            <input type="text" ng-model="rec.cust_email" id="cust_email" class="form-control" ng-disabled="(check_so_readonly || !rec.anonymous_customer) && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
@@ -232,6 +313,7 @@
                         <label class="col-md-4 control-label">Salesperson</label>
 
                         <div class="col-md-8">
+<<<<<<< HEAD
                             <div class="input-symbol"
                                  ng-class="{'dont-click':check_so_readonly}">
                                 <input type="text"
@@ -246,11 +328,17 @@
                                        ng-model="rec.sale_person_id"
                                        id="sale_person_id"
                                        class="form-control" />
+=======
+                            <div class="input-symbol" ng-class="{'dont-click':(check_so_readonly && !check_cn_readonly)}">
+                                <input type="text" ng-model="rec.sale_person" id="sale_person" class="form-control" style="padding-right: 29px;" ng-click="getSalePerson()" readonly ng-class="{'white_bg':!check_so_readonly}" />
+                                <input type="hidden" ng-model="rec.sale_person_id" id="sale_person_id" class="form-control" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 <span><i class="fa fa-external-link"></i></span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <label class="col-md-4 control-label"
                                >Claim No.</label>
 
@@ -260,6 +348,12 @@
                                    id="cust_order_no"
                                    class="form-control"
                                    ng-readonly="check_so_readonly" />
+=======
+                        <label class="col-md-4 control-label">Claim No.</label>
+
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.cust_order_no" id="cust_order_no" class="form-control" ng-readonly="check_so_readonly && !check_cn_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
@@ -284,6 +378,7 @@
 
                         <div class="col-md-8">
 
+<<<<<<< HEAD
                             <input jqdatepicker
                                    class="2date-picker form-control "
                                    id="posting_date"
@@ -294,6 +389,11 @@
                                    ng-class="{'pickdate':!check_so_readonly}">
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span id="date_msg_leave_order"
                                   style="color:#F00; display: none;">Posting Date is earlier than Claim Date</span>
+=======
+                            <input jqdatepicker class="2date-picker form-control " id="posting_date" ng-model="rec.posting_date" ng-change="testdate_by_id('offer_date','posting_date','date_msg_leave_order'); CalculateDueDate(rec.posting_date);" readonly="" ng-disabled="check_so_readonly"
+                                ng-class="{'pickdate':!check_so_readonly}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span id="date_msg_leave_order" style="color:#F00; display: none;">Posting Date is earlier than Claim Date</span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
@@ -302,6 +402,7 @@
 
                         <div class="col-md-8">
 
+<<<<<<< HEAD
                             <input jqdatepicker
                                    class="2date-picker form-control "
                                    id="offer_date"
@@ -311,10 +412,14 @@
                                    readonly=""
                                    ng-disabled="check_so_readonly"
                                    ng-class="{'pickdate':!check_so_readonly}">
+=======
+                            <input jqdatepicker class="2date-picker form-control " id="offer_date" ng-model="rec.offer_date" ng-change="testdate_by_id('offer_date','posting_date','date_msg_leave_order')" required="" readonly="" ng-disabled="check_so_readonly" ng-class="{'pickdate':!check_so_readonly}">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span></div>
                     </div>
 
                     <div class="form-group">
+<<<<<<< HEAD
                         <label class="col-md-4 control-label"
                                title="Requested Receipt Date">Req. Rec. Date</label>
 
@@ -329,12 +434,21 @@
                                    ng-class="{'pickdate':!check_so_readonly}">
                             <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order1"
                                   style="color:#F00; display: none;">Req. Del is earlier than order Date</span></div>
+=======
+                        <label class="col-md-4 control-label" title="Requested Receipt Date">Req. Rec. Date</label>
+
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control " id="requested_delivery_date" ng-model="rec.requested_delivery_date" ng-change="testdate_by_id('offer_date','requested_delivery_date','date_msg_leave_order1')" readonly="" ng-disabled="check_so_readonly"
+                                ng-class="{'pickdate':!check_so_readonly}">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order1" style="color:#F00; display: none;">Req. Del is earlier than order Date</span></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Receipt Date</label>
 
                         <div class="col-md-8">
 
+<<<<<<< HEAD
                             <input jqdatepicker
                                    class="2date-picker form-control  "
                                    id="delivery_date"
@@ -355,6 +469,15 @@
                                    id="prev_code"
                                    class="form-control"
                                    ng-readonly="check_so_readonly" />
+=======
+                            <input jqdatepicker class="2date-picker form-control  " id="delivery_date" ng-model="rec.delivery_date" readonly="" ng-disabled="check_so_readonly" ng-class="{'pickdate':!check_so_readonly}" ng-change="testdate_by_id('offer_date','delivery_date','date_msg_leave_order2')">
+                            <span class="fa fa-calendar  new_ca  form-control-feedback"></span><span id="date_msg_leave_order2" style="color:#F00; display: none;">Delivery date is earlier than order Date</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" title="Prev Code">Previous Code</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.prev_code" id="prev_code" class="form-control" ng-readonly="check_so_readonly" />
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         </div>
                     </div>
 
@@ -362,8 +485,12 @@
             </div>
 
             <!-- ng-show="rec.type2==1"  -->
+<<<<<<< HEAD
             <div class="col-md-12"
                  style="margin-top:10px;">
+=======
+            <div class="col-md-12" style="margin-top:10px;">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 <!-- <div class="col-md-12" ng-show="submit_show_invoicee" >
                     <div class="pull-right">
                         <button class="btn btn-delete active-btns" type="button" ng-click="delete()"

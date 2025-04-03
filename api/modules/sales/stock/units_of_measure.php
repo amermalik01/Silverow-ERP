@@ -16,7 +16,11 @@ $app->post('/sales/stock/unit-measure/units', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/stock/unit-measure/get-unit', function () use ($app) {
+=======
+/* $app->post('/sales/stock/unit-measure/get-unit', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;	
 	$array = array(
 				"id"=> $input->id
@@ -26,7 +30,11 @@ $app->post('/sales/stock/unit-measure/get-unit', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/stock/unit-measure/get-all-unit', function () use ($app) {
 	global $objStock, $input;	
@@ -37,10 +45,13 @@ $app->post('/sales/stock/unit-measure/get-all-unit', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/add-unit', function () use ($app) {
 	global $objStock, $input;
 	
@@ -56,7 +67,10 @@ $app->post('/sales/stock/unit-measure/add-unit', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/update-unit', function () use ($app) {
 	//echo "here";exit;
 	global $objStock, $input;
@@ -72,7 +86,11 @@ $app->post('/sales/stock/unit-measure/update-unit', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/stock/unit-measure/delete-unit', function () use ($app) {
+=======
+/* $app->post('/sales/stock/unit-measure/delete-unit', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;
 	$input_array = array();
 	
@@ -83,6 +101,7 @@ $app->post('/sales/stock/unit-measure/delete-unit', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 
@@ -96,6 +115,11 @@ $app->post('/sales/stock/unit-measure/delete-unit', function () use ($app) {
 
 
 $app->post('/sales/stock/unit-measure/add-unit-record-popup', function () use ($app) {
+=======
+}); */
+
+/* $app->post('/sales/stock/unit-measure/add-unit-record-popup', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;
 	$input_array = array();
 	foreach($input as $key => $val){
@@ -106,9 +130,13 @@ $app->post('/sales/stock/unit-measure/add-unit-record-popup', function () use ($
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 
+=======
+ */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/stock/unit-measure/get-unit-record-popup', function () use ($app) {
 	global $objStock, $input;
@@ -122,8 +150,12 @@ $app->post('/sales/stock/unit-measure/get-unit-record-popup', function () use ($
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
 $app->post('/sales/stock/unit-measure/get-unit-quanitity-record-popup', function () use ($app) {
+=======
+/* $app->post('/sales/stock/unit-measure/get-unit-quanitity-record-popup', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;
 	$input_array = array();
 	foreach($input as $key => $val){
@@ -133,12 +165,18 @@ $app->post('/sales/stock/unit-measure/get-unit-quanitity-record-popup', function
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 ############	End: Unit of Measures Section ##############
 
 
 
 
+=======
+}); */
+############	End: Unit of Measures Section ##############
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/get-unit-setup-list-category', function () use ($app) {
 	global $objStock, $input;
 	$input_array = array();
@@ -151,9 +189,12 @@ $app->post('/sales/stock/unit-measure/get-unit-setup-list-category', function ()
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/get-unit-setup-category', function () use ($app) {
 	global $objStock, $input;
 	$input_array = array();
@@ -166,11 +207,14 @@ $app->post('/sales/stock/unit-measure/get-unit-setup-category', function () use 
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/get-sale-offer-volume-by-type', function () use ($app) {
 	global $objStock, $input; 
 	$input_array = array(); 
@@ -183,6 +227,10 @@ $app->post('/sales/stock/unit-measure/get-sale-offer-volume-by-type', function (
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/stock/unit-measure/add-sale-offer-volume', function () use ($app) {
 	global $objStock, $input; 
 	$input_array = array(); 
@@ -195,6 +243,9 @@ $app->post('/sales/stock/unit-measure/add-sale-offer-volume', function () use ($
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

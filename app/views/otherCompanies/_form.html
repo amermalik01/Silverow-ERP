@@ -1,0 +1,40 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <tabset>
+                <tab heading="General" class="general_information" ng-click="generalInformation()">
+                    <div>
+                        <div class="vertical_space"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" name="addForm" ng-hide="showLoader">
+                            <div ng-include="'app/views/otherCompanies/general_form.html'"></div>
+                        </form>
+                        <!-- <div ng-include="'app/views/otherCompanies/add_storage_type_modal.html'"></div> ng-submit="add_general_warehouse(rec,drp)"  -->
+                    </div>
+                </tab>
+
+                <tab heading="Employees" class="contact_information" ng-click="emplyeesList()">
+                    <div>
+                        <div class="vertical_space"></div>
+                        <div ng-include="'app/views/otherCompanies/hr_listing.html'"></div>
+                        <!-- <form autocomplete="off" class="form-horizontal no-margin parsley-validate" data-validate="parsley" role="form" ng-submit="add_srm_contact(rec2)" name="addForm" validate-form="" novalidate="" ng-hide="showLoader">
+                            <div ng-include="'app/views/otherCompanies/contact_form.html'" ng-show="altContacFormShow"></div>
+                        </form> -->
+                    </div>
+                </tab>
+
+                <!-- <tab heading="Storage Location" class="bin_location_information" ng-click="general_bin_location()">
+                    <div>
+                        <div class="vertical_space"></div>
+                        <div ng-include="'app/views/warehouse/warehouseStorageLocList.html'" ng-show="bin_loc_ListingShow"></div>
+                        <div ng-include="'app/views/warehouse/warehouseStorageLocForm.html'" ng-show="altbin_loc_FormShow"></div>
+                        <div class="vertical_space"></div>
+                        <div ng-include="'app/views/warehouse/_storageLocAddCostModal.html'"></div>
+                    </div>
+                </tab> -->
+            </tabset>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>

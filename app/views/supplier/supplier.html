@@ -1,10 +1,22 @@
 <div ng-controller="SupplierSrmController as table">
     <div ng-include="'app/views/_breadcrumb.html'"></div>
+<<<<<<< HEAD
     <div class="row"><!--  ng-init="get_segment_list();get_country_list();itemselectPage(1)" -->
 
         <a id="prompt" ng-if="allowadd_supplier && show_supplier_add_btn ==1" ui-sref="app.add-supplier" class="btn pull-right btn_add oval">
             <i class="fa fa-plus"></i>
         </a>
+=======
+    <div class="row">
+        <!--  ng-init="get_segment_list();get_country_list();itemselectPage(1)" -->
+        <div class="col-md-12 col-md-12">
+
+            <a id="prompt" ng-if="allowadd_supplier && show_supplier_add_btn ==1" ui-sref="app.add-supplier" title="Add Supplier" class="btn pull-right btn_add ">
+                <!-- oval -->
+                <i class="fa fa-plus fa_display"></i> Add
+            </a>
+        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         <style>
             .hideAdd {
@@ -16,7 +28,11 @@
         <div class="col-md-12 col-md-12">
             <div id="dt_example" class="example_alt_pagination">
                 <div>
+<<<<<<< HEAD
                     <div class="flexiTable" ng-class="{'hideAdd': allowadd_supplier && show_supplier_add_btn ==1}"  x-generate-table x-data="tableData.data" x-table-name="Supplier" x-filter-function="getsrm_list()" x-filter-object="searchKeyword"></div>
+=======
+                    <div class="flexiTable" ng-class="{'hideAdd': allowadd_supplier && show_supplier_add_btn ==1}" x-generate-table x-data="tableData.data" x-table-name="Supplier" x-filter-function="getsrm_list()" x-filter-object="searchKeyword"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 </div>
             </div>
         </div>

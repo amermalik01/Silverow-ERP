@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 [
     {
+=======
+[{
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Invoice Date",
         "field_name": "posting_date",
         "visible": "1",
@@ -393,6 +397,18 @@
         "data_type": "string"
     },
     {
+<<<<<<< HEAD
+=======
+        "title": "VAT Posted",
+        "field_name": "vatPosted",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Linked PO",
         "field_name": "linked_pos_1",
         "visible": "0",

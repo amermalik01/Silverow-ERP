@@ -189,7 +189,11 @@ class Supplier extends Xtreme {
                             s.supplier_code IS NOT NULL AND
                             s.company_id=" . $this->arrUser['company_id'] . " ) as s
                 where 1 " . $where_clause . "";
+<<<<<<< HEAD
         //$Sql = $this->objsetup->whereClauseAppender($Sql, 24);
+=======
+        $Sql = $this->objsetup->whereClauseAppender($Sql, 24);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         /* ,c.country_id */
         /* , 
@@ -204,7 +208,11 @@ class Supplier extends Xtreme {
 
 
         if (!empty($attr['sort_column'])) {
+<<<<<<< HEAD
             $column = 's.' . $attr[sort_column];
+=======
+            $column = 's.' . $attr['sort_column'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($attr['sort_column'] == 'code')
                 $column = 's.' . 'srm_code';
@@ -316,7 +324,11 @@ class Supplier extends Xtreme {
         $subQuery = "SELECT  s.id 
         FROM srm as s 
         WHERE   s.type IN (2,3) AND s.company_id=" . $this->arrUser['company_id'] . " ";
+<<<<<<< HEAD
         //$subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+=======
+        $subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT  s.*,CONCAT(`purch`.`first_name`,' ',`purch`.`last_name`) AS `purchaser_code` 
                 FROM sr_srm_general_sel as s
@@ -360,7 +372,11 @@ class Supplier extends Xtreme {
         }
         //sr_srm_general_sel
 
+<<<<<<< HEAD
         $currency_arr_local = $this->objsetup->get_currencies_list($temp_attr_currency);
+=======
+        $currency_arr_local = $this->objsetup->get_currencies_list();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $response['currency_arr_local']= $currency_arr_local['response'];
 
         $subQuery = "SELECT  id 
@@ -368,7 +384,11 @@ class Supplier extends Xtreme {
                      WHERE  s.type IN (2,3) AND 
                             s.supplier_code IS NOT NULL AND  
                             s.company_id=" . $this->arrUser['company_id'] . " ";
+<<<<<<< HEAD
         //$subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+=======
+        $subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT * FROM (SELECT  *, COUNT(alternateLocID) AS `countLoc`
                                 FROM sr_supplierpurchaseorderlisting
@@ -521,7 +541,11 @@ class Supplier extends Xtreme {
                      WHERE  s.type IN (2,3) AND 
                             s.supplier_code IS NOT NULL AND  
                             s.company_id=" . $this->arrUser['company_id'] . " ";
+<<<<<<< HEAD
         //$subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+=======
+        $subQuery = $this->objsetup->whereClauseAppender($subQuery, 24);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sql = "SELECT * FROM (SELECT
                     `s`.`id`                                              AS `id`,
@@ -927,7 +951,11 @@ class Supplier extends Xtreme {
                                     source_of_crm='" . $source_of_crm . "',
                                     currency_id='$arr_attr[currency_id]',
                                     status_date= '" . $this->objGeneral->convert_date($arr_attr['status_date']) . "',
+<<<<<<< HEAD
                                     status='$arr_attr[status]',
+=======
+                                    status='".$arr_attr['status']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     AddedBy='" . $this->arrUser['id'] . "',
                                     AddedOn='" . current_date . "',
                                     user_id='" . $this->arrUser['id'] . "',
@@ -1036,7 +1064,11 @@ class Supplier extends Xtreme {
                                 ChangedOn='" . current_date . "',
                                 status_date= '" . $this->objGeneral->convert_date($arr_attr['status_date']) . "',
                                 $social_media_str
+<<<<<<< HEAD
                                 status='$arr_attr[status]'
+=======
+                                status='".$arr_attr['status']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 WHERE id = $id 
                                 Limit 1";
 
@@ -1209,7 +1241,11 @@ class Supplier extends Xtreme {
         return array('code' => 'SUP' . $this->objGeneral->module_item_prefix($nubmer), 'number' => $nubmer);
     }
 
+<<<<<<< HEAD
 //------------------ supplier Finance--------------------
+=======
+    //------------------ supplier Finance--------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_finance_listings($attr) {
         $this->objGeneral->mysql_clean($attr);
@@ -1260,7 +1296,11 @@ class Supplier extends Xtreme {
                     LEFT JOIN payment_terms on payment_terms.id = finance.payment_terms_id
                     LEFT JOIN charges as fncharge on fncharge.id = finance.finance_charges_id
                     LEFT JOIN charges as incharge on incharge.id = finance.insurance_charges_id
+<<<<<<< HEAD
                     WHERE supplier_id='$attr[supplier_id]' AND finance.type = 'customer'
+=======
+                    WHERE supplier_id='".$attr['supplier_id']."' AND finance.type = 'customer'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     LIMIT 1";
 
         $RS = $this->objsetup->CSI($Sql);
@@ -1314,7 +1354,11 @@ class Supplier extends Xtreme {
                 LEFT JOIN srm on srm.id=d.supplier_id
                 LEFT JOIN ref_posting_group on ref_posting_group.id=d.posting_group_id
                 LEFT JOIN bank_account ON bank_account.id = d.bank_account_id
+<<<<<<< HEAD
                 WHERE supplier_id=$attr[supplier_id]
+=======
+                WHERE supplier_id=".$attr['supplier_id']."
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 LIMIT 1";
 
         // echo 	$Sql;exit; 
@@ -1347,7 +1391,11 @@ class Supplier extends Xtreme {
         $msg = "";
         $this->objGeneral->mysql_clean($attr);
         
+<<<<<<< HEAD
         $sql_total = "SELECT  id,count(id) as total	FROM srm_finance where  supplier_id='" . $attr[supplier_id] . "'  LIMIT 1 ";
+=======
+        $sql_total = "SELECT  id,count(id) as total	FROM srm_finance where  supplier_id='" . $attr['supplier_id'] . "'  LIMIT 1 ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $rs_count = $this->objsetup->CSI($sql_total);
         $doc_id = $rs_count->fields['id'];
@@ -1432,7 +1480,11 @@ class Supplier extends Xtreme {
             $msg = "Inserted";
             $Sql = "INSERT INTO srm_finance
                                 SET
+<<<<<<< HEAD
                                     supplier_id='$attr[supplier_id]',
+=======
+                                    supplier_id='".$attr['supplier_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     type='1',
                                     account_payable_id='$account_payable_id',
                                     overrider_id='$attr[overrider_id]',
@@ -1571,10 +1623,17 @@ class Supplier extends Xtreme {
 
             $Sql = "INSERT INTO srm_price_offer_listing
 						SET
+<<<<<<< HEAD
 						      crm_id = '$attr[crm_id]',
 						      offered_by = '$attr[offered_by]',
 						      offered_by_id = '$attr[offered_by_id]',
 						      product_id = '$attr[product_id]',
+=======
+						      crm_id = '".$attr['crm_id']."',
+						      offered_by = '".$attr['offered_by']."',
+						      offered_by_id = '".$attr['offered_by_id']."',
+						      product_id = '".$attr['product_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						      product_code = '$attr[product_code]',
 						      product_description = '$attr[product_description]',
 						      offer_method_id = '$attr[offer_method_id]',
@@ -1593,9 +1652,15 @@ class Supplier extends Xtreme {
 
             $Sql = "UPDATE srm_price_offer_listing
 						   SET
+<<<<<<< HEAD
 						        offered_by = '$attr[offered_by]',
 						        offered_by_id = '$attr[offered_by_id]',
 						        product_id = '$attr[product_id]',
+=======
+						        offered_by = '".$attr['offered_by']."',
+						        offered_by_id = '".$attr['offered_by_id']."',
+						        product_id = '".$attr['product_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						        product_code = '$attr[product_code]',
 						        product_description = '$attr[product_description]',
 						        offer_method_id = '$attr[offer_method_id]',
@@ -1711,10 +1776,17 @@ class Supplier extends Xtreme {
 
             $Sql = "INSERT INTO srm_price_offer_listing
 						        SET
+<<<<<<< HEAD
 						            crm_id = '$attr[crm_id]',
 						            offered_by = '$attr[offered_by]',
 						            offered_by_id = '$attr[offered_by_id]',
 						            product_id = '$attr[product_id]',
+=======
+						            crm_id = '".$attr['crm_id']."',
+						            offered_by = '".$attr['offered_by']."',
+						            offered_by_id = '".$attr['offered_by_id']."',
+						            product_id = '".$attr['product_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						            product_code = '$attr[product_code]',
 						            product_description = '$attr[product_description]',
 						            offer_method_id = '$attr[offer_method_id]',
@@ -1733,9 +1805,15 @@ class Supplier extends Xtreme {
 
             $Sql = "UPDATE srm_price_offer_listing
 						   SET
+<<<<<<< HEAD
 						        offered_by = '$attr[offered_by]',
 						        offered_by_id = '$attr[offered_by_id]',
 						        product_id = '$attr[product_id]',
+=======
+						        offered_by = '".$attr['offered_by']."',
+						        offered_by_id = '".$attr['offered_by_id']."',
+						        product_id = '".$attr['product_id']."',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						        product_code = '$attr[product_code]',
 						        product_description = '$attr[product_description]',
 						        offer_method_id = '$attr[offer_method_id]',
@@ -1783,7 +1861,11 @@ class Supplier extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
 //------------- Price Offer Volume Module-------------------------
+=======
+    //------------- Price Offer Volume Module-------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_supplier_list_product_id($attr) {
 
         $this->objGeneral->mysql_clean($attr);
@@ -1809,7 +1891,11 @@ class Supplier extends Xtreme {
                         ,srm_volume_discount.product_code
                         FROM srm_volume_discount
                         Left JOIN price_offer_volume  v ON v.id = srm_volume_discount.volume_id
+<<<<<<< HEAD
                         WHERE srm_volume_discount.crm_id='$attr[crm_id]' and srm_volume_discount.status=1
+=======
+                        WHERE srm_volume_discount.crm_id='".$attr['crm_id']."' and srm_volume_discount.status=1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         order by srm_volume_discount.id DESC";
 
 
@@ -1893,7 +1979,11 @@ class Supplier extends Xtreme {
 
 
             $Sql = "INSERT INTO srm_volume_discount_listing
+<<<<<<< HEAD
 						SET crm_id = '$attr[crm_id]',offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',product_id = '$attr[product_id]',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "' ,offer_date ='" . $this->objGeneral->convert_date($attr['offer_date']) . "'  ,user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+						SET crm_id = '".$attr['crm_id']."',offered_by = '".$attr['offered_by']."',offered_by_id = '".$attr['offered_by_id']."',product_id = '".$attr['product_id']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "' ,offer_date ='" . $this->objGeneral->convert_date($attr['offer_date']) . "'  ,user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             //	$doc_id = $this->Conn->Insert_ID();$new='Inserted';
@@ -1903,7 +1993,11 @@ class Supplier extends Xtreme {
 
 
             $Sql = "UPDATE srm_volume_discount_listing
+<<<<<<< HEAD
 	SET offered_by = '$attr[offered_by]',offered_by_id = '$attr[offered_by_id]',product_id = '$attr[product_id]',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "',offer_date ='" . $this->objGeneral->convert_date($attr['offer_date']) . "' where id='".$attr['id']."'";
+=======
+	SET offered_by = '".$attr['offered_by']."',offered_by_id = '".$attr['offered_by_id']."',product_id = '".$attr['product_id']."',product_code = '$attr[product_code]',product_description = '$attr[product_description]',offer_method_id = '$attr[offer_method_id]', offer_valid_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "',offer_date ='" . $this->objGeneral->convert_date($attr['offer_date']) . "' where id='".$attr['id']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         $RS = $this->objsetup->CSI($Sql);
 
@@ -1978,7 +2072,11 @@ class Supplier extends Xtreme {
         $Sql = "UPDATE srm_volume_discount 
 			SET  
 			status=0
+<<<<<<< HEAD
 			WHERE id = ".$attr['id']." Limit 1";
+=======
+			WHERE id = ".$arr_attr['id']." Limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2091,13 +2189,21 @@ class Supplier extends Xtreme {
             $response['product_id'] = $product_id;
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['msg'] = $message;
+=======
+            $response['msg'] = NULL;//$message;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $response['info'] = $new;
             $response['tab_change'] = $tab_change;
         } else {
             $response['ack'] = 0;
             $response['error'] = 'Record not updated!';
+<<<<<<< HEAD
             $response['msg'] = $message;
+=======
+            $response['msg'] = 'Record not updated!';//$message;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         return $response;
@@ -2261,11 +2367,19 @@ class Supplier extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
 //----------SRM shiping Module----------------------------
 
     function get_shipping($attr) {
         /* 	global $objFilters;
           $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr[crm_id]),2=>array('document.type'=>2));
+=======
+    //----------SRM shiping Module----------------------------
+
+    function get_shipping($attr) {
+        /* 	global $objFilters;
+          $where = array(0=>array('document.module_id'=>19),1=>array('document.row_id'=>$attr['crm_id']),2=>array('document.type'=>2));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           return $objFilters->get_module_listing(12, "document",'','',$attr[more_fields],'',$where);
          */
 
@@ -2318,11 +2432,16 @@ class Supplier extends Xtreme {
     }
 
     function add_supplier_shipping($arr_attr) {
+<<<<<<< HEAD
         $doc_id = $arr_attr[update_id];
+=======
+        $doc_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($doc_id > 0) {
 
             $Sql = "UPDATE  shipping_agent_sale SET  
+<<<<<<< HEAD
 									offered_by='" . $arr_attr[offered_by] . "'
 									,offered_by_id='" . $arr_attr[offered_by_id] . "'
 									,price_method='" . $arr_attr[price_method] . "' 
@@ -2334,16 +2453,36 @@ class Supplier extends Xtreme {
 									,valid_to_id='" . $arr_attr[valid_to_id] . "' 
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
+=======
+									offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $doc_id . "  Limit 1";
             $RS = $this->objsetup->CSI($Sql);
         } else {
 
             $Sql = "INSERT INTO srm_agent_area SET  							
 									
+<<<<<<< HEAD
 									 coverage_area='" . $arr_attr[coverage_area] . "'
 									,coverage_area_id='" . $arr_attr[coverage_area_id] . "'
 									
 									,crm_id='" . $arr_attr[crm_id] . "'
+=======
+									 coverage_area='" . $arr_attr['coverage_area'] . "'
+									,coverage_area_id='" . $arr_attr['coverage_area_id'] . "'
+									
+									,crm_id='" . $arr_attr['crm_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									,status='1'  
 									,company_id='" . $this->arrUser['company_id'] . "' 
 									,user_id='" . $this->arrUser['id'] . "'
@@ -2353,8 +2492,13 @@ class Supplier extends Xtreme {
             $sale_id = $this->Conn->Insert_ID();
 
             //$price_id= explode(",",  $arr_attr[coverage_price]);
+<<<<<<< HEAD
             $sale_name_id = explode(",", $arr_attr[coverage_area_id]);
             $area_name = explode(",", $arr_attr[coverage_area]);
+=======
+            $sale_name_id = explode(",", $arr_attr['coverage_area_id']);
+            $area_name = explode(",", $arr_attr['coverage_area']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($sale_name_id as $key => $area_id) {
@@ -2388,15 +2532,25 @@ class Supplier extends Xtreme {
     function add_cusomer($arr_attr) {
 
         // $counter_supplier++;
+<<<<<<< HEAD
         $sale_customer_id = $arr_attr[update_id];
+=======
+        $sale_customer_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($sale_customer_id > 0) {
             $Sql = "DELETE FROM shipping_agent WHERE sale_id = $sale_customer_id";
             $RS = $this->objsetup->CSI($Sql);
 
+<<<<<<< HEAD
             $coverage_area2 = explode(",", $arr_attr[coverage_area2]);
             $coverage_area_id2 = explode(",", $arr_attr[coverage_area_id2]);
             $coverage_price2 = explode(",", $arr_attr[coverage_price2]);
+=======
+            $coverage_area2 = explode(",", $arr_attr['coverage_area2']);
+            $coverage_area_id2 = explode(",", $arr_attr['coverage_area_id2']);
+            $coverage_price2 = explode(",", $arr_attr['coverage_price2']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($coverage_area_id2 as $key => $customer_id) {
@@ -2415,7 +2569,11 @@ class Supplier extends Xtreme {
                 $i++;
             }
 
+<<<<<<< HEAD
             $Sql = "UPDATE  shipping_agent_sale SET coverage_area='" . $arr_attr[coverage_area2] . "'  
+=======
+            $Sql = "UPDATE  shipping_agent_sale SET coverage_area='" . $arr_attr['coverage_area2'] . "'  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $sale_customer_id . "  Limit 1";
             $RS = $this->objsetup->CSI($Sql);
         }
@@ -2515,11 +2673,16 @@ class Supplier extends Xtreme {
 
     function add_supplier_area_list($arr_attr) {
         $tab_change = 'tab_doc';
+<<<<<<< HEAD
         $doc_id = $arr_attr[update_id];
+=======
+        $doc_id = $arr_attr['update_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($doc_id > 0) {
 
             $Sql = "UPDATE  shipping_agent_sale SET  
+<<<<<<< HEAD
 									offered_by='" . $arr_attr[offered_by] . "'
 									,offered_by_id='" . $arr_attr[offered_by_id] . "'
 									,price_method='" . $arr_attr[price_method] . "' 
@@ -2531,12 +2694,26 @@ class Supplier extends Xtreme {
 									,valid_to_id='" . $arr_attr[valid_to_id] . "' 
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
+=======
+									offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									WHERE id = " . $doc_id . "  Limit 1";
             $RS = $this->objsetup->CSI($Sql);
         } else {
 
             $Sql = "INSERT INTO shipping_agent_sale SET  							
 									
+<<<<<<< HEAD
 									 coverage_area='" . $arr_attr[coverage_area] . "'
 									,coverage_area_id='" . $arr_attr[coverage_area_id] . "'
 									,coverage_price='" . $arr_attr[coverage_price] . "'
@@ -2552,6 +2729,23 @@ class Supplier extends Xtreme {
 									,offer_method='" . $arr_attr[offer_method] . "'
 									,shiping_coments='" . $arr_attr[shiping_coments] . "'
 									,crm_id='" . $arr_attr[crm_id] . "'
+=======
+									 coverage_area='" . $arr_attr['coverage_area'] . "'
+									,coverage_area_id='" . $arr_attr['coverage_area_id'] . "'
+									,coverage_price='" . $arr_attr['coverage_price'] . "'
+									,offered_by='" . $arr_attr['offered_by'] . "'
+									,offered_by_id='" . $arr_attr['offered_by_id'] . "'
+									,price_method='" . $arr_attr['price_method'] . "' 
+									,shipping_method='" . $arr_attr['shipping_method'] . "' 
+									,shipping_quantity='" . $arr_attr['shipping_quantity'] . "'
+									,valid_from='" . $arr_attr['valid_from'] . "'
+									,valid_from_id='" . $arr_attr['valid_from'] . "'
+									,valid_to='" . $arr_attr['valid_to'] . "'
+									,valid_to_id='" . $arr_attr['valid_to_id'] . "' 
+									,offer_method='" . $arr_attr['offer_method'] . "'
+									,shiping_coments='" . $arr_attr['shiping_coments'] . "'
+									,crm_id='" . $arr_attr['crm_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 									,status='1'  
 									,company_id='" . $this->arrUser['company_id'] . "' 
 									,user_id='" . $this->arrUser['id'] . "'
@@ -2561,9 +2755,15 @@ class Supplier extends Xtreme {
             $RS = $this->objsetup->CSI($Sql);
             $sale_id = $this->Conn->Insert_ID();
 
+<<<<<<< HEAD
             $customer_price_id = explode(",", $arr_attr[coverage_price]);
             $sale_name_id = explode(",", $arr_attr[coverage_area_id]);
             $customer_area = explode(",", $arr_attr[coverage_area]);
+=======
+            $customer_price_id = explode(",", $arr_attr['coverage_price']);
+            $sale_name_id = explode(",", $arr_attr['coverage_area_id']);
+            $customer_area = explode(",", $arr_attr['coverage_area']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $i = 0;
             foreach ($sale_name_id as $key => $customer_id) {
@@ -2644,8 +2844,13 @@ class Supplier extends Xtreme {
         $response = array();
         $strWhere = "";
 
+<<<<<<< HEAD
 //        $Sql = "SELECT c.id, c.title,c.description FROM crm_classification c  INNER JOIN company ON company.id=c.company_id
 //            WHERE  c.status=1	 AND c.company_id='" . $this->arrUser['company_id'] . "'  $strWhere ";
+=======
+    //    $Sql = "SELECT c.id, c.title,c.description FROM crm_classification c  INNER JOIN company ON company.id=c.company_id
+    //        WHERE  c.status=1	 AND c.company_id='" . $this->arrUser['company_id'] . "'  $strWhere ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (isset($attr['main_type']))
             $strWhere .= " and c.type =" . $attr["main_type"];
@@ -2707,7 +2912,11 @@ class Supplier extends Xtreme {
 
         if ($arr_attr['id'] == 0) {
 
+<<<<<<< HEAD
             $Sql = "INSERT INTO srm_classification    SET   type=$arr_attr[types],ref_type=$arr_attr[ref_types],`title`='".$arr_attr['title']."',`description`='$arr_attr[description]',created_date='" . current_date . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+            $Sql = "INSERT INTO srm_classification    SET   type=$arr_attr[types],ref_type=$arr_attr[ref_types],`title`='".$arr_attr['title']."',`description`='".$arr_attr['description']."',created_date='" . current_date . "',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $RS = $this->objsetup->CSI($Sql);
             $id = $this->Conn->Insert_ID();
         } else {
@@ -2731,5 +2940,8 @@ class Supplier extends Xtreme {
     }
 
 }
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

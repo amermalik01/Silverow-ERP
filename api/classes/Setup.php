@@ -447,8 +447,13 @@ class Setup extends Xtreme
         // $setupGlobalLastUpdateTime = $attr['setupGlobalLastUpdateTime'];
         $setupGlobalLastUpdateTime = (isset($attr['setupGlobalLastUpdateTime'])) ? $attr['setupGlobalLastUpdateTime']: 0;
 
+<<<<<<< HEAD
 //         error_reporting(E_ALL);
 // ini_set('display_error', 1);
+=======
+        // error_reporting(E_ALL);
+        // ini_set('display_error', 1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if($setupGlobalLastUpdateTime > 0){       
 
@@ -3185,8 +3190,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // Bank Accounts Module
 //-----------------------------------------------------
+=======
+    // Bank Accounts Module
+    //-----------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_bank_accounts($attr)
     {
         // global $objFilters;
@@ -4459,8 +4469,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // Shipping Measurment Module
 //------------------------------------------------
+=======
+    // Shipping Measurment Module
+    //------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_shipping_measurments($attr)
     {
@@ -4627,7 +4642,11 @@ class Setup extends Xtreme
     }
 
     // Shipping Agents Module
+<<<<<<< HEAD
 //------------------------------------------------
+=======
+    //------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_shipping_agents($attr)
     {
@@ -4676,11 +4695,19 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 //-----------------------------------------------//
 //				LEDGER GROUP SECTION             //
 //-----------------------------------------------//
 // Predefines (Constants) Module
 //------------------------------------------------
+=======
+    //-----------------------------------------------//
+    //				LEDGER GROUP SECTION             //
+    //-----------------------------------------------//
+    // Predefines (Constants) Module
+    //------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_predefines($attr)
     {
@@ -10315,11 +10342,19 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 //---------------------------------------------//
 //			HUMAN RESOURCES SECTION            //
 //---------------------------------------------//
 // Cause of Inactivity Module
 //------------------------------------------------
+=======
+    //---------------------------------------------//
+    //			HUMAN RESOURCES SECTION            //
+    //---------------------------------------------//
+    // Cause of Inactivity Module
+    //------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_cause_of_inactivity($attr)
     {
@@ -11017,7 +11052,11 @@ class Setup extends Xtreme
     }
 
     //    department category
+<<<<<<< HEAD
 //------------------------------------------------
+=======
+    //------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
     function get_process_of_decision($attr)
@@ -11186,8 +11225,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // Country Module
 //----------------------------------------------------
+=======
+    // Country Module
+    //----------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_countries($attr)
     {
         //  $this->objGeneral->mysql_clean($attr);
@@ -11341,8 +11385,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // Modules Filters Module
 //----------------------------------------------------
+=======
+    // Modules Filters Module
+    //----------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_modules_filters($attr)
     {
         // global $objFilters;
@@ -11612,7 +11661,11 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 //////////////////////////////////////////////////////////
+=======
+    //////////////////////////////////////////////////////////
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_customer_dropdown($attr)
     {
@@ -11885,8 +11938,13 @@ class Setup extends Xtreme
         return $where;
     }
 
+<<<<<<< HEAD
 // Purchase Offer Volume Module
 //--------------------------------------
+=======
+    // Purchase Offer Volume Module
+    //--------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function get_purchase_offer_volume($attr)
     {
@@ -12136,8 +12194,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // CRM BUYING GROUP Module
 //--------------------------------------------------------------------
+=======
+    // CRM BUYING GROUP Module
+    //--------------------------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function get_buying_group_list($attr)
     {
         $this->objGeneral->mysql_clean($attr);
@@ -12672,11 +12735,19 @@ class Setup extends Xtreme
                     $RS = $this->CSI($Sql);
                     if ($this->Conn->Affected_Rows() > 0) {
                         $ERows1 = 1;
+<<<<<<< HEAD
 //                        $response['ack'] = 1;
 //                        $response['error'] = NULL;
                     } else {
 //                        $response['ack'] = 0;
 //                        $response['error'] = 'Record not updated!';
+=======
+                    //                        $response['ack'] = 1;
+                    //                        $response['error'] = NULL;
+                    } else {
+                    //                        $response['ack'] = 0;
+                    //                        $response['error'] = 'Record not updated!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 } else {
                     $ERows1 = 0;
@@ -12691,6 +12762,7 @@ class Setup extends Xtreme
                 $id = $this->Conn->Insert_ID();
                 if ($id > 0) {
                     $ERows1 = 2;
+<<<<<<< HEAD
 //                    $response['ack'] = 1;
 //                    $response['error'] = NULL;
 //                    $response['Update'] = 0;
@@ -12700,17 +12772,36 @@ class Setup extends Xtreme
 //                    $response['ack'] = 0;
 //                    $response['error'] = 'Record already exist.';
 //                    $response['Update'] = 0;
+=======
+                //    $response['ack'] = 1;
+                //    $response['error'] = NULL;
+                //    $response['Update'] = 0;
+                //    $response['id'] = $id;
+                } else {
+                    $ERows1 = 0;
+                //    $response['ack'] = 0;
+                //    $response['error'] = 'Record already exist.';
+                //    $response['Update'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
             if ($nonSelectedType != "") {
                 $Sql = "UPDATE ref_selected_strategy SET status=0 WHERE $nonSelectedType";
                 $RS = $this->CSI($Sql);
                 if ($this->Conn->Affected_Rows() > 0) {
+<<<<<<< HEAD
 //                    $response['ack'] = 1;
 //                    $response['error'] = NULL;
                 } else {
 //                    $response['ack'] = 0;
 //                    $response['error'] = 'Record not updated!';
+=======
+                //    $response['ack'] = 1;
+                //    $response['error'] = NULL;
+                } else {
+                //    $response['ack'] = 0;
+                //    $response['error'] = 'Record not updated!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
         }
@@ -12742,11 +12833,19 @@ class Setup extends Xtreme
                     $RS = $this->CSI($Sql);
                     if ($this->Conn->Affected_Rows() > 0) {
                         $ERows2 = 1;
+<<<<<<< HEAD
 //                        $response['ack'] = 1;
 //                        $response['error'] = NULL;
                     } else {
 //                        $response['ack'] = 0;
 //                        $response['error'] = 'Record not updated!';
+=======
+                    //    $response['ack'] = 1;
+                    //    $response['error'] = NULL;
+                    } else {
+                    //    $response['ack'] = 0;
+                    //    $response['error'] = 'Record not updated!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
                 } else {
                     $ERows2 = 0;
@@ -12761,6 +12860,7 @@ class Setup extends Xtreme
                 $id = $this->Conn->Insert_ID();
                 if ($id > 0) {
                     $ERows2 = 2;
+<<<<<<< HEAD
 //                    $response['ack'] = 1;
 //                    $response['error'] = NULL;
 //                    $response['Update'] = 0;
@@ -12769,17 +12869,35 @@ class Setup extends Xtreme
 //                    $response['ack'] = 0;
 //                    $response['error'] = 'Record already exist.';
 //                    $response['Update'] = 0;
+=======
+                //    $response['ack'] = 1;
+                //    $response['error'] = NULL;
+                //    $response['Update'] = 0;
+                //    $response['id'] = $id;
+                } else {
+                //    $response['ack'] = 0;
+                //    $response['error'] = 'Record already exist.';
+                //    $response['Update'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
             if ($nonSelectedType != "") {
                 $Sql = "UPDATE ref_selected_strategy SET status=0 WHERE $nonSelectedType";
                 $RS = $this->CSI($Sql);
                 if ($this->Conn->Affected_Rows() > 0) {
+<<<<<<< HEAD
 //                    $response['ack'] = 1;
 //                    $response['error'] = NULL;
                 } else {
 //                    $response['ack'] = 0;
 //                    $response['error'] = 'Record not updated!';
+=======
+                //    $response['ack'] = 1;
+                //    $response['error'] = NULL;
+                } else {
+                //    $response['ack'] = 0;
+                //    $response['error'] = 'Record not updated!';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             }
         }
@@ -14031,8 +14149,13 @@ class Setup extends Xtreme
         return $response;
     }
 
+<<<<<<< HEAD
 // SRM REGION Module
 //--------------------------------------------------------------------
+=======
+    // SRM REGION Module
+    //--------------------------------------------------------------------
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     function add_srm_region($arr_attr)
     {
@@ -14754,8 +14877,13 @@ class Setup extends Xtreme
     }
 
     function getHMRCRefreshToken($attr){
+<<<<<<< HEAD
         // 
         $endpoint_url = 'https://api.service.hmrc.gov.uk/oauth/token';
+=======
+        $endpoint_url = 'https://test-api.service.hmrc.gov.uk/oauth/token';
+        // $endpoint_url = 'https://api.service.hmrc.gov.uk/oauth/token';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $data_to_post = [
             'client_secret' => HMRC_SECRET,
             'client_id' => HMRC_ID,
@@ -14892,6 +15020,7 @@ class Setup extends Xtreme
         else if(isset($_SERVER['REMOTE_ADDR']))
             $ipaddress = $_SERVER['REMOTE_ADDR'];
 
+<<<<<<< HEAD
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/obligations?" . $attr['submitted']);
@@ -14899,6 +15028,24 @@ class Setup extends Xtreme
         // curl_setopt($ch, CURLOPT_POSTFIELDS,$vars);  //Post Fields
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
+=======
+        if (isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
+            $doNotTrack = 'true';
+        }
+        else{
+            $doNotTrack = 'false';
+        }
+
+
+        $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL,"https://test-api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/obligations?" . $attr['submitted']);
+        curl_setopt($ch, CURLOPT_URL,"https://api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/obligations?" . $attr['submitted']);
+        // curl_setopt($ch, CURLOPT_URL,"https://test-api.service.hmrc.gov.uk/test/fraud-prevention-headers/validate");
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS,$vars);  //Post Fields
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $fraudHeaders['Gov-Client-Public-IP'] = $ipaddress;//$_SERVER['REMOTE_ADDR'];
         $fraudHeaders['Gov-Client-Public-Port'] = $_SERVER['REMOTE_PORT'];
         $fraudHeaders['Gov-Client-Device-ID'] = 'f5c486f7-e2d1-11ea-8ec3-c68f78acf4c5';//'';
@@ -14909,12 +15056,23 @@ class Setup extends Xtreme
         $fraudHeaders['Gov-Client-Window-Size'] = $attr['fraudHeaders']->window;
         $fraudHeaders['Gov-Client-Browser-Plugins'] = $attr['fraudHeaders']->browserPlugins;
         $fraudHeaders['Gov-Client-Browser-JS-User-Agent'] = $attr['fraudHeaders']->userAgent;
+<<<<<<< HEAD
         $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $attr['fraudHeaders']->doNotTrack;
         $fraudHeaders['Gov-Client-Multi-Factor'] = '';
         $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
         $fraudHeaders['Gov-Vendor-License-IDs'] = '';
         $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];
         $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&for=" . $fraudHeaders['Gov-Client-Public-IP'];
+=======
+        $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $doNotTrack;//$attr['fraudHeaders']->doNotTrack;
+        $fraudHeaders['Gov-Client-Multi-Factor'] = 'type=TOTP'.'&'.'timestamp='.urlencode($attr['fraudHeaders']->MultiFactortimestamp).'&'.'unique-reference=fa8f8278a1794d7c8c0b13877c54d4349cfb7754e228c883e9208c1a58bacc2d';
+        $fraudHeaders['Gov-Client-Public-IP-Timestamp'] = $attr['fraudHeaders']->publicIPtimestamp;
+        $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
+        $fraudHeaders['Gov-Vendor-License-IDs'] = '';
+        $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];
+        $fraudHeaders['Gov-Vendor-Product-Name'] = 'Silverow';
+        $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&"."for=" . $fraudHeaders['Gov-Client-Public-IP'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         $headers = [
             'Accept: application/vnd.hmrc.1.0+json',
@@ -14933,10 +15091,19 @@ class Setup extends Xtreme
             'Gov-Client-Browser-JS-User-Agent: ' . $fraudHeaders['Gov-Client-Browser-JS-User-Agent'],
             'Gov-Client-Browser-Do-Not-Track: ' . $fraudHeaders['Gov-Client-Browser-Do-Not-Track'],
             'Gov-Client-Multi-Factor: ' . $fraudHeaders['Gov-Client-Multi-Factor'],
+<<<<<<< HEAD
             'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
             'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
             'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
             'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
+=======
+            'Gov-Client-Public-IP-Timestamp: ' . $fraudHeaders['Gov-Client-Public-IP-Timestamp'],
+            'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
+            // 'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
+            'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
+            'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
+            'Gov-Vendor-Product-Name: ' . $fraudHeaders['Gov-Vendor-Product-Name'],
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         ];
 
@@ -14961,6 +15128,10 @@ class Setup extends Xtreme
 
     function submitVATSummary($attr){
         $vrn = $this->getCompanyVRN();
+<<<<<<< HEAD
+=======
+        // $url = "https://test-api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/returns";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $url = "https://api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/returns";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -14985,6 +15156,16 @@ class Setup extends Xtreme
         curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($attr['data']));  //Post Fields
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+<<<<<<< HEAD
+=======
+        if (isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
+            $doNotTrack = 'true';
+        }
+        else{
+            $doNotTrack = 'false';
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $fraudHeaders['Gov-Client-Public-IP'] = $_SERVER['REMOTE_ADDR'];
         $fraudHeaders['Gov-Client-Public-Port'] = $_SERVER['REMOTE_PORT'];
         $fraudHeaders['Gov-Client-Device-ID'] = 'f5c486f7-e2d1-11ea-8ec3-c68f78acf4c5';//'';
@@ -14995,12 +15176,23 @@ class Setup extends Xtreme
         $fraudHeaders['Gov-Client-Window-Size'] = $attr['fraudHeaders']->window;
         $fraudHeaders['Gov-Client-Browser-Plugins'] = $attr['fraudHeaders']->browserPlugins;
         $fraudHeaders['Gov-Client-Browser-JS-User-Agent'] = $attr['fraudHeaders']->userAgent;
+<<<<<<< HEAD
         $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $attr['fraudHeaders']->doNotTrack;
         $fraudHeaders['Gov-Client-Multi-Factor'] = '';
         $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
         $fraudHeaders['Gov-Vendor-License-IDs'] = '';
         $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];
         $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&for=" . $fraudHeaders['Gov-Client-Public-IP'];
+=======
+        $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $doNotTrack;//$attr['fraudHeaders']->doNotTrack; htmlspecialchars()
+        $fraudHeaders['Gov-Client-Multi-Factor'] = 'type=TOTP'.'&'.'timestamp='.urlencode($attr['fraudHeaders']->MultiFactortimestamp).'&'.'unique-reference=fa8f8278a1794d7c8c0b13877c54d4349cfb7754e228c883e9208c1a58bacc2d';
+        $fraudHeaders['Gov-Client-Public-IP-Timestamp'] = $attr['fraudHeaders']->publicIPtimestamp;
+        $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
+        $fraudHeaders['Gov-Vendor-License-IDs'] = '';
+        $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];        
+        $fraudHeaders['Gov-Vendor-Product-Name'] = 'Silverow';
+        $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&"."for=" . $fraudHeaders['Gov-Client-Public-IP'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         $reqheaders = [
             'Accept: application/vnd.hmrc.1.0+json',
@@ -15019,12 +15211,24 @@ class Setup extends Xtreme
             'Gov-Client-Browser-JS-User-Agent: ' . $fraudHeaders['Gov-Client-Browser-JS-User-Agent'],
             'Gov-Client-Browser-Do-Not-Track: ' . $fraudHeaders['Gov-Client-Browser-Do-Not-Track'],
             'Gov-Client-Multi-Factor: ' . $fraudHeaders['Gov-Client-Multi-Factor'],
+<<<<<<< HEAD
             'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
             'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
             'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
             'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
 
         ];
+=======
+            'Gov-Client-Public-IP-Timestamp: ' . $fraudHeaders['Gov-Client-Public-IP-Timestamp'],
+            'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
+            // 'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
+            'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
+            'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
+            'Gov-Vendor-Product-Name: ' . $fraudHeaders['Gov-Vendor-Product-Name'],
+
+        ];
+        // echo '<pre> 3'; print_r($reqheaders);exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $reqheaders);
 
@@ -15049,8 +15253,13 @@ class Setup extends Xtreme
     function getVATSummary($attr){
         $vrn = $this->getCompanyVRN();
         $ch = curl_init();
+<<<<<<< HEAD
         curl_setopt($ch, CURLOPT_URL,"https://api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/returns" . "/" . $attr['periodKey']);
         // https://api.service.hmrc.gov.uk
+=======
+        // curl_setopt($ch, CURLOPT_URL,"https://test-api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/returns" . "/" . $attr['periodKey']);
+        curl_setopt($ch, CURLOPT_URL,"https://api.service.hmrc.gov.uk/organisations/vat/" . $vrn . "/returns" . "/" . $attr['periodKey']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // curl_setopt($ch, CURLOPT_POST, 1);
         // curl_setopt($ch, CURLOPT_POSTFIELDS,$vars);  //Post Fields
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -15069,6 +15278,16 @@ class Setup extends Xtreme
         else if(isset($_SERVER['REMOTE_ADDR']))
             $ipaddress = $_SERVER['REMOTE_ADDR'];
 
+<<<<<<< HEAD
+=======
+        if (isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
+            $doNotTrack = 'true';
+        }
+        else{
+            $doNotTrack = 'false';
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         $fraudHeaders['Gov-Client-Public-IP'] = $ipaddress;//$_SERVER['REMOTE_ADDR'];
         $fraudHeaders['Gov-Client-Public-Port'] = $_SERVER['REMOTE_PORT'];
@@ -15080,12 +15299,23 @@ class Setup extends Xtreme
         $fraudHeaders['Gov-Client-Window-Size'] = $attr['fraudHeaders']->window;
         $fraudHeaders['Gov-Client-Browser-Plugins'] = $attr['fraudHeaders']->browserPlugins;
         $fraudHeaders['Gov-Client-Browser-JS-User-Agent'] = $attr['fraudHeaders']->userAgent;
+<<<<<<< HEAD
         $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $attr['fraudHeaders']->doNotTrack;
         $fraudHeaders['Gov-Client-Multi-Factor'] = '';
         $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
         $fraudHeaders['Gov-Vendor-License-IDs'] = '';
         $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];
         $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&for=" . $fraudHeaders['Gov-Client-Public-IP'];
+=======
+        $fraudHeaders['Gov-Client-Browser-Do-Not-Track'] = $doNotTrack;//$attr['fraudHeaders']->doNotTrack;htmlspecialchars()
+        $fraudHeaders['Gov-Client-Multi-Factor'] = 'type=TOTP'.'&'.'timestamp='.urlencode($attr['fraudHeaders']->MultiFactortimestamp).'&'.'unique-reference=fa8f8278a1794d7c8c0b13877c54d4349cfb7754e228c883e9208c1a58bacc2d';
+        $fraudHeaders['Gov-Client-Public-IP-Timestamp'] = $attr['fraudHeaders']->publicIPtimestamp;
+        $fraudHeaders['Gov-Vendor-Version'] = $attr['fraudHeaders']->applicationVersion;
+        $fraudHeaders['Gov-Vendor-License-IDs'] = '';
+        $fraudHeaders['Gov-Vendor-Public-IP'] = $_SERVER['SERVER_ADDR'];
+        $fraudHeaders['Gov-Vendor-Product-Name'] = 'Silverow';
+        $fraudHeaders['Gov-Vendor-Forwarded'] = "by=" . $fraudHeaders['Gov-Vendor-Public-IP'] . "&"."for=" . $fraudHeaders['Gov-Client-Public-IP'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         $headers = [
             'Accept: application/vnd.hmrc.1.0+json',
@@ -15104,12 +15334,25 @@ class Setup extends Xtreme
             'Gov-Client-Browser-JS-User-Agent: ' . $fraudHeaders['Gov-Client-Browser-JS-User-Agent'],
             'Gov-Client-Browser-Do-Not-Track: ' . $fraudHeaders['Gov-Client-Browser-Do-Not-Track'],
             'Gov-Client-Multi-Factor: ' . $fraudHeaders['Gov-Client-Multi-Factor'],
+<<<<<<< HEAD
             'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
             'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
             'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
             'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
         ];
 
+=======
+            'Gov-Client-Public-IP-Timestamp: ' . $fraudHeaders['Gov-Client-Public-IP-Timestamp'],
+            'Gov-Vendor-Version: ' . $fraudHeaders['Gov-Vendor-Version'],
+            // 'Gov-Vendor-License-IDs: ' . $fraudHeaders['Gov-Vendor-License-IDs'],
+            'Gov-Vendor-Public-IP: ' . $fraudHeaders['Gov-Vendor-Public-IP'],
+            'Gov-Vendor-Forwarded: ' . $fraudHeaders['Gov-Vendor-Forwarded'],
+            'Gov-Vendor-Product-Name: ' . $fraudHeaders['Gov-Vendor-Product-Name'],
+        ];
+
+        // echo '<pre> 1'; print_r($headers);exit;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $server_output = curl_exec ($ch);
@@ -15148,8 +15391,13 @@ class Setup extends Xtreme
     }
 
     function takeAuthorizationCode ($attr){
+<<<<<<< HEAD
         //  https://test-api.service.hmrc.gov.uk
         $endpoint_url = 'https://api.service.hmrc.gov.uk/oauth/token';
+=======
+        $endpoint_url = 'https://api.service.hmrc.gov.uk/oauth/token';
+        // $endpoint_url = 'https://test-api.service.hmrc.gov.uk/oauth/token';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $redirect_url = WEB_PATH . '/api/setup/general/takeAuthorizationCode';
         $data_to_post = [
             'client_secret' => HMRC_SECRET,
@@ -15191,6 +15439,11 @@ class Setup extends Xtreme
     }
 
     function getEmailJSON ($attr){
+<<<<<<< HEAD
+=======
+
+        error_reporting(E_ERROR);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $mailConfigObj = (object)array();
         $mailConfigObj->id = $this->arrUser['id'];
         $mailConfigObj->token = $attr['token'];
@@ -15706,6 +15959,62 @@ class Setup extends Xtreme
             $Sql .= " AND supplierID IN (".$subQueryForBuckets.") ";
             $Sql .= " order by id desc ";
         }
+<<<<<<< HEAD
+=======
+        else if ($attr['module'] == "customer_journal"){
+
+            $Sql = "SELECT id,acc_code AS code,
+                (CASE 
+                    WHEN type = 1 THEN 'unposted' 
+                    WHEN type = 2 THEN 'posted' 
+                    END) AS additional, 'Customer Journal' AS name 
+                    FROM gl_journal_receipt
+                    WHERE module_type = 1 AND company_id = ".$this->arrUser['company_id']."";
+            
+            $subQueryForBuckets = "SELECT  c.id
+                                   FROM sr_crm_listing  c
+                                   WHERE  c.type IN (2,3) AND 
+                                          c.company_id=" . $this->arrUser['company_id'] . "";
+
+            //$subQueryForBuckets = $this->whereClauseAppender($subQueryForBuckets, 48);
+            //echo subQueryForBuckets;exit;
+
+            // $Sql .= " AND sell_to_cust_id IN (".$subQueryForBuckets.") ";
+            $Sql .= " order by id desc ";
+        }
+        else if ($attr['module'] == "supplier_journal"){
+
+            $Sql = "SELECT id,acc_code AS code,
+                (CASE 
+                    WHEN type = 1 THEN 'unposted' 
+                    WHEN type = 2 THEN 'posted' 
+                    END) AS additional, 'Supplier Journal' AS name 
+                    FROM gl_journal_receipt
+                    WHERE module_type = 2 AND company_id = ".$this->arrUser['company_id']."";
+            
+            $subQueryForBuckets = " SELECT  s.id 
+                                    FROM sr_srm_general_sel as s
+                                    WHERE s.id IS NOT NULL ";
+
+            //$subQueryForBuckets = $this->whereClauseAppender($subQueryForBuckets,24);
+            //echo subQueryForBuckets;exit;
+
+            // $Sql .= " AND supplierID IN (".$subQueryForBuckets.") ";
+            $Sql .= " order by id desc ";
+        }
+        else if ($attr['module'] == "general_journal"){
+
+            $Sql = "SELECT id,acc_code AS code,
+                (CASE 
+                    WHEN type = 1 THEN 'unposted' 
+                    WHEN type = 2 THEN 'posted' 
+                    END) AS additional, 'General Journal' AS name 
+                    FROM gl_journal_receipt
+                    WHERE module_type = 0 AND company_id = ".$this->arrUser['company_id']."";
+
+            $Sql .= " order by id desc ";
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //$Sql .= " LIMIT 10";
         // echo $Sql;exit;
@@ -16059,11 +16368,19 @@ class Setup extends Xtreme
 
     function getBucketFilterData(){
         $Sql = "SELECT * FROM bucket_config WHERE status = 1 ORDER BY group_order,`rank` ";
+<<<<<<< HEAD
         //echo $Sql;exit;
+=======
+        // echo $Sql;exit;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $RS = $this->CSI($Sql);
         $result = [];
         $moduleName = "module";
         $response = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($RS->RecordCount() > 0) {
             while ($Row = $RS->FetchRow()) {
                 //echo $Row['field_name'];
@@ -16076,7 +16393,11 @@ class Setup extends Xtreme
                     case 18: $moduleName = "SRM";break;
                     case 24: $moduleName = "Supplier"; break;
                 }
+<<<<<<< HEAD
                 //echo $Row['sql'];
+=======
+                // echo $Row['sql'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //$Row['sql'] = "";
                 if ($Row['sql'] != ""){
                     $SqlInner = $Row['sql'];
@@ -16148,13 +16469,22 @@ class Setup extends Xtreme
                 }                
             }
             //exit;
+<<<<<<< HEAD
             //print_r($response);
             //print_r($result);exit;
+=======
+            // print_r($response);exit;
+            // print_r($result);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //print_r($result);exit;
             //$response['response'] = $result;
         }
         $response['ack'] = 1;
+<<<<<<< HEAD
             $response['error'] = NULL;
+=======
+            $response['error'] = 'NULL';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return $response;
     }
 

@@ -196,7 +196,11 @@ class Gl extends Xtreme {
           // ORDER BY gl.accountCode ASC"; */
 
         $Sql = "SELECT * FROM gl_accountcache gl WHERE status = 1 AND company_id='" . $this->arrUser['company_id'] . "'  ";
+<<<<<<< HEAD
         //$Sql = $this->objsetup->whereClauseAppender($Sql, 65);
+=======
+        $Sql = $this->objsetup->whereClauseAppender($Sql, 65);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sql .= " ORDER BY glaccountCode ASC ";
 
         // echo $Sql; exit; 
@@ -1441,7 +1445,11 @@ class Gl extends Xtreme {
                 //AND tbl.gl_account_code BETWEEN  $attr[range_from] AND $attr[range_to] 
 
         } else
+<<<<<<< HEAD
             $where .= " AND tbl.gl_account_id = $attr[account_id] ";
+=======
+            $where .= " AND tbl.gl_account_id = ".$attr['account_id']." ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $Sqla = "SELECT (COALESCE(SUM(ROUND(tbl.debit_amount_LCY,2)),0) - COALESCE(SUM(ROUND(tbl.credit_amount_LCY,2)),0)) AS AMOUNT
 				 FROM (SELECT gat.type_description AS docType,
@@ -2196,7 +2204,11 @@ class Gl extends Xtreme {
                                         level_one='$arr_attr[level_one]'  ,
                                         level_second='$arr_attr[level_second]'  ,
                                         level_third='$arr_attr[level_third]'  ,
+<<<<<<< HEAD
                                         status='$arr_attr[status]'  
+=======
+                                        status='".$arr_attr['status']."'  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     WHERE id = " . $gl_id . "  Limit 1";
             $new_msg = 'Edit';
         }
@@ -2367,7 +2379,11 @@ class Gl extends Xtreme {
                 where  account_heads.category_id='".$attr['type_id']."' and 
                     account_heads.status=1 and 
                     account_heads.company_id=" . $this->arrUser['company_id'] . "
+<<<<<<< HEAD
                 order by account_heads.id DESC"; //account_heads.posting_type='$attr[type_id]'
+=======
+                order by account_heads.id DESC"; //account_heads.posting_type='".$attr['type_id']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql;exit;
 
         $RS = $this->objsetup->CSI($Sql);
@@ -2394,7 +2410,11 @@ class Gl extends Xtreme {
         $where_clause = "";
 
         if (!empty($attr['parent_id'])) {
+<<<<<<< HEAD
             $where_clause .= " AND gl_category_id = '$attr[parent_id]'  ";
+=======
+            $where_clause .= " AND gl_category_id = '".$attr['parent_id']."'  ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if (!empty($attr['cid'])) {
@@ -2497,7 +2517,11 @@ class Gl extends Xtreme {
         }
 
         foreach ($response['response'] as $row) {
+<<<<<<< HEAD
             $total += $row[amount];
+=======
+            $total += $row['amount'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         $response['total_final'] += $total;
         return $response;
@@ -4597,14 +4621,24 @@ class Gl extends Xtreme {
         if ($id == 0) {
             $msg = 'Inserted';
             $Sql = "INSERT INTO gl_journal_main (acc_description,create_date ,journal_date,acc_no,acc_code,company_id,  user_id,type,template_id) VALUES ";
+<<<<<<< HEAD
             $Sql .= "(  	 '" . $attr[acc_description] . "' ,'" . current_date . "','" . $this->objGeneral->convert_date($attr['journal_date']) . "' ,'" . $attr[acc_no] . "','" . $attr[acc_code] . "' 	,'" . $this->arrUser['company_id'] . "'," . "'" . $this->arrUser['id'] . "',1 ,'" . $attr[template_id]->id . "' ) ";
+=======
+            $Sql .= "(  	 '" . $attr['acc_description'] . "' ,'" . current_date . "','" . $this->objGeneral->convert_date($attr['journal_date']) . "' ,'" . $attr['acc_no'] . "','" . $attr['acc_code'] . "' 	,'" . $this->arrUser['company_id'] . "'," . "'" . $this->arrUser['id'] . "',1 ,'" . $attr['template_id']->id . "' ) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $msg = 'Update';
             $Sql = "UPDATE gl_journal_main 
                                 SET 
+<<<<<<< HEAD
                                     acc_description='" . $attr[acc_description] . "' ,
                                     journal_date='" . $this->objGeneral->convert_date($attr['journal_date']) . "',
                                     template_id='" . $attr[template_id]->id . "'
+=======
+                                    acc_description='" . $attr['acc_description'] . "' ,
+                                    journal_date='" . $this->objGeneral->convert_date($attr['journal_date']) . "',
+                                    template_id='" . $attr['template_id']->id . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 WHERE id = $id 
                                 Limit 1 ";
         }
@@ -4628,6 +4662,7 @@ class Gl extends Xtreme {
         //$this->objGeneral->mysql_clean($attr);
         $where = "";
 
+<<<<<<< HEAD
         if (!empty($attr[parent_id]))
             $where .= "AND c.parent_id=$attr[parent_id] ";
         if (!empty($attr[parent_id]))
@@ -4636,6 +4671,16 @@ class Gl extends Xtreme {
 
         if (!empty($attr[temp_id])) {
             $tb = $attr[tb];
+=======
+        if (!empty($attr['parent_id']))
+            $where .= "AND c.parent_id=".$attr['parent_id']." ";
+        if (!empty($attr['parent_id']))
+            $where .= "AND c.type=1 ";
+
+
+        if (!empty($attr['temp_id'])) {
+            $tb = $attr['tb'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $Sql = "SELECT  c.*,
                             CASE  WHEN c.tran_type = 1 THEN 'Credit' 
                                   WHEN c.tran_type = 2 THEN 'Debit'  
@@ -4723,7 +4768,11 @@ class Gl extends Xtreme {
     function add_gl_journal($attr) {
 
         $chk = 0;
+<<<<<<< HEAD
         // $Sqli = "DELETE FROM gl_journal WHERE parent_id= '" .$attr[parent_id]. "' ";
+=======
+        // $Sqli = "DELETE FROM gl_journal WHERE parent_id= '" .$attr['parent_id']. "' ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $Sqli = "UPDATE gl_journal SET  status= 0	 WHERE parent_id = '" . $attr['parent_id'] . "' ";
 
         $RS = $this->objsetup->CSI($Sqli);
@@ -4741,7 +4790,11 @@ class Gl extends Xtreme {
                     $type = 2;
 
                 $Sql .= "(  '" . $item->credit_amount . "','" . $item->debit_amount . "','" . $type . "','" . $item->account_code . "','" . $item->account_id . "'	,'" . $item->acc_description . "','" . $item->module_type->value . "','" . $attr['type'] . "','" . $item->currency_id->id . "','" . $item->converted_price . "','" . $this->objGeneral->convert_date($item->journal_date) . "' ,'" . $this->arrUser['company_id'] . "'," . "'" . $this->arrUser['id'] . "','" . current_date . "','" . $item->acc_code . "','" .
+<<<<<<< HEAD
                         $attr[parent_id] . "'  ),";
+=======
+                        $attr['parent_id'] . "'  ),";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         }
         $Sql = substr($Sql, 0, -1);
@@ -4903,7 +4956,11 @@ class Gl extends Xtreme {
         $ids = substr($ids, 0, -1);
         $where_id = " AND module_id IN ( $ids )";
 
+<<<<<<< HEAD
         /* $sql_del = "DELETE FROM gl_journal_receipt_person WHERE parent_id='$arr_attr[parent_id]' AND type='".$arr_attr['type']."'  AND doc_type='$arr_attr[doc_type]' $where_id ";
+=======
+        /* $sql_del = "DELETE FROM gl_journal_receipt_person WHERE parent_id='".$arr_attr['parent_id']."' AND type='".$arr_attr['type']."'  AND doc_type='$arr_attr[doc_type]' $where_id ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
           //echo $sql_del;exit;
           $rsql_del = $this->objsetup->CSI($sql_del); */
 
@@ -4948,6 +5005,7 @@ class Gl extends Xtreme {
 		Order by d.id DESC";
         //echo $Sql; exit;
         /* 	$Sql = "SELECT d.id,d.journal_date, (d.credit_amount+ d.debit_amount) as amount
+<<<<<<< HEAD
           ,  IFNULL( (	 SELECT sum(wa.amount) FROM gl_journal_receipt_person as wa WHERE wa.type = 1  AND wa.cust_id = '$attr[sell_to_cust_id]'  AND wa.parent_id ='$attr[parent_id]'  And wa.cust_id =d.account_id
           )+ ( SELECT sum(wa.amount) FROM gl_journal_receipt_refund as wa WHERE wa.type = 1  AND wa.cust_id = '$attr[sell_to_cust_id]'  AND wa.parent_id ='$attr[parent_id]'   And wa.cust_id =d.account_id)   ,0) as payed
           ,(d.credit_amount + d.debit_amount) - IFNULL( ( SELECT sum(wa.amount) FROM gl_journal_receipt_person as wa WHERE wa.type = 1 AND wa.cust_id =  '$attr[cust_id]'  AND wa.parent_id =  '$attr[parent_id]' And wa.cust_id =d.account_id)   ,0)  as remaining
@@ -4957,6 +5015,17 @@ class Gl extends Xtreme {
           AND ( d.company_id=" . $this->arrUser['company_id'] . " 	or  company.parent_id=" . $this->arrUser['company_id'] . ")
           Order by d.id DESC";
           /*	+ ( SELECT sum(wa.amount) FROM gl_journal_receipt_refund as wa WHERE wa.type = 1 AND wa.cust_id = '$attr[cust_id]' AND wa.parent_id ='$attr[parent_id]'And wa.cust_id =d.account_id ) */
+=======
+          ,  IFNULL( (	 SELECT sum(wa.amount) FROM gl_journal_receipt_person as wa WHERE wa.type = 1  AND wa.cust_id = '$attr[sell_to_cust_id]'  AND wa.parent_id ='".$attr['parent_id']."'  And wa.cust_id =d.account_id
+          )+ ( SELECT sum(wa.amount) FROM gl_journal_receipt_refund as wa WHERE wa.type = 1  AND wa.cust_id = '$attr[sell_to_cust_id]'  AND wa.parent_id ='".$attr['parent_id']."'   And wa.cust_id =d.account_id)   ,0) as payed
+          ,(d.credit_amount + d.debit_amount) - IFNULL( ( SELECT sum(wa.amount) FROM gl_journal_receipt_person as wa WHERE wa.type = 1 AND wa.cust_id =  '$attr[cust_id]'  AND wa.parent_id =  '".$attr['parent_id']."' And wa.cust_id =d.account_id)   ,0)  as remaining
+          FROM  gl_journal_receipt_detail   d
+          left  JOIN company on company.id=d.company_id
+          where  d.status=1    And d.parent_id ='".$attr['parent_id']."'  AND d.account_id  = '$attr[sell_to_cust_id]'
+          AND ( d.company_id=" . $this->arrUser['company_id'] . " 	or  company.parent_id=" . $this->arrUser['company_id'] . ")
+          Order by d.id DESC";
+          /*	+ ( SELECT sum(wa.amount) FROM gl_journal_receipt_refund as wa WHERE wa.type = 1 AND wa.cust_id = '$attr[cust_id]' AND wa.parent_id ='".$attr['parent_id']."'And wa.cust_id =d.account_id ) */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
 
 
@@ -5002,7 +5071,11 @@ class Gl extends Xtreme {
         else
             $where_clause = "AND d.type in (2,".$attr['type'].")";    //AND d.invoice_no LIKE '%$val%'
 
+<<<<<<< HEAD
         if (!empty($attr[sell_to_cust_id])) {
+=======
+        if (!empty($attr['sell_to_cust_id'])) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $where_clause2 = "AND d.sell_to_cust_id  = '$attr[sell_to_cust_id]' AND  
                                   d.grand_total- IFNULL(( SELECT sum(wa.amount) 
                                                           FROM gl_journal_receipt_person as wa 
@@ -5015,10 +5088,15 @@ class Gl extends Xtreme {
                                                 WHERE wa.type = 1 AND 
                                                       wa.salesperson_id = d.id ),0) as outstanding 
 		        FROM srm_invoice  d
+<<<<<<< HEAD
                 left  JOIN company on company.id=d.company_id  
                 where  d.status=1  $add and 
                        (d.company_id=" . $this->arrUser['company_id'] . " or  
                         company.parent_id=" . $this->arrUser['company_id'] . ")
+=======
+                where  d.status=1  $add and 
+                       d.company_id=" . $this->arrUser['company_id'] . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         " . $where_clause2 . "  " . $where_clause . "
 		        Order by d.id DESC";
 
@@ -5045,7 +5123,11 @@ class Gl extends Xtreme {
                 $result['country'] = $Row['comm_book_in_no']; // $Row['cuname'];
                 $result['contact_person'] = $Row['sell_to_contact_no'];
 
+<<<<<<< HEAD
                 if ($attr[more_fields] == '1') {
+=======
+                if ($attr['more_fields'] == '1') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['postcode'] = $Row['sell_to_post_code'];
                     $result['phone'] = $Row['sell_to_contact_no'];
                     $result['email'] = $Row['email'];
@@ -5097,7 +5179,11 @@ class Gl extends Xtreme {
         $ids = substr($ids, 0, -1);
         $where_id = " AND module_id IN ( $ids )";
 
+<<<<<<< HEAD
         $sql_del = "DELETE FROM gl_journal_receipt_refund WHERE parent_id='$arr_attr[parent_id]' AND type='".$arr_attr['type']."'  AND doc_type='$arr_attr[doc_type]' $where_id ";
+=======
+        $sql_del = "DELETE FROM gl_journal_receipt_refund WHERE parent_id='".$arr_attr['parent_id']."' AND type='".$arr_attr['type']."'  AND doc_type='$arr_attr[doc_type]' $where_id ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rsql_del = $this->objsetup->CSI($sql_del);
 
         $Sql = substr_replace(substr($Sql, 0, -1), "", -1);
@@ -5398,8 +5484,13 @@ class Gl extends Xtreme {
         //$this->objGeneral->mysql_clean($attr);
         $where = "";
         /*
+<<<<<<< HEAD
           if (!empty($attr[parent_id]))
           $where .= "AND c.parent_id=$attr[parent_id] ";
+=======
+          if (!empty($attr['parent_id']))
+          $where .= "AND c.parent_id=".$attr['parent_id']." ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -5441,8 +5532,13 @@ class Gl extends Xtreme {
         $Sql = "SELECT pd.* FROM payment_details AS pd, gl_journal_receipt AS gjr 
                 WHERE 
                     pd.parent_id = gjr.id AND
+<<<<<<< HEAD
                     gjr.id = $attr[parent_id] AND
                     pd.parent_id = $attr[parent_id] AND 
+=======
+                    gjr.id = ".$attr['parent_id']." AND
+                    pd.parent_id = ".$attr['parent_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     pd.status = gjr.type AND
                     gjr.company_id =" . $this->arrUser['company_id']."
                 ORDER BY pd.id";
@@ -5667,7 +5763,11 @@ class Gl extends Xtreme {
                             status,
                             posting_dateUnConv)
                         SELECT 
+<<<<<<< HEAD
                             \"$attr[parent_id]\",
+=======
+                            \"".$attr['parent_id']."\",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                              $transaction_type,
                              $document_type,
                              \"$document_no\",
@@ -5692,7 +5792,11 @@ class Gl extends Xtreme {
                             DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
                         FROM widgetone
                         WHERE
+<<<<<<< HEAD
                             (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=$attr[parent_id] LIMIT 1) = 1 
+=======
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$attr['parent_id']." LIMIT 1) = 1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         LIMIT 1";
                 // echo $Sql;exit;
             } else {
@@ -5718,7 +5822,11 @@ class Gl extends Xtreme {
                             balancing_account_name = '" . addslashes($item->balancing_account_name) . "',
                             posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d')
                             WHERE id = $id AND status = 1 AND
+<<<<<<< HEAD
                             (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=$attr[parent_id] LIMIT 1) = 1 
+=======
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$attr['parent_id']." LIMIT 1) = 1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
             }
             // echo $Sql;exit;
@@ -5755,6 +5863,99 @@ class Gl extends Xtreme {
           } */
     }
 
+<<<<<<< HEAD
+=======
+    function updatePostedJournal($attr) {
+
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['ErrorMessage'] = "";
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $parent_id = $attr['parent_id'];
+        $moduleName = $this->glRecordTypeById($attr['parent_id']);
+        $moduleForPermission = $moduleName ? $moduleName . "_journal" : "";
+        
+        foreach ($attr['selectdata'] as $item) {
+            $modulePermission = "";
+            $posting_date = $this->objGeneral->convert_date($item->posting_date);
+            $id = (isset($item->id) && $item->id != '') ? $item->id : '0';
+            $transaction_type = (isset($item->transaction_type) && $item->transaction_type != '') ? $item->transaction_type : '0';
+
+            $modulePermission = sr_AddEditPermission;
+
+            $Sql = "UPDATE payment_details SET
+                                            document_no =  '" . addslashes($item->document_no) . "',
+                                            account_name =  '" . addslashes($item->account_name) . "',
+                                            posting_date =  '" . $posting_date . "',
+                                            posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                                            changedOn=UNIX_TIMESTAMP (NOW())
+                    WHERE id =  '".$id."' AND status = 2 AND 
+                          parent_id = '".$parent_id."' AND 
+                          transaction_type =  '".$transaction_type."' AND 
+                          company_id = " . $this->arrUser['company_id']." 
+                    LIMIT 1";
+
+            // echo $Sql;
+            $RS = $this->objsetup->CSI($Sql, $moduleForPermission, $modulePermission);
+
+            if($transaction_type == 1){
+                $Sql2 = "UPDATE gl_account_txn SET gl_account_name =  '" . addslashes($item->account_name) . "'
+                         WHERE ref_id =  '".$id."' AND
+                            object_id = '".$parent_id."' AND 
+                            type = 5 AND
+                            company_id = " . $this->arrUser['company_id']." 
+                         ORDER BY id ASC
+                         LIMIT 1";
+
+                // echo $Sql2;
+                $RS2 = $this->objsetup->CSI($Sql2, $moduleForPermission, $modulePermission);
+            }
+
+
+            $Sql3 = "UPDATE gl_account_txn SET
+                                            object_name =  '" . addslashes($item->account_name) . "',
+                                            invoice_date =  '" . $posting_date . "',
+                                            invoice_dateUnConv = DATE_FORMAT(FROM_UNIXTIME($posting_date), '%Y-%m-%d'),
+                                            changedOn=UNIX_TIMESTAMP (NOW())
+                     WHERE  ref_id =  '".$id."' AND
+                            object_id = '".$parent_id."' AND 
+                            type = 5 AND
+                            company_id = " . $this->arrUser['company_id']." "; 
+             
+            // echo $Sql3;
+            $RS3 = $this->objsetup->CSI($Sql3, $moduleForPermission, $modulePermission);
+        }
+
+        // echo '<pre>'; print_r($attr['selectdata']);exit;
+
+        $response['ack'] = 1;
+        $response['error'] = 'Record Updated Successfully';
+        $this->Conn->commitTrans();
+        $this->Conn->autoCommit = true;
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'parent_id:' . $parent_id;
+        $srLogTrace['ErrorMessage'] = '';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+        return $response;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     // opening balance stock start
 
@@ -7650,7 +7851,11 @@ class Gl extends Xtreme {
                             user_id,
                             status)
                     SELECT 
+<<<<<<< HEAD
                         \"$attr[parent_id]\",
+=======
+                        \"".$attr['parent_id']."\",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         \"$posting_date\",
                         $transaction_type,
                         \"$item_id\",
@@ -7674,7 +7879,11 @@ class Gl extends Xtreme {
                         1
                     FROM widgetone
                     WHERE
+<<<<<<< HEAD
                         (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=$attr[parent_id] LIMIT 1) = 1 LIMIT 1";
+=======
+                        (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$attr['parent_id']." LIMIT 1) = 1 LIMIT 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             } else {
                 $Sql = "UPDATE item_journal_details SET
                             posting_date    =  '" . $posting_date . "',
@@ -7694,7 +7903,11 @@ class Gl extends Xtreme {
                             balancing_account_code = '$item->balancing_account_code',
                             balancing_account_name ='" . addslashes($item->balancing_account_name)."'
                             WHERE id = $id AND status = 1 AND
+<<<<<<< HEAD
                             (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=$attr[parent_id] LIMIT 1) = 1 
+=======
+                            (SELECT type FROM gl_journal_receipt AS gjr WHERE gjr.id=".$attr['parent_id']." LIMIT 1) = 1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 AND company_id = " . $this->arrUser['company_id']." LIMIT 1";
             }
             // echo $Sql;exit;
@@ -7965,6 +8178,70 @@ class Gl extends Xtreme {
         return $response;
     }
 
+<<<<<<< HEAD
+=======
+    function delete_all_payment_allocations($attr) {
+
+        $this->Conn->beginTrans();
+        $this->Conn->autoCommit = false;
+
+        $Sql = "SELECT transaction_type FROM payment_details WHERE id = ".$attr['payment_detail_id'].";";
+        $RS = $this->objsetup->CSI($Sql);
+        $typeId = $RS->fields['transaction_type'];
+        $moduleName = "";
+        if ($typeId == 1) {
+            $moduleName = "general";
+        } else if ($typeId == 2) {
+            $moduleName = "customer";
+        } else if ($typeId == 3) {
+            $moduleName = "supplier";
+        }
+
+        $moduleName .= "_journal";
+        // echo $moduleName;exit;
+        // delete allocated payment
+        $Sql1 = "UPDATE payment_details AS o 
+                            SET allocated_amount = allocated_amount - (SELECT IFNULL(SUM(pa.amount_allocated),0) 
+                                                                                 FROM payment_allocation AS pa
+                                                                                 WHERE pa.payment_detail_id='".$attr['payment_detail_id']."' AND 
+                                                                                        pa.payment_id = '".$attr['payment_id']."' AND
+                                                                                        (pa.invoice_type = 5 OR pa.invoice_type = 6) AND
+                                                                                        pa.company_id = '" . $this->arrUser['company_id']."')
+                WHERE o.company_id = " . $this->arrUser['company_id'] . " and 
+                        o.id = '".$attr['payment_detail_id']."' ";
+        // echo $Sql1;exit;
+        $RS1 = $this->objsetup->CSI($Sql1);
+        // if ($typeId)
+        // $RS1 = $this->objsetup->CSI($Sql1, $moduleName, sr_EditPermission);
+
+        // delete allocation entries
+        $Sql2 = "DELETE FROM payment_allocation 
+                 WHERE payment_detail_id = ".$attr['payment_detail_id']." AND 
+                        payment_id = ".$attr['payment_id']." AND 
+                        (invoice_type = 5 OR invoice_type = 6) AND 
+                        company_id = " . $this->arrUser['company_id'];
+        // echo $Sql2;exit;
+        $RS2 = $this->objsetup->CSI($Sql2);
+
+        /* // delete payment details row
+        $Sql3 = "DELETE FROM payment_details WHERE id = ".$attr['id']." AND company_id = " . $this->arrUser['company_id'] . " Limit 1";
+        // echo $Sql;exit;
+        $RS3 = $this->objsetup->CSI($Sql3); */
+
+        if ($this->Conn->Affected_Rows() > 0) {
+            $response['ack'] = 1;
+            $response['error'] = NULL;
+
+            $this->Conn->commitTrans();
+            $this->Conn->autoCommit = true;
+        } else {
+            $response['ack'] = 0;
+            $response['error'] = 'Record can\'t be deleted!';
+        }
+        return $response;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function delete_item_journal_details($attr) {
 
         $this->Conn->beginTrans();
@@ -9103,6 +9380,13 @@ class Gl extends Xtreme {
 
 
     function get_gl_journal_receipt_payment_customer($attr) {
+<<<<<<< HEAD
+=======
+        $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
+
+        $response =array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
         $Sql = "select * FROM (SELECT  
@@ -9246,7 +9530,11 @@ class Gl extends Xtreme {
                     pd.account_no as sell_to_cust_no,
                     NULL as sale_person,
                     NULL sale_person_2,
+<<<<<<< HEAD
                     NULL AS order_code,
+=======
+                    pd.document_no AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     NULL AS cust_order_no,
                     pd.currency_id,
                     pd.cnv_rate AS currency_rate,
@@ -9348,7 +9636,11 @@ class Gl extends Xtreme {
                     pd.account_no as sell_to_cust_no,
                     NULL as sale_person,
                     NULL sale_person_2,
+<<<<<<< HEAD
                     NULL AS order_code,
+=======
+                    pd.document_no AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     NULL AS cust_order_no,
                     pd.currency_id,
                     pd.cnv_rate AS currency_rate,
@@ -9814,6 +10106,11 @@ class Gl extends Xtreme {
     function get_gl_journal_receipt_payment_supplier($attr) {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
 
+<<<<<<< HEAD
+=======
+        $response =array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
         $Sql = "SELECT * FROM (SELECT   
@@ -10522,6 +10819,10 @@ class Gl extends Xtreme {
 
         $rawMaterialProductChk = $attr['rawMaterialProductChk'];
         $rawMaterialProductQuery = '';
+<<<<<<< HEAD
+=======
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if($rawMaterialProductChk >0){
 
@@ -10541,6 +10842,10 @@ class Gl extends Xtreme {
                                                     ELSE
                                                         o.invoice_code
                                                 END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                                                o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 prd.product_code AS item_no,
                                                 prd.description AS item_desc,
                                                 o.comm_book_in_no AS consignment_no,
@@ -10565,7 +10870,11 @@ class Gl extends Xtreme {
                                                 wh_alloc.order_id = o.id AND
                                                 wh_alloc.raw_material_out = 1 AND
                                                 wh_alloc.purchase_order_detail_id = od.id AND
+<<<<<<< HEAD
                                                 wh_alloc.product_id = $attr[product_id] AND 
+=======
+                                                wh_alloc.product_id = ".$attr['product_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 wh_alloc.product_id = prd.id AND
                                                 wh_alloc.type = 1 AND wh_alloc.purchase_return_status = 0 AND
                                                 (o.type IN(1, 2) OR o.purchaseStatus = 2) AND
@@ -10588,6 +10897,10 @@ class Gl extends Xtreme {
                         ELSE
                             o.sale_invioce_code 
                     END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                    o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     od.product_code AS item_no,
                     od.item_name AS item_desc,
                     wh_alloc.consignment_no,
@@ -10613,7 +10926,11 @@ class Gl extends Xtreme {
                         wh_alloc.order_id = o.id AND
                         wh_alloc.sale_order_detail_id = od.id AND
                         wh_alloc.type = 2 AND wh_alloc.sale_return_status = 0 AND
+<<<<<<< HEAD
                         od.item_id = $attr[product_id] AND
+=======
+                        od.item_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         (o.type IN(2,3) OR o.dispatched = 1) AND
                         o.company_id= " . $this->arrUser['company_id'] . "
                 UNION ALL
@@ -10627,6 +10944,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.return_invoice_code 
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.return_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.product_code AS item_no,
                         od.item_name AS item_desc,
                         wh_alloc.consignment_no,
@@ -10651,7 +10972,11 @@ class Gl extends Xtreme {
                             wh_alloc.order_id = o.id AND
                             wh_alloc.sale_order_detail_id = od.id AND
                             wh_alloc.type = 2 AND wh_alloc.sale_return_status = 1 AND
+<<<<<<< HEAD
                             od.item_id = $attr[product_id] AND
+=======
+                            od.item_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (o.type IN(2,3) OR o.dispatched = 1) AND
                             o.company_id= " . $this->arrUser['company_id'] . "
                 UNION ALL
@@ -10670,6 +10995,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.invoice_code
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.product_code AS item_no,
                         od.product_name AS item_desc,
                         o.comm_book_in_no AS consignment_no,
@@ -10716,7 +11045,11 @@ class Gl extends Xtreme {
                             wh_alloc.raw_material_out IS NULL AND
                             wh_alloc.purchase_order_detail_id = od.id AND
                             wh_alloc.type = 1 AND wh_alloc.purchase_return_status = 0 AND
+<<<<<<< HEAD
                             od.product_id = $attr[product_id] AND
+=======
+                            od.product_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (o.type IN(1, 2) OR o.purchaseStatus = 2) AND
                             o.company_id= " . $this->arrUser['company_id'] . "
                 $rawMaterialProductQuery
@@ -10731,6 +11064,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.debitNoteCode
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.invoice_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.product_code AS item_no,
                         od.product_name AS item_desc,
                         NULL AS consignment_no,
@@ -10756,7 +11093,11 @@ class Gl extends Xtreme {
                             wh_alloc.order_id = o.id AND
                             wh_alloc.purchase_order_detail_id = od.id AND
                             wh_alloc.type = 1 AND wh_alloc.purchase_return_status = 1 AND
+<<<<<<< HEAD
                             od.product_id = $attr[product_id] AND
+=======
+                            od.product_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             (o.type IN(2,3) OR o.purchaseStatus = 2) AND
                             o.company_id= " . $this->arrUser['company_id'] . "
                 UNION ALL
@@ -10765,6 +11106,10 @@ class Gl extends Xtreme {
                         ijd.posting_date,
                         'Item Journal' AS docType,
                         gj.acc_code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ijd.item_code AS item_no,
                         ijd.item_name AS item_desc,
                         wh_alloc.consignment_no,
@@ -10834,7 +11179,11 @@ class Gl extends Xtreme {
                             wh_alloc.item_journal_detail_id = ijd.id AND
                             wh_alloc.type = 3 AND
                             wh_alloc.journal_status = 2 AND
+<<<<<<< HEAD
                             ijd.item_id = $attr[product_id] AND
+=======
+                            ijd.item_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             ijd.company_id= " . $this->arrUser['company_id'] . "
                 UNION ALL
                     SELECT  
@@ -10842,6 +11191,10 @@ class Gl extends Xtreme {
                         ob.posting_date AS posting_date, 
                         'Stock Opening Balance' AS docType,
                         ob.container_no AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ob.ItemNo AS item_no,
                         ob.description AS item_desc,
                         ob.comm_book_in_no AS consignment_no,
@@ -10873,7 +11226,11 @@ class Gl extends Xtreme {
                         LEFT JOIN warehouse AS wh ON wh.id = ob.warehouseID 
                         WHERE 
                             ob.postStatus = 1 AND
+<<<<<<< HEAD
                             ob.productID = $attr[product_id] AND
+=======
+                            ob.productID = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             ob.company_id= " . $this->arrUser['company_id'] . "
                 UNION ALL
                     SELECT  
@@ -10881,6 +11238,10 @@ class Gl extends Xtreme {
                         t.order_date AS posting_date, 
                         'Transfer Stock' AS docType,
                         t.code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         td.item_code AS item_no,
                         td.item_name AS item_desc,
                         NULL AS consignment_no,
@@ -10905,7 +11266,11 @@ class Gl extends Xtreme {
                             t.id = td.transfer_order_id AND
                             wh.id = t.warehouse_from AND
                             t.type = 1 AND
+<<<<<<< HEAD
                             td.item_id = $attr[product_id] AND
+=======
+                            td.item_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             t.company_id= " . $this->arrUser['company_id'] . "
                  UNION ALL
                     SELECT  
@@ -10913,6 +11278,10 @@ class Gl extends Xtreme {
                         t.order_date AS posting_date, 
                         'Transfer Stock' AS docType,
                         t.code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         td.item_code AS item_no,
                         td.item_name AS item_desc,
                         NULL AS consignment_no,
@@ -10936,7 +11305,11 @@ class Gl extends Xtreme {
                             t.id = td.transfer_order_id AND
                             wh.id = t.warehouse_to AND
                             t.type = 1 AND
+<<<<<<< HEAD
                             td.item_id = $attr[product_id] AND
+=======
+                            td.item_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             t.company_id= " . $this->arrUser['company_id'] . "
                            ) as tbl where 1 $where_clause ";
         $total_limit = pagination_limit;
@@ -10973,9 +11346,18 @@ class Gl extends Xtreme {
 
     
     function get_all_items_activity($attr) {
+<<<<<<< HEAD
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
 
+=======
+        $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
+        $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.",$attr,$fieldsMeta);
+        $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.",$attr,$fieldsMeta);
+
+        $response =array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // same ftn as get_gl_journal_receipt_payment_item except for item ID
         $Sql = "SELECT * FROM (SELECT  
                     o.id AS order_id,
@@ -10992,6 +11374,10 @@ class Gl extends Xtreme {
                         ELSE
                             o.sale_invioce_code 
                     END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                    o.sale_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     od.item_id AS item_id,
                     od.product_code AS item_no,
                     od.item_name AS item_desc,
@@ -11032,6 +11418,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.return_invoice_code 
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.return_order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.item_id AS item_id,
                         od.product_code AS item_no,
                         od.item_name AS item_desc,
@@ -11076,6 +11466,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.invoice_code
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.product_id AS item_id,
                         od.product_code AS item_no,
                         od.product_name AS item_desc,
@@ -11146,6 +11540,10 @@ class Gl extends Xtreme {
                                 ELSE
                                     o.invoice_code
                             END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                            o.order_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             prd.id AS item_id,
                             prd.product_code AS item_no,
                             prd.description AS item_desc,
@@ -11186,6 +11584,10 @@ class Gl extends Xtreme {
                             ELSE
                                 o.debitNoteCode
                         END) AS invoice_code,
+<<<<<<< HEAD
+=======
+                        o.invoice_code AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         od.product_id AS item_id,
                         od.product_code AS item_no,
                         od.product_name AS item_desc,
@@ -11221,6 +11623,10 @@ class Gl extends Xtreme {
                         ijd.posting_date,
                         'Item Journal' AS docType,
                         gj.acc_code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ijd.item_id AS item_id,
                         ijd.item_code AS item_no,
                         ijd.item_name AS item_desc,
@@ -11298,6 +11704,10 @@ class Gl extends Xtreme {
                         ob.posting_date AS posting_date, 
                         'Stock Opening Balance' AS docType,
                         ob.container_no AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ob.productID AS item_id,
                         ob.ItemNo AS item_no,
                         ob.description AS item_desc,
@@ -11330,6 +11740,10 @@ class Gl extends Xtreme {
                         t.order_date AS posting_date, 
                         'Transfer Stock' AS docType,
                         t.code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         td.item_id AS item_id,
                         td.item_code AS item_no,
                         td.item_name AS item_desc,
@@ -11365,6 +11779,10 @@ class Gl extends Xtreme {
                         t.order_date AS posting_date, 
                         'Transfer Stock' AS docType,
                         t.code AS invoice_code,
+<<<<<<< HEAD
+=======
+                        '' AS order_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         td.item_id AS item_id,
                         td.item_code AS item_no,
                         td.item_name AS item_desc,
@@ -14593,7 +15011,11 @@ class Gl extends Xtreme {
 
         $sql_code = "SELECT  account_code as code  
                      FROM company_gl_accounts 
+<<<<<<< HEAD
                      where id='" . $attr[gl_id] . "' 
+=======
+                     where id='" . $attr['gl_id'] . "' 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      Limit 1";
         $rs_count = $this->objsetup->CSI($sql_code);
         $code = $rs_count->fields['code'];
@@ -14601,7 +15023,11 @@ class Gl extends Xtreme {
         $amount = $attr['grand_total'];
 
         if (!empty($attr['count_converted']) && empty($attr['statuschk'])) {
+<<<<<<< HEAD
             $convert_amount = $this->objGeneral->get_convert_price($amount, $attr[currency_id], $attr[posting_date], $this->arrUser['company_id']);
+=======
+            $convert_amount = $this->objGeneral->get_convert_price($amount, $attr['currency_id'], $attr['posting_date'], $this->arrUser['company_id']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else
             $convert_amount = $attr['grand_total'];
 
@@ -14654,7 +15080,11 @@ class Gl extends Xtreme {
 
         $where = "";
 
+<<<<<<< HEAD
         if (!empty($attr[search_code]))
+=======
+        if (!empty($attr['search_code']))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $where .= "AND (c.acc_code='" . $attr['search_code'] . "' or c.opening_balance_title LIKE '%" . $attr['keyword'] . "%') ";
 
         $Sql = "SELECT   c.id,c.acc_code,c.opening_balance_title,c.create_date
@@ -15114,7 +15544,11 @@ class Gl extends Xtreme {
             $total_limit = $attr['pagination_limits'];
 
         if (!empty($attr['sort_column'])) {
+<<<<<<< HEAD
             $column = 'tbl.' . $attr[sort_column];
+=======
+            $column = 'tbl.' . $attr['sort_column'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($attr['sort_column'] == 'supplier_code')
                 $column = 'tbl.' . 'supplier_code';
@@ -15245,7 +15679,11 @@ class Gl extends Xtreme {
             $total_limit = $attr['pagination_limits'];
 
         if (!empty($attr['sort_column'])) {
+<<<<<<< HEAD
             $column = 'tbl.' . $attr[sort_column];
+=======
+            $column = 'tbl.' . $attr['sort_column'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($attr['sort_column'] == 'product_code')
                 $column = 'tbl.' . 'product_code';
@@ -15484,7 +15922,11 @@ class Gl extends Xtreme {
                 AddedOn
                 FROM on_hold_invoice AS o
                 WHERE o.invoice_type = $type AND
+<<<<<<< HEAD
                     o.invoice_id = $attr[invoice_id] AND 
+=======
+                    o.invoice_id = ".$attr['invoice_id']." AND 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     o.company_id = " . $this->arrUser['company_id']."
                 ORDER BY o.id DESC";
 
@@ -15549,7 +15991,11 @@ class Gl extends Xtreme {
             }
         }
 
+<<<<<<< HEAD
         $Sql = "UPDATE $table SET on_hold = " . $attr[status] . " WHERE id=" . $attr['invoice_id'];
+=======
+        $Sql = "UPDATE $table SET on_hold = " . $attr['status'] . " WHERE id=" . $attr['invoice_id'];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
         if ($this->Conn->Affected_Rows() > 0) {
@@ -15755,7 +16201,11 @@ class Gl extends Xtreme {
         $Sql = "DELETE FROM transfer_orders_details 
                     WHERE id = ".$attr['id']." AND 
                     company_id=" . $this->arrUser['company_id']." AND
+<<<<<<< HEAD
                     (SELECT type FROM transfer_orders WHERE id=$attr[order_id] LIMIT 1) = 0
+=======
+                    (SELECT type FROM transfer_orders WHERE id=".$attr['order_id']." LIMIT 1) = 0
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     Limit 1";
         // echo $Sql;exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -15765,8 +16215,13 @@ class Gl extends Xtreme {
 
             $stkSql = "DELETE FROM warehouse_allocation 
                         WHERE 
+<<<<<<< HEAD
                         order_id = $attr[order_id] AND 
                         product_id = $attr[product_id] AND
+=======
+                        order_id = ".$attr['order_id']." AND 
+                        product_id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         transfer_order_detail_id = ".$attr['id']."  AND
                         type = '5'";
                     // echo $stkSql;exit;
@@ -16057,7 +16512,11 @@ class Gl extends Xtreme {
         // print_r($attr['item']->location_from->location_id);exit;
         $location_from = ($attr['item']->location_from->location_id != '') ? $attr['item']->location_from->location_id : 0;
         $location_to = ($attr['item']->location_to->location_id != '') ? $attr['item']->location_to->location_id : 0;
+<<<<<<< HEAD
         $uom_id         = ($item['item']->uom_id != '') ? $item['item']->uom_id : 0;
+=======
+        $uom_id         = ($attr['item']->uom_id != '') ? $attr['item']->uom_id : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $id = ($attr['item']->id != '') ? $attr['item']->id : 0;
         $item = $attr['item'];
@@ -16066,7 +16525,11 @@ class Gl extends Xtreme {
         if($id == 0)
         {
             $itemSql = "INSERT INTO transfer_orders_details SET
+<<<<<<< HEAD
                         transfer_order_id = $attr[order_id],
+=======
+                        transfer_order_id = ".$attr['order_id'].",
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         item_id     =  $item->item_id,
                         item_code   = '".addslashes($item->item_code)."',
                         item_name   = '".addslashes($item->item_name)."',
@@ -16348,6 +16811,11 @@ class Gl extends Xtreme {
             
         } */
 
+<<<<<<< HEAD
+=======
+        $response =array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
@@ -16441,6 +16909,11 @@ class Gl extends Xtreme {
     {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
 
+<<<<<<< HEAD
+=======
+        $response =array();
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
         
@@ -16771,6 +17244,11 @@ class Gl extends Xtreme {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+<<<<<<< HEAD
+=======
+
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         if (empty($where_clause)){
             $defaultFilter = true;
@@ -16955,6 +17433,11 @@ class Gl extends Xtreme {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+<<<<<<< HEAD
+=======
+
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         if (empty($where_clause)){
             $defaultFilter = true;
@@ -17216,6 +17699,11 @@ class Gl extends Xtreme {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+<<<<<<< HEAD
+=======
+
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         if (empty($where_clause)){
             $defaultFilter = true;
@@ -17272,7 +17760,11 @@ class Gl extends Xtreme {
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'tbl', $order_type);
 
         // echo $response['q'];exit;
+<<<<<<< HEAD
         $RS = $this->objsetup->CSI($response['q'], $moduleForPermission, sr_ViewPermission);
+=======
+        $RS = $this->objsetup->CSI($response['q']);//, $moduleForPermission, sr_ViewPermission
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
        // $response['q'] = '';
 
         $total = 0;
@@ -17301,6 +17793,11 @@ class Gl extends Xtreme {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+<<<<<<< HEAD
+=======
+
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         if (empty($where_clause)){
             $defaultFilter = true;
@@ -17322,7 +17819,11 @@ class Gl extends Xtreme {
                                     tbl.invoice_type
                         FROM srm 
                         LEFT JOIN srmatrix_purchase_sel as tbl ON tbl.supplier_id=srm.id
+<<<<<<< HEAD
                         WHERE srm.id = $attr[supplier_id] AND srm.status=1 AND srm.type IN (2,3) AND srm.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause
+=======
+                        WHERE srm.id = ".$attr['supplier_id']." AND srm.status=1 AND srm.type IN (2,3) AND srm.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ";
         // echo $Sqla;exit;
         $RSa = $this->objsetup->CSI($Sqla);
@@ -17345,7 +17846,11 @@ class Gl extends Xtreme {
                                     tbl.invoice_type
                         FROM srm 
                         LEFT JOIN srmatrix_purchase_sel as tbl ON tbl.supplier_id=srm.id
+<<<<<<< HEAD
                         WHERE srm.id = $attr[supplier_id] AND srm.status=1 AND srm.type IN (2,3) AND srm.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause
+=======
+                        WHERE srm.id = ".$attr['supplier_id']." AND srm.status=1 AND srm.type IN (2,3) AND srm.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ";
         if ($order_clause == "")
             $order_type = "Order by tbl.posting_date ASC";
@@ -17356,7 +17861,11 @@ class Gl extends Xtreme {
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'tbl', $order_type);
 
         // echo $response['q'];exit;
+<<<<<<< HEAD
         $RS = $this->objsetup->CSI($response['q'], $moduleForPermission, sr_ViewPermission);
+=======
+        $RS = $this->objsetup->CSI($response['q']);//, $moduleForPermission, sr_ViewPermission
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $response['q'] = '';
         $total = 0;
         if ($RS->RecordCount() > 0) {
@@ -17383,6 +17892,11 @@ class Gl extends Xtreme {
         $limit_clause = $where_clause = $fieldsMeta = $order_clause = "";
         $where_clause = $this->objGeneral->flexiWhereRetriever("tbl.", $attr, $fieldsMeta);
         $order_clause = $this->objGeneral->flexiOrderRetriever("tbl.", $attr, $fieldsMeta);
+<<<<<<< HEAD
+=======
+
+        $response =array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         if (empty($where_clause)){
             $defaultFilter = true;
@@ -17412,7 +17926,11 @@ class Gl extends Xtreme {
                         FROM $inventory_type_view as tbl, product AS p
                         WHERE 
                             tbl.id = p.id AND
+<<<<<<< HEAD
                             tbl.id = $attr[product_id] AND
+=======
+                            tbl.id = ".$attr['product_id']." AND
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             tbl.company_id='" . $this->arrUser['company_id'] . "') AS tbl WHERE 1 $where_clause
                         ";
         if ($order_clause == "")
@@ -17424,7 +17942,11 @@ class Gl extends Xtreme {
         $response = $this->objGeneral->pagination_genral($attr, $Sql, $response, $total_limit, 'tbl', $order_type);
 
         // echo $response['q'];exit;
+<<<<<<< HEAD
         $RS = $this->objsetup->CSI($response['q'], $moduleForPermission, sr_ViewPermission);
+=======
+        $RS = $this->objsetup->CSI($response['q']);//, $moduleForPermission, sr_ViewPermission
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $response['q'] = '';
 
         if ($RS->RecordCount() > 0) {
@@ -17543,5 +18065,8 @@ class Gl extends Xtreme {
 
     }
 }
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

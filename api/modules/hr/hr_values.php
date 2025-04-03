@@ -153,7 +153,11 @@ $app->post('/hr/hr_values/get_emp_value', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/hr/get-all-categories', function () use ($app) {
+=======
+/* $app->post('/hr/get-all-categories', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objHr, $input;
 
     $result = $objHr->get_all_categories($input);
@@ -171,7 +175,11 @@ $app->post('/hr/hr_values/update-tab-col-val', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/hr/hr_values/update-hr-general', function () use ($app) {
     global $objHr, $input;
@@ -334,7 +342,11 @@ $app->post('/hr/hr_values/update-hr-expcompany', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/hr/hr_values/get-code', function () use ($app) {
+=======
+/* $app->post('/hr/hr_values/get-code', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objHr, $input;
     $array = array(
         "is_increment" => $input->is_increment
@@ -344,7 +356,11 @@ $app->post('/hr/hr_values/get-code', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/hr/hr_values/add-countries', function () use ($app) {
@@ -372,7 +388,10 @@ $app->post('/hr/hr_values/role_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/role_by_id', function () use ($app) {
@@ -386,10 +405,16 @@ $app->post('/hr/hr_values/role_by_id', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
 });
 
 $app->post('/hr/hr_values/role_document', function () use ($app) {
+=======
+});
+
+/* $app->post('/hr/hr_values/role_document', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objHr, $input;
     $array = array(
         "id" => $input->id
@@ -415,7 +440,11 @@ $app->post('/hr/hr_values/delete_roles', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/hr/hr_values/expences_list', function () use ($app) {
@@ -428,7 +457,10 @@ $app->post('/hr/hr_values/expences_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/expence_data_by_id', function () use ($app) {
@@ -444,7 +476,10 @@ $app->post('/hr/hr_values/expence_data_by_id', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/delete_expence_main', function () use ($app) {
@@ -458,7 +493,10 @@ $app->post('/hr/hr_values/delete_expence_main', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/expences_sublist', function () use ($app) {
@@ -472,7 +510,10 @@ $app->post('/hr/hr_values/expences_sublist', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 $app->post('/hr/hr_values/expences-perlist', function () use ($app) {
     global $objHr, $input;
@@ -485,7 +526,10 @@ $app->post('/hr/hr_values/expences-perlist', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/expences_complist', function () use ($app) {
@@ -499,7 +543,10 @@ $app->post('/hr/hr_values/expences_complist', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/delete_expence_sub', function () use ($app) {
@@ -512,7 +559,10 @@ $app->post('/hr/hr_values/delete_expence_sub', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/delete_expence_sub_pv', function () use ($app) {
@@ -525,7 +575,10 @@ $app->post('/hr/hr_values/delete_expence_sub_pv', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/delete_expence_sub_cv', function () use ($app) {
@@ -538,7 +591,10 @@ $app->post('/hr/hr_values/delete_expence_sub_cv', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -551,7 +607,10 @@ $app->post('/hr/hr_values/get_company_base_currency', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/get_currency_list', function () use ($app) {
@@ -563,7 +622,10 @@ $app->post('/hr/hr_values/get_currency_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -579,7 +641,10 @@ $app->post('/hr/hr_values/sub_expence_data_by_id', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/get_parent_module_list', function () use ($app) {
@@ -590,7 +655,10 @@ $app->post('/hr/hr_values/get_parent_module_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/get_child_module_list', function () use ($app) {
@@ -605,7 +673,10 @@ $app->post('/hr/hr_values/get_child_module_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/hr/hr_values/get_child_module_list_selected', function () use ($app) {
@@ -621,7 +692,10 @@ $app->post('/hr/hr_values/get_child_module_list_selected', function () use ($app
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -701,7 +775,11 @@ $app->post('/hr/hr_values/submit_religion_form', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/hr/hr_values/get_select_result', function () use ($app) {
+=======
+/* $app->post('/hr/hr_values/get_select_result', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objHr, $input;
 
     $result = $objHr->get_select_result($input);
@@ -709,7 +787,11 @@ $app->post('/hr/hr_values/get_select_result', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/hr/hr_values/get-all-employee-purchase-code', function () use ($app) {
@@ -766,9 +848,15 @@ $app->post('/hr/hr_values/employee-commission-history', function () use ($app) {
 });
 
 //codemark1
+<<<<<<< HEAD
 $app->post('/hr/hr_values/get-emp-form-details', function() use ($app){
     global $objHr, $input;
     
+=======
+$app->post('/hr/hr_values/get-emp-form-details', function () use ($app) {
+    global $objHr, $input;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $empDetailArr = array(
         "id" => $input->employee_id
     );
@@ -777,10 +865,17 @@ $app->post('/hr/hr_values/get-emp-form-details', function() use ($app){
         $input_array[$key] = $val;
     }
     $empRolesArr = array(
+<<<<<<< HEAD
         "all"=> $input->all,
         "start"=> $input->start,
         "limit"=> $input->limit,
         "keyword"=> $input->keyword
+=======
+        "all" => $input->all,
+        "start" => $input->start,
+        "limit" => $input->limit,
+        "keyword" => $input->keyword
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     );
 
     $empGetRoleToEmpArr = array(
@@ -801,9 +896,15 @@ $app->post('/hr/hr_values/get-emp-form-details', function() use ($app){
     );
 
     $input_array = [$input, $empDetailArr, $empLastStatusHistoryArr, $empRolesArr, $empGetRoleToEmpArr, $empGetCrmSalespersonArr, $empGetAllListings];
+<<<<<<< HEAD
     
     $result = $objHr->get_emp_form_details($input_array);
     
+=======
+
+    $result = $objHr->get_emp_form_details($input_array);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     // $result = "";
     // $result["emp_type"] .= json_encode($objHr->get_emp_type_list($input));
     // $result["emp_inactive_type"] .= json_encode($objHr->get_employee_inactive_type($input));
@@ -814,7 +915,10 @@ $app->post('/hr/hr_values/get-emp-form-details', function() use ($app){
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -899,7 +1003,11 @@ $app->post('/hr/hr_values/getDistance', function () use ($app) {
     $postcode2 = urlencode($input_array['destination']);
     //$via="|".urlencode ($input_array['via']);
 
+<<<<<<< HEAD
 //$url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=".$postcode2."&destinations=".$postcode1."&mode=driving&language=en-EN&sensor=false";
+=======
+    //$url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=".$postcode2."&destinations=".$postcode1."&mode=driving&language=en-EN&sensor=false";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     if ($postcode2 != '') {
         // $url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $postcode1 . "&destinations=" . $postcode2 . "&mode=driving&language=en-EN&sensor=false";
         $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" . $postcode1 . "&destinations=" . $postcode2 . "&key=AIzaSyBP2-jPrmwpblyVI6NfzLPHXpO5cr4uPdU";
@@ -1040,7 +1148,11 @@ $app->post('/hr/hr_values/deduction-data-by-id', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 $app->post('/hr/hr_values/update-hr-deduction', function () use ($app) {
+=======
+/* $app->post('/hr/hr_values/update-hr-deduction', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objHr, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1050,7 +1162,11 @@ $app->post('/hr/hr_values/update-hr-deduction', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/hr/hr_values/get-expenses-setup', function () use ($app) {
@@ -1102,4 +1218,7 @@ $app->post('/hr/hr_values/add-hr-benefit-history', function () use ($app) {
     echo json_encode($result);
 });
 ############	End: hr    values ##############
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

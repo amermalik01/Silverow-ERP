@@ -84,7 +84,11 @@ $app->post('/sales/stock/categories/delete-category', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/stock/categories/status-category', function () use ($app) {
+=======
+/* $app->post('/sales/stock/categories/status-category', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;
 	$input_array = array();
 	
@@ -96,6 +100,12 @@ $app->post('/sales/stock/categories/status-category', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 ############	End: Category Section ##############
+=======
+}); */
+############	End: Category Section ##############
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ?>

@@ -47,10 +47,23 @@ $app->post('/setup/warehouse/stockReportPredatalistings', function () use ($app)
 
 $app->post('/setup/warehouse/get-warehouse', function () use ($app) {
     global $objWarehouse, $input;
+<<<<<<< HEAD
     $input_array = array(
         "id" => $input->id
     );
     $result = $objWarehouse->get_data_by_id('warehouse', $input_array['id']);
+=======
+    /* $input_array = array(
+        "id" => $input->id
+    ); 
+    $result = $objWarehouse->get_data_by_id('warehouse', $input_array['id']);*/
+
+    $input_array = array();
+    foreach ($input as $key => $val) {
+        $input_array[$key] = $val;
+    }    
+    $result = $objWarehouse->get_warehouse_by_id($input_array);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
@@ -148,7 +161,11 @@ $app->post('/setup/warehouse/get-warehouse-code', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/setup/warehouse/update-finance', function () use ($app) {
+=======
+/* $app->post('/setup/warehouse/update-finance', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -158,7 +175,11 @@ $app->post('/setup/warehouse/update-finance', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Alt Contact Module
@@ -1168,7 +1189,11 @@ $app->post('/setup/warehouse/delete-warehouse-area', function () use ($app) {
 // CRM Document Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/setup/warehouse/srm-documents', function () use ($app) {
+=======
+/* $app->post('/setup/warehouse/srm-documents', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1178,7 +1203,11 @@ $app->post('/setup/warehouse/srm-documents', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/setup/warehouse/get-warehouse-document-by-id', function () use ($app) {
     global $objWarehouse, $input;
@@ -1193,7 +1222,11 @@ $app->post('/setup/warehouse/get-warehouse-document-by-id', function () use ($ap
 });
 
 
+<<<<<<< HEAD
 $app->post('/setup/warehouse/add-warehouse-document', function () use ($app) {
+=======
+/* $app->post('/setup/warehouse/add-warehouse-document', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
 
@@ -1217,7 +1250,11 @@ $app->post('/setup/warehouse/update-warehouse-document', function () use ($app) 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/setup/warehouse/delete-warehouse-document', function () use ($app) {
     global $objWarehouse, $input;
@@ -1232,7 +1269,11 @@ $app->post('/setup/warehouse/delete-warehouse-document', function () use ($app) 
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/setup/warehouse/folders', function () use ($app) {
+=======
+/* $app->post('/setup/warehouse/folders', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
 
@@ -1258,7 +1299,11 @@ $app->post('/setup/warehouse/add-folder', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Price Offer Volume Module
@@ -1289,7 +1334,11 @@ $app->post('/setup/warehouse/get-price-offer-volume', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/setup/warehouse/add-price-offer-volume', function () use ($app) {
+=======
+/* $app->post('/setup/warehouse/add-price-offer-volume', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -1313,7 +1362,11 @@ $app->post('/setup/warehouse/update-price-offer-volume', function () use ($app) 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/setup/warehouse/get-price-offer-volume-by-id', function () use ($app) {
     global $objWarehouse, $input;

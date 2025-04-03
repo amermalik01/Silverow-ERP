@@ -32,6 +32,10 @@
                                                 <th> Posting Date </th>
                                                 <th> Document Type </th>
                                                 <th> Document No. </th>
+<<<<<<< HEAD
+=======
+                                                <th> Order No. </th>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 <th class="text-right"> Original Amount</th>
                                                 <th class="text-right"> Amount Settled</th>
                                                 <th> Date Allocated </th>
@@ -62,40 +66,67 @@
                                                          <a title="Debit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                             ui-sref="app.viewsrmorderreturn({id:sp.order_id})" target="_blank" >
                                                             {{sp.code}}</a>
+<<<<<<< HEAD
                                                     </span> 
+=======
+                                                    </span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     <span ng-if="sp.payment_type == 'Opening Balance Invoice'">
                                                     
                                                          <a title="Opening Balance Invoice" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                             ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
                                                             {{sp.code}}</a>
+<<<<<<< HEAD
                                                     </span> 
+=======
+                                                    </span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     <span ng-if="sp.payment_type == 'Bank Opening Balance Payment' || sp.payment_type == 'Bank Opening Balance Refund'">
                                                     
                                                          <a title="{{sp.payment_type}}" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                             ui-sref="app.openingBalances({module:'bank'})" target="_blank" >
                                                             {{sp.code}}</a>
+<<<<<<< HEAD
                                                     </span>                                                    
                                                     
+=======
+                                                    </span>
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     <span ng-if="module_type.value == 2">
                                                         <span ng-if="sp.payment_type == 'Refund'">                                                            
                                                             <a title="{{moduleName | capitalize}} Refund" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                                 ui-sref="app.view-receipt-journal-gl-cust({id:sp.order_id})" target="_blank">
                                                                 {{sp.code}}</a>
                                                         </span>
+<<<<<<< HEAD
                                                             
                                                         <span ng-if="sp.payment_type == 'Payment'">
+=======
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             <a title="{{moduleName | capitalize}} Payment" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                                 ui-sref="app.view-receipt-journal-gl-cust({id:sp.order_id})" target="_blank" >
                                                                 {{sp.code}}</a>
                                                             
                                                         </span>
+<<<<<<< HEAD
                                                         
                                                         <span ng-if="sp.payment_type == 'Opening Balance Credit Note'">
+=======
+
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Credit Note'">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         
                                                             <a title="Opening Balance Credit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                                 ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
                                                                 {{sp.code}}</a>
+<<<<<<< HEAD
                                                         </span> 
+=======
+                                                        </span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     </span>
                                                     <span ng-if="module_type.value == 3">
                                                         <span ng-if="sp.payment_type == 'Refund'">
@@ -104,20 +135,113 @@
                                                                 ui-sref="app.view-receipt-journal-gl-supp({id:sp.order_id})" target="_blank">
                                                                 {{sp.code}}</a>
                                                         </span>
+<<<<<<< HEAD
                                                             
                                                         <span ng-if="sp.payment_type == 'Payment'">
+=======
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             <a title="{{moduleName | capitalize}} Payment" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                                 ui-sref="app.view-receipt-journal-gl-supp({id:sp.order_id})" target="_blank" >
                                                                 {{sp.code}}</a>
                                                             
                                                         </span>
+<<<<<<< HEAD
                                                         
                                                         <span ng-if="sp.payment_type == 'Opening Balance Debit Note'">
+=======
+
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Debit Note'">
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         
                                                             <a title="Opening Balance Debit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
                                                                 ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
                                                                 {{sp.code}}</a>
+<<<<<<< HEAD
                                                         </span> 
+=======
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <!-- <span ng-if="module_type.value == 2"> -->
+                                                    <span ng-if="sp.payment_type == 'Sales Invoice'">
+                                                        <a title="Sale Invoice" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                            ui-sref="app.viewOrder({id:sp.order_id, isInvoice:1})" target="_blank">
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Credit Note'">
+                                                        <a title="Credit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                            ui-sref="app.viewReturnOrder({id:sp.order_id, isInvoice:1})" target="_blank">
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+
+                                                    <span ng-if="sp.payment_type == 'Purchase Invoice'">
+                                                         <a title="Purchase Invoice" class="tooltips_clss btn hilight " style="font-size: 11px;" ui-sref="app.viewsrmorder({id:sp.order_id})" target="_blank" >
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Debit Note'">
+                                                         <a title="Debit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                            ui-sref="app.viewsrmorderreturn({id:sp.order_id})" target="_blank" >
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Invoice'">
+                                                    
+                                                         <a title="Opening Balance Invoice" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                            ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Bank Opening Balance Payment' || sp.payment_type == 'Bank Opening Balance Refund'">
+                                                    
+                                                         <a title="{{sp.payment_type}}" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                            ui-sref="app.openingBalances({module:'bank'})" target="_blank" >
+                                                            {{sp.order_code}}</a>
+                                                    </span>
+
+                                                    <span ng-if="module_type.value == 2">
+                                                        <span ng-if="sp.payment_type == 'Refund'">                                                            
+                                                            <a title="{{moduleName | capitalize}} Refund" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.view-receipt-journal-gl-cust({id:sp.order_id})" target="_blank">
+                                                                {{sp.order_code}}</a>
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+                                                            <a title="{{moduleName | capitalize}} Payment" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.view-receipt-journal-gl-cust({id:sp.order_id})" target="_blank" >
+                                                                {{sp.order_code}}</a>
+                                                            
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Credit Note'">
+                                                        
+                                                            <a title="Opening Balance Credit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
+                                                                {{sp.order_code}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-if="module_type.value == 3">
+                                                        <span ng-if="sp.payment_type == 'Refund'">
+                                                            
+                                                            <a title="{{moduleName | capitalize}} Refund" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.view-receipt-journal-gl-supp({id:sp.order_id})" target="_blank">
+                                                                {{sp.order_code}}</a>
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+                                                            <a title="{{moduleName | capitalize}} Payment" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.view-receipt-journal-gl-supp({id:sp.order_id})" target="_blank" >
+                                                                {{sp.order_code}}</a>
+                                                            
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Debit Note'">
+                                                        
+                                                            <a title="Opening Balance Debit Note" class="tooltips_clss btn hilight " style="font-size: 11px;" 
+                                                                ui-sref="app.openingBalances({module:moduleName})" target="_blank" >
+                                                                {{sp.order_code}}</a>
+                                                        </span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     </span>
                                                 </td>
                                                 <td class="text-right">{{ sp.original_amount| number:decimal_range }}&nbsp;{{sp.currency_code}}</td>
@@ -136,6 +260,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
              <div class="modal-footer">
                  <div class="pull-left text-left">
                         <b> Total Amount:</b>
@@ -152,6 +277,24 @@
                         <span style="margin-right: 20px;">{{ total_amount - total_setteled | number:decimal_range }}
                             <span style="margin-left: 3px;margin-right: 3px;">{{currency_code}}</span>
                         </span>
+=======
+            <div class="modal-footer">
+                <div class="pull-left text-left">
+                    <b> Total Amount:</b>
+                    <span style="margin-right: 20px;">{{ total_amount | number:decimal_range }}
+                            <span style="margin-left: 3px;margin-right: 3px;">{{currency_code}}</span>
+                    </span>
+
+                    <b> Settled Amount:</b>
+                    <span style="margin-right: 20px;"> {{ total_setteled | number:decimal_range }}
+                            <span style="margin-left: 3px;margin-right: 3px;">{{currency_code}}</span>
+                    </span>
+
+                    <b> Remaining Amount:</b>
+                    <span style="margin-right: 20px;">{{ total_amount - total_setteled | number:decimal_range }}
+                            <span style="margin-left: 3px;margin-right: 3px;">{{currency_code}}</span>
+                    </span>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 </div>
                 <!-- <div class="pull-left">
                         <span class="margin-right"><i class="fa fa-circle" style="color:#ef7372"></i> Zero Allocation </span>
@@ -165,7 +308,11 @@
                 <button class="btn btn-submit2" type="button" ng-click="AddPaymentAllocation(module_type.value, doc_type)" 
                 ng-class="{'dont-click2':netTotal() < 0}">Save </button> -->
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+<<<<<<< HEAD
             </div> 
+=======
+            </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         </div>
         <!-- Refund  -->
         <!-- <div class="modal-content" ng-if="doc_type == 3">
@@ -223,6 +370,10 @@
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
             </div>
         </div> -->
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     </div>
 </div>

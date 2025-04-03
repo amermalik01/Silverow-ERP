@@ -1,15 +1,26 @@
+<<<<<<< HEAD
 [
     {
         
+=======
+[{
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Posting Date",
         "field_name": "posting_date",
         "visible": "1",
         "pinned": "0",
         "color": "#ffffff",
         "width": "100",
+<<<<<<< HEAD
         
         "data_type": "date"
         
+=======
+
+        "data_type": "date"
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     },
     {
         "title": "Claim Date",
@@ -250,7 +261,11 @@
         "data_type": "string"
     },
     {
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Req. Rcpt. Date",
         "field_name": "requested_delivery_date",
         "visible": "0",
@@ -386,6 +401,18 @@
         "data_type": "string"
     },
     {
+<<<<<<< HEAD
+=======
+        "title": "Linked SO",
+        "field_name": "sale_order_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Docs. Attached",
         "field_name": "documentCNCount",
         "visible": "0",
@@ -412,5 +439,9 @@
         "width": "210",
         "data_type": "string"
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ]

@@ -73,6 +73,11 @@ class Salestock extends Xtreme
     {
         $response = array();
 
+<<<<<<< HEAD
+=======
+        $total = 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($attr['item_id'] != 0)
             $where = "and product_id='" . $attr['item_id'] . "'  ";
 
@@ -126,6 +131,10 @@ class Salestock extends Xtreme
     {
         //$this->objGeneral->mysql_clean($attr);''
         $limit_clause = $where_clause = "";
+<<<<<<< HEAD
+=======
+        $response = array();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $str_where = '';
         if (isset($attr['categories'])) {
             $arrIds = array();
@@ -489,7 +498,11 @@ class Salestock extends Xtreme
                         tst.quantity_to = '" . $arr_attr['quantity_to'] . "' and 
                         tst.customer_price_info_id = '" . $arr_attr['customer_price_info_id'] . "'
                         $update_check";
+<<<<<<< HEAD
         // and tst.customer_item_info_id = '" . $arr_attr[customer_item_info_id] . "'
+=======
+        // and tst.customer_item_info_id = '" . $arr_attr['customer_item_info_id'] . "'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $total = $this->objGeneral->count_duplicate_in_sql('crm_product_volume', $data_pass, $this->arrUser['company_id']);
 
@@ -595,7 +608,11 @@ class Salestock extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['total'] = $total;
+=======
+            $response['total'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
             $response['ack'] = 0;
@@ -710,7 +727,11 @@ class Salestock extends Xtreme
             }
             $response['ack'] = 1;
             $response['error'] = NULL;
+<<<<<<< HEAD
             $response['total'] = $total;
+=======
+            $response['total'] = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         } else {
             $response['response'] = array();
             $response['ack'] = 0;
@@ -743,8 +764,13 @@ class Salestock extends Xtreme
         if (!empty($attr['units']))
             $where_clause .= " AND product.unit_id=$attr[units] ";
         if (!empty($attr['searchBox'])) {
+<<<<<<< HEAD
             $where_clause .= " AND (product.description LIKE '%" . $attr[searchBox] . "%' 
    OR product.product_code LIKE '%" . $attr[searchBox] . "%') ";
+=======
+            $where_clause .= " AND (product.description LIKE '%" . $attr['searchBox'] . "%' 
+   OR product.product_code LIKE '%" . $attr['searchBox'] . "%') ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response = array();
@@ -955,7 +981,11 @@ class Salestock extends Xtreme
         if (!empty($attr['units']))
             $where_clause .= " AND product.unit_id=$attr[units] ";
         if (!empty($attr['searchBox'])) {
+<<<<<<< HEAD
             $where_clause .= " AND (product.description LIKE '%" . $attr[searchBox] . "%' OR product.product_code LIKE '%" . $attr[searchBox] . "%') ";
+=======
+            $where_clause .= " AND (product.description LIKE '%" . $attr['searchBox'] . "%' OR product.product_code LIKE '%" . $attr['searchBox'] . "%') ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         $response = array();
@@ -1165,18 +1195,33 @@ class Salestock extends Xtreme
 
         $response = array();
 
+<<<<<<< HEAD
 
         $Sql = "SELECT products.*
 		,(SELECT category.name FROM category WHERE  products.category_id=category.id) as category_name
 		,(SELECT brand.brandname FROM brand  WHERE  brand.id=products.brand_id) as brand_name
 		,(SELECT units_of_measure.title FROM units_of_measure   WHERE units_of_measure.id=products.unit_id) as unit_of_measure_name
 		, IFNULL((SELECT sum(wa.quantity) FROM warehouse_allocation as wa
+=======
+        $sql_total = '';
+
+
+        $Sql = "SELECT products.*,
+                        (SELECT category.name FROM category WHERE  products.category_id=category.id) as category_name,
+                        (SELECT brand.brandname FROM brand  WHERE  brand.id=products.brand_id) as brand_name,
+                        (SELECT units_of_measure.title FROM units_of_measure   WHERE units_of_measure.id=products.unit_id) as unit_of_measure_name,
+                        IFNULL((SELECT sum(wa.quantity) FROM warehouse_allocation as wa
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					  WHERE wa.type = 1 and wa.purchase_status in (2,3) and wa.item_id = products.id),0) -  IFNULL((SELECT sum(sa.quantity) FROM warehouse_allocation as sa
 					  WHERE sa.type = 2 and sa.sale_status = 2 and sa.item_id = products.id),0) as current_stock
 		 
 		From products 
 		LEFT JOIN company on company.id=products.company_id 
+<<<<<<< HEAD
 		where products.status=1  and (products.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	" . $where_clause . "
+=======
+		where products.status=1  and products.company_id=" . $this->arrUser['company_id'] . "	" . $where_clause . "
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		ORDER BY products.id DESC";
 
         echo $Sql;
@@ -1766,7 +1811,11 @@ ORDER BY products.id DESC";
 
         $Sql = "SELECT  d.id, d.name, d.contact_person, d.customer_no, d.customer_price, d.type
 	, d.address_1, d.city, d.postcode 
+<<<<<<< HEAD
 	,(SELECT  volume_1_price FROM crm_price_offer_listing  where product_id=$attr[product_id] and crm_id=d.id Limit 1)as price
+=======
+	,(SELECT  volume_1_price FROM crm_price_offer_listing  where product_id=".$attr['product_id']." and crm_id=d.id Limit 1)as price
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	,(SELECT  cs1.title FROM site_constants  cs1
 	where cs1.type='SEGMENT' and cs1.id=d.company_type
 	Limit 1)as segment
@@ -1790,9 +1839,15 @@ ORDER BY products.id DESC";
                 $result['id'] = $Row['id'];
 
                 if ($Row['type'] == 1)
+<<<<<<< HEAD
                     $result['code'] = 'CRM' . $this->module_item_prefix($Row['customer_no']);
                 else
                     $result['code'] = 'CUST' . $this->module_item_prefix($Row['customer_no']);
+=======
+                    $result['code'] = 'CRM';// . $this->module_item_prefix($Row['customer_no'])
+                else
+                    $result['code'] = 'CUST';// . $this->module_item_prefix($Row['customer_no'])
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $result['name'] = $Row['name'];
                 $result['address'] = $Row['address_1'];
@@ -1901,7 +1956,11 @@ ORDER BY products.id DESC";
 
         if ($filter == 'customer_no') {
 
+<<<<<<< HEAD
             $searchKeyword = filter_var($attr[searchKeyword], FILTER_SANITIZE_NUMBER_INT);
+=======
+            $searchKeyword = filter_var($attr['searchKeyword'], FILTER_SANITIZE_NUMBER_INT);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $searchKeyword = ltrim($searchKeyword, '0');
         }
 
@@ -1912,7 +1971,11 @@ ORDER BY products.id DESC";
             $attr['type'] = 3;
 
         $Sql = "SELECT  d.id, d.name, d.contact_person, d.customer_no, d.customer_price, d.type, d.address_1, d.city, d.postcode 
+<<<<<<< HEAD
 		,(SELECT  volume_1_price FROM crm_price_offer_listing  where product_id=$attr[product_id] and crm_id=d.id
+=======
+		,(SELECT  volume_1_price FROM crm_price_offer_listing  where product_id=".$attr['product_id']." and crm_id=d.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		Limit 1)as price
 		,(SELECT  sc1.title FROM site_constants  sc1	  where sc1.type='SEGMENT'  $segment
 		and sc1.id=d.company_type Limit 1)as segment
@@ -1936,9 +1999,15 @@ ORDER BY products.id DESC";
 
                 $result['id'] = $Row['id'];
                 if ($Row['type'] == 1)
+<<<<<<< HEAD
                     $result['code'] = 'CRM' . $this->module_item_prefix($Row['customer_no']);
                 else
                     $result['code'] = 'CUST' . $this->module_item_prefix($Row['customer_no']);
+=======
+                    $result['code'] = 'CRM';// . $this->module_item_prefix($Row['customer_no'])
+                else
+                    $result['code'] = 'CUST';// . $this->module_item_prefix($Row['customer_no'])
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $result['name'] = $Row['name'];
                 $result['address'] = $Row['address_1'];
@@ -1973,7 +2042,11 @@ ORDER BY products.id DESC";
                   else{		$result['checked'] =0;	} */
 
                 $value_count = 0;
+<<<<<<< HEAD
                 if ($attr[get_id] > 0) {
+=======
+                if ($attr['get_id'] > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $result['discounted_price'] = '';
                     foreach ($response2['response_selected'] as $key => $m_id) {
                         // echo $Row['id']; echo $m_id['id'];
@@ -2036,7 +2109,11 @@ ORDER BY products.id DESC";
 		,ps.supplier_unit_cost,ps.start_date,ps.end_date
 		,ps.discount_value,ps.supplier_type 
 		FROM product_sale ps   
+<<<<<<< HEAD
 		WHERE ps.product_id='$attr[product_id]' and ps.status=1
+=======
+		WHERE ps.product_id='".$attr['product_id']."' and ps.status=1
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and ps.end_date >= '" . strtotime("now") . "'		
 		order by ps.id DESC";
 
@@ -2089,7 +2166,11 @@ ORDER BY products.id DESC";
 		,product_supplier.purchase_price,product_supplier.discount_price
 		FROM product_supplier  
 		Left  JOIN company on company.id=product_supplier.company_id 
+<<<<<<< HEAD
 		where product_supplier.product_id='$attr[product_id]' and product_supplier.status=1 
+=======
+		where product_supplier.product_id='".$attr['product_id']."' and product_supplier.status=1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and ( product_supplier.company_id=" . $this->arrUser['company_id'] . " or  company.parent_id=" . $this->arrUser['company_id'] . ")	
 		order by product_supplier.id DESC";
 
@@ -2137,7 +2218,11 @@ ORDER BY products.id DESC";
 ,product_purchaser.discount_value,product_purchaser.purchase_type,product_purchaser.purchase_price,product_purchaser.discount_price,product_purchaser.volume_name
 		FROM product_purchaser   
 		left  JOIN company on company.id=product_purchaser.company_id 
+<<<<<<< HEAD
 		where product_purchaser.product_id='$attr[product_id]' and product_purchaser.status=1 
+=======
+		where product_purchaser.product_id='".$attr['product_id']."' and product_purchaser.status=1 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		and ( product_purchaser.company_id=" . $this->arrUser['company_id'] . " 
 		or  company.parent_id=" . $this->arrUser['company_id'] . ")
 		order by product_purchaser.id DESC";
@@ -2183,7 +2268,11 @@ ORDER BY products.id DESC";
     function get_products($attr)
     {
         global $objFilters;
+<<<<<<< HEAD
         $where = self::setCondtionArray($attr[condition]);
+=======
+        $where = self::setCondtionArray($attr['condition']);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo "<pre>"; print_r($where); exit;
         return $objFilters->get_module_listing(29, "products", '', '', '', '', $where);
     }
@@ -2368,7 +2457,11 @@ margin_start_date= '" . $this->objGeneral->convert_date($attr['margin_start_date
 
 
         $sql_total = "SELECT avg(sd.unit_price) as avg  
+<<<<<<< HEAD
 						FROM srm_invoice_detail sd WHERE sd.status=1 AND product_id = '" . $attr[product_id] . "' and invoice_type in(2,3)
+=======
+						FROM srm_invoice_detail sd WHERE sd.status=1 AND product_id = '" . $attr['product_id'] . "' and invoice_type in(2,3)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 						AND ( sd.order_date BETWEEN '" . $start_date . "' AND '" . $end_date . "')";
 
         $avg_cost = 0;
@@ -2394,7 +2487,11 @@ margin_start_date= '" . $this->objGeneral->convert_date($attr['margin_start_date
         $sql = "SELECT order_details.order_date   
 						FROM order_details 
 						JOIN orders ON (orders.id = order_details.order_id) 
+<<<<<<< HEAD
 						WHERE company_id = '" . $this->arrUser['company_id'] . "' AND order_details.item_id = " . $attr[product_id] . " AND orders.type in (2,3) ORDER BY order_details.id DESC limit 1";
+=======
+						WHERE company_id = '" . $this->arrUser['company_id'] . "' AND order_details.item_id = " . $attr['product_id'] . " AND orders.type in (2,3) ORDER BY order_details.id DESC limit 1";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // echo $sql; exit;		
         $RS = $this->objsetup->CSI($sql);
@@ -2563,5 +2660,8 @@ margin_start_date= '" . $this->objGeneral->convert_date($attr['margin_start_date
     }
 
 }
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

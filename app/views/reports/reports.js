@@ -1,4 +1,5 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
 	function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
 		$stateProvider
 			.state('app.getReport', {
@@ -268,54 +269,352 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
 				controller: 'balanceSheetReportController'
 			})
 			.state('app.getCustomerPriceList', {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+        $stateProvider
+            .state('app.getReport', {
+                url: '/sales-report/:module/:linkID/:link',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/reports.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog')
+            })
+            .state('app.getAgedReport', {
+                url: '/aged-report/:module',
+                title: 'Reports', //Customer
+                templateUrl: helper.basepath('reports/agedReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'AgedReportController'
+            })
+            .state('app.getStatementReport', {
+                url: '/statements/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/agedReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'AgedReportController'
+            })
+            .state('app.getVATReport', {
+                url: '/vat-report/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/vatReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'VATReportController'
+            })
+            .state('app.getUnPostedOrderReport', {
+                url: '/unposted-orders-report/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/unPostedOrderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderReportController'
+            })
+            .state('app.getUnPostedSalesOrderReport', {
+                url: '/unposted-sales-report/:module', //UnPosted-Sales-Order-report/
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/unpostedSalesOrderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderReportController'
+            })
+            .state('app.getUnPostedOrderDetailReport', {
+                url: '/orders-detail-report/:module', //UnPosted-Customer-Order-Detail-report/
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/unPostedOrderDetailReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderDetailReportController'
+            })
+            .state('app.getUnPostedPurchaseOrderReport', {
+                url: '/unposted-purchases-report/:module', //UnPosted-Purchase-Order-report/
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/unpostedPurchaseOrderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderReportController'
+            })
+            .state('app.getPostedPurchaseOrderReport', {
+                url: '/posted-purchases-report/:module', //Posted-Purchase-Order-report/
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/postedPurchaseOrderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderReportController'
+            })
+            .state('app.getPurchasesBySupplier', {
+                url: '/Item-Purchases-by-supplier/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.getSalesByCategoryBrandSegment', {
+                url: '/Item-Purchases-by-supplier/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.getECSalesListReport', {
+                url: '/EC-Sales-List/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.getSalesFiguresReport', {
+                url: '/Sales-Figures/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.customerReminders', {
+                url: '/Customer-Reminders/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/customerReminderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.salesForecast', {
+                url: '/Sales-Forecast/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesForecastReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.customerItemPrices', {
+                url: '/Sales/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/customerItemPricesReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.salespersonLoginActivity', {
+                url: '/salesperson-login-activity',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salespersonLoginActivityReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'salespersonLoginActivityController'
+            })
+            .state('app.inlandDistributionAnalysis', {
+                url: '/inland-dist-analysis',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/inlandDistributionAnalysisReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'inlandDistributionAnalysisController'
+            })
+            .state('app.haulieraccrual', {
+                url: '/haulier-accruals',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/haulierAccrualReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'haulierAccrualController'
+            })
+            .state('app.inventoryStatistics', {
+                url: '/inventory-statistics',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/inventoryStatisticsReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'inventoryStatisticsController'
+            })
+            .state('app.salesMarginalAnalysis', {
+                url: '/Sales-Marginal-Analysis/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.getSalesFigureByGL', {
+                url: '/Accounts-Figure-by-GL/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salesFigureReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SalesFigureController'
+            })
+            .state('app.getSalespersonReport', {
+                url: '/salesperson-activity/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/salespersonActivityReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'UnPostedOrderReportController'
+            })
+            .state('app.getPostedOrderReport', {
+                url: '/Posted-sales-invoices-and-credit-notes/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/postedOrderReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'PostedOrderReportController'
+            })
+            .state('app.getTrialBalncReport', {
+                url: '/trial-balance-report/:module',
+                title: 'Reports', //Detailed
+                templateUrl: helper.basepath('reports/trialBalncReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'TrialBalncReportController'
+            })
+            .state('app.accessByTransactionNumbers', {
+                url: '/transaction-entries-report', //access-by-transaction-numbers-report
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/accessByTransactionNumReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'AccessByTransactionNumbersController'
+            })
+            .state('app.getCustomerPaymentReport', {
+                url: '/payments-and-refunds-from-customers-report',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/customerPaymentReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'CustomerPaymentReportController'
+            })
+            .state('app.getStockSummaryReport', {
+                url: '/stock-report/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/stockSummaryReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'StockReportController'
+            })
+            .state('app.getStockDetailReport', {
+                // url: '/stock-detail-report/:module',
+                url: '/stock-Availability-report/:module',
+                title: 'Reports', //Stock Availability by Warehouse - Detail
+                templateUrl: helper.basepath('reports/stockDetailReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'StockReportController'
+            })
+            .state('app.inventoryReport', {
+                url: '/inventory-report/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/stockReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'StockReportController'
+            })
+            .state('app.getEmpReport', {
+                url: '/employee-report/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/empReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'EmpReportController'
+            })
+            .state('app.allReports', {
+                url: '/all-report',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/allReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'AllReportController'
+            })
+            .state('app.getRemittanceAdvice', {
+                url: '/remittance-advice',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/remittanceAdvice.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'RemittanceAdviceController'
+            })
+            .state('app.getSupplierActivity', {
+                url: '/supplier-activity',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/supplierActivityReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'SupplierActivityController'
+            })
+            .state('app.getCustomerActivity', {
+                url: '/customer-activity',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/customerActivityReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'CustomerActivityController'
+            })
+            .state('app.getOpenSalesOrderDetailReport', {
+                url: '/open-sale-orders-detail',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/OpenSalesOrderDetailReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'OpenSalesOrderDetailController'
+            })
+            .state('app.profitAndLossStatement', {
+                url: '/profit-and-loss-statement',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/profitAndLossStatement.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'profitAndLossStatementController'
+            })
+            .state('app.balanceSheet', {
+                url: '/balance-sheet',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/balanceSheet.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'balanceSheetReportController'
+            })
+            .state('app.getCustomerPriceList', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 url: '/customer-price-list',
                 title: 'Reports',
                 templateUrl: helper.basepath('reports/customerPriceListReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'CustomerPriceListController'
             })
+<<<<<<< HEAD
 			.state('app.salespersonCommission', {
+=======
+            .state('app.salespersonCommission', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 url: '/salesperson-commission',
                 title: 'Reports',
                 templateUrl: helper.basepath('reports/salespersonCommissionReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'SalespersonCommissionController'
             })
+<<<<<<< HEAD
 			.state('app.customerRebate', {
+=======
+            .state('app.customerRebate', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 url: '/rebate/:module',
                 title: 'Reports',
                 templateUrl: helper.basepath('reports/customerRebateReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'CustomerRebateController'
             })
+<<<<<<< HEAD
 			.state('app.crmRebate', {
+=======
+            .state('app.crmRebate', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 url: '/rebate/:module',
                 title: 'Reports',
                 templateUrl: helper.basepath('reports/customerRebateReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'CustomerRebateController'
             })
+<<<<<<< HEAD
 			.state('app.supplierRebate', {
+=======
+            .state('app.supplierRebate', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 url: '/rebate/:module',
                 title: 'Reports',
                 templateUrl: helper.basepath('reports/customerRebateReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'CustomerRebateController'
             })
+<<<<<<< HEAD
 			// .state('app.custOpportunityCycle', {
+=======
+            // .state('app.custOpportunityCycle', {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //     url: '/customer/:module',
             //     title: 'Reports',//custOpportunityCycleReport.html
             //     templateUrl: helper.basepath('reports/customerRebateReport.html'),
             //     resolve: helper.resolveFor('ngTable', 'ngDialog'),
             //     controller: 'CustomerRebateController'
             // })
+<<<<<<< HEAD
 			.state('app.customerWithNoActivity', {
                 url: '/customer/:module',
                 title: 'Reports',//customerWithNoActivityReport
+=======
+            .state('app.customerWithNoActivity', {
+                url: '/customer/:module',
+                title: 'Reports', //customerWithNoActivityReport
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 templateUrl: helper.basepath('reports/customerRebateReport.html'),
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'CustomerRebateController'
             })
+<<<<<<< HEAD
 			.state('app.topCustomers', {
 				url: '/top-customers/:module',
 				title: 'Reports',
@@ -521,11 +820,220 @@ myApp.controller('ReportsController', ["$scope", "$filter", "ngTableParams", "$r
 		var title = str.replace('_', ' ');
 		return title.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 	}
+=======
+            .state('app.topCustomers', {
+                url: '/top-customers/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/topCustomers.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'topCustomersReportController'
+            })
+            .state('app.inventoryList', {
+                url: '/inventory-list',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/InventoryList.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'inventoryListReportController'
+            })
+            .state('app.getListingReport', {
+                url: '/listing/:module',
+                title: 'Reports',
+                templateUrl: helper.basepath('reports/listingReport.html'),
+                resolve: helper.resolveFor('ngTable', 'ngDialog'),
+                controller: 'listingReportController'
+            })
+    }
+]);
+
+myApp.factory('jsreportService', ['$rootScope', '$http',
+    function($rootScope, $http) {
+        return {
+            downloadXlsx: function(_data, _shortId) {
+                return $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": _shortId,
+                            "recipe": "html-to-xlsx",
+                        },
+                        "data": _data
+                    },
+                    headers: {
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+
+            },
+            downloadXlsxNative: function(_data, _shortId) {
+                return $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": _shortId,
+                            "recipe": "xlsx",
+                        },
+                        "data": _data
+                    },
+                    headers: {
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+
+            },
+            downloadPdf: function(_data, _shortId) {
+                return $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": _shortId
+                        },
+                        "data": _data
+                    },
+                    headers: {
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+
+            }
+        };
+    }
+]);
+
+
+myApp.controller('ReportsController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", function ReportsController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService) {
+    'use strict';
+
+    // console.log($stateParams);
+    // console.log($stateParams.module);
+    // console.log($stateParams.link);
+    // console.log($stateParams.linkID);
+
+    // console.log($rootScope.arrMonths);
+
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Aged Report', 'url': '#', 'isActive': false }];
+
+    var vm = this;
+    $scope.rec = {};
+    $scope.record = {};
+    $scope.MainDefer = null;
+    $scope.mainParams = null;
+    $scope.mainFilter = null;
+    $scope.more_fields = '';
+    $scope.count = 1;
+    $scope.sendRequest = false;
+
+    $scope.searchKeyword = {};
+    $scope.searchKeywordHistory = {};
+    $scope.dontShowModal = false;
+    // var salesReportListingApi = $scope.$root.reports + "sales/sales-report";
+
+
+    var date = new Date();
+    var months = [];
+
+    for (var i = 0; i < 12; i++) {
+        var m = {};
+        m.id = i;
+
+        m.label = $rootScope.arrMonths[date.getMonth()].label + ' ' + date.getFullYear();
+        months.push(m);
+
+        // Subtract a month each time
+        date.setMonth(date.getMonth() - 1);
+    }
+
+    $scope.monthsArr = months;
+    $scope.monthSel = '';
+
+    // console.log($scope.monthsArr);
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.monthSel);
+        $scope.showLoader = true;
+
+        $scope.salesReportListing = {};
+        $scope.salesReportListing.token = $rootScope.token;
+        $scope.salesReportListing.module = $stateParams.module;
+        $scope.salesReportListing.monthSel = $scope.monthSel;
+
+        if ($stateParams.link != undefined) {
+            $scope.salesReportListing.link = $stateParams.link;
+            $scope.salesReportListing.linkID = $stateParams.linkID;
+        }
+
+        $scope.tempProdArr = [];
+
+
+        var salesReportListingApi = $scope.$root.reports + "module/get-report";
+        $http
+            .post(salesReportListingApi, $scope.salesReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    // console.log($scope.reportsDataArr);
+                    // console.log($scope.columns);
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.monthSel = '';
+        $scope.reportsDataArr = [];
+        $scope.columns = [];
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+    function toTitleCase(str) {
+        var title = str.replace('_', ' ');
+        return title.replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 
 myApp.controller('AllReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", function AllReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService) {
+<<<<<<< HEAD
 	'use strict';
 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': '#', 'isActive': false }];
 	$scope.widgetRoles = [];
@@ -561,10 +1069,48 @@ myApp.controller('AllReportController', ["$scope", "$filter", "ngTableParams", "
 
 
 	}
+=======
+    'use strict';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': '#', 'isActive': false }];
+    $scope.widgetRoles = [];
+    $scope.dontShowModal = false;
+
+    $scope.addToFavourite = function(_reportId, _shortId) {
+        // console.log("total fav: ", $rootScope.FAV_REPORTS_LIST.length);
+        if ($rootScope.FAV_REPORTS_LIST.length <= 9 || $rootScope.FAV_REPORTS[_shortId].status) {
+            $scope.showLoader = true;
+            var addToFavReportApi = $scope.$root.reports + "module/add-to-fav-report";
+            if ($rootScope.FAV_REPORTS[_shortId].status) {
+                $rootScope.FAV_REPORTS[_shortId].status = false;
+                $scope.isFav = 0;
+            } else {
+                $rootScope.FAV_REPORTS[_shortId].status = true;
+                $scope.isFav = 1;
+            }
+            var _obj = { userId: $rootScope.userId, reportId: _reportId, isFav: $scope.isFav, token: $rootScope.token }
+            console.log("new obj: ", _obj);
+            $http
+                .post(addToFavReportApi, _obj)
+                .then(function(res) {
+
+
+                    $rootScope.getFavReports().then(function() {
+                        $scope.showLoader = false;
+
+                    });
+                })
+        } else {
+            toaster.pop('error', 'Error', "You can add maximum 10 reports to your favourite reports.");
+        }
+
+
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }]);
 
 
 myApp.controller('AgedReportController', ["$scope", "$sce", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "fileAuthentication", "jsreportService", "generatePdf", function AgedReportController($scope, $sce, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, fileAuthentication, jsreportService, generatePdf) {
+<<<<<<< HEAD
 	'use strict';
 
 	let currentUrl = window.location.href;
@@ -2324,11 +2870,1743 @@ myApp.controller('AgedReportController', ["$scope", "$sce", "$filter", "ngTableP
 			}
 		}
 	}
+=======
+    'use strict';
+
+    let currentUrl = window.location.href;
+    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+    $scope.dontShowModal = false;
+
+    $scope.renderReportCustomerAging = function(_reportData) {
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.known_as = $rootScope.known_as;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        $scope.showLoader = true;
+        _reportData.renderingType = "html";
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "shortid": $scope.roportShortId,
+                        "recipe": "html",
+                    },
+
+                    "data": _reportData
+
+                },
+                headers: {
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                }
+            })
+            .success(function(data) {
+
+                $scope.customerAgingReportHtml = data;
+                $scope.showLoader = false;
+            });
+    }
+
+    // $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.fileAuthentication = fileAuthentication;
+
+    $scope.generatePDFandDownload = function(templateType, invoiceVals, x) {
+        generatePdf.showLoader = true;
+        generatePdf.generatePdf(templateType, invoiceVals, x);
+    }
+
+    var fields = $stateParams.module.split('-');
+    $scope.module = fields[0];
+    $scope.selCust = fields[1];
+
+
+    //setting the title and breadcrumbs
+    if ($scope.module == 'customer' || $scope.module == 'customer2') {
+        $scope.roportShortId = "r1g9rvxWw8"; //HkgJQiwGdE
+        $scope.reportModalTitle = 'CustomerAgeingReportSummary';
+        $scope.reportTitle = 'Customer Ageing Report'; /*  - Summary */
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Ageing Report', 'url': '#', 'isActive': false }]; /*  - Summary */
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_aging_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.financeArr = {};
+        $scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }]; /* Both */
+
+        $scope.insuranceArr = {};
+        $scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }];
+    }
+    /* else if ($scope.module == 'customerAgingDetail') {
+    	$scope.reportModalTitle = 'customerAgingReportDetail';
+    	$scope.reportTitle = 'Customer Ageing Report - Detailed';
+    	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Ageing Report - Detailed', 'url': '#', 'isActive': false }];
+
+    	//  if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_aging_detail)) {
+    	// 	toaster.pop('error', 'Error', "You are not authorized for this report");
+    	// 	$state.go('app.allReports');
+    	// } 
+
+    	$scope.financeArr = {};
+    	$scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }]; //Both 
+
+    	$scope.insuranceArr = {};
+    	$scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }];
+    } */
+    else if ($scope.module == 'supplier' || $scope.module == 'supplier2') {
+        $scope.roportShortId = "rygfKXucuV";
+        $scope.reportModalTitle = 'SupplierAgeingReportSummary';
+        $scope.reportTitle = 'Supplier Ageing Report'; /*  - Summary */
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Ageing Report', 'url': '#', 'isActive': false }]; /*  - Summary */
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.supplier_aging_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'creditors') {
+        $scope.roportShortId = "rygfKXucuV";
+        $scope.reportModalTitle = 'CreditorsAgeingReportSummary';
+        $scope.reportTitle = 'Creditors Ageing Report';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Creditors Ageing Report', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.creditors_aging_report)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+    /* else if ($scope.module == 'supplierAgingDetail') {
+    	$scope.reportModalTitle = 'supplierAgingReportDetail';
+    	$scope.reportTitle = 'Supplier Ageing Report - Detailed';
+    	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Ageing Report - Detailed', 'url': '#', 'isActive': false }];
+
+    	if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.supplier_aging_detail)) {
+    		toaster.pop('error', 'Error', "You are not authorized for this report");
+    		$state.go('app.allReports');
+    	} 
+    	// $scope.financeArr = {};
+    	// $scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }];
+
+    	// $scope.insuranceArr = {};
+    	// $scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'All' }];
+    } */
+    else if ($scope.module == 'customerStatement') {
+        $scope.reportModalTitle = 'customerStatementReport';
+        $scope.reportTitle = 'Customer Statement';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Statement', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_statement)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+    } else if ($scope.module == 'customerLabelsList') {
+        $scope.reportModalTitle = '';
+        $scope.reportTitle = 'Customer Listing';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Listing', 'url': '#', 'isActive': false }];
+
+        // if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_statement)) {
+        // 	toaster.pop('error', 'Error', "You are not authorized for this report");
+        // 	$state.go('app.allReports');
+        // }
+
+    } else if ($scope.module == 'supplierStatement') {
+        $scope.reportModalTitle = 'supplierStatementReport';
+        $scope.reportTitle = 'Supplier Statement';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Statement', 'url': '#', 'isActive': false }];
+
+        /* if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.supplier_statement)) {
+        	toaster.pop('error', 'Error', "You are not authorized for this report");
+        	$state.go('app.allReports');
+        } */
+    }
+    //end setting the title and breadcrumbs
+
+    $scope.filterReport = {};
+    $scope.filterReport.upToDate = $scope.$root.get_current_date();
+
+    $scope.filterReport.reporttype = 'summary';
+
+    $scope.agedReportListing = {};
+    $scope.agedReportListing.token = $rootScope.token;
+    $scope.agedReportListing.upToDate = $scope.filterReport.upToDate;
+    $scope.agedReportListing.module = $stateParams.module;
+
+    $scope.searchKeyword = {};
+    $scope.selectedRecFromModals = [];
+
+
+    $scope.columns_general = [];
+    $scope.general = {};
+    $scope.arr_uom = [];
+    $scope.stockTitle = '';
+
+    // console.log($rootScope.postingGroups);
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.filterReport);
+        if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return false;
+        }
+        $scope.showLoader = true;
+
+        $scope.agedReportListing = {};
+        $scope.agedReportListing.token = $rootScope.token;
+        $scope.agedReportListing.module = $stateParams.module;
+        $scope.agedReportListing.upToDate = $scope.filterReport.upToDate;
+        $scope.agedReportListing.customers = $scope.customers;
+        $scope.agedReportListing.suppliers = $scope.suppliers;
+        $scope.agedReportListing.defaultCurrency = $scope.$root.defaultCurrency;
+
+
+        if ($scope.module == 'customer' || $scope.module == 'customer2') {
+            $scope.agedReportListing.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+            $scope.agedReportListing.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        }
+
+
+        var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+        $http
+            .post(agedReportListingApi, $scope.agedReportListing)
+            .then(function(res) {
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+
+                        if (index == '30DaysStartDate') $scope.StartDate30Days = val;
+                        if (index == '30DaysEndDate') $scope.EndDate30Days = val;
+                        if (index == '60DaysStartDate') $scope.StartDate60Days = val;
+                        if (index == '60DaysEndDate') $scope.EndDate60Days = val;
+                        if (index == '90DaysStartDate') $scope.StartDate90Days = val;
+                        if (index == '90DaysEndDate') $scope.EndDate90Days = val;
+                        if (index == '120DaysStartDate') $scope.StartDate120Days = val;
+                        if (index == '120DaysEndDate') $scope.EndDate120Days = val;
+                        if (index == 'over120DaysStartDate') $scope.StartDateover120 = 0;
+                        if (index == 'over120DaysEndDate') $scope.EndDateover120 = val;
+
+
+                        if (index != '30DaysStartDate' && index != '30DaysEndDate' && index != '60DaysStartDate' && index != '60DaysEndDate' ||
+                            index != '90DaysStartDate' && index != '90DaysEndDate' && index != '120DaysStartDate' && index != '120DaysEndDate' ||
+                            index != 'over120DaysStartDate' && index != 'over120DaysEndDate') {
+
+                            $scope.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        }
+                    });
+
+                    // console.log($scope.columns[0]);
+
+                } else {
+                    $scope.showLoader = false;
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.generateStatementReport = function() {
+
+        var postData = {};
+        postData.token = $rootScope.token;
+
+        if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+
+        if ($scope.module == 'customerStatement') {
+            var statementApi = $scope.$root.reports + "module/customer-statement-report";
+            postData.customers = $scope.customers;
+        }
+
+        postData.upToDate = $scope.filterReport.upToDate;
+
+        $http
+            .post(statementApi, postData)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    // console.log($scope.columns[0]);
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.upToDate = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+
+        $scope.agedReportListing = {};
+        $scope.agedReportListing.token = $rootScope.token;
+        $scope.agedReportListing.upToDate = $scope.filterReport.upToDate;
+        $scope.agedReportListing.module = $scope.module;
+
+        $scope.reportsDataArr = [];
+        $scope.customers = [];
+        $scope.suppliers = [];
+        $scope.columns = [];
+
+        // $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        // $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+    $scope.suppliers = [];
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    if ($scope.selCust > 0) {
+
+        $scope.filterCustomer = {};
+        $scope.tempCustomerArr = [];
+        $scope.customerListing = {};
+        $scope.customerListing.token = $rootScope.token;
+        $scope.customerListing.selCust = $scope.selCust;
+
+        $scope.showLoader = true;
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+        $http
+            .post(customerListingApi, $scope.customerListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempCustomerArr = [];
+                $scope.PendingSelectedCustomers = [];
+
+                $scope.CustomerArr = [];
+                $scope.customers = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.CustomerArr = res.data.response;
+
+                    angular.forEach($scope.CustomerArr, function(recData) {
+
+                        if (recData.id == $scope.selCust) {
+
+                            var selRecord = {};
+                            selRecord.key = recData.id;
+                            selRecord.record = recData;
+                            selRecord.value = recData.customer_code;
+
+                            $scope.selectedRecFromModalsCUST.push(selRecord);
+
+                            recData.moduleNo = recData.customer_code;
+                            recData.title = recData.name;
+                            recData.custID = recData.id;
+                            $scope.customers.push(recData);
+
+                        }
+                    });
+                }
+            });
+
+    }
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    // Suppliers Module 
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if ($scope.module == 'creditors') {
+            $scope.postData.module = $scope.module;
+        }
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1;
+
+        $scope.postData.page = $scope.item_paging.spage;
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_supplierModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.showPdfModal = function(_reportType = 'pdf') {
+        $scope.printPdfVals = {};
+
+        $rootScope.printinvoiceFlag = false;
+        $scope.showLoader = true;
+
+        // $scope.filterReport.reporttype = 'summary';
+
+        if ($scope.module == 'customerStatement') {
+            var postData = {};
+            postData.token = $rootScope.token;
+
+            if (!($scope.customers.length > 0) && $scope.tempCustomerArr != undefined) {
+
+                $scope.customers = [];
+                angular.copy($scope.tempCustomerArr, $scope.CustomerArr);
+
+                angular.forEach($scope.CustomerArr, function(recData) {
+                    recData.moduleNo = recData.customer_code;
+                    recData.title = recData.name;
+                    recData.custID = recData.id;
+                    $scope.customers.push(recData);
+                });
+            }
+
+            var statementApi = $scope.$root.reports + "module/customer-statement-report";
+            postData.customers = $scope.customers;
+
+            if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                $scope.showLoader = false;
+                return false;
+            }
+
+            if ($scope.filterReport.upToDate != '' && $scope.filterReport.upToDate != undefined)
+                postData.upToDate = $scope.filterReport.upToDate;
+            else {
+                postData.upToDate = $scope.$root.get_current_date();
+                $scope.filterReport.upToDate = $scope.$root.get_current_date();
+            }
+
+            $http
+                .post(statementApi, postData)
+                .then(function(res) {
+                    $scope.showLoader = false;
+                    $scope.reportsDataArr = [];
+                    $scope.columns = [];
+
+                    if (res.data.ack == true) {
+
+                        $scope.printPdfVals.columns = [];
+                        $scope.printPdfVals.summaryColumns = [];
+                        $scope.printPdfVals.reportsDataArr2 = [];
+                        $scope.printPdfVals.reportsSummaryDataArr = [];
+                        $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                        $scope.printPdfVals._reportType = _reportType;
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        if (res.data.response[0].res != undefined) {
+
+                            angular.forEach(res.data.response[0].res[0], function(val, index) {
+                                $scope.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        }
+
+                        angular.forEach(res.data.response[0].summary, function(val, index) {
+
+                            $scope.printPdfVals.summaryColumns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        angular.forEach(res.data.response, function(rec, index) {
+                            angular.forEach(rec.res, function(inv_val) {
+                                $scope.reportsDataArr.push(inv_val);
+                            });
+                        });
+
+
+
+                        $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                        // $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                        // $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                        $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                        $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                        $scope.printPdfVals.company_name = $rootScope.company_name;
+                        $scope.printPdfVals._reportType = _reportType;
+
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, "r1xR33185V").success(function(data) {
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                $scope.showLoader = false;
+                            })
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerStatementPDF.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+
+
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }
+                });
+        }
+        /* else if($scope.module == 'customerAgingDetail'){
+
+        	if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+        		toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+        		$scope.showLoader = false;
+        		return false;
+        	}
+
+        	$scope.filterReport.token = $rootScope.token;
+        	$scope.filterReport.module = $stateParams.module;
+        	$scope.filterReport.upToDate = $scope.filterReport.upToDate;
+        	$scope.filterReport.customers = $scope.customers;
+        	$scope.filterReport.suppliers = $scope.suppliers;
+        	$scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+        	if ($scope.module == 'customerAgingDetail') {
+        		$scope.filterReport.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        		$scope.filterReport.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        	}
+
+        	var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+        	$http
+        		.post(agedReportListingApi, $scope.filterReport)
+        		.then(function (res) {
+
+        			$scope.reportsDataArr = [];
+        			$scope.columns = [];
+        			$scope.showLoader = false;				
+
+        			if (res.data.ack == true) {
+        				$scope.reportsDataArr = res.data.response;
+
+        				$scope.printPdfVals.reportsDataArr = res.data.response;
+        				$scope.printPdfVals.columns = [];
+        				
+        				if (res.data.response[0].res != undefined) {
+
+        					angular.forEach(res.data.response[0].res[0], function (val, index) {
+        						$scope.columns.push({
+        							'title': toTitleCase(index),
+        							'field': index,
+        							'visible': true
+        						});
+
+        						$scope.printPdfVals.columns.push({
+        							'title': toTitleCase(index),
+        							'field': index,
+        							'visible': true
+        						});
+        					});
+        				}
+
+        				angular.forEach(res.data.response[0].summary, function (val, index) {
+
+        					$scope.printPdfVals.summaryColumns.push({
+        						'title': toTitleCase(index),
+        						'field': index,
+        						'visible': true
+        					});
+        				});
+        				
+        				$scope.printPdfVals.reportName = $scope.reportModalTitle;
+        				$scope.printPdfVals.company_name = $rootScope.company_name;
+
+        				$scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+        				$scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+        				$scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+        				$scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+        				$scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+        				$scope.printPdfVals._reportType = _reportType;
+        				$scope.printPdfVals.module = $scope.module;
+
+        				if ($scope.filterReport.financeID == 3) {
+        					$scope.printPdfVals.finance = 'All';
+        				}
+        				else if ($scope.filterReport.financeID == 2) {
+        					$scope.printPdfVals.finance = 'Excluded';
+        				}
+        				else if ($scope.filterReport.financeID == 1) {
+        					$scope.printPdfVals.finance = 'Included';
+        				}
+
+        				if ($scope.filterReport.insuranceID == 3) {
+        					$scope.printPdfVals.insurance = 'All';
+        				}
+        				else if ($scope.filterReport.insuranceID == 2) {
+        					$scope.printPdfVals.insurance = 'Excluded';
+        				}
+        				else if ($scope.filterReport.insuranceID == 1) {
+        					$scope.printPdfVals.insurance = 'Included';
+        				}
+
+        				if (_reportType == 'xlsx') {
+        					$scope.showLoader = true;
+        					jsreportService.downloadXlsx($scope.printPdfVals, "SylA9zON-H").success(function (data) {
+        						let file = new Blob([data], { type: 'application/xlsx' });
+        						saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+        						$scope.showLoader = false;
+        					}).error(function(error){
+        						$scope.showLoader = false;
+        						toaster.pop('error', 'Error', "Error While generating file");
+        					})
+        				} else {
+        					console.log("called modal....");
+        					$scope.showLoader = true;
+        					var invoicePdfModal = ModalService.showModal({
+        						templateUrl: 'app/views/reports/agingDetailsModal.html',
+        						controller: 'pdfPrintModalController',
+        						inputs: {
+        							printPdfVals: $scope.printPdfVals
+        						}
+        					});
+
+        					invoicePdfModal.then(function (res) {
+        						$scope.showLoader = false;
+        						res.element.modal();
+        					});
+        				}
+        			}
+        			else {
+        				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+        			}
+        		});					
+        	
+        } */
+
+        /* else if($scope.module == 'supplierAgingDetail'){
+
+        	if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+        		toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+        		$scope.showLoader = false;
+        		return false;
+        	}
+
+        	$scope.filterReport.token = $rootScope.token;
+        	$scope.filterReport.module = $stateParams.module;
+        	$scope.filterReport.upToDate = $scope.filterReport.upToDate;
+        	$scope.filterReport.customers = $scope.customers;
+        	$scope.filterReport.suppliers = $scope.suppliers;
+        	$scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+        	// if ($scope.module == 'supplierAgingDetail') {
+        	// 	$scope.filterReport.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        	// 	$scope.filterReport.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        	// }
+
+        	var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+        	$http
+        		.post(agedReportListingApi, $scope.filterReport)
+        		.then(function (res) {
+
+        			$scope.reportsDataArr = [];
+        			$scope.columns = [];
+        			$scope.showLoader = false;
+
+        			
+
+        			if (res.data.ack == true && res.data.response[0]) {
+        				$scope.reportsDataArr = res.data.response;
+
+        				$scope.printPdfVals.reportsDataArr = res.data.response;
+        				$scope.printPdfVals.columns = [];
+        				
+        				if (res.data.response[0].res != undefined) {
+
+        					angular.forEach(res.data.response[0].res[0], function (val, index) {
+        						$scope.columns.push({
+        							'title': toTitleCase(index),
+        							'field': index,
+        							'visible': true
+        						});
+
+        						$scope.printPdfVals.columns.push({
+        							'title': toTitleCase(index),
+        							'field': index,
+        							'visible': true
+        						});
+        					});
+        				}
+
+        				angular.forEach(res.data.response[0].summary, function (val, index) {
+
+        					$scope.printPdfVals.summaryColumns.push({
+        						'title': toTitleCase(index),
+        						'field': index,
+        						'visible': true
+        					});
+        				});
+
+        				
+        				// $scope.printPdfVals.reportName = 'agedReport';
+        				$scope.printPdfVals.reportName = $scope.reportModalTitle;
+        				$scope.printPdfVals.company_name = $rootScope.company_name;
+
+        				$scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+        				$scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+        				$scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+        				$scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+        				$scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+        				$scope.printPdfVals._reportType = _reportType;
+        				$scope.printPdfVals.module = $scope.module;
+
+        				//  if ($scope.filterReport.financeID == 3) {
+        				// 	$scope.printPdfVals.finance = 'All';
+        				// }
+        				// else if ($scope.filterReport.financeID == 2) {
+        				// 	$scope.printPdfVals.finance = 'Excluded';
+        				// }
+        				// else if ($scope.filterReport.financeID == 1) {
+        				// 	$scope.printPdfVals.finance = 'Included';
+        				// }
+
+        				// if ($scope.filterReport.insuranceID == 3) {
+        				// 	$scope.printPdfVals.insurance = 'All';
+        				// }
+        				// else if ($scope.filterReport.insuranceID == 2) {
+        				// 	$scope.printPdfVals.insurance = 'Excluded';
+        				// }
+        				// else if ($scope.filterReport.insuranceID == 1) {
+        				// 	$scope.printPdfVals.insurance = 'Included';
+        				// } 
+
+        				if (_reportType == 'xlsx') {
+        					$scope.showLoader = true;
+        					jsreportService.downloadXlsx($scope.printPdfVals, "rkxXD33pbS").success(function (data) {
+        						let file = new Blob([data], { type: 'application/xlsx' });
+        						saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+        						$scope.showLoader = false;
+        					}).error(function(error){
+        						$scope.showLoader = false;
+        						toaster.pop('error', 'Error', "Error While generating file");
+        					})
+        				} else {
+        					var invoicePdfModal = ModalService.showModal({
+        						templateUrl: 'app/views/reports/agingDetailsModal.html',
+        						controller: 'pdfPrintModalController',
+        						inputs: {
+        							printPdfVals: $scope.printPdfVals
+        						}
+        					});
+
+        					invoicePdfModal.then(function (res) {
+        						res.element.modal();
+        					});
+        				}
+        			}
+        			else {
+        				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+        			}
+        		});					
+        	
+        } */
+        else if ($scope.module == 'supplierStatement') {
+            var postData = {};
+            postData.token = $rootScope.token;
+
+            // $scope.filterReport.suppliers = $scope.suppliers;
+
+            /* if (!($scope.suppliers.length > 0) && $scope.tempCustomerArr != undefined) {
+
+            	$scope.suppliers = [];
+            	angular.copy($scope.tempCustomerArr, $scope.CustomerArr);
+
+            	angular.forEach($scope.CustomerArr, function (recData) {
+            		recData.moduleNo = recData.customer_code;
+            		recData.title = recData.name;
+            		recData.custID = recData.id;
+            		$scope.suppliers.push(recData);
+            	});
+            } */
+
+            var statementApi = $scope.$root.reports + "module/supplier-statement-report";
+            postData.suppliers = $scope.suppliers;
+            $scope.filterReport.suppliers = $scope.suppliers;
+
+            if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                $scope.showLoader = false;
+                return false;
+            }
+
+            if ($scope.filterReport.upToDate != '' && $scope.filterReport.upToDate != undefined)
+                postData.upToDate = $scope.filterReport.upToDate;
+            else {
+                postData.upToDate = $scope.$root.get_current_date();
+                $scope.filterReport.upToDate = $scope.$root.get_current_date();
+            }
+            postData.reportXlsxType = 0;
+            if (_reportType == 'xlsx') {
+                postData.reportXlsxType = 1;
+            }
+            $http
+                .post(statementApi, postData)
+                .then(function(res) {
+                    $scope.showLoader = false;
+                    $scope.reportsDataArr = [];
+                    $scope.columns = [];
+
+                    if (_reportType == 'xlsx' && res.data.ack == 2 && res.data.filename) {
+                        $scope.CSVfilePath = res.data.filename;
+                        window.open($scope.CSVfilePath, '_blank');
+                        return false;
+                    } else if (res.data.ack == true || res.data.ack == 1) {
+
+                        $scope.printPdfVals.columns = [];
+                        $scope.printPdfVals.summaryColumns = [];
+                        $scope.printPdfVals.reportsDataArr2 = [];
+                        $scope.printPdfVals.reportsSummaryDataArr = [];
+                        $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                        $scope.printPdfVals._reportType = _reportType;
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        if (res.data.response[0].res != undefined) {
+
+                            angular.forEach(res.data.response[0].res[0], function(val, index) {
+                                $scope.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        }
+
+                        angular.forEach(res.data.response[0].summary, function(val, index) {
+
+                            $scope.printPdfVals.summaryColumns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        angular.forEach(res.data.response, function(rec, index) {
+                            angular.forEach(rec.res, function(inv_val) {
+                                $scope.reportsDataArr.push(inv_val);
+                            });
+                        });
+
+
+
+                        $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                        // $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                        // $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                        $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                        $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                        $scope.printPdfVals.company_name = $rootScope.company_name;
+                        $scope.printPdfVals._reportType = _reportType;
+
+                        /* if (_reportType == 'xlsx') {
+                        	$scope.showLoader = true;
+                        	jsreportService.downloadXlsx($scope.printPdfVals, "HygXHbP6fH").success(function (data) {
+                        		let file = new Blob([data], { type: 'application/xlsx' });
+                        		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");//r1lpboXyGB
+                        		$scope.showLoader = false;
+                        	})
+                        } else { */
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/supplierStatementPDF.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                        //}
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }
+                });
+        } else {
+
+            if ($scope.filterReport.reporttype == 'summary' &&
+                ($scope.module == 'supplier2' || $scope.module == 'creditors')) {
+
+                if ($scope.module == 'creditors') {
+                    $scope.module = 'creditors';
+                    $scope.filterReport.module = 'creditors';
+                    $scope.reportModalTitle = 'CreditorsAgeingReportSummary';
+                } else {
+                    $scope.filterReport.module = 'supplier2';
+                    $scope.module = 'supplier2';
+                    $scope.reportModalTitle = 'SupplierAgeingReportSummary';
+                }
+
+
+                if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                    $scope.showLoader = false;
+                    return false;
+                }
+
+                $scope.filterReport.token = $rootScope.token;
+                // $scope.filterReport.module = 'supplier2';//$stateParams.module;
+                $scope.filterReport.upToDate = $scope.filterReport.upToDate;
+                $scope.filterReport.customers = $scope.customers;
+                $scope.filterReport.suppliers = $scope.suppliers;
+                $scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+                var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+                $http
+                    .post(agedReportListingApi, $scope.filterReport)
+                    .then(function(res) {
+
+                        $scope.reportsDataArr = [];
+                        $scope.columns = [];
+
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.printPdfVals.columns = [];
+
+                        $scope.showLoader = false;
+
+                        if (res.data.ack == true) {
+                            $scope.reportsDataArr = res.data.response;
+                            // $scope.printPdfVals = res.data.response;
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.columns = [];
+                            // $scope.printPdfVals.reportName = 'agedReport';
+                            $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                            $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+
+                                if (index == '30DaysStartDate') $scope.printPdfVals.StartDate30Days = val;
+                                if (index == '30DaysEndDate') $scope.printPdfVals.EndDate30Days = val;
+                                if (index == '60DaysStartDate') $scope.printPdfVals.StartDate60Days = val;
+                                if (index == '60DaysEndDate') $scope.printPdfVals.EndDate60Days = val;
+                                if (index == '90DaysStartDate') $scope.printPdfVals.StartDate90Days = val;
+                                if (index == '90DaysEndDate') $scope.printPdfVals.EndDate90Days = val;
+                                if (index == '120DaysStartDate') $scope.printPdfVals.StartDate120Days = val;
+                                if (index == '120DaysEndDate') $scope.printPdfVals.EndDate120Days = val;
+                                if (index == 'over120DaysStartDate') $scope.printPdfVals.StartDateover120 = 0;
+                                if (index == 'over120DaysEndDate') $scope.printPdfVals.EndDateover120 = val;
+
+                                if (index == '30DaysStartDate') $scope.StartDate30Days = val;
+                                if (index == '30DaysEndDate') $scope.EndDate30Days = val;
+                                if (index == '60DaysStartDate') $scope.StartDate60Days = val;
+                                if (index == '60DaysEndDate') $scope.EndDate60Days = val;
+                                if (index == '90DaysStartDate') $scope.StartDate90Days = val;
+                                if (index == '90DaysEndDate') $scope.EndDate90Days = val;
+                                if (index == '120DaysStartDate') $scope.StartDate120Days = val;
+                                if (index == '120DaysEndDate') $scope.EndDate120Days = val;
+                                if (index == 'over120DaysStartDate') $scope.StartDateover120 = 0;
+                                if (index == 'over120DaysEndDate') $scope.EndDateover120 = val;
+
+
+                                if (index != '30DaysStartDate' && index != '30DaysEndDate' && index != '60DaysStartDate' && index != '60DaysEndDate' ||
+                                    index != '90DaysStartDate' && index != '90DaysEndDate' && index != '120DaysStartDate' && index != '120DaysEndDate' ||
+                                    index != 'over120DaysStartDate' && index != 'over120DaysEndDate') {
+
+                                    $scope.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                }
+                            });
+
+                            $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                            $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                            $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                            $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                            $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+
+                            if (_reportType != 'xlsx') {
+                                _reportType = "pdf";
+                            }
+
+                            $scope.printPdfVals._reportType = _reportType;
+
+                            if (_reportType == "pdf") {
+
+                                $scope.printPdfVals.known_as = $rootScope.known_as;
+                                $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+                                $scope.showLoader = true;
+
+                                $scope.printPdfVals.renderingType = "pdf";
+                                $scope.printPdfVals._reportType = _reportType;
+                                $scope.printPdfVals.company_name = $rootScope.company_name;
+                                $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+                                $http({
+                                        url: $rootScope.jsreports,
+                                        method: 'POST',
+                                        params: {},
+                                        data: {
+                                            "template": {
+                                                "shortid": $scope.roportShortId,
+                                                "recipe": "html",
+                                            },
+
+                                            "data": $scope.printPdfVals
+
+                                        },
+                                        headers: {
+                                            "Authorization": "Basic " + btoa("admin:admin123"),
+                                        },
+                                    })
+                                    .success(function(data) {
+                                        $scope.printPdfVals.agingReportHtml = data;
+                                        $scope.showLoader = true;
+                                        var invoicePdfModal = ModalService.showModal({
+                                            templateUrl: 'app/views/reports/agedReportModal.html',
+                                            controller: 'pdfPrintModalController',
+                                            inputs: {
+                                                printPdfVals: $scope.printPdfVals
+                                            }
+                                        });
+
+                                        invoicePdfModal.then(function(res) {
+                                            $scope.showLoader = false;
+                                            res.element.modal();
+                                        });
+                                    });
+
+
+                            } else if (_reportType == 'xlsx') {
+                                $scope.showLoader = true;
+                                jsreportService.downloadXlsx($scope.printPdfVals, $scope.roportShortId).success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                })
+                            } else {
+                                $scope.renderReportCustomerAging($scope.printPdfVals);
+                            }
+                        } else {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                            $scope.renderReportCustomerAging($scope.printPdfVals);
+                        }
+
+                    });
+            } else if ($scope.filterReport.reporttype == 'detail' &&
+                ($scope.module == 'supplier2' || $scope.module == 'creditors')) { //|| $scope.module == 'supplierAgingDetail'
+
+                if ($scope.module == 'creditors') {
+                    $scope.filterReport.module = 'creditorsAgingDetail';
+                    $scope.reportModalTitle = 'creditorsAgingReportDetail';
+                } else {
+                    $scope.filterReport.module = 'supplierAgingDetail';
+                    $scope.reportModalTitle = 'supplierAgingReportDetail';
+                }
+
+                if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                    $scope.showLoader = false;
+                    return false;
+                }
+
+                $scope.filterReport.token = $rootScope.token;
+                // $scope.filterReport.module = 'supplierAgingDetail';//$stateParams.module;
+                $scope.filterReport.upToDate = $scope.filterReport.upToDate;
+                $scope.filterReport.customers = $scope.customers;
+                $scope.filterReport.suppliers = $scope.suppliers;
+                $scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+                var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+                $http
+                    .post(agedReportListingApi, $scope.filterReport)
+                    .then(function(res) {
+
+                        $scope.reportsDataArr = [];
+                        $scope.columns = [];
+                        $scope.showLoader = false;
+
+                        if (res.data.ack == true) {
+                            $scope.reportsDataArr = res.data.response;
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.columns = [];
+                            var first_key = Object.keys(res.data.response)[1];
+                            // console.log(Object.keys($scope.reportsDataArr)[1]);
+                            if (res.data.response[first_key].res != undefined) {
+
+                                angular.forEach(res.data.response[first_key].res[0], function(val, index) {
+                                    $scope.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+                            }
+
+                            /* angular.forEach(res.data.response[0].summary, function (val, index) {
+
+                            	$scope.printPdfVals.summaryColumns.push({
+                            		'title': toTitleCase(index),
+                            		'field': index,
+                            		'visible': true
+                            	});
+                            }); */
+
+                            // $scope.printPdfVals.reportName = 'agedReport';
+                            $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                            $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                            $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                            $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                            $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                            $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                            $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                            $scope.printPdfVals._reportType = _reportType;
+                            $scope.printPdfVals.module = $scope.filterReport.module; //$scope.module;
+
+                            if (_reportType == 'xlsx') {
+                                $scope.showLoader = true;
+                                jsreportService.downloadXlsx($scope.printPdfVals, "rkxXD33pbS").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                }).error(function(error) {
+                                    $scope.showLoader = false;
+                                    toaster.pop('error', 'Error', "Error While generating file");
+                                })
+                            } else {
+                                var invoicePdfModal = ModalService.showModal({
+                                    templateUrl: 'app/views/reports/agingDetailsModal.html',
+                                    controller: 'pdfPrintModalController',
+                                    inputs: {
+                                        printPdfVals: $scope.printPdfVals
+                                    }
+                                });
+
+                                invoicePdfModal.then(function(res) {
+                                    res.element.modal();
+                                });
+                            }
+                        } else {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                        }
+                    });
+
+            }
+
+            if ($scope.filterReport.reporttype == 'summary' && $scope.module == 'customer2') {
+
+                $scope.module = 'customer2';
+                $scope.reportModalTitle = 'CustomerAgeingReportSummary';
+
+                if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                    $scope.showLoader = false;
+                    return false;
+                }
+
+                $scope.filterReport.token = $rootScope.token;
+                $scope.filterReport.module = 'customer2'; //$stateParams.module;
+                $scope.filterReport.upToDate = $scope.filterReport.upToDate;
+                $scope.filterReport.customers = $scope.customers;
+                $scope.filterReport.suppliers = $scope.suppliers;
+                $scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+                if ($scope.module == 'customer' || $scope.module == 'customer2') {
+                    $scope.filterReport.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+                    $scope.filterReport.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+                }
+
+                var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+                $http
+                    .post(agedReportListingApi, $scope.filterReport)
+                    .then(function(res) {
+
+                        $scope.reportsDataArr = [];
+                        $scope.columns = [];
+
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.printPdfVals.columns = [];
+
+                        $scope.showLoader = false;
+
+                        if (res.data.ack == true) {
+                            $scope.reportsDataArr = res.data.response;
+                            // $scope.printPdfVals = res.data.response;
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.columns = [];
+                            // $scope.printPdfVals.reportName = 'agedReport';
+                            $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                            $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+
+                                if (index == '30DaysStartDate') $scope.printPdfVals.StartDate30Days = val;
+                                if (index == '30DaysEndDate') $scope.printPdfVals.EndDate30Days = val;
+                                if (index == '60DaysStartDate') $scope.printPdfVals.StartDate60Days = val;
+                                if (index == '60DaysEndDate') $scope.printPdfVals.EndDate60Days = val;
+                                if (index == '90DaysStartDate') $scope.printPdfVals.StartDate90Days = val;
+                                if (index == '90DaysEndDate') $scope.printPdfVals.EndDate90Days = val;
+                                if (index == '120DaysStartDate') $scope.printPdfVals.StartDate120Days = val;
+                                if (index == '120DaysEndDate') $scope.printPdfVals.EndDate120Days = val;
+                                if (index == 'over120DaysStartDate') $scope.printPdfVals.StartDateover120 = 0;
+                                if (index == 'over120DaysEndDate') $scope.printPdfVals.EndDateover120 = val;
+
+                                if (index == '30DaysStartDate') $scope.StartDate30Days = val;
+                                if (index == '30DaysEndDate') $scope.EndDate30Days = val;
+                                if (index == '60DaysStartDate') $scope.StartDate60Days = val;
+                                if (index == '60DaysEndDate') $scope.EndDate60Days = val;
+                                if (index == '90DaysStartDate') $scope.StartDate90Days = val;
+                                if (index == '90DaysEndDate') $scope.EndDate90Days = val;
+                                if (index == '120DaysStartDate') $scope.StartDate120Days = val;
+                                if (index == '120DaysEndDate') $scope.EndDate120Days = val;
+                                if (index == 'over120DaysStartDate') $scope.StartDateover120 = 0;
+                                if (index == 'over120DaysEndDate') $scope.EndDateover120 = val;
+
+
+                                if (index != '30DaysStartDate' && index != '30DaysEndDate' && index != '60DaysStartDate' && index != '60DaysEndDate' ||
+                                    index != '90DaysStartDate' && index != '90DaysEndDate' && index != '120DaysStartDate' && index != '120DaysEndDate' ||
+                                    index != 'over120DaysStartDate' && index != 'over120DaysEndDate') {
+
+                                    $scope.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                }
+                            });
+
+                            $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                            $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                            $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                            $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                            $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+
+                            if (_reportType != 'xlsx') { //&& _reportType != 'html'
+                                _reportType = "pdf";
+                            }
+
+                            $scope.printPdfVals._reportType = _reportType;
+
+                            if ($scope.filterReport.financeID == 3) {
+                                $scope.printPdfVals.finance = 'All';
+                            } else if ($scope.filterReport.financeID == 2) {
+                                $scope.printPdfVals.finance = 'Excluded';
+                            } else if ($scope.filterReport.financeID == 1) {
+                                $scope.printPdfVals.finance = 'Included';
+                            }
+
+                            if ($scope.filterReport.insuranceID == 3) {
+                                $scope.printPdfVals.insurance = 'All';
+                            } else if ($scope.filterReport.insuranceID == 2) {
+                                $scope.printPdfVals.insurance = 'Excluded';
+                            } else if ($scope.filterReport.insuranceID == 1) {
+                                $scope.printPdfVals.insurance = 'Included';
+                            }
+
+                            // $scope.printPdfVals.finance = $scope.filterReport.financeID;
+                            // $scope.printPdfVals.insurance = $scope.filterReport.insuranceID;
+                            if (_reportType == "pdf") {
+
+                                $scope.printPdfVals.known_as = $rootScope.known_as;
+                                $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+                                $scope.showLoader = true;
+
+                                $scope.printPdfVals.renderingType = "pdf";
+                                $scope.printPdfVals._reportType = _reportType;
+                                $scope.printPdfVals.company_name = $rootScope.company_name;
+                                $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+                                if ($scope.printPdfVals.reportName == 'CustomerAgeingReportSummary') {
+                                    $scope.showLoader = true;
+                                    var invoicePdfModal = ModalService.showModal({
+                                        templateUrl: 'app/views/reports/agedReportModal.html',
+                                        controller: 'pdfPrintModalController',
+                                        inputs: {
+                                            printPdfVals: $scope.printPdfVals
+                                        }
+                                    });
+
+                                    invoicePdfModal.then(function(res) {
+                                        $scope.showLoader = false;
+                                        res.element.modal();
+                                    });
+                                } else {
+
+                                    $http({
+                                            url: $rootScope.jsreports,
+                                            method: 'POST',
+                                            params: {},
+                                            data: {
+                                                "template": {
+                                                    "shortid": $scope.roportShortId,
+                                                    "recipe": "html",
+                                                },
+
+                                                "data": $scope.printPdfVals
+
+                                            },
+                                            headers: {
+                                                "Authorization": "Basic " + btoa("admin:admin123"),
+                                            },
+                                        })
+                                        .success(function(data) {
+                                            $scope.printPdfVals.agingReportHtml = data;
+                                            $scope.showLoader = true;
+                                            var invoicePdfModal = ModalService.showModal({
+                                                templateUrl: 'app/views/reports/agedReportModal.html',
+                                                controller: 'pdfPrintModalController',
+                                                inputs: {
+                                                    printPdfVals: $scope.printPdfVals
+                                                }
+                                            });
+
+                                            invoicePdfModal.then(function(res) {
+                                                $scope.showLoader = false;
+                                                res.element.modal();
+                                            });
+                                        });
+                                }
+                            }
+                            /* else if (_reportType == 'html') {
+                            	$scope.printPdfVals.known_as = $rootScope.known_as;
+                            	$scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+                            	$scope.showLoader = true;
+
+                            	$scope.printPdfVals.renderingType = "pdf";
+                            	$scope.printPdfVals._reportType = _reportType;
+                            	$scope.printPdfVals.company_name = $rootScope.company_name;
+                            	$scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+                            	// $scope.printPdfVals.agingReportHtml = data;
+                            	var invoicePdfModal = ModalService.showModal({
+                            		templateUrl: 'app/views/reports/agedReportModal.html',
+                            		controller: 'pdfPrintModalController',
+                            		inputs: {
+                            			printPdfVals: $scope.printPdfVals
+                            		}
+                            	});
+
+                            	invoicePdfModal.then(function (res) {
+                            		$scope.showLoader = false;
+                            		res.element.modal();
+                            	});
+                            } */
+                            else if (_reportType == 'xlsx') {
+                                $scope.showLoader = true;
+                                jsreportService.downloadXlsx($scope.printPdfVals, $scope.roportShortId).success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                })
+                            } else {
+                                $scope.renderReportCustomerAging($scope.printPdfVals);
+                            }
+                        } else {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                            $scope.renderReportCustomerAging($scope.printPdfVals);
+                        }
+
+                    });
+            } else if ($scope.filterReport.reporttype == 'detail' && $scope.module == 'customer2') { //|| $scope.module == 'customerAgingDetail'
+
+                // $scope.module = 'customerAgingDetail';
+                $scope.reportModalTitle = 'customerAgingReportDetail';
+
+                if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+                    $scope.showLoader = false;
+                    return false;
+                }
+
+                $scope.filterReport.token = $rootScope.token;
+                $scope.filterReport.module = 'customerAgingDetail'; //$stateParams.module;
+                $scope.filterReport.upToDate = $scope.filterReport.upToDate;
+                $scope.filterReport.customers = $scope.customers;
+                $scope.filterReport.suppliers = $scope.suppliers;
+                $scope.filterReport.defaultCurrency = $scope.$root.defaultCurrency;
+
+                if ($scope.filterReport.module == 'customerAgingDetail') {
+                    $scope.filterReport.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+                    $scope.filterReport.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+                }
+
+                var agedReportListingApi = $scope.$root.reports + "module/aged-report";
+                $http
+                    .post(agedReportListingApi, $scope.filterReport)
+                    .then(function(res) {
+
+                        $scope.reportsDataArr = [];
+                        $scope.columns = [];
+                        $scope.showLoader = false;
+
+                        if (res.data.ack == true) {
+                            $scope.reportsDataArr = res.data.response;
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.columns = [];
+                            var first_key = Object.keys(res.data.response)[1];
+                            //console.log(first_key);
+                            if (res.data.response[first_key].res != undefined) {
+
+                                angular.forEach(res.data.response[first_key].res[0], function(val, index) {
+                                    $scope.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+                            }
+
+                            /* angular.forEach(res.data.response[0].summary, function (val, index) {
+
+                            	$scope.printPdfVals.summaryColumns.push({
+                            		'title': toTitleCase(index),
+                            		'field': index,
+                            		'visible': true
+                            	});
+                            }); */
+
+                            $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                            $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                            $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                            $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                            $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                            $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                            $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                            $scope.printPdfVals._reportType = _reportType;
+                            $scope.printPdfVals.module = $scope.filterReport.module; //$scope.module;
+
+                            if ($scope.filterReport.financeID == 3) {
+                                $scope.printPdfVals.finance = 'All';
+                            } else if ($scope.filterReport.financeID == 2) {
+                                $scope.printPdfVals.finance = 'Excluded';
+                            } else if ($scope.filterReport.financeID == 1) {
+                                $scope.printPdfVals.finance = 'Included';
+                            }
+
+                            if ($scope.filterReport.insuranceID == 3) {
+                                $scope.printPdfVals.insurance = 'All';
+                            } else if ($scope.filterReport.insuranceID == 2) {
+                                $scope.printPdfVals.insurance = 'Excluded';
+                            } else if ($scope.filterReport.insuranceID == 1) {
+                                $scope.printPdfVals.insurance = 'Included';
+                            }
+
+                            if (_reportType == 'xlsx') {
+                                $scope.showLoader = true;
+                                jsreportService.downloadXlsx($scope.printPdfVals, "SylA9zON-H").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                }).error(function(error) {
+                                    $scope.showLoader = false;
+                                    toaster.pop('error', 'Error', "Error While generating file");
+                                })
+                            } else {
+                                console.log("called modal....");
+                                $scope.showLoader = true;
+                                var invoicePdfModal = ModalService.showModal({
+                                    templateUrl: 'app/views/reports/agingDetailsModal.html',
+                                    controller: 'pdfPrintModalController',
+                                    inputs: {
+                                        printPdfVals: $scope.printPdfVals
+                                    }
+                                });
+
+                                invoicePdfModal.then(function(res) {
+                                    $scope.showLoader = false;
+                                    res.element.modal();
+                                });
+                            }
+                        } else {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                        }
+                    });
+
+            }
+        }
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 
 myApp.controller('TrialBalncReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "myService", "ModalService", "jsreportService", function TrialBalncReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, myService, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.jsreportLoading = false;
@@ -3127,10 +5405,793 @@ myApp.controller('TrialBalncReportController', ["$scope", "$filter", "ngTablePar
 					toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 			});
 	} */
+=======
+    'use strict';
+
+    $scope.jsreportLoading = false;
+    $scope.dontShowModal = false;
+    $scope.downloadReportTrialBalance = function(_reportData) {
+        $scope.jsreportLoading = true;
+        console.log("ReportData: ", _reportData);
+        // $http({
+        // 	url: $rootScope.jsreports,
+        // 	method: 'POST',
+        // 	params: {},
+        // 	data: {
+        // 		"template": { "phantom": $scope.phantomSettings,
+        // 			"shortid": "r1gSoJRhD4"
+        // 		},
+        // 		"data": {
+        // 			"response": _reportData.reportsDataArr
+        // 		}
+        // 	},
+        // 	headers: {
+        // 		'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+        // 	},
+        // 	responseType: 'arraybuffer'
+        // })
+        // 	.success(function (data) {
+        // 		$scope.jsreportLoading = false;
+        // 		console.log("success jsreport...", typeof (data));
+
+        // 		var file = new Blob([data], { type: 'application/pdf' });
+        // 		saveAs(file, _reportData.reportName+ '.pdf');
+
+        // 	});
+    }
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+
+    if ($scope.module == 'summary') {
+
+        $scope.reportTitle = 'Trial Balance - Summary';
+        $scope.reportType = 'summary';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Trial Balance - Summary', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.trial_balance_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'detail' || $scope.module == 'detail2') {
+
+        $scope.reportTitle = ' Trial Balance - Detailed';
+        $scope.reportType = 'detail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Trial Balance - Detailed', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.trial_balance_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'customer') {
+
+        $scope.reportTitle = ' Customer Trial Balance - Summary';
+        $scope.reportType = 'customerSummary';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Trial Balance - Summary', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_trail_balance_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+    } else if ($scope.module == 'customerDetail') {
+
+        $scope.reportTitle = 'Customer Trial Balance - Detailed';
+        $scope.reportType = 'customerDetail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Trial Balance - Detailed', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_trail_balance_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+    } else if ($scope.module == 'supplier') {
+
+        $scope.reportTitle = ' Supplier Trial Balance - Summary';
+        $scope.reportType = 'supplierSummary';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Trial Balance - Summary', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.supplier_trial_balance_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'supplierDetail') {
+
+        $scope.reportTitle = 'Supplier Trial Balance - Detailed ';
+        $scope.reportType = 'supplierDetail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Trial Balance - Detailed ', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.supplier_trial_balance_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+    $scope.searchKeywordHistory = {};
+
+    $scope.filterReport = {};
+    $scope.filterReport2 = {};
+
+    $scope.filterReport.token = $rootScope.token;
+    $scope.filterReport.reportType = $scope.module;
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    if ($scope.module == 'summary') {
+
+        var getUrl = $scope.$root.gl + "chart-accounts/get-all-gl-account-no";
+        var postData1 = { 'token': $scope.$root.token };
+        $scope.glAccountArr = [];
+
+        $http
+            .post(getUrl, postData1)
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.glAccountArr = res.data.response;
+                } else
+                    toaster.pop('warning', 'Info', "No G/L Account Exists!");
+            });
+    } else if ($scope.module == 'detail' || $scope.module == 'detail2') {
+
+        var getUrl = $scope.$root.gl + "chart-accounts/get-gl-account-no-forDetailReport";
+        var postData1 = { 'token': $scope.$root.token };
+        $scope.glAccountArr = [];
+
+        $http
+            .post(getUrl, postData1)
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.glAccountArr = res.data.response;
+                } else
+                    toaster.pop('warning', 'Info', "No G/L Account Exists!");
+            });
+    }
+
+
+    if ($scope.module == 'customer' || $scope.module == 'customerDetail' || $scope.module == 'supplier' || $scope.module == 'supplierDetail') {
+
+        var postUrl1 = $scope.$root.setup + "ledger-group/get-vat-posting-grp-setup-predata";
+        var postData1 = { 'token': $scope.$root.token };
+        $scope.postingGroup = [];
+
+        $http
+            .post(postUrl1, postData1)
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.postingGroup = res.data.postingGroup;
+                    // $scope.vatRate = res.data.vatRate.response;
+                } else
+                    toaster.pop('warning', 'Info', "No Posting Group Exist!");
+            });
+    }
+
+    $scope.reportsDataArr = [];
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    // Suppliers Module 
+
+    $scope.suppliers = [];
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_supplierModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        // var selSupplList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsSupp[o.id];
+        // });
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.trialBalncSummaryReportEndDate = function(endDate) {
+
+        if (endDate && $scope.module == 'summary') { //$scope.filterReport.dateFrom && 
+            var from, to;
+
+            from = $scope.$root.get_current_date();
+
+            from = from.split("/")[2] + "-" + from.split("/")[1] + "-" + from.split("/")[0];
+            to = endDate.split("/")[2] + "-" + endDate.split("/")[1] + "-" + endDate.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+
+                    if (angular.element('#showOpenBalnc').is(':checked') == false)
+                        angular.element('#showOpenBalnc').click();
+                    // $scope.filterReport.showOpenBalnc = 1;
+                }
+            }
+        }
+    }
+
+
+    $scope.generateReport = function() {
+
+        $scope.filterReport.token = $rootScope.token;
+
+        // $scope.filterReport.gl_category_ids = ($scope.filterReport.gl_category_id != undefined && $scope.filterReport.gl_category_id != '') ? $scope.filterReport.gl_category_id.id : 0;
+        // $scope.filterReport.subCatgegorys = ($scope.filterReport.subCatgegory != undefined && $scope.filterReport.subCatgegory != '') ? $scope.filterReport.subCatgegory.id : 0;
+        $scope.filterReport.postingGrpID = ($scope.filterReport.posting_grp != undefined && $scope.filterReport.posting_grp != '') ? $scope.filterReport.posting_grp.id : 0;
+        $scope.filterReport.glNoFromID = ($scope.filterReport.glNoFrom != undefined && $scope.filterReport.glNoFrom != '') ? $scope.filterReport.glNoFrom.gl_no : 0;
+        $scope.filterReport.glNoToID = ($scope.filterReport.glNoTo != undefined && $scope.filterReport.glNoTo != '') ? $scope.filterReport.glNoTo.gl_no : 0;
+
+        $scope.filterReport.reportType = $scope.module;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.suppliers = $scope.suppliers;
+
+        $scope.filterReport2.showOpenBalnc = $scope.filterReport.showOpenBalnc;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        if ($scope.filterReport.glNoFromID != 0 && $scope.filterReport.glNoToID != 0 && ($scope.filterReport.glNoFromID > $scope.filterReport.glNoToID)) {
+
+            toaster.pop('error', 'Error', "G/L Account No. To is prior to G/L Account No. From!");
+            return false;
+        }
+
+        // $scope.filterReport.glNoFrom.gl_no
+
+        $scope.showLoader = true;
+        $scope.showCSVBtn = false;
+        $scope.CSVfilePath = '';
+
+        var trialBalncReportApi = $scope.$root.reports + "module/trial-balnc-report";
+        $http
+            .post(trialBalncReportApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.account_list = [];
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    if ($scope.module == 'customer' || $scope.module == 'customerDetail' || $scope.module == 'supplier' || $scope.module == 'supplierDetail') {
+                        $scope.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    } else {
+                        $scope.account_list = res.data.response;
+                    }
+                } else if (res.data.ack == 2) {
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+                    toaster.pop('success', 'Info', res.data.error);
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.showCSVBtn = false;
+        $scope.customers = [];
+        $scope.suppliers = [];
+        $scope.filterReport = {};
+        $scope.filterReport2 = {};
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reportType = $scope.module;
+        $scope.reportsDataArr = [];
+
+        $scope.account_list = [];
+        $scope.columns = [];
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+
+    $scope.showPdfModal = function(_reportType = "pdf") {
+        $scope.printPdfVals = {};
+
+        $scope.filterReport.token = $rootScope.token;
+        $rootScope.printinvoiceFlag = false;
+
+        // $scope.filterReport.gl_category_ids = ($scope.filterReport.gl_category_id != undefined && $scope.filterReport.gl_category_id != '') ? $scope.filterReport.gl_category_id.id : 0;
+        // $scope.filterReport.subCatgegorys = ($scope.filterReport.subCatgegory != undefined && $scope.filterReport.subCatgegory != '') ? $scope.filterReport.subCatgegory.id : 0;
+        $scope.filterReport.postingGrpID = ($scope.filterReport.posting_grp != undefined && $scope.filterReport.posting_grp != '') ? $scope.filterReport.posting_grp.id : 0;
+
+        $scope.filterReport.glNoFromID = ($scope.filterReport.glNoFrom != undefined && $scope.filterReport.glNoFrom != '') ? $scope.filterReport.glNoFrom.gl_no : 0;
+        $scope.filterReport.glNoToID = ($scope.filterReport.glNoTo != undefined && $scope.filterReport.glNoTo != '') ? $scope.filterReport.glNoTo.gl_no : 0;
+
+        $scope.filterReport.reportType = $scope.module;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.suppliers = $scope.suppliers;
+
+        $scope.filterReport2.showOpenBalnc = $scope.filterReport.showOpenBalnc;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+
+        var trialBalncReportApi = $scope.$root.reports + "module/trial-balnc-report";
+        $http
+            .post(trialBalncReportApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.account_list = [];
+
+                if (res.data.ack == true) {
+                    $scope.account_list = res.data.response;
+
+
+                    if ($scope.module == 'summary') {
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.reportName = 'trialBalncReport';
+                    } else if ($scope.module == 'detail' || $scope.module == 'detail2') {
+                        $scope.printPdfVals.account_list = res.data.response;
+                        $scope.printPdfVals.reportName = 'trialBalncDetailReport';
+                    } else if ($scope.module == 'customer' || $scope.module == 'customerDetail' || $scope.module == 'supplier' || $scope.module == 'supplierDetail') {
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.columns = [];
+
+                        $scope.printPdfVals.reportName = $scope.module + 'trialBalncReport';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+
+                    $scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.showOpenBalnc = $scope.filterReport.showOpenBalnc;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    if ($scope.module == 'summary' && _reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "S1xQep-bd4").success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else if (($scope.module == 'detail' || $scope.module == 'detail2') && _reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rkxrqWEZ_E").success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/trialBalncreportsModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else if (res.data.ack == 2) {
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+                    toaster.pop('success', 'Info', res.data.error);
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    /* $scope.showCSV = function () {
+    	$scope.printCSVVals = {};
+
+    	$scope.filterReport.token = $rootScope.token;
+    	$rootScope.printinvoiceFlag = false;
+
+    	// $scope.filterReport.gl_category_ids = ($scope.filterReport.gl_category_id != undefined && $scope.filterReport.gl_category_id != '') ? $scope.filterReport.gl_category_id.id : 0;
+    	// $scope.filterReport.subCatgegorys = ($scope.filterReport.subCatgegory != undefined && $scope.filterReport.subCatgegory != '') ? $scope.filterReport.subCatgegory.id : 0;
+    	$scope.filterReport.postingGrpID = ($scope.filterReport.posting_grp != undefined && $scope.filterReport.posting_grp != '') ? $scope.filterReport.posting_grp.id : 0;
+
+    	$scope.filterReport.glNoFromID = ($scope.filterReport.glNoFrom != undefined && $scope.filterReport.glNoFrom != '') ? $scope.filterReport.glNoFrom.gl_no : 0;
+    	$scope.filterReport.glNoToID = ($scope.filterReport.glNoTo != undefined && $scope.filterReport.glNoTo != '') ? $scope.filterReport.glNoTo.gl_no : 0;
+
+    	$scope.filterReport.reportType = $scope.module;
+    	$scope.filterReport.customers = $scope.customers;
+    	$scope.filterReport.suppliers = $scope.suppliers;
+
+    	$scope.filterReport2.showOpenBalnc = $scope.filterReport.showOpenBalnc;
+
+    	if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+    		var from, to, check;
+
+    		from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+    		to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+    		if (from != null && to != null) {
+
+    			var from1, to1;
+    			from1 = new Date(from.replace(/\s/g, ''));
+    			to1 = new Date(to.replace(/\s/g, ''));
+
+    			var fDate, lDate;
+    			fDate = Date.parse(from1);
+    			lDate = Date.parse(to1);
+
+    			if (fDate > lDate) {
+    				toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+    				return false;
+    			}
+    		}
+    	}
+    	else {
+    		$scope.filterReport.dateFrom = '';
+    		toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+    		return false;
+    	}
+
+    	$scope.showLoader = true;
+
+    	var trialBalncReportApi = $scope.$root.reports + "module/trial-balnc-report";
+    	$http
+    		.post(trialBalncReportApi, $scope.filterReport)
+    		.then(function (res) {
+    			$scope.showLoader = false;
+    			$scope.account_list = [];
+
+    			if (res.data.ack == true) {
+    				$scope.account_list = res.data.response;
+
+
+    				if ($scope.module == 'summary') {
+    					$scope.printCSVVals = res.data.response;
+    					$scope.printCSVVals.reportName = 'trialBalncReport';
+    				}
+    				else if ($scope.module == 'detail' || $scope.module == 'detail2') {
+    					$scope.printCSVVals.account_list = res.data.response;
+    					$scope.printCSVVals.reportName = 'trialBalncDetailReport';
+    				}
+    				else if ($scope.module == 'customer' || $scope.module == 'customerDetail' || $scope.module == 'supplier' || $scope.module == 'supplierDetail') {
+    					$scope.printCSVVals.reportsDataArr = res.data.response;
+    					$scope.printCSVVals.columns = [];
+
+    					$scope.printCSVVals.reportName = $scope.module + 'trialBalncReport';
+
+    					angular.forEach(res.data.response[0], function (val, index) {
+    						$scope.printCSVVals.columns.push({
+    							'title': toTitleCase(index),
+    							'field': index,
+    							'visible': true
+    						});
+    					});
+    				}
+
+    				$scope.printCSVVals.currentDate = $scope.$root.get_current_date();
+    				$scope.printCSVVals.dateFrom = $scope.filterReport.dateFrom;
+    				$scope.printCSVVals.dateTo = $scope.filterReport.dateTo;
+    				$scope.printCSVVals.company_reg_no = $scope.filterReport.company_reg_no;
+    				$scope.printCSVVals.showOpenBalnc = $scope.filterReport.showOpenBalnc;
+
+    				//  var invoiceCSVModal = ModalService.showModal({
+    				// 	templateUrl: 'app/views/reports/trialBalncreportsModal.html',
+    				// 	controller: 'CSVController',
+    				// 	inputs: {
+    				// 		printCSVVals: $scope.printCSVVals
+    				// 	}
+    				// }); 
+
+    				//  invoiceCSVModal.then(function (res) {
+    				// 	res.element.modal();
+    				// }); 
+
+    			}
+    			else
+    				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    		});
+    } */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }]);
 
 
 myApp.controller('VATReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function VATReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -4558,11 +7619,1434 @@ myApp.controller('VATReportController', ["$scope", "$filter", "ngTableParams", "
 			$scope.filterReport.vatEntriesPeriod = 0;
 		}
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    if ($scope.module == 'summary') {
+
+        $scope.reportTitle = 'VAT Report'; // - Summary
+        $scope.reportType = 'summary';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'VAT Report', 'url': '#', 'isActive': false }];
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.vat_report_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'detail') {
+
+        $scope.reportTitle = 'VAT Report'; // - Detailed
+        $scope.reportType = 'detail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'VAT Report - Detailed', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.vat_report_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+    $scope.vatEntriesStatusArr = {};
+    $scope.vatEntriesStatusArr = [{ 'id': '1', 'title': 'Open' }, { 'id': '2', 'title': 'Close' }, { 'id': '3', 'title': 'Open & Close' }];
+
+
+    $scope.vatEntriesPeriodArr = {};
+    $scope.vatEntriesPeriodArr = [{ 'id': '1', 'title': 'Within Period' }, { 'id': '2', 'title': 'Before & Within Period' }];
+
+
+    $scope.searchKeyword = {};
+    $scope.searchKeywordHistory = {};
+
+    $scope.filterReport = {};
+
+    $scope.vatReportListing = {};
+    $scope.vatReportListing.token = $rootScope.token;
+
+
+    $scope.reportsDataArr = [];
+
+    $scope.columns_general = [];
+    $scope.general = {};
+    $scope.arr_uom = [];
+    $scope.stockTitle = '';
+    $scope.clientLocalIP = '';
+
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    angular.forEach($scope.vatEntriesStatusArr, function(obj) {
+        if (obj.id == 1)
+            $scope.filterReport.vatEntriesStatus = obj;
+    });
+
+    // console.log($rootScope.postingGroups);
+
+    $scope.getClientLocalIP = function() {
+
+        var RTCPeerConnection = /*window.RTCPeerConnection ||*/ window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+        if (RTCPeerConnection)(function() {
+            var rtc = new RTCPeerConnection({
+                iceServers: []
+            });
+            if (1 || window.mozRTCPeerConnection) {
+                rtc.createDataChannel('', {
+                    reliable: false
+                });
+            };
+            rtc.onicecandidate = function(evt) {
+                if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);
+            };
+            rtc.createOffer(function(offerDesc) {
+                grepSDP(offerDesc.sdp);
+                rtc.setLocalDescription(offerDesc);
+            }, function(e) {
+                console.warn("offer failed", e);
+            });
+            var addrs = Object.create(null);
+            addrs["0.0.0.0"] = false;
+
+            function updateDisplay(newAddr) {
+                if (newAddr in addrs) return;
+                else addrs[newAddr] = true;
+                var displayAddrs = Object.keys(addrs).filter(function(k) {
+                    return addrs[k];
+                });
+                // document.getElementById('list').textContent = displayAddrs.join(" or perhaps ") || "n/a"; 
+                // console.log(displayAddrs.join(" or perhaps ") || "n/a");
+                $scope.clientLocalIP = displayAddrs.join(" or perhaps ") || "n/a";
+                console.log($scope.clientLocalIP);
+            }
+
+            function grepSDP(sdp) {
+                var hosts = [];
+                sdp.split('\r\n').forEach(function(line) {
+                    if (~line.indexOf("a=candidate")) {
+                        var parts = line.split(' '),
+                            addr = parts[4],
+                            type = parts[7];
+                        if (type === 'host') updateDisplay(addr);
+                    } else if (~line.indexOf("c=")) {
+                        var parts = line.split(' '),
+                            addr = parts[2];
+                        updateDisplay(addr);
+                    }
+                });
+            }
+        })();
+        else {
+            console.log("<code>ifconfig| grep inet | grep -v inet6 | cut -d\" \" -f2 | tail -n1</code>");
+            // document.getElementById('list').nextSibling.textContent = "In Chrome and Firefox your IP should display automatically, by the power of WebRTCskull.";  
+        }
+    }
+
+    $scope.getClientLocalIP();
+
+    // console.log($scope.clientLocalIP);
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.filterReport);
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.filterReport.vatEntriesStatusID = ($scope.filterReport.vatEntriesStatus != undefined && $scope.filterReport.vatEntriesStatus != '') ? $scope.filterReport.vatEntriesStatus.id : 0;
+        // $scope.filterReport.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod != undefined && $scope.filterReport.vatEntriesPeriod != '') ? $scope.filterReport.vatEntriesPeriod.id : 0;
+        $scope.filterReport.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod == true) ? 1 : 0;
+        $scope.filterReport.asAtDate = $scope.filterReport.dateTo;
+        $scope.filterReport.clientLocalIP = $scope.clientLocalIP;
+        $scope.filterReport.timezone = "UTC" + createOffset(new Date());
+        $scope.filterReport.applicationVersion = "Silverow=" + $scope.$root.nevicoVersionNumber + "&silverow-app=v" + $scope.$root.nevicoVersionNumber;
+
+        $scope.showLoader = true;
+
+        if ($scope.filterReport.vatEntriesStatus && $scope.filterReport.vatEntriesStatus.id == 1) {
+            $scope.showSubmitVAT = true;
+        } else {
+            $scope.showSubmitVAT = false;
+        }
+
+        var vatReportListingApi = $scope.$root.reports + "module/vat-report";
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+
+                if (res.data.ack == true) {
+
+                    if ($scope.module == 'summary') {
+                        $scope.reportsDataArr = [];
+                        $scope.reportsDataArr = res.data.response;
+                        // $scope.reportsDataArr.netvat = (res.data.response.VATonSale + res.data.response.VATonSaleEU) - res.data.response.VATonPurchase;
+                    } else if ($scope.module == 'detail') {
+
+                        $scope.reportsDataArr = [];
+                        $scope.reportsDataArr = res.data.response;
+
+                        /* angular.forEach(res.data.response, function (obj) {
+                        	$scope.reportsDataArr.push(obj);
+                        }); */
+
+                        /* var purchaseTotal = 0;
+                        // var DebitNoteTotal = 0;
+                        var saleTotal = 0;
+                        // var CreditNoteTotal = 0;
+
+                        var purchaseTotalExclVAT = 0;
+                        // var DebitNoteTotalExclVAT = 0;
+                        var saleTotalExclVAT = 0; */
+
+                        /* if (res.data.response.purchase != undefined) {
+
+                        	var purchaseHeading = {
+                        		DocType: 'Purchases',
+                        		EntryNo: '',
+                        		amountExclVat: '',
+                        		company_id: '46',
+                        		doc_no: '',
+                        		postingDate: '',
+                        		posting_grp: '',
+                        		supplier_code: '',
+                        		vat_amount: '',
+                        		vat_name: '',
+                        		specialCase: 1
+                        	};
+
+                        	$scope.reportsDataArr.push(purchaseHeading);
+
+                        	angular.forEach(res.data.response.purchase, function (obj) {
+
+                        		if (obj.accountType == 4) {
+
+                        			if (obj.creditAmountConverted > 0) {
+                        				purchaseTotal -= parseFloat(obj.creditAmountConverted);
+                        				obj.vat_amount = (-1) * obj.creditAmountConverted;
+                        				// obj.amountExclVat = (-1) * obj.creditAmountConverted;
+                        			}
+                        			else {
+                        				obj.vat_amount = obj.creditAmountConverted;
+                        				// obj.amountExclVat = obj.creditAmountConverted;
+                        				purchaseTotal += parseFloat(obj.creditAmountConverted);
+                        			}
+
+                        			if (obj.amountExclVat > 0) {
+                        				purchaseTotalExclVAT -= parseFloat(obj.amountExclVat);
+                        				obj.amountExclVat = (-1) * obj.amountExclVat;
+                        			}
+                        			else {
+                        				purchaseTotalExclVAT += parseFloat(obj.amountExclVat);
+                        			}
+                        		}
+                        		else {
+                        			// obj.vat_amount = obj.vatAmount;
+                        			// obj.amountExclVat = obj.debitAmountConverted;
+                        			obj.vat_amount = obj.debitAmountConverted;
+                        			purchaseTotal += parseFloat(obj.vat_amount);
+                        			// purchaseTotal += parseFloat(obj.vatAmount);
+                        			purchaseTotalExclVAT += parseFloat(obj.amountExclVat);
+                        		}
+
+                        		$scope.reportsDataArr.push(obj);
+                        	});
+
+                        	var purchaseTtlRecord = {
+                        		DocType: 'Total Purchase VAT',
+                        		EntryNo: '',
+                        		amountExclVat: purchaseTotalExclVAT,
+                        		doc_no: '',
+                        		postingDate: '',
+                        		posting_grp: '',
+                        		supplier_code: '',
+                        		vat_amount: purchaseTotal,
+                        		vat_name: '',
+                        		specialCase: 2
+                        	};
+
+                        	$scope.reportsDataArr.push(purchaseTtlRecord);
+                        } */
+
+                        /* if (res.data.response.sale != undefined) {
+
+                        	var saleHeading = {
+                        		DocType: 'sales',
+                        		EntryNo: '',
+                        		amountExclVat: '',
+                        		company_id: '46',
+                        		doc_no: '',
+                        		postingDate: '',
+                        		posting_grp: '',
+                        		supplier_code: '',
+                        		vat_amount: '',
+                        		vat_name: '',
+                        		specialCase: 1
+                        	};
+
+                        	$scope.reportsDataArr.push(saleHeading);
+
+                        	angular.forEach(res.data.response.sale, function (obj) {
+
+                        		if (obj.accountType == 1) {
+
+                        			if (obj.creditAmountConverted > 0) {
+                        				saleTotalExclVAT -= parseFloat(obj.creditAmountConverted);
+                        				obj.vat_amount = (-1) * obj.creditAmountConverted;
+                        				// obj.amountExclVat = (-1) * obj.creditAmountConverted;
+                        			}
+                        			else {
+                        				obj.vat_amount = obj.creditAmountConverted;
+                        				// obj.amountExclVat = obj.creditAmountConverted;
+                        				saleTotalExclVAT += parseFloat(obj.creditAmountConverted);
+                        			}
+
+                        			if (obj.amountExclVat > 0) {
+                        				saleTotalExclVAT -= parseFloat(obj.amountExclVat);
+                        				obj.amountExclVat = (-1) * obj.amountExclVat;
+                        			}
+                        			else {
+                        				saleTotalExclVAT += parseFloat(obj.amountExclVat);
+                        			}
+
+                        		}
+                        		else {
+                        			// obj.vat_amount = obj.vatAmount;
+                        			// obj.amountExclVat = obj.debitAmountConverted;
+                        			obj.vat_amount = obj.debitAmountConverted;
+                        			saleTotal += parseFloat(obj.vat_amount);
+                        			// saleTotal += parseFloat(obj.vatAmount);
+                        			saleTotalExclVAT += parseFloat(obj.amountExclVat);
+                        		}
+
+                        		$scope.reportsDataArr.push(obj);
+                        	});
+
+                        	var saleTtlRecord = {
+                        		DocType: 'Total Sale VAT',
+                        		EntryNo: '',
+                        		amountExclVat: saleTotalExclVAT,
+                        		doc_no: '',
+                        		postingDate: '',
+                        		posting_grp: '',
+                        		supplier_code: '',
+                        		vat_amount: saleTotal,
+                        		vat_name: '',
+                        		specialCase: 2
+                        	};
+
+                        	$scope.reportsDataArr.push(saleTtlRecord);
+                        } */
+                    }
+                } else if (res.data.ack == 2)
+                    toaster.pop('error', 'Error', res.data.error);
+                else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+    $scope.postVAT = function() {
+        // console.log($scope.filterReport);
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+
+        /* if (!($scope.reportsDataArr.length > 0)) {
+        	toaster.pop('error', 'Error', "Generate Report First!");
+        	return false;
+        } */
+
+        // console.log($scope.filterReport.VATPostingDate);
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    $scope.showLoader = false;
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            $scope.showLoader = false;
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        if (!$scope.filterReport.VATPostingDate) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['VAT Posting Date']));
+            return false;
+        }
+
+        $scope.filterReport.vatEntriesStatusID = ($scope.filterReport.vatEntriesStatus != undefined && $scope.filterReport.vatEntriesStatus != '') ? $scope.filterReport.vatEntriesStatus.id : 0;
+        // $scope.filterReport.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod != undefined && $scope.filterReport.vatEntriesPeriod != '') ? $scope.filterReport.vatEntriesPeriod.id : 0;
+        $scope.filterReport.asAtDate = $scope.filterReport.dateTo;
+        $scope.filterReport.VATPostingDate = $scope.filterReport.VATPostingDate;
+
+
+        $scope.filterReport.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod == true) ? 1 : 0;
+
+        if ($scope.filterReport.vatEntriesStatusID != 1) {
+            toaster.pop('error', 'Error', "Report can only be posted on the basis of open VAT Status");
+            return false;
+        }
+        $scope.showLoader = true;
+
+        var vatReportListingApi = $scope.$root.reports + "module/post-vat-report";
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+
+                    /* if ($scope.module == 'summary') {
+                    	$scope.reportsDataArr = [];
+                    	$scope.reportsDataArr = res.data.response;
+                    }
+                    else if ($scope.module == 'detail') { */
+
+                    $scope.reportsDataArr = [];
+                    $scope.reportsDataArr = res.data.response;
+                    //}
+
+                    toaster.pop('success', 'Success', 'VAT Posted Successfully');
+                } else
+                    toaster.pop('error', 'Error', res.data.error);
+            });
+
+    }
+
+    $scope.setUpTokenListener = function() {
+        $scope.showLoader = true;
+        var postUrl1 = $scope.$root.setup + "general/getHMRCToken";
+        var postData = {
+            token: $scope.$root.token,
+            requiredScope: "write:vat"
+        };
+
+
+        var refreshId = setInterval(function() {
+            $http
+                .post(postUrl1, postData)
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        console.table(res);
+                        if (res.data.response) {
+                            clearInterval(refreshId);
+                            $scope.showLoader = false;
+                            $scope.fetchObligations();
+                        }
+                    }
+                });
+        }, 10000);
+        return;
+
+    }
+
+    $scope.getAuthorizationFromHMRC = function() {
+        toaster.pop({
+            type: "warning",
+            title: "HMRC Processing",
+            body: $rootScope.getErrorMessageByCode(656),
+            timeout: 0,
+            tapToDismiss: false
+        });
+        var authorizationCodeRedirect = "https://silverow.net/api/setup/general/takeAuthorizationCode";
+        var client_id = "0oJpqSP2XKavLses4RBkLRkVkrYa";
+        var scope = "write:vat read:vat";
+        var requestURL = "https://api.service.hmrc.gov.uk/oauth/authorize";
+        // var requestURL = "https://test-api.service.hmrc.gov.uk/oauth/authorize";
+        window.open(`${requestURL}?response_type=code&client_id=${client_id}&state=${$rootScope.token}*${scope}&scope=${scope}&redirect_uri=${authorizationCodeRedirect}`, "_blank");
+        $scope.setUpTokenListener();
+    }
+
+    $scope.clearVATData = function() {
+        $scope.HMRC_Errors = [];
+        $scope.HMRC_Success = {};
+        $scope.VAT_Obligations = [];
+        $scope.fetchedVATSummary = {};
+    }
+
+    $scope.clearVATData();
+    $scope.fetchVATSummary = function(obl) {
+        console.table(obl);
+        $scope.showLoader = true;
+        var url = $scope.$root.setup + "general/getHMRCToken";
+        var postData = {
+            token: $scope.$root.token
+        };
+        $http
+            .post(url, postData)
+            .then(function(res) {
+                if (res.data.ack == true && res.data.response) {
+
+
+                    var accessData = res.data.response;
+                    var VATObligationsURL = $scope.$root.setup + "general/getVATSummary";
+                    var fraudHeaders = {
+                            timezone: "UTC" + createOffset(new Date()),
+                            screens: `width=${screen.width}&height=${screen.height}&scaling-factor=${window.devicePixelRatio}&colour-depth=${screen.colorDepth}`,
+                            window: `width=${window.outerWidth}&height=${window.outerHeight}`,
+                            browserPlugins: getBrowserPlugins(),
+                            userAgent: navigator.userAgent,
+                            clientLocalIP: $scope.clientLocalIP,
+                            doNotTrack: navigator.doNotTrack ? true : false,
+                            applicationVersion: "Silverow=" + $rootScope.nevicoVersionNumber + "&silverow-app=v" + $rootScope.nevicoVersionNumber,
+                            publicIPtimestamp: new Date().toISOString(),
+                            MultiFactortimestamp: new Date().toISOString().slice(0, -8) + "Z"
+                        } // $scope.$root.nevicoVersionNumber  ;                      
+                    var postData = {
+                        token: $scope.$root.token,
+                        accessData: accessData,
+                        periodKey: obl.periodKey,
+                        fraudHeaders: fraudHeaders
+                    }
+                    $http
+                        .post(
+                            VATObligationsURL,
+                            postData,
+                        )
+                        .success(function(res) {
+                            var status = res.statusCode;
+                            $scope.showLoader = false;
+                            if (!res.ack && status == 401) {
+                                // looks like refresh token is required..
+                                $scope.showLoader = true;
+                                $scope.getRefreshedToken(accessData).then(function(refreshedData) {
+                                    if (refreshedData.error) {
+                                        return;
+                                    }
+                                    $scope.fetchVATSummary(obl);
+                                })
+                            } else if (!res.ack && status == 403) {
+                                toaster.pop("error", "Error", "There are some issues while fetching the summary")
+                                $scope.HMRC_Errors = res.errors;
+
+                            } else if (!res.ack) {
+                                toaster.pop("error", "Error", "Something went wrong.");
+                            } else if (status == 200) {
+                                console.log("no error", res);
+                                $scope.fetchedVATSummary = res.response;
+                                $scope.fetchedVATSummary.start = obl.start;
+                                $scope.fetchedVATSummary.end = obl.end;
+                            } else {
+
+                            }
+                        })
+                }
+            });
+    }
+
+    $scope.VATOption = {};
+
+    $scope.openSubmitVATOptions = function() {
+
+        $scope.submitVATOptions = [{ 'name': 'Submit online to HMRC', 'id': 1 }, { 'name': 'Submit to HMRC by other means', 'id': 2 }];
+        $scope.VATOption = $scope.submitVATOptions[0];
+        $scope.filterReport.VATPostingDate = $scope.filterReport.dateTo;
+        //$rootScope.get_current_date();
+
+        angular.element('#submitVATOptionsModal').modal({ show: true });
+    }
+
+    $scope.showVATReturns = false;
+
+    $scope.openSubmittedVATReturnsThroughOtherMeans = function() {
+
+        $scope.showVATReturns = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    $scope.showLoader = false;
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            $scope.showLoader = false;
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $rootScope.showLoader = true;
+        $scope.VATReturnsName = [];
+
+        $scope.printPdfVals = {};
+
+        $scope.printPdfVals.company_name = $rootScope.company_name;
+        // $scope.printPdfVals._reportType = VATReturnsName;
+
+        let currentUrl = window.location.href;
+        $scope.printPdfVals.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+        $scope.printPdfVals.currentDate = $scope.currentDate;
+        $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+        $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+        $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        var vatReportListingApi = $scope.$root.reports + "module/open-submitted-vat-returns-through-other-means";
+        var postData = {
+            'token': $rootScope.token,
+            'dateFrom': $scope.filterReport.dateFrom,
+            'dateTo': $scope.filterReport.dateTo
+        };
+        $http
+            .post(vatReportListingApi, postData)
+            .then(function(res) {
+                $rootScope.showLoader = false;
+                if (res.data.ack == true) {
+                    $scope.VATReturnsName = res.data.response;
+                    $scope.printPdfVals.VATReturnsName = res.data.response;
+
+                    var invoicePdfModal = ModalService.showModal({
+                        templateUrl: 'app/views/reports/submittedVATOtherMeansModal.html',
+                        controller: 'pdfPrintModalController',
+                        inputs: {
+                            printPdfVals: $scope.printPdfVals
+                        }
+                    });
+
+                    invoicePdfModal.then(function(res) {
+                        res.element.modal();
+                    });
+
+                    // angular.element('#submittedVATOtherMeansModal').modal({ show: true });	
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    /* $scope.chkVATReturnsOption = function(VATReturnsName){
+    	// console.log(VATReturnsName);
+    	$rootScope.showLoader = true;
+    	$scope.showVATReturns = false;
+    	$scope.VATReturnsEntries = [];
+
+    	// $scope.printPdfVals = {};
+    	$scope.printPdfVals.company_name = $rootScope.company_name;
+    	$scope.printPdfVals._reportType = VATReturnsName;
+
+    	let currentUrl = window.location.href;
+    	$scope.printPdfVals.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+    	$scope.printPdfVals.currentDate = $scope.currentDate;
+    	$scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+    	$scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+    	$scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+    	$scope.printPdfVals.VATReturnsName = $rootScope.VATReturnsName;
+
+    	var vatReportListingApi = $scope.$root.reports + "module/open-submitted-vat-returns-entries";
+    	var postData = {
+    		'token': $rootScope.token,
+    		'VATReturnsName': VATReturnsName
+    	};
+    	$http
+    		.post(vatReportListingApi, postData)
+    		.then(function (res) {
+    			
+    			$rootScope.showLoader = false;
+    			if (res.data.ack == true) {
+    				$scope.showVATReturns = true;
+    				$scope.VATReturnsEntries = res.data.response;					
+    				$scope.printPdfVals.VATReturnsEntries = res.data.response;	
+    			}
+    			else{
+    				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    			}
+    		});	
+    } */
+
+
+    $scope.changeVATPostingDate = function(VATPostingDate) {
+        // console.log(VATPostingDate);
+
+        if (!VATPostingDate) {
+            toaster.pop('error', 'Error', "Invalid Posting Date!");
+            $scope.filterReport.VATPostingDate = $scope.filterReport.dateTo;
+        }
+
+        if ($scope.filterReport.dateTo && VATPostingDate) {
+            var from, to, check;
+
+            from = VATPostingDate.split("/")[2] + "-" + VATPostingDate.split("/")[1] + "-" + VATPostingDate.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate < lDate) {
+                    toaster.pop('error', 'Error', " Posting Date is Earlier Than Date To!");
+                    $scope.filterReport.VATPostingDate = $scope.filterReport.dateTo;
+                }
+            }
+        }
+        // console.log($scope.filterReport.VATPostingDate);
+    }
+
+    $scope.chkOption = function(VATOption) {
+        $scope.VATOption = VATOption;
+    }
+
+    $scope.selectSubmitVATOptions = function() {
+
+
+        // console.log($scope.filterReport.VATPostingDate);
+
+        if ($scope.VATOption && $scope.VATOption.id == 2) {
+
+            ngDialog.openConfirm({
+                template: "postVATwithoutHMRCSubmitDialog",
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+
+                $scope.postVAT();
+
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+
+        } else {
+            $scope.fetchObligations();
+        }
+
+        angular.element('#submitVATOptionsModal').modal('hide');
+
+    }
+
+    $scope.fetchObligations = function(submitted) {
+
+        $scope.showLoader = true;
+
+        var url = $scope.$root.setup + "general/check-setup-VAT-accounts";
+        var postData = {
+            token: $scope.$root.token
+        };
+        $http
+            .post(url, postData)
+            .then(function(res) {
+                if (res.data.ack == true) { //  if(res.data.response) 
+
+                    if (!(res.data.setupVATAccounts > 0)) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(657));
+                        $scope.showLoader = false;
+                        return;
+                    } else {
+                        if (submitted) {
+                            if ($scope.filterReport.dateFrom && $scope.filterReport.dateTo) {
+                                console.table($scope.filterReport);
+                                var dateFrom = $scope.filterReport.dateFrom;
+                                var dateTo = $scope.filterReport.dateTo;
+                                dateFrom = dateFrom.split("/")[2] + "-" + dateFrom.split("/")[1] + "-" + dateFrom.split("/")[0];
+                                dateTo = dateTo.split("/")[2] + "-" + dateTo.split("/")[1] + "-" + dateTo.split("/")[0];
+                                var queryParams = `from=${dateFrom}&to=${dateTo}&status=F`;
+                            } else {
+                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(100));
+                                $scope.showLoader = false;
+                                return;
+                            }
+                        }
+                        $scope.showLoader = true;
+                        var url = $scope.$root.setup + "general/getHMRCToken";
+                        var postData = {
+                            token: $scope.$root.token
+                        };
+                        $http
+                            .post(url, postData)
+                            .then(function(res) {
+                                if (res.data.ack == true && res.data.response) {
+                                    console.table(res);
+                                    var accessData = res.data.response;
+                                    var VATObligationsURL = $scope.$root.setup + "general/getVATObligations";
+                                    var fraudHeaders = {
+                                            timezone: "UTC" + createOffset(new Date()),
+                                            screens: `width=${screen.width}&height=${screen.height}&scaling-factor=${window.devicePixelRatio}&colour-depth=${screen.colorDepth}`,
+                                            window: `width=${window.outerWidth}&height=${window.outerHeight}`,
+                                            browserPlugins: getBrowserPlugins(),
+                                            userAgent: navigator.userAgent,
+                                            clientLocalIP: $scope.clientLocalIP,
+                                            doNotTrack: navigator.doNotTrack ? true : false,
+                                            applicationVersion: "Silverow=" + $rootScope.nevicoVersionNumber + "&silverow-app=v" + $rootScope.nevicoVersionNumber,
+                                            publicIPtimestamp: new Date().toISOString(),
+                                            MultiFactortimestamp: new Date().toISOString().slice(0, -8) + "Z"
+                                        } //$scope.$root.nevicoVersionNumber
+                                    var postData = {
+                                        token: $scope.$root.token,
+                                        submitted: queryParams ? queryParams : 'status=O',
+                                        accessData: accessData,
+                                        fraudHeaders: fraudHeaders
+                                    }
+                                    $http
+                                        .post(
+                                            VATObligationsURL,
+                                            postData,
+                                        )
+                                        .success(function(res) {
+                                            if (res.VRNMissing) {
+                                                toaster.pop("error", "Error", res.error);
+                                                $scope.showLoader = false;
+                                                return;
+                                            }
+                                            var status = res.statusCode;
+                                            if (!res.ack && status == 401) {
+                                                // looks like refresh token is required..
+                                                $scope.showLoader = true;
+                                                $scope.getRefreshedToken(accessData).then(function(refreshedData) {
+                                                    if (refreshedData.error) {
+                                                        return;
+                                                    }
+                                                    $scope.fetchObligations(submitted);
+                                                })
+                                            } else if (!res.ack && status == 403) {
+                                                toaster.pop("error", "Error", "There are some issues while fetching the obligations");
+                                                $scope.HMRC_Errors = res.errors.errors;
+                                                $scope.showLoader = false;
+                                            } else if (!res.ack) {
+                                                toaster.pop("error", "Error", "Something went wrong.");
+                                                $scope.showLoader = false;
+                                            } else {
+                                                console.log("no error", res);
+                                                $scope.vrn = res.vrn;
+                                                $scope.submittedVATs = submitted ? true : false;
+                                                $scope.VAT_Obligations = res.response.obligations;
+                                                angular.element('#obligationsModal').modal({ show: true });
+                                                $scope.showLoader = false;
+                                            }
+                                            /* $scope.printPdfVals = {};
+
+                                            // angular.element('#obligationsModal').modal({ show: true });
+                                            $scope.printPdfVals.VAT_Obligations = $scope.VAT_Obligations;
+                                            $scope.printPdfVals.submittedVATs = $scope.submittedVATs;
+                                            $scope.printPdfVals.HMRC_Success = $scope.HMRC_Success;
+                                            $scope.printPdfVals.HMRC_Errors = $scope.HMRC_Errors;
+                                            $scope.printPdfVals.fetchedVATSummary = $scope.fetchedVATSummary;
+                                            $scope.printPdfVals.vrn = $scope.vrn;
+
+                                            var invoicePdfModal = ModalService.showModal({
+                                            	templateUrl: 'app/views/reports/obligationsModal.html',
+                                            	controller: 'pdfPrintModalController',
+                                            	inputs: {
+                                            		printPdfVals: $scope.printPdfVals
+                                            	}
+                                            });
+
+                                            invoicePdfModal.then(function (res) {
+                                            	res.element.modal();
+                                            });  */
+                                        })
+                                } else {
+                                    $scope.getAuthorizationFromHMRC();
+                                }
+                            });
+
+
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(657));
+                    $scope.showLoader = false;
+                    return;
+                }
+            }).catch(function(message) {
+                $scope.showLoader = false;
+
+                throw new Error(message.data);
+            });
+
+    }
+
+    $scope.downloadReportVATSubmitted = function(VAT_Obligations, fetchedVATSummary) {
+
+        if (!fetchedVATSummary.periodKey) {
+            toaster.pop('error', 'info', 'Submitted VAT Period is not selected');
+            return false;
+        }
+
+        $scope.jsreportLoading = true;
+        //VATSubmittedReport
+
+        let _reportData = {};
+        _reportData.VAT_Obligations = VAT_Obligations;
+        _reportData.fetchedVATSummary = fetchedVATSummary;
+
+        angular.forEach(VAT_Obligations, function(obj) {
+            if (obj.periodKey == fetchedVATSummary.periodKey)
+                _reportData.selVAT_Obligations = obj;
+        });
+
+        _reportData.vrn = $scope.vrn;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        let currentUrl = window.location.href;
+        $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.reportName = 'SubmittedVATReturns';
+        // console.log("Sales Figures BI : ", _reportData);
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BJgGctnODB"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.askConfirmation = function(obl) {
+        ngDialog.openConfirm({
+            template: "submitVATConfirmationDialog",
+            className: 'ngdialog-theme-default-custom'
+        }).then(function(value) {
+            $scope.submitVAT(obl);
+        }, function(reason) {
+            console.log('Modal promise rejected. Reason: ', reason);
+        });
+    }
+
+    function pad(value) {
+        return value < 10 ? '0' + value : value;
+    }
+
+    function createOffset(date) {
+        var sign = (date.getTimezoneOffset() > 0) ? "-" : "+";
+        var offset = Math.abs(date.getTimezoneOffset());
+        var hours = pad(Math.floor(offset / 60));
+        var minutes = pad(offset % 60);
+        return sign + hours + ":" + minutes;
+    }
+
+    function getBrowserPlugins() {
+        var x = navigator.plugins.length;
+        var txt = "";
+        for (var i = 0; i < x; i++) {
+            txt += encodeURIComponent(navigator.plugins[i].name) + ",";
+        }
+        txt = txt.slice(0, -1);
+        return txt;
+    }
+    $scope.submitVAT = function(obl) {
+        console.log("obligation", obl);
+        // return;
+        var url = $scope.$root.setup + "general/getHMRCToken";
+        var postData = {
+            token: $scope.$root.token
+        };
+        $scope.showLoader = true;
+        $http
+            .post(url, postData)
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    console.table(res);
+                    if (res.data.response) {
+                        var accessData = res.data.response;
+                        console.log("response found...");
+                        var _ = $scope.reportsDataArr;
+
+                        //P_netVAT = p_totalVATDue - p_VATonPurchase;
+
+                        var updated_netVAT = Number(Number(_.p_totalVATDue).toFixed() - Number(_.p_VATonPurchase).toFixed()).toFixed();
+
+
+                        var data = {
+                            "periodKey": obl.periodKey,
+                            "vatDueSales": Number(_.p_VATonSale).toFixed(), //2
+                            "vatDueAcquisitions": Number(_.p_VATonSaleEU).toFixed(), //2
+                            "totalVatDue": Number(_.p_totalVATDue).toFixed(), //2
+                            "vatReclaimedCurrPeriod": Number(_.p_VATonPurchase).toFixed(), //2
+                            "netVatDue": Math.floor(Math.abs(updated_netVAT)), // Math.floor(Math.abs(_.P_netVAT)), //2 )Number(.toFixed()
+                            "totalValueSalesExVAT": Number(_.p_exclVATonSale).toFixed(), //Math.ceil(_.p_exclVATonSale),
+                            "totalValuePurchasesExVAT": Number(_.p_exclVATonPurchase).toFixed(), //Math.ceil(_.p_exclVATonPurchase),
+                            "totalValueGoodsSuppliedExVAT": Number(_.p_EUSale).toFixed(), //Math.ceil(_.p_EUSale),
+                            "totalAcquisitionsExVAT": Number(_.p_EUPurchase).toFixed(), //Math.ceil(_.p_EUPurchase),
+                            "finalised": true
+                        }
+                        var fraudHeaders = {
+                                timezone: "UTC" + createOffset(new Date()),
+                                screens: `width=${screen.width}&height=${screen.height}&scaling-factor=${window.devicePixelRatio}&colour-depth=${screen.colorDepth}`,
+                                window: `width=${window.outerWidth}&height=${window.outerHeight}`,
+                                browserPlugins: getBrowserPlugins(),
+                                userAgent: navigator.userAgent,
+                                clientLocalIP: $scope.clientLocalIP,
+                                doNotTrack: navigator.doNotTrack ? true : false,
+                                applicationVersion: "Silverow=" + $rootScope.nevicoVersionNumber + "&silverow-app=v" + $rootScope.nevicoVersionNumber,
+                                publicIPtimestamp: new Date().toISOString(),
+                                MultiFactortimestamp: new Date().toISOString().slice(0, -8) + "Z"
+                            } //$scope.$root.nevicoVersionNumber
+
+                        console.log('posted Data == ', data);
+                        var postData = {
+                            data: data,
+                            token: $scope.$root.token,
+                            accessData: accessData,
+                            fraudHeaders: fraudHeaders
+                        }
+                        $scope.lastSubmittedVATData = data;
+
+                        $scope.showLoader = true;
+                        var submitVATUrl = $scope.$root.setup + "general/submitVATSummary";
+
+                        $http
+                            .post(
+                                submitVATUrl,
+                                postData
+                            )
+                            .success(function(res, status, headers, config) {
+                                var status = res.statusCode;
+                                console.log(res, status, headers);
+                                if (!res.ack && status == 401) {
+                                    // looks like refresh token is required..
+                                    $scope.getRefreshedToken(accessData).then(function(refreshedData) {
+                                        if (refreshedData.error) {
+                                            return;
+                                        }
+                                        $scope.submitVAT();
+                                    })
+                                } else if (!res.ack && res.errors) {
+                                    toaster.pop("error", "Error", "There are some issues while posting the summary.")
+                                    $scope.HMRC_Errors = res.errors.errors
+                                } else if (!res.ack) {
+                                    toaster.pop("error", "Error", "Something went wrong.");
+                                } else {
+                                    console.log("no error", res);
+                                    $scope.HMRC_Success = res.response;
+                                    $scope.HMRC_Success.receipt_id = res.headers["receipt-id"][0];
+                                    $scope.HMRC_Success.receipt_timestamp = res.headers["receipt-timestamp"][0];
+                                    toaster.pop('success', 'Submitted', "VAT Return successful.");
+                                    $scope.postVAT();
+                                }
+
+                            })
+                            .error(function(res, status, headers, config) {
+                                console.log("error", res)
+
+                            });
+                    } else {
+                        $scope.getAuthorizationFromHMRC();
+                    }
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.getRefreshedToken = function(record) {
+
+        var url = $scope.$root.setup + "general/getHMRCRefreshToken";
+        var postData = {
+            data: record,
+            token: $scope.$root.token
+        }
+        $httpPromise = $http
+            .post(url, postData)
+            .then(
+                function(res) {
+                    if (res.data.error) {
+                        toaster.pop({
+                            type: "error",
+                            title: "error",
+                            body: `HMRC returned following error(s) while performing the action:<br/>${res.data.error_description}`,
+                            bodyOutputType: 'trustedHtml',
+                            tapToDismiss: false,
+                        })
+                        res.error = true;
+                    }
+                    $scope.showLoader = false;
+                    console.log("no error", res);
+                    return res;
+                },
+                function(res) {
+                    console.log("error", res);
+                    res.error = true;
+                    return res;
+                })
+
+        return $httpPromise;
+    }
+
+    $scope.showVATPdfModal = function(param, _reportType = 'pdf') {
+        $scope.printPdfVals = {};
+
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        // $scope.filterReport.module = $scope.module;
+
+        if (param == 'detail')
+            $scope.filterReport.module = 'detail';
+        else
+            $scope.filterReport.module = $scope.module;
+
+        $scope.currentDate = $rootScope.get_current_date();
+        $rootScope.printinvoiceFlag = false;
+
+        $scope.filterReport.vatEntriesStatusID = ($scope.filterReport.vatEntriesStatus != undefined && $scope.filterReport.vatEntriesStatus != '') ? $scope.filterReport.vatEntriesStatus.id : 0;
+        $scope.filterReport.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod == true) ? 1 : 0;
+
+        /* ($scope.filterReport.vatEntriesPeriod != undefined && $scope.filterReport.vatEntriesPeriod != '') ? $scope.filterReport.vatEntriesPeriod : 0; */
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    $scope.showLoader = false;
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            $scope.showLoader = false;
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        var vatReportListingApi = $scope.$root.reports + "module/vat-report";
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.reportsDataArr.netvat = (res.data.response.VATonSale + res.data.response.VATonSaleEU) - res.data.response.VATonPurchase;
+
+                    $scope.printPdfVals = {};
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    // $scope.printPdfVals.vatEntriesStatus = $scope.filterReport.vatEntriesStatus.id;
+                    $scope.printPdfVals.vatEntriesStatusID = $scope.filterReport.vatEntriesStatusID;
+                    $scope.printPdfVals.vatEntriesPeriodID = $scope.filterReport.vatEntriesPeriodID;
+                    $scope.filterReport.asAtDate = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.asAtDate = $scope.filterReport.dateTo;
+                    $scope.printPdfVals._reportType = _reportType;
+                    // $scope.printPdfVals.reportType = $scope.module;
+
+                    if (param == 'detail')
+                        $scope.printPdfVals.reportType = 'detail';
+                    else
+                        $scope.printPdfVals.reportType = $scope.module;
+
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    if ($scope.module == 'summary' && param != 'detail') {
+
+                        $scope.printPdfVals.reportName = 'vatReport';
+                        $scope.printPdfVals.p_VATonSale = res.data.response.p_VATonSale;
+                        $scope.printPdfVals.p_VATonSaleEU = res.data.response.p_VATonSaleEU;
+                        $scope.printPdfVals.p_totalVATDue = res.data.response.p_totalVATDue;
+                        $scope.printPdfVals.p_VATonPurchase = res.data.response.p_VATonPurchase;
+                        $scope.printPdfVals.P_netVAT = res.data.response.P_netVAT;
+                        $scope.printPdfVals.p_exclVATonSale = res.data.response.p_exclVATonSale;
+                        $scope.printPdfVals.p_exclVATonPurchase = res.data.response.p_exclVATonPurchase;
+                        $scope.printPdfVals.p_EUSale = res.data.response.p_EUSale;
+                        $scope.printPdfVals.p_EUPurchase = res.data.response.p_EUPurchase;
+
+
+                    } else if ($scope.module == 'detail' || param == 'detail') {
+
+                        $scope.printPdfVals.reportName = 'vatDetailReport';
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.reportsDataArr = [];
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.reportsDataArr = res.data.response;
+                    }
+
+                    if (_reportType == 'xlsx' && param == 'summary') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "BJxk6b4Mu4").success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else if (_reportType == 'xlsx' && param == 'detail') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "HJxKiGmfdV").success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/vatReportsModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.showOpenEntries = function() {
+
+        $scope.printPdfVals = {};
+        $scope.filterReport2 = {};
+
+        $scope.showLoader = true;
+        $scope.filterReport2.token = $rootScope.token;
+        $scope.filterReport2.module = 'detail';
+
+        $scope.currentDate = $rootScope.get_current_date();
+        $rootScope.printinvoiceFlag = false;
+
+        $scope.filterReport2.vatEntriesStatusID = ($scope.filterReport.vatEntriesStatus != undefined && $scope.filterReport.vatEntriesStatus != '') ? $scope.filterReport.vatEntriesStatus.id : 0;
+        // $scope.filterReport2.vatEntriesPeriodID = ($scope.filterReport.vatEntriesPeriod == true) ? 2 : 0;
+        $scope.filterReport2.vatEntriesPeriodID = 2;
+
+
+        /* ($scope.filterReport.vatEntriesPeriod != undefined && $scope.filterReport.vatEntriesPeriod != '') ? $scope.filterReport.vatEntriesPeriod.id : 0; */
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    $scope.showLoader = false;
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            $scope.showLoader = false;
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        // $scope.filterReport2.dateFrom = 0;
+        $scope.filterReport2.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport2.dateTo = $scope.filterReport.dateTo;
+
+
+        // $scope.filterReport2.dateFrom = $scope.filterReport.dateFrom;
+        // $scope.filterReport2.dateTo = 0;
+
+        var vatReportListingApi = $scope.$root.reports + "module/vat-report";
+        $http
+            .post(vatReportListingApi, $scope.filterReport2)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    // $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    // $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.vatEntriesStatusID = $scope.filterReport.vatEntriesStatusID;
+                    $scope.printPdfVals.vatEntriesPeriodID = $scope.filterReport.vatEntriesPeriodID;
+                    // $scope.filterReport.asAtDate = $scope.filterReport.dateTo;
+                    // $scope.printPdfVals.asAtDate = $scope.filterReport.dateTo;
+
+                    // $scope.printPdfVals.reportType = $scope.module;
+
+                    $scope.printPdfVals.reportType = 'detail';
+                    $scope.printPdfVals.reportTypeOpenEntries = 'detail';
+
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    $scope.printPdfVals.reportName = 'vatDetailReport';
+                    $scope.printPdfVals.reportsDataArr = [];
+                    // $scope.reportsDataArr = [];
+
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    // $scope.reportsDataArr = res.data.response;
+
+                    // console.log($scope.printPdfVals);
+
+                    var invoicePdfModal = ModalService.showModal({
+                        templateUrl: 'app/views/reports/vatReportsModal.html',
+                        controller: 'pdfPrintModalController',
+                        inputs: {
+                            printPdfVals: $scope.printPdfVals
+                        }
+                    });
+
+                    invoicePdfModal.then(function(res) {
+                        res.element.modal();
+                    });
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+
+    }
+
+    $scope.chkforIncludeOpenEntries = function(vatEntriesStatus) {
+
+        if (vatEntriesStatus == 2) {
+            $scope.filterReport.vatEntriesPeriod = false;
+            $scope.filterReport.vatEntriesPeriod = 0;
+        }
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 
 myApp.controller('UnPostedOrderReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function UnPostedOrderReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -5463,6 +9947,899 @@ myApp.controller('UnPostedOrderReportController', ["$scope", "$filter", "ngTable
 		});
 
 		/* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    if ($scope.module == 'UnPostedSalesOrders') {
+
+        $scope.reportTitle = 'Unposted Sales Orders';
+        $scope.reportModalTitle = 'UnPostedSalesOrders';
+        $scope.reportType = 'UnPostedSalesOrders';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Unposted Sales Orders', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unposted_sales_orders)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'SupplierAvgPaymentDays') {
+
+        $scope.reportTitle = 'Supplier Average Payment Days';
+        $scope.reportModalTitle = '';
+        $scope.reportType = '';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Average Payment Days', 'url': '#', 'isActive': false }];
+
+        // if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unposted_sales_orders)) {
+        // 	toaster.pop('error', 'Error', "You are not authorized for this report");
+        // 	$state.go('app.allReports');
+        // }
+
+    }
+    // if ($scope.module == 'UnPostedPurchaseOrders') {
+
+    // 	$scope.reportTitle = 'Unposted Purchase Orders';
+    // 	$scope.reportModalTitle = 'UnPostedPurchaseOrders';
+    // 	$scope.reportType = 'UnPostedPurchaseOrders';
+    // 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },{ 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },  { 'name': 'Unposted Purchase Orders', 'url': '#', 'isActive': false }];
+
+    // }
+    // else if ($scope.module == 'ECSalesList') {
+
+    // 	$scope.reportTitle = 'EC Sales List';
+    // 	$scope.reportModalTitle = 'ECSalesList';
+    // 	$scope.reportType = 'ECSalesList';
+    // 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },{ 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },  { 'name': 'EC Sales List', 'url': '#', 'isActive': false }];
+
+    // }
+    // else if ($scope.module == 'ItemSalesFigure') {
+
+    // 	$scope.reportTitle = 'Items Sales Figures';
+    // 	$scope.reportModalTitle = 'ItemsSalesFigures';
+    // 	$scope.reportType = 'ItemsSalesFigures';
+    // 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },{ 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },  { 'name': 'Items Sales Figures', 'url': '#', 'isActive': false }];
+
+    // }
+    else if ($scope.module == 'UnPostedPurchaseOrder') {
+
+        $scope.reportTitle = 'Unposted Purchase Orders';
+        $scope.reportModalTitle = 'UnPostedPurchaseOrder';
+        $scope.reportType = 'UnPostedPurchaseOrder';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Unposted Purchase Orders', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unposted_purchase_orders)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'PostedPurchaseOrder') {
+
+        $scope.reportTitle = 'Posted Purchase Invoices and Debit Notes';
+        $scope.reportModalTitle = 'PostedPurchaseOrder';
+        $scope.reportType = 'PostedPurchaseOrder';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Posted Purchase Invoices and Debit Notes', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.posted_purchase_orders)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'PurchaseOrderGoodReceived') {
+
+        $scope.reportTitle = 'Goods Received Not Invoiced';
+        // $scope.reportModalTitle = 'PurchaseOrderGoodReceived';
+        $scope.reportModalTitle = 'Goods Received Not Invoiced';
+        $scope.reportType = 'PurchaseOrderGoodReceived';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Goods Received Not Invoiced', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.goods_received_not_invoiced)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'Salesperson') {
+
+        $scope.reportTitle = 'Salesperson Activity Report';
+        $scope.reportModalTitle = 'Salesperson';
+        $scope.reportType = 'SalespersonReport';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Salesperson Activity', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_person_activity)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.dontShowModal = false;
+
+    if ($scope.module == 'UnPostedSalesOrders') {
+        $scope.filterReport.report_type = 2;
+    }
+
+    $scope.docTypeArr = {};
+    $scope.docTypeArr = [{ 'id': '1', 'title': 'Purchase Invoice' }, { 'id': '2', 'title': 'Debit Note' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.unPostedOrderReportListing = {};
+    $scope.unPostedOrderReportListing.token = $rootScope.token;
+    $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+    $scope.unPostedOrderReportListing.module = $stateParams.module;
+
+    $scope.searchKeyword = {};
+    $scope.selectedRecFromModals = [];
+
+    // Saleperson Module 
+
+    $scope.salepersons = [];
+    $scope.territories = [];
+    $scope.buyingGroups = [];
+    $scope.segments = [];
+
+    /* $scope.GetAllSalesperson = function () {
+
+    	$scope.filterSupplier = {};
+    	$scope.tempSalepersonsArr = [];
+    	$scope.tempSalepersonsArr2 = [];
+    	$scope.SalepersonsListing = {};
+    	$scope.SalepersonsListing.token = $rootScope.token;
+    	$scope.SalepersonsListing.department_id = '2'; //sales
+
+    	$scope.showLoader = true;
+
+    	var salepersonsListingApi = $scope.$root.reports + "module/get-employees-by-dept-id";
+    	$http
+    		.post(salepersonsListingApi, $scope.SalepersonsListing)
+    		.then(function (res) {
+    			$scope.showLoader = false;
+    			$scope.tempSalepersonsArr = [];
+    			$scope.tempSalepersonsArr2 = [];
+    			$scope.PendingSelectedSalepersons = [];
+
+    			if (res.data.ack == true) {
+    				$scope.tempSalepersonsArr = res.data.response;
+    				$scope.tempSalepersonsArr2 = res.data;
+    				// console.log($scope.salepersons);
+
+
+    				angular.forEach($scope.tempSalepersonsArr2.response, function (obj1) {
+    					obj1.checkbox = false;
+
+    					angular.forEach($scope.salepersons, function (obj) {
+    						if (obj.id == obj1.id) {
+    							$scope.PendingSelectedSalepersons.push(obj);
+    							obj1.checkbox = true;
+    						}
+    					});
+    				});
+
+    				if ($scope.tempSalepersonsArr[0].id)
+    					angular.element('#_SalepersonModal').modal({ show: true });
+    			}
+    			else {
+    				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    			}
+    		});
+    } */
+
+    //******************* due to duplication of function  */
+    // $scope.selectSaleperson = function (item_paging, sort_column, sortform) {
+    // 	console.log("3850 called");
+    // 	$scope.postData = {};
+    // 	$scope.postData.token = $scope.$root.token;
+    // 	$scope.moduleType = 'SPDetail';
+
+    // 	if (item_paging == 1)
+    // 		$scope.item_paging.spage = 1
+
+    // 	$scope.postData.page = $scope.item_paging.spage;
+
+    // 	$scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+    // 	if ($scope.postData.pagination_limits == -1) {
+    // 		$scope.postData.page = -1;
+    // 		$scope.searchKeywordSp = {};
+    // 		$scope.record_data = {};
+    // 	}
+
+    // 	if ((sort_column != undefined) && (sort_column != null)) {
+    // 		//sort by column
+    // 		$scope.postData.sort_column = sort_column;
+    // 		$scope.postData.sortform = sortform;
+
+    // 		$rootScope.sortform = sortform;
+    // 		$rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+    // 		$rootScope.sort_column = sort_column;
+
+    // 		$rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+    // 	}
+
+    // 	// var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+    // 	var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+    // 	$scope.postData.cond = 'Detail';
+
+    // 	$scope.showLoader = true;
+    // 	$http
+    // 		.post(salepersonsListingApi, $scope.postData)
+    // 		.then(function (res) {
+    // 			$scope.tableData = res;
+    // 			$scope.columns = [];
+    // 			$scope.record_data = {};
+    // 			$scope.recordArray = [];
+    // 			$scope.tempSuppliersArr2 = [];
+
+    // 			if (res.data.ack == true) {
+    // 				//console.log(res.data);
+    // 				$scope.total = res.data.total;
+    // 				$scope.item_paging.total_pages = res.data.total_pages;
+    // 				$scope.item_paging.cpage = res.data.cpage;
+    // 				$scope.item_paging.ppage = res.data.ppage;
+    // 				$scope.item_paging.npage = res.data.npage;
+    // 				$scope.item_paging.pages = res.data.pages;
+
+    // 				$scope.total_paging_record = res.data.total_paging_record;
+
+    // 				$scope.record_data = res.data.response;
+    // 				$scope.tempSuppliersArr2 = res.data;
+
+    // 				angular.forEach(res.data.response, function (value, key) {
+    // 					if (key != "tbl_meta_data") {
+    // 						$scope.recordArray.push(value);
+    // 					}
+    // 				});
+
+    // 				angular.element('#_SalepersonModal').modal({ show: true });
+
+    // 			}
+    // 			else {
+    // 				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    // 			}
+    // 			$scope.showLoader = false;
+    // 		});
+    // }
+
+
+    //******************* due to duplication of function  */
+
+    /* $scope.selectSaleperson = function () {
+
+    	$scope.filterSupplier = {};
+    	$scope.tempSalepersonsArr = [];
+    	$scope.tempSalepersonsArr2 = [];
+    	$scope.SalepersonsListing = {};
+    	$scope.SalepersonsListing.token = $rootScope.token;
+    	$scope.SalepersonsListing.cond = 'Detail';
+
+    	$scope.showLoader = true;
+
+    	// var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+
+    	var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+    	$http
+    		.post(salepersonsListingApi, $scope.SalepersonsListing)
+    		.then(function (res) {
+    			$scope.showLoader = false;
+    			$scope.tempSalepersonsArr = [];
+    			$scope.tempSalepersonsArr2 = [];
+
+    			if (res.data.ack == true) {
+    				$scope.tempSalepersonsArr = res.data.response;
+    				$scope.tempSalepersonsArr2 = res.data;
+    				// console.log($scope.salepersons);
+
+    				angular.forEach($scope.tempSalepersonsArr2.response, function (obj1) {
+    					obj1.checkbox = false;
+
+    					angular.forEach($scope.salepersons, function (obj) {
+    						if (obj.id == obj1.id)
+    							obj1.checkbox = true;
+    					});
+    				});
+
+    				if ($scope.tempSalepersonsArr[0].id)
+    					angular.element('#_SalepersonModal').modal({ show: true });
+    			}
+    			else {
+    				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    			}
+    		});
+    } */
+
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        // var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:4011");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        /* $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+
+        angular.copy($scope.tempSalepersonsArr2.response, $scope.salepersonsArr);
+
+        $scope.salespersonsNames = "";
+
+        angular.forEach($scope.salepersonsArr, function (recData) {
+
+        	if (recData.checkbox == true) {
+        		recData.moduleNo = recData.code;
+        		recData.name = recData.name;
+        		recData.empID = recData.id;
+        		$scope.salepersons.push(recData);
+        		if ($scope.salespersonsNames == "")
+        			$scope.salespersonsNames = recData.name;
+        		else
+        			$scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        	}
+        }); */
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsSp[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+
+    $scope.suppliers = [];
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    // Suppliers Module 
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_supplierModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    // $scope.PendingSelectedSuppliers = [];
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        // var selSupplList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsSupp[o.id];
+        // });
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+
+    }
+
+    // EU Countries Module 
+    $scope.EUCountries = [];
+
+    $scope.selectEUCountries = function() {
+
+        $scope.filterEUCountries = {};
+        $scope.tempEUCountriesArr = [];
+        $scope.tempEUCountriesArr2 = [];
+        $scope.EUCountriesListing = {};
+        $scope.EUCountriesListing.token = $rootScope.token;
+        // $scope.EUCountriesListing.cond = 'Detail';
+
+        $scope.showLoader = true;
+
+        var EUCountriesListingApi = $scope.$root.reports + "module/eu-countries-data-for-report";
+        $http
+            .post(EUCountriesListingApi, $scope.EUCountriesListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempEUCountriesArr = [];
+                $scope.tempEUCountriesArr2 = [];
+                $scope.PendingSelectedEUCountries = [];
+
+                if (res.data.ack == true) {
+                    $scope.tempEUCountriesArr = res.data.response;
+                    $scope.tempEUCountriesArr2 = res.data;
+                    // console.log($scope.suppliers);
+
+                    angular.forEach($scope.tempEUCountriesArr2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.EUCountries, function(obj) {
+                            if (obj.id == obj1.id) {
+                                $scope.PendingSelectedEUCountries.push(obj);
+                                obj1.checkbox = true;
+                            }
+                        });
+                    });
+
+                    if ($scope.tempEUCountriesArr[0].id)
+                        angular.element('#_euCountriesModal').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedEUCountries = [];
+
+    $scope.clearEUCountries = function() {
+
+        // $scope.PendingSelectedEUCountries = [];
+        angular.element('#_euCountriesModal').modal('hide');
+    }
+
+    $scope.addEUCountries = function() {
+
+        $scope.EUCountriesArr = [];
+        $scope.EUCountries = [];
+
+        angular.copy($scope.tempEUCountriesArr2.response, $scope.EUCountriesArr);
+
+        angular.forEach($scope.EUCountriesArr, function(recData) {
+
+            if (recData.checkbox == true) {
+                recData.moduleNo = recData.supplier_code;
+                recData.title = recData.name;
+                // recData.custID = recData.id;
+                $scope.EUCountries.push(recData);
+            }
+        });
+
+        angular.element('#_euCountriesModal').modal('hide');
+    }
+
+    // Item Module 
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
+        // var itemListingApi = $scope.$root.stock + "products-listing/item-popup";
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    // $scope.record_data = res.data.response;
+                    // $scope.tempProdArr = res.data.response;
+                    // $scope.tempProdArr2 = res.data;
+
+                    // angular.forEach(res.data.response, function (value, key) {
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // if ($scope.tempProdArr[0].id)
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    /* $scope.addProduct = function () {
+
+    	var selItemList = $scope.recordArray.filter(function (o, i) {
+    		return $scope.selectedRecFromModalsItem[o.id];
+    	});
+
+    	$scope.itemArr = [];
+    	$scope.items = [];
+
+    	angular.forEach(selItemList, function (recData) {
+
+    		recData.moduleNo = recData.product_code;
+    		recData.title = recData.description;
+    		recData.itemID = recData.id;
+    		$scope.items.push(recData);
+    	});
+
+    	angular.element('#productModal').modal('hide');
+    } */
+
+    $scope.addProduct = function() {
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        /* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 			if (chk_item == false) {
                 return;
@@ -5484,6 +10861,7 @@ myApp.controller('UnPostedOrderReportController', ["$scope", "$filter", "ngTable
 			}
 		}); */
 
+<<<<<<< HEAD
 		angular.element('#productModal').modal('hide');
 	}
 
@@ -7209,10 +12587,1723 @@ myApp.controller('UnPostedOrderReportController', ["$scope", "$filter", "ngTable
 				}
 			});
 	}
+=======
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.clearPendingPurchaseItems = function() {
+        angular.element('#productModal').modal('hide');
+    }
+
+    // GL Module 
+    $scope.searchKeywordGL = {};
+    $scope.selectedRecFromModalsGL = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectGL = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'GLDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordGL;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordGL = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var itemListingApi = $scope.$root.reports + "module/gl-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.PendingSelectedItems = [];
+                $scope.tempProdArrGL = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArrGL = res.data.response;
+                    $scope.tempProdArrGL2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // console.log($scope.items);
+
+                    angular.forEach($scope.tempProdArrGL2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.gls, function(obj) {
+                            if (obj.id == obj1.id) {
+                                $scope.PendingSelectedGLs.push(obj);
+                                obj1.checkbox = true;
+                            }
+                        });
+                    });
+
+
+
+                    if (res.data.total == 0) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    } else {
+                        if ($scope.tempProdArrGL[0].id)
+                            angular.element('#GLModal').modal({ show: true });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedGLs = [];
+
+    $scope.clearPendingPurchaseGLs = function() {
+        angular.element('#GLModal').modal('hide');
+    }
+
+    $scope.addGL = function() {
+        var selGLList = [];
+
+        angular.forEach($scope.selectedRecFromModalsGL, function(obj) {
+            selGLList.push(obj.record);
+        });
+
+        $scope.GLArr = [];
+        $scope.gls = [];
+
+        angular.forEach(selGLList, function(recData) {
+
+            recData.moduleNo = recData.glaccountCode;
+            recData.title = recData.displayName;
+            recData.itemID = recData.id;
+            $scope.gls.push(recData);
+        });
+
+        angular.element('#GLModal').modal('hide');
+    }
+
+    $scope.searchKeywordEmp = {};
+    $scope.selectedRecFromModalsEmp = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectEmployees = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'EmpDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordEmp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordEmp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.showLoader = true;
+        $scope.postData.cond = 'Detail';
+        $scope.empListingModalTitle = 'Purchaser';
+
+        var empListingApi = $scope.$root.reports + "module/employee-list";
+
+        $http
+            .post(empListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempEmployeesArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempEmployeesArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    /* angular.forEach(res.data.response[0], function (val, index) {
+                    	if (index != 'chk' && index != 'id') {
+                    		$scope.columns.push({
+                    			'title': toTitleCase(index),
+                    			'field': index,
+                    			'visible': true
+                    		});
+                    	}
+                    }); */
+
+                    angular.element('#empListingModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearPendingEmp = function() {
+        angular.element('#empListingModal').modal('hide');
+    }
+
+    $scope.addEmp = function() {
+
+        // var selEmpList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsEmp[o.id];
+        // });
+
+        var selEmpList = [];
+
+        angular.forEach($scope.selectedRecFromModalsEmp, function(obj) {
+            selEmpList.push(obj.record);
+        });
+
+        $scope.employeesArr = [];
+
+        angular.forEach(selEmpList, function(recData) {
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.employeesArr.push(recData);
+        });
+
+        angular.element('#empListingModal').modal('hide');
+    }
+
+    $scope.reportsDataArr = [];
+    $scope.filterReport.reporttype = 'summary';
+    $scope.filterReport.reportOrderBy = 1;
+
+
+    $scope.generateUnpostedPurchaseOrderReport = function() {
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        $scope.unPostedOrderReportListing.employees = $scope.employeesArr;
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.suppliers = $scope.suppliers;
+        $scope.unPostedOrderReportListing.gls = $scope.gls;
+        $scope.unPostedOrderReportListing.items = $scope.items;
+        $scope.unPostedOrderReportListing.reporttype = $scope.filterReport.reporttype;
+        $scope.unPostedOrderReportListing.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.reportsDataArrDetail = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    if ($scope.filterReport.reporttype == 'summary') {
+                        $scope.reportsDataArrDetail = [];
+                        $scope.reportsDataArr = res.data.response;
+                        $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+                        $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+                    } else if ($scope.filterReport.reporttype == 'detail') {
+                        $scope.reportsDataArr = [];
+                        $scope.reportsDataArrDetail = res.data.response;
+                        $scope.reportsDataArrDetail_length = Object.keys($scope.reportsDataArrDetail);
+                    }
+
+
+
+                    // angular.forEach(res.data.response[0], function (val, index) {
+                    // 	$scope.columns.push({
+                    // 		'title': toTitleCase(index),
+                    // 		'field': index,
+                    // 		'visible': true
+                    // 	});
+                    // });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.UnpostedPurchaseOrders_PdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.reporttype = $scope.filterReport.reporttype;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        $scope.unPostedOrderReportListing.employees = $scope.employeesArr;
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.salespersons = $scope.salepersons;
+        $scope.unPostedOrderReportListing.suppliers = $scope.suppliers;
+        $scope.unPostedOrderReportListing.gls = $scope.gls;
+        $scope.unPostedOrderReportListing.items = $scope.items;
+        $scope.unPostedOrderReportListing.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.report_type = $scope.filterReport.reportOrderBy;
+
+                    $scope.printPdfVals.reportName = $scope.reportModalTitle;
+
+                    $scope.printPdfVals.reportType = $scope.module;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    /* if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    	$scope.printPdfVals.reportName = 'UnpostedSaleOrder'; */
+                    $scope.printPdfVals.reporttype = $scope.filterReport.reporttype;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    if ($scope.filterReport.reporttype == 'summary') {
+
+                        $scope.reportsDataArrDetail = [];
+                        $scope.printPdfVals.reportsDataArrDetail = [];
+                        $scope.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.totalExclVat = res.data.totalExclVat;
+                        $scope.printPdfVals.totalInclVat = res.data.totalInclVat;
+
+                        $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+                        $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+
+                    } else if ($scope.filterReport.reporttype == 'detail') {
+
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.reportsDataArr = [];
+                        $scope.printPdfVals.reportsDataArrDetail = res.data.response;
+                        $scope.reportsDataArrDetail = res.data.response;
+                    }
+
+
+
+                    // angular.forEach(res.data.response[0], function (val, index) {
+                    // 	$scope.columns.push({
+                    // 		'title': toTitleCase(index),
+                    // 		'field': index,
+                    // 		'visible': true
+                    // 	});
+
+                    // 	$scope.printPdfVals.columns.push({
+                    // 		'title': toTitleCase(index),
+                    // 		'field': index,
+                    // 		'visible': true
+                    // 	});
+                    // });
+                    if (_reportType == 'xlsx' && $scope.filterReport.reporttype == 'summary') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "BygoLQX8ON").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+                    } else if (_reportType == 'xlsx' && $scope.filterReport.reporttype == 'detail') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rkgucoppcN").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+                    } else {
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/unpostedPurchaseOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.generateReportSupplierAvgPaymentDays = function(_reportType = 'pdf') {
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+            $scope.printPdfVals = {};
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        $scope.unPostedOrderReportListing.suppliers = $scope.suppliers;
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+
+        var supplierAvgPaymentApi = $scope.$root.reports + "module/supplier-avg-payment-days";
+        $http
+            .post(supplierAvgPaymentApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                if (res.data.ack == 1) {
+
+                    $scope.printPdfVals.reportTitle = 'Supplier Average Payment Days';
+                    $scope.printPdfVals.reportName = 'SupplierAveragePaymentDays';
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.report_type = $scope.filterReport.reportOrderBy;
+
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'rkgbnlwhZB').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/supplierAvgPaymentDays.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.generatePostedPurchaseOrderReport = function() {
+
+        // console.log($scope.filterReport);
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.postedOrderReportListing = {};
+        $scope.postedOrderReportListing.token = $rootScope.token;
+        $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.postedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.postedOrderReportListing.reporttype = $scope.filterReport.reporttype;
+        $scope.postedOrderReportListing.module = $stateParams.module;
+        $scope.postedOrderReportListing.employees = $scope.employeesArr;
+        $scope.postedOrderReportListing.customers = $scope.customers;
+        $scope.postedOrderReportListing.suppliers = $scope.suppliers;
+        $scope.postedOrderReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        $scope.postedOrderReportListing.reportXlsxType = 0;
+
+        $scope.showLoader = true;
+
+        var postedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(postedOrderReportListApi, $scope.postedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.reportsDataArrDetail = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    if ($scope.filterReport.reporttype == 'summary') {
+                        $scope.reportsDataArrDetail = [];
+                        $scope.reportsDataArr = res.data.response;
+                        $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+                        $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+                    } else if ($scope.filterReport.reporttype == 'detail') {
+                        $scope.reportsDataArr = [];
+                        $scope.reportsDataArrDetail = [];
+                        // $scope.reportsDataArrDetail = res.data.response;
+
+                        angular.forEach(res.data.response, function(obj) {
+                            // console.log(obj);
+                            // $scope.reportsDataArrDetail.push(obj);
+                            $scope.reportsDataArrDetail.push(obj);
+                            // $scope.reportsDataArr.push(obj);
+                        });
+
+                        // console.log($scope.reportsDataArrDetail);
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PostedPurchaseOrders_PdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.postedOrderReportListing = {};
+        $scope.postedOrderReportListing.token = $rootScope.token;
+        $scope.postedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.postedOrderReportListing.reporttype = $scope.filterReport.reporttype;
+        $scope.postedOrderReportListing.module = $stateParams.module;
+        $scope.postedOrderReportListing.employees = $scope.employeesArr;
+        $scope.postedOrderReportListing.customers = $scope.customers;
+        $scope.postedOrderReportListing.salespersons = $scope.salepersons;
+        $scope.postedOrderReportListing.suppliers = $scope.suppliers;
+
+        $scope.postedOrderReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        $scope.postedOrderReportListing.reportXlsxType = 0;
+        if (_reportType == 'xlsx') {
+            $scope.postedOrderReportListing.reportXlsxType = 1;
+        }
+
+        $scope.showLoader = true;
+
+        var postedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(postedOrderReportListApi, $scope.postedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+                if (_reportType == 'xlsx' && res.data.ack == 2 && res.data.filename) {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    return false;
+                } else if (res.data.ack == true || res.data.ack == 1) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    $scope.printPdfVals.reportType = $scope.module;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+                    $scope.printPdfVals.docType = $scope.postedOrderReportListing.docTypeID;
+
+                    /* if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    	$scope.printPdfVals.reportName = 'UnpostedSaleOrder'; */
+                    $scope.printPdfVals.reporttype = $scope.filterReport.reporttype;
+
+                    if ($scope.filterReport.reporttype == 'summary') {
+
+                        $scope.reportsDataArrDetail = [];
+                        $scope.printPdfVals.reportsDataArrDetail = [];
+                        $scope.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.totalExclVat = res.data.totalExclVat;
+                        $scope.printPdfVals.totalInclVat = res.data.totalInclVat;
+
+                        $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+                        $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+
+                    } else if ($scope.filterReport.reporttype == 'detail') {
+
+                        $scope.reportsDataArr = [];
+                        $scope.reportsDataArrDetail = [];
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.printPdfVals.reportsDataArrDetail = [];
+                        // $scope.printPdfVals.reportsDataArrDetail = res.data.response;
+                        // $scope.reportsDataArrDetail = res.data.response;
+
+                        angular.forEach(res.data.response, function(obj) {
+                            // console.log(obj);
+                            // $scope.printPdfVals.reportsDataArr.push(obj);
+                            $scope.printPdfVals.reportsDataArrDetail.push(obj);
+                            $scope.reportsDataArrDetail.push(obj);
+                            // $scope.reportsDataArr.push(obj);
+                        });
+                    }
+                    /* if (_reportType == 'xlsx' && $scope.filterReport.reporttype == 'summary') {
+                    	$scope.showLoader = true;
+                    	jsreportService.downloadXlsx($scope.printPdfVals, 'SJxiA8U8_4').success(function (data) {
+                    		$scope.showLoader = false;
+                    		let file = new Blob([data], { type: 'application/xlsx' });
+                    		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                    	})
+                    } else */
+                    if (_reportType == 'xlsx' && $scope.filterReport.reporttype == 'detail') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rkeb1wCa9V").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/postedPurchaseOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+    $scope.orderStages = [];
+    $scope.searchKeywordOS = {};
+    $scope.selectedRecFromModalsOS = [];
+
+    $scope.clearFiltersAndSelectOrderStage = function() {
+        $scope.searchKeywordOS = {};
+        $scope.selectOrderStage();
+    }
+
+    $scope.selectOrderStage = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordOS;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordOS = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-order-stages";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#order_stages_Modal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearOrderStages = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#order_stages_Modal').modal('hide');
+    }
+
+    $scope.addOrderStages = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsTr[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsOS, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.territoryArr = [];
+        $scope.orderStages = [];
+        $scope.orderStagesNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.orderStages.push(recData);
+
+            if ($scope.orderStagesNames == "")
+                $scope.orderStagesNames = recData.title;
+            else
+                $scope.orderStagesNames = $scope.orderStagesNames + '; ' + recData.title;
+        });
+
+        console.log($scope.orderStagesNames);
+
+        angular.element('#order_stages_Modal').modal('hide');
+    }
+    $scope.generateUnpostedSalesOrderReport = function() {
+
+        // console.log($scope.filterReport);
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.report_type = $scope.filterReport.report_type;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.salespersons = $scope.salepersons;
+        $scope.unPostedOrderReportListing.orderStages = $scope.orderStages;
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+                console.log("right place to edit............................")
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.reportsDataArr.totalOrders = res.data.totalOrders;
+                    $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+                    $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.UnpostedSalesOrders_PdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        $scope.unPostedOrderReportListing.report_type = $scope.filterReport.report_type;
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.salespersons = $scope.salepersons;
+
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportName = $scope.reportModalTitle;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.reportType = $scope.module;
+
+                    /* if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    	$scope.printPdfVals.reportName = 'UnpostedSaleOrder'; */
+
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.reportSummary = {
+                        totalOrders: res.data.totalOrders,
+                        totalInclVat: res.data.totalInclVat,
+                        totalExclVat: res.data.totalExclVat
+                    }
+                    $scope.reportsDataArr.totalOrders = res.data.totalOrders;
+                    $scope.reportsDataArr.totalInclVat = res.data.totalInclVat;
+                    $scope.reportsDataArr.totalExclVat = res.data.totalExclVat;
+
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'HygZ_LNGON').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/unpostedSalesOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.filterReport);
+
+        if ($scope.module != 'PurchaseOrderGoodReceived') {
+
+            if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+                var from, to, check;
+
+                from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+                to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+                if (from != null && to != null) {
+
+                    var from1, to1;
+                    from1 = new Date(from.replace(/\s/g, ''));
+                    to1 = new Date(to.replace(/\s/g, ''));
+
+                    var fDate, lDate;
+                    fDate = Date.parse(from1);
+                    lDate = Date.parse(to1);
+
+                    if (fDate > lDate) {
+                        toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                        return false;
+                    }
+                }
+            } else {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+                return;
+            }
+        }
+
+        if ($scope.module != 'PurchaseOrderGoodReceived' && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '')) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        if ($scope.module == 'PurchaseOrderGoodReceived' && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '')) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date As At']));
+            return false;
+        }
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.suppliers = $scope.suppliers;
+        $scope.unPostedOrderReportListing.EUCountries = $scope.EUCountries;
+        $scope.unPostedOrderReportListing.salespersons = $scope.salepersons;
+        $scope.unPostedOrderReportListing.items = $scope.items;
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+
+    $scope.SalepersonSelectAll = function() {
+        $scope.saleper = {};
+        $scope.saleper.token = $rootScope.token;
+        $scope.saleper.cond = 'Detail';
+
+        $scope.showLoader = true;
+
+        var Api = $scope.$root.reports + "module/saleperson-data-for-report";
+        $http
+            .post(Api, $scope.saleper)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.SalepersonsALL = res.data.response;
+
+            });
+
+    }
+
+
+    $scope.orderByField = 'AddedTimestamp';
+    $scope.reverseSort = false;
+
+
+    $scope.generateSalespersonReport = function() {
+
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.SalepersonListing = {};
+        $scope.SalepersonListing.token = $rootScope.token;
+        $scope.SalepersonListing.isCrm = $scope.filterReport.isCrm;
+        $scope.SalepersonListing.isCustomer = $scope.filterReport.isCustomer;
+        $scope.SalepersonListing.isNotes = $scope.filterReport.isNotes;
+        $scope.SalepersonListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.SalepersonListing.dateTo = $scope.filterReport.dateTo;
+        $scope.SalepersonListing.module = $stateParams.module;
+        $scope.SalepersonListing.salespersons = $scope.salepersons;
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+
+        var ApiUrl = $scope.$root.reports + "module/salesperson-activity-report";
+        $http
+            .post(ApiUrl, $scope.SalepersonListing)
+            .then(function(res) {
+                //console.log(res);
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.reportsData = [];
+                $scope.grandTotalArray = [];
+
+                var recFinal = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.reportsData = res.data.response;
+                    $scope.grandTotalArray = res.data.grandTotalArray;
+                    $scope.FillDataSalesActivity($scope.reportsData);
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+        $scope.filterReport.reportOrderBy = 1;
+
+
+        $scope.selectedSalespersons = [];
+        $scope.unPostedOrderReportListing = {};
+        $scope.selectedRecFromModalsSp = [];
+
+        $scope.selectedRecFromModals = [];
+
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        $scope.customersNames = "";
+        $scope.salespersonsNames = "";
+        $scope.employeesArr = [];
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.reportsDataArr = [];
+        $scope.reportsDataArrDetail = [];
+        $scope.columns = [];
+
+        $scope.customers = [];
+        $scope.suppliers = [];
+        $scope.EUCountries = [];
+        $scope.salepersons = [];
+        $scope.items = [];
+        $scope.gls = [];
+        $scope.grandTotalArray = [];
+        $scope.territories = [];
+        $scope.buyingGroups = [];
+        $scope.segments = [];
+        $scope.orderStages = [];
+
+        if ($scope.module == 'UnPostedSalesOrders') {
+            $scope.filterReport.report_type = 2;
+        }
+    }
+    $scope.showNotes = function(notes) {
+        $scope.salenote = notes;
+
+        $('#salepersonNotes').modal('show');
+    }
+    $scope.salespersonActivityshowPdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.SalepersonListing = {};
+        $scope.SalepersonListing.token = $rootScope.token;
+        $scope.SalepersonListing.isCrm = $scope.filterReport.isCrm;
+        $scope.SalepersonListing.isCustomer = $scope.filterReport.isCustomer;
+        $scope.SalepersonListing.isNotes = $scope.filterReport.isNotes;
+        $scope.SalepersonListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.SalepersonListing.dateTo = $scope.filterReport.dateTo;
+        $scope.SalepersonListing.module = $stateParams.module;
+        $scope.SalepersonListing.salespersons = $scope.salepersons
+
+
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.showLoader = true;
+        $scope.grandTotalArray = [];
+
+        var ApiUrl = $scope.$root.reports + "module/salesperson-activity-report";
+        $http
+            .post(ApiUrl, $scope.SalepersonListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.reportsData = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.reportsData = res.data.response;
+                    $scope.grandTotalArray = res.data.grandTotalArray;
+                    $scope.FillDataSalesActivity($scope.reportsData);
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportName = $scope.reportModalTitle;
+
+                    $scope.printPdfVals.reportType = $scope.module;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    /* if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    	$scope.printPdfVals.reportName = 'UnpostedSaleOrder'; */
+
+                    $scope.printPdfVals.reportsDataArr = $scope.reportsDataArr;
+                    $scope.printPdfVals.grandTotalArray = $scope.grandTotalArray;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'rJgVnnRA5V').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/salespersonActivityModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.FillDataSalesActivity = function(reportsData) {
+        angular.forEach(reportsData, function(salesperson) {
+            angular.forEach(salesperson, function(data, key) {
+                // if (Number.isInteger(key))
+                if (key % 1 === 0)
+                    data.AddedTimestamp = parseInt(data.AddedTimestamp);
+
+            });
+            $scope.reportsDataArr.push(salesperson);
+        });
+        console.log($scope.reportsDataArr);
+        //$scope.reportsDataArr = reportsData;
+        return;
+
+        //current unix timestamp
+        const dateTime = Date.now();
+        const timestamp = Math.floor(dateTime / 1000);
+        $scope.reportsDataArr = [];
+
+        angular.forEach(reportsData, function(salesperson, key) {
+
+            var notes_counter = 0;
+            var crm_counter = 0;
+            var customer_counter = 0;
+            var task_counter = 0;
+            var final = [];
+            final.name = salesperson.name;
+
+            if (salesperson.notes.length > 0) {
+
+                angular.forEach(salesperson.notes, function(salenote) {
+                    notes_counter = notes_counter + 1;
+                    salenote.listype = 'notes';
+                    final.push(salenote);
+                })
+            }
+            if (salesperson.crm.length > 0) {
+
+                angular.forEach(salesperson.crm, function(salespersoncrm) {
+                    crm_counter = crm_counter + 1;
+                    salespersoncrm.listype = 'crm';
+                    final.push(salespersoncrm);
+                })
+            }
+            if (salesperson.customer.length > 0) {
+
+                angular.forEach(salesperson.customer, function(salespersoncustomer) {
+                    customer_counter = customer_counter + 1;
+                    salespersoncustomer.listype = 'customer';
+                    final.push(salespersoncustomer);
+                })
+            }
+            if (salesperson.task.length > 0) {
+
+                angular.forEach(salesperson.task, function(salespersontask) {
+
+                    if (salespersontask.datetime < timestamp) {
+                        salespersontask.taskStatus = 'Overdue';
+                        salespersontask.taskStatusColor = 'red';
+                    } else if (salespersontask.datetime > timestamp) {
+                        salespersontask.taskStatus = 'Future';
+                        salespersontask.taskStatusColor = 'yellow';
+                    }
+
+                    if (salespersontask.completed == 1) {
+                        salespersontask.taskStatus = 'Completed';
+                        salespersontask.taskStatusColor = 'green';
+                    }
+
+                    salespersontask.dueDate = $scope.$root.convert_unix_timestamp_to_datetime_format(salespersontask.datetime);
+                    salespersontask.row_name = salespersontask.name;
+                    task_counter = task_counter + 1;
+                    salespersontask.listype = 'task';
+                    final.push(salespersontask);
+                })
+            }
+            final.totalNotes = (notes_counter == 0) ? '-' : notes_counter;
+            final.totalCrm = (crm_counter == 0) ? '-' : crm_counter;
+            final.totalCustomer = (customer_counter == 0) ? '-' : customer_counter;
+            final.totalTask = (task_counter == 0) ? '-' : task_counter;
+            //console.log(final);
+            $scope.reportsDataArr.push(final);
+        })
+    }
+
+
+    $scope.showPdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.module != 'PurchaseOrderGoodReceived') {
+
+            if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+                var from, to, check;
+
+                from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+                to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+                if (from != null && to != null) {
+
+                    var from1, to1;
+                    from1 = new Date(from.replace(/\s/g, ''));
+                    to1 = new Date(to.replace(/\s/g, ''));
+
+                    var fDate, lDate;
+                    fDate = Date.parse(from1);
+                    lDate = Date.parse(to1);
+
+                    if (fDate > lDate) {
+                        toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                        return false;
+                    }
+                }
+            } else {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+                return;
+            }
+        }
+
+        if ($scope.module != 'PurchaseOrderGoodReceived' && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '')) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        if ($scope.module == 'PurchaseOrderGoodReceived' && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '')) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date As At']));
+            return false;
+        }
+
+        /* if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+        	toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+        	return false;
+        } */
+
+        $scope.unPostedOrderReportListing = {};
+        $scope.unPostedOrderReportListing.token = $rootScope.token;
+        $scope.unPostedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.unPostedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.unPostedOrderReportListing.module = $stateParams.module;
+        // $scope.unPostedOrderReportListing.salespersons = $scope.selectedSalespersons;
+        $scope.unPostedOrderReportListing.customers = $scope.customers;
+        $scope.unPostedOrderReportListing.suppliers = $scope.suppliers;
+        $scope.unPostedOrderReportListing.EUCountries = $scope.EUCountries;
+        $scope.unPostedOrderReportListing.salespersons = $scope.salepersons;
+        $scope.unPostedOrderReportListing.items = $scope.items;
+        $scope.showLoader = true;
+
+        var unPostedOrderReportListApi = $scope.$root.reports + "module/unPosted-order-report";
+        $http
+            .post(unPostedOrderReportListApi, $scope.unPostedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportName = $scope.reportModalTitle;
+
+                    $scope.printPdfVals.reportType = $scope.module;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    /* if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    	$scope.printPdfVals.reportName = 'UnpostedSaleOrder'; */
+
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx' && $scope.module == 'PurchaseOrderGoodReceived') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'BJe903mLuE').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/unPostedOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 myApp.controller('UnPostedOrderDetailReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function UnPostedOrderDetailReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;	
@@ -7505,24 +14596,333 @@ myApp.controller('UnPostedOrderDetailReportController', ["$scope", "$filter", "n
 
 		angular.element('#productModal').modal('hide');
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.dontShowModal = false;
+
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    if ($scope.module == 'UnPostedCustomerOrders') {
+
+        $scope.reportTitle = 'Unposted Customer Orders Detail - Breakdown by Items (G.L)';
+        $scope.reportModalTitle = 'UnPostedSalesOrdersDetail';
+        $scope.reportType = 'UnPostedSalesOrdersDetail';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Unposted Customer Orders Detail - Breakdown by Items (G.L)', 'url': '#', 'isActive': false }
+        ];
+
+        // console.log($rootScope.reports_permission.unposted_cust_orders_detail);
+        // console.log($rootScope.reports_permission);
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unposted_cust_orders_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.filterReport.report_type = 1;
+    } else if ($scope.module == 'UnPostedCustomerOrdersByItem') {
+
+        $scope.reportTitle = 'Unposted Customer Orders By Item(s)';
+        $scope.reportModalTitle = 'UnPostedCustomerOrdersByItem';
+        $scope.reportType = 'UnPostedCustomerOrdersByItem';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Unposted Customer Orders By Item(s)', 'url': '#', 'isActive': false }
+        ];
+
+        // console.log($rootScope.reports_permission.unposted_cust_orders_detail);
+        // console.log($rootScope.reports_permission);
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unposted_cust_orders_detailByItem)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        // $scope.filterReport.report_type = 1;
+    } else if ($scope.module == 'unallocatedStock') {
+
+        $scope.reportTitle = 'Unallocated Stock';
+        $scope.reportModalTitle = 'UnallocatedStock';
+        $scope.reportType = 'UnallocatedStock';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Unallocated Stock', 'url': '#', 'isActive': false }
+        ];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.unallocatedStock)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    // Items Module
+
+    $scope.items = [];
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearPendingPurchaseItems = function() {
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.addProduct = function() {
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        angular.element('#productModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
     $scope.filterReport = {};
     $scope.columns = [];
+<<<<<<< HEAD
 	$scope.filterReport.dateTo = $scope.$root.get_current_date();
 	$scope.filterReport.reporttype = 'detail';
 	$scope.filterReport.reportOrderBy = 2;
 	$scope.filterReport.reportOrderType = 0;
     
     $scope.generateReport = function (_reportType = 'pdf') {
+=======
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.reporttype = 'detail';
+    $scope.filterReport.reportOrderBy = 2;
+    $scope.filterReport.reportOrderType = 0;
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.filterReport.token = $rootScope.token;
         // $scope.filterReport.salepersons = $scope.salepersons;
         $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
 		$scope.filterReport.dateTo = $scope.filterReport.dateTo;
 		$scope.filterReport.customers = $scope.customers;	
 		$scope.filterReport.items = $scope.items;
 		$scope.filterReport.reportName = $scope.reportType;
+=======
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.reportName = $scope.reportType;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -7548,6 +14948,7 @@ myApp.controller('UnPostedOrderDetailReportController', ["$scope", "$filter", "n
         } else if ($scope.module != 'unallocatedStock') {
             $scope.filterReport.dateFrom = '';
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+<<<<<<< HEAD
             return false; 
 		}
 		
@@ -7766,11 +15167,225 @@ myApp.controller('UnPostedOrderDetailReportController', ["$scope", "$filter", "n
 		$scope.items = [];
 		$scope.searchKeywordItem = {};
 		$scope.selectedRecFromModalsItem = [];
+=======
+            return false;
+        }
+
+        if ($scope.module != 'unallocatedStock') {
+
+            if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+                return false;
+            }
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+        $scope.filterReport.reportOrderTypeID = ($scope.filterReport.reportOrderType) ? 1 : 0;
+
+        $scope.filterReport.reportXlsxType = 0;
+
+        if (_reportType == 'xlsx') {
+            $scope.filterReport.reportXlsxType = 1;
+        }
+
+        $scope.showLoader = true;
+
+        var unPostedOrderDetailListApi = $scope.$root.reports + "module/unPosted-order-detail-report";
+        $http
+            .post(unPostedOrderDetailListApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+                $scope.printPdfVals = {};
+
+                if (_reportType == 'xlsx' && res.data.ack == 2 && res.data.filename && $scope.module == 'unallocatedStock') {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    return false;
+                } else if (_reportType == 'xlsx' && res.data.ack == 2 && res.data.filename && $scope.module == 'UnPostedCustomerOrders') {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    return false;
+                } else if (_reportType == 'xlsx' && res.data.ack == 2 && res.data.filename && $scope.module == 'UnPostedCustomerOrdersByItem') {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    return false;
+                } else if (res.data.ack == 1 && res.data.response && res.data.response.records && Object.keys(res.data.response.records)[0] != 'grandtotal') {
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.columns = [];
+
+                    if ($scope.module == 'UnPostedCustomerOrders') {
+                        $scope.printPdfVals.reportName = 'UnPostedSalesOrdersDetailReport';
+                    } else if ($scope.module == 'UnPostedCustomerOrdersByItem') {
+                        $scope.printPdfVals.reportName = 'UnPostedCustomerOrdersByItem';
+                    } else if ($scope.module == 'unallocatedStock') {
+                        $scope.printPdfVals.reportName = 'unallocatedStock';
+                    }
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.report_type1 = $scope.filterReport.reportOrderBy;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    let currentUrl = window.location.href;
+
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+                    $scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;
+                    $scope.printPdfVals.reportOrderTypeID = $scope.filterReport.reportOrderTypeID;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+                        $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                        /* if ($scope.module == 'UnPostedCustomerOrders') {
+
+                        	jsreportService.downloadXlsx($scope.printPdfVals, "HkltYHXotr").success(function (data) {
+                        		let file = new Blob([data], { type: 'application/xlsx' });
+                        		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        		$scope.showLoader = false;
+                        	});
+                        	
+                        }
+                        else  if ($scope.module == 'UnPostedCustomerOrdersByItem') {
+                        	jsreportService.downloadXlsx($scope.printPdfVals, "S1eFMk5TtH").success(function (data) {
+                        		let file = new Blob([data], { type: 'application/xlsx' });
+                        		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        		$scope.showLoader = false;
+                        	});
+                        }
+                        else*/
+                        if ($scope.module == 'unallocatedStock') {
+                            jsreportService.downloadXlsx($scope.printPdfVals, "SklcpNP80B").success(function(data) {
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                $scope.showLoader = false;
+                            });
+                        }
+
+                    } else if (_reportType == 'pdf') {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                        if ($scope.printPdfVals.report_type == 'summary') {
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        } else {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+                        }
+
+                        if ($scope.module == 'UnPostedCustomerOrders') {
+
+                            $scope.printPdfVals.reportTitle = 'Unposted Customer Orders Detail - Breakdown by Items (G.L)';
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/unPostedOrderDetailModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                        } else if ($scope.module == 'UnPostedCustomerOrdersByItem') {
+
+                            $scope.printPdfVals.reportTitle = 'Unposted Customer Orders By Item(s)';
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/unPostedCustOrdersByItemModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        } else if ($scope.module == 'unallocatedStock') {
+
+                            $scope.printPdfVals.reportTitle = 'Unallocated Stock';
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/unallocatedStockModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'detail';
+        $scope.filterReport.reportOrderBy = 2;
+        $scope.filterReport.reportOrderType = 0;
+        $scope.filterReport.report_type = 1;
+
+        $scope.reportsDataArr = [];
+        $scope.printPdfVals = {};
+
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        $scope.items = [];
+        $scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 }]);
 
 myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function UnPostedOrderReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	var fields = $stateParams.module.split('-');
@@ -9082,6 +16697,1295 @@ myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams",
 		});
 
 		/* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+=======
+    'use strict';
+
+    var fields = $stateParams.module.split('-');
+    $scope.module = fields[0];
+    $scope.selCust = fields[1];
+
+
+    // $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+
+    if ($scope.module == 'customer') {
+        $scope.reportTitle = 'Sales Figures By Customer(s)';
+        $scope.reportModalTitle = 'SalesFiguresByCustomer';
+        $scope.reportType = 'SalesFiguresByCustomer';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Figures By Customer(s)', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_figure_by_customer)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'sale_person') {
+        $scope.reportTitle = 'Sales Figures By Salesperson(s)';
+        $scope.reportModalTitle = 'SalesFiguresBySalesperson';
+        $scope.reportType = 'SalesFiguresBySalesperson';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Figures By Salesperson(s) ', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_figure_by_salesperson)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'buying_group') {
+        $scope.reportTitle = 'Sales Figures By Buying Group, Segment & Territory';
+        $scope.reportModalTitle = 'SalesFiguresByBuyingGroup';
+        $scope.reportType = 'SalesFiguresByBuyingGroup';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Figures By Buying Group, Segment & Territory', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_figure_by_buying_grp)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'customer_avg_payment_days') {
+        $scope.reportTitle = 'Customer Average Payment Days';
+        $scope.reportModalTitle = 'CustomerAveragePaymentDays';
+        $scope.reportType = 'CustomerAveragePaymentDays';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Average Payment Days', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_avg_payment_days)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'item') {
+        $scope.reportTitle = 'Sales Figures By Item(s)';
+        $scope.reportModalTitle = 'SalesFiguresByItems';
+        $scope.reportType = 'SalesFiguresBySalesperson';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Figures By Item(s)', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_figure_by_items)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'itemSalesMarginalAnalysis') {
+        $scope.reportTitle = 'Item(s) Sales Margin Analysis';
+        $scope.reportModalTitle = 'itemSalesMarginalAnalysis'; //SalesFiguresByItems
+        $scope.reportType = 'itemSalesMarginalAnalysis'; //SalesFiguresBySalesperson
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Item(s) Sales Margin Analysis', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.itemSalesMarginalAnalysis)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'salesFigureByGL') {
+        $scope.reportTitle = 'Figure By G/L'; /* Sales */
+        $scope.reportModalTitle = 'salesFigureByGL';
+        $scope.reportType = 'salesFigureByGL'; /* Sales */
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Figure By G/L', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.salesFigureByGL)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'ec_sales_list') {
+        $scope.reportTitle = 'EC Sales List';
+        $scope.reportModalTitle = 'ECSalesList';
+        $scope.reportType = 'ECSalesList';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'EC Sales List', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.ec_sales_list)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'purchases_by_supplier') {
+        $scope.reportTitle = 'Item Purchases By Supplier(s)';
+        $scope.reportModalTitle = 'ItemPurhcasesBySupplier';
+        $scope.reportType = 'Item Purchases By Supplier(s)';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Item Purchases By Supplier(s)', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.item_purchases_by_supplier)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'item_sales_by_category_brand_segment') {
+        $scope.reportTitle = 'Item sales by Category/Brand/Segment & Territory';
+        $scope.reportModalTitle = 'ItemPurhcasesBySupplier';
+        $scope.reportType = 'Item Purchases By Supplier(s)';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Item sales by Category/Brand/Segment & Territory', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.item_sales_by_category_brand_segment)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'customer_reminder') {
+        $scope.reportTitle = 'Customer Reminders';
+        $scope.reportModalTitle = 'CustomerReminders';
+        $scope.reportType = 'Customer Reminders';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Reminders', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customer_reminder)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'salesForecast') {
+        $scope.reportTitle = 'Sales Forecast Variance';
+        $scope.reportModalTitle = 'SalesForecast';
+        $scope.reportType = 'Sales Forecast';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Forecast', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.salesForecast)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'customerItemPrices') {
+        $scope.reportTitle = 'Customer/Item Prices';
+        $scope.reportModalTitle = 'customerItemPrices';
+        $scope.reportType = 'Customer/Item Prices';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer/Item Prices', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customerItemPrices)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+    $scope.dontShowModal = false;
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    if ($scope.module == 'sale_person' || $scope.module == 'customer' || $scope.module == 'item' || $scope.module == 'itemSalesMarginalAnalysis' || $scope.module == 'buying_group' || $scope.module == 'salesFigureByGL' || $scope.module == 'customerItemPrices' || $scope.module == 'purchases_by_supplier') {
+        $scope.filterReport.report_type = 1;
+        $scope.filterReport.report_date_type = 1;
+    }
+
+    if ($scope.module == 'item_sales_by_category_brand_segment') {
+        $scope.filterReport.report_type = 1;
+        $scope.filterReport.division_1 = 1;
+        $scope.filterReport.division_2 = 1;
+    }
+
+    if ($scope.module == 'customer_reminder') {
+        $scope.filterReport.dateFrom = $scope.$root.get_current_date();
+        $scope.filterReport.report_type = 1;
+        $scope.filterReport.customer_reminder_days = 0;
+        $scope.show_customer_reminder_customize = false;
+    }
+    if ($scope.module == 'salesForecast') {
+        $scope.filterReport.dateFrom = $scope.$root.get_current_date();
+
+        $scope.previous_year = new Date().getFullYear() - 1;
+        $scope.current_year = new Date().getFullYear();
+        $scope.next_year = new Date().getFullYear() + 1;
+
+        $scope.filterReport.start_year = $scope.current_year;
+        $scope.filterReport.end_year = $scope.current_year;
+
+        $scope.filterReport.start_month = $scope.$root.arrMonths[0];
+        $scope.filterReport.end_month = $scope.$root.arrMonths[0];
+
+        $scope.filterReport.report_type = 1;
+    }
+
+
+    $scope.searchKeyword = {};
+    $scope.selectedRecFromModals = [];
+
+    $scope.moduleType = '';
+
+    $scope.salepersons = [];
+
+    $scope.GetAllSalesperson = function() {
+        $scope.filterSupplier = {};
+        $scope.tempSalepersonsArr = [];
+        $scope.tempSalepersonsArr2 = [];
+        $scope.SalepersonsListing = {};
+        $scope.SalepersonsListing.token = $rootScope.token;
+        $scope.SalepersonsListing.department_id = '2'; //sales
+
+        $scope.showLoader = true;
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-employees-by-dept-id";
+        $http
+            .post(salepersonsListingApi, $scope.SalepersonsListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempSalepersonsArr = [];
+                $scope.tempSalepersonsArr2 = [];
+                $scope.PendingSelectedSalepersons = [];
+
+                if (res.data.ack == true) {
+                    $scope.tempSalepersonsArr = res.data.response;
+                    $scope.tempSalepersonsArr2 = res.data;
+                    // console.log($scope.salepersons);
+
+
+                    angular.forEach($scope.tempSalepersonsArr2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.salepersons, function(obj) {
+                            if (obj.id == obj1.id) {
+                                $scope.PendingSelectedSalepersons.push(obj);
+                                obj1.checkbox = true;
+                            }
+                        });
+                    });
+
+                    if ($scope.tempSalepersonsArr[0].id)
+                        angular.element('#_SalepersonModal').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    /* $scope.selectSaleperson = function () {
+
+    	$scope.filterSupplier = {};
+    	$scope.tempSalepersonsArr = [];
+    	$scope.tempSalepersonsArr2 = [];
+    	$scope.SalepersonsListing = {};
+    	$scope.SalepersonsListing.token = $rootScope.token;
+    	$scope.SalepersonsListing.cond = 'Detail';
+
+    	$scope.showLoader = true;
+
+    	// var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+
+    	var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+    	$http
+    		.post(salepersonsListingApi, $scope.SalepersonsListing)
+    		.then(function (res) {
+    			$scope.showLoader = false;
+    			$scope.tempSalepersonsArr = [];
+    			$scope.tempSalepersonsArr2 = [];
+
+    			if (res.data.ack == true) {
+    				$scope.tempSalepersonsArr = res.data.response;
+    				$scope.tempSalepersonsArr2 = res.data;
+    				// console.log($scope.salepersons);
+
+    				angular.forEach($scope.tempSalepersonsArr2.response, function (obj1) {
+    					obj1.checkbox = false;
+
+    					angular.forEach($scope.salepersons, function (obj) {
+    						if (obj.id == obj1.id)
+    							obj1.checkbox = true;
+    					});
+    				});
+
+    				if ($scope.tempSalepersonsArr[0].id)
+    					angular.element('#_SalepersonModal').modal({ show: true });
+    			}
+    			else {
+    				toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    			}
+    		});
+    } */
+
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:6266");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.report_by = 1;
+    $scope.filterReport.report_by_filter = 1;
+    $scope.change_report_by = function(val) {
+        $scope.filterReport.report_by_filter = val;
+        $scope.report_by = val;
+    }
+
+    $scope.territories = [];
+    $scope.buyingGroups = [];
+    $scope.segments = [];
+    $scope.searchKeywordTr = {};
+    $scope.selectedRecFromModalsTr = [];
+    $scope.brands = [];
+    $scope.categories = [];
+
+    $scope.clearFiltersAndSelectTerritory = function() {
+        $scope.searchKeywordTr = {};
+        $scope.selectTerritory();
+    }
+
+    $scope.selectTerritory = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordTr;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordTr = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/territory-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_TerritoryModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearTerritorys = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_TerritoryModal').modal('hide');
+    }
+
+    $scope.addTerritorys = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsTr[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsTr, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.territoryArr = [];
+        $scope.territories = [];
+        $scope.territoryNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.territories.push(recData);
+
+            if ($scope.territoryNames == "")
+                $scope.territoryNames = recData.title;
+            else
+                $scope.territoryNames = $scope.territoryNames + '; ' + recData.title;
+        });
+
+        console.log($scope.territoryNames);
+
+        angular.element('#_TerritoryModal').modal('hide');
+    }
+
+    $scope.searchKeywordBg = {};
+    $scope.selectedRecFromModalsBg = [];
+
+    $scope.clearFiltersAndSelectBuyingGroup = function() {
+        $scope.searchKeywordBg = {};
+        $scope.selectBuyingGroup();
+    }
+
+    $scope.selectBuyingGroup = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBg;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/buying-group-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BuyingGroupModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearBuyingGroups = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_BuyingGroupModal').modal('hide');
+    }
+
+    $scope.addBuyingGroups = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsBg, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.buyingGroupArr = [];
+        $scope.buyingGroups = [];
+        $scope.buyingGroupNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.buyingGroups.push(recData);
+
+            if ($scope.buyingGroupNames == "")
+                $scope.buyingGroupNames = recData.title;
+            else
+                $scope.buyingGroupNames = $scope.buyingGroupNames + '; ' + recData.title;
+        });
+
+        console.log($scope.buyingGroupNames);
+
+        angular.element('#_BuyingGroupModal').modal('hide');
+    }
+
+
+    $scope.searchKeywordBrand = {};
+    $scope.selectedRecFromModalsBrand = [];
+
+    $scope.clearFiltersAndSelectBrand = function() {
+        $scope.searchKeywordBrand = {};
+        angular.element('#_BrandModal').modal('hide');
+        $scope.selectBrand();
+    }
+
+    $scope.selectBrand = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBrand;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-brands";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BrandModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearBrands = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_BrandModal').modal('hide');
+    }
+
+    $scope.addBrands = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsBrand, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.brandArr = [];
+        $scope.brands = [];
+        $scope.brandNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.name = recData.name;
+            $scope.brands.push(recData);
+
+            if ($scope.brandNames == "")
+                $scope.brandNames = recData.name;
+            else
+                $scope.brandNames = $scope.brandNames + '; ' + recData.name;
+        });
+
+        console.log($scope.brandNames);
+
+        angular.element('#_BrandModal').modal('hide');
+    }
+
+    $scope.searchKeywordCategory = {};
+    $scope.selectedRecFromModalsCategory = [];
+
+    $scope.clearFiltersAndSelectCategory = function() {
+        $scope.searchKeywordCategory = {};
+        angular.element('#_CategoryModal').modal({ show: true });
+        $scope.selectCategory();
+    }
+
+    $scope.selectCategory = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCategory;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-categories";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_CategoryModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearCategories = function() {
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_CategoryModal').modal('hide');
+    }
+
+    $scope.addCategories = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCategory, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.categoryArr = [];
+        $scope.categories = [];
+        $scope.categoryNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.name = recData.name;
+            $scope.categories.push(recData);
+
+            if ($scope.categoryNames == "")
+                $scope.categoryNames = recData.name;
+            else
+                $scope.categoryNames = $scope.categoryNames + '; ' + recData.name;
+        });
+
+        console.log($scope.categoryNames);
+
+        angular.element('#_CategoryModal').modal('hide');
+    }
+
+    $scope.searchKeywordSm = {};
+    $scope.selectedRecFromModalsSm = [];
+
+    $scope.clearFiltersAndSelectSegment = function() {
+        $scope.searchKeywordSm = {};
+        $scope.selectSegment();
+    }
+
+    $scope.selectSegment = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSm;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSm = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/segment-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SegmentModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearSegments = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_SegmentModal').modal('hide');
+    }
+
+    $scope.addSegments = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsSm[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSm, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.segmentArr = [];
+        $scope.segments = [];
+        $scope.segmentNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.segments.push(recData);
+
+            if ($scope.segmentNames == "")
+                $scope.segmentNames = recData.title;
+            else
+                $scope.segmentNames = $scope.segmentNames + '; ' + recData.title;
+        });
+
+        console.log($scope.segmentNames);
+
+        angular.element('#_SegmentModal').modal('hide');
+    }
+
+    $scope.suppliers = [];
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+    if ($scope.selCust > 0) {
+
+        $scope.filterCustomer = {};
+        $scope.tempCustomerArr = [];
+        $scope.customerListing = {};
+        $scope.customerListing.token = $rootScope.token;
+        $scope.customerListing.selCust = $scope.selCust;
+
+        $scope.showLoader = true;
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+        $http
+            .post(customerListingApi, $scope.customerListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempCustomerArr = [];
+                $scope.PendingSelectedCustomers = [];
+
+                $scope.CustomerArr = [];
+                $scope.customers = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.CustomerArr = res.data.response;
+
+                    angular.forEach($scope.CustomerArr, function(recData) {
+
+                        if (recData.id == $scope.selCust) {
+
+                            var selRecord = {};
+                            selRecord.key = recData.id;
+                            selRecord.record = recData;
+                            selRecord.value = recData.customer_code;
+
+                            $scope.selectedRecFromModalsCUST.push(selRecord);
+
+                            recData.moduleNo = recData.customer_code;
+                            recData.title = recData.name;
+                            recData.custID = recData.id;
+                            $scope.customers.push(recData);
+
+                        }
+                    });
+                }
+            });
+
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
+        // var itemListingApi = $scope.$root.stock + "products-listing/item-popup";
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    // $scope.record_data = res.data.response;
+                    // $scope.tempProdArr = res.data.response;
+                    // $scope.tempProdArr2 = res.data;
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    // angular.forEach(res.data.response, function (value, key) {
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // if ($scope.tempProdArr[0].id)
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearPendingPurchaseItems = function() {
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.addProduct = function() {
+
+        /* var selItemList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsItem[o.id];
+        }); */
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        // angular.forEach(selItemList, function (recData) {
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        /* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 			if (chk_item == false) {
                 return;
@@ -9103,6 +18007,7 @@ myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams",
 			}
 		}); */
 
+<<<<<<< HEAD
 		angular.element('#productModal').modal('hide');
 	}
 
@@ -9749,12 +18654,629 @@ myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams",
                         $scope.printPdfVals.columns = [];
 
                         angular.forEach(res.data.response[0], function (val, index) {
+=======
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+
+    $scope.searchKeywordGL = {};
+    $scope.selectedRecFromModalsGL = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectGL = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'GLDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordGL;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordGL = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var itemListingApi = $scope.$root.reports + "module/gl-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.PendingSelectedItems = [];
+                $scope.tempProdArrGL = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArrGL = res.data.response;
+                    $scope.tempProdArrGL2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // console.log($scope.items);
+
+                    angular.forEach($scope.tempProdArrGL2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.gls, function(obj) {
+                            if (obj.id == obj1.id) {
+                                $scope.PendingSelectedGLs.push(obj);
+                                obj1.checkbox = true;
+                            }
+                        });
+                    });
+
+
+
+                    if (res.data.total == 0) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    } else {
+                        if ($scope.tempProdArrGL[0].id)
+                            angular.element('#GLModal').modal({ show: true });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedGLs = [];
+
+    $scope.clearPendingPurchaseGLs = function() {
+        angular.element('#GLModal').modal('hide');
+    }
+
+    $scope.addGL = function() {
+
+        /* var selGLList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsGL[o.id];
+        }); */
+
+        var selGLList = [];
+
+        angular.forEach($scope.selectedRecFromModalsGL, function(obj) {
+            selGLList.push(obj.record);
+        });
+
+        $scope.GLArr = [];
+        $scope.gls = [];
+
+        angular.forEach(selGLList, function(recData) {
+
+            recData.moduleNo = recData.glaccountCode;
+            recData.title = recData.displayName;
+            recData.itemID = recData.id;
+            $scope.gls.push(recData);
+        });
+
+        angular.element('#GLModal').modal('hide');
+    }
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+
+
+                    if (res.data.total == 0) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    } else {
+                        if (!$scope.dontShowModal) {
+                            angular.element('#_supplierModal').modal({ show: true });
+                        }
+                        $scope.dontShowModal = false;
+
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSuppliers = [];
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        // var selSupplList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsSupp[o.id];
+        // });
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        // console.log($scope.filterReport);
+
+        // if (($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) && ($scope.filterReport.dateTo != undefined && $scope.filterReport.dateTo != 0)) {
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+
+        $scope.salesFigure = {};
+        $scope.salesFigure.token = $rootScope.token;
+        $scope.salesFigure.dateFrom = $scope.filterReport.dateFrom;
+        $scope.salesFigure.dateTo = $scope.filterReport.dateTo;
+        $scope.salesFigure.module = $stateParams.module;
+        $scope.salesFigure.date_type = 0;
+
+        if ($scope.module == 'customer') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.items = "";
+            $scope.salesFigure.customer_bucket = 1;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 1;
+            else
+                $scope.salesFigure.type = 5;
+
+            if ($scope.filterReport.report_date_type == 1)
+                $scope.salesFigure.date_type = 1;
+            else
+                $scope.salesFigure.date_type = 5;
+
+
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-report-customer";
+        } else if ($scope.module == 'sale_person') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.items = "";
+            $scope.salesFigure.sale_person_bucket = 1;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 2;
+            else
+                $scope.salesFigure.type = 3;
+
+            if ($scope.filterReport.report_date_type == 1)
+                $scope.salesFigure.date_type = 1;
+            else
+                $scope.salesFigure.date_type = 5;
+
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-report-customer";
+        } else if ($scope.module == 'buying_group') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.territories = $scope.territories;
+            $scope.salesFigure.buyingGroups = $scope.buyingGroups;
+            $scope.salesFigure.segments = $scope.segments;
+            $scope.salesFigure.items = "";
+            $scope.salesFigure.customer_bucket = 1;
+            $scope.salesFigure.sale_person_bucket = 1;
+
+            if ($scope.filterReport.report_type == 1 && $scope.report_by == 1)
+                $scope.salesFigure.type = 6;
+            else if ($scope.filterReport.report_type == 2 && $scope.report_by == 1)
+                $scope.salesFigure.type = 7;
+            else if ($scope.filterReport.report_type == 1 && $scope.report_by == 2)
+                $scope.salesFigure.type = 8;
+            else if ($scope.filterReport.report_type == 2 && $scope.report_by == 2)
+                $scope.salesFigure.type = 9;
+            else if ($scope.filterReport.report_type == 1 && $scope.report_by == 3)
+                $scope.salesFigure.type = 10;
+            else if ($scope.filterReport.report_type == 2 && $scope.report_by == 3)
+                $scope.salesFigure.type = 11;
+            else
+                $scope.salesFigure.type = 7;
+
+            if ($scope.filterReport.report_date_type == 1)
+                $scope.salesFigure.date_type = 1;
+            else
+                $scope.salesFigure.date_type = 5;
+
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-report-customer";
+        } else if ($scope.module == 'item') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.items = $scope.items;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 4;
+            else
+                $scope.salesFigure.type = 12;
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-report-customer";
+        } else if ($scope.module == 'itemSalesMarginalAnalysis') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.items = $scope.items;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 4;
+            else
+                $scope.salesFigure.type = 12;
+            var salesFigureReportApi = $scope.$root.reports + "module/item-sales-marginal-analysis";
+        } else if ($scope.module == 'salesFigureByGL') {
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.salespersons = $scope.salepersons;
+            $scope.salesFigure.gls = $scope.gls;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 4;
+            else
+                $scope.salesFigure.type = 12;
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-by-GL";
+        } else if ($scope.module == 'item_sales_by_category_brand_segment') {
+            $scope.salesFigure.territories = $scope.territories;
+            $scope.salesFigure.buyingGroups = $scope.buyingGroups;
+            $scope.salesFigure.segments = $scope.segments;
+            $scope.salesFigure.brands = $scope.brands;
+            $scope.salesFigure.categories = $scope.categories;
+            $scope.salesFigure.items = $scope.items;
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.customer_bucket = 1;
+            $scope.salesFigure.sale_person_bucket = 1;
+
+            $scope.salesFigure.division_1 = $scope.filterReport.division_1;
+            $scope.salesFigure.division_2 = $scope.filterReport.division_2;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.type = 13;
+            else
+                $scope.salesFigure.type = 14;
+
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-figure-report-customer";
+        } else if ($scope.module == 'ec_sales_list') {
+
+            var salesFigureReportApi = $scope.$root.reports + "module/get-ec-sales-list";
+        } else if ($scope.module == 'purchases_by_supplier') {
+            $scope.salesFigure.suppliers = $scope.suppliers;
+            $scope.salesFigure.items = $scope.items;
+            $scope.salesFigure.gls = $scope.gls;
+            $scope.salesFigure._reportType = _reportType;
+            $scope.salesFigure.report_type = $scope.filterReport.report_type;
+            var salesFigureReportApi = $scope.$root.reports + "module/get-item-purchases-by-supplier";
+        } else if ($scope.module == 'customer_avg_payment_days') {
+            $scope.salesFigure.customers = $scope.customers;
+            var salesFigureReportApi = $scope.$root.reports + "module/customer-avg-payment-days";
+        } else if ($scope.module == 'customer_reminder') {
+            $scope.salesFigure.customers = $scope.customers;
+            if ($scope.filterReport.report_type == 1) {
+                $scope.salesFigure.from_days = 1;
+                $scope.salesFigure.to_days = 10;
+
+                $scope.filterReport.from_days = 1;
+                $scope.filterReport.to_days = 10;
+            } else if ($scope.filterReport.report_type == 2) {
+                $scope.salesFigure.from_days = 11;
+                $scope.salesFigure.to_days = 20;
+
+                $scope.filterReport.from_days = 11;
+                $scope.filterReport.to_days = 20;
+            } else if ($scope.filterReport.report_type == 3) {
+                $scope.salesFigure.from_days = 20;
+                $scope.salesFigure.to_days = 10000;
+
+                $scope.filterReport.from_days = 20;
+                $scope.filterReport.to_days = 10000;
+            } else if ($scope.filterReport.report_type == 4) {
+                $scope.salesFigure.from_days = 1;
+                $scope.salesFigure.to_days = $scope.filterReport.customer_reminder_days;
+
+                $scope.filterReport.from_days = 1;
+                $scope.filterReport.to_days = $scope.filterReport.customer_reminder_days;
+            }
+
+            var salesFigureReportApi = $scope.$root.reports + "module/customer-reminders";
+        } else if ($scope.module == 'salesForecast') {
+            $scope.salesFigure.items = $scope.items;
+            $scope.salesFigure.report_type = $scope.filterReport.report_type;
+            $scope.salesFigure.start_year = $scope.filterReport.start_year;
+            $scope.salesFigure.start_month = $scope.filterReport.start_month.id;
+            $scope.salesFigure.end_year = $scope.filterReport.end_year;
+            $scope.salesFigure.end_month = $scope.filterReport.end_month.id;
+
+            if ($scope.filterReport.report_type == 1)
+                $scope.salesFigure.salespersons = $scope.salepersons;
+            else
+                $scope.salesFigure.customers = $scope.customers;
+
+            var salesFigureReportApi = $scope.$root.reports + "module/sales-forecast";
+        } else if ($scope.module == 'customerItemPrices') {
+
+            $scope.salesFigure.customers = $scope.customers;
+            $scope.salesFigure.items = $scope.items;
+            $scope.salesFigure.report_type = $scope.filterReport.report_type;
+            $scope.salesFigure.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+            var salesFigureReportApi = $scope.$root.reports + "module/customer-item-prices-report";
+        }
+
+        $scope.showLoader = true;
+        $scope.salesFigure.reportXlsxType = 0;
+        if (_reportType == 'xlsx') {
+            $scope.salesFigure.reportXlsxType = 1;
+        }
+        $http
+            .post(salesFigureReportApi, $scope.salesFigure)
+            .then(function(res) {
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+                if (_reportType == 'xlsx' &&
+                    ($scope.module == 'customer' || $scope.module == 'customerItemPrices') &&
+                    res.data.ack == 2) {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    $scope.showLoader = false;
+                    return false;
+                } else if (res.data.ack == 1 && res.data.response) {
+                    $scope.showLoader = false;
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.remittenceDataArr = [];
+                    $scope.reportsDataArrLength = 0;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.filters = $scope.filterReport;
+
+                    if ($scope.module == 'customer') {
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.report_date_type = $scope.filterReport.report_date_type;
+                        var _title = ($scope.printPdfVals.report_type == 1) ? ' - Detailed' : ' - Summary';
+                        $scope.printPdfVals.reportTitle = 'Sales Figures by Customer(s)' + _title;
+                        $scope.printPdfVals.reportName = 'salesFigureCustomer';
+                        if ($scope.printPdfVals.report_type == 1) {
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+                            $scope.printPdfVals.grand_total_rebate_price = res.data.response.grand_total_rebate_price;
+                            $scope.printPdfVals.grand_total_amount_in_vat = res.data.response.grand_total_amount_in_vat;
+                            $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.posted_grand_total_rebate_price = res.data.response.posted_grand_total_rebate_price;
+                            $scope.printPdfVals.posted_grand_total_amount_in_vat = res.data.response.posted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.posted_grand_total_amount_ex_vat = res.data.response.posted_grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.unposted_grand_total_rebate_price = res.data.response.unposted_grand_total_rebate_price;
+                            $scope.printPdfVals.unposted_grand_total_amount_in_vat = res.data.response.unposted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.unposted_grand_total_amount_ex_vat = res.data.response.unposted_grand_total_amount_ex_vat;
+                        } else {
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                        }
+                    } else if ($scope.module == 'sale_person') {
+                        $scope.printPdfVals.reportName = 'salesFigureSalesPersonModal';
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.report_date_type = $scope.filterReport.report_date_type;
+                        var _title = ($scope.printPdfVals.report_type == 1) ? ' - Detailed' : ' - Summary';
+                        $scope.printPdfVals.reportTitle = 'Sales Figures by Salesperson(s)' + _title;
+                        if ($scope.printPdfVals.report_type == 1) {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+                            $scope.printPdfVals.grand_total_rebate_price = res.data.response.grand_total_rebate_price;
+                            $scope.printPdfVals.grand_total_amount_in_vat = res.data.response.grand_total_amount_in_vat;
+                            $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.posted_grand_total_rebate_price = res.data.response.posted_grand_total_rebate_price;
+                            $scope.printPdfVals.posted_grand_total_amount_in_vat = res.data.response.posted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.posted_grand_total_amount_ex_vat = res.data.response.posted_grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.unposted_grand_total_rebate_price = res.data.response.unposted_grand_total_rebate_price;
+                            $scope.printPdfVals.unposted_grand_total_amount_in_vat = res.data.response.unposted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.unposted_grand_total_amount_ex_vat = res.data.response.unposted_grand_total_amount_ex_vat;
+                        } else {
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                        }
+                    } else if ($scope.module == 'buying_group') {
+                        $scope.printPdfVals.reportName = 'SalesFiguresByBuyingGroup';
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.report_date_type = $scope.filterReport.report_date_type;
+                        var _title = ($scope.printPdfVals.report_type == 1) ? ' - Detailed' : ' - Summary';
+                        if ($scope.report_by == 1)
+                            $scope.printPdfVals.reportTitle = 'Sales Figures by Territory(s)' + _title;
+                        else if ($scope.report_by == 2)
+                            $scope.printPdfVals.reportTitle = 'Sales Figures by Buying Group(s)' + _title;
+                        else if ($scope.report_by == 3)
+                            $scope.printPdfVals.reportTitle = 'Sales Figures by Segment(s)' + _title;
+                        if ($scope.printPdfVals.report_type == 1) {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+                            $scope.printPdfVals.grand_total_rebate_price = res.data.response.grand_total_rebate_price;
+                            $scope.printPdfVals.grand_total_amount_in_vat = res.data.response.grand_total_amount_in_vat;
+                            $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.posted_grand_total_rebate_price = res.data.response.posted_grand_total_rebate_price;
+                            $scope.printPdfVals.posted_grand_total_amount_in_vat = res.data.response.posted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.posted_grand_total_amount_ex_vat = res.data.response.posted_grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.unposted_grand_total_rebate_price = res.data.response.unposted_grand_total_rebate_price;
+                            $scope.printPdfVals.unposted_grand_total_amount_in_vat = res.data.response.unposted_grand_total_amount_in_vat;
+                            $scope.printPdfVals.unposted_grand_total_amount_ex_vat = res.data.response.unposted_grand_total_amount_ex_vat;
+                        } else {
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            angular.forEach($scope.printPdfVals.reportsDataArr, function(recod, index) {
+                                recod.sum_amount_ex_vat -= Number(recod.rebate_price);
+                            });
+
+                        }
+                    } else if ($scope.module == 'item') {
+                        $scope.printPdfVals.reportTitle = 'Sales Figures by Item(s)';
+                        $scope.printPdfVals.reportName = 'salesFigureItemsModal';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                    } else if ($scope.module == 'itemSalesMarginalAnalysis') {
+                        $scope.printPdfVals.reportTitle = 'Item(s) Sales Margin Analysis';
+                        $scope.printPdfVals.reportName = 'itemSalesMarginalAnalysisModal';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                    } else if ($scope.module == 'salesFigureByGL') {
+                        $scope.printPdfVals.reportTitle = 'Figure By G/L'; //Sales
+                        $scope.printPdfVals.reportName = 'salesFigureByGL';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+
+                        $scope.printPdfVals.columns = [];
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.printPdfVals.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
                                 'visible': true
                             });
                         });
+<<<<<<< HEAD
 					}
 					else if ($scope.module == 'item_sales_by_category_brand_segment') {
 						$scope.printPdfVals.reportTitle = 'Item sales by Category/Brand/Segment & Territory';
@@ -9838,12 +19360,89 @@ myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams",
                         $scope.printPdfVals.columns = [];
 
                         angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    } else if ($scope.module == 'item_sales_by_category_brand_segment') {
+                        $scope.printPdfVals.reportTitle = 'Item sales by Category/Brand/Segment & Territory';
+                        $scope.printPdfVals.reportName = 'itemSalesByCategoryBrandSegment';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.division_1 = $scope.filterReport.division_1;
+                        $scope.printPdfVals.division_2 = $scope.filterReport.division_2;
+
+                    } else if ($scope.module == 'ec_sales_list') {
+                        $scope.printPdfVals.reportTitle = 'EC Sales List';
+                        $scope.printPdfVals.reportName = 'ECSalesList';
+                        $scope.printPdfVals.reportsDataArrTotalValue = res.data.total;
+                        $scope.printPdfVals.reportsDataArrTotalValueEC_goods_1 = res.data.total_ec_goods_1;
+                        $scope.printPdfVals.reportsDataArrTotalValueEC_goods_2 = res.data.total_ec_goods_2;
+                        $scope.printPdfVals.reportsDataArrTotalValueEC_goods_3 = res.data.total_ec_goods_3;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                    } else if ($scope.module == 'purchases_by_supplier') {
+                        $scope.printPdfVals.reportTitle = 'Item Purchases By Supplier(s)';
+                        $scope.printPdfVals.reportName = 'ItemPurhcasesBySupplier';
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                    } else if ($scope.module == 'customer_avg_payment_days') {
+                        $scope.printPdfVals.reportTitle = 'Customer Average Payment Days';
+                        $scope.printPdfVals.reportName = 'CustomerAveragePaymentDays';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reportOrderBy;
+                    } else if ($scope.module == 'customer_reminder') {
+                        $scope.printPdfVals.reportTitle = 'Customer Reminders';
+                        $scope.printPdfVals.reportName = 'customer_reminder';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        var todayDate = new Date();
+                        todayDate.setDate(todayDate.getDate() - $scope.filterReport.to_days);
+                        var month = todayDate.getMonth() + 1;
+                        var day = todayDate.getDate();
+                        var year = todayDate.getFullYear();
+
+                        $scope.printPdfVals.dateFrom1 = day + "/" + month + "/" + year;
+
+
+
+                        var todayDate = new Date();
+                        todayDate.setDate(todayDate.getDate() - $scope.filterReport.from_days + 1);
+                        var month = todayDate.getMonth() + 1;
+                        var day = todayDate.getDate();
+                        var year = todayDate.getFullYear();
+
+                        $scope.printPdfVals.dateTo1 = day + "/" + month + "/" + year;
+                    } else if ($scope.module == 'salesForecast') {
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                        $scope.printPdfVals.start_year = $scope.filterReport.start_year;
+                        $scope.printPdfVals.start_month = $scope.filterReport.start_month.name;
+                        $scope.printPdfVals.end_year = $scope.filterReport.end_year;
+                        $scope.printPdfVals.end_month = $scope.filterReport.end_month.name;
+                        $scope.printPdfVals.reportTitle = 'Sales Forecast Variance';
+                        $scope.printPdfVals.reportName = 'salesForecast';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        /* $scope.printPdfVals.total_unit_price = 0;
+                        angular.forEach($scope.reportsDataArr, function (recod, index) {
+                        	$scope.printPdfVals.total_unit_price += Number(recod.sum_unit_price);
+                        	
+                        	
+                        }); */
+                    } else if ($scope.module == 'customerItemPrices') {
+                        $scope.printPdfVals.reportTitle = 'Customer/Item Prices'; //Sales
+                        $scope.printPdfVals.reportName = 'customerItemPrices';
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+
+                        $scope.printPdfVals.columns = [];
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.printPdfVals.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
                                 'visible': true
                             });
                         });
+<<<<<<< HEAD
 					}
 
 					$scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
@@ -10406,10 +20005,553 @@ myApp.controller('SalesFigureController', ["$scope", "$filter", "ngTableParams",
 		$scope.selectedRecFromModalsBrand = [];
 
 	}
+=======
+                    }
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.reportType = $scope.reportType;
+
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.total_records = Object.keys($scope.printPdfVals.reportsDataArr);
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    $scope.columns = [];
+                    /* angular.forEach(res.data.response[0].invoices[0], function (val, index) {
+                    	$scope.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+
+                    	$scope.printPdfVals.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+                    }); */
+                    if ($scope.printPdfVals.report_type != undefined && $scope.printPdfVals.report_type == 2) {
+                        $scope.printPdfVals.total_salesperson = 0;
+                        $scope.printPdfVals.total_qty = 0;
+                        $scope.printPdfVals.total_posted = 0;
+                        $scope.printPdfVals.total_unposted = 0;
+                        $scope.printPdfVals.total_rebate = 0;
+                        $scope.printPdfVals.total_profitBeforeProm = 0;
+                        $scope.printPdfVals.total_profitAfterProm = 0;
+
+                        angular.forEach($scope.reportsDataArr, function(recod, index) {
+                            $scope.printPdfVals.total_salesperson += Number(recod.sum_amount_ex_vat);
+                            $scope.printPdfVals.total_qty += Number(recod.qty);
+                            $scope.printPdfVals.total_posted += Number(recod.sum_posted);
+                            $scope.printPdfVals.total_unposted += Number(recod.sum_unposted);
+                            $scope.printPdfVals.total_rebate += Number(recod.sum_rebate_price);
+
+                            $scope.printPdfVals.total_profitBeforeProm += Number(recod.profitBeforeProm);
+                            $scope.printPdfVals.total_profitAfterProm += Number(recod.profitAfterProm);
+                        });
+                    }
+
+                    if ($scope.printPdfVals.report_type != undefined && $scope.printPdfVals.report_type == 1) {
+                        $scope.printPdfVals.grand_total_qty = 0;
+                        $scope.printPdfVals.grand_total_amount_in_vat = 0;
+                        $scope.printPdfVals.grand_total_amount_ex_vat = 0;
+
+                        if ($scope.module == 'customer' || $scope.module == 'buying_group' || $scope.module == 'sale_person') { //sale_person
+                            angular.forEach($scope.reportsDataArr.records, function(record) {
+                                // $scope.printPdfVals.grand_total_qty += Number(recod.qty);
+                                // $scope.printPdfVals.grand_total_amount_in_vat += Number(recod.amount_in_vat);
+                                // $scope.printPdfVals.grand_total_amount_ex_vat += Number(recod.amount_ex_vat);
+
+                                if (record.posted) {
+
+                                    angular.forEach(record.posted.invoices, function(rec) {
+                                        $scope.printPdfVals.grand_total_amount_in_vat += Number(rec.amount_in_vat);
+                                        $scope.printPdfVals.grand_total_amount_ex_vat += Number(rec.amount_ex_vat);
+                                    });
+                                }
+
+                                if (record.unposted) {
+
+                                    angular.forEach(record.unposted.invoices, function(rec) {
+                                        $scope.printPdfVals.grand_total_amount_in_vat += Number(rec.amount_in_vat);
+                                        $scope.printPdfVals.grand_total_amount_ex_vat += Number(rec.amount_ex_vat);
+                                    });
+                                }
+
+                            });
+                        } else {
+
+                            angular.forEach($scope.reportsDataArr, function(record) {
+                                // $scope.printPdfVals.grand_total_qty += Number(recod.qty);
+                                // $scope.printPdfVals.grand_total_amount_in_vat += Number(recod.amount_in_vat);
+                                // $scope.printPdfVals.grand_total_amount_ex_vat += Number(recod.amount_ex_vat);
+
+                                angular.forEach(record.invoices, function(rec) {
+                                    $scope.printPdfVals.grand_total_qty += Number(rec.qty);
+                                    $scope.printPdfVals.grand_total_amount_in_vat += Number(rec.amount_in_vat);
+                                    $scope.printPdfVals.grand_total_amount_ex_vat += Number(rec.amount_ex_vat);
+                                });
+                            });
+                        }
+
+                    }
+
+                    if ($scope.module == 'customer') {
+                        /* salesfigures by customer - detail*/
+
+                        if (_reportType == 'xlsx' && $scope.filterReport.report_type == 1) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'rJenvC109V').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        }
+                        /* salesfigures by customer - summary*/
+                        else if (_reportType == 'xlsx' && $scope.filterReport.report_type == 2) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'HJluK8mwtV').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+
+                            console.log($scope.printPdfVals);
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureCustomerModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'sale_person') {
+                        /* salesfigures by sales person - detail*/
+                        if (_reportType == 'xlsx' && $scope.filterReport.report_type == 1) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'Bkx5O_ARqE').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        }
+                        /* salesfigures by salesperson - summary*/
+                        else if (_reportType == 'xlsx' && $scope.filterReport.report_type == 2) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'HJf59IOPK4').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            console.log($scope.printPdfVals);
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureSalesPersonModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'buying_group') {
+                        /* salesfigures by buying_group - detail*/
+                        if (_reportType == 'xlsx' && $scope.filterReport.report_type == 1) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'HJxFmx6Z-S').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        }
+                        /* salesfigures by buying_group , territories and segments - summary*/
+                        else if (_reportType == 'xlsx' && $scope.filterReport.report_type == 2) {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'rJlw_QTWbS').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            console.log($scope.printPdfVals);
+                            console.log($scope.filterReport);
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureBuyingGroupModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'item') {
+                        /* salesfigures by items */
+
+                        if (_reportType == 'xlsx') {
+                            var shortID = ($scope.filterReport.report_type == 1) ? 'ryg7IEykj4' : 'HygdPep2dS';
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureItemModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'itemSalesMarginalAnalysis') {
+
+                        if (_reportType == 'xlsx') {
+                            var shortID = ($scope.filterReport.report_type == 1) ? 'rkXDvLMIL' : 'r1x0IUfzUI';
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/itemSalesMarginalAnalysisModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'salesFigureByGL') {
+
+                        if (_reportType == 'xlsx') {
+                            var shortID = ($scope.filterReport.report_type == 1) ? 'SyCeVpFv8' : 'H1OKJpFvL';
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureByGLModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'item_sales_by_category_brand_segment') {
+                        /* salesfigures by items */
+
+                        if (_reportType == 'xlsx') {
+                            var shortID = 'SJgJJ7HThS'; //($scope.filterReport.report_type == 1) ? 'SJgJJ7HThS' : 'SyeVpUUQtS';
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesFigureItemSalesByCategoryBrandSegmentModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'ec_sales_list') {
+
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'SkxcbvH1i4').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/ecSalesListModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'purchases_by_supplier') {
+
+                        if (_reportType == 'xlsx') {
+                            /* $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'B1ej-tJJsE').success(function (data) {
+                            	$scope.showLoader = false;
+                            	let file = new Blob([data], { type: 'application/xlsx' });
+                            	saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            }) */
+
+                            $scope.showCSVBtn = true;
+                            $scope.CSVfilePath = res.data.filename;
+
+                            window.open($scope.CSVfilePath, '_blank');
+                            return false;
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/itemPurchasesBySupplier.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'customer_avg_payment_days') {
+
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'HkQGGzibH').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerAvgPaymentDays.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'customer_reminder') {
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'rygwYXD5Cr').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerReminderModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'salesForecast') {
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'B1gWpdLeM8').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/salesForecastModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    } else if ($scope.module == 'customerItemPrices') {
+
+                        if (_reportType == 'xlsx') {
+                            var shortID = ($scope.filterReport.report_type == 1) ? 'SyCeVpFv8' : 'H1OKJpFvL';
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerItemPricesModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+                    }
+                } else {
+                    $scope.showLoader = false;
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    // Customer Reminder
+    $scope.OnChangeCustomerReminderReportBy = function(report_type) {
+        if (report_type == 4)
+            $scope.show_customer_reminder_customize = true;
+        else {
+            $scope.filterReport.customer_reminder_days = 0;
+            $scope.show_customer_reminder_customize = false;
+        }
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.reportsDataArr = [];
+        $scope.customers = [];
+        $scope.salepersons = [];
+        $scope.items = [];
+        $scope.suppliers = [];
+        $scope.territories = [];
+        $scope.buyingGroups = [];
+        $scope.segments = [];
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+        $scope.brands = [];
+        $scope.categories = [];
+        $scope.orderStages = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.searchKeywordTr = {};
+        $scope.selectedRecFromModalsTr = [];
+
+        $scope.searchKeywordBg = {};
+        $scope.selectedRecFromModalsBg = [];
+
+        $scope.searchKeywordSm = {};
+        $scope.selectedRecFromModalsSm = [];
+
+        $scope.gls = [];
+        if ($scope.module == 'sale_person' || $scope.module == 'customer' ||
+            $scope.module == 'item' || $scope.module == 'itemSalesMarginalAnalysis' ||
+            $scope.module == 'buying_group' || $scope.module == 'salesFigureByGL' || $scope.module == 'customerItemPrices') {
+            $scope.filterReport.report_type = 1;
+            $scope.filterReport.report_date_type = 1;
+        }
+
+        if ($scope.module == 'purchases_by_supplier') {
+            $scope.filterReport.report_type = 1;
+        }
+
+        if ($scope.module == 'item_sales_by_category_brand_segment') {
+            $scope.filterReport.report_type = 1;
+            $scope.filterReport.division_1 = 1;
+            $scope.filterReport.division_2 = 1;
+        }
+
+        if ($scope.module == 'customer_reminder') {
+            $scope.filterReport.dateFrom = $scope.$root.get_current_date();
+            $scope.filterReport.report_type = 1;
+            $scope.filterReport.customer_reminder_days = 0;
+            $scope.show_customer_reminder_customize = false;
+        }
+
+        if ($scope.module == 'salesForecast') {
+            $scope.filterReport.dateFrom = $scope.$root.get_current_date();
+
+            $scope.previous_year = new Date().getFullYear() - 1;
+            $scope.current_year = new Date().getFullYear();
+            $scope.next_year = new Date().getFullYear() + 1;
+
+            $scope.filterReport.start_year = $scope.current_year;
+            $scope.filterReport.end_year = $scope.current_year;
+
+            $scope.filterReport.start_month = $scope.$root.arrMonths[0];
+            $scope.filterReport.end_month = $scope.$root.arrMonths[0];
+
+            $scope.filterReport.report_type = 1;
+        }
+
+        $scope.searchKeywordBrand = {};
+        $scope.selectedRecFromModalsBrand = [];
+
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 myApp.controller('PostedOrderReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function PostedOrderReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -10873,11 +21015,477 @@ myApp.controller('PostedOrderReportController', ["$scope", "$filter", "ngTablePa
 				}
 			});
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    // console.log($scope.module);
+
+    if ($scope.module == 'Sale') {
+
+        $scope.reportTitle = 'Posted Sales Invoice and Credit Note';
+        $scope.reportType = 'Sale';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Posted Sales Invoice and Credit Note ', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.posted_sales_invoice_and_credit_note)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+    /* else if ($scope.module == 'Purchase') {
+
+    	$scope.reportTitle = 'VAT Detailed Statement';
+    	$scope.reportType = 'detail';
+    	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },{ 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },  { 'name': 'VAT Report', 'url': '#', 'isActive': false }];
+
+    } */
+
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.postedOrderReportListing = {};
+    $scope.postedOrderReportListing.token = $rootScope.token;
+    $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+    $scope.postedOrderReportListing.module = $stateParams.module;
+
+    $scope.financeArr = {};
+    $scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.insuranceArr = {};
+    $scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.docTypeArr = {};
+    $scope.docTypeArr = [{ 'id': '1', 'title': 'Sales Invoice' }, { 'id': '2', 'title': 'Credit Note' }, { 'id': '3', 'title': 'Both' }];
+
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+    /* ============================================= */
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+
+    $scope.reportsDataArr = [];
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.filterReport);
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.postedOrderReportListing = {};
+        $scope.postedOrderReportListing.token = $rootScope.token;
+        $scope.postedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+
+        $scope.postedOrderReportListing.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        $scope.postedOrderReportListing.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        $scope.postedOrderReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        $scope.postedOrderReportListing.customers = $scope.customers;
+        $scope.postedOrderReportListing.module = $stateParams.module;
+        $scope.showLoader = true;
+
+        var postedOrderReportListApi = $scope.$root.reports + "module/posted-customer-invoices-report";
+        $http
+            .post(postedOrderReportListApi, $scope.postedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                var saleTotal = 0;
+                var CreditNoteTotal = 0;
+
+                if (res.data.ack == true) {
+
+                    if (res.data.response.sale != undefined) {
+
+                        angular.forEach(res.data.response.sale, function(obj) {
+                            $scope.reportsDataArr.push(obj);
+                            saleTotal += parseFloat(obj.vat_amount);
+                        });
+                    }
+
+                    $scope.reportsDataArr.total = res.data.response.total;
+
+
+                    // console.log($scope.reportsDataArr);
+
+                    /* angular.forEach($scope.reportsDataArr[0], function (val, index) {
+                    	$scope.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+                    }); */
+
+                    $scope.columns = [{ "title": "Posting Date", "field": "posting_date", "visible": true },
+                        { "title": "Customer No", "field": "customer_no", "visible": true },
+                        { "title": "Customer Name", "field": "customer_name", "visible": true },
+                        { "title": "Document Type", "field": "document_type", "visible": true },
+                        { "title": "Document No", "field": "document_no", "visible": true },
+                        { "title": "Amount(LCY)", "field": "amount_excl_Vat", "visible": true },
+                        { "title": "Amount Incl. VAT(LCY)", "field": "amount_incl_Vat", "visible": true },
+                        { "title": "Finance", "field": "finance", "visible": true },
+                        { "title": "Insurance", "field": "insurance", "visible": true }
+                    ];
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.postedOrderReportListing = {};
+        $scope.postedOrderReportListing.token = $rootScope.token;
+        $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.postedOrderReportListing.module = $stateParams.module;
+
+        $scope.reportsDataArr = [];
+        $scope.customers = [];
+        $scope.columns = [];
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+    $scope.showPdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        // $scope.filterReport.token = $rootScope.token;
+        // $scope.filterReport.module = $scope.module;
+        $scope.currentDate = $rootScope.get_current_date();
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.postedOrderReportListing = {};
+        $scope.postedOrderReportListing.token = $rootScope.token;
+        $scope.postedOrderReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.postedOrderReportListing.dateTo = $scope.filterReport.dateTo;
+        $scope.postedOrderReportListing.module = $stateParams.module;
+
+        $scope.postedOrderReportListing.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        $scope.postedOrderReportListing.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        $scope.postedOrderReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        $scope.postedOrderReportListing.customers = $scope.customers;
+
+        $scope.showLoader = true;
+
+        var postedOrderReportListApi = $scope.$root.reports + "module/posted-customer-invoices-report";
+        $http
+            .post(postedOrderReportListApi, $scope.postedOrderReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                var saleTotal = 0;
+                var CreditNoteTotal = 0;
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.reportName = 'postedSalesInvoiceAndCreditNote';
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+
+                    if (res.data.response.sale != undefined) {
+
+                        angular.forEach(res.data.response.sale, function(obj) {
+                            $scope.reportsDataArr.push(obj);
+                            saleTotal += parseFloat(obj.vat_amount);
+                        });
+                    }
+
+                    $scope.reportsDataArr.total = res.data.response.total;
+
+                    $scope.printPdfVals.reportSummary = res.data.response.total;
+                    $scope.printPdfVals._reportType = _reportType;
+                    // $scope.reportsDataArr.total = res.data.response.total;
+
+                    // if (res.data.response.CreditNote != undefined) {
+
+                    // 	angular.forEach(res.data.response.CreditNote, function (obj) {
+                    // 		$scope.reportsDataArr.push(obj);
+                    // 		CreditNoteTotal += parseFloat(obj.vat_amount);
+                    // 	});
+                    // }
+
+                    $scope.printPdfVals.reportsDataArr = $scope.reportsDataArr;
+
+                    /* angular.forEach($scope.reportsDataArr[0], function (val, index) {
+                    	$scope.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+
+                    	$scope.printPdfVals.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+                    }); */
+
+                    $scope.columns = [{ "title": "Posting Date", "field": "posting_date", "visible": true },
+                        { "title": "Customer No", "field": "customer_no", "visible": true },
+                        { "title": "Customer Name", "field": "customer_name", "visible": true },
+                        { "title": "Document Type", "field": "document_type", "visible": true },
+                        { "title": "Document No", "field": "document_no", "visible": true },
+                        { "title": "Amount(LCY)", "field": "amount_excl_Vat", "visible": true },
+                        { "title": "Amount Incl. VAT(LCY)", "field": "amount_incl_Vat", "visible": true },
+                        { "title": "Finance", "field": "finance", "visible": true },
+                        { "title": "Insurance", "field": "insurance", "visible": true }
+                    ];
+
+                    $scope.printPdfVals.columns = [{ "title": "Posting Date", "field": "posting_date", "visible": true },
+                        { "title": "Customer No", "field": "customer_no", "visible": true },
+                        { "title": "Customer Name", "field": "customer_name", "visible": true },
+                        { "title": "Document Type", "field": "document_type", "visible": true },
+                        { "title": "Document No", "field": "document_no", "visible": true },
+                        { "title": "Amount(LCY)", "field": "amount_excl_Vat", "visible": true },
+                        { "title": "Amount Incl. VAT(LCY)", "field": "amount_incl_Vat", "visible": true },
+                        { "title": "Finance", "field": "finance", "visible": true },
+                        { "title": "Insurance", "field": "insurance", "visible": true }
+                    ];
+
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'HyeVt9IGOE').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/postedOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 
 myApp.controller('CustomerPaymentReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function CustomerPaymentReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.searchKeyword = {};
@@ -10994,11 +21602,129 @@ myApp.controller('CustomerPaymentReportController', ["$scope", "$filter", "ngTab
 				}
 			});
 	}
+=======
+    'use strict';
+
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Payments and Refunds from Customers';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Payments and Refunds from Customers', 'url': '#', 'isActive': false }];
+
+    if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.payment_and_refunds_from_customer)) {
+        toaster.pop('error', 'Error', "You are not authorized for this report");
+        $state.go('app.allReports');
+    }
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.customerPaymentReportListing = {};
+    $scope.customerPaymentReportListing.token = $rootScope.token;
+    $scope.customerPaymentReportListing.dateTo = $scope.filterReport.dateTo;
+
+    $scope.reportsDataArr = [];
+    $scope.columns = [];
+
+
+
+    $scope.financeArr = {};
+    $scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.insuranceArr = {};
+    $scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.docTypeArr = {};
+    $scope.docTypeArr = [{ 'id': '1', 'title': 'Payment' }, { 'id': '2', 'title': 'Refund' }, { 'id': '3', 'title': 'Both' }];
+
+
+    /* $scope.showLoader = true;
+
+    var customerPaymentReportListApi = $scope.$root.reports + "module/customer-payment-report";
+    $http
+    	.post(customerPaymentReportListApi, $scope.customerPaymentReportListing)
+    	.then(function (res) {
+    		$scope.showLoader = false;
+    		$scope.reportsDataArr = [];
+    		$scope.columns = [];
+
+    		if (res.data.ack == true) {
+    			$scope.reportsDataArr = res.data.response;
+
+    			angular.forEach(res.data.response[0], function (val, index) {
+    				$scope.columns.push({
+    					'title': toTitleCase(index),
+    					'field': index,
+    					'visible': true
+    				});
+    			});
+    		}
+    		else {
+    			toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    		}
+    	}); */
+
+
+    $scope.customers = [];
+    $scope.searchKeyword = {};
+    $scope.selectedRecFromModals = [];
+
+    // Customer Module
+
+    $scope.selectCustomers = function() {
+
+        $scope.filterCustomer = {};
+        $scope.tempCustomerArr = [];
+        $scope.customerListing = {};
+        $scope.customerListing.token = $rootScope.token;
+
+        $scope.showLoader = true;
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+        $http
+            .post(customerListingApi, $scope.customerListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempCustomerArr = [];
+                $scope.PendingSelectedCustomers = [];
+
+                if (res.data.ack == true) {
+                    $scope.tempCustomerArr = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+                    // console.log($scope.customers);
+                    console.log("report type: ", _reportType)
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'HyeVt9IGOE').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/postedOrderReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 
 myApp.controller('CustomerPaymentReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function CustomerPaymentReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.searchKeyword = {};
@@ -11386,11 +22112,398 @@ myApp.controller('CustomerPaymentReportController', ["$scope", "$filter", "ngTab
 				}
 			});
 	}
+=======
+    'use strict';
+
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Payments and Refunds from Customers';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Payments and Refunds from Customers', 'url': '#', 'isActive': false }];
+
+    if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.payment_and_refunds_from_customer)) {
+        toaster.pop('error', 'Error', "You are not authorized for this report");
+        $state.go('app.allReports');
+    }
+    $scope.filterReport = {};
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.customerPaymentReportListing = {};
+    $scope.customerPaymentReportListing.token = $rootScope.token;
+    $scope.customerPaymentReportListing.dateTo = $scope.filterReport.dateTo;
+
+    $scope.reportsDataArr = [];
+    $scope.columns = [];
+
+
+
+    $scope.financeArr = {};
+    $scope.financeArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.insuranceArr = {};
+    $scope.insuranceArr = [{ 'id': '1', 'title': 'Include' }, { 'id': '2', 'title': 'Exclude' }, { 'id': '3', 'title': 'Both' }];
+
+    $scope.docTypeArr = {};
+    $scope.docTypeArr = [{ 'id': '1', 'title': 'Payment' }, { 'id': '2', 'title': 'Refund' }, { 'id': '3', 'title': 'Both' }];
+
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+
+    $scope.reportsDataArr = [];
+
+    $scope.generateReport = function() {
+
+        // console.log($scope.filterReport);
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.customerPaymentReportListing = {};
+        $scope.customerPaymentReportListing.token = $rootScope.token;
+        $scope.customerPaymentReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.customerPaymentReportListing.dateTo = $scope.filterReport.dateTo;
+
+        $scope.customerPaymentReportListing.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        $scope.customerPaymentReportListing.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        $scope.customerPaymentReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        $scope.customerPaymentReportListing.customers = $scope.customers;
+        $scope.showLoader = true;
+
+        var customerPaymentReportListApi = $scope.$root.reports + "module/customer-payment-report";
+        $http
+            .post(customerPaymentReportListApi, $scope.customerPaymentReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+                    //console.log($scope.reportsDataArr);
+                    $scope.reportsDataArr.total = res.data.total;
+
+                    /* angular.forEach(res.data.response[0], function (val, index) {
+                    	$scope.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+                    }); */
+
+                    $scope.columns = [{ "title": "Posting Date", "field": "posting_date", "visible": true },
+                        { "title": "Document No", "field": "document_no", "visible": true },
+                        { "title": "Custno", "field": "Custno", "visible": true },
+                        { "title": "Customer Name", "field": "Customer_name", "visible": true },
+                        { "title": "Doctype", "field": "DocType", "visible": true },
+                        { "title": "Amount In_lcy", "field": "Amount_in_LCY", "visible": true },
+                        { "title": "Finance", "field": "finance", "visible": true },
+                        { "title": "Insurance", "field": "insurance", "visible": true }
+                    ];
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.selectedSalespersons = [];
+        $scope.customers = [];
+        $scope.reportsDataArr = [];
+        $scope.columns = [];
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+    }
+
+    $scope.showPdfModal = function(_reportType = 'pdf') {
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+        $rootScope.printinvoiceFlag = false;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is Earlier Than Date From!");
+                    return false;
+                }
+            }
+        } else {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        }
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.customerPaymentReportListing = {};
+        $scope.customerPaymentReportListing.token = $rootScope.token;
+        $scope.customerPaymentReportListing.dateFrom = $scope.filterReport.dateFrom;
+        $scope.customerPaymentReportListing.dateTo = $scope.filterReport.dateTo;
+
+        $scope.customerPaymentReportListing.financeID = ($scope.filterReport.finance != undefined && $scope.filterReport.finance != '') ? $scope.filterReport.finance.id : 3;
+        $scope.customerPaymentReportListing.insuranceID = ($scope.filterReport.insurance != undefined && $scope.filterReport.insurance != '') ? $scope.filterReport.insurance.id : 3;
+        $scope.customerPaymentReportListing.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 3;
+
+        // $scope.customerPaymentReportListing.module = $stateParams.module;
+        $scope.customerPaymentReportListing.customers = $scope.customers;
+        $scope.showLoader = true;
+
+        var customerPaymentReportListApi = $scope.$root.reports + "module/customer-payment-report";
+        $http
+            .post(customerPaymentReportListApi, $scope.customerPaymentReportListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    // $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+
+                    // $scope.printPdfVals.reportType = $scope.module;
+
+                    // if ($scope.module == 'SaleOrderBYSalesperson' || $scope.module == 'SaleOrderBYDate')
+                    // 	$scope.printPdfVals.reportName = 'UnpostedSaleOrder';
+
+                    $scope.printPdfVals.reportName = 'paymentsAndRefundsFromCustomer'; //customerPayment
+
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.reportsDataArr.total = res.data.total;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                    $scope.printPdfVals.reportSummary = res.data.total;
+                    $scope.printPdfVals._reportType = _reportType;
+                    // $scope.printPdfVals.reportsDataArr.total = res.data.total;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'rJlvBbvfON').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/customerPaymentReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 myApp.controller('inventoryListReportController', ["$scope", "$http", "toaster", "jsreportService", function inventoryListReportController($scope, $http, toaster, jsreportService) {
 
+<<<<<<< HEAD
 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory List', 'url': '#', 'isActive': false }];
 
 	$scope.showLoader = true;
@@ -12023,11 +23136,638 @@ myApp.controller('topCustomersReportController', ["$scope", "ngTableParams", "$r
 
 		angular.element('#_SalepersonModal').modal('hide');
 	}
+=======
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory List', 'url': '#', 'isActive': false }];
+
+    $scope.showLoader = true;
+    $scope.dontShowModal = false;
+    $scope.showLinkColumn = 1;
+    $scope.getPreDataForFilters = () => {
+        $scope.showLoader = true;
+        $scope.selectedData = {};
+        $scope.listData = {};
+        let inventoryFilterDataAPI = $scope.$root.reports + "module/inventoryFilterData";
+        let postData = {
+            token: $scope.$root.token
+        }
+        $http
+            .post(inventoryFilterDataAPI, postData)
+            .then(function(res) {
+                $scope.showLoader = false;
+                console.log(res);
+                if (res.data.ack) {
+                    angular.forEach(res.data.response, (o, i) => {
+                        $scope.listData[i] = o;
+                    })
+
+                }
+            });
+    };
+    $scope.getPreDataForFilters();
+    $scope.clearReport = () => {
+        $scope.dontShowModal = true;
+        $scope.filterObject = {
+            statusp: "active"
+        };
+        $scope.showLinkColumn = 1;
+        $scope.itemListData = [];
+    }
+    $scope.clearReport();
+    $scope.generateReport = function(reportType = "none") {
+        $scope.showLoader = true;
+        let inventoryListAPI = $scope.$root.reports + "module/inventoryList";
+        let postData = {
+            token: $scope.$root.token,
+            searchKeyword: $scope.filterObject,
+            showLinkColumn: $scope.showLinkColumn
+        }
+        $http
+            .post(inventoryListAPI, postData)
+            .then(function(res) {
+                $scope.showLoader = false;
+                console.log(res);
+                if (res.data.ack == 2) {
+
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+                    toaster.pop('success', 'Info', res.data.error);
+
+
+                } else if (res.data.ack && res.data.response.length != 0) {
+                    $scope.showCSVBtn = false;
+                    $scope.itemListData = res.data.response;
+                    let currentUrl = window.location.href;
+                    res.data.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $scope.$root.defaultLogo;
+                    res.data.company_name = $scope.$root.company_name;
+                    res.data.showLinkColumn = $scope.showLinkColumn;
+                    res.data.reportType = reportType;
+                    res.data.known_as = $scope.$root.known_as;
+
+                    if (reportType == "xlsx") {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx(res.data, 'H1g0-bNdXB').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, "inventoryList" + ".xlsx");
+                        })
+                    } else if (reportType == "pdf") {
+                        $scope.showLoader = true;
+                        jsreportService.downloadPdf(res.data, 'H1g0-bNdXB').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/pdf' });
+                            saveAs(file, "inventoryList" + ".pdf");
+                        })
+                    }
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.clearReport();
+                }
+            });
+    }
+
+}]);
+
+myApp.controller('topCustomersReportController', ["$scope", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "toaster", "$filter", "$stateParams", "$state", "$rootScope", "ModalService", "fileAuthentication", "jsreportService", "generatePdf", function topCustomersReportController($scope, ngParams, $resource, $timeout, ngDataService, $http, toaster, $filter, $stateParams, $state, $rootScope, ModalService, fileAuthentication, jsreportService, generatePdf) {
+
+    $scope.module = $stateParams.module;
+    $scope.report_type = $scope.module;
+
+    if ($scope.module == 'sales') {
+
+        $scope.topCustomersData = [];
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Top Customer Sales', 'url': '#', 'isActive': false }];
+
+        $scope.filterReport = {
+            limit: 5
+        };
+        $scope.dontShowModal = false;
+        $scope.getFinanceYearDates = () => {
+            let financeDatesAPI = $scope.$root.setup + "general/get-company-financial-setting";
+            let postData = {
+                token: $scope.$root.token,
+                isAllowed: true
+            }
+            $scope.showLoader = true;
+            $http
+                .post(financeDatesAPI, postData)
+                .then(function(res) {
+                    $scope.showLoader = false;
+                    console.log(res);
+                    if (res.data.ack) {
+                        $scope.filterReport.dateFrom = res.data.response.year_start_date;
+                        $scope.filterReport.dateTo = res.data.response.year_end_date;
+                    }
+                });
+        }
+        $scope.getFinanceYearDates();
+
+
+        $scope.generateReport = (reportType) => {
+            if (!$scope.filterReport.dateFrom) {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+                return;
+            }
+            if (!$scope.filterReport.dateTo) {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+                return;
+            }
+            let topCustomersAPI = $scope.$root.reports + "module/topCustomers";
+            let postData = {
+                token: $scope.$root.token,
+                dateFrom: $scope.filterReport.dateFrom,
+                dateTo: $scope.filterReport.dateTo,
+                salepersons: $scope.salepersons,
+                limit: $scope.filterReport.limit
+            }
+            $scope.topCustomersData = [];
+            $scope.totalSales = null;
+            $scope.showLoader = true;
+            $http
+                .post(topCustomersAPI, postData)
+                .then(function(res) {
+                    $scope.showLoader = false;
+                    if (res.data.ack) {
+                        $scope.topCustomersData = res.data.response;
+                        $scope.totalTopCustomerSales = res.data.totalTopCustomerSales;
+                        $scope.totalTopCustomerPercentage = res.data.totalTopCustomerPercentage;
+                        let currentUrl = window.location.href;
+                        res.data.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $scope.$root.defaultLogo;
+                        res.data.company_name = $scope.$root.company_name;
+                        res.data.filter = $scope.filterReport;
+
+                        if (reportType == "xlsx") {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx(res.data, 'HJjQQvaGH').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, "TopCustomers" + ".xlsx");
+                            })
+                        }
+                        if (reportType == "pdf") {
+                            $scope.showLoader = true;
+                            jsreportService.downloadPdf(res.data, 'HJjQQvaGH').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/pdf' });
+                                saveAs(file, "TopCustomers" + ".pdf");
+                            })
+                        }
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(232, ['Data']));
+                    }
+
+                });
+        }
+    } else if ($scope.module == 'salesByDepot') {
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Depot Sales Analysis', 'url': '#', 'isActive': false }];
+
+        $scope.filterReport = {};
+        $scope.columns = [];
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reportOrderBy = 2;
+        $scope.filterReport.reportDoctype = 'summary';
+
+        $scope.generateSalesByDepotReport = function(_reportType = 'pdf') {
+
+            $scope.filterReport.token = $rootScope.token;
+            // $scope.filterReport.salepersons = $scope.salepersons;
+            $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+            $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+            $scope.filterReport.customers = $scope.customers;
+            // $scope.filterReport.items = $scope.items;
+            // $scope.filterReport.reportName = $scope.reportType;
+            // $scope.filterReport.reportDoctype = $scope.filterReport.reportDoctype;
+
+            if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
+                var from, to, check;
+
+                from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+                to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+                if (from != null && to != null) {
+
+                    var from1, to1;
+                    from1 = new Date(from.replace(/\s/g, ''));
+                    to1 = new Date(to.replace(/\s/g, ''));
+
+                    var fDate, lDate;
+                    fDate = Date.parse(from1);
+                    lDate = Date.parse(to1);
+
+                    if (fDate > lDate) {
+                        toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                        return false;
+                    }
+                }
+            } else {
+                $scope.filterReport.dateFrom = '';
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+                return false;
+            }
+
+            if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+                return false;
+            }
+
+            $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+            // $scope.filterReport.reportOrderTypeID = ($scope.filterReport.reportOrderType) ? 1 : 0;
+
+            $scope.showLoader = true;
+
+            var customerDepotSalesAnalysisApi = $scope.$root.reports + "module/customer-depot-sales-analysis-report";
+            $http
+                .post(customerDepotSalesAnalysisApi, $scope.filterReport)
+                .then(function(res) {
+                    $scope.showLoader = false;
+
+                    $scope.reportsDataArr = [];
+                    $scope.columns = [];
+                    $scope.printPdfVals = {};
+
+                    if (res.data.ack == 1 && res.data.response) {
+                        $scope.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.totalPrice = res.data.response.totalPrice;
+                        $scope.printPdfVals.columns = [];
+
+                        if ($scope.module == 'salesByDepot') {
+                            $scope.printPdfVals.reportName = 'SalesByDepotReport';
+                        }
+
+                        $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                        $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                        $scope.printPdfVals.reportDoctype = $scope.filterReport.reportDoctype;
+
+                        $scope.printPdfVals.reportsDataArr = [];
+                        $scope.printPdfVals.company_name = $rootScope.company_name;
+                        $scope.printPdfVals._reportType = _reportType;
+
+                        let currentUrl = window.location.href;
+                        $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                        $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+                        $scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;
+                        $scope.printPdfVals.reportOrderTypeID = $scope.filterReport.reportOrderTypeID;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                            if ($scope.module == 'salesByDepot') {
+                                if ($scope.filterReport.reportDoctype == 'detail') {
+                                    jsreportService.downloadXlsx($scope.printPdfVals, "HJlC8JMk5H").success(function(data) {
+                                        let file = new Blob([data], { type: 'application/xlsx' });
+                                        saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                        $scope.showLoader = false;
+                                    });
+                                } else {
+                                    jsreportService.downloadXlsx($scope.printPdfVals, "BklBbir63B").success(function(data) {
+                                        let file = new Blob([data], { type: 'application/xlsx' });
+                                        saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                        $scope.showLoader = false;
+                                    });
+                                }
+                            }
+
+                        } else if (_reportType == 'pdf') {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+                            $scope.printPdfVals.report_type = $scope.report_type; //$scope.filterReport.reporttype;
+
+                            if ($scope.printPdfVals.report_type == 'salesByDepot') {
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+                            }
+                            /*else {
+
+                            	$scope.printPdfVals.reportsDataArr = res.data.response.records;
+                            } */
+
+                            if ($scope.module == 'salesByDepot') {
+
+                                if ($scope.filterReport.reportDoctype == 'summary')
+                                    $scope.printPdfVals.reportTitle = 'Customer Depot Sales Analysis - Summary';
+                                else
+                                    $scope.printPdfVals.reportTitle = 'Customer Depot Sales Analysis - Detailed';
+
+                                var invoicePdfModal = ModalService.showModal({
+                                    templateUrl: 'app/views/reports/salesByDepotModal.html',
+                                    controller: 'pdfPrintModalController',
+                                    inputs: {
+                                        printPdfVals: $scope.printPdfVals
+                                    }
+                                });
+                            }
+
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+
+                        } else {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        }
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                        $scope.printPdfVals = {};
+                        $scope.printPdfVals.columns = [];
+                        $scope.reportsDataArr = [];
+                    }
+                });
+        }
+    }
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearReport = () => {
+        $scope.dontShowModal = true;
+
+        if ($scope.module != 'salesByDepot')
+            $scope.topCustomersData.length = 0;
+
+        $scope.totalSales = null;
+        $scope.filterReport = {};
+        $scope.filterReport.dateFrom = "";
+        $scope.filterReport.dateTo = "";
+        $scope.filterReport.limit = 5;
+        $scope.columns = [];
+        $scope.salespersonsNames = "";
+        $scope.salepersons = [];
+
+
+        if ($scope.module == 'salesByDepot') {
+            $scope.filterReport.dateTo = $scope.$root.get_current_date();
+            $scope.filterReport.reportDoctype = 'summary';
+        }
+
+        $scope.filterReport.reportOrderBy = 2;
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+    }
+
+    $scope.salepersons = [];
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSaleperson = function() {
+        $scope.searchKeywordSp = {};
+        $scope.selectSaleperson();
+    }
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        // var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:4011");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 myApp.controller('listingReportController', ["$scope", "$sce", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "fileAuthentication", "jsreportService", "generatePdf", function listingReportController($scope, $sce, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, fileAuthentication, jsreportService, generatePdf) {
 
+<<<<<<< HEAD
 	$scope.module = $stateParams.module;
 	$scope.searchKeyword = {};
 	$scope.dontShowModal = false;
@@ -12424,10 +24164,406 @@ myApp.controller('listingReportController', ["$scope", "$sce", "$filter", "ngTab
 					toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 			});
 	}
+=======
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    if ($scope.module == 'crmListing') {
+
+        $scope.reportTitle = 'CRM Listing';
+        $scope.reportName = 'crmListing';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'CRM Listing', 'url': '#', 'isActive': false }];
+
+        // if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_summary)) {
+        // 	toaster.pop('error', 'Error', "You are not authorized for this report");
+        // 	$state.go('app.allReports');
+        // }
+    } else if ($scope.module == 'customerLabelsList') {
+        $scope.reportModalTitle = '';
+        $scope.reportTitle = 'Customer Listing';
+        $scope.reportName = 'CustomerListing';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Listing', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customerLabelsList)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+    }
+
+    $scope.filterReport = {};
+    $scope.filterReport.upToDate = $scope.$root.get_current_date();
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.filterReport.upToDate = $scope.$root.get_current_date();
+        $scope.filterReport.token = $rootScope.token;
+
+        $scope.reportsDataArr = [];
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        $scope.crm = [];
+        $scope.searchKeywordCRM = {};
+        $scope.selectedRecFromModalsCRM = [];
+    }
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    if ($scope.selCust > 0) {
+
+        $scope.filterCustomer = {};
+        $scope.tempCustomerArr = [];
+        $scope.customerListing = {};
+        $scope.customerListing.token = $rootScope.token;
+        $scope.customerListing.selCust = $scope.selCust;
+
+        $scope.showLoader = true;
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+        $http
+            .post(customerListingApi, $scope.customerListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempCustomerArr = [];
+                $scope.PendingSelectedCustomers = [];
+
+                $scope.CustomerArr = [];
+                $scope.customers = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.CustomerArr = res.data.response;
+
+                    angular.forEach($scope.CustomerArr, function(recData) {
+
+                        if (recData.id == $scope.selCust) {
+
+                            recData.moduleNo = recData.customer_code;
+                            recData.title = recData.name;
+                            recData.custID = recData.id;
+                            $scope.customers.push(recData);
+                        }
+                    });
+                }
+            });
+
+    }
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.crm = [];
+    $scope.searchKeywordCRM = {};
+    $scope.selectedRecFromModalsCRM = [];
+
+    $scope.clearCrm = function() {
+        angular.element('#_crmModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCrm = function() {
+        $scope.searchKeywordCRM = {};
+        $scope.selectCrm();
+    }
+
+    $scope.selectCrm = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCRM;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCRM = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/crm-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCrmArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCrmArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_crmModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCrm = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCRM[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCRM, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CrmArr = [];
+        $scope.crm = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.crm_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.crm.push(recData);
+        });
+
+        angular.element('#_crmModal').modal('hide');
+    }
+    $scope.checkAddress = function(checkLocation) {
+        if (checkLocation == 1) {
+            $scope.filterReport.show_address = 1;
+        }
+    }
+
+
+
+    $scope.filterReport = {};
+    $scope.filterReport.upToDate = $scope.$root.get_current_date();
+
+    $scope.agedReportListing = {};
+    $scope.agedReportListing.token = $rootScope.token;
+    $scope.agedReportListing.upToDate = $scope.filterReport.upToDate;
+    $scope.agedReportListing.module = $stateParams.module;
+
+    $scope.generateListingReport = function(_reportType = 'pdf') {
+
+        if (!$scope.filterReport.upToDate) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return;
+        }
+
+        $scope.printPdfVals = {};
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.crm = $scope.crm;
+        $scope.filterReport.upToDate = $scope.filterReport.upToDate;
+
+        $scope.showLoader = true;
+        $scope.columnNames = [];
+        if ($scope.module == 'customerLabelsList') {
+            var listingReportApi = $scope.$root.reports + "module/get-listing-report";
+            $scope.columnNames = ['Customer No.', 'Customer Name'];
+        } else if ($scope.module == 'crmListing') {
+            var listingReportApi = $scope.$root.reports + "module/get-listing-report";
+            $scope.columnNames = ['CRM No.', 'CRM Name'];
+        }
+
+        $http
+            .post(listingReportApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.printPdfVals.reportTitle = $scope.reportTitle;
+                    $scope.printPdfVals.reportName = $scope.reportName;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                    $scope.printPdfVals.active_customer = $scope.filterReport.active_customer;
+                    $scope.printPdfVals.finance_charges = $scope.filterReport.finance_charges;
+                    $scope.printPdfVals.insurance_charges = $scope.filterReport.insurance_charges;
+                    $scope.printPdfVals.show_address = $scope.filterReport.show_address;
+                    $scope.printPdfVals.other_location = $scope.filterReport.other_location;
+                    $scope.printPdfVals.columnNames = $scope.columnNames;
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'B1cTatKzU').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/listingReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 myApp.controller('StockReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function StockReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -13671,6 +25807,1221 @@ myApp.controller('StockReportController', ["$scope", "$filter", "ngTableParams",
 		});
 
 		/* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    if ($scope.module == 'location') {
+
+        $scope.reportTitle = 'Stock Availability Report - Summary (By Posting Date)'; //'Stock Availability by Warehouse - Summary';
+        $scope.reportType = 'location';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Stock Availability Report - Summary (By Posting Date)', 'url': '#', 'isActive': false }];
+        //Stock Availability by Warehouse - Summary
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_summary)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'stockSummary') {
+
+        $scope.reportTitle = 'Stock Summary Report'; // by Warehouse - Detailed (By Posting Date)
+        $scope.reportType = 'stockdetailed';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Stock Summary Report', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'stockdetailed') {
+
+        $scope.reportTitle = 'Stock Availability Report'; // by Warehouse - Detailed (By Posting Date)
+        $scope.reportType = 'stockdetailed';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Stock Availability Report', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+    /* else if ($scope.module == 'stockdetailedPerpetual') {
+
+    	$scope.reportTitle = 'Stock Availability Report';// by Warehouse - Detailed (By Posting Date)
+    	$scope.reportType = 'stockdetailedPerpetual';
+    	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Stock Availability Report', 'url': '#', 'isActive': false }];
+
+    	if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_detail)) {
+    		toaster.pop('error', 'Error', "You are not authorized for this report");
+    		$state.go('app.allReports');
+    	}
+    } */
+    /* else if ($scope.module == 'stockAvailabilityByDispatchDate') {
+
+    	$scope.reportTitle = 'Stock Availability Report (By Dispatch/Delivery Date)';
+    	$scope.reportType = 'stockAvailabilityByDispatchDate';
+    	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Stock Availability Report (By Dispatch/Delivery Date)', 'url': '#', 'isActive': false }];
+
+    	if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.stock_availability_ByDispatchDate)) {
+    		toaster.pop('error', 'Error', "You are not authorized for this report");
+    		$state.go('app.allReports');
+    	} 
+    } */
+    else if ($scope.module == 'Inventory') {
+
+        $scope.reportTitle = 'Inventory List';
+        $scope.reportType = 'Inventory';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory List', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.inventory_list)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'CostPrice') {
+
+        $scope.reportTitle = 'Inventory Cost & Sales Price List';
+        $scope.reportType = 'InventoryCostPrice';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory Cost & Sales Price List', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.inventory_cost_and_sales_price)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'SaleOrderDetail') {
+
+        $scope.reportTitle = 'Sales Order(s) with Unallocated Stock';
+        $scope.reportType = 'InventorySaleOrderDetail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Sales Order(s) with Unallocated Stock', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.sales_order_with_unallocated_stock)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'PurchaseOrderDetail') {
+
+        $scope.reportTitle = 'Inventory Purchase Order Detail';
+        $scope.reportType = 'InventoryPurchaseOrderDetail';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory Purchase Order Detail', 'url': '#', 'isActive': false }];
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.purchase_order_detail)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'RawMaterialInventory') {
+
+        $scope.reportTitle = 'Raw Material Inventory';
+        $scope.reportType = 'RawMaterialInventory';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Raw Material Inventory', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.rawMaterialInventory)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    }
+
+    $scope.searchKeyword = {};
+    $scope.searchKeywordHistory = {};
+
+    $scope.filterReport = {};
+    $scope.filterReport.reportResultType = 1;
+    $scope.filterReport.reportResultTypePurchase = 1;
+    $scope.filterReport.reportResultTypeSales = 1;
+
+    $scope.stockReportListing = {};
+    $scope.stockReportListing.token = $rootScope.token;
+
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.reportDesctype = 'summary';
+
+    $scope.reportsDataArr = [];
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        if (($scope.module == 'CostPrice2' || $scope.module == 'RawMaterialInventory') && ($scope.filterReport.dateFrom == undefined || $scope.filterReport.dateFrom == 0)) {
+
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        } // || $scope.module == 'location'
+
+        if (($scope.module == 'location') && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0)) {
+
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return;
+        }
+
+        if (($scope.module == 'RawMaterialInventory') && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0)) {
+
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return;
+        }
+
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.rawMaterialItems = $scope.rawMaterialItems;
+        $scope.filterReport.warehouse = $scope.warehouse;
+        $scope.filterReport.storageLoc = $scope.storageLoc;
+        $scope.filterReport.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        // $scope.filterReport.reportResultType = ($scope.filterReport.reportResultType != undefined && $scope.filterReport.reportResultType != '') ? $scope.filterReport.finance.id : 1;
+
+        $scope.showCSVBtn = false;
+        $scope.CSVfilePath = '';
+
+        $scope.printPdfVals = {};
+        $scope.currentDate = $rootScope.get_current_date();
+        $rootScope.printinvoiceFlag = false;
+
+        var vatReportListingApi = $scope.$root.reports + "module/stock-report";
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    $scope.reportsDataArr = res.data.response;
+
+                    if ($scope.module == 'CostPrice') {
+                        $scope.printPdfVals.reportName = 'inventoryCostPriceReport';
+                        $scope.printPdfVals.reportType = 'inventoryCostPrice';
+                    }
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+
+                    $scope.printPdfVals.byvalue = $scope.filterReport.byvalue;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if ($scope.module == 'CostPrice') {
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'Bkxt_YLnGS').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            });
+                        } else {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/inventoryCostPriceModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                            invoicePdfModal.then(function(res) {
+                                res.element.modal();
+                            });
+                        }
+
+                    }
+
+                    if ($scope.module == 'RawMaterialInventory') {
+                        $scope.printPdfVals.reportTitle = 'Raw Material Inventory';
+
+                        $scope.printPdfVals.reportName = 'rawMaterialInventory'; //Report
+                        $scope.printPdfVals.reportType = 'rawMaterialInventory';
+
+                        if (_reportType == 'xlsx') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'B1g7BQJbg8').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            });
+                        } else {
+                            /* var invoicePdfModal = ModalService.showModal({
+                            	templateUrl: 'app/views/reports/rawMaterialInventoryModal.html',
+                            	controller: 'pdfPrintModalController',
+                            	inputs: {
+                            		printPdfVals: $scope.printPdfVals
+                            	}
+                            });
+                            invoicePdfModal.then(function (res) {
+                            	res.element.modal();
+                            }); */
+                        }
+
+                    }
+
+                } else if (res.data.ack == 2) {
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+                    toaster.pop('success', 'Info', res.data.error);
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.showCSVBtn = false;
+
+        $scope.filterReport.reportResultType = 1;
+        $scope.filterReport.reportResultTypePurchase = 1;
+        $scope.filterReport.reportResultTypeSales = 1;
+
+        $scope.items = [];
+        $scope.SelItemsTooltip = '';
+        $scope.columns = [];
+
+        $scope.rawMaterialItems = [];
+
+        $scope.warehouse = [];
+        $scope.SelwarehouseTooltip = '';
+        $scope.selectedRecFromModalsWH = [];
+
+        $scope.storageLoc = [];
+        $scope.SelstorageLocTooltip = '';
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reportDesctype = 'summary';
+    }
+
+    $scope.openStockActivity = function(prdID, type) {
+
+        $scope.filterReport.activityType = type;
+        $scope.filterReport.prdID = prdID;
+        $scope.showLoader = true;
+
+        var stockActivityApi = $scope.$root.reports + "module/stock-activity-for-report";
+        $http
+            .post(stockActivityApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.invRecordsRes = [];
+                $scope.invRecordsColumns = [];
+
+                if (res.data.ack == true) {
+                    $scope.invRecordsRes = res.data.response;
+                    $scope.filterStockActivity = {};
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.invRecordsColumns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+                    angular.element('#stockActivityforReport').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.showPdfModal = function(_reportType = 'pdf') {
+
+        if (($scope.module == 'CostPrice2' || $scope.module == 'RawMaterialInventory') && ($scope.filterReport.dateFrom == undefined || $scope.filterReport.dateFrom == 0)) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return;
+        } // || $scope.module == 'location'
+
+        if (($scope.module == 'location') && ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0)) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return;
+        }
+
+        $scope.printPdfVals = {};
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.rawMaterialItems = $scope.rawMaterialItems;
+        $scope.filterReport.warehouse = $scope.warehouse;
+        $scope.currentDate = $rootScope.get_current_date();
+        $scope.filterReport._reportType = _reportType;
+
+        $scope.filterReport.reportDesctypeID = ($scope.filterReport.reportDesctype == 'summary') ? 1 : 0;
+
+        $scope.showCSVBtn = false;
+        $scope.CSVfilePath = '';
+        $scope.filterReport.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        $rootScope.printinvoiceFlag = false;
+
+        var vatReportListingApi = $scope.$root.reports + "module/stock-report";
+
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true || ($scope.module == 'stockdetailed' && res.data.ack == 2)) {
+
+                    if ($scope.module == 'stockdetailed' && res.data.ack == 2) {
+                        $scope.showCSVBtn = true;
+                        $scope.CSVfilePath = res.data.filename;
+
+                        window.open($scope.CSVfilePath, '_blank');
+                        return false;
+                    }
+
+                    $scope.reportsDataArr = res.data.response;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    if ($scope.module == 'location' || ($scope.filterReport.reportDesctypeID == 1 && $scope.module == 'stockdetailed')) {
+                        $scope.printPdfVals.reportName = 'stockReport';
+                        $scope.printPdfVals.module = $scope.module;
+                        $scope.printPdfVals._reportType = _reportType;
+                        $scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                        $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                        $scope.printPdfVals.reportDesctypeID = $scope.filterReport.reportDesctypeID;
+                    } else if ($scope.module == 'stockdetailed') {
+                        $scope.printPdfVals.reportName = 'stockReportDetail';
+                        $scope.printPdfVals.module = $scope.module;
+                        $scope.printPdfVals._reportType = _reportType;
+                        $scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                        $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                    } else if ($scope.module == 'RawMaterialInventory') {
+                        $scope.printPdfVals.reportName = 'rawMaterialInventoryReport';
+                        $scope.printPdfVals.module = $scope.module;
+                        $scope.printPdfVals._reportType = _reportType;
+                        $scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                        $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                        $scope.printPdfVals.reportTitle = 'Raw Material Inventory';
+                    }
+                    /* else if ($scope.module == 'stockAvailabilityByDispatchDate') {
+                    	$scope.printPdfVals.reportName = 'stockReportByDispatchDate';
+                    	$scope.printPdfVals.module = $scope.module;
+                    	$scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                    	$scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                    } */
+                    else if ($scope.module == 'Inventory') {
+                        $scope.printPdfVals.reportName = 'inventoryReport';
+                        $scope.printPdfVals.reportType = 'inventory';
+                    } else if ($scope.module == 'CostPrice') {
+                        $scope.printPdfVals.reportName = 'inventoryCostPriceReport';
+                        $scope.printPdfVals.reportType = 'inventoryCostPrice';
+                    } else if ($scope.module == 'SaleOrderDetail') {
+                        $scope.printPdfVals.reportName = 'inventorySaleOrderDetailReport';
+                        $scope.printPdfVals.reportType = 'inventorySaleOrderDetail';
+                    } else if ($scope.module == 'PurchaseOrderDetail') {
+                        $scope.printPdfVals.reportName = 'inventoryPurchaseOrderDetailReport';
+                        $scope.printPdfVals.reportType = 'inventoryPurchaseOrderDetail';
+                    }
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                    $scope.printPdfVals.byvalue = $scope.filterReport.byvalue;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        if ($scope.module == 'stockdetailed') {
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'ByTXBrMlS').success(function(data) {
+                                    $scope.showLoader = false;
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                })
+                                /* }
+                                else if ($scope.module == 'stockAvailabilityByDispatchDate') {
+                                	
+                                	jsreportService.downloadXlsx($scope.printPdfVals, 'ByTXBrMlS').success(function (data) {
+                                		$scope.showLoader = false;
+                                		let file = new Blob([data], { type: 'application/xlsx' });
+                                		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                	}); */
+
+                        } else if ($scope.module == 'RawMaterialInventory') {
+                            $scope.showLoader = true;
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'B1g7BQJbg8').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            });
+                        } else {
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'H1xU3oDwdN').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+                        }
+                        // $scope.xlsxReportStockABW($scope.printPdfVals, 'H1xU3oDwdN');
+
+                    } else {
+
+                        // console.log($scope.module);
+
+                        if ($scope.filterReport.reportDesctypeID == 1 && $scope.module == 'stockdetailed') {
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockReportsModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                        } else if ($scope.module == 'stockdetailed') {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockDetailReportsModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        } else if ($scope.module == 'RawMaterialInventory') {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/rawMaterialInventoryModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+                        /* else if ($scope.module == 'stockAvailabilityByDispatchDate') {
+                        	
+                        	var invoicePdfModal = ModalService.showModal({
+                        		templateUrl: 'app/views/reports/stockDetailReportsModal.html',
+                        		controller: 'pdfPrintModalController',
+                        		inputs: {
+                        			printPdfVals: $scope.printPdfVals
+                        		}
+                        	});
+
+                        } */
+                        else {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockReportsModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else if ($scope.module != 'stockdetailed' && res.data.ack == 2) {
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+
+                    if ($scope.module == 'RawMaterialInventory') {
+                        window.open($scope.CSVfilePath, '_blank');
+                        return false;
+                    } else
+                        toaster.pop('success', 'Info', res.data.error);
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+
+    $scope.showSummaryPdfModal = function(_reportType = 'pdf') {
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date']));
+            return;
+        }
+
+        $scope.printPdfVals = {};
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.rawMaterialItems = $scope.rawMaterialItems;
+        $scope.filterReport.warehouse = $scope.warehouse;
+        $scope.currentDate = $rootScope.get_current_date();
+        $scope.filterReport._reportType = _reportType;
+
+        $scope.filterReport.reportResultType = 2;
+
+        // $scope.filterReport.reportDesctypeID = ($scope.filterReport.reportDesctype == 'summary') ? 1 : 0;
+        $scope.filterReport.reportDesctypeID = 1;
+
+        $scope.showCSVBtn = false;
+        $scope.CSVfilePath = '';
+        $scope.filterReport.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        $rootScope.printinvoiceFlag = false;
+
+        var vatReportListingApi = $scope.$root.reports + "module/stock-report";
+
+        $http
+            .post(vatReportListingApi, $scope.filterReport)
+            .then(function(res) {
+
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true || ($scope.module == 'stockdetailed' && res.data.ack == 2)) {
+
+                    if ($scope.module == 'stockdetailed' && res.data.ack == 2) {
+                        $scope.showCSVBtn = true;
+                        $scope.CSVfilePath = res.data.filename;
+
+                        window.open($scope.CSVfilePath, '_blank');
+                        return false;
+                    }
+
+                    $scope.reportsDataArr = res.data.response;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    if ($scope.module == 'stockSummary' || ($scope.filterReport.reportDesctypeID == 1 && $scope.module == 'stockdetailed')) {
+                        $scope.printPdfVals.reportName = 'stockReport';
+                        $scope.printPdfVals.module = $scope.module;
+                        $scope.printPdfVals._reportType = _reportType;
+                        $scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                        $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                        $scope.printPdfVals.reportDesctypeID = $scope.filterReport.reportDesctypeID;
+                    } else if ($scope.module == 'stockdetailed') {
+                        $scope.printPdfVals.reportName = 'stockReportDetail';
+                        $scope.printPdfVals.module = $scope.module;
+                        $scope.printPdfVals._reportType = _reportType;
+                        $scope.printPdfVals.reportType = $scope.filterReport.byvalue;
+                        $scope.printPdfVals.reportResultType = $scope.filterReport.reportResultType;
+                    }
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+
+                    $scope.printPdfVals.byvalue = $scope.filterReport.byvalue;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        if ($scope.module == 'stockdetailed') {
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'ByTXBrMlS').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+
+                        } else {
+                            jsreportService.downloadXlsx($scope.printPdfVals, 'H1xU3oDwdN').success(function(data) {
+                                $scope.showLoader = false;
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            })
+                        }
+                        // $scope.xlsxReportStockABW($scope.printPdfVals, 'H1xU3oDwdN');
+
+                    } else {
+
+                        // console.log($scope.module);
+
+                        if ($scope.filterReport.reportDesctypeID == 1) { // && $scope.module == 'stockdetailed'
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockSummaryReportModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+
+                        } else if ($scope.module == 'stockdetailed') {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockDetailReportsModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        } else {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/stockSummaryReportModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else if ($scope.module != 'stockdetailed' && res.data.ack == 2) {
+                    $scope.showCSVBtn = true;
+                    $scope.CSVfilePath = res.data.filename;
+
+                    if ($scope.module == 'RawMaterialInventory') {
+                        window.open($scope.CSVfilePath, '_blank');
+                        return false;
+                    } else
+                        toaster.pop('success', 'Info', res.data.error);
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    // Warehouse Module 
+
+    $scope.warehouse = [];
+    $scope.SelwarehouseTooltip = '';
+
+    $scope.searchKeywordWH = {};
+    $scope.selectedRecFromModalsWH = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectWarehouse = function() {
+        $scope.searchKeywordWH = {};
+        $scope.selectWarehouse();
+    }
+
+    $scope.selectWarehouse = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'WHDetail';
+
+        if (item_paging == undefined)
+            $scope.item_paging.spage = 1
+        else {
+            $scope.item_paging.spage = item_paging;
+        }
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordWH;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordWH = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var warehouseListingApi = $scope.$root.reports + "module/warehouse-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(warehouseListingApi, $scope.postData)
+            .then(function(res) {
+
+
+                $scope.showLoader = false;
+                $scope.warehouseTableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+
+                $scope.tempWarehouseArr = [];
+                $scope.tempWarehouseArr2 = [];
+
+                if (res.data.ack == true) {
+                    /* $scope.tempWarehouseArr = res.data.response;
+                    $scope.tempWarehouseArr2 = res.data;
+
+                    angular.forEach($scope.tempWarehouseArr2.response, function (obj1) {
+                    	obj1.checkbox = false;
+
+                    	console.log($scope.warehouse);
+
+                    	angular.forEach($scope.warehouse, function (obj) {
+                    		if (obj.id == obj1.id)
+                    			obj1.checkbox = true;
+                    	});
+                    }); */
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempWarehouseArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // if ($scope.tempWarehouseArr2[0].id)
+                    angular.element('#_WarehouseModal').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedWarehouse = [];
+
+    $scope.clearWarehouse = function() {
+
+        $scope.PendingSelectedWarehouse = [];
+        angular.element('#_WarehouseModal').modal('hide');
+    }
+
+    $scope.addWarehouse = function() {
+
+        var selWHList = [];
+
+        angular.forEach($scope.selectedRecFromModalsWH, function(obj) {
+            selWHList.push(obj.record);
+        });
+
+        $scope.warehouseArr = [];
+        $scope.warehouse = [];
+
+        angular.forEach(selWHList, function(recData) {
+            recData.moduleNo = recData.wrh_code;
+            recData.name = recData.name;
+            $scope.warehouse.push(recData);
+        });
+
+        angular.element('#_WarehouseModal').modal('hide');
+    }
+
+    // Storage Location Module 
+
+    $scope.storageLoc = [];
+    $scope.SelstorageLocTooltip = '';
+
+    $scope.selectStorageLoc = function() {
+
+        $scope.filterStorageLoc = {};
+        $scope.tempStorageLocArr = [];
+        $scope.tempStorageLocArr2 = [];
+        $scope.storageLocListing = {};
+        $scope.storageLocListing.token = $rootScope.token;
+
+        $scope.showLoader = true;
+
+        var storageLocListingApi = $scope.$root.reports + "module/warehouse-data-for-report";
+        $http
+            .post(storageLocListingApi, $scope.storageLocListing)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.tempStorageLocArr = [];
+                $scope.tempStorageLocArr2 = [];
+
+                if (res.data.ack == true) {
+                    $scope.tempStorageLocArr = res.data.response;
+                    $scope.tempStorageLocArr2 = res.data;
+
+                    angular.forEach($scope.tempStorageLocArr2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.storageLoc, function(obj) {
+                            if (obj.id == obj1.id)
+                                obj1.checkbox = true;
+                        });
+                    });
+
+                    if ($scope.tempStorageLocArr[0].id)
+                        angular.element('#_StorageLocModal').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedStorageLoc = [];
+
+    $scope.clearStorageLoc = function() {
+
+        $scope.PendingSelectedStorageLocListing = [];
+        angular.element('#_StorageLocModal').modal('hide');
+    }
+
+    $scope.addStorageLoc = function() {
+
+        $scope.storageLocArr = [];
+        $scope.storageLoc = [];
+
+        angular.copy($scope.tempStorageLocArr2.response, $scope.storageLocArr);
+
+        angular.forEach($scope.storageLocArr, function(recData) {
+
+            if (recData.checkbox == true) {
+                recData.name = recData.name;
+                $scope.storageLoc.push(recData);
+            }
+        });
+
+        angular.element('#_StorageLocModal').modal('hide');
+    }
+
+    // Item Module 
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
+        // var itemListingApi = $scope.$root.stock + "products-listing/item-popup";
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    // $scope.record_data = res.data.response;
+                    // $scope.tempProdArr = res.data.response;
+                    // $scope.tempProdArr2 = res.data;
+
+                    // angular.forEach(res.data.response, function (value, key) {
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    /* angular.forEach(res.data.response[0], function (val, index) {
+                    	if (index != 'chk' && index != 'id') {
+                    		$scope.columns.push({
+                    			'title': toTitleCase(index),
+                    			'field': index,
+                    			'visible': true
+                    		});
+                    	}
+                    }); */
+
+                    // if ($scope.tempProdArr[0].id)
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.selectBrand = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'Brand';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBr;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBr = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-brands";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableDataBrands = res.data.response;;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BrandModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.selectCategories = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'Category';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBr;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBr = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-categories";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableDataCats = res.data.response;;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BrandModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearPendingPurchaseItems = function() {
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.addProduct = function() {
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        /* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 			if (chk_item == false) {
                 return;
@@ -13692,6 +27043,7 @@ myApp.controller('StockReportController', ["$scope", "$filter", "ngTableParams",
 			}
 		}); */
 
+<<<<<<< HEAD
 		angular.element('#productModal').modal('hide');
 	}
 
@@ -13804,11 +27156,125 @@ myApp.controller('StockReportController', ["$scope", "$filter", "ngTableParams",
 
 		angular.element('#productModal').modal('hide');
 	}
+=======
+        angular.element('#productModal').modal('hide');
+    }
+
+    // Raw Material Item Module 
+    $scope.rawMaterialItems = [];
+
+    $scope.searchKeywordRawMaterialItem = {};
+    $scope.selectedRecFromModalsRawMaterialItem = [];
+
+    $scope.clearFiltersAndSelectRawMaterialItems = function() {
+        $scope.searchKeywordRawMaterialItem = {};
+        $scope.selectRawMaterialItem();
+    }
+
+    $scope.selectRawMaterialItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        $scope.itemModalCond = 'rawMaterialItems'
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordRawMaterialItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordRawMaterialItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'rawMaterialItemsDetail';
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.addRawMaterialItem = function() {
+
+        $scope.rawMaterialItems = [];
+        $scope.items_array = [];
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+        angular.forEach($scope.selectedRecFromModalsRawMaterialItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.rawMaterialItems.push(recData);
+        });
+
+        angular.element('#productModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 }]);
 
 myApp.controller('EmpReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function EmpReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -14464,10 +27930,659 @@ myApp.controller('EmpReportController', ["$scope", "$filter", "ngTableParams", "
 					toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 			});
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    if ($scope.module == 'Employee') {
+
+        $scope.reportTitle = 'Employee List';
+        $scope.reportType = 'employee';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Employee List', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.employee_list)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'AbsencesList') {
+
+        $scope.reportTitle = 'Employee Absence Report';
+        $scope.reportType = 'employeeAbsences';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Employee Absence Report', 'url': '#', 'isActive': false }];
+
+        // if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.employee_absence_list)) {
+        // 	toaster.pop('error', 'Error', "You are not authorized for this report");
+        // 	$state.go('app.allReports');
+        // }
+    } else if ($scope.module == 'ExpensesList') {
+
+        $scope.reportTitle = 'Employee Expenses List';
+        $scope.reportType = 'employeeExpenses';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Employee Expenses List', 'url': '#', 'isActive': false }];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.employee_expense_list)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+    } else if ($scope.module == 'EmployeeBenefits') {
+        $scope.reportTitle = 'Employee Benefits';
+        $scope.reportType = 'EmployeeBenefits';
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Employee Benefits', 'url': '#', 'isActive': false }];
+
+        /* if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.employee_benefits)) {
+        	toaster.pop('error', 'Error', "You are not authorized for this report");
+        	$state.go('app.allReports');
+        } */
+    }
+
+    $scope.searchKeyword = {};
+    $scope.searchKeywordHistory = {};
+
+    $scope.filterReport = {};
+
+    $scope.employeeReportListing = {};
+    $scope.employeeReportListing.token = $rootScope.token;
+
+    $scope.holidayType_arr = [
+        { 'id': '1', 'title': 'Annual Leave(s)' },
+        { 'id': '2', 'title': 'Sick Leave(s)' },
+        { 'id': '3', 'title': 'Other Leave(s)' }
+    ];
+
+    $scope.benefitType_arr = [
+        { 'id': '1', 'name': 'Company Car' },
+        { 'id': '2', 'name': 'Fuel Card' },
+        { 'id': '3', 'name': 'Company Laptop' },
+        { 'id': '4', 'name': 'Company Tablet / Ipad' },
+        { 'id': '5', 'name': 'Company Mobile' },
+        { 'id': '6', 'name': 'Other Benefits' }
+    ];
+    $scope.filterReport.reporttype = 'Summary';
+    $scope.filterReport.filter_by = 1;
+
+    $scope.change_emp_dpt = function(type) {
+        $scope.filterReport.filter_by = type;
+    }
+
+    // $scope.showLoader = true;
+    // $scope.filterReport.token = $rootScope.token;
+    // $scope.filterReport.module = $scope.module;
+    // $scope.filterReport.employeesArr = $scope.employeesArr;
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    /* var employeeReportListingApi = $scope.$root.reports + "module/employee-report";
+    $http
+    	.post(employeeReportListingApi, $scope.filterReport)
+    	.then(function (res) {
+    		$scope.showLoader = false;
+    		$scope.reportsDataArr = [];
+    		$scope.columns = [];
+
+    		if (res.data.ack == true) {
+    			$scope.reportsDataArr = res.data.response;
+
+    			angular.forEach(res.data.response[0], function (val, index) {
+    				$scope.columns.push({
+    					'title': toTitleCase(index),
+    					'field': index,
+    					'visible': true
+    				});
+    			});
+    		}
+    		else
+    			toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+    	}); */
+
+    $scope.reportsDataArr = [];
+
+    $scope.generateReport = function() {
+
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.employeesArr = $scope.employeesArr;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        var employeeReportListingApi = $scope.$root.reports + "module/employee-report";
+        $http
+            .post(employeeReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.reportsDataArr = res.data.response;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.generateEmpAbsenceReport = function(_reportType = 'pdf') {
+        $scope.printPdfVals = {};
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.employeesArr = $scope.employeesArr;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+        var employeeReportListingApi = $scope.$root.reports + "module/employee-absence-report";
+
+        $http
+            .post(employeeReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                // $scope.reportsDataArr = [];
+                // $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.printPdfVals.reportTitle = 'Employee Absence Report - ' + $scope.filterReport.reporttype;
+                    $scope.printPdfVals.reportName = 'AbsencesList';
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.reporttype = $scope.filterReport.reporttype;
+                    $scope.printPdfVals.filter_by = $scope.filterReport.filter_by;
+                    console.log($scope.printPdfVals.reportsDataArr);
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'Hyap5l0WB').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/employeeAbsenceList.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                    // $scope.reportsDataArr = res.data.response;
+
+                    // angular.forEach(res.data.response[0], function (val, index) {
+                    // 	$scope.columns.push({
+                    // 		'title': toTitleCase(index),
+                    // 		'field': index,
+                    // 		'visible': true
+                    // 	});
+                    // });
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.generateEmpBenefitReport = function(_reportType = 'pdf') {
+        $scope.printPdfVals = {};
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.employeesArr = $scope.employeesArr;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.benefit_type = ($scope.filterReport.benefit_type) ? $scope.filterReport.benefit_type : 1;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+        var employeeReportListingApi = $scope.$root.reports + "module/employee-benefits-report";
+
+        $http
+            .post(employeeReportListingApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                // $scope.reportsDataArr = [];
+                // $scope.columns = [];
+
+                if (res.data.ack == true) {
+                    $scope.printPdfVals.reportTitle = 'Employee Benefits';
+                    $scope.printPdfVals.reportName = 'EmployeeBenefits';
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.reporttype = $scope.filterReport.reporttype;
+                    $scope.printPdfVals.filter_by = $scope.filterReport.filter_by;
+                    $scope.printPdfVals._reportType = _reportType;
+                    console.log($scope.printPdfVals.reportsDataArr);
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, 'BkxOGVczNU').success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/employeeBenefit.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                    // $scope.reportsDataArr = res.data.response;
+
+                    // angular.forEach(res.data.response[0], function (val, index) {
+                    // 	$scope.columns.push({
+                    // 		'title': toTitleCase(index),
+                    // 		'field': index,
+                    // 		'visible': true
+                    // 	});
+                    // });
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.employeesArr = [];
+        $scope.SelEmployeesTooltip = '';
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.filterReport.filter_by = 1;
+        $scope.filterReport.reporttype = 'Summary';
+    }
+
+    $scope.employeesArr = [];
+
+    $scope.PendingSelectedEmployeesArr = [];
+
+    $scope.searchKeywordEmp = {};
+    $scope.selectedRecFromModalsEmp = [];
+
+    $scope.moduleType = '';
+
+    $scope.selectEmployees = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'EmpDetail';
+
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordEmp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordEmp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.showLoader = true;
+        $scope.postData.cond = 'Detail';
+        $scope.empListingModalTitle = 'Employee';
+
+        // var empListingApi = $scope.$root.reports + "module/employee-list-without-admin";
+        var empListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+
+        $http
+            .post(empListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempEmployeesArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempEmployeesArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#empListingModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearPendingEmp = function() {
+        angular.element('#empListingModal').modal('hide');
+    }
+
+    $scope.addEmp = function() {
+
+        // var selEmpList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsEmp[o.id];
+        // });
+
+        var selEmpList = [];
+
+        angular.forEach($scope.selectedRecFromModalsEmp, function(obj) {
+            selEmpList.push(obj.record);
+        });
+
+        $scope.employeesArr = [];
+
+        angular.forEach(selEmpList, function(recData) {
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.employeesArr.push(recData);
+        });
+
+        angular.element('#empListingModal').modal('hide');
+    }
+
+    $scope.departmentsArr = [];
+
+    $scope.PendingSelectedDeptArr = [];
+
+    $scope.searchKeywordDpt = {};
+    $scope.selectedRecFromModalsDpt = [];
+
+    $scope.moduleType = '';
+
+
+    $scope.selectDepartment = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'DeptDetail';
+
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordEmp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordEmp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.showLoader = true;
+        $scope.postData.cond = 'Detail';
+        $scope.deptListingModalTitle = 'Department';
+
+        var empListingApi = $scope.$root.reports + "module/department-list";
+
+        $http
+            .post(empListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableDataDpt = res.data.response;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.departmentsArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.departmentsArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    //angular.element('#deptListingModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+    $scope.selectDepartment();
+
+    $scope.showPdfModal = function(_reportType = "pdf") {
+
+        $scope.printPdfVals = {};
+        $scope.showLoader = true;
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.employeesArr = $scope.employeesArr;
+        $scope.currentDate = $rootScope.get_current_date();
+
+        $rootScope.printinvoiceFlag = false;
+
+        var employeeReportListingApi = $scope.$root.reports + "module/employee-report";
+
+        $http
+            .post(employeeReportListingApi, $scope.filterReport)
+            .then(function(res) {
+
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (res.data.ack == true) {
+
+                    //if ($scope.module == 'location') {
+                    $scope.reportsDataArr = res.data.response;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    // $scope.printPdfVals.reportName = 'employeeReport';
+                    $scope.printPdfVals.reportName = 'employeeList';
+
+                    if ($scope.reportType == 'employeeAbsences') {
+                        $scope.printPdfVals.reportName = 'employeeAbsencesReport';
+                    }
+
+                    $scope.printPdfVals.currentDate = $scope.currentDate;
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    $scope.printPdfVals.reportType = $scope.reportType;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals._reportType = _reportType;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    //}
+                    if (_reportType == "xlsx") {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rkeM2R9vOV").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        });
+                    } else {
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/empReportModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
 function pnlHandler(_data) {
+<<<<<<< HEAD
 	let COMP_SIZE = 2;
 	let pnl_Final_Obj = {
 		income: {
@@ -14563,10 +28678,106 @@ function pnlHandler(_data) {
 	}
 
 	return pnl_Final_Obj;
+=======
+    let COMP_SIZE = 2;
+    let pnl_Final_Obj = {
+        income: {
+            a1: [],
+            a2: [],
+            maxCount: 0,
+            maxCountArray: [],
+            hasMaxRec: ""
+        },
+        directExpenses: {
+            a1: [],
+            a2: [],
+            maxCount: 0,
+            maxCountArray: [],
+            hasMaxRec: ""
+        },
+        overheads: {
+            a1: [],
+            a2: [],
+            maxCount: 0,
+            maxCountArray: [],
+            hasMaxRec: ""
+        },
+        totalTurnover: [],
+        totalCostOfSales: [],
+        totalCostOfSalesPoT: [],
+        totalOverheads: [],
+        totalOverheadsPoT: [],
+        grossProfit: [],
+        grossProfitPoT: [],
+        netProfit: [],
+        netProfitPoT: [],
+        columnTitle: {}
+    };
+    let pnl_comparison = [{
+        key: "category",
+        value: "Income",
+        property: "income",
+        totalIn: "totalTurnover"
+    }, {
+        key: "subCategory",
+        value: "Direct Expenses",
+        property: "directExpenses",
+        totalIn: "totalCostOfSales"
+    }, {
+        key: "subCategory",
+        value: "Overheads",
+        property: "overheads",
+        totalIn: "totalOverheads",
+    }]
+    for (let i = 0; i < _data.response.length; i++) {
+        for (_comparison of pnl_comparison) {
+            pnl_Final_Obj[_comparison.totalIn][i] = 0;
+            for (_account of _data.response[i]) {
+                // console.log("Account: ", _account);
+                if (_account[_comparison.key] == _comparison.value) {
+
+                    if (_account.num_of_comp == 1) {
+                        pnl_Final_Obj.columnTitle.a1 = _account.period_title;
+                        pnl_Final_Obj[_comparison.property]["a1"].push(_account);
+                    } else {
+                        pnl_Final_Obj.columnTitle.a2 = _account.period_title;
+                        pnl_Final_Obj[_comparison.property]["a2"].push(_account);
+                    }
+
+                    pnl_Final_Obj[_comparison.totalIn][i] = pnl_Final_Obj[_comparison.totalIn][i] + _account.total;
+                }
+                //maxcounter
+                if (pnl_Final_Obj[_comparison.property]["a2"].length > pnl_Final_Obj[_comparison.property]["a1"].length) {
+                    pnl_Final_Obj[_comparison.property]["maxCount"] = pnl_Final_Obj[_comparison.property]["a2"].length,
+                        pnl_Final_Obj[_comparison.property]["hasMaxRec"] = "a2";
+                    pnl_Final_Obj[_comparison.property]["maxCountArray"] = new Array(pnl_Final_Obj[_comparison.property]["a2"].length);
+                } else {
+                    pnl_Final_Obj[_comparison.property]["maxCount"] = pnl_Final_Obj[_comparison.property]["a1"].length;
+                    pnl_Final_Obj[_comparison.property]["hasMaxRec"] = "a1";
+                    pnl_Final_Obj[_comparison.property]["maxCountArray"] = new Array(pnl_Final_Obj[_comparison.property]["a1"].length);
+                }
+
+            }
+
+        }
+        pnl_Final_Obj.grossProfit[i] = pnl_Final_Obj.totalTurnover[i] - pnl_Final_Obj.totalCostOfSales[i];
+        pnl_Final_Obj.grossProfitPoT[i] = (pnl_Final_Obj.grossProfit[i] / pnl_Final_Obj.totalTurnover[i]) * 100;
+
+        pnl_Final_Obj.netProfit[i] = pnl_Final_Obj.grossProfit[i] - pnl_Final_Obj.totalOverheads[i];
+        pnl_Final_Obj.netProfitPoT[i] = (pnl_Final_Obj.netProfit[i] / pnl_Final_Obj.totalTurnover[i]) * 100;
+
+        pnl_Final_Obj.totalCostOfSalesPoT[i] = (pnl_Final_Obj.totalCostOfSales[i] / pnl_Final_Obj.totalTurnover[i]) * 100;
+        pnl_Final_Obj.totalOverheadsPoT[i] = (pnl_Final_Obj.totalOverheads[i] / pnl_Final_Obj.totalTurnover[i]) * 100;
+
+    }
+
+    return pnl_Final_Obj;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }
 
 myApp.controller('profitAndLossStatementController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function profitAndLossStatementController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Profit and Loss Statement', 'url': '#', 'isActive': false }];
 	let currentUrl = window.location.href;
@@ -15170,6 +29381,610 @@ myApp.controller('RemittanceAdviceController', ["$scope", "$filter", "ngTablePar
 
 		angular.element('#_supplierModal').modal('hide');
 	}
+=======
+    'use strict';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Profit and Loss Statement', 'url': '#', 'isActive': false }];
+    let currentUrl = window.location.href;
+    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+    $scope.dontShowModal = false;
+    $scope.module = $stateParams.module;
+    $scope.filterReport = {
+        dateTo: $scope.$root.get_current_date(),
+        module: $scope.module,
+        token: $rootScope.token
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {}
+        $scope.filterReport = {
+            dateTo: $scope.$root.get_current_date(),
+            module: $scope.module,
+            token: $rootScope.token
+        }
+    }
+
+
+    $scope.generateReport = function(_reportType = '_') {
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+                console.log(fDate, " - ", lDate);
+
+                var timeDiff = to1.getTime() - from1.getTime();
+                var DaysDiff = timeDiff / (1000 * 3600 * 24);
+                console.log(DaysDiff);
+                if (DaysDiff > 365) {
+                    toaster.pop('error', 'Error', "Date range should be within one year!");
+                    return false;
+                }
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+        var profitAndLossStatementApi = $scope.$root.reports + "module/profit-loss-statement";
+        $scope.showLoader = true;
+        $http
+            .post(profitAndLossStatementApi, $scope.filterReport)
+            .then(function(res) {
+                if (res.data.ack == 0) {
+                    $scope.showLoader = false;
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                } else {
+                    $scope.showLoader = false;
+                    $scope.reportRes = res.data;
+                    $scope.reportSummary = res.data.summary
+                        // console.log(res.data.response[1]);
+                    $scope.pnlFinal = pnlHandler(res.data);
+                    console.log($scope.pnlFinal);
+
+
+                    $scope.pnlFinal.company_name = $rootScope.company_name;
+                    $scope.pnlFinal.company_logo_url = $scope.company_logo_url;
+                    $scope.pnlFinal.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.pnlFinal.dateTo = $scope.filterReport.dateTo;
+                    $scope.pnlFinal.filters = $scope.filterReport;
+                    $scope.pnlFinal.known_as = $rootScope.known_as;
+                    $scope.pnlFinal._reportType = _reportType;
+                    $scope.pnlFinal.reportName = "ProfitandLossStatement";
+                    if (_reportType == 'pdf') {
+
+                        $scope.downloadReportProfitandLoss($scope.pnlFinal);
+                    } else if (_reportType == 'xlsx') {
+                        jsreportService.downloadXlsx($scope.pnlFinal, "rJldWfxQhE").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.pnlFinal.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+                    }
+                }
+
+            });
+    }
+    $scope.getNumber = function(num) {
+        return new Array(num);
+    }
+    $scope.downloadReportProfitandLoss = function(_reportData) {
+        $scope.jsreportLoading = true;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "shortid": "rJldWfxQhE"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+}]);
+
+myApp.service('GenericModalListing', function() {
+    this.supplier = {
+        postData: {
+            token: $scope.$root.token
+        },
+        getListing: function(item_paging, sort_column, sortform) {
+            $scope.postData.token = $scope.$root.token;
+            $scope.moduleType = 'SuppDetail';
+
+            if (item_paging == 1)
+                $scope.item_paging.spage = 1
+
+            $scope.postData.page = $scope.item_paging.spage;
+
+            $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+            if ($scope.postData.pagination_limits == -1) {
+                $scope.postData.page = -1;
+                $scope.searchKeywordSupp = {};
+                $scope.record_data = {};
+            }
+
+            if ((sort_column != undefined) && (sort_column != null)) {
+                //sort by column
+                $scope.postData.sort_column = sort_column;
+                $scope.postData.sortform = sortform;
+
+                $rootScope.sortform = sortform;
+                $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+                $rootScope.sort_column = sort_column;
+
+                $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+            }
+
+
+            $scope.postData.cond = 'Detail';
+
+            var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+            $scope.showLoader = true;
+            $http
+                .post(supplierListingApi, $scope.postData)
+                .then(function(res) {
+                    $scope.tableData = res;
+                    $scope.columns = [];
+                    $scope.record_data = {};
+                    $scope.recordArray = [];
+                    $scope.tempSuppliersArr2 = [];
+
+                    if (res.data.ack == true) {
+                        //console.log(res.data);
+                        $scope.total = res.data.total;
+                        $scope.item_paging.total_pages = res.data.total_pages;
+                        $scope.item_paging.cpage = res.data.cpage;
+                        $scope.item_paging.ppage = res.data.ppage;
+                        $scope.item_paging.npage = res.data.npage;
+                        $scope.item_paging.pages = res.data.pages;
+
+                        $scope.total_paging_record = res.data.total_paging_record;
+
+                        $scope.record_data = res.data.response;
+                        $scope.tempSuppliersArr2 = res.data;
+
+                        angular.forEach(res.data.response, function(value, key) {
+                            if (key != "tbl_meta_data") {
+                                $scope.recordArray.push(value);
+                            }
+                        });
+
+                        angular.element('#_supplierModal').modal({ show: true });
+
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }
+                    $scope.showLoader = false;
+                });
+        }
+    }
+});
+
+myApp.controller('balanceSheetReportController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function balanceSheetReportController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+    'use strict';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Balance Sheet', 'url': '#', 'isActive': false }];
+    let currentUrl = window.location.href;
+    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+    $scope.dontShowModal = false;
+    $scope.module = $stateParams.module;
+    $scope.filterReport = {
+        upToDate: $scope.$root.get_current_date(),
+        module: $scope.module,
+        token: $rootScope.token
+    }
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {
+            upToDate: $scope.$root.get_current_date(),
+            module: $scope.module,
+            token: $rootScope.token
+        }
+    }
+
+
+
+    $scope.generateReport = function(_reportType = '_') {
+
+        if ($scope.filterReport.upToDate == undefined || $scope.filterReport.upToDate == 0 || $scope.filterReport.upToDate == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+        var balanceSheetReportApi = $scope.$root.reports + "module/balance-sheet";
+        $scope.showLoader = true;
+        $http
+            .post(balanceSheetReportApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.balanceSheet = res.data;
+                $scope.isCompare = res.data.isCompare;
+
+
+                let expBalanceSheet = {
+                    data: res.data.response,
+                    isCompare: res.data.isCompare,
+                    settings: res.data.settings,
+                    company_name: $rootScope.company_name,
+                    company_logo_url: $scope.company_logo_url,
+                    dateFrom: $scope.filterReport.dateFrom,
+                    dateTo: $scope.filterReport.dateTo,
+                    filters: $scope.filterReport,
+                    known_as: $rootScope.known_as,
+                    _reportType: _reportType,
+                    reportName: "BalanceSheet"
+                }
+
+
+                if (_reportType == 'pdf') {
+                    console.log(expBalanceSheet);
+                    $scope.downloadReportBalanceSheet(expBalanceSheet);
+                } else if (_reportType == 'xlsx') {
+                    jsreportService.downloadXlsx(expBalanceSheet, "r1xl4TguA4").success(function(data) {
+                        let file = new Blob([data], { type: 'application/xlsx' });
+                        saveAs(file, expBalanceSheet.reportName + ".xlsx");
+                        $scope.showLoader = false;
+                    })
+                }
+            });
+    }
+    $scope.downloadReportBalanceSheet = function(_reportData) {
+        console.log(_reportData);
+        $scope.jsreportLoading = true;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "shortid": "r1xl4TguA4"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+}]);
+
+myApp.controller('RemittanceAdviceController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function RemittanceAdviceController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Remittance Advice';
+    $scope.reportType = 'Remittance-advice';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Remittance Advice', 'url': '#', 'isActive': false }];
+
+    if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.remittance_advice)) {
+        toaster.pop('error', 'Error', "You are not authorized for this report");
+        $state.go('app.allReports');
+    }
+    $scope.pdfGenerate = false;
+    $scope.filterReport = {};
+    $scope.suppliers = [];
+    $scope.columns = [];
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.type = 3;
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.suppliers = $scope.suppliers;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.type = $scope.filterReport.type;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+
+        var remittanceAdviceApi = $scope.$root.reports + "module/remittance-advice";
+        $http
+            .post(remittanceAdviceApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == 1 && res.data.response) {
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.remittenceDataArr = [];
+                    $scope.remittenceSelSuppArr = [];
+                    $scope.reportsDataArrLength = 0;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.reportName = 'remittanceReportsModel';
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.suppliers = $scope.filterReport.suppliers;
+                    $scope.printPdfVals.docType = $scope.filterReport.type;
+                    $scope.printPdfVals.type = $scope.filterReport.type;
+                    $scope.printPdfVals.reportType = $scope.reportType;
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = $rootScope._reportType;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    $scope.columns = [];
+                    /* angular.forEach(res.data.response[0].invoices[0], function (val, index) {
+                    	$scope.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+
+                    	$scope.printPdfVals.columns.push({
+                    		'title': toTitleCase(index),
+                    		'field': index,
+                    		'visible': true
+                    	});
+                    }); */
+                    angular.forEach($scope.reportsDataArr, function(recod, index) {
+                        angular.forEach(recod.invoices, function(inv_val, inv_index) {
+                            $scope.remittenceDataArr.push(inv_val);
+                        });
+
+                        if ($scope.remittenceSelSuppArr.indexOf(recod.account_id) == -1)
+                            $scope.remittenceSelSuppArr.push(recod.account_id);
+                    });
+
+                    $scope.printPdfVals.remittenceSelSuppArr = $scope.remittenceSelSuppArr;
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, "SysKzl1iV").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+
+                    } else {
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/remittanceReportsModel.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.employeesArr = [];
+        $scope.customers = [];
+        $scope.salepersons = [];
+        $scope.items = [];
+        $scope.suppliers = [];
+        $scope.SelEmployeesTooltip = '';
+        $scope.filterReport.type = 1;
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    }
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_supplierModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSuppliers = [];
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        // var selSupplList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsSupp[o.id];
+        // });
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 }]);
@@ -15177,6 +29992,7 @@ myApp.controller('RemittanceAdviceController', ["$scope", "$filter", "ngTablePar
 /* start- open sale orders detail report controller  */
 
 myApp.controller('OpenSalesOrderDetailController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function OpenSalesOrderDetailController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -15401,6 +30217,231 @@ myApp.controller('OpenSalesOrderDetailController', ["$scope", "$filter", "ngTabl
 
 		angular.element('#productModal').modal('hide');
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Open Sale Orders Detail';
+    $scope.reportType = 'Open-Sale-Orders';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Open Sale Orders Detail', 'url': '#', 'isActive': false }];
+
+    $scope.pdfGenerate = false;
+    $scope.filterReport = {};
+    $scope.items = [];
+    $scope.columns = [];
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+
+        //start - date validation
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+        //end - date validation
+
+        $scope.showLoader = true;
+
+        var openSaleOrdersDetailAPI = $scope.$root.reports + "module/open-sale-orders-detail";
+        $http
+            .post(openSaleOrdersDetailAPI, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                // console.log(res.data.response);
+                if (res.data.response) {
+
+                    $scope.reportsDataArr = res.data.response;
+                }
+            });
+
+
+    }
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+
+    // Item Module 
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.moduleType = '';
+
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
+        // var itemListingApi = $scope.$root.stock + "products-listing/item-popup";
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    // $scope.record_data = res.data.response;
+                    // $scope.tempProdArr = res.data.response;
+                    // $scope.tempProdArr2 = res.data;
+
+                    // angular.forEach(res.data.response, function (value, key) {
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // if ($scope.tempProdArr[0].id)
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.addProduct = function() {
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        /* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+
+        	if (chk_item == false) {
+        		return;
+        	}
+        	
+        	var resRec = $filter("filter")($scope.items_array, { id: key });
+
+        	if (resRec) {
+
+        		try {
+        			var recData = resRec[0];
+        			recData.moduleNo = recData.product_code;
+        			recData.title = recData.description;
+        			recData.itemID = recData.id;
+        			$scope.items.push(recData);
+        		} catch (error) {
+
+        		}
+        	}
+        }); */
+
+        angular.element('#productModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -15413,7 +30454,11 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
 
     $scope.module = $stateParams.module;
     $scope.searchKeyword = {};
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Customer Price List';
     $scope.reportType = 'Customer-Price-List';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Price List', 'url': '#', 'isActive': false }];
@@ -15427,8 +30472,13 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
     $scope.customers = [];
     $scope.columns = [];
     $scope.filterReport.dateTo = $scope.$root.get_current_date();
+<<<<<<< HEAD
     
     $scope.generateReport = function (_reportType = 'pdf') {
+=======
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.filterReport.token = $rootScope.token;
         $scope.filterReport.module = $scope.module;
@@ -15474,7 +30524,11 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
         var priceListApi = $scope.$root.reports + "module/customer-price-list-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 if (res.data.ack == 1 && res.data.response) {
@@ -15488,6 +30542,7 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
 
                     $scope.printPdfVals.reportName = 'CustomerPriceListReport';
 
+<<<<<<< HEAD
                     let customersPriceListData = groupBy($scope.reportsDataArr, customers => customers.Customer_Code );
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
@@ -15495,12 +30550,22 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
 					$scope.printPdfVals.suppliers = $scope.filterReport.suppliers;
 					$scope.printPdfVals.known_as = $rootScope.known_as;
                 
+=======
+                    let customersPriceListData = groupBy($scope.reportsDataArr, customers => customers.Customer_Code);
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.suppliers = $scope.filterReport.suppliers;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.printPdfVals.reportsDataArr = [];
                     $scope.printPdfVals.company_name = $rootScope.company_name;
                     $scope.printPdfVals._reportType = _reportType;
 
                     let currentUrl = window.location.href;
                     $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+<<<<<<< HEAD
 					$scope.printPdfVals.company_logo_url = $scope.company_logo_url;
 					
 
@@ -15591,11 +30656,104 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
                             $scope.printPdfVals.reportsDataArr.push(value);
                         })
                         jsreportService.downloadXlsx($scope.printPdfVals, "B1xIaayxLH").success(function (data) {
+=======
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+
+                    /*  */
+
+                    /* $scope.printPdfVals.columns = [];
+                    	$scope.printPdfVals.summaryColumns = [];
+                    	$scope.printPdfVals.reportsDataArr2 = [];
+                    	$scope.printPdfVals.reportsSummaryDataArr = [];
+                    	$scope.printPdfVals.reportName = $scope.reportModalTitle;
+                    	$scope.printPdfVals._reportType = _reportType;
+
+                    	$scope.printPdfVals.reportsDataArr = res.data.response;
+
+                    	if (res.data.response[0].res != undefined) {
+
+                    		angular.forEach(res.data.response[0].res[0], function (val, index) {
+                    			$scope.columns.push({
+                    				'title': toTitleCase(index),
+                    				'field': index,
+                    				'visible': true
+                    			});
+
+                    			$scope.printPdfVals.columns.push({
+                    				'title': toTitleCase(index),
+                    				'field': index,
+                    				'visible': true
+                    			});
+                    		});
+                    	}
+
+                    	angular.forEach(res.data.response[0].summary, function (val, index) {
+
+                    		$scope.printPdfVals.summaryColumns.push({
+                    			'title': toTitleCase(index),
+                    			'field': index,
+                    			'visible': true
+                    		});
+                    	});
+
+                    	angular.forEach(res.data.response, function (rec, index) {
+                    		angular.forEach(rec.res, function (inv_val) {
+                    			$scope.reportsDataArr.push(inv_val);
+                    		});
+                    	});
+
+
+
+                    	$scope.printPdfVals.currentDate = $scope.$root.get_current_date();
+                    	$scope.printPdfVals.company_reg_no = $scope.filterReport.company_reg_no;
+                    	$scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+                    	$scope.printPdfVals.company_name = $rootScope.company_name;
+                    	$scope.printPdfVals._reportType = _reportType;
+
+                    	if (_reportType == 'xlsx') {
+                    		$scope.showLoader = true;
+                    		jsreportService.downloadXlsx($scope.printPdfVals, "r1xR33185V").success(function (data) {
+                    			let file = new Blob([data], { type: 'application/xlsx' });
+                    			saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                    			$scope.showLoader = false;
+                    		})
+                    	} else {
+                    		var invoicePdfModal = ModalService.showModal({
+                    			templateUrl: 'app/views/reports/customerStatementPDF.html',
+                    			controller: 'pdfPrintModalController',
+                    			inputs: {
+                    				printPdfVals: $scope.printPdfVals
+                    			}
+                    		});
+
+                    		invoicePdfModal.then(function (res) {
+                    			res.element.modal();
+                    		});
+                    	} */
+
+
+
+                    /*  */
+
+                    console.log(customersPriceListData);
+
+
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        customersPriceListData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        jsreportService.downloadXlsx($scope.printPdfVals, "B1xIaayxLH").success(function(data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             let file = new Blob([data], { type: 'application/xlsx' });
                             saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
                             $scope.showLoader = false;
                         })
 
+<<<<<<< HEAD
                     } else if(_reportType == 'pdf') {
                         $scope.showLoader = true;
                         customersPriceListData.forEach(function(value, key, map){
@@ -15604,12 +30762,23 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
                         // console.log($scope.printPdfVals.reportsDataArr);
 
                         jsreportService.downloadPdf($scope.printPdfVals, "rJl5i2Nrrr").success(function (data) {
+=======
+                    } else if (_reportType == 'pdf') {
+                        $scope.showLoader = true;
+                        customersPriceListData.forEach(function(value, key, map) {
+                                $scope.printPdfVals.reportsDataArr.push(value);
+                            })
+                            // console.log($scope.printPdfVals.reportsDataArr);
+
+                        jsreportService.downloadPdf($scope.printPdfVals, "rJl5i2Nrrr").success(function(data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             let file = new Blob([data], { type: 'application/pdf' });
                             saveAs(file, $scope.printPdfVals.reportName + ".pdf");
                             $scope.showLoader = false;
                         })
 
                     } else {
+<<<<<<< HEAD
                         customersPriceListData.forEach(function(value, key, map){
                             $scope.printPdfVals.reportsDataArr.push(value);
                         })
@@ -15622,12 +30791,26 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
 					$scope.printPdfVals.columns = [];
 					$scope.reportsDataArr =  [];
 				}
+=======
+                        customersPriceListData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        console.log($scope.printPdfVals);
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
     }
 
     function groupBy(list, keyGetter) {
         const map = new Map();
         list.forEach((item) => {
+<<<<<<< HEAD
              const key = keyGetter(item);
              const collection = map.get(key);
              if (!collection) {
@@ -15641,6 +30824,21 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
     
     $scope.clearReport = function () {
 		$scope.dontShowModal = true;
+=======
+            const key = keyGetter(item);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.filterReport = {};
         $scope.reportsDataArr = [];
         $scope.employeesArr = [];
@@ -15649,8 +30847,13 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
         $scope.items = [];
         $scope.suppliers = [];
         $scope.SelEmployeesTooltip = '';
+<<<<<<< HEAD
 		$scope.filterReport.type = 1;
 		$scope.printPdfVals = {};
+=======
+        $scope.filterReport.type = 1;
+        $scope.printPdfVals = {};
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.searchKeywordSupp = {};
         $scope.selectedRecFromModalsSupp = [];
@@ -15676,6 +30879,7 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
     $scope.moduleType = '';
     $scope.PendingSelectedSuppliers = [];
 
+<<<<<<< HEAD
     $scope.clearCustomers = function () {
         angular.element('#_customerModal').modal('hide');
     }
@@ -15686,6 +30890,18 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
     }
 
     $scope.selectCustomers = function (item_paging, sort_column, sortform) {
+=======
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
@@ -15723,7 +30939,11 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
         $scope.showLoader = true;
         $http
             .post(customerListingApi, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.columns = [];
                 $scope.record_data = {};
@@ -15744,38 +30964,64 @@ myApp.controller('CustomerPriceListController', ["$scope", "$filter", "ngTablePa
                     $scope.record_data = res.data.response;
                     $scope.tempCustomerArr2 = res.data;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (key != "tbl_meta_data") {
                             $scope.recordArray.push(value);
                         }
                     });
+<<<<<<< HEAD
 					if(!$scope.dontShowModal)
                     angular.element('#_customerModal').modal({ show: true });
 					$scope.dontShowModal = false;
                 }
                 else {
+=======
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                 }
                 $scope.showLoader = false;
             });
     }
 
+<<<<<<< HEAD
     $scope.addCustomers = function () {
+=======
+    $scope.addCustomers = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* var selCUSTList = $scope.recordArray.filter(function (o, i) {
             return $scope.selectedRecFromModalsCUST[o.id];
 		}); */
+<<<<<<< HEAD
 		
 		var selCUSTList = [];
 
         angular.forEach($scope.selectedRecFromModalsCUST, function (obj) {
+=======
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             selCUSTList.push(obj.record);
         });
 
         $scope.CustomerArr = [];
         $scope.customers = [];
 
+<<<<<<< HEAD
         angular.forEach(selCUSTList, function (recData) {
+=======
+        angular.forEach(selCUSTList, function(recData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             recData.moduleNo = recData.customer_code;
             recData.title = recData.name;
             recData.custID = recData.id;
@@ -15795,7 +31041,11 @@ myApp.controller('SalespersonCommissionController', ["$scope", "$filter", "ngTab
     'use strict';
 
     // $scope.module = $stateParams.module;
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Salesperson Commission';
     $scope.reportType = 'Salesperson-Commission';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Salesperson Commission', 'url': '#', 'isActive': false }];
@@ -15803,22 +31053,38 @@ myApp.controller('SalespersonCommissionController', ["$scope", "$filter", "ngTab
     if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.salespersonCommission)) {
         toaster.pop('error', 'Error', "You are not authorized for this report");
         $state.go('app.allReports');
+<<<<<<< HEAD
 	}
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.pdfGenerate = false;
     $scope.filterReport = {};
     $scope.salepersons = [];
     $scope.columns = [];
+<<<<<<< HEAD
 	$scope.filterReport.dateTo = $scope.$root.get_current_date();
 	$scope.filterReport.reporttype = 'summary';
 	$scope.filterReport.reportOrderBy = 2;
     
     $scope.generateReport = function (_reportType = 'pdf') {
+=======
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.reporttype = 'summary';
+    $scope.filterReport.reportOrderBy = 2;
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.filterReport.token = $rootScope.token;
         $scope.filterReport.salepersons = $scope.salepersons;
         $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
 		$scope.filterReport.dateTo = $scope.filterReport.dateTo;		
+=======
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -15850,20 +31116,34 @@ myApp.controller('SalespersonCommissionController', ["$scope", "$filter", "ngTab
         if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		$scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+=======
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
         var priceListApi = $scope.$root.reports + "module/salesperson-commission-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
 				$scope.showLoader = false;
 				
 				$scope.reportsDataArr = [];
 				$scope.columns = [];
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1 && res.data.response) {
                     $scope.reportsDataArr = res.data.response;
@@ -15878,16 +31158,26 @@ myApp.controller('SalespersonCommissionController', ["$scope", "$filter", "ngTab
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
                     $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
                 
                     $scope.printPdfVals.reportsDataArr = [];
                     $scope.printPdfVals.company_name = $rootScope.company_name;
 					$scope.printPdfVals._reportType = _reportType;
 					$scope.printPdfVals.report_type1 = $scope.filterReport.reportOrderBy;
 					$scope.printPdfVals.known_as = $rootScope.known_as;
+=======
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.report_type1 = $scope.filterReport.reportOrderBy;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                     let currentUrl = window.location.href;
                     $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+<<<<<<< HEAD
 					$scope.printPdfVals.company_logo_url = $scope.company_logo_url;
 					$scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;					
 
@@ -16150,6 +31440,266 @@ myApp.controller('SalespersonCommissionController', ["$scope", "$filter", "ngTab
 
 		angular.element('#_SalepersonModal').modal('hide');
 	}
+=======
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+                    $scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;
+
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                        if ($scope.printPdfVals.report_type == 'summary') {
+
+                            $scope.printPdfVals.reportTitle = 'Salesperson Commission - Summary';
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+
+                            jsreportService.downloadXlsx($scope.printPdfVals, "B1exK-BMwH").success(function(data) {
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                $scope.showLoader = false;
+                            });
+                        } else {
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                            $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                            $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.posted_grand_total_commission = res.data.response.posted_grand_total_commission;
+                            $scope.printPdfVals.posted_grand_total_amount_ex_vat = res.data.response.posted_grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.unposted_grand_total_commission = res.data.response.unposted_grand_total_commission;
+                            $scope.printPdfVals.unposted_grand_total_amount_ex_vat = res.data.response.unposted_grand_total_amount_ex_vat;
+
+                            jsreportService.downloadXlsx($scope.printPdfVals, "rkVCrrLDH").success(function(data) {
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                $scope.showLoader = false;
+                            });
+
+                        }
+
+                    } else if (_reportType == 'pdf') {
+                        // console.log($scope.printPdfVals.reportsDataArr);
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                        if ($scope.printPdfVals.report_type == 'summary')
+                            $scope.printPdfVals.reportTitle = 'Salesperson Commission - Summary';
+                        else if ($scope.printPdfVals.report_type == 'detail')
+                            $scope.printPdfVals.reportTitle = 'Salesperson Commission - Detail';
+
+                        if ($scope.printPdfVals.report_type == 'summary') {
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        } else {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                            $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                            $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.posted_grand_total_commission = res.data.response.posted_grand_total_commission;
+                            $scope.printPdfVals.posted_grand_total_amount_ex_vat = res.data.response.posted_grand_total_amount_ex_vat;
+
+                            $scope.printPdfVals.unposted_grand_total_commission = res.data.response.unposted_grand_total_commission;
+                            $scope.printPdfVals.unposted_grand_total_amount_ex_vat = res.data.response.unposted_grand_total_amount_ex_vat;
+                        }
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/salespersonCommissionModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.filterReport.type = 1;
+        $scope.printPdfVals = {};
+        $scope.salepersonsArr = [];
+
+        $scope.salespersonsNames = "";
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+        $scope.filterReport.reportOrderBy = 2;
+
+        $scope.salepersons = [];
+        // $scope.searchKeywordSp = {};
+        $scope.selectedRecFromModalsSp = [];
+    }
+
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSaleperson = function() {
+        $scope.searchKeywordSp = {};
+        $scope.selectSaleperson();
+    }
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        // var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:4011");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -16161,7 +31711,11 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
     'use strict';
 
     // $scope.module = $stateParams.module;
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Salesperson System Login Activity';
     $scope.reportType = 'Salesperson-Login';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Salesperson System Login Activity', 'url': '#', 'isActive': false }];
@@ -16175,15 +31729,26 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
     $scope.filterReport = {};
     $scope.salepersons = [];
     $scope.columns = [];
+<<<<<<< HEAD
 	$scope.filterReport.dateTo = $scope.$root.get_current_date();
 
     
     $scope.generateReport = function (_reportType = 'pdf') {
+=======
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.filterReport.token = $rootScope.token;
         $scope.filterReport.salepersons = $scope.salepersons;
         $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
 		$scope.filterReport.dateTo = $scope.filterReport.dateTo;		
+=======
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -16198,11 +31763,16 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
                 to1 = new Date(to.replace(/\s/g, ''));
 
                 var start_date = "2020-04-14";
+<<<<<<< HEAD
 				var sdate = new Date("2020-04-14");
+=======
+                var sdate = new Date("2020-04-14");
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 var fDate, lDate;
                 fDate = Date.parse(from1);
                 lDate = Date.parse(to1);
 
+<<<<<<< HEAD
 				if (fDate > lDate) {
                     toaster.pop('error', 'Error', "Date To is earlier then Date From!");
                     return false;
@@ -16212,6 +31782,17 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
                     return false;
 				}
 				
+=======
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+                if (fDate < sdate) {
+                    toaster.pop('error', 'Error', "This functionality was not developed before 14/04/2020!"); //"+start_date+"
+                    return false;
+                }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         } else {
             $scope.filterReport.dateFrom = '';
@@ -16222,20 +31803,34 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
         if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		$scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+=======
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
         var priceListApi = $scope.$root.reports + "module/salesperson-system-login-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
 				$scope.showLoader = false;
 				
 				$scope.reportsDataArr = [];
 				$scope.columns = [];
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1 && res.data.response) {
                     $scope.reportsDataArr = res.data.response;
@@ -16250,14 +31845,22 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
                     $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
                 
                     $scope.printPdfVals.reportsDataArr = [];
                     $scope.printPdfVals.company_name = $rootScope.company_name;
 					$scope.printPdfVals.known_as = $rootScope.known_as;
+=======
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                     let currentUrl = window.location.href;
                     $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+<<<<<<< HEAD
 					$scope.printPdfVals.company_logo_url = $scope.company_logo_url;				
 
 
@@ -16477,6 +32080,225 @@ myApp.controller('salespersonLoginActivityController', ["$scope", "$filter", "ng
 
 		angular.element('#_SalepersonModal').modal('hide');
 	}
+=======
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+
+                        $scope.printPdfVals.reportTitle = 'Salesperson System Login Activity';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        jsreportService.downloadXlsx($scope.printPdfVals, "ByxtzW1Gw8").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        });
+
+                    } else if (_reportType == 'pdf') {
+                        console.log($scope.printPdfVals.reportsDataArr);
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        $scope.printPdfVals.reportTitle = 'Salesperson System Login Activity';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/salespersonLoginActivityModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.filterReport.type = 1;
+        $scope.printPdfVals = {};
+        $scope.salepersonsArr = [];
+
+        $scope.salespersonsNames = "";
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+        $scope.filterReport.reportOrderBy = 2;
+
+        $scope.salepersons = [];
+        // $scope.searchKeywordSp = {};
+        $scope.selectedRecFromModalsSp = [];
+    }
+
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSaleperson = function() {
+        $scope.searchKeywordSp = {};
+        $scope.selectSaleperson();
+    }
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        // var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:4011");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -16487,7 +32309,11 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
     'use strict';
 
     // $scope.module = $stateParams.module;
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Inland Distribution Analysis';
     $scope.reportType = 'Salesperson-Login';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inland Distribution Analysis', 'url': '#', 'isActive': false }];
@@ -16495,16 +32321,27 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
     if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.inland_dist_analysis)) {
         toaster.pop('error', 'Error', "You are not authorized for this report");
         $state.go('app.allReports');
+<<<<<<< HEAD
 	}
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.pdfGenerate = false;
     $scope.filterReport = {};
     $scope.salepersons = [];
     $scope.columns = [];
+<<<<<<< HEAD
 	$scope.filterReport.dateTo = $scope.$root.get_current_date();
 
 	$scope.location_from={};
 	$scope.get_location_from = function () {     
+=======
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.location_from = {};
+    $scope.get_location_from = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var prodApi = $scope.$root.pr + "srm/srm/get-warehouses-for-target-price";
         var postData = {
             'token': $scope.$root.token,
@@ -16513,16 +32350,25 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
 
         return $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.location_from = res.data.response;
                     return 1;
                 }
                 else
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.location_from = res.data.response;
+                    return 1;
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     return 0;
             });
 
     }
+<<<<<<< HEAD
 	$scope.get_location_from();
     
     $scope.generateReport = function (_reportType = 'pdf') {
@@ -16532,6 +32378,17 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
 		$scope.filterReport.saleOrders = $scope.selectedSaleOrderModal;
         $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
 		$scope.filterReport.dateTo = $scope.filterReport.dateTo;		
+=======
+    $scope.get_location_from();
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.saleOrders = $scope.selectedSaleOrderModal;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -16549,12 +32406,21 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
                 fDate = Date.parse(from1);
                 lDate = Date.parse(to1);
 
+<<<<<<< HEAD
 				if (fDate > lDate) {
                     toaster.pop('error', 'Error', "Date To is earlier then Date From!");
                     return false;
 				}
 				
 				
+=======
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         } else {
             $scope.filterReport.dateFrom = '';
@@ -16565,20 +32431,34 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
         if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		$scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+=======
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
         var priceListApi = $scope.$root.reports + "module/inland-distribution-analysis-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
 				$scope.showLoader = false;
 				
 				$scope.reportsDataArr = [];
 				$scope.columns = [];
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1 && res.data.response) {
                     $scope.reportsDataArr = res.data.response;
@@ -16593,6 +32473,7 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
                     $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
                 
                     $scope.printPdfVals.reportsDataArr = [];
                     $scope.printPdfVals.company_name = $rootScope.company_name;
@@ -16996,6 +32877,406 @@ myApp.controller('inlandDistributionAnalysisController', ["$scope", "$filter", "
 		
 	}
 	 // area covered popup end
+=======
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    let currentUrl = window.location.href;
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.net_total = res.data.net_total;
+                        $scope.printPdfVals.target_total = res.data.target_total;
+                        $scope.printPdfVals.diff_total = res.data.diff_total;
+                        $scope.printPdfVals.color2 = res.data.color2;
+
+
+                        $scope.printPdfVals.reportTitle = 'Inland Distribution Analysis';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rklVA5UNOU").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        });
+
+                    } else if (_reportType == 'pdf') {
+                        console.log($scope.printPdfVals.reportsDataArr);
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.net_total = res.data.net_total;
+                        $scope.printPdfVals.target_total = res.data.target_total;
+                        $scope.printPdfVals.diff_total = res.data.diff_total;
+                        $scope.printPdfVals.color2 = res.data.color2;
+
+                        $scope.printPdfVals.reportTitle = 'Inland Distribution Analysis';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/inladDistributionAnalysisModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.net_total = res.data.net_total;
+                        $scope.printPdfVals.target_total = res.data.target_total;
+                        $scope.printPdfVals.diff_total = res.data.diff_total;
+                        $scope.printPdfVals.color2 = res.data.color2;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.filterReport.type = 1;
+        $scope.printPdfVals = {};
+        $scope.salepersonsArr = [];
+
+        $scope.salespersonsNames = "";
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+        $scope.filterReport.reportOrderBy = 2;
+
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordSaleOrder = {};
+        $scope.selectedSaleOrders = '';
+        //$scope.tableDataSO = [];
+        $scope.selectedSaleOrderModal = [];
+
+    }
+
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.searchKeywordSaleOrder = {};
+    $scope.selectedSaleOrders = '';
+    $scope.selectedSaleOrderModal = [];
+
+    $scope.show_list_order = function() {
+        $scope.searchKeywordSaleOrder = {};
+        $scope.selectSaleOrdersForReport();
+    }
+
+    $scope.selectSaleOrdersForReport = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSaleOrder;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSaleOrder = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'sale_invioce_code');
+        }
+
+        var saleOrderListingApi = $scope.$root.reports + "module/sale-orders-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(saleOrderListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableDataSO = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSOList = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSOList = res.data;
+
+                    angular.forEach($scope.record_data.tbl_meta_data.response.colMeta, function(obj, index) {
+                        if (obj.event && obj.event.name && obj.event.trigger) {
+                            obj.generatedEvent = $scope[obj.event.name];
+                        }
+                    });
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    if ($scope.tempSOList.response)
+                        angular.element('#_saleOrdersReportModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearPendingSaleOrder = function() {
+        angular.element('#_saleOrdersReportModal').modal('hide');
+    }
+
+    $scope.addSaleOrder = function() {
+        var selSaleOrdersList = [];
+
+        angular.forEach($scope.selectedSaleOrderModal, function(obj) {
+            selSaleOrdersList.push(obj.record);
+        });
+
+        $scope.selectedSaleOrderArr = [];
+        $scope.selectedSaleOrders = "";
+
+        angular.forEach(selSaleOrdersList, function(recData) {
+            $scope.selectedSaleOrderArr.push(recData);
+
+            if ($scope.selectedSaleOrders == "")
+                $scope.selectedSaleOrders = recData.sale_order_code;
+            else
+                $scope.selectedSaleOrders = $scope.selectedSaleOrders + '; ' + recData.sale_order_code;
+        });
+
+        angular.element('#_saleOrdersReportModal').modal('hide');
+    }
+
+    // area covered popup start
+    $scope.searchKeyword_areaCovered = {};
+    $scope.getAreaCovered = function(item_paging) {
+        if (item_paging) {
+            $scope.searchKeyword_areaCovered = {};
+        }
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.postData.account_type = 1;
+        $scope.title = 'Area Covered';
+        $scope.postData.searchKeyword = $scope.searchKeyword_areaCovered;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeyword_areaCovered = {};
+            $scope.record_data = {};
+        }
+        //angular.element('#area_covered_report_modal').modal('hide');
+        var customerListingApi = $scope.$root.setup + "crm/get-area-covered";
+
+        $scope.showLoader = true;
+
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.areaCoveredTableData = res;
+                console.log($scope.areaCoveredTableData);
+                if (res.data.ack == true) {
+
+                    angular.element('#area_covered_report_modal').modal({ show: true });
+
+                    $scope.showLoader = false;
+                } else {
+                    $scope.showLoader = false;
+                }
+            });
+    }
+
+    $scope.confirmArea = function(result) {
+            console.log(result);
+            $scope.filterReport.area_covered = result.area_code + '-' + result.area_covered;
+            $scope.filterReport.to_location_id = result.id;
+            $scope.filterReport.area_code = result.area_code;
+            angular.element('#area_covered_report_modal').modal('hide');
+
+        }
+        // area covered popup end
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -17007,7 +33288,11 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
     'use strict';
 
     // $scope.module = $stateParams.module;
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Haulier Accruals';
     $scope.reportType = 'Salesperson-Login';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Haulier Accruals', 'url': '#', 'isActive': false }];
@@ -17015,12 +33300,17 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
     if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.haulieraccrual)) {
         toaster.pop('error', 'Error', "You are not authorized for this report");
         $state.go('app.allReports');
+<<<<<<< HEAD
 	}
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.pdfGenerate = false;
     $scope.filterReport = {};
     $scope.salepersons = [];
     $scope.columns = [];
+<<<<<<< HEAD
 	$scope.filterReport.dateTo = $scope.$root.get_current_date();
 
     
@@ -17030,6 +33320,17 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
 		$scope.filterReport.gls = $scope.gls;
         $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
 		$scope.filterReport.dateTo = $scope.filterReport.dateTo;		
+=======
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.gls = $scope.gls;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -17047,27 +33348,46 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
                 fDate = Date.parse(from1);
                 lDate = Date.parse(to1);
 
+<<<<<<< HEAD
 				if (fDate > lDate) {
                     toaster.pop('error', 'Error', "Date To is earlier then Date From!");
                     return false;
 				}
 				
 				
+=======
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         } else {
             $scope.filterReport.dateFrom = '';
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		if(!$scope.filterReport.gls || $scope.filterReport.gls=='[]'){
 			toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['G/L No.(s)']));
             return false;
 		}
+=======
+        }
+
+        if (!$scope.filterReport.gls || $scope.filterReport.gls == '[]') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['G/L No.(s)']));
+            return false;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		$scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
@@ -17077,10 +33397,22 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
 		if (_reportType == 'xlsx') { 
 			$scope.filterReport.reportXlsxType = 1;
 		}
+=======
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+
+        $scope.showLoader = true;
+        $scope.filterReport.reportXlsxType = 0;
+        if (_reportType == 'xlsx') {
+            $scope.filterReport.reportXlsxType = 1;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var priceListApi = $scope.$root.reports + "module/haulier-accrual-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
 				$scope.showLoader = false;
 				
@@ -17093,6 +33425,20 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
 					$scope.showLoader = false;
 					return false;
 				}else if (res.data.ack == 1 && res.data.response && res.data.response[0].Rank==1) {
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+
+                if (_reportType == 'xlsx' && res.data.ack == 2) {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    $scope.showLoader = false;
+                    return false;
+                } else if (res.data.ack == 1 && res.data.response && res.data.response[0].Rank == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.reportsDataArr = res.data.response;
                     $scope.remittenceDataArr = [];
                     $scope.remittenceSelSuppArr = [];
@@ -17105,14 +33451,22 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
                     $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+<<<<<<< HEAD
                 
                     $scope.printPdfVals.reportsDataArr = [];
                     $scope.printPdfVals.company_name = $rootScope.company_name;
 					$scope.printPdfVals.known_as = $rootScope.known_as;
+=======
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                     let currentUrl = window.location.href;
                     $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+<<<<<<< HEAD
 					$scope.printPdfVals.company_logo_url = $scope.company_logo_url;				
 
 					angular.forEach(res.data.response[0], function (val, index) {
@@ -17356,6 +33710,249 @@ myApp.controller('haulierAccrualController', ["$scope", "$filter", "ngTableParam
 
 		angular.element('#GLModal').modal('hide');
 	}
+=======
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.postedProdLength = Object.keys($scope.printPdfVals.reportsDataArr.postedProd).length;
+
+                        $scope.printPdfVals.reportTitle = 'Haulier Accruals';
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        jsreportService.downloadXlsx($scope.printPdfVals, "SJTOTvttU").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        });
+
+                    } else if (_reportType == 'pdf') {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.postedProdLength = Object.keys($scope.printPdfVals.reportsDataArr.postedProd).length;
+                        console.log($scope.printPdfVals.postedProdLength);
+                        console.log($scope.printPdfVals.reportsDataArr);
+                        $scope.printPdfVals.reportTitle = 'Haulier Accruals';
+                        // adding product data for pdf only
+                        $scope.printPdfVals.product_data = [];
+                        $.each(res.data.response.products, function(k, v) {
+                            var row = {};
+                            var posted = (res.data.response.posted && res.data.response.posted[v.product_id]) ? res.data.response.posted[v.product_id].total_posted : 0;
+                            var unposted = (res.data.response.unposted && res.data.response.unposted[v.product_id]) ? res.data.response.unposted[v.product_id].total_unposted : 0;
+                            row['label'] = v.product_name;
+                            row['posted'] = posted;
+                            row['unposted'] = unposted;
+                            row['total'] = parseFloat(posted) + parseFloat(unposted);
+                            $scope.printPdfVals.product_data.push(row);
+                        });
+                        // adding monthly posted data for pdf only
+                        $scope.printPdfVals.monthly_posted_data = [];
+                        $.each(res.data.response.postedProd, function(k, v) {
+                            var row = {};
+                            var pr = [];
+                            row['label'] = v.label;
+                            $.each(res.data.response.products, function(i, prod) {
+                                pr.push(v.data[prod.product_id].amount);
+                            });
+                            row['prod'] = pr;
+                            $scope.printPdfVals.monthly_posted_data.push(row);
+                        });
+                        console.log('monthly data');
+                        console.log($scope.printPdfVals.monthly_posted_data);
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/haulierAccrualModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+            $scope.dontShowModal = true;
+            $scope.filterReport = {};
+            $scope.reportsDataArr = [];
+            $scope.printPdfVals = {};
+            $scope.gls = [];
+            $scope.filterReport.dateTo = $scope.$root.get_current_date();
+            $scope.selectedRecFromModalsGL = [];
+            $scope.searchKeywordGL = {};
+        }
+        // GL Module 
+    $scope.searchKeywordGL = {};
+    $scope.selectedRecFromModalsGL = [];
+    $scope.moduleType = '';
+
+    $scope.selectGL = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'GLDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordGL;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordGL = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var itemListingApi = $scope.$root.reports + "module/gl-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.PendingSelectedItems = [];
+                $scope.tempProdArrGL = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArrGL = res.data.response;
+                    $scope.tempProdArrGL2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // console.log($scope.items);
+
+                    angular.forEach($scope.tempProdArrGL2.response, function(obj1) {
+                        obj1.checkbox = false;
+
+                        angular.forEach($scope.gls, function(obj) {
+                            if (obj.id == obj1.id) {
+                                $scope.PendingSelectedGLs.push(obj);
+                                obj1.checkbox = true;
+                            }
+                        });
+                    });
+
+                    if (res.data.total == 0) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    } else {
+                        if ($scope.tempProdArrGL[0].id && !$scope.dontShowModal)
+                            angular.element('#GLModal').modal({ show: true });
+                        $scope.dontShowModal = false;
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.PendingSelectedGLs = [];
+
+    $scope.clearPendingPurchaseGLs = function() {
+        angular.element('#GLModal').modal('hide');
+    }
+
+    $scope.addGL = function() {
+        var selGLList = [];
+
+        angular.forEach($scope.selectedRecFromModalsGL, function(obj) {
+            selGLList.push(obj.record);
+        });
+
+        $scope.GLArr = [];
+        $scope.gls = [];
+
+        angular.forEach(selGLList, function(recData) {
+
+            recData.moduleNo = recData.glaccountCode;
+            recData.title = recData.displayName;
+            recData.itemID = recData.id;
+            $scope.gls.push(recData);
+        });
+
+        angular.element('#GLModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -17367,7 +33964,11 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
     'use strict';
 
     // $scope.module = $stateParams.module;
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
+=======
+    $scope.dontShowModal = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.reportTitle = 'Inventory Statistics';
     $scope.reportType = 'Salesperson-Login';
     $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Inventory Statistics', 'url': '#', 'isActive': false }];
@@ -17375,11 +33976,16 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
     if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.inventoryStatistics)) {
         toaster.pop('error', 'Error', "You are not authorized for this report");
         $state.go('app.allReports');
+<<<<<<< HEAD
 	}
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.pdfGenerate = false;
     $scope.filterReport = {};
     $scope.salepersons = [];
+<<<<<<< HEAD
 	$scope.columns = [];
 	$scope.filterReport.report_type = 1;
 	$scope.filterReport.report_by = 1;
@@ -17476,6 +34082,104 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
 		$scope.filterReport.report_type  = $scope.filterReport.report_type;
 		$scope.filterReport.report_by  = $scope.filterReport.report_by;
 		$scope.filterReport.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+=======
+    $scope.columns = [];
+    $scope.filterReport.report_type = 1;
+    $scope.filterReport.report_by = 1;
+    $scope.filterReport.division_1 = 4;
+    $scope.filterReport.division_2 = 3;
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.clear_filter_one = function() {
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        $scope.territories = [];
+        $scope.searchKeywordTr = {};
+        $scope.selectedRecFromModalsTr = [];
+
+        $scope.buyingGroups = [];
+        $scope.searchKeywordBg = {};
+        $scope.selectedRecFromModalsBg = [];
+
+        $scope.segments = [];
+        $scope.searchKeywordSm = {};
+        $scope.selectedRecFromModalsSm = [];
+    }
+
+    $scope.clear_filter_two = function() {
+        $scope.items = [];
+        $scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        $scope.brands = [];
+        $scope.searchKeywordBrand = {};
+        $scope.selectedRecFromModalsBrand = [];
+
+        $scope.categories = [];
+        $scope.searchKeywordCategory = {};
+        $scope.selectedRecFromModalsCategory = [];
+    }
+
+    $scope.clear_result_by = function() {
+        if ($scope.filterReport.report_by == 1) {
+            $scope.customers = [];
+            $scope.searchKeywordCUST = {};
+            $scope.selectedRecFromModalsCUST = [];
+
+            $scope.territories = [];
+            $scope.searchKeywordTr = {};
+            $scope.selectedRecFromModalsTr = [];
+
+            $scope.buyingGroups = [];
+            $scope.searchKeywordBg = {};
+            $scope.selectedRecFromModalsBg = [];
+
+            $scope.segments = [];
+            $scope.searchKeywordSm = {};
+            $scope.selectedRecFromModalsSm = [];
+
+            // select item
+            $scope.filterReport.division_2 = 3;
+        }
+        if ($scope.filterReport.report_by == 2) {
+            $scope.items = [];
+            $scope.searchKeywordItem = {};
+            $scope.selectedRecFromModalsItem = [];
+
+            $scope.brands = [];
+            $scope.searchKeywordBrand = {};
+            $scope.selectedRecFromModalsBrand = [];
+
+            $scope.categories = [];
+            $scope.searchKeywordCategory = {};
+            $scope.selectedRecFromModalsCategory = [];
+
+            // select customer
+            $scope.filterReport.division_1 = 4;
+        }
+
+    }
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.territories = $scope.territories;
+        $scope.filterReport.buyingGroups = $scope.buyingGroups;
+        $scope.filterReport.segments = $scope.segments;
+        $scope.filterReport.brands = $scope.brands;
+        $scope.filterReport.categories = $scope.categories;
+        $scope.filterReport.items = $scope.items;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.customer_bucket = 1;
+        $scope.filterReport.division_1 = $scope.filterReport.division_1;
+        $scope.filterReport.division_2 = $scope.filterReport.division_2;
+        $scope.filterReport.report_type = $scope.filterReport.report_type;
+        $scope.filterReport.report_by = $scope.filterReport.report_by;
+        $scope.filterReport.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) {
             var from, to, check;
@@ -17493,22 +34197,36 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
                 fDate = Date.parse(from1);
                 lDate = Date.parse(to1);
 
+<<<<<<< HEAD
 				if (fDate > lDate) {
                     toaster.pop('error', 'Error', "Date To is earlier then Date From!");
                     return false;
 				}
 				
 				
+=======
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
         } else {
             $scope.filterReport.dateFrom = '';
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
             return false;
+<<<<<<< HEAD
 		}
+=======
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 		
 		$scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
@@ -18542,6 +35260,1034 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
 		});
 
 		/* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+=======
+        }
+
+        $scope.filterReport.reportOrderByID = ($scope.filterReport.reportOrderBy) ? $scope.filterReport.reportOrderBy : 0;
+
+        $scope.showLoader = true;
+        $scope.filterReport.reportXlsxType = 0;
+        if (_reportType == 'xlsx') {
+            $scope.filterReport.reportXlsxType = 1;
+        }
+
+        var inventoryStatisticsApi = $scope.$root.reports + "module/inventory-statistics-report";
+        $http
+            .post(inventoryStatisticsApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+                $scope.printPdfVals = {};
+                if (_reportType == 'xlsx' && res.data.ack == 2) {
+                    $scope.CSVfilePath = res.data.filename;
+                    window.open($scope.CSVfilePath, '_blank');
+                    $scope.showLoader = false;
+                    return false;
+                } else if (res.data.ack == 1 && res.data.response) {
+
+                    $scope.printPdfVals.reportTitle = 'Inventory Statistics';
+                    $scope.printPdfVals.reportName = 'inventoryStatistics';
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.cost_data = res.data.response.cost_data;
+                    $scope.printPdfVals.report_type = $scope.filterReport.report_type;
+                    $scope.printPdfVals.report_by = $scope.filterReport.report_by;
+                    $scope.printPdfVals.division_1 = $scope.filterReport.division_1;
+                    $scope.printPdfVals.division_2 = $scope.filterReport.division_2;
+                    $scope.printPdfVals.columns = [];
+
+                    angular.forEach(res.data.response.records[0], function(val, index) {
+                        $scope.printPdfVals.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+                    // adding product data for pdf only
+                    $scope.printPdfVals.summary_data = [];
+                    $.each(res.data.response.records, function(k, v) {
+                        var row = {};
+                        var pr = [];
+                        $.each($scope.printPdfVals.columns, function(i, col) {
+                            pr.push(v[col.field]);
+                        });
+                        row['summary'] = pr;
+                        $scope.printPdfVals.summary_data.push(row);
+                    });
+                    console.log($scope.printPdfVals.summary_data);
+                    if (_reportType == 'xlsx') {
+                        var shortID = ($scope.filterReport.report_type == 1) ? 'SyCeVpFv8' : 'H1OKJpFvL';
+                        $scope.showLoader = true;
+                        jsreportService.downloadXlsx($scope.printPdfVals, shortID).success(function(data) {
+                            $scope.showLoader = false;
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                        })
+
+                    } else {
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/inventoryStatisticsModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+                    }
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.reportType = $scope.reportType;
+
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals.total_records = Object.keys($scope.printPdfVals.reportsDataArr);
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.printPdfVals = {};
+        $scope.gls = [];
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+        $scope.customers = [];
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        $scope.territories = [];
+        $scope.searchKeywordTr = {};
+        $scope.selectedRecFromModalsTr = [];
+
+        $scope.buyingGroups = [];
+        $scope.searchKeywordBg = {};
+        $scope.selectedRecFromModalsBg = [];
+
+        $scope.segments = [];
+        $scope.searchKeywordSm = {};
+        $scope.selectedRecFromModalsSm = [];
+
+        $scope.items = [];
+        $scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        $scope.brands = [];
+        $scope.searchKeywordBrand = {};
+        $scope.selectedRecFromModalsBrand = [];
+
+        $scope.categories = [];
+        $scope.searchKeywordCategory = {};
+        $scope.selectedRecFromModalsCategory = [];
+
+        $scope.filterReport.customer_bucket = 1;
+        $scope.filterReport.division_1 = 4;
+        $scope.filterReport.division_2 = 3;
+        $scope.filterReport.report_type = 1;
+        $scope.filterReport.report_by = 1;
+    }
+
+    $scope.territories = [];
+    $scope.buyingGroups = [];
+    $scope.segments = [];
+    $scope.searchKeywordTr = {};
+    $scope.selectedRecFromModalsTr = [];
+    $scope.brands = [];
+    $scope.categories = [];
+
+    $scope.clearFiltersAndSelectTerritory = function() {
+        $scope.searchKeywordTr = {};
+        $scope.selectTerritory();
+    }
+
+    $scope.selectTerritory = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordTr;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordTr = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/territory-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_TerritoryModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearTerritorys = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_TerritoryModal').modal('hide');
+    }
+
+    $scope.addTerritorys = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsTr[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsTr, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.territoryArr = [];
+        $scope.territories = [];
+        $scope.territoryNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.territories.push(recData);
+
+            if ($scope.territoryNames == "")
+                $scope.territoryNames = recData.title;
+            else
+                $scope.territoryNames = $scope.territoryNames + '; ' + recData.title;
+        });
+
+        console.log($scope.territoryNames);
+
+        angular.element('#_TerritoryModal').modal('hide');
+    }
+
+    $scope.searchKeywordBg = {};
+    $scope.selectedRecFromModalsBg = [];
+
+    $scope.clearFiltersAndSelectBuyingGroup = function() {
+        $scope.searchKeywordBg = {};
+        $scope.selectBuyingGroup();
+    }
+
+    $scope.selectBuyingGroup = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBg;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/buying-group-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BuyingGroupModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearBuyingGroups = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_BuyingGroupModal').modal('hide');
+    }
+
+    $scope.addBuyingGroups = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsBg, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.buyingGroupArr = [];
+        $scope.buyingGroups = [];
+        $scope.buyingGroupNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.buyingGroups.push(recData);
+
+            if ($scope.buyingGroupNames == "")
+                $scope.buyingGroupNames = recData.title;
+            else
+                $scope.buyingGroupNames = $scope.buyingGroupNames + '; ' + recData.title;
+        });
+
+        console.log($scope.buyingGroupNames);
+
+        angular.element('#_BuyingGroupModal').modal('hide');
+    }
+
+
+    $scope.searchKeywordBrand = {};
+    $scope.selectedRecFromModalsBrand = [];
+
+    $scope.clearFiltersAndSelectBrand = function() {
+        $scope.searchKeywordBrand = {};
+        angular.element('#_BrandModal').modal('hide');
+        $scope.selectBrand();
+    }
+
+    $scope.selectBrand = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordBrand;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-brands";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_BrandModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearBrands = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_BrandModal').modal('hide');
+    }
+
+    $scope.addBrands = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsBrand, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.brandArr = [];
+        $scope.brands = [];
+        $scope.brandNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.name = recData.name;
+            $scope.brands.push(recData);
+
+            if ($scope.brandNames == "")
+                $scope.brandNames = recData.name;
+            else
+                $scope.brandNames = $scope.brandNames + '; ' + recData.name;
+        });
+
+        console.log($scope.brandNames);
+
+        angular.element('#_BrandModal').modal('hide');
+    }
+
+    $scope.searchKeywordCategory = {};
+    $scope.selectedRecFromModalsCategory = [];
+
+    $scope.clearFiltersAndSelectCategory = function() {
+        $scope.searchKeywordCategory = {};
+        angular.element('#_CategoryModal').modal({ show: true });
+        $scope.selectCategory();
+    }
+
+    $scope.selectCategory = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCategory;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordBg = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/get-categories";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_CategoryModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearCategories = function() {
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_CategoryModal').modal('hide');
+    }
+
+    $scope.addCategories = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsBg[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCategory, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.categoryArr = [];
+        $scope.categories = [];
+        $scope.categoryNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.name = recData.name;
+            $scope.categories.push(recData);
+
+            if ($scope.categoryNames == "")
+                $scope.categoryNames = recData.name;
+            else
+                $scope.categoryNames = $scope.categoryNames + '; ' + recData.name;
+        });
+
+        console.log($scope.categoryNames);
+
+        angular.element('#_CategoryModal').modal('hide');
+    }
+
+    $scope.searchKeywordSm = {};
+    $scope.selectedRecFromModalsSm = [];
+
+    $scope.clearFiltersAndSelectSegment = function() {
+        $scope.searchKeywordSm = {};
+        $scope.selectSegment();
+    }
+
+    $scope.selectSegment = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSm;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSm = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/segment-data-from-orders";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SegmentModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearSegments = function() {
+
+        // $scope.PendingSelectedTerritorys = [];
+        angular.element('#_SegmentModal').modal('hide');
+    }
+
+    $scope.addSegments = function() {
+
+        /* var selSplList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsSm[o.id];
+        }); */
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSm, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.segmentArr = [];
+        $scope.segments = [];
+        $scope.segmentNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.title = recData.title;
+            $scope.segments.push(recData);
+
+            if ($scope.segmentNames == "")
+                $scope.segmentNames = recData.title;
+            else
+                $scope.segmentNames = $scope.segmentNames + '; ' + recData.title;
+        });
+
+        console.log($scope.segmentNames);
+
+        angular.element('#_SegmentModal').modal('hide');
+    }
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+    /* if ($scope.selCust > 0) {
+
+    	$scope.filterCustomer = {};
+    	$scope.tempCustomerArr = [];
+    	$scope.customerListing = {};
+    	$scope.customerListing.token = $rootScope.token;
+    	$scope.customerListing.selCust = $scope.selCust;
+
+    	$scope.showLoader = true;
+
+    	var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+    	$http
+    		.post(customerListingApi, $scope.customerListing)
+    		.then(function (res) {
+    			$scope.showLoader = false;
+    			$scope.tempCustomerArr = [];
+    			$scope.PendingSelectedCustomers = [];
+
+    			$scope.CustomerArr = [];
+    			$scope.customers = [];
+
+    			if (res.data.ack == true) {
+
+    				$scope.CustomerArr = res.data.response;
+
+    				angular.forEach($scope.CustomerArr, function (recData) {
+
+    					if (recData.id == $scope.selCust) {
+
+    						var selRecord = {};
+    						selRecord.key = recData.id;
+    						selRecord.record = recData;
+    						selRecord.value = recData.customer_code;							
+
+    						$scope.selectedRecFromModalsCUST.push(selRecord); 
+
+    						recData.moduleNo = recData.customer_code;
+    						recData.title = recData.name;
+    						recData.custID = recData.id;
+    						$scope.customers.push(recData);
+
+    					}
+    				});
+    			}
+    		});
+
+    } */
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.cond = 'Detail';
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    //if(!$scope.dontShowModal)
+                    angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.items = [];
+    $scope.SelItemsTooltip = '';
+
+    $scope.searchKeywordItem = {};
+    $scope.selectedRecFromModalsItem = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectItems = function() {
+        $scope.searchKeywordItem = {};
+        $scope.selectItem();
+    }
+
+    $scope.selectItem = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'ItemDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordItem;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordItem = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
+        // var itemListingApi = $scope.$root.stock + "products-listing/item-popup";
+        var itemListingApi = $scope.$root.stock + "products-listing/item-list-with-bucket-popup";
+
+        $scope.showLoader = true;
+        $http
+            .post(itemListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.showLoader = false;
+                $scope.tempProdArr = [];
+                $scope.PendingSelectedItems = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    // $scope.record_data = res.data.response;
+                    // $scope.tempProdArr = res.data.response;
+                    // $scope.tempProdArr2 = res.data;
+                    $scope.record_data = res.data.response;
+                    $scope.tempProdArr = res.data;
+
+                    // angular.forEach(res.data.response, function (value, key) {
+                    angular.forEach($scope.tempProdArr, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    // if ($scope.tempProdArr[0].id)
+                    if ($scope.tempProdArr.response)
+                        angular.element('#productModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.clearPendingPurchaseItems = function() {
+        angular.element('#productModal').modal('hide');
+    }
+
+    $scope.addProduct = function() {
+
+        /* var selItemList = $scope.recordArray.filter(function (o, i) {
+        	return $scope.selectedRecFromModalsItem[o.id];
+        }); */
+
+        $scope.itemArr = [];
+        $scope.items = [];
+        $scope.items_array = [];
+
+        // angular.forEach(selItemList, function (recData) {
+
+        angular.copy($scope.tempProdArr.response, $scope.items_array);
+
+        var selItemList = [];
+
+        angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+            selItemList.push(obj.record);
+        });
+
+        angular.forEach(selItemList, function(resRec) {
+
+            var recData = resRec;
+            recData.moduleNo = recData.product_code;
+            recData.title = recData.description;
+            recData.itemID = recData.id;
+            $scope.items.push(recData);
+        });
+
+        /* angular.forEach($scope.selectedRecFromModalsItem, function (chk_item, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 			if (chk_item == false) {
                 return;
@@ -18563,8 +36309,13 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
 			}
 		}); */
 
+<<<<<<< HEAD
 		angular.element('#productModal').modal('hide');
 	}
+=======
+        angular.element('#productModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -18575,21 +36326,36 @@ myApp.controller('inventoryStatisticsController', ["$scope", "$filter", "ngTable
 myApp.controller('AccessByTransactionNumbersController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function AccessByTransactionNumbersController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
     'use strict';
 
+<<<<<<< HEAD
 	$scope.dontShowModal = false;
 	$scope.reportTitle = 'Search Record by Entry No.';/* Access By Transaction Numbers */ //Transaction Entries 
 	$scope.reportType = 'Search-Record-by-Entry-No'; //Access-By-Transaction-Numbers // Transaction-Entries 
 	$scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
 	{ 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
 	{ 'name': 'Search Record by Entry No.', 'url': '#', 'isActive': false }];
+=======
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Search Record by Entry No.'; /* Access By Transaction Numbers */ //Transaction Entries 
+    $scope.reportType = 'Search-Record-by-Entry-No'; //Access-By-Transaction-Numbers // Transaction-Entries 
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+        { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+        { 'name': 'Search Record by Entry No.', 'url': '#', 'isActive': false }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.accessByTransactionNumbers)) {
         toaster.pop('error', 'Error', "You are not authorized for this report");
         $state.go('app.allReports');
+<<<<<<< HEAD
 	} 
+=======
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.pdfGenerate = false;
     $scope.filterReport = {};
     $scope.columns = [];
+<<<<<<< HEAD
     
     $scope.generateReport = function (_reportType = 'pdf') {
 
@@ -18604,17 +36370,41 @@ myApp.controller('AccessByTransactionNumbersController', ["$scope", "$filter", "
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Transaction No. To']));
             return false;
 		}
+=======
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+
+        if (!$scope.filterReport.transactionFrom) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Transaction No. From']));
+            return false;
+        }
+
+        if (!$scope.filterReport.transactionTo) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Transaction No. To']));
+            return false;
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
         var priceListApi = $scope.$root.reports + "module/access-by-transaction-numbers-report";
         $http
             .post(priceListApi, $scope.filterReport)
+<<<<<<< HEAD
             .then(function (res) {
 				$scope.showLoader = false;
 				
 				$scope.reportsDataArr = [];
 				$scope.columns = [];
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1 && res.data.response) {
                     $scope.reportsDataArr = res.data.response;
@@ -18625,6 +36415,7 @@ myApp.controller('AccessByTransactionNumbersController', ["$scope", "$filter", "
                     $scope.printPdfVals = {};
                     $scope.printPdfVals.columns = [];
 
+<<<<<<< HEAD
                     $scope.printPdfVals.reportName = 'searchRecordByEntryNoReport';//transactionEntriesReport
 
                     $scope.printPdfVals.reportsDataArr = [];
@@ -18719,6 +36510,101 @@ myApp.controller('AccessByTransactionNumbersController', ["$scope", "$filter", "
         $scope.filterReport = {};
         $scope.reportsDataArr = [];
 		$scope.printPdfVals = {};
+=======
+                    $scope.printPdfVals.reportName = 'searchRecordByEntryNoReport'; //transactionEntriesReport
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.report_type1 = $scope.filterReport.reportOrderBy;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    let currentUrl = window.location.href;
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+                    $scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    $scope.printPdfVals.reportsDataArr = res.data.response;
+                    $scope.printPdfVals.transactionFrom = $scope.filterReport.transactionFrom;
+                    $scope.printPdfVals.transactionTo = $scope.filterReport.transactionTo;
+
+                    $scope.printPdfVals.reportTitle = 'Search Record by Entry No.';
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        jsreportService.downloadXlsx($scope.printPdfVals, "H1lHdODeoH").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        });
+
+                    } else if (_reportType == 'pdf') {
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+
+                        var invoicePdfModal = ModalService.showModal({
+                            templateUrl: 'app/views/reports/accessByTransactionNumbersModal.html',
+                            controller: 'pdfPrintModalController',
+                            inputs: {
+                                printPdfVals: $scope.printPdfVals
+                            }
+                        });
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.printPdfVals = {};
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 }]);
@@ -18730,6 +36616,7 @@ myApp.controller('AccessByTransactionNumbersController', ["$scope", "$filter", "
 myApp.controller('CustomerRebateController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function CustomerRebateController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
     'use strict';
 
+<<<<<<< HEAD
 	$scope.module = $stateParams.module;
 	// console.log($stateParams.module);
 	$scope.dontShowModal = false;
@@ -18849,10 +36736,134 @@ myApp.controller('CustomerRebateController', ["$scope", "$filter", "ngTableParam
 				return false;
 			}
 		}
+=======
+    $scope.module = $stateParams.module;
+    // console.log($stateParams.module);
+    $scope.dontShowModal = false;
+
+    if ($stateParams.module == 'Customer') {
+
+        $scope.reportTitle = 'Customer Rebate';
+        $scope.reportType = 'Customer-Rebate';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Customer Rebate', 'url': '#', 'isActive': false }
+        ];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customerRebate)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.customers = [];
+    } else if ($stateParams.module == 'CRM') {
+
+        $scope.reportTitle = 'CRM Rebate';
+        $scope.reportType = 'CRM-Rebate';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'CRM Rebate', 'url': '#', 'isActive': false }
+        ];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.CRMRebate)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.CRMs = [];
+    } else if ($stateParams.module == 'Supplier') {
+
+        $scope.reportTitle = 'Supplier Rebate';
+        $scope.reportType = 'Supplier-Rebate';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Supplier Rebate', 'url': '#', 'isActive': false }
+        ];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.SupplierRebate)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.suppliers = [];
+    } else if ($stateParams.module == 'customerWithNoOrders') {
+
+        $scope.reportTitle = 'Customer With No Orders';
+        $scope.reportType = 'customerWithNoActivity';
+
+        $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false },
+            { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false },
+            { 'name': 'Customer With No Orders', 'url': '#', 'isActive': false }
+        ];
+
+        if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.customerWithNoActivity)) {
+            toaster.pop('error', 'Error', "You are not authorized for this report");
+            $state.go('app.allReports');
+        }
+
+        $scope.customers = [];
+    }
+
+    $scope.pdfGenerate = false;
+    $scope.filterReport = {};
+    $scope.columns = [];
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.reporttype = 'summary';
+
+    $scope.rebateTypeList = [{ 'id': 1, 'title': 'Universal Rebate' },
+        { 'id': 2, 'title': 'Volume Based Rebate' },
+        { 'id': 3, 'title': 'Revenue Based Rebate' }
+    ];
+
+    $scope.filterReport.rebateType = $scope.rebateTypeList[0];
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.salepersons = $scope.salepersons;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.crm = $scope.crm;
+
+        if ($stateParams.module != 'customerWithNoOrders') {
+
+            if ($scope.filterReport.dateFrom) {
+                var from, to, check;
+
+                from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+                to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+                if (from != null && to != null) {
+
+                    var from1, to1;
+                    from1 = new Date(from.replace(/\s/g, ''));
+                    to1 = new Date(to.replace(/\s/g, ''));
+
+                    var fDate, lDate;
+                    fDate = Date.parse(from1);
+                    lDate = Date.parse(to1);
+
+                    if (fDate > lDate) {
+                        toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                        return false;
+                    }
+                }
+            } else {
+                $scope.filterReport.dateFrom = '';
+                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+                return false;
+            }
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (!$scope.filterReport.dateTo && $stateParams.module != 'customerWithNoOrders') {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
             return false;
+<<<<<<< HEAD
 		}
 
 		if (!$scope.filterReport.upToDate && $stateParams.module == 'customerWithNoOrders') {
@@ -18889,10 +36900,46 @@ myApp.controller('CustomerRebateController', ["$scope", "$filter", "ngTableParam
 				$scope.columns = [];// && $stateParams.module != 'CRM'
 
                 if (res.data.ack == 1 && res.data.response && ($scope.filterReport.reporttype != 'summary' || (res.data.response.length>1))) {
+=======
+        }
+
+        if (!$scope.filterReport.upToDate && $stateParams.module == 'customerWithNoOrders') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date Since']));
+            return false;
+        }
+
+        $scope.filterReport.rebateTypeID = ($scope.filterReport.rebateType && $scope.filterReport.rebateType.id) ? $scope.filterReport.rebateType.id : 0;
+
+        $scope.showLoader = true;
+
+        if ($stateParams.module == 'Customer') {
+            var rebateApi = $scope.$root.reports + "module/customer-rebate-report";
+        } else if ($stateParams.module == 'CRM') {
+            var rebateApi = $scope.$root.reports + "module/crm-rebate-report";
+        } else if ($stateParams.module == 'Supplier') {
+            var rebateApi = $scope.$root.reports + "module/supplier-rebate-report";
+        } else if ($stateParams.module == 'customerWithNoOrders') {
+            var rebateApi = $scope.$root.reports + "module/customer-with-no-activity-report";
+        }
+        /* else if($stateParams.module == 'opportunityCycle'){
+        	var rebateApi = $scope.$root.reports + "module/opportunity-cycle-report";
+        } */
+
+        $http
+            .post(rebateApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.reportsDataArr = [];
+                $scope.columns = []; // && $stateParams.module != 'CRM'
+
+                if (res.data.ack == 1 && res.data.response && ($scope.filterReport.reporttype != 'summary' || (res.data.response.length > 1))) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.reportsDataArr = res.data.response;
                     $scope.reportsDataArrLength = 0;
 
                     $scope.printPdfVals = {};
+<<<<<<< HEAD
                     $scope.printPdfVals.columns = [];                    
 
                     $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
@@ -19749,6 +37796,850 @@ myApp.controller('CustomerRebateController', ["$scope", "$filter", "ngTableParam
 
 		angular.element('#_SalepersonModal').modal('hide');
 	}
+=======
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.upToDate = $scope.filterReport.upToDate;
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.rebateType = $scope.filterReport.rebateType.title;
+                    $scope.printPdfVals.rebateTypeID = $scope.filterReport.rebateType.id;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    let currentUrl = window.location.href;
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+                    $scope.printPdfVals.reportOrderByID = $scope.filterReport.reportOrderByID;
+
+                    $scope.printPdfVals.module = $stateParams.module;
+
+                    $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+                        $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                        if ($stateParams.module == 'Customer') {
+
+                            $scope.printPdfVals.reportName = 'customerRebateReport';
+
+                            if ($scope.printPdfVals.report_type == 'summary') {
+
+                                $scope.printPdfVals.reportTitle = 'Customer Rebate - Summary';
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+
+                                jsreportService.downloadXlsx($scope.printPdfVals, "HJl9yw23dH").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                });
+                            } else {
+                                $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                                $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                                $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.saleInvoice_grand_total_commission = res.data.response.saleInvoice_grand_total_commission;
+                                $scope.printPdfVals.saleInvoice_grand_total_amount_ex_vat = res.data.response.saleInvoice_grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.creditNote_grand_total_amount_ex_vat = res.data.response.creditNote_grand_total_amount_ex_vat;
+                                $scope.printPdfVals.creditNote_grand_total_commission = res.data.response.creditNote_grand_total_commission;
+
+                                $scope.printPdfVals.purchaseInvoice_grand_total_commission = res.data.response.purchaseInvoice_grand_total_commission;
+                                $scope.printPdfVals.purchaseInvoice_grand_total_amount_ex_vat = res.data.response.purchaseInvoice_grand_total_amount_ex_vat;
+
+                                jsreportService.downloadXlsx($scope.printPdfVals, "S11jwl0OH").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                });
+
+                            }
+                        } else if ($stateParams.module == 'CRM') {
+
+                            $scope.printPdfVals.reportName = 'CRMRebateReport';
+
+                            if ($scope.printPdfVals.report_type == 'summary') {
+
+                                $scope.printPdfVals.reportTitle = 'CRM Rebate';
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+
+                                jsreportService.downloadXlsx($scope.printPdfVals, "rJeuMrnWFB").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                });
+                            }
+                            /* else{
+                            	$scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                            	jsreportService.downloadXlsx($scope.printPdfVals, "rkVCrrLDH").success(function (data) {
+                            		let file = new Blob([data], { type: 'application/xlsx' });
+                            		saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            		$scope.showLoader = false;
+                            	});
+
+                            } */
+                        } else if ($stateParams.module == 'Supplier') {
+
+                            $scope.printPdfVals.reportName = 'supplierRebateReport';
+
+                            if ($scope.printPdfVals.report_type == 'summary') {
+
+                                $scope.printPdfVals.reportTitle = 'Supplier Rebate - Summary';
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+
+                                jsreportService.downloadXlsx($scope.printPdfVals, "BygpCNzGFr").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                });
+                            } else {
+                                $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                                $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                                $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.debitNote_grand_total_amount_ex_vat = res.data.response.debitNote_grand_total_amount_ex_vat;
+                                $scope.printPdfVals.debitNote_grand_total_commission = res.data.response.debitNote_grand_total_commission;
+
+                                $scope.printPdfVals.purchaseInvoice_grand_total_commission = res.data.response.purchaseInvoice_grand_total_commission;
+                                $scope.printPdfVals.purchaseInvoice_grand_total_amount_ex_vat = res.data.response.purchaseInvoice_grand_total_amount_ex_vat;
+
+                                jsreportService.downloadXlsx($scope.printPdfVals, "HJTlizfFS").success(function(data) {
+                                    let file = new Blob([data], { type: 'application/xlsx' });
+                                    saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                    $scope.showLoader = false;
+                                });
+
+                            }
+                        } else if ($stateParams.module == 'customerWithNoOrders') {
+
+                            $scope.printPdfVals.reportName = 'customerWithNoOrdersReport';
+                            $scope.printPdfVals.reportTitle = 'Customer With No Orders';
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+
+                            jsreportService.downloadXlsx($scope.printPdfVals, "r1eb4rJL5S").success(function(data) {
+                                let file = new Blob([data], { type: 'application/xlsx' });
+                                saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                                $scope.showLoader = false;
+                            });
+                        }
+
+                    } else if (_reportType == 'pdf') {
+
+                        if ($stateParams.module == 'Customer') {
+
+                            $scope.printPdfVals.reportName = 'customerRebateReport';
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                            if ($scope.printPdfVals.report_type == 'summary')
+                                $scope.printPdfVals.reportTitle = 'Customer Rebate - Summary';
+                            else if ($scope.printPdfVals.report_type == 'detail')
+                                $scope.printPdfVals.reportTitle = 'Customer Rebate - Detail';
+
+                            if ($scope.printPdfVals.report_type == 'summary') {
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+                            } else {
+
+                                $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                                $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                                $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.saleInvoice_grand_total_commission = res.data.response.saleInvoice_grand_total_commission;
+                                $scope.printPdfVals.saleInvoice_grand_total_amount_ex_vat = res.data.response.saleInvoice_grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.creditNote_grand_total_amount_ex_vat = res.data.response.creditNote_grand_total_amount_ex_vat;
+                                $scope.printPdfVals.creditNote_grand_total_commission = res.data.response.creditNote_grand_total_commission;
+
+                                $scope.printPdfVals.purchaseInvoice_grand_total_commission = res.data.response.purchaseInvoice_grand_total_commission;
+                                $scope.printPdfVals.purchaseInvoice_grand_total_amount_ex_vat = res.data.response.purchaseInvoice_grand_total_amount_ex_vat;
+                            }
+
+                        } else if ($stateParams.module == 'CRM') {
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                            $scope.printPdfVals.reportName = 'CRMRebateReport';
+
+                            if ($scope.printPdfVals.report_type == 'summary')
+                                $scope.printPdfVals.reportTitle = 'CRM Rebate'; // - Summary
+                            // else if($scope.printPdfVals.report_type == 'detail')
+                            // 	$scope.printPdfVals.reportTitle = 'CRM Rebate - Detail';				
+
+                            // if($scope.printPdfVals.report_type == 'summary'){
+                            // }
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+                        } else if ($stateParams.module == 'Supplier') {
+
+                            $scope.printPdfVals.reportName = 'supplierRebateReport';
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                            if ($scope.printPdfVals.report_type == 'summary')
+                                $scope.printPdfVals.reportTitle = 'Supplier Rebate - Summary';
+                            else if ($scope.printPdfVals.report_type == 'detail')
+                                $scope.printPdfVals.reportTitle = 'Supplier Rebate - Detail';
+
+                            if ($scope.printPdfVals.report_type == 'summary') {
+
+                                angular.forEach(res.data.response[0], function(val, index) {
+                                    $scope.printPdfVals.columns.push({
+                                        'title': toTitleCase(index),
+                                        'field': index,
+                                        'visible': true
+                                    });
+                                });
+                            } else {
+
+                                $scope.printPdfVals.reportsDataArr = res.data.response.records;
+
+                                $scope.printPdfVals.grand_total_commission = res.data.response.grand_total_commission;
+                                $scope.printPdfVals.grand_total_amount_ex_vat = res.data.response.grand_total_amount_ex_vat;
+
+                                $scope.printPdfVals.debitNote_grand_total_amount_ex_vat = res.data.response.debitNote_grand_total_amount_ex_vat;
+                                $scope.printPdfVals.debitNote_grand_total_commission = res.data.response.debitNote_grand_total_commission;
+
+                                $scope.printPdfVals.purchaseInvoice_grand_total_commission = res.data.response.purchaseInvoice_grand_total_commission;
+                                $scope.printPdfVals.purchaseInvoice_grand_total_amount_ex_vat = res.data.response.purchaseInvoice_grand_total_amount_ex_vat;
+                            }
+
+                        }
+
+                        // $scope.printPdfVals.reportName = 'supplierRebateReport';
+
+                        if ($stateParams.module == 'Customer' || $stateParams.module == 'CRM' || $stateParams.module == 'Supplier') {
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerRebateModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+
+                        if ($stateParams.module == 'customerWithNoOrders') {
+
+                            $scope.printPdfVals.reportName = 'customerWithNoOrdersReport';
+
+                            $scope.printPdfVals.reportsDataArr = res.data.response;
+                            $scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                            $scope.printPdfVals.reportTitle = 'Customer With No Orders';
+
+                            angular.forEach(res.data.response[0], function(val, index) {
+                                $scope.printPdfVals.columns.push({
+                                    'title': toTitleCase(index),
+                                    'field': index,
+                                    'visible': true
+                                });
+                            });
+
+                            var invoicePdfModal = ModalService.showModal({
+                                templateUrl: 'app/views/reports/customerWithNoActivityModal.html',
+                                controller: 'pdfPrintModalController',
+                                inputs: {
+                                    printPdfVals: $scope.printPdfVals
+                                }
+                            });
+                        }
+
+                        /* if($stateParams.module == 'opportunityCycle'){
+
+                        	$scope.printPdfVals.reportName = 'opportunityCycleReport';
+
+                        	$scope.printPdfVals.reportsDataArr = res.data.response;
+                        	$scope.printPdfVals.report_type = $scope.filterReport.reporttype;
+
+                        	$scope.printPdfVals.reportTitle = 'Opportunity Cycle';		
+
+                        	angular.forEach(res.data.response[0], function (val, index) {
+                        		$scope.printPdfVals.columns.push({
+                        			'title': toTitleCase(index),
+                        			'field': index,
+                        			'visible': true
+                        		});
+                        	});	
+
+                        	var invoicePdfModal = ModalService.showModal({
+                        		templateUrl: 'app/views/reports/opportunityCycleModal.html',
+                        		controller: 'pdfPrintModalController',
+                        		inputs: {
+                        			printPdfVals: $scope.printPdfVals
+                        		}
+                        	});
+                        } */
+
+                        invoicePdfModal.then(function(res) {
+                            res.element.modal();
+                        });
+
+                    } else {
+
+                        $scope.printPdfVals.reportsDataArr = res.data.response;
+
+                        angular.forEach(res.data.response[0], function(val, index) {
+                            $scope.printPdfVals.columns.push({
+                                'title': toTitleCase(index),
+                                'field': index,
+                                'visible': true
+                            });
+                        });
+                    }
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+                    $scope.reportsDataArr = [];
+                }
+            });
+    }
+
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.printPdfVals = {};
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+        $scope.filterReport.reporttype = 'summary';
+        $scope.filterReport.rebateType = $scope.rebateTypeList[0];
+
+        $scope.customers = [];
+        // $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        $scope.crm = [];
+        // $scope.searchKeywordCRM = {};
+        $scope.selectedRecFromModalsCRM = [];
+
+        $scope.suppliers = [];
+        // $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.salepersons = [];
+        // $scope.searchKeywordSp = {};
+        $scope.selectedRecFromModalsSp = [];
+
+        $scope.salespersonsNames = "";
+    }
+
+    $scope.customers = [];
+    $scope.searchKeywordCUST = {};
+    $scope.selectedRecFromModalsCUST = [];
+
+    // Customer Module
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    // CRM Module
+
+    $scope.crm = [];
+    $scope.searchKeywordCRM = {};
+    $scope.selectedRecFromModalsCRM = [];
+
+    $scope.clearCrm = function() {
+        angular.element('#_crmModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCrm = function() {
+        $scope.searchKeywordCRM = {};
+        $scope.selectCrm();
+    }
+
+    $scope.selectCrm = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCRM;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCRM = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/crm-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCrmArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCrmArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_crmModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCrm = function() {
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCRM, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CrmArr = [];
+        $scope.crm = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.crm_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.crm.push(recData);
+        });
+
+        angular.element('#_crmModal').modal('hide');
+    }
+
+    // Supplier Module
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_supplierModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSuppliers = [];
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    // Saleperson Module
+
+    $scope.searchKeywordSp = {};
+    $scope.selectedRecFromModalsSp = [];
+
+    $scope.clearFiltersAndSelectSaleperson = function() {
+        $scope.searchKeywordSp = {};
+        $scope.selectSaleperson();
+    }
+
+    $scope.selectSaleperson = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SPDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-from-orders";
+        // var salepersonsListingApi = $scope.$root.reports + "module/saleperson-data-for-report";
+        $scope.postData.cond = 'Detail';
+
+        $scope.showLoader = true;
+        $http
+            .post(salepersonsListingApi, $scope.postData)
+            .then(function(res) {
+                console.log("R:4011");
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_SalepersonModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSalepersons = [];
+
+    $scope.clearSalepersons = function() {
+
+        // $scope.PendingSelectedSalepersons = [];
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+
+    $scope.addSalepersons = function() {
+
+        var selSplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSp, function(obj) {
+            selSplList.push(obj.record);
+        });
+
+        $scope.salepersonsArr = [];
+        $scope.salepersons = [];
+        $scope.salespersonsNames = "";
+
+        angular.forEach(selSplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.salepersons.push(recData);
+
+            if ($scope.salespersonsNames == "")
+                $scope.salespersonsNames = recData.name;
+            else
+                $scope.salespersonsNames = $scope.salespersonsNames + '; ' + recData.name;
+        });
+
+        angular.element('#_SalepersonModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 }]);
 
@@ -19757,6 +38648,7 @@ myApp.controller('CustomerRebateController', ["$scope", "$filter", "ngTableParam
 /* start- customer activity report controller  */
 
 myApp.controller('CustomerActivityController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function CustomerActivityController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -19936,10 +38828,192 @@ myApp.controller('CustomerActivityController', ["$scope", "$filter", "ngTablePar
 	$scope.selectedRecFromModalsCUST = [];
 
 	$scope.moduleType = '';
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Customer Activity Report';
+    $scope.reportType = 'Customer-Activity';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Customer Activity Report', 'url': '#', 'isActive': false }];
+
+    $scope.pdfGenerate = false;
+    $scope.filterReport = {};
+    $scope.customers = [];
+    $scope.columns = [];
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.customers = $scope.customers;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+
+        var customerActivityReportAPI = $scope.$root.reports + "module/customer-activity-report";
+        $http
+            .post(customerActivityReportAPI, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == 1 && res.data.response) {
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.remittenceDataArr = [];
+                    $scope.remittenceSelSuppArr = [];
+                    $scope.reportsDataArrLength = 0;
+
+                    $scope.printPdfVals = {};
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.reportName = 'CustomerActivityReport';
+
+                    let customersActvityData = groupBy($scope.reportsDataArr, suppliers => suppliers.sell_to_cust_no);
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.suppliers = $scope.filterReport.suppliers;
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.suppliersOpeningBalances = $scope.suppliersOpeningBalances;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    let currentUrl = window.location.href;
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        customersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        jsreportService.downloadXlsx($scope.printPdfVals, "rJgm6zdnMS").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+
+                    } else if (_reportType == 'pdf') {
+                        $scope.showLoader = true;
+                        customersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        console.log($scope.printPdfVals.reportsDataArr);
+
+                        jsreportService.downloadPdf($scope.printPdfVals, "rJgm6zdnMS").success(function(data) {
+                            let file = new Blob([data], { type: 'application/pdf' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".pdf");
+                            $scope.showLoader = false;
+                        })
+
+                    } else {
+                        customersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        console.log($scope.printPdfVals);
+                    }
+                } else {
+                    $scope.printPdfVals = {};
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    function groupBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+            const key = keyGetter(item);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
+    }
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.employeesArr = [];
+        $scope.customers = [];
+        $scope.salepersons = [];
+        $scope.items = [];
+        $scope.suppliers = [];
+        $scope.SelEmployeesTooltip = '';
+        $scope.filterReport.type = 1;
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    }
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.selectedRecFromModalsCUST = [];
+
+    $scope.moduleType = '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
 
+<<<<<<< HEAD
 	$scope.PendingSelectedSuppliers = [];
 
 
@@ -20053,6 +39127,120 @@ myApp.controller('CustomerActivityController', ["$scope", "$filter", "ngTablePar
 
 		angular.element('#_customerModal').modal('hide');
 	}
+=======
+    $scope.PendingSelectedSuppliers = [];
+
+
+
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.clearFiltersAndSelectCustomer = function() {
+        $scope.searchKeywordCUST = {};
+        $scope.selectCustomers();
+    }
+
+    $scope.selectCustomers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'CUSTDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordCUST;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordCUST = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'crmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempCustomerArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempCustomerArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+                    if (!$scope.dontShowModal)
+                        angular.element('#_customerModal').modal({ show: true });
+                    $scope.dontShowModal = false;
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.addCustomers = function() {
+
+        // var selCUSTList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsCUST[o.id];
+        // });
+
+        var selCUSTList = [];
+
+        angular.forEach($scope.selectedRecFromModalsCUST, function(obj) {
+            selCUSTList.push(obj.record);
+        });
+
+        $scope.CustomerArr = [];
+        $scope.customers = [];
+
+        angular.forEach(selCUSTList, function(recData) {
+            recData.moduleNo = recData.customer_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.customers.push(recData);
+        });
+
+        angular.element('#_customerModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 }]);
@@ -20062,6 +39250,7 @@ myApp.controller('CustomerActivityController', ["$scope", "$filter", "ngTablePar
 /* supplier activity report controller start */
 
 myApp.controller('SupplierActivityController', ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "jsreportService", function SupplierActivityController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, jsreportService) {
+<<<<<<< HEAD
 	'use strict';
 
 	$scope.module = $stateParams.module;
@@ -20361,6 +39550,306 @@ myApp.controller('SupplierActivityController', ["$scope", "$filter", "ngTablePar
 
 		angular.element('#_supplierModal').modal('hide');
 	}
+=======
+    'use strict';
+
+    $scope.module = $stateParams.module;
+    $scope.searchKeyword = {};
+    $scope.dontShowModal = false;
+    $scope.reportTitle = 'Supplier Activity Report';
+    $scope.reportType = 'Supplier-Activity';
+    $scope.breadcrumbs = [{ 'name': 'Reports', 'url': '#', 'isActive': false }, { 'name': 'All Reports', 'url': 'app.allReports', 'isActive': false }, { 'name': 'Supplier Activity Report', 'url': '#', 'isActive': false }];
+
+    $scope.docTypeArr = {};
+    $scope.docTypeArr = [{ 'id': '1', 'title': 'All' }, { 'id': '2', 'title': 'Purchase Invoice' }, { 'id': '3', 'title': 'Debit Note' }, { 'id': '4', 'title': 'General Journal' }];
+
+    // if ($rootScope.reports_permission == undefined || !($rootScope.reports_permission.remittance_advice)) {
+    // 	toaster.pop('error', 'Error', "You are not authorized for this report");
+    // 	$state.go('app.allReports');
+    // }
+    $scope.pdfGenerate = false;
+    $scope.filterReport = {};
+    $scope.suppliers = [];
+    $scope.columns = [];
+    $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    $scope.filterReport.type = 1;
+
+    $scope.generateReport = function(_reportType = 'pdf') {
+
+        $scope.filterReport.token = $rootScope.token;
+        $scope.filterReport.module = $scope.module;
+        $scope.filterReport.suppliers = $scope.suppliers;
+        $scope.filterReport.dateFrom = $scope.filterReport.dateFrom;
+        $scope.filterReport.dateTo = $scope.filterReport.dateTo;
+        $scope.filterReport.type = $scope.filterReport.type;
+
+        $scope.filterReport.docTypeID = ($scope.filterReport.docType != undefined && $scope.filterReport.docType != '') ? $scope.filterReport.docType.id : 1;
+
+        if ($scope.filterReport.dateFrom != undefined && $scope.filterReport.dateFrom != 0) { // && $scope.suppliers.length > 0
+            var from, to, check;
+
+            from = $scope.filterReport.dateFrom.split("/")[2] + "-" + $scope.filterReport.dateFrom.split("/")[1] + "-" + $scope.filterReport.dateFrom.split("/")[0];
+            to = $scope.filterReport.dateTo.split("/")[2] + "-" + $scope.filterReport.dateTo.split("/")[1] + "-" + $scope.filterReport.dateTo.split("/")[0];
+
+            if (from != null && to != null) {
+
+                var from1, to1;
+                from1 = new Date(from.replace(/\s/g, ''));
+                to1 = new Date(to.replace(/\s/g, ''));
+
+                var fDate, lDate;
+                fDate = Date.parse(from1);
+                lDate = Date.parse(to1);
+
+                if (fDate > lDate) {
+                    toaster.pop('error', 'Error', "Date To is earlier then Date From!");
+                    return false;
+                }
+            }
+        } else {
+            $scope.filterReport.dateFrom = '';
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date From']));
+            return false;
+        }
+
+
+        if ($scope.filterReport.dateTo == undefined || $scope.filterReport.dateTo == 0 || $scope.filterReport.dateTo == '') {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Date To']));
+            return false;
+        }
+
+        $scope.showLoader = true;
+
+        var remittanceAdviceApi = $scope.$root.reports + "module/supplier-activity-report";
+        $http
+            .post(remittanceAdviceApi, $scope.filterReport)
+            .then(function(res) {
+                $scope.showLoader = false;
+                $scope.reportsDataArr = [];
+                $scope.printPdfVals = {};
+                $scope.printPdfVals.reportsDataArr = [];
+
+                if (res.data.ack == 1 && res.data.response) {
+                    $scope.reportsDataArr = res.data.response;
+                    $scope.suppliersOpeningBalances = res.data.Balances.supplier_balance;
+                    $scope.remittenceDataArr = [];
+                    $scope.remittenceSelSuppArr = [];
+                    $scope.reportsDataArrLength = 0;
+
+                    $scope.printPdfVals.columns = [];
+
+                    $scope.printPdfVals.reportName = 'SupplierActivityReport';
+
+                    let suppliersActvityData = groupBy($scope.reportsDataArr, suppliers => suppliers.sell_to_cust_no);
+
+                    $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+                    $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+                    $scope.printPdfVals.suppliers = $scope.filterReport.suppliers;
+
+                    $scope.printPdfVals.reportsDataArr = [];
+                    $scope.printPdfVals.suppliersOpeningBalances = $scope.suppliersOpeningBalances;
+                    $scope.printPdfVals.company_name = $rootScope.company_name;
+                    $scope.printPdfVals._reportType = _reportType;
+                    $scope.printPdfVals.known_as = $rootScope.known_as;
+
+                    let currentUrl = window.location.href;
+                    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                    $scope.printPdfVals.company_logo_url = $scope.company_logo_url;
+
+
+                    if (_reportType == 'xlsx') {
+                        $scope.showLoader = true;
+                        suppliersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        jsreportService.downloadXlsx($scope.printPdfVals, "SyllYHHn-H").success(function(data) {
+                            let file = new Blob([data], { type: 'application/xlsx' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".xlsx");
+                            $scope.showLoader = false;
+                        })
+
+                    } else if (_reportType == 'pdf') {
+                        $scope.showLoader = true;
+                        console.log(suppliersActvityData);
+                        suppliersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                        console.log($scope.printPdfVals.reportsDataArr);
+
+                        jsreportService.downloadPdf($scope.printPdfVals, "SyllYHHn-H").success(function(data) {
+                            let file = new Blob([data], { type: 'application/pdf' });
+                            saveAs(file, $scope.printPdfVals.reportName + ".pdf");
+                            $scope.showLoader = false;
+                        })
+
+                    } else {
+                        suppliersActvityData.forEach(function(value, key, map) {
+                            $scope.printPdfVals.reportsDataArr.push(value);
+                        })
+                    }
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    function groupBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+            const key = keyGetter(item);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
+    }
+    $scope.clearReport = function() {
+        $scope.dontShowModal = true;
+        $scope.filterReport = {};
+        $scope.reportsDataArr = [];
+        $scope.employeesArr = [];
+        $scope.customers = [];
+        $scope.salepersons = [];
+        $scope.items = [];
+        $scope.suppliers = [];
+        $scope.SelEmployeesTooltip = '';
+        $scope.filterReport.type = 1;
+
+        $scope.searchKeywordSupp = {};
+        $scope.selectedRecFromModalsSupp = [];
+
+        $scope.searchKeywordCUST = {};
+        $scope.selectedRecFromModalsCUST = [];
+
+        //$scope.searchKeywordItem = {};
+        $scope.selectedRecFromModalsItem = [];
+
+        //$scope.searchKeywordEmp = {};
+        $scope.selectedRecFromModalsEmp = [];
+
+        //$scope.searchKeywordGL = {};
+        $scope.selectedRecFromModalsGL = [];
+
+        $scope.filterReport.dateTo = $scope.$root.get_current_date();
+    }
+
+    $scope.searchKeywordSupp = {};
+    $scope.selectedRecFromModalsSupp = [];
+
+    $scope.moduleType = '';
+
+    $scope.clearFiltersAndSelectSuppliers = function() {
+        $scope.searchKeywordSupp = {};
+        $scope.selectSuppliers();
+    }
+
+    $scope.selectSuppliers = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+        $scope.moduleType = 'SuppDetail';
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSupp;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSupp = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'srmsort_name');
+        }
+
+        $scope.postData.cond = 'Detail';
+
+        var supplierListingApi = $scope.$root.reports + "module/supplier-data-for-report";
+
+        $scope.showLoader = true;
+        $http
+            .post(supplierListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableData = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSuppliersArr2 = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSuppliersArr2 = res.data;
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    angular.element('#_supplierModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.PendingSelectedSuppliers = [];
+
+    $scope.clearSuppliers = function() {
+        angular.element('#_supplierModal').modal('hide');
+    }
+
+    $scope.addSuppliers = function() {
+
+        // var selSupplList = $scope.recordArray.filter(function (o, i) {
+        // 	return $scope.selectedRecFromModalsSupp[o.id];
+        // });
+
+        var selSupplList = [];
+
+        angular.forEach($scope.selectedRecFromModalsSupp, function(obj) {
+            selSupplList.push(obj.record);
+        });
+
+        $scope.SuppliersArr = [];
+        $scope.suppliers = [];
+
+        angular.forEach(selSupplList, function(recData) {
+            recData.moduleNo = recData.supplier_code;
+            recData.title = recData.name;
+            recData.custID = recData.id;
+            $scope.suppliers.push(recData);
+        });
+
+        angular.element('#_supplierModal').modal('hide');
+    }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 }]);
@@ -20368,6 +39857,7 @@ myApp.controller('SupplierActivityController', ["$scope", "$filter", "ngTablePar
 /* supplier activity report controller end */
 
 
+<<<<<<< HEAD
 myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$http", "toaster", "$stateParams", "$state", "$rootScope","ngDialog", "printPdfVals", "fileAuthentication", function pdfPrintModalController($scope, $filter, $timeout, $http, toaster, $stateParams, $state, $rootScope,ngDialog, printPdfVals, fileAuthentication) {
 	'use strict';
 
@@ -22256,6 +41746,82 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
         _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
         // console.log("Sales Figures By Customer : ", _reportData);
         if (_reportData.report_type == 1) {//'detail'
+=======
+myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$http", "toaster", "$stateParams", "$state", "$rootScope", "ngDialog", "printPdfVals", "fileAuthentication", function pdfPrintModalController($scope, $filter, $timeout, $http, toaster, $stateParams, $state, $rootScope, ngDialog, printPdfVals, fileAuthentication) {
+    'use strict';
+
+
+    $scope.isNumber = function(number) {
+        return angular.isNumber(number) && !isNaN(number);
+    }
+    $scope.dontShowModal = false;
+    let currentUrl = window.location.href;
+    $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+    printPdfVals.company_name = $rootScope.company_name;
+    printPdfVals.company_logo_url = $scope.company_logo_url;
+    printPdfVals.known_as = $rootScope.known_as;
+    printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+    // console.log("pdf printing: ", printPdfVals);
+    $scope.phantomSettings = {
+        orientation: "portrait"
+    }
+
+    $scope.updatePageOrientation = function(_orientation) {
+
+        _orientation ? $scope.pageOrientation = "landscape" : $scope.pageOrientation = "portrait";
+        $scope.phantomSettings = {
+            orientation: $scope.pageOrientation
+        }
+    }
+
+    $scope.jsreportLoading = false;
+    $scope.renderReportAging = function(_reportData, _shortId) {
+        _reportData.renderingType = "pdf";
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "shortid": _shortId,
+                        "recipe": "html",
+                    },
+
+                    "data": _reportData
+
+                },
+                headers: {
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+            })
+            .success(function(data) {
+                $scope.showLoader = false;
+                $scope.customerAgingReportHtml = data;
+
+            });
+    }
+    if (printPdfVals.reportName == "CustomerAgeingReportSummary") {
+        console.log(printPdfVals);
+        $scope.customerAgingReportHtml = printPdfVals.agingReportHtml;
+        // $scope.renderReportAging(printPdfVals, "HkgJQiwGdE");
+    } else if (printPdfVals.reportName == "SupplierAgeingReportSummary" || printPdfVals.reportName == "CreditorsAgeingReportSummary") {
+        $scope.customerAgingReportHtml = printPdfVals.agingReportHtml;
+    }
+
+
+    $scope.downloadReport = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        if (_reportData.reportName != 'supplierStatementReport') {
+
+            console.log("Customer Statement: ", _reportData);
+
+            // // jsreport direct solution
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $http({
                 url: $rootScope.jsreports,
                 method: 'POST',
@@ -22263,17 +41829,1634 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
                 data: {
                     "template": {
                         "phantom": $scope.phantomSettings,
+<<<<<<< HEAD
                         "shortid": "r1gb8I2twI"
+=======
+                        "shortid": "r1gSoJRhD4"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123")
+                },
+                responseType: 'arraybuffer'
+            }).success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+        } else if (_reportData.reportName == 'supplierStatementReport') {
+
+            console.log("Supplier Statement: ", _reportData);
+
+            // // jsreport direct solution
+            $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "r1lpboXyGB"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123")
+                },
+                responseType: 'arraybuffer'
+            }).success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+
+        }
+
+
+
+        // nodejs pagination solution
+        // $http({
+        // 	url: "http://localhost:3000/statement",
+        // 	method: 'POST',
+        // 	data :{
+        // 		_reportData
+        // 	},
+        // 	headers: {
+        // 		'Content-type': 'application/json'
+        // 	},
+        // 	responseType: 'arraybuffer'
+        // }).success(function (data) {
+        // 		$scope.jsreportLoading = false;
+        // 		// console.log("success jsreport...", typeof (data));
+
+        // 		var file = new Blob([data], { type: 'application/pdf' });
+        // 		saveAs(file, _reportData.reportName+ '.pdf');
+
+        // 	});
+    }
+
+    $scope.downloadReportCustomerAgingDetail = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SylA9zON-H"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123")
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+            });
+    }
+
+    $scope.downloadReportSupplierAgingDetail = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rkxXD33pbS"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123")
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+            });
+    }
+
+    $scope.downloadReportTrialBalance = function(_reportData, _reportId) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        // console.log("tYPE: ", typeof (_reportData));
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": _reportId
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportVAT = function(_reportData, _reportId) {
+        // console.log("VAT ReportData: ", _reportData);
+        // console.log("VAT pdf vals: ", printPdfVals);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": _reportId
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.chkVATReturnsOption = function(VATReturnName) {
+        // console.log(VATReturnName);
+        $rootScope.showLoader = true;
+        $scope.showVATReturns = false;
+        $scope.VATReturnsEntries = [];
+
+        // $scope.printPdfVals = {};
+        $scope.printPdfVals.company_name = $rootScope.company_name;
+        $scope.printPdfVals._reportType = VATReturnName.name;
+        $scope.printPdfVals.reportName = 'VATReturn';
+
+        let currentUrl = window.location.href;
+        $scope.printPdfVals.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+        // $scope.printPdfVals.currentDate = $scope.currentDate;
+        // $scope.printPdfVals.dateFrom = $scope.filterReport.dateFrom;
+        // $scope.printPdfVals.dateTo = $scope.filterReport.dateTo;
+        $scope.printPdfVals.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $scope.printPdfVals.VATReturnName = VATReturnName;
+
+        var vatReportListingApi = $scope.$root.reports + "module/open-submitted-vat-returns-entries";
+        var postData = {
+            'token': $rootScope.token,
+            'VATReturnName': VATReturnName
+        };
+        $http
+            .post(vatReportListingApi, postData)
+            .then(function(res) {
+
+                $rootScope.showLoader = false;
+                if (res.data.ack == true) {
+                    $scope.showVATReturns = true;
+                    $scope.VATReturnsEntries = res.data.response;
+                    $scope.printPdfVals.VATReturnsEntries = res.data.response;
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+    }
+
+    $scope.backToVATReturnListing = function() {
+        $scope.showVATReturns = false;
+    }
+
+    $scope.downloadReportECSales = function(_reportData) {
+        // console.log("ECSales: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJggsZWKO4"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportUnpostedSalesOrder = function(_reportData) {
+        console.log("unposted Sales order: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "HygZ_LNGON"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportpostedSalesInvoice = function(_reportData) {
+        // console.log("unposted Sales order: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "HyeVt9IGOE"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportaccessByTransactionNumbers = function(_reportData) {
+        // console.log("unposted Sales order: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "H1lHdODeoH"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportPaymentNRefundFCustomer = function(_reportData) {
+        $scope.jsreportLoading = true;
+        // console.log("unposted Sales order: ", _reportData);
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rJlvBbvfON"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportCustomerAging = function(_reportData) {
+        // console.log("Customer aging summary: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.renderingType = "pdf";
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "r1g9rvxWw8" //HkgJQiwGdE
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     },
                     "data": _reportData
 
                 },
                 headers: {
+<<<<<<< HEAD
                     'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
                 },
                 responseType: 'arraybuffer'
             })
                 .success(function (data) {
+=======
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportSupplierAging = function(_reportData) {
+        // console.log("Supplier aging summary: ", _reportData);
+        $scope.jsreportLoading = true;
+        $scope.showLoader = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rygfKXucuV"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.showLoader = false;
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportUnpostedPO = function(_reportData) {
+        // console.log("unposted purchase orders: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BygoLQX8ON"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportUnpostedPOdetail = function(_reportData) {
+        // console.log("unposted purchase orders: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "HJx7I2Ls_V"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportSalesPersonActivity = function(_reportData) {
+        // console.log("Sales Person Activity: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJxi55OM_4"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportGoodsReceivedNotInvoiced = function(_reportData) {
+        // console.log("GoodsReceivedNotInvoiced: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BJe903mLuE"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportPostedPurchaseINDNS = function(_reportData) {
+        // console.log("GoodsReceivedNotInvoiced: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJxiA8U8_4"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportPostedPurchaseINDND = function(_reportData) {
+        // console.log("GoodsReceivedNotInvoiced: ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rkxzb4wLuN"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportRemittanceAdvice = function(_reportData) {
+        // console.log("Remmitance Advice : ", _reportData);
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BJeryU_LuN"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadcustomerItemPrices = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        // if (_reportData.report_type == 2) {
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "HJx8PxBNgw"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+        /* } else {
+        	$http({
+        		url: $rootScope.jsreports,
+        		method: 'POST',
+        		params: {},
+        		data: {
+        			"template": {
+        				"phantom": $scope.phantomSettings,
+        				"shortid": "HJx8PxBNgw"
+        			},
+        			"data": _reportData
+
+        		},
+        		headers: {
+        			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+        		},
+        		responseType: 'arraybuffer'
+        	})
+        		.success(function (data) {
+        			$scope.jsreportLoading = false;
+
+        			var file = new Blob([data], { type: 'application/pdf' });
+        			saveAs(file, _reportData.reportName + '.pdf');
+
+        		});
+        } */
+
+    }
+
+    $scope.downloadInventoryStatistics = function(_reportData) {
+            $scope.jsreportLoading = true;
+            _reportData.company_name = $rootScope.company_name;
+            _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+            _reportData.company_logo_url = $scope.company_logo_url;
+
+            $scope.phantomSettings.orientation = "landscape";
+            $scope.pageOrientation = "landscape";
+
+            // if (_reportData.report_type == 2) {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "rkx_IDtY-P"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+            /* } else {
+            	$http({
+            		url: $rootScope.jsreports,
+            		method: 'POST',
+            		params: {},
+            		data: {
+            			"template": {
+            				"phantom": $scope.phantomSettings,
+            				"shortid": "HJx8PxBNgw"
+            			},
+            			"data": _reportData
+
+            		},
+            		headers: {
+            			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+            		},
+            		responseType: 'arraybuffer'
+            	})
+            		.success(function (data) {
+            			$scope.jsreportLoading = false;
+
+            			var file = new Blob([data], { type: 'application/pdf' });
+            			saveAs(file, _reportData.reportName + '.pdf');
+
+            		});
+            } */
+
+        }
+        /* $scope.downloadReportStockAvailabilityBWS = function (_reportData) {
+        	$scope.jsreportLoading = true;
+        	_reportData.company_name = $rootScope.company_name;
+        	_reportData.company_logo_url = $scope.company_logo_url;
+        	// console.log("Stock Availability : ", _reportData);
+        	$http({
+        		url: $rootScope.jsreports,
+        		method: 'POST',
+        		params: {},
+        		data: {
+        			"template": {
+        				"phantom": $scope.phantomSettings,
+        				"shortid": "H1xU3oDwdN"
+        			},
+        			"data": _reportData
+
+        		},
+        		headers: {
+        			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+        		},
+        		responseType: 'arraybuffer'
+        	})
+        		.success(function (data) {
+        			$scope.jsreportLoading = false;
+        			// console.log("success jsreport...", typeof (data));
+
+        			var file = new Blob([data], { type: 'application/pdf' });
+        			saveAs(file, _reportData.reportName + '.pdf');
+
+        		});
+        } */
+
+    $scope.downloadReportStockSummaryReport = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "5A0OEUZt9b"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportStockAvaByWarehouseSummary = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SylvXJtaXU"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportStockAvaByItemSummary = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);SJaZjZ3mU
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BJlLknb-VI"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    /* $scope.downloadReportStockAvailabilityBWSD = function (_reportData) {
+    	$scope.jsreportLoading = true;
+    	_reportData.company_name = $rootScope.company_name;
+    	_reportData.company_logo_url = $scope.company_logo_url;
+    	// console.log("Stock Availability : ", _reportData);
+    	$scope.phantomSettings.orientation = "landscape";
+    	$scope.pageOrientation = "landscape"
+    	// $scope.updatePageOrientation(true);
+    	$http({
+    		url: $rootScope.jsreports,
+    		method: 'POST',
+    		params: {},
+    		data: {
+    			"template": {
+    				"phantom": $scope.phantomSettings,
+    				"shortid": "ByTXBrMlS"
+    			},
+    			"data": _reportData
+
+    		},
+    		headers: {
+    			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+    		},
+    		responseType: 'arraybuffer'
+    	})
+    		.success(function (data) {
+    			$scope.jsreportLoading = false;
+    			// console.log("success jsreport...", typeof (data));
+
+    			var file = new Blob([data], { type: 'application/pdf' });
+    			saveAs(file, _reportData.reportName + '.pdf');
+
+    		});
+    } */
+
+    $scope.downloadReportStockAvailabilityByWarehouse = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);
+        $scope.phantomSettings.orientation = "landscape";
+        $scope.pageOrientation = "landscape"
+            // $scope.updatePageOrientation(true);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SylDpnzaQI"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportStockAvailabilityByItem = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);
+        $scope.phantomSettings.orientation = "landscape";
+        $scope.pageOrientation = "landscape"
+            // $scope.updatePageOrientation(true);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJaZjZ3mU"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    /* $scope.downloadReportStockAvailabilityByDispatchDate = function (_reportData) {
+
+    	$scope.jsreportLoading = true;
+    	_reportData.company_name = $rootScope.company_name;
+    	_reportData.company_logo_url = $scope.company_logo_url;
+    	$scope.phantomSettings.orientation = "landscape";
+    	$scope.pageOrientation = "landscape"
+
+    	$http({
+    		url: $rootScope.jsreports,
+    		method: 'POST',
+    		params: {},
+    		data: {
+    			"template": {
+    				"phantom": $scope.phantomSettings,
+    				"shortid": "SJaZjZ3mU"
+    			},
+    			"data": _reportData
+    		},
+    		headers: {
+    			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+    		},
+    		responseType: 'arraybuffer'
+    	})
+    		.success(function (data) {
+    			$scope.jsreportLoading = false;
+    			var file = new Blob([data], { type: 'application/pdf' });
+    			saveAs(file, _reportData.reportName + '.pdf');
+    		});
+    } */
+
+    $scope.downloadReportCostPrice = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Stock Availability : ", _reportData);
+        // $scope.phantomSettings.orientation = "landscape";
+        // $scope.pageOrientation = "landscape"
+        // $scope.updatePageOrientation(true);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "Bkxt_YLnGS"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSalesFiguresBI = function(_reportData) {
+
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        var shortID = (_reportData.report_type == 1) ? "Bkg0QR_P_4" : "HygdPep2dS";
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": shortID
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportItemSalesMarginalAnalysis = function(_reportData) {
+
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        var shortID = (_reportData.report_type == 1) ? "S1xHVHQf8L" : "r1x0IUfzUI";
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": shortID
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSalesFiguresItemSalesByCategryBrandSegment = function(_reportData) {
+
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        var shortID = "SyeVpUUQtS"; //(_reportData.report_type == 1) ? "Bkg0QR_P_4" : "HygdPep2dS";
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": shortID
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportCustomerReminders = function(_reportData) {
+
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        var shortID = "rygwYXD5Cr"; //(_reportData.report_type == 1) ? "Bkg0QR_P_4" : "HygdPep2dS";
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": shortID
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSalesForecast = function(_reportData) {
+
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        $scope.phantomSettings.orientation = "landscape";
+        $scope.pageOrientation = "landscape"
+
+        // console.log("Sales Figures BI : ", _reportData);
+        var shortID = "rklhrndK7L"; //(_reportData.report_type == 1) ? "Bkg0QR_P_4" : "HygdPep2dS";
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": shortID
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportItemPurchasesBSupplier = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "r1lupftDOV"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportCustomerAvgPaymentDays = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "HkQGGzibH"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportAbsence = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "Hyap5l0WB"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadEmployeeBenefitReport = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "BkxOGVczNU"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+
+
+
+    /* $scope.downloadReportCustomerList = function (_reportData,_printLabel) {
+    	if(_printLabel==1)
+    	$scope.jsreportLoading1 = true;
+    	else
+    	$scope.jsreportLoading = true;
+    	_reportData.company_name = $rootScope.company_name;
+    	_reportData.company_logo_url = $scope.company_logo_url;
+    	 console.log("Customer List : ", _reportData);
+    	 var short_id = '';
+    	 if(_printLabel==0)
+    	 short_id = 'B1gpqlJ7r';
+    	 if(_printLabel==1)
+    	 short_id = 'rJgIo5AAMB';
+    	$http({
+    		url: $rootScope.jsreports,
+    		method: 'POST',
+    		params: {},
+    		data: {
+    			"template": {
+    				"phantom": $scope.phantomSettings,
+    				"shortid": short_id
+    			},
+    			"data": _reportData
+
+    		},
+    		headers: {
+    			'Content-type': 'application/json', "Authorization": "Basic " + btoa("admin:admin123"),
+    		},
+    		responseType: 'arraybuffer'
+    	})
+    		.success(function (data) {
+    			$scope.jsreportLoading = false;
+    			$scope.jsreportLoading1 = false;
+    			// console.log("success jsreport...", typeof (data));
+
+    			var file = new Blob([data], { type: 'application/pdf' });
+    			saveAs(file, _reportData.reportName + '.pdf');
+
+    		});
+    } */
+
+    $scope.downloadListingReport = function(_reportData, _printLabel) {
+        if (_printLabel == 1)
+            $scope.jsreportLoading1 = true;
+        else
+            $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        var short_id = '';
+        if (_printLabel == 0)
+            short_id = 'B1gpqlJ7r';
+        if (_printLabel == 1)
+            short_id = 'rJgIo5AAMB';
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": short_id
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                $scope.jsreportLoading1 = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSupplierAvgPaymentDays = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Sales Figures BI : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rkgbnlwhZB"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportEmployeeList = function(_reportData) {
+
+
+        $scope.jsreportLoading = true;
+        console.log("is landscape: ", $scope.toggleLandscape);
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        // console.log("Employee List : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rkeM2R9vOV"
+
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+    $scope.downloadReportSalesFiguresBCust = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 2) {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "HJluK8mwtV"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.jsreportLoading = false;
                     // console.log("success jsreport...", typeof (data));
 
@@ -22283,6 +43466,7 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
                 });
         } else {
             $http({
+<<<<<<< HEAD
                 url: $rootScope.jsreports,
                 method: 'POST',
                 params: {},
@@ -22300,6 +43484,89 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
                 responseType: 'arraybuffer'
             })
                 .success(function (data) {
+=======
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "H1gzZjP_E"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+    $scope.downloadReportSalesFiguresBSalesperson = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 2) {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "HJf59IOPK4"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "S1ertQhvOE"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.jsreportLoading = false;
                     // console.log("success jsreport...", typeof (data));
 
@@ -22311,6 +43578,7 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
 
     }
 
+<<<<<<< HEAD
 	$scope.downloadReportSalespersonSystemLoginActivity = function (_reportData) {
 		$scope.jsreportLoading = true;
 		_reportData.company_name = $rootScope.company_name;
@@ -22945,6 +44213,846 @@ myApp.controller('pdfPrintModalController', ["$scope", "$filter", "$timeout", "$
 	$scope.printPdfVals = printPdfVals;
 
 	return { message: 'Hello' };
+=======
+    $scope.downloadReportSalesFiguresBBuyingGrp = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        _reportData.company_logo_url = $scope.company_logo_url;
+
+        console.log("Sales Figures By Buying group : ", _reportData);
+        if (_reportData.report_type == 2) {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "rJlw_QTWbS"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "H1gyib6bbr"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+
+    $scope.downloadReportSalespersonCommission = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 'detail') {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "rJxLgyEIPS"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "B1exK-BMwH"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+
+    $scope.downloadReportSalesFigureByGLModal = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 1) { //'detail'
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "r1gb8I2twI"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "H1OKJpFvL"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+
+    $scope.downloadReportSalespersonSystemLoginActivity = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rkx6PmAZwL"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportInlandDistributionAnalysis = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "S1l7W0uV_U"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportHaulierAccrual = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        console.log("haulier accrual : ", _reportData);
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "r1lYDawFYU" //r1lYDawFYU
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportCustomerRebate = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 'detail') {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "Hk2rQeRuB"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "HJl9yw23dH"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+
+    $scope.downloadReportCRMRebate = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rJeuMrnWFB"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSupplierRebate = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+        // console.log("Sales Figures By Customer : ", _reportData);
+        if (_reportData.report_type == 'detail') {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "r1NMwMfFB"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        } else {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "BygpCNzGFr"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    // console.log("success jsreport...", typeof (data));
+
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+
+                });
+        }
+
+    }
+
+    $scope.downloadReportunPostedOrderDetailModall = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJlUTOGsFr"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportunPostedCustOrdersByItemModal = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "SJeJuOqnKr"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportunallocatedStockModal = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "S1wCxD8Cr"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+            });
+    }
+
+    $scope.downloadReportrawMaterialInventoryModal = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "rJguzKpelI"
+                    },
+                    "data": _reportData
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+            });
+    }
+
+    $scope.downloadReportCustomerWithNoActivity = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        $http({
+                url: $rootScope.jsreports,
+                method: 'POST',
+                params: {},
+                data: {
+                    "template": {
+                        "phantom": $scope.phantomSettings,
+                        "shortid": "r1eb4rJL5S"
+                    },
+                    "data": _reportData
+
+                },
+                headers: {
+                    'Content-type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:admin123"),
+                },
+                responseType: 'arraybuffer'
+            })
+            .success(function(data) {
+                $scope.jsreportLoading = false;
+                // console.log("success jsreport...", typeof (data));
+
+                var file = new Blob([data], { type: 'application/pdf' });
+                saveAs(file, _reportData.reportName + '.pdf');
+
+            });
+    }
+
+    $scope.downloadReportSalesByDepotModal = function(_reportData) {
+        $scope.jsreportLoading = true;
+        _reportData.company_name = $rootScope.company_name;
+        _reportData.company_logo_url = $scope.company_logo_url;
+        _reportData.defaultCurrencyCode = $rootScope.defaultCurrencyCode;
+
+        if (_reportData.reportDoctype == 'detail') {
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "SkhlObkcH"
+                        },
+                        "data": _reportData
+
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+                });
+
+        } else {
+
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "phantom": $scope.phantomSettings,
+                            "shortid": "BJgEPur63B"
+                        },
+                        "data": _reportData
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.jsreportLoading = false;
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, _reportData.reportName + '.pdf');
+                });
+        }
+    }
+
+    $scope.generatePdf = function(reportName) {
+
+        // var targetPdf = angular.element('#trialBalncReportPdf')[0].innerHTML;
+        /* var targetPdf = '';
+        targetPdf = angular.element('#' + reportName);
+        targetPdf = targetPdf[ targetPdf.length-1].innerHTML; */
+        var targetPdf = angular.element('#' + reportName)[0].innerHTML;
+        var pdfReport = $scope.$root.setup + "general/print-pdf-invoice";
+        $rootScope.printinvoiceFlag = false;
+        $scope.showLoader = true;
+        $scope.generatingPDF = true;
+
+        $http
+            .post(pdfReport, { 'dataPdf': targetPdf, 'attachmentsType': 6, 'filename': reportName, token: $scope.$root.token })
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    // console.log('Success');
+                    $scope.showLoader = false;
+                    /* var url = 'app/views/invoice_templates_pdf/' + reportName + '.pdf';
+                    window.open(url, '_blank'); */
+                    // win.focus();
+                    $rootScope.printinvoiceFlag = true;
+                    toaster.pop('success', 'Info', 'PDF Generated Successfully');
+                    // angular.element('#displayPdf').click();
+                    // document.getElementById('displayPdf').click();
+                    fileAuthentication.getFile({
+                        fileName: reportName + '.pdf',
+                        downloadName: reportName + '.pdf',
+                        report: 1
+                    });
+                } else {
+                    console.log('Fail');
+                }
+                $scope.generatingPDF = false;
+            });
+    }
+
+    $scope.destroyPdfModal = function(modalName) {
+        angular.element(document.querySelector("#" + modalName)).remove();
+    }
+
+
+
+    $scope.CustomerReminderSendEmail = function() {
+        var customerReminderEmail = $scope.$root.reports + "module/customer-reminders-email";
+
+        var postData = {};
+        postData.token = $rootScope.token;
+        postData.data = $scope.printPdfVals.reportsDataArr;
+
+        $http
+            .post(customerReminderEmail, postData)
+            .then(function(res) {
+                $scope.showLoader = false;
+                if (res.data.ack) {
+                    console.log(res);
+                }
+            });
+    }
+
+
+    $scope.sendRemittanceReportsViaEmail = function(pdfParam) {
+
+        // console.log(pdfParam);
+
+        // $scope.showLoader = true;
+        $rootScope.BulkEmailMessage = "Remittance Advice";
+        let currentUrl = window.location.href;
+        $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+        $rootScope.animateBulkEmail = true;
+        $rootScope.animateBulkEmailText = 'Sending Email(s)';
+
+        pdfParam.token = $scope.$root.token;
+        pdfParam.company_logo_url = $scope.company_logo_url;
+
+        // console.log(pdfParam);
+        // console.log(pdfParam.remittenceSelSuppArr);
+        // return false;
+
+        // pdfParam.suppliers = pdfParam.remittenceSelSuppArr;
+
+        var remittanceAdviceApi = $scope.$root.reports + "module/remittance-advice-email";
+        $scope.showLoader = true;
+        $http
+            .post(remittanceAdviceApi, pdfParam)
+            .then(function(res) {
+                // $scope.showLoader = false;
+
+                $rootScope.animateBulkEmail = false;
+                $rootScope.animateBulkEmailText = '';
+
+                if (res.data.ack == 1) { //  && res.data.reportsDataArr
+                    toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+                    $scope.showLoader = false;
+                } else {
+                    toaster.pop('warning', 'Error', res.data.error);
+                    $scope.showLoader = false;
+                }
+
+
+                // toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.sendCustomerStatementReportsViaEmail = function(pdfParam) {
+        // console.log(pdfParam);
+        $rootScope.quote_post_invoice_msg = "Are you sure you want to send email to the customer(s)?";
+
+
+        ngDialog.openConfirm({
+            template: '_confirm_quote_to_order_invoice_modal',
+            className: 'ngdialog-theme-default-custom'
+        }).then(function(value) {
+            $scope.jsreportLoading2 = true;
+            $rootScope.BulkEmailMessage = "Customer Statement";
+            let currentUrl = window.location.href;
+            $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+
+            $rootScope.animateBulkEmail = true;
+            $rootScope.animateBulkEmailText = 'Sending Email(s)';
+
+            pdfParam.token = $scope.$root.token;
+            pdfParam.company_logo_url = $scope.company_logo_url;
+
+            // console.log(pdfParam);
+            // console.log(pdfParam.remittenceSelSuppArr);
+            // return false;
+
+            // pdfParam.suppliers = pdfParam.remittenceSelSuppArr;
+
+            var remittanceAdviceApi = $scope.$root.reports + "module/customer-statement-email";
+            $scope.showLoader = true;
+            $http
+                .post(remittanceAdviceApi, pdfParam)
+                .then(function(res) {
+                    // $scope.showLoader = false;
+
+                    $rootScope.animateBulkEmail = false;
+                    $rootScope.animateBulkEmailText = '';
+
+                    if (res.data.ack == 1) { //  && res.data.reportsDataArr
+                        toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+                        $scope.showLoader = false;
+                    } else if (res.data.error) {
+                        toaster.pop('warning', 'Error', res.data.error);
+                        $scope.showLoader = false;
+                    }
+                    $scope.jsreportLoading2 = false;
+
+                    // toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                });
+
+        }, function(reason) {
+            console.log('Modal promise rejected. Reason: ', reason);
+        });
+    }
+
+    $scope.printPdfVals = printPdfVals;
+
+    return { message: 'Hello' };
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }]);
 
 /* myApp.controller("CSVController", ["$scope", "$q", function ($scope, $q) {

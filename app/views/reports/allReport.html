@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<!-- <div ng-include="'app/views/_breadcrumb.html'"></div> -->
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 <style>
    body {
       background-image: url(app/css/report-BG.jpg);
@@ -7,13 +12,19 @@
       padding-bottom: 10px;
    }
 </style>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 
 <div style=" position: fixed; right: 0; padding: 5px !important; top: 50px; border-radius: 0; padding-left: 48px !important; background: white; border-bottom: 1px solid #cecece; left: 0; z-index: 7;">
    <a style=" background: #e9ebee; padding: 7px 12px 5px; border-bottom: 1px solid #e9ebee; border-left: 1px solid #cecece; border-right: 1px solid #cecece; color: black; margin-left: 27px; font-size: 12px; position: relative; top: 2px;">All Reports</a>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 <div ng-include="'app/views/_breadcrumb.html'"></div>
 <div class="allReport"
      style="margin-top: 18px;">
@@ -27,43 +38,74 @@
             <div class="s-content">
                <li class="x-box">Finance </li>
                <li ng-if="reports_permission.trial_balance_summary">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(1, 'trial_balance_summary')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(1, 'trial_balance_summary')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.trial_balance_summary.status, 'fa-star-o': !FAV_REPORTS.trial_balance_summary.status}"></i>
                   <a ui-sref="app.getTrialBalncReport({module:'summary'})"
                      class="fave-report-desp">Trial Balance - Summary</a>
                </li>
                <li ng-if="reports_permission.trial_balance_detail">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(2, 'trial_balance_detail')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(2, 'trial_balance_detail')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.trial_balance_detail.status, 'fa-star-o': !FAV_REPORTS.trial_balance_detail.status}"></i>
                   <a ui-sref="app.getTrialBalncReport({module:'detail2'})"
                      class="fave-report-desp">Trial Balance - Detailed</a>
                </li>
                <li ng-if="reports_permission.vat_report_summary">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(3, 'vat_report_summary')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(3, 'vat_report_summary')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.vat_report_summary.status, 'fa-star-o': !FAV_REPORTS.vat_report_summary.status}"></i>
                   <a ui-sref="app.getVATReport({module:'summary'})"
                      class="fave-report-desp">VAT Report</a>
                </li>
                <li ng-if="reports_permission.ec_sales_list">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(5, 'ec_sales_list')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(5, 'ec_sales_list')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.ec_sales_list.status, 'fa-star-o': !FAV_REPORTS.ec_sales_list.status}"></i>
                   <a ui-sref="app.getECSalesListReport({module:'ec_sales_list'})"
                      class="fave-report-desp">EC Sales List</a>
                </li>
                <li ng-if="reports_permission.profit_and_loss_statement">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(23, 'profit_and_loss_statement')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(23, 'profit_and_loss_statement')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.profit_and_loss_statement.status, 'fa-star-o': !FAV_REPORTS.profit_and_loss_statement.status}"></i>
                   <a ui-sref="app.profitAndLossStatement({module:'profitAndLossStatement'})"
                      class="fave-report-desp">Profit and Loss Statement</a>
                </li>
                <li ng-if="reports_permission.balance_sheet">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(4, 'balance_sheet')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(4, 'balance_sheet')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.balance_sheet.status, 'fa-star-o': !FAV_REPORTS.balance_sheet.status}"></i>
                   <a ui-sref="app.balanceSheet({module:'balanceSheet'})"
                      class="fave-report-desp">Balance Sheet</a>
                </li>
                <li ng-if="reports_permission.accessByTransactionNumbers">
                   <i class="fa fave-report"
+<<<<<<< HEAD
                      ng-click="addToFavourite(41, 'accessByTransactionNumbers')" 
                      ng-class="{'fa-star': FAV_REPORTS.accessByTransactionNumbers.status, 'fa-star-o': !FAV_REPORTS.accessByTransactionNumbers.status}"></i>
                   <a ui-sref="app.accessByTransactionNumbers()"
@@ -71,11 +113,22 @@
                </li>
                   <li ng-if="reports_permission.customerLabelsList">
                     <i ng-click="addToFavourite(36, 'customerLabelsList')" class="fa fave-report"
+=======
+                     ng-click="addToFavourite(41, 'accessByTransactionNumbers')"                     
+                     ng-class="{'fa-star': FAV_REPORTS.accessByTransactionNumbers.status, 'fa-star-o': !FAV_REPORTS.accessByTransactionNumbers.status}"></i>
+                  <a ui-sref="app.accessByTransactionNumbers()" 
+                     class="fave-report-desp">Search Record by Entry No.</a>
+               </li>
+                  <li ng-if="reports_permission.customerLabelsList">
+                    <i ng-click="addToFavourite(36, 'customerLabelsList')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.customerLabelsList.status, 'fa-star-o': !FAV_REPORTS.customerLabelsList.status}"></i>
                         <a ui-sref="app.getListingReport({module:'customerLabelsList'})"
                            class="fave-report-desp">Customer Listing</a>
                   </li>
                   <li ng-if="reports_permission.crmListing">
+<<<<<<< HEAD
                     <i ng-click="addToFavourite(38, 'crmListing')" class="fa fave-report"
                         ng-class="{'fa-star': FAV_REPORTS.crmListing.status, 'fa-star-o': !FAV_REPORTS.crmListing.status}"></i>
                         <a ui-sref="app.getListingReport({module:'crmListing'})"
@@ -84,12 +137,28 @@
 
                   <li ng-if="reports_permission.customer_activity">
                         <i ng-click="addToFavourite(32, 'customer_activity')" class="fa fave-report"
+=======
+                    <i ng-click="addToFavourite(38, 'crmListing')"                        
+                        class="fa fave-report"
+                        ng-class="{'fa-star': FAV_REPORTS.crmListing.status, 'fa-star-o': !FAV_REPORTS.crmListing.status}"></i>
+                        <a ui-sref="app.getListingReport({module:'crmListing'})"
+                           class="fave-report-desp">CRM Listing</a>
+                  </li>                  
+                  <li ng-if="reports_permission.customer_activity">
+                        <i ng-click="addToFavourite(32, 'customer_activity')"                              
+                              class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               ng-class="{'fa-star': FAV_REPORTS.customer_activity.status, 'fa-star-o': !FAV_REPORTS.customer_activity.status}"></i>
                         <a ui-sref="app.getCustomerActivity({module:'CustomerActivity'})"
                            class="fave-report-desp">Customer Activity Report</a>
                   </li>
                   <li ng-if="reports_permission.itemSalesMarginalAnalysis">
+<<<<<<< HEAD
                         <i ng-click="addToFavourite(51, 'itemSalesMarginalAnalysis')" class="fa fave-report"
+=======
+                        <i ng-click="addToFavourite(51, 'itemSalesMarginalAnalysis')"                     
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.itemSalesMarginalAnalysis.status, 'fa-star-o': !FAV_REPORTS.itemSalesMarginalAnalysis.status}"></i>
                         <a ui-sref="app.salesMarginalAnalysis({module:'itemSalesMarginalAnalysis'})"
                         class="fave-report-desp">Item(s) Sales Margin Analysis</a>
@@ -116,48 +185,101 @@
                Purchases & Suppliers
             </li>
             <li ng-if="reports_permission.supplier_aging_summary">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(14, 'supplier_aging_summary')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(14, 'supplier_aging_summary')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.supplier_aging_summary.status, 'fa-star-o': !FAV_REPORTS.supplier_aging_summary.status}"></i>
                <a ui-sref="app.getAgedReport({module:'supplier2'})"
                   class="fave-report-desp">Supplier Ageing Report</a>
             </li>
+<<<<<<< HEAD
             <li ng-if="reports_permission.unposted_purchase_orders">
                <i ng-click="addToFavourite(15, 'unposted_purchase_orders')" class="fa fave-report"
+=======
+            <!-- <li>
+               <i class="fa fave-report"
+                  ng-click="addToFavourite(30, 'supplier_aging_detail')"
+                  ng-if="reports_permission.supplier_aging_detail"
+                  ng-class="{'fa-star': FAV_REPORTS.supplier_aging_detail.status, 'fa-star-o': !FAV_REPORTS.supplier_aging_detail.status}"></i>
+               <a ui-sref="app.getAgedReport({module:'supplierAgingDetail'})"
+                  class="fave-report-desp"
+                  ng-if="reports_permission.supplier_aging_detail">Supplier Ageing Report - Detailed</a>
+            </li> -->
+            <li ng-if="reports_permission.unposted_purchase_orders">
+               <i ng-click="addToFavourite(15, 'unposted_purchase_orders')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.unposted_purchase_orders.status, 'fa-star-o': !FAV_REPORTS.unposted_purchase_orders.status}"></i>
                <a ui-sref="app.getUnPostedPurchaseOrderReport({module:'UnPostedPurchaseOrder'})"
                   class="fave-report-desp">Unposted Purchase Orders</a>
             </li>
             <li ng-if="reports_permission.SupplierAvgPaymentDays">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(29, 'SupplierAvgPaymentDays')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(29, 'SupplierAvgPaymentDays')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.SupplierAvgPaymentDays.status, 'fa-star-o': !FAV_REPORTS.SupplierAvgPaymentDays.status}"></i>
                <a ui-sref="app.getUnPostedPurchaseOrderReport({module:'SupplierAvgPaymentDays'})"
                   class="fave-report-desp">Supplier Average Payment Days</a>
             </li>
             <li ng-if="reports_permission.goods_received_not_invoiced">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(16, 'goods_received_not_invoiced')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(16, 'goods_received_not_invoiced')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.goods_received_not_invoiced.status, 'fa-star-o': !FAV_REPORTS.goods_received_not_invoiced.status}"></i>
                <a ui-sref="app.getUnPostedOrderReport({module:'PurchaseOrderGoodReceived'})"
                   class="fave-report-desp">Goods Received Not Invoiced</a>
             </li>
             <li ng-if="reports_permission.posted_purchase_orders">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(17, 'posted_purchase_orders')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(17, 'posted_purchase_orders')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.posted_purchase_orders.status, 'fa-star-o': !FAV_REPORTS.posted_purchase_orders.status}"></i>
                <a ui-sref="app.getPostedPurchaseOrderReport({module:'PostedPurchaseOrder'})"
                   class="fave-report-desp">Posted Purchase Invoices and Debit Notes</a>
             </li>
+<<<<<<< HEAD
             <li ng-if="reports_permission.remittance_advice">
                <i ng-click="addToFavourite(18, 'remittance_advice')" class="fa fave-report"
+=======
+            <!-- <li>
+                  <a ui-sref="app.getTrialBalncReport({module:'supplier'})" ng-if="reports_permission.supplier_trial_balance_summary">Supplier Trial Balance - Summary</a>
+            </li>
+            <li>
+                  <a ui-sref="app.getTrialBalncReport({module:'supplierDetail'})"  ng-if="reports_permission.supplier_trial_balance_detail">Supplier Trial Balance - Detailed</a>
+            </li> -->
+            <li ng-if="reports_permission.remittance_advice">
+               <i ng-click="addToFavourite(18, 'remittance_advice')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.remittance_advice.status, 'fa-star-o': !FAV_REPORTS.remittance_advice.status}"></i>
                <a ui-sref="app.getRemittanceAdvice({module:'RemittanceAdvice'})"
                   class="fave-report-desp">Remittance Advice</a>
             </li>
             <li ng-if="reports_permission.supplier_activity">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(24, 'supplier_activity')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(24, 'supplier_activity')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.supplier_activity.status, 'fa-star-o': !FAV_REPORTS.supplier_activity.status}"></i>
                <a ui-sref="app.getSupplierActivity({module:'SupplierActivity'})"
                   class="fave-report-desp">Supplier Activity Report</a>
             </li>
             <li ng-if="reports_permission.supplier_statement">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(31, 'supplier_statement')" class="fa fave-report"      
                   ng-class="{'fa-star': FAV_REPORTS.supplier_statement.status, 'fa-star-o': !FAV_REPORTS.supplier_statement.status}"></i>
                <a ui-sref="app.getStatementReport({module:'supplierStatement'})"
@@ -166,12 +288,28 @@
             <li ng-if="reports_permission.SupplierRebate">
                   <i class="fa fave-report" 
                         ng-click="addToFavourite(43, 'SupplierRebate')"                 
+=======
+               <i ng-click="addToFavourite(31, 'supplier_statement')"
+                  class="fa fave-report"                  
+                  ng-class="{'fa-star': FAV_REPORTS.supplier_statement.status, 'fa-star-o': !FAV_REPORTS.supplier_statement.status}"></i>
+               <a ui-sref="app.getStatementReport({module:'supplierStatement'})"
+                  class="fave-report-desp">Supplier Statement</a>
+            </li>            
+            <li ng-if="reports_permission.SupplierRebate">
+                  <i class="fa fave-report" 
+                        ng-click="addToFavourite(43, 'SupplierRebate')"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.SupplierRebate.status, 'fa-star-o': !FAV_REPORTS.SupplierRebate.status}"></i>
                   <a ui-sref="app.supplierRebate({module:'Supplier'})"
                         class="fave-report-desp">Supplier Rebate</a>
             </li>
             <li ng-if="reports_permission.creditors_aging_report">
+<<<<<<< HEAD
                <i ng-click="addToFavourite(54, 'creditors_aging_report')" class="fa fave-report"
+=======
+               <i ng-click="addToFavourite(54, 'creditors_aging_report')"                 
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.creditors_aging_report.status, 'fa-star-o': !FAV_REPORTS.creditors_aging_report.status}"></i>
                <a ui-sref="app.getAgedReport({module:'creditors'})"
                   class="fave-report-desp">Creditors Ageing Report</a>
@@ -184,19 +322,38 @@
                   Human Resources
                </li>
                <li ng-if="reports_permission.employee_list">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(22, 'employee_list')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(22, 'employee_list')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.employee_list.status, 'fa-star-o': !FAV_REPORTS.employee_list.status}"></i>
                   <a ui-sref="app.getEmpReport({module:'Employee'})"
                      class="fave-report-desp">Employee List</a>
                </li>
                <li ng-if="reports_permission.absence_list">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(34, 'absence_list')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(34, 'absence_list')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.absence_list.status, 'fa-star-o': !FAV_REPORTS.absence_list.status}"></i>
                   <a ui-sref="app.getEmpReport({module:'AbsencesList'})"
                      class="fave-report-desp">Employee Absence Report</a>
                </li>
+<<<<<<< HEAD
               <li ng-if="reports_permission.employee_benefits">
                <i ng-click="addToFavourite(19, 'employee_benefits')" class="fa fave-report"
+=======
+               <!-- <li>
+                <a ui-sref="app.getEmpReport({module:'ExpensesList'})" ng-if="reports_permission.employee_expense_list">Employee Expenses List</a>
+              </li> -->
+              <li ng-if="reports_permission.employee_benefits">
+               <i ng-click="addToFavourite(19, 'employee_benefits')"                  
+                  class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                   ng-class="{'fa-star': FAV_REPORTS.employee_benefits.status, 'fa-star-o': !FAV_REPORTS.employee_benefits.status}"></i>
                <a ui-sref="app.getEmpReport({module:'EmployeeBenefits'})"
                   class="fave-report-desp">Employee Benefits</a>
@@ -222,86 +379,180 @@
                      <a ui-sref="app.salespersonCommission({module:'customer'})"
                         class="fave-report-desp">Salesperson Commission</a>
                   </li>
+<<<<<<< HEAD
                   <li ng-if="reports_permission.customerRebate">
                      <i class="fa fave-report"
                         ng-click="addToFavourite(40, 'customerRebate')"                     
+=======
+                  <!-- <li>
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(41, 'CRMRebate')"
+                        ng-if="reports_permission.CRMRebate"
+                        ng-class="{'fa-star': FAV_REPORTS.CRMRebate.status, 'fa-star-o': !FAV_REPORTS.CRMRebate.status}"></i>
+                     <a ui-sref="app.crmRebate({module:'CRM'})"
+                        ng-if="reports_permission.CRMRebate"
+                        class="fave-report-desp">CRM Rebate</a>
+                  </li> -->
+                  <li ng-if="reports_permission.customerRebate">
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(40, 'customerRebate')"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.customerRebate.status, 'fa-star-o': !FAV_REPORTS.customerRebate.status}"></i>
                      <a ui-sref="app.customerRebate({module:'Customer'})"
                         class="fave-report-desp">Customer Rebate</a>
                   </li>
                   <li ng-if="reports_permission.sales_figure_by_customer">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(6, 'sales_figure_by_customer')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(6, 'sales_figure_by_customer')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.sales_figure_by_customer.status, 'fa-star-o': !FAV_REPORTS.sales_figure_by_customer.status}"></i>
                      <a ui-sref="app.getSalesFiguresReport({module:'customer'})"
                         class="fave-report-desp">Sales Figures By Customer(s)</a>
                   </li>
                   <li ng-if="reports_permission.sales_figure_by_salesperson">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(7, 'sales_figure_by_salesperson')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(7, 'sales_figure_by_salesperson')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.sales_figure_by_salesperson.status, 'fa-star-o': !FAV_REPORTS.sales_figure_by_salesperson.status}"></i>
                      <a ui-sref="app.getSalesFiguresReport({module:'sale_person'})"
                         class="fave-report-desp">Sales Figures By Salesperson(s)</a>
                   </li>
                   <li ng-if="reports_permission.sales_figure_by_buying_grp">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(26, 'sales_figure_by_buying_grp')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(26, 'sales_figure_by_buying_grp')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.sales_figure_by_buying_grp.status, 'fa-star-o': !FAV_REPORTS.sales_figure_by_buying_grp.status}"></i>
                      <a ui-sref="app.getSalesFiguresReport({module:'buying_group'})"
                         class="fave-report-desp">Sales Figures By Buying Group, Segment & Territory</a>
                   </li>
                   <li ng-if="reports_permission.customer_avg_payment_days">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(28, 'customer_avg_payment_days')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(28, 'customer_avg_payment_days')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.customer_avg_payment_days.status, 'fa-star-o': !FAV_REPORTS.customer_avg_payment_days.status}"></i>
                      <a ui-sref="app.getSalesFiguresReport({module:'customer_avg_payment_days'})"
                         class="fave-report-desp">Customer Average Payment Days</a>
                   </li>
                   <li ng-if="reports_permission.unposted_sales_orders">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(8, 'unposted_sales_orders')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(8, 'unposted_sales_orders')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.unposted_sales_orders.status, 'fa-star-o': !FAV_REPORTS.unposted_sales_orders.status}"></i>
                      <a ui-sref="app.getUnPostedSalesOrderReport({module:'UnPostedSalesOrders'})"
                         class="fave-report-desp">Unposted Sales Orders</a>
                   </li>
                   <li ng-if="reports_permission.unposted_cust_orders_detail">
                      <i ng-click="addToFavourite(44, 'unposted_cust_orders_detail')"
+<<<<<<< HEAD
                         class="fa fave-report"               
+=======
+                        class="fa fave-report"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.unposted_cust_orders_detail.status, 'fa-star-o': !FAV_REPORTS.unposted_cust_orders_detail.status}"></i>
                      <a ui-sref="app.getUnPostedOrderDetailReport({module:'UnPostedCustomerOrders'})"
                         class="fave-report-desp">Unposted Customer Orders Detail - Breakdown by Items (G.L)</a>
                   </li>
                   <li ng-if="reports_permission.posted_sales_invoice_and_credit_note">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(9, 'posted_sales_invoice_and_credit_note')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(9, 'posted_sales_invoice_and_credit_note')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.posted_sales_invoice_and_credit_note.status, 'fa-star-o': !FAV_REPORTS.posted_sales_invoice_and_credit_note.status}"></i>
                      <a ui-sref="app.getPostedOrderReport({module:'Sale'})"
                         class="fave-report-desp">Posted Sales Invoice and Credit Note</a>
                   </li>
                   <li ng-if="reports_permission.payment_and_refunds_from_customer">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(10, 'payment_and_refunds_from_customer')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(10, 'payment_and_refunds_from_customer')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.payment_and_refunds_from_customer.status, 'fa-star-o': !FAV_REPORTS.payment_and_refunds_from_customer.status}"></i>
                      <a ui-sref="app.getCustomerPaymentReport"
                         class="fave-report-desp">Payments and Refunds from Customers</a>
                   </li>
                   <li ng-if="reports_permission.customer_aging_summary">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(11, 'customer_aging_summary')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(11, 'customer_aging_summary')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.customer_aging_summary.status, 'fa-star-o': !FAV_REPORTS.customer_aging_summary.status}"></i>
                      <a ui-sref="app.getAgedReport({module:'customer2'})"
                         class="fave-report-desp">Customer Ageing Report</a>
                   </li>
+<<<<<<< HEAD
                   <li ng-if="reports_permission.top_customers">
                      <i ng-click="addToFavourite(33, 'top_customers')" class="fa fave-report"
+=======
+                  <!-- <li>
+                     <i ng-click="addToFavourite(27, 'customer_aging_detail')"
+                        ng-if="reports_permission.customer_aging_detail"
+                        class="fa fave-report"
+                        ng-class="{'fa-star': FAV_REPORTS.customer_aging_detail.status, 'fa-star-o': !FAV_REPORTS.customer_aging_detail.status}"></i>
+                     <a ui-sref="app.getAgedReport({module:'customerAgingDetail'})"
+                        class="fave-report-desp"
+                        ng-if="reports_permission.customer_aging_detail">Customer Ageing Report - Detailed</a>
+                  </li> -->
+                  <li ng-if="reports_permission.top_customers">
+                     <i ng-click="addToFavourite(33, 'top_customers')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.top_customers.status, 'fa-star-o': !FAV_REPORTS.top_customers.status}"></i>
                      <a ui-sref="app.topCustomers({module:'sales'})"
                         class="fave-report-desp">Top Customer Sales</a>
                   </li>
+<<<<<<< HEAD
                   <li ng-if="reports_permission.customer_statement">
                      <i ng-click="addToFavourite(12, 'customer_statement')" class="fa fave-report"
+=======
+                  <!-- 
+                        <li>
+                              <a ui-sref="app.getTrialBalncReport({module:'customer'})" ng-if="reports_permission.customer_trail_balance_summary">Customer Trial Balance - Summary</a>
+                        </li>
+                        <li>
+                              <a ui-sref="app.getTrialBalncReport({module:'customerDetail'})" ng-if="reports_permission.customer_trail_balance_detail">Customer Trial Balance - Detailed</a>
+                        </li>   
+                  -->
+                  <li ng-if="reports_permission.customer_statement">
+                     <i ng-click="addToFavourite(12, 'customer_statement')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.customer_statement.status, 'fa-star-o': !FAV_REPORTS.customer_statement.status}"></i>
                      <a ui-sref="app.getStatementReport({module:'customerStatement'})"
                         class="fave-report-desp">Customer Statement</a>
                   </li>
                   <li ng-if="reports_permission.sales_person_activity">
+<<<<<<< HEAD
                      <i ng-click="addToFavourite(13, 'sales_person_activity')" class="fa fave-report"
+=======
+                     <i ng-click="addToFavourite(13, 'sales_person_activity')"                        
+                        class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.sales_person_activity.status, 'fa-star-o': !FAV_REPORTS.sales_person_activity.status}"></i>
                      <a ui-sref="app.getSalespersonReport({module:'Salesperson'})"
                         class="fave-report-desp">Salesperson Activity Report</a>
                   </li>
+<<<<<<< HEAD
                   <li ng-if="reports_permission.customer_depot_sales_analysis">
                      <i ng-click="addToFavourite(27, 'customer_depot_sales_analysis')" class="fa fave-report"
                         ng-class="{'fa-star': FAV_REPORTS.customer_depot_sales_analysis.status, 'fa-star-o': !FAV_REPORTS.customer_depot_sales_analysis.status}"></i>
@@ -318,6 +569,44 @@
                   <li ng-if="reports_permission.salesForecast">
                      <i class="fa fave-report" 
                         ng-click="addToFavourite(49, 'salesForecast')"                     
+=======
+                  <!-- <li>
+                     <i ng-click="addToFavourite(37, 'customer_price_list')"
+                        ng-if="reports_permission.customer_price_list"
+                        class="fa fave-report"
+                        ng-class="{'fa-star': FAV_REPORTS.customer_price_list.status, 'fa-star-o': !FAV_REPORTS.customer_price_list.status}"></i>
+                     <a ui-sref="app.getCustomerPriceList({module:'CustomerPriceList'})"
+                        class="fave-report-desp"
+                        ng-if="reports_permission.customer_price_list">Customer Price List</a>
+                  </li> -->
+                  <li ng-if="reports_permission.customer_depot_sales_analysis">
+                     <i ng-click="addToFavourite(27, 'customer_depot_sales_analysis')"                        
+                        class="fa fave-report"
+                        ng-class="{'fa-star': FAV_REPORTS.customer_depot_sales_analysis.status, 'fa-star-o': !FAV_REPORTS.customer_depot_sales_analysis.status}"></i>
+                     <a ui-sref="app.topCustomers({module:'salesByDepot'})"
+                        class="fave-report-desp">Customer Depot Sales Analysis</a>
+                  </li>                
+                  <li ng-if="reports_permission.customerWithNoActivity">
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(37, 'customerWithNoActivity')"                        
+                        ng-class="{'fa-star': FAV_REPORTS.customerWithNoActivity.status, 'fa-star-o': !FAV_REPORTS.customerWithNoActivity.status}"></i>
+                     <a ui-sref="app.customerWithNoActivity({module:'customerWithNoOrders'})"     
+                        class="fave-report-desp">Customer With No Orders</a>
+                  </li>    
+                  <!-- 
+                  <li>
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(47, 'customer_reminder')"
+                        ng-if="reports_permission.customer_reminder"
+                        ng-class="{'fa-star': FAV_REPORTS.customer_reminder.status, 'fa-star-o': !FAV_REPORTS.customer_reminder.status}"></i>
+                     <a ui-sref="app.customerReminders({module:'customer_reminder'})"                        
+                        
+                        class="fave-report-desp">Customer Reminders</a>
+                  </li> -->
+                  <li ng-if="reports_permission.salesForecast">
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(49, 'salesForecast')"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.salesForecast.status, 'fa-star-o': !FAV_REPORTS.salesForecast.status}"></i>
                      <a ui-sref="app.salesForecast({module:'salesForecast'})"
                         class="fave-report-desp">Sales Forecast</a>
@@ -326,23 +615,47 @@
                      <i class="fa fave-report" 
                         ng-click="addToFavourite(56, 'customerItemPrices')"
                         ng-class="{'fa-star': FAV_REPORTS.customerItemPrices.status, 'fa-star-o': !FAV_REPORTS.customerItemPrices.status}"></i>
+<<<<<<< HEAD
                      <a ui-sref="app.customerItemPrices({module:'customerItemPrices'})"                     
+=======
+                     <a ui-sref="app.customerItemPrices({module:'customerItemPrices'})"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         class="fave-report-desp">Customer/Item Prices</a>
                   </li> 
                   <li ng-if="reports_permission.salePersonLoginActivity">
                      <i class="fa fave-report" 
+<<<<<<< HEAD
                         ng-click="addToFavourite(50, 'salePersonLoginActivity')"                       
                        ng-class="{'fa-star': FAV_REPORTS.salePersonLoginActivity.status, 'fa-star-o': !FAV_REPORTS.salePersonLoginActivity.status}"></i>
+=======
+                        ng-click="addToFavourite(50, 'salePersonLoginActivity')"
+                        
+                        ng-class="{'fa-star': FAV_REPORTS.salePersonLoginActivity.status, 'fa-star-o': !FAV_REPORTS.salePersonLoginActivity.status}"></i>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      <a ui-sref="app.salespersonLoginActivity({module:'sales_person_login_activity'})"
                         class="fave-report-desp">Saleperson System Login Activity Report</a>
                   </li>
                   <li ng-if="reports_permission.inland_dist_analysis">
                      <i class="fa fave-report" 
+<<<<<<< HEAD
                         ng-click="addToFavourite(53, 'inland_dist_analysis')"                       
+=======
+                        ng-click="addToFavourite(53, 'inland_dist_analysis')"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ng-class="{'fa-star': FAV_REPORTS.inland_dist_analysis.status, 'fa-star-o': !FAV_REPORTS.inland_dist_analysis.status}"></i>
                      <a ui-sref="app.inlandDistributionAnalysis({module:'inland_dist_analysis'})"
                         class="fave-report-desp">Inland Distribution Analysis Report</a>
                   </li>
+<<<<<<< HEAD
+=======
+                  <!-- <li>
+                     <i class="fa fave-report" 
+                        ng-click="addToFavourite(48, 'opportunityCycle')"
+                        ng-class="{'fa-star': FAV_REPORTS.opportunityCycle.status, 'fa-star-o': !FAV_REPORTS.opportunityCycle.status}"></i>
+                     <a ui-sref="app.custOpportunityCycle({module:'opportunityCycle'})"                        
+                        class="fave-report-desp">Opportunity Cycle</a>
+                  </li> -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                </div>
             </div>
          </div>
@@ -364,11 +677,17 @@
                   <!-- by Warehouse - Summary (By Posting Date) -->
 
                <li ng-if="reports_permission.stock_availability_detail"><!--  && inventorySetup==2 -->
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(25, 'stock_availability_detail')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(25, 'stock_availability_detail')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.stock_availability_detail.status, 'fa-star-o': !FAV_REPORTS.stock_availability_detail.status}"></i>
                   <a ui-sref="app.getStockDetailReport({module:'stockdetailed'})"
                      class="fave-report-desp">Stock Availability Report<!-- by Warehouse  - Detailed--></a>
                </li><!--  (By Posting Date) -->
+<<<<<<< HEAD
                <li ng-if="reports_permission.stock_availability_detail">
                   <i ng-click="addToFavourite(25, 'stock_availability_detail')"                     
                      class="fa fave-report"
@@ -382,6 +701,17 @@
                   <a ui-sref="app.getStockDetailReport({module:'stockdetailedPerpetual'})"
                      class="fave-report-desp">Stock Availability Report</a>
                </li> -->
+=======
+
+               <!-- <li ng-if="reports_permission.stock_availability_detail && inventorySetup==1">
+                  <i ng-click="addToFavourite(25, 'stock_availability_detail')"                     
+                     class="fa fave-report"
+                     ng-class="{'fa-star': FAV_REPORTS.stock_availability_detail.status, 'fa-star-o': !FAV_REPORTS.stock_availability_detail.status}"></i>
+                  <a ui-sref="app.getStockDetailReport({module:'stockdetailedPerpetual'})"
+                     class="fave-report-desp">Stock Availability Report</a>
+               </li> -->
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                <!-- <li>
                   <i ng-click="addToFavourite(50, 'stock_availability_ByDispatchDate')"
                      ng-if="reports_permission.stock_availability_ByDispatchDate"
@@ -391,38 +721,77 @@
                      ng-if="reports_permission.stock_availability_ByDispatchDate"
                      class="fave-report-desp" >Stock Availability Report (By Dispatch/Delivery Date )</a>
                </li> -->
+<<<<<<< HEAD
                <li ng-if="reports_permission.sales_figure_by_items">
                   <i ng-click="addToFavourite(20, 'sales_figure_by_items')" class="fa fave-report"
+=======
+
+               <!-- <li>
+                        <a ui-sref="app.inventoryReport({module:'Inventory'})"  ng-if="reports_permission.inventory_list">Inventory List</a>
+                  </li>
+                  
+                  <li>
+                  <a ui-sref="app.inventoryReport({module:'SaleOrderDetail'})"  ng-if="reports_permission.sales_order_with_unallocated_stock">Sale Order(s) with Unallocated Stock</a>
+                  </li>
+                  <li>
+                  <a ui-sref="app.inventoryReport({module:'PurchaseOrderDetail'})"  ng-if="reports_permission.purchase_order_detail">Inventory Purchase Order Detail</a>
+                  </li> 
+               -->
+               <li ng-if="reports_permission.sales_figure_by_items">
+                  <i ng-click="addToFavourite(20, 'sales_figure_by_items')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.sales_figure_by_items.status, 'fa-star-o': !FAV_REPORTS.sales_figure_by_items.status}"></i>
                   <a ui-sref="app.getSalesFiguresReport({module:'item'})"
                      class="fave-report-desp">Sales Figures By Item(s)</a>
                </li>
                <li ng-if="reports_permission.item_purchases_by_supplier">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(21, 'item_purchases_by_supplier')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(21, 'item_purchases_by_supplier')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.item_purchases_by_supplier.status, 'fa-star-o': !FAV_REPORTS.item_purchases_by_supplier.status}"></i>
                   <a ui-sref="app.getPurchasesBySupplier({module:'purchases_by_supplier'})"
                      class="fave-report-desp">Item Purchases By Supplier(s)</a>
                </li>
                <li ng-if="reports_permission.item_sales_by_category_brand_segment">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(42, 'item_sales_by_category_brand_segment')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(42, 'item_sales_by_category_brand_segment')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.item_sales_by_category_brand_segment.status, 'fa-star-o': !FAV_REPORTS.item_sales_by_category_brand_segment.status}"></i>
                   <a ui-sref="app.getSalesByCategoryBrandSegment({module:'item_sales_by_category_brand_segment'})"
                      class="fave-report-desp">Item Sales by Category/Brand/Segment & Territory</a>
                </li>
                <li ng-if="reports_permission.inventory_list">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(35, 'inventory_list')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(35, 'inventory_list')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.inventory_list.status, 'fa-star-o': !FAV_REPORTS.inventory_list.status}"></i>
                   <a ui-sref="app.inventoryList()"
                      class="fave-report-desp">Inventory List</a>
                </li>
                <li ng-if="reports_permission.rawMaterialInventory">
+<<<<<<< HEAD
                   <i ng-click="addToFavourite(48, 'rawMaterialInventory')" class="fa fave-report"
+=======
+                  <i ng-click="addToFavourite(48, 'rawMaterialInventory')"                     
+                     class="fa fave-report"
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.rawMaterialInventory.status, 'fa-star-o': !FAV_REPORTS.rawMaterialInventory.status}"></i> 
                   <a ui-sref="app.inventoryReport({module:'RawMaterialInventory'})"
                      class="fave-report-desp">Raw Material Inventory </a>
                </li>
                <li ng-if="reports_permission.unposted_cust_orders_detailByItem">
                   <i ng-click="addToFavourite(45, 'unposted_cust_orders_detailByItem')"
+<<<<<<< HEAD
                         class="fa fave-report"                      
                         ng-class="{'fa-star': FAV_REPORTS.unposted_cust_orders_detailByItem.status, 'fa-star-o': !FAV_REPORTS.unposted_cust_orders_detailByItem.status}"></i>
                   <a ui-sref="app.getUnPostedOrderDetailReport({module:'UnPostedCustomerOrdersByItem'})"
@@ -430,13 +799,27 @@
                </li>             
                   <li ng-if="reports_permission.unallocatedStock">
                         <i ng-click="addToFavourite(46, 'unallocatedStock')" class="fa fave-report"                           
+=======
+                        class="fa fave-report"                        
+                        ng-class="{'fa-star': FAV_REPORTS.unposted_cust_orders_detailByItem.status, 'fa-star-o': !FAV_REPORTS.unposted_cust_orders_detailByItem.status}"></i>
+                  <a ui-sref="app.getUnPostedOrderDetailReport({module:'UnPostedCustomerOrdersByItem'})"
+                        class="fave-report-desp">Unposted Customer Orders By Item(s)</a>
+               </li>               
+                  <li ng-if="reports_permission.unallocatedStock">
+                        <i ng-click="addToFavourite(46, 'unallocatedStock')"
+                              class="fa fave-report"                              
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                               ng-class="{'fa-star': FAV_REPORTS.unallocatedStock.status, 'fa-star-o': !FAV_REPORTS.unallocatedStock.status}"></i>
                               <a ui-sref="app.getUnPostedOrderDetailReport({module:'unallocatedStock'})"
                               class="fave-report-desp">Unallocated Stock</a>
                   </li>
                <li ng-if="reports_permission.inventory_cost_and_sales_price">
                   <i ng-click="addToFavourite(30, 'inventory_cost_and_sales_price')" 
+<<<<<<< HEAD
                      class="fa fave-report"                    
+=======
+                     class="fa fave-report"                     
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      ng-class="{'fa-star': FAV_REPORTS.inventory_cost_and_sales_price.status, 'fa-star-o': !FAV_REPORTS.inventory_cost_and_sales_price.status}"></i>
                   <a ui-sref="app.inventoryReport({module:'CostPrice'})"
                      class="fave-report-desp">Inventory Cost & Sales Price List</a>
@@ -445,7 +828,11 @@
                   <i class="fa fave-report" 
                      ng-click="addToFavourite(57, 'inventoryStatistics')"
                      ng-class="{'fa-star': FAV_REPORTS.inventoryStatistics.status, 'fa-star-o': !FAV_REPORTS.inventoryStatistics.status}"></i>
+<<<<<<< HEAD
                   <a ui-sref="app.inventoryStatistics({module:'inventoryStatistics'})"                      
+=======
+                  <a ui-sref="app.inventoryStatistics({module:'inventoryStatistics'})"                        
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                      class="fave-report-desp">Inventory Statistics</a>
                </li>
             </div>
@@ -454,6 +841,10 @@
    </div>
 </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 <div ng-if="!showReports"
      style="text-align: center; padding: 23px; font-size: 33px;margin: 85px; color: #ffffffcc;">
    No permission to view Reports.

@@ -1,4 +1,5 @@
 table.table-no-padding td {
+<<<<<<< HEAD
   padding-top: 3px;
   padding-bottom: 3px;
 }
@@ -68,11 +69,71 @@ table.table-no-padding2{
 
 .temp-highlight {
     color: #2196F3;
+=======
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.template-text-right {
+    text-align: right;
+}
+
+.temp-main-table {
+    width: 100%;
+    margin-top: 17px;
+    float: left
+}
+
+.temp-left-area {
+    float: left;
+    width: 50%;
+    margin: 0 0 6px;
+}
+
+.temp-right-area {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+.template-name {
+    font-size: 19px;
+    font-weight: bold;
+    padding-bottom: 30px !important;
+    color: #515151;
+    text-align: right;
+}
+
+.template-bottom-pad {
+    padding-bottom: 10px;
+}
+
+.temp-box {
+    padding: 2px !important;
+}
+
+.temp-logo {
+    margin-bottom: 10px;
+}
+
+.temp-address-container {
+    float: left;
+    width: 37%;
+}
+
+.temp-no-pad {
+    padding-left: 0 !important;
+}
+
+.temp-highlight {
+    color: #515151;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     font-weight: bold;
     padding-bottom: 0 !important;
 }
 
 .temp-total {
+<<<<<<< HEAD
   text-align: right;
   color: #2196F3;
   border-top: 1px solid #2196F3;
@@ -91,12 +152,29 @@ table.table-no-padding2{
 
 .temp-head {
   clear: both;float:left;width:100%;
+=======
+    text-align: right;
+    color: #515151;
+    border-top: 1px solid #515151;
+}
+
+.temp-termscond td {
+    font-size: 10px;
+    vertical-align: top !important;
+}
+
+.temp-header {
+    border-left: 1px solid #03A9F4;
+    color: #03A9F4;
+    padding-left: 9px !important;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 
 /* --------Report Css-------------- */
 
 .makeBold td {
+<<<<<<< HEAD
   font-weight: bold !important;
   color: black;
   border-bottom: 1px solid #e8e8e8;
@@ -120,12 +198,41 @@ table.table-no-padding2{
   float: right;
   width: 38%;
   text-align: right;
+=======
+    font-weight: bold !important;
+    color: black;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.makeBold2 td {
+    font-weight: bold !important;
+    color: black;
+}
+
+.reportHeading {
+    clear: both;
+}
+
+.reportHeading__left {
+    float: left;
+    width: 54%;
+}
+
+.reportHeading__right {
+    float: right;
+    width: 38%;
+    text-align: right;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 .reportHeading__left__reportname {
     font-size: 16px;
     margin-bottom: 4px;
+<<<<<<< HEAD
     color: #2196F3;
+=======
+    color: #515151;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 .reportHeading__left__reportfilter {
@@ -136,8 +243,13 @@ table.table-no-padding2{
 }
 
 .reportHeading__right__img {
+<<<<<<< HEAD
   width: 114px;
   margin-bottom: 10px;
+=======
+    width: 114px;
+    margin-bottom: 10px;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 .reportHeading__right__companyname {
@@ -149,6 +261,7 @@ table.table-no-padding2{
 }
 
 .solid-border-left {
+<<<<<<< HEAD
   border-left: 1px solid #d6d6d6 !important;
 }
 
@@ -163,12 +276,29 @@ table.table-no-padding2{
 
 .clearthis {
   clear: both;
+=======
+    border-left: 1px solid #d6d6d6 !important;
+}
+
+.solid-border-right {
+    border-right: 1px solid #d6d6d6 !important;
+}
+
+.padding-num-right {
+    padding-right: 38px !important;
+    text-align: right;
+}
+
+.clearthis {
+    clear: both;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }
 
 .reportHeading__right__img_resized {
     max-width: 100px !important;
 }
 
+<<<<<<< HEAD
 .smallWidth {
   width: 80% !important;
   margin: 0 auto;
@@ -205,10 +335,54 @@ table.table-no-padding2{
 }
 
 .mytable1234 th:last-child, .mytable1234 td:last-child {
+=======
+.temp-logo img {
+    max-width: 100px;
+}
+
+.smallWidth {
+    width: 80% !important;
+    margin: 0 auto;
+    float: left;
+}
+
+.rightAlign {
+    text-align: right !important;
+}
+
+.moveright {
+    display: block;
+    float: right;
+    text-align: right;
+}
+
+.reportHeading2 {
+    margin-top: 23px;
+    border-radius: 3px;
+    margin-bottom: 150px;
+}
+
+.addMarginTop {
+    margin-top: 180px;
+}
+
+.border-bot td {
+    border-bottom: 1px solid whitesmoke;
+}
+
+.fa {
+    font-family: fontawesome;
+    font-size: 9px;
+}
+
+.mytable1234 th:last-child,
+.mytable1234 td:last-child {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     text-align: center !important;
 }
 
 .mytable1234 {
+<<<<<<< HEAD
   width: 100% !important;
 }
 
@@ -277,4 +451,65 @@ div.termsandCond{
 
 table td.termsandCondFooter{
   line-height: 15px !important;
+=======
+    width: 100% !important;
+}
+
+.centerAlign {
+    text-align: center !important;
+}
+
+.padTopBot td {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.reportHeading__left table tbody td {
+    padding: 2px 0 !important;
+}
+
+.tableBorder {
+    border: 1px solid #dadada;
+}
+
+.border-right-dash {
+    border-right: 1px dotted #8e8989;
+}
+
+.centerAlign {
+    text-align: center !important;
+}
+
+.font10 {
+    font-size: 10px !important;
+}
+
+.border-top-grey2 td {
+    border-bottom: 1px solid #D7D6D6 !important;
+}
+
+.border-bottom-grey {
+    border-bottom: 1px solid #D7D6D6 !important;
+}
+
+.equalwidth {
+    width: 10%;
+}
+
+.equalwidth2 th,
+.equalwidth2 td {
+    width: 10%;
+}
+
+.equalwidth9 {
+    width: 11.11%;
+}
+
+table.alternateRowColor tr:nth-child(even) td {
+    background: #f9f9f9 !important;
+}
+
+.totalFont td {
+    padding-bottom: 10px;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 }

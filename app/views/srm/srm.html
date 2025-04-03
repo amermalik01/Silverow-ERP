@@ -2,12 +2,18 @@
     <div>
         <div ng-include="'app/views/_breadcrumb.html'"></div>
     </div>
+<<<<<<< HEAD
     <div class="row " ><!-- ng-init="get_segment_list();get_country_list();itemselectPage(1)" -->
+=======
+    <div class="row ">
+        <!-- ng-init="get_segment_list();get_country_list();itemselectPage(1)" -->
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         <style>
             .control-label {
                 margin-top: 7px !important;
             }
         </style>
+<<<<<<< HEAD
         <a ng-if="allowadd_srm" id="prompt" ui-sref="app.add-srm" class="btn pull-right btn_add oval">
                 
             <i class="fa fa-plus"></i></a>
@@ -16,6 +22,18 @@
                     .hideAdd {
                 margin-top: 35px;
             }</style>
+=======
+        <!-- oval -->
+        <div class="col-md-12 col-md-12">
+            <a ng-if="allowadd_srm" id="prompt" ui-sref="app.add-srm" title="Add SRM" class="btn pull-right btn_add "><i class="fa fa-plus fa_display"></i> Add</a>
+        </div>
+
+        <style>
+            .hideAdd {
+                margin-top: 35px;
+            }
+        </style>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     </div>
     <div class="row" style="margin-top:-15px !important;">
@@ -23,8 +41,12 @@
             <div id="dt_example" class="example_alt_pagination">
                 <div style="margin-top: -13px;">
 
+<<<<<<< HEAD
                     <div class="flexiTable" ng-class="{'hideAdd':!allowadd_srm}"  x-generate-table x-data="tableData.data" x-table-name="SRM" x-filter-function="getsrm_list()"
                         x-filter-object="searchKeyword"></div>
+=======
+                    <div class="flexiTable" ng-class="{'hideAdd':!allowadd_srm}" x-generate-table x-data="tableData.data" x-table-name="SRM" x-filter-function="getsrm_list()" x-filter-object="searchKeyword"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 </div>
             </div>
         </div>

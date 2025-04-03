@@ -99,7 +99,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "INSERT INTO to_do
+<<<<<<< HEAD
 				SET subject='$arr_attr[subject]',assigned_to='$arr_attr[assigned_to]',start_date='" . $this->objGeneral->convert_date($arr_attr[start_date]) . "',end_date='" . $this->objGeneral->convert_date($arr_attr[end_date]) . "',type='".$arr_attr['type']."',employee_id='$arr_attr[employee_id]',start_time='$arr_attr[start_time]',contact_person='$arr_attr[contact_person]',status='$arr_attr[status]',is_send_notification='$arr_attr[is_send_notification]',location='$arr_attr[location]',description='$arr_attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET subject='$arr_attr[subject]',assigned_to='$arr_attr[assigned_to]',start_date='" . $this->objGeneral->convert_date($arr_attr['start_date']) . "',end_date='" . $this->objGeneral->convert_date($arr_attr['end_date']) . "',type='".$arr_attr['type']."',employee_id='$arr_attr[employee_id]',start_time='$arr_attr[start_time]',contact_person='$arr_attr[contact_person]',status='".$arr_attr['status']."',is_send_notification='$arr_attr[is_send_notification]',location='$arr_attr[location]',description='".$arr_attr['description']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -124,7 +128,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE to_do
+<<<<<<< HEAD
 				SET subject='$arr_attr[subject]',assigned_to='$arr_attr[assigned_to]',start_date='" . $this->objGeneral->convert_date($arr_attr[start_date]) . "',end_date='" . $this->objGeneral->convert_date($arr_attr[end_date]) . "',type='".$arr_attr['type']."',employee_id='$arr_attr[employee_id]',start_time='$arr_attr[start_time]',contact_person='$arr_attr[contact_person]',status='$arr_attr[status]',is_send_notification='$arr_attr[is_send_notification]',location='$arr_attr[location]',description='$arr_attr[description]'
+=======
+				SET subject='$arr_attr[subject]',assigned_to='$arr_attr[assigned_to]',start_date='" . $this->objGeneral->convert_date($arr_attr['start_date']) . "',end_date='" . $this->objGeneral->convert_date($arr_attr['end_date']) . "',type='".$arr_attr['type']."',employee_id='$arr_attr[employee_id]',start_time='$arr_attr[start_time]',contact_person='$arr_attr[contact_person]',status='".$arr_attr['status']."',is_send_notification='$arr_attr[is_send_notification]',location='$arr_attr[location]',description='".$arr_attr['description']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$arr_attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -243,7 +251,11 @@ class Sales extends Xtreme
         $arr_attr = (array)$attr;
         $this->objGeneral->mysql_clean($arr_attr);
         $Sql = "INSERT INTO crm_alt_contact
+<<<<<<< HEAD
 				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -268,7 +280,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE crm_alt_contact
+<<<<<<< HEAD
 				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',user_id='$arr_attr[user_id]',company_id='$arr_attr[company_id]'
+=======
+				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',user_id='".$arr_attr['user_id']."',company_id='".$arr_attr['company_id']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$arr_attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -388,7 +404,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "INSERT INTO crm_alt_depot
+<<<<<<< HEAD
 				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -413,7 +433,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($arr_attr);
 
         $Sql = "UPDATE crm_alt_depot
+<<<<<<< HEAD
 				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='$arr_attr[crm_id]',user_id='$arr_attr[user_id]',company_id='$arr_attr[company_id]'
+=======
+				SET depot='$arr_attr[depot]',contact_name='$arr_attr[contact_name]',role='$arr_attr[role]',address='$arr_attr[address]',address_2='$arr_attr[address_2]',telephone='$arr_attr[telephone]',city='$arr_attr[city]',fax='$arr_attr[fax]',county='$arr_attr[county]',country='$arr_attr[country]',mobile='$arr_attr[mobile]',postcode='$arr_attr[postcode]',direct_line='$arr_attr[direct_line]',email='$arr_attr[email]',web_add='$arr_attr[web_add]',crm_id='".$arr_attr['crm_id']."',user_id='".$arr_attr['user_id']."',company_id='".$arr_attr['company_id']."'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$arr_attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -532,14 +556,22 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $mainSql = "INSERT INTO crm_opportunity_cycle_main
+<<<<<<< HEAD
 				SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '$attr[crm_id]',current_status = '".$attr['type']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '".$attr['crm_id']."',current_status = '".$attr['type']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->Conn->StartTrans();
         $mRS = $this->objsetup->CSI($mainSql);
         $mId = $this->Conn->Insert_ID();
 
         $detailSql = "INSERT INTO crm_opportunity_cycle
+<<<<<<< HEAD
 				SET start_date = '" . $this->objGeneral->convert_date($attr[start_date]) . "',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "',description = '$attr[description]',type = '".$attr['type']."',parent_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET start_date = '" . $this->objGeneral->convert_date($attr['start_date']) . "',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "',description = '$attr[description]',type = '".$attr['type']."',parent_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*echo $mainSql."<hr>";
         echo $detailSql."<hr>"; exit;*/
@@ -706,7 +738,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions
+<<<<<<< HEAD
 					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -728,7 +764,11 @@ class Sales extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
         $Sql = "UPDATE promotions
+<<<<<<< HEAD
 					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]'
+=======
+					SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					WHERE id = ".$attr['id']."";
 
         /*echo $Sql."<hr>";exit;*/
@@ -831,7 +871,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_items
+<<<<<<< HEAD
 					SET product_id = '$attr[product_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET product_id = '".$attr['product_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -929,7 +973,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_segment
+<<<<<<< HEAD
 					SET segment_id = '$attr[segment_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET segment_id = '$attr[segment_id]',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -1029,7 +1077,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO promotions_customer
+<<<<<<< HEAD
 					SET customer_id = '$attr[customer_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET customer_id = '".$attr['customer_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -1276,7 +1328,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_competitor
+<<<<<<< HEAD
 				SET category_id = '$attr[category_id]',brand = '$attr[brand]',price = '$attr[price]',volume = '$attr[volume]',file = '$attr[file]',note = '$attr[note]',order_frequency = '$attr[order_frequency]',crm_id = '$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET category_id = '$attr[category_id]',brand = '$attr[brand]',price = '$attr[price]',volume = '$attr[volume]',file = '$attr[file]',note = '$attr[note]',order_frequency = '$attr[order_frequency]',crm_id = '".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1414,7 +1470,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_price_offer
+<<<<<<< HEAD
 				SET crm_id = '$attr[crm_id]',product_id = '$attr[product_id]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET crm_id = '".$attr['crm_id']."',product_id = '".$attr['product_id']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -1436,7 +1496,11 @@ class Sales extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
         $Sql = "UPDATE crm_price_offer
+<<<<<<< HEAD
 				SET product_id = '$attr[product_id]',offered_by_id = '$attr[offered_by_id]',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr[offer_valid_date]) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]'
+=======
+				SET product_id = '".$attr['product_id']."',offered_by_id = '".$attr['offered_by_id']."',offer_method_id = '$attr[offer_method_id]',price_offered = '$attr[price_offered]',currency_id = '$attr[currency_id]',offer_date = '" . $this->objGeneral->convert_date($attr['offer_valid_date']) . "',one_four_pallet = '$attr[one_four_pallet]',half_load = '$attr[half_load]',full_load = '$attr[full_load]',primary = '$attr[primary]',comment = '$attr[comment]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE id = ".$attr['id']." ";
 
         //echo $Sql."<hr>"; exit;
@@ -1549,14 +1613,22 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $mainSql = "INSERT INTO crm_opportunity_cycle_main
+<<<<<<< HEAD
 				SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '$attr[crm_id]',current_status = '".$attr['type']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET subject = '$attr[subject]',forecast_amount = '$attr[forecast_amount]',crm_id = '".$attr['crm_id']."',current_status = '".$attr['type']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $this->Conn->StartTrans();
         $mRS = $this->objsetup->CSI($mainSql);
         $mId = $this->Conn->Insert_ID();
 
         $detailSql = "INSERT INTO crm_opportunity_cycle
+<<<<<<< HEAD
 				SET start_date = '" . $this->objGeneral->convert_date($attr[start_date]) . "',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "',description = '$attr[description]',type = '".$attr['type']."',parent_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET start_date = '" . $this->objGeneral->convert_date($attr['start_date']) . "',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "',description = '$attr[description]',type = '".$attr['type']."',parent_id = '$mId',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /*echo $mainSql."<hr>";
         echo $detailSql."<hr>"; exit;*/
@@ -1585,7 +1657,11 @@ class Sales extends Xtreme
 
 
         $detailSql = "UPDATE crm_opportunity_cycle
+<<<<<<< HEAD
 				SET start_date = '" . $this->objGeneral->convert_date($attr[start_date]) . "',end_date = '" . $this->objGeneral->convert_date($attr[end_date]) . "',description = '$attr[description]'
+=======
+				SET start_date = '" . $this->objGeneral->convert_date($attr['start_date']) . "',end_date = '" . $this->objGeneral->convert_date($attr['end_date']) . "',description = '$attr[description]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				WHERE parent_id = ".$attr['id']." AND type = ".$attr['type']."";
 
         /*echo $mainSql."<hr>";
@@ -1718,7 +1794,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_promotions
+<<<<<<< HEAD
 					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',crm_id = '$attr[crm_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]',crm_id = '".$attr['crm_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -1740,7 +1820,11 @@ class Sales extends Xtreme
     {
         $this->objGeneral->mysql_clean($attr);
         $Sql = "UPDATE crm_promotions
+<<<<<<< HEAD
 					SET starting_date = '" . $this->objGeneral->convert_date($attr[starting_date]) . "',ending_date = '" . $this->objGeneral->convert_date($attr[ending_date]) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]'
+=======
+					SET starting_date = '" . $this->objGeneral->convert_date($attr['starting_date']) . "',ending_date = '" . $this->objGeneral->convert_date($attr['ending_date']) . "',offer_type = '$attr[offer_type]',customer_type = '$attr[customer_type]',discount_type = '$attr[discount_type]',discount = '$attr[discount]',name = '".$attr['name']."',file = '$attr[file]',description = '$attr[description]'
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					WHERE id = ".$attr['id']."";
 
         /*echo $Sql."<hr>";exit;*/
@@ -1845,7 +1929,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO crm_promotions_items
+<<<<<<< HEAD
 					SET product_id = '$attr[product_id]',promotion_id = '$attr[promotion_id]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+					SET product_id = '".$attr['product_id']."',promotion_id = '".$attr['promotion_id']."',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
         $id = $this->Conn->Insert_ID();
@@ -1955,11 +2043,19 @@ class Sales extends Xtreme
 
         $Sql = "INSERT INTO credit_notes
 				SET order_no='$attr[order_no]',
+<<<<<<< HEAD
 				posting_date='" . $this->objGeneral->convert_date($attr[posting_date]) . "',
 				sell_to_cust_id='$attr[sell_to_cust_id]',sell_to_cust_no='$attr[sell_to_cust_no]',order_date='" . $this->objGeneral->convert_date($attr[order_date]) . "',sell_to_contact_id='$attr[sell_to_contact_id]',
 				requested_delivery_date='" . $this->objGeneral->convert_date($attr[requested_delivery_date]) . "',
 				sell_to_cust_name='$attr[sell_to_cust_name]',
 				delivery_date='" . $this->objGeneral->convert_date($attr[delivery_date]) . "',
+=======
+				posting_date='" . $this->objGeneral->convert_date($attr['posting_date']) . "',
+				sell_to_cust_id='$attr[sell_to_cust_id]',sell_to_cust_no='$attr[sell_to_cust_no]',order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',sell_to_contact_id='$attr[sell_to_contact_id]',
+				requested_delivery_date='" . $this->objGeneral->convert_date($attr['requested_delivery_date']) . "',
+				sell_to_cust_name='$attr[sell_to_cust_name]',
+				delivery_date='" . $this->objGeneral->convert_date($attr['delivery_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				sell_to_address='$attr[sell_to_address]',delivery_time='$attr[delivery_time]',sell_to_address2='$attr[sell_to_address2]',cust_order_no='$attr[cust_order_no]',sell_to_city='$attr[sell_to_city]',sell_to_county='$attr[sell_to_county]',campaign_id='$attr[campaign_id]',campaign_no='$attr[campaign_no]',sell_to_contact='$attr[sell_to_contact]',sale_person_id='$attr[sale_person_id]',sale_person='$attr[sale_person]',cust_phone='$attr[cust_phone]',cust_fax='$attr[cust_fax]',cust_email='$attr[cust_email]',currency_id='$attr[currency_id]',comm_book_in_no='$attr[comm_book_in_no]',book_in_email='$attr[book_in_email]',comm_book_in_contact='$attr[comm_book_in_contact]',converted_currency_id='$attr[converted_currency_id]',converted_currency_code='$attr[converted_currency_code]',currency_rate='$attr[currency_rate]',converted_unit_price='$attr[converted_unit_price]',sell_to_post_code='$attr[sell_to_post_code]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
 
         //echo $Sql."<hr>"; exit;
@@ -1984,12 +2080,21 @@ class Sales extends Xtreme
 
         $Sql = "UPDATE credit_notes
 				SET order_no='$attr[order_no]',
+<<<<<<< HEAD
 				posting_date='" . $this->objGeneral->convert_date($attr[posting_date]) . "',sell_to_cust_id='$attr[sell_to_cust_id]',sell_to_cust_no='$attr[sell_to_cust_no]',
 				order_date='" . $this->objGeneral->convert_date($attr[order_date]) . "',
 				sell_to_contact_id='$attr[sell_to_contact_id]',
 				requested_delivery_date='" . $this->objGeneral->convert_date($attr[requested_delivery_date]) . "',
 				sell_to_cust_name='$attr[sell_to_cust_name]',
 				delivery_date='" . $this->objGeneral->convert_date($attr[delivery_date]) . "',
+=======
+				posting_date='" . $this->objGeneral->convert_date($attr['posting_date']) . "',sell_to_cust_id='$attr[sell_to_cust_id]',sell_to_cust_no='$attr[sell_to_cust_no]',
+				order_date='" . $this->objGeneral->convert_date($attr['order_date']) . "',
+				sell_to_contact_id='$attr[sell_to_contact_id]',
+				requested_delivery_date='" . $this->objGeneral->convert_date($attr['requested_delivery_date']) . "',
+				sell_to_cust_name='$attr[sell_to_cust_name]',
+				delivery_date='" . $this->objGeneral->convert_date($attr['delivery_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				sell_to_address='$attr[sell_to_address]',delivery_time='$attr[delivery_time]',sell_to_address2='$attr[sell_to_address2]',cust_order_no='$attr[cust_order_no]',sell_to_city='$attr[sell_to_city]',sell_to_county='$attr[sell_to_county]',campaign_id='$attr[campaign_id]',campaign_no='$attr[campaign_no]',sell_to_contact='$attr[sell_to_contact]',sale_person_id='$attr[sale_person_id]',sale_person='$attr[sale_person]',cust_phone='$attr[cust_phone]',cust_fax='$attr[cust_fax]',cust_email='$attr[cust_email]',currency_id='$attr[currency_id]',comm_book_in_no='$attr[comm_book_in_no]',book_in_email='$attr[book_in_email]',comm_book_in_contact='$attr[comm_book_in_contact]',converted_currency_id='$attr[converted_currency_id]',converted_currency_code='$attr[converted_currency_code]',currency_rate='$attr[currency_rate]',converted_unit_price='$attr[converted_unit_price]',sell_to_post_code='$attr[sell_to_post_code]'
 				WHERE id = ".$attr['id']." ";
 
@@ -2039,7 +2144,11 @@ class Sales extends Xtreme
 
         $Sql = "UPDATE credit_note
 				SET  bill_to_cust_id='$attr[bill_to_cust_id]',bill_to_cust_no='$attr[bill_to_cust_no]',bill_to_contact_id='$attr[bill_to_contact_id]',payable_bank='$attr[payable_bank]',payment_terms_code='$attr[payment_terms_code]',bill_to_name='$attr[bill_to_name]',
+<<<<<<< HEAD
 				due_date='" . $this->objGeneral->convert_date($attr[due_date]) . "',
+=======
+				due_date='" . $this->objGeneral->convert_date($attr['due_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				bill_to_address='$attr[bill_to_address]',payment_discount='$attr[payment_discount]',bill_to_address2='$attr[bill_to_address2]',payment_method_id='$attr[payment_method_id]',payment_method_code='$attr[payment_method_code]',bill_to_city='$attr[bill_to_city]',price_including_vat='$attr[price_including_vat]',bill_to_county='$attr[bill_to_county]',bill_to_post_code='$attr[bill_to_post_code]',bill_to_contact='$attr[bill_to_contact]'
 				WHERE id = ".$attr['id']." ";
 
@@ -2067,7 +2176,11 @@ class Sales extends Xtreme
 
         $Sql = "UPDATE credit_notes
 				SET  alt_depo_id='$attr[alt_depo_id]',shipment_method_id='$attr[shipment_method_id]',shipment_method_code='$attr[shipment_method_code]',shipping_agent_code='$attr[shipping_agent_code]',ship_to_name='$attr[ship_to_name]',shipping_agent_id='$attr[shipping_agent_id]',ship_to_address='$attr[ship_to_address]',ship_to_address2='$attr[ship_to_address2]',freight_charges='$attr[freight_charges]',ship_to_city='$attr[ship_to_city]',container_no='$attr[container_no]',ship_to_county='$attr[ship_to_county]',ship_to_post_code='$attr[ship_to_post_code]',
+<<<<<<< HEAD
 				shipment_date='" . $this->objGeneral->convert_date($attr[shipment_date]) . "',
+=======
+				shipment_date='" . $this->objGeneral->convert_date($attr['shipment_date']) . "',
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 				ship_to_contact='$attr[ship_to_contact]',ship_delivery_time='$attr[ship_delivery_time]',book_in_tel='$attr[book_in_tel]',warehouse_booking_ref='$attr[warehouse_booking_ref]',customer_warehouse_ref='$attr[customer_warehouse_ref]',location_code='$attr[location_code]'
 				WHERE id = ".$attr['id']." ";
 
@@ -2214,7 +2327,11 @@ class Sales extends Xtreme
         $this->objGeneral->mysql_clean($attr);
 
         $Sql = "INSERT INTO finance
+<<<<<<< HEAD
 				SET order_id='$attr[order_id]',type='2',contact_person='$attr[contact_person]',phone='$attr[phone]',alt_contact_person='$attr[alt_contact_person]',alt_contact_email='$attr[alt_contact_email]',contact_id='$attr[contact_id]',fax='$attr[fax]',posting='$attr[posting]',bill_to_customer='$attr[bill_to_customer]',bill_to_customer_id='$attr[bill_to_customer_id]',payment_terms_id='$attr[payment_terms_id]',payment_method_id='$attr[payment_method_id]',email='$attr[email]',bank_account_id='$attr[bank_account_id]',generate='$attr[generate]',currency='$attr[currency]',gen_bus_posting_group='$attr[gen_bus_posting_group]',status='$attr[status]',vat_bus_posting_group='$attr[vat_bus_posting_group]',customer_posting_group='$attr[customer_posting_group]',company_reg_no='$attr[company_reg_no]',finance_charges_id='$attr[finance_charges_id]',insurance_charges_id='$attr[insurance_charges_id]',vat_id='$attr[vat_id]',customer_status='$attr[customer_status]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+=======
+				SET order_id='".$attr['order_id']."',type='2',contact_person='$attr[contact_person]',phone='$attr[phone]',alt_contact_person='$attr[alt_contact_person]',alt_contact_email='$attr[alt_contact_email]',contact_id='$attr[contact_id]',fax='$attr[fax]',posting='$attr[posting]',bill_to_customer='$attr[bill_to_customer]',bill_to_customer_id='$attr[bill_to_customer_id]',payment_terms_id='$attr[payment_terms_id]',payment_method_id='$attr[payment_method_id]',email='$attr[email]',bank_account_id='$attr[bank_account_id]',generate='$attr[generate]',currency='$attr[currency]',gen_bus_posting_group='$attr[gen_bus_posting_group]',status='$attr[status]',vat_bus_posting_group='$attr[vat_bus_posting_group]',customer_posting_group='$attr[customer_posting_group]',company_reg_no='$attr[company_reg_no]',finance_charges_id='$attr[finance_charges_id]',insurance_charges_id='$attr[insurance_charges_id]',vat_id='$attr[vat_id]',customer_status='$attr[customer_status]',user_id='" . $this->arrUser['id'] . "',company_id='" . $this->arrUser['company_id'] . "'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //echo $Sql."<hr>"; exit;
         $RS = $this->objsetup->CSI($Sql);
@@ -2279,4 +2396,7 @@ class Sales extends Xtreme
         return $response;
     }
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

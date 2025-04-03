@@ -38,7 +38,11 @@ $app->post('/stock/cat-unit/get-cat-unit-by-cat-nd-unit_id', function () use ($a
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/stock/cat-unit/get-cat-unit', function () use ($app) {
+=======
+/* $app->post('/stock/cat-unit/get-cat-unit', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;	
 	$input_array = array();
  
@@ -49,7 +53,11 @@ $app->post('/stock/cat-unit/get-cat-unit', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/stock/cat-unit/get-all-unit', function () use ($app) {
@@ -92,7 +100,11 @@ $app->post('/stock/cat-unit/update-cat-unit', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/stock/cat-unit/delete-cat-unit', function () use ($app) {
+=======
+/* $app->post('/stock/cat-unit/delete-cat-unit', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;
 	$input_array = array();
 	
@@ -103,6 +115,11 @@ $app->post('/stock/cat-unit/delete-cat-unit', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 ############	End: Category Unit of Measures Section ##############
 ?>
+=======
+}); */
+############	End: Category Unit of Measures Section ##############
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

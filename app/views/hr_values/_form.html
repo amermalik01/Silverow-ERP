@@ -1,5 +1,6 @@
 <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 <div ng-class="{'whirl no-overlay':showLoader}"></div>
+<<<<<<< HEAD
 <div class="row"
      style="    margin-top: 42px;">
   <div class="col-md-12 col-md-12">
@@ -197,9 +198,123 @@
       </div>
     </div>
   </div>
+=======
+<div class="row" style="    margin-top: 42px;">
+    <div class="col-md-12 col-md-12">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <!--      <div ng-app ng-controller="hrTabsController">-->
+            <div ng-if="recnew > 0">
+                <tabset>
+                    <tab heading="General" class="general_information" ng-click="showReadonlyForm(); generalInformation();" ng-if="allowviewhr_gneral || userId == formData.id">
+                        <!--ng-hide="hideme"-->
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)">
+                            <div ng-include="'app/views/hr_values/general_form.html'" class="animated fadeIn"></div>
+                        </form>
+                        <div ng-include="'app/views/hr_values/_linemanager_popup.html'"></div>
+                        <div ng-include="'app/views/hr_values/roleSelectionModal.html'"></div>
+
+                    </tab>
+                    <tab heading="Contact" class="contact_setting" ng-click="showReadonlyForm(); getcontact();" ng-if="allowviewhr_contact || userId == formData.id">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addcontact(formData)" name="addFinForm" validate-form="" novalidate="">
+                            <div ng-include="'app/views/hr_values/add_contact.html'" class="animated fadeIn"></div>
+                        </form>
+                    </tab>
+                    <tab heading="Personal" class="personal_setting" ng-click="showReadonlyForm(); getpersonalhr();" ng-if="allowviewhr_personal || userId == formData.id">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addpersonal(formData)" name="addFinForm" validate-form="" novalidate="">
+                            <div ng-include="'app/views/hr_values/add_personal.html'" class="animated fadeIn"></div>
+                        </form>
+                    </tab>
+                    <tab heading="Salary, Holidays & Pensions" class="salary_setting" ng-click="showReadonlyForm(); getsalaryhr();" ng-if="allowviewhr_salary || userId == formData.id">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addsalary(formData)" name="addFinForm" validate-form="" novalidate="">
+                            <div ng-include="'app/views/hr_values/add_salary.html'" class="animated fadeIn"></div>
+                        </form>
+                    </tab>
+                    <tab heading="Benefits" class="benifits_setting" ng-click="showReadonlyForm(); getBenifits();" ng-if="allowviewhr_benifit || userId == formData.id">
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="addBenifits(formData)" name="addFinForm" validate-form="" novalidate="">
+                            <div ng-include="'app/views/hr_values/add_benifits.html'" class="animated fadeIn"></div>
+                        </form>
+                    </tab>
+                    <tab heading="Expenses" active="expenseTab" ng-init="showReadonlyForm(); itemselectPage(1); (expenseTab && getexpenses())" class="expenses" ng-click="showReadonlyForm(); itemselectPage(1);getexpenses();" ng-if="allowviewhr_expenses || userId == formData.id">
+                        <div ng-include="'app/views/hr_values/expenses.html'" ng-show="showexpenseslist"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin " role="form" validate-form="" novalidate="" ng-submit="addexpenses(formData)">
+                            <div ng-include="'app/views/hr_values/expenses_form.html'" ng-show="showexpenses"></div>
+                        </form>
+
+                        <tabset ng-if="row_sub_list_expenses">
+                            <tab heading="Expenses" class="normalexpense" ng-click="getsubexpenses_final_list(formData.expense_id)" ng-if="allowviewhr_expenses || userId == formData.id" active="true">
+                                <div ng-include="'app/views/hr_values/sub_expense_row.html'"></div>
+                            </tab>
+                            <tab heading="Mileage" class="mileage" ng-click="chkVT();">
+                                <tabset>
+                                    <tab heading="Personal Vehicle" class="personelVehicle" ng-click="getPersonaexpenses_final_list(formData.expense_id)">
+                                        <div ng-include="'app/views/hr_values/personel_vehicle.html'"></div>
+                                    </tab>
+                                    <tab heading="Company Vehicle" class="companyVehicle" ng-click="getCompanyexpenses_final_list(formData.expense_id)">
+                                        <div ng-include="'app/views/hr_values/company_vehicle.html'"></div>
+                                    </tab>
+
+                                </tabset>
+                            </tab>
+                        </tabset>
+                    </tab>
+                    <tab heading="Holidays" active="holidayTab" ng-init="showReadonlyForm(); itemselectPage(1); (holidayTab && getHoliday())" class="holidays" ng-click="showReadonlyForm(); itemselectPage(1); getHoliday()" ng-if="allowviewhr_holiday || userId == formData.id">
+                        <div ng-include="'app/views/hr_values/holidays.html'" ng-show="showHolidaylist"></div>
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" ng-submit="getCode_holiday();" name="addForm">
+                            <!-- validate-form=""
+                  novalidate="" -->
+                            <div ng-include="'app/views/hr_values/add_holiday_form.html'" ng-show="showHoliday"></div>
+                        </form>
+                        <div ng-include="'app/views/hr_values/cancel_holiday.html'"></div>
+                    </tab>
+
+                </tabset>
+
+                <div class="row">
+                    <div class="col-md-12 affix">
+                        <div class="pull-left">
+                            <!-- <div class="communication">
+                                <sidebar-notes ng-if="noRoleAssigned !=1" class="noselect"></sidebar-notes>
+                                <sidebar-email ng-if="noRoleAssigned !=1" class="noselect"></sidebar-email>
+                                <sidebar-attachment ng-if="noRoleAssigned !=1" class="noselect"></sidebar-attachment>
+                            </div> -->
+                        </div>
+                        <div class="pull-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="!(recnew > 0)">
+                <tabset>
+                    <tab heading="General Information" class="general_information">
+                        <!--ng-hide="hideme"-->
+                        <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate="" ng-submit="addGeneral(formData)">
+                            <div ng-include="'app/views/hr_values/general_form.html'" class="animated fadeIn"></div>
+                        </form>
+                        <div ng-include="'app/views/hr_values/_linemanager_popup.html'"></div>
+                        <div ng-include="'app/views/hr_values/roleSelectionModal.html'"></div>
+
+                    </tab>
+                    <tab heading="Contact Information" ng-if="allowviewhr_contact" class="contact_setting dont-click"></tab>
+                    <tab heading="Personal Information" ng-if="allowviewhr_personal" class="personal_setting dont-click"></tab>
+                    <tab heading="Salary, Holidays & Pensions" ng-if="allowviewhr_salary" class="salary_setting dont-click"></tab>
+                    <tab heading="Benefits" ng-if="allowviewhr_benifit" class="benifits_setting dont-click"></tab>
+                    <tab heading="Expenses" ng-if="allowviewhr_expenses" class="expenses dont-click"></tab>
+                    <tab heading="Holidays" ng-if="allowviewhr_holiday" class="holidays dont-click"></tab>
+                    <!-- <tab heading="Images" class="Images dont-click"></tab> -->
+                    <!-- <tab heading="Comments" class="comments dont-click"></tab> -->
+                </tabset>
+            </div>
+        </div>
+    </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 </div>
 <!-- <div ng-include="'app/views/hr_values/document_internal.html'" ng-show="list_internal_document"></div> -->
 <div ng-include="'app/views/_confirm_modal.html'"></div>
 <div ng-include="'app/views/hr_values/hr_history_modal.html'"></div>
 <div ng-include="'app/views/hr_values/_benefits_pop.html'"></div>
+<<<<<<< HEAD
 <div ng-include="'app/views/_approvals_history.html'"></div>
+=======
+<div ng-include="'app/views/_approvals_history.html'"></div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

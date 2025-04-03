@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 ############	Start: Products Listing ############
 $app->post('/sales/stock/products-listing', function () use ($app) {
     global $objStock, $input;
@@ -30,7 +33,10 @@ $app->post('/sales/stock/products-listing/get-products-popup', function () use (
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -297,4 +303,7 @@ $app->post('/sales/stock/products-listing/get-last-invoice-date', function () us
 
 
 ############	End: Products Listing ##############
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

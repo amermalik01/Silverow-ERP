@@ -1,5 +1,6 @@
 <div ng-controller="SRMOrderController as table">
     <div ng-include="'app/views/_breadcrumb.html'"></div>
+<<<<<<< HEAD
 
     <a ng-if="allowadd_prucase_order" id="prompt" ui-sref="app.addsrmorder" class="btn btn_add pull-right margin_bottom width_80 oval"><i class="fa fa-plus"></i></a>
     <style>
@@ -32,5 +33,35 @@
         ng-include="'app/views/srm_order/_saleOrdersModal.html'"></div> -->
         <div ng-include="'app/views/_bulkOptionsModal.html'">
         </div>
+=======
+    <!-- oval -->
+    <div class="col-md-12 col-md-12">
+        <a ng-if="allowadd_prucase_order" id="prompt" ui-sref="app.addsrmorder" title="Add Order" class="btn btn_add pull-right margin_bottom width_80 "><i class="fa fa-plus fa_display"></i> Add</a>
+    </div>
+    <style>
+        .hideAdd {
+            margin-top: 48px;
+        }
+    </style>
+
+    <div class="row">
+        <!-- style="margin-top: -15px !important;" -->
+        <div class="col-md-12 col-md-12">
+            <div id="dt_example" class="example_alt_pagination">
+                <div>
+                    <!-- style="margin-top: -13px;" -->
+                    <div class="flexiTable" ng-class="{'hideAdd':!allowadd_prucase_order}" x-generate-table x-data="tableData.data" x-table-name="PurchaseOrder" x-filter-function="getSRMOrderlist()" x-checked-records="selectedRecBulkEmail" x-filter-object="searchKeyword"
+                        x-bulk-email-function="bulkEmailOption()" x-selected-record-preview="order_code"></div>
+                </div>
+            </div>
+            <!-- SRMOrder -->
+        </div>
+    </div>
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <!-- <div 
+        ng-include="'app/views/srm_order/_saleOrdersModal.html'"></div> -->
+    <div ng-include="'app/views/_bulkOptionsModal.html'">
+    </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 </div>

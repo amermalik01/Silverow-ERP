@@ -1,0 +1,384 @@
+<style>
+    .changeModal .modal-dialog {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%) !important;
+    }
+</style>
+<div class="modal fade" id="payment_modal">
+    <div class="modal-dialog modal-lg" style="width:60%; margin-top: 51px;">
+        <!-- dragable -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closePaymentModal()" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Supplier Journal <span ng-if="paymentData.glcode"> -
+                        ({{paymentData.glcode}})</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-5">
+
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Supplier No.</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal;white-space: normal !important;">{{paymentData.supplierCode}}</label>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Supplier </label>
+                            <div class="col-md-8">
+                                <!-- <label class="col-md-8 control-label normal-font" style="white-space: normal;white-space: normal !important;">{{paymentData.supplier}} - ({{paymentData.supplierCode}})</label> -->
+                                <input type="text" name="supplier" id="supplier" class="form-control" ng-model="paymentData.supplier" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Currency</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal !important;">{{paymentData.currency}}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Doc. No.</label>
+                            <div class="col-md-8">
+                                <input type="text" name="document_no" id="document_no" class="form-control" ng-model="paymentData.document_no" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Amount</label>
+                            <div class="col-md-8">
+                                <input type="text" name="debit_amount" id="debit_amount" class="form-control" ng-change="convert_amount()" ng-model="paymentData.debit_amount" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Converted Amount</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal !important;">{{paymentData.converted_price}}</label>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label class="col-md-4 control-label"> Allocate In Full</label>
+                            <div class="col-md-8">
+                                <input ng-true-value="'1'" ng-false-value="'0'" type="checkbox" ng-disabled="!check_srm_readonly || paymentData.postedStatus>0" name="allocate_full" ng-model="paymentData.allocate_full" ng-click="allocateFullAmount(paymentData.allocate_full,0)" id="allocate_full">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Allocate Amount</label>
+                            <div class="col-md-8">
+                                <input type="text" name="allocated_amount" id="allocated_amount" class="form-control" ng-change="allocateFullAmount(paymentData.allocate_full,1)" ng-model="paymentData.allocated_amount" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Remaining Amount</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal !important;">{{paymentData.total_remaining}}</label>
+                        </div> -->
+
+                    </div>
+
+                    <div class="col-md-5 col-md-offset-2">
+
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Doc. Type</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal !important;">Payment</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Invoice Amount</label>
+                            <label class="col-md-8 control-label normal-font" style="white-space: normal !important;">{{paymentData.grand_total}}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Posting Date</label>
+                            <div class="col-md-8 no-margin">
+                                <input jqdatepicker readonly class="form-control" id="ck_InvoiceDate1" ng-model="paymentData.invoice_date" ng-change="ValidateAllocationDate()" ng-disabled="!check_srm_readonly || paymentData.postedStatus>0" ng-required="display_required" ng-class="{'pickdate':check_srm_readonly || paymentData.postedStatus>0}">
+                                <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Balancing G/L</label>
+                            <div class="col-md-8">
+                                <div class="input-symbol" ng-click="getGLcode()" ng-class="{'dont-click readonly':!check_srm_readonly || paymentData.postedStatus>0 }">
+                                    <input type="text" name="balancing_account" id="balancing_account" class="form-control" ng-model="paymentData.balancing_account" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0">
+                                    <span><i class="fa fa-external-link"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label class="col-md-4 control-label">Allocation Date</label>
+                            <div class="col-md-8 no-margin">
+                                <input jqdatepicker readonly class="form-control" id="ck_allocation_date" ng-model="paymentData.allocation_date" ng-change="ValidateAllocationDate()" ng-disabled="!check_srm_readonly || paymentData.postedStatus>0" ng-required="display_required" ng-class="{'pickdate':check_srm_readonly || paymentData.postedStatus>0}">
+                                <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                            </div>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Cnv. Rate </label>
+                            <div class="col-md-8">
+                                <input type="text" name="cnv_rate" id="cnv_rate" class="form-control" ng-model="paymentData.cnv_rate" ng-change="convert_amount()" ng-readonly="!check_srm_readonly || paymentData.postedStatus>0 || (paymentData.currency == defaultCurrencyCode)">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Purchase Order No.</label>
+                            <label class="col-md-8 control-label" style="white-space: normal !important;">{{rec.order_code}}</label>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <hr style="margin: 14px 0 13px 0;">
+
+                <div ng-if="paymentData.parent_id>0" class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4 no-padding">
+                            <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" ng-model="searchKeywordInv.search">
+                        </div>
+                        <div class="col-md-8">
+                            <span class="pull-right">
+                                <strong> Remaining Amount to be Allocated
+                                    :&nbsp;{{ netTotalPayment() | number:decimal_range}}&nbsp;{{paymentData.currency}}
+                                    <!-- -- {{ paymentData.total_remaining}} --></strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="paymentData.parent_id>0" class="row" style="margin-bottom: 0 !important;">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div class="panel-body">
+                                <div>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th> Posting Date</th>
+                                                <th> Document Type</th>
+                                                <th> Document No.</th>
+                                                <th> Order No.</th>
+                                                <th class="rightAlign"> Original Amount </th>
+                                                <th class="rightAlign"> Converted Amount (LCY)</th>
+                                                <th class="rightAlign"> Amount Paid</th>
+                                                <th class="rightAlign"> Remaining Amount</th>
+                                                <th> Allocation Date </th>
+                                                <th class="rightAlign"> Allocate Amount</th>
+                                                <th class="text-center"> Allocate In Full</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="sp in ReciptInvoiceModalarr | filter: searchKeywordInv.search" ng-class="{'stock-done2': sp.outstanding_amount == 0, 
+                                                            'allocatedAmount':sp.outstanding_amount > 0,
+                                                            'zeroAllocatedAmount':sp.outstanding_amount == sp.grand_total,
+                                                            'onHoldRed' : sp.on_hold == 1}">
+                                                <td ng-class="{'onHoldRed' : sp.on_hold == 1}"> {{sp.invoice_date}}
+                                                    <span class="fa fa-commenting-o onholdcomment2" ng-if="sp.on_hold_message" title="{{sp.on_hold_message}}"></span>
+                                                </td>
+                                                <td ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    <span ng-if="sp.payment_type == 'Sales Invoice' || sp.payment_type == 'Credit Note' || sp.payment_type == 'Purchase Invoice' ||
+                                                                 sp.payment_type == 'Debit Note' || sp.payment_type == 'Purchase Order' || sp.payment_type == 'Opening Balance Invoice' || 
+                                                                 sp.payment_type == 'Bank Opening Balance Payment' || sp.payment_type == 'Bank Opening Balance Refund'">
+                                                        {{sp.payment_type}}
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Refund'">
+                                                        {{moduleName | capitalize}} Refund
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+                                                        {{moduleName | capitalize}} Payment
+                                                    </span>
+                                                    <span ng-if="module_type.value == 2">
+                                                        <span ng-if="sp.payment_type == 'Opening Balance Credit Note'">
+                                                            Opening Balance Credit Note
+                                                        </span>
+                                                    </span>
+                                                    <span ng-if="module_type.value == 3">
+                                                        <span ng-if="sp.payment_type == 'Opening Balance Debit Note'">
+                                                            Opening Balance Debit Note
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span ng-if="sp.payment_type == 'Sales Invoice'">
+                                                        <a title="View Sale Invoice" class="tooltips_clss btn hilight "
+                                                            style="font-size: 11px;"
+                                                            ui-sref="app.viewOrder({id:sp.order_id, isInvoice:1})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Credit Note'">
+                                                        <a title="View Credit Note" class="tooltips_clss btn hilight "
+                                                            style="font-size: 11px;"
+                                                            ui-sref="app.viewReturnOrder({id:sp.order_id, isInvoice:1})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+
+                                                    <span ng-if="sp.payment_type == 'Purchase Invoice' || sp.payment_type == 'Purchase Order'">
+                                                        <a title="View Purchase Invoice"
+                                                            class="tooltips_clss btn hilight " style="font-size: 11px;"
+                                                            ui-sref="app.viewsrmorder({id:sp.order_id})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+
+                                                    <span ng-if="sp.payment_type == 'Debit Note'">
+                                                        <a title="View Debit Note" class="tooltips_clss btn hilight "
+                                                            style="font-size: 11px;"
+                                                            ui-sref="app.viewsrmorderreturn({id:sp.order_id})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Invoice'">
+                                                        <a title="View Opening Balance Invoice"
+                                                            class="tooltips_clss btn hilight " style="font-size: 11px;"
+                                                            ui-sref="app.openingBalances({module:moduleName})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+                                                    <span ng-if="sp.payment_type == 'Bank Opening Balance Payment' || sp.payment_type == 'Bank Opening Balance Refund'">
+                                                        <a title="View {{sp.payment_type}}"
+                                                            class="tooltips_clss btn hilight " style="font-size: 11px;"
+                                                            ui-sref="app.openingBalances({module:'bank'})"
+                                                            target="_blank">
+                                                            {{sp.code}}</a>
+                                                    </span>
+
+                                                    <span ng-if="module_type.value == 2">
+                                                        <span ng-if="sp.payment_type == 'Refund'">
+
+                                                            <a title="View {{moduleName | capitalize}} Refund"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.view-receipt-journal-gl-cust({id:sp.cust_payment_id})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+                                                            <a title="View {{moduleName | capitalize}} Payment"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.view-receipt-journal-gl-cust({id:sp.cust_payment_id})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+
+                                                        </span>
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Credit Note'">
+                                                            <a title="View Opening Balance Credit Note"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.openingBalances({module:moduleName})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+                                                        </span>
+                                                    </span>
+                                                    <span ng-if="module_type.value == 3">
+                                                        <span ng-if="sp.payment_type == 'Refund'">
+
+                                                            <a title="View {{moduleName | capitalize}} Refund"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.view-receipt-journal-gl-supp({id:sp.cust_payment_id})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Payment'">
+                                                            <a title="View {{moduleName | capitalize}} Payment"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.view-receipt-journal-gl-supp({id:sp.cust_payment_id})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+
+                                                        </span>
+
+                                                    <span ng-if="sp.payment_type == 'Opening Balance Debit Note'">
+                                                            <a title="View Opening Balance Debit Note"
+                                                                class="tooltips_clss btn hilight "
+                                                                style="font-size: 11px;"
+                                                                ui-sref="app.openingBalances({module:moduleName})"
+                                                                target="_blank">
+                                                                {{sp.code}}</a>
+                                                        </span>
+                                                    </span>
+
+                                                </td>
+
+                                                <td>
+                                                    <span ng-if="sp.payment_type == 'Purchase Order' || sp.payment_type == 'Purchase Invoice'">
+                                                        <a title="View Purchase Order" class="tooltips_clss btn hilight " style="font-size: 11px;" ui-sref="app.viewsrmorder({id:sp.order_id})" target="_blank"> {{sp.order_code}}</a>
+                                                    </span>
+                                                </td>
+
+                                                <td class="rightAlign" ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    {{ sp.grand_total | number:decimal_range}}&nbsp;{{sp.currency_code}}
+                                                </td>
+                                                <td class="rightAlign" ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    {{ sp.converted_amount| number:decimal_range }} &nbsp;{{sp.converted_currency_code}}
+                                                </td>
+                                                <td class="rightAlign" ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    {{ sp.paid_amount| number:decimal_range }} &nbsp;{{sp.currency_code}}
+                                                </td>
+                                                <td class="rightAlign" ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    {{ sp.outstanding_amount | number:decimal_range }} &nbsp;{{sp.currency_code}}
+                                                </td>
+                                                <td ng-class="{'onHoldRed' : sp.on_hold == 1}"> <input jqdatepicker class="2date-picker form-control " id="posting_date_{{$index}}" ng-model="sp.allocation_date" ng-change="ValidateAllocationDate(sp)"></td>
+                                                <td ng-class="{'onHoldRed' : sp.on_hold == 1}">
+                                                    <input type="number" step="any" min="0" ng-model="sp.amount" ng-class="{'dont-click2':sp.outstanding_amount == 0 || sp.on_hold == 1}" ng-blur="netTotalPayment(); setremainingamount(sp)" class="form-control input_text">
+
+                                                    <span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" id="checkremaingamount_{{sp.id}}"
+                                                        ng-click="setremainingamount(sp, 1)"
+                                                        ng-disabled="sp.outstanding_amount == 0  || sp.on_hold == 1"
+                                                        ng-model="sp.is_infull">
+                                                </td>
+                                            </tr>
+
+                                            <tr ng-show="ReciptInvoiceModalarr.length == 0">
+                                                <td colspan="3" text-align="center"> No records found ! </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                    <span class="margin-right"><i class="fa fa-circle" style="color:#ef7372"></i> Zero Allocation</span>
+                                                    <span class="margin-right"><i class="fa fa-circle" style="color:#ffd351"></i> Partially Allocated</span>
+                                                    <span class="margin-right"><i class="fa fa-circle" style="color:#25b726"></i> Fully Allocated</span>
+                                </div>
+
+                                <div class="pull-right">
+                                    <span ng-if="netTotalPayment() < 0" style="color:rgba(255, 0, 0, 0.78);"> Limit Exceed</span>
+
+
+                                    <button class="btn btn-submit wr_date_block wr_d_block" type="button" ng-if="!(paymentData.parent_id>0)" ng-click="savePaymentModal(paymentData)">
+                        Save
+                    </button>
+                                    <button class="btn btn-default" type="button" ng-if="paymentData.parent_id>0 && !(paymentData.postedStatus>1)" ng-click="sendforJournalPost()" ng-disabled="disable_save" ng-class="{'dont-click setshow':netTotalPayment() > 0 }">
+                        <i class="fa fa-check fa_display"></i> Post Journal</button>
+                                    <!-- ng-class="{'dont-click2':netTotalPayment() < 0}" -->
+
+                                    <button class="btn btn-submit2" type="button" ng-if="paymentData.parent_id>0 && !(paymentData.postedStatus>1)" ng-click="AddPaymentAllocation()" ng-disabled="disable_save" ng-class="{'dont-click2':netTotalPayment() < 0}">Save Allocation</button>
+                                    <button type="button" class="btn btn-cancel" ng-click="closePaymentModal()">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-include="'app/views/_conform_to_continue.html'"></div>
+
+                <div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div>

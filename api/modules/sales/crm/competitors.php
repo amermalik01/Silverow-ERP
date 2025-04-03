@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 $app->post('/sales/crm/competitor/competitors', function () use ($app) {
+=======
+/* $app->post('/sales/crm/competitor/competitors', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objCrm, $input;
 	$array = array(
 				"all"=> $input->all,
@@ -64,8 +68,12 @@ $app->post('/sales/crm/competitor/delete-competitor', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 
 ?>
 
+=======
+ */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

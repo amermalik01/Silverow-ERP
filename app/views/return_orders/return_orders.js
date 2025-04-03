@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* specific routes here (see file config.js) */
         $stateProvider
             .state('app.return-orders', {
@@ -31,6 +35,7 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
                 controller: 'ReturnOrderEditController'
             })
 
+<<<<<<< HEAD
             .state('app.sale-return-invoice', {
                 url: '/sale-return-invoice',
                 title: 'Sales',
@@ -43,6 +48,22 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
 
 SaleReturnInvoiceController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$rootScope", "moduleTracker"];
 myApp.controller('SaleReturnInvoiceController', SaleReturnInvoiceController);
+=======
+        .state('app.sale-return-invoice', {
+            url: '/sale-return-invoice',
+            title: 'Sales',
+            templateUrl: helper.basepath('return_orders/salesreturnorders.html'),
+            controller: 'SaleReturnInvoiceController',
+            resolve: helper.resolveFor('ngTable', 'ngDialog')
+        })
+
+    }
+]);
+
+SaleReturnInvoiceController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", "$rootScope", "moduleTracker"];
+myApp.controller('SaleReturnInvoiceController', SaleReturnInvoiceController);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $rootScope, moduleTracker) {
     'use strict';
 
@@ -50,11 +71,19 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
     moduleTracker.updateAdditional("credit_note posted");
     moduleTracker.updateRecord("");
 
+<<<<<<< HEAD
     $scope.breadcrumbs =
         [//{'name':'Dashboard','url':'app.dashboard','isActive':false},
             { 'name': 'Sales', 'url': '#', 'isActive': false },
             { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
             { 'name': 'Posted Credit Notes', 'url': '#', 'isActive': false }];
+=======
+    $scope.breadcrumbs = [ //{'name':'Dashboard','url':'app.dashboard','isActive':false},
+        { 'name': 'Sales', 'url': '#', 'isActive': false },
+        { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+        { 'name': 'Posted Credit Notes', 'url': '#', 'isActive': false }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     var vm = this;
     var Api = $scope.$root.sales + "customer/return-order/listings";
@@ -68,7 +97,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
     $scope.selectedRecBulkEmail = [];
     $scope.recordArray = [];
 
+<<<<<<< HEAD
     $scope.getReturnInvoiceListing = function (item_paging, sort_column, sortform) {
+=======
+    $scope.getReturnInvoiceListing = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = {};
         $scope.postData = {
             'token': $scope.$root.token,
@@ -95,7 +128,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
         $scope.showLoader = true;
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.showLoader = false;
                 $scope.columns = [];
@@ -113,14 +150,22 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
 
                     $scope.total_paging_record = res.data.total_paging_record;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (key != "tbl_meta_data") {
                             $scope.recordArray.push(value);
                         }
                     });
 
                     $scope.record = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -131,15 +176,24 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                     });
                 }
                 //else     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 // toaster.pop('error', 'info', 'Server is not Acknowledging');
                 throw new Error(message.data);
                 console.log(message.data);
             });
     }
+<<<<<<< HEAD
  
     $scope.getItem = function (parm) {
+=======
+
+    $scope.getItem = function(parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.token = $scope.$root.token;
         //$scope.rec.warehouse_id = $scope.rec.warehouse !=undefined? $scope.rec.warehouse.id:'';
         //$scope.rec.category_id = $scope.rec.category !=undefined? $scope.rec.category.id:'';
@@ -153,7 +207,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
         $scope.$root.$broadcast("myReload");
     }
 
+<<<<<<< HEAD
     $scope.$on("myReload", function (event) {
+=======
+    $scope.$on("myReload", function(event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //var ApiAjax = $resource('api/company/get_listing_ajax/:module_id/:module_table/:filter_id/:more_fields/:condition');
 
         // ngDataService.getDataCustom( $scope.MainDefer, $scope.mainParams, Api,$scope.mainFilter,$scope,$scope.postData);
@@ -162,11 +220,19 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
         //return;
     });
 
+<<<<<<< HEAD
     $scope.bulkEmailOption = function () {
         // console.log($scope.selectedRecBulkEmail);
 
         $scope.emailOrderList = $scope.recordArray.filter(function (o, i) {
             return ($scope.selectedRecBulkEmail.findIndex( s => s.key == o.id ) > -1);
+=======
+    $scope.bulkEmailOption = function() {
+        // console.log($scope.selectedRecBulkEmail);
+
+        $scope.emailOrderList = $scope.recordArray.filter(function(o, i) {
+            return ($scope.selectedRecBulkEmail.findIndex(s => s.key == o.id) > -1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         });
 
         // console.log($scope.emailOrderList);
@@ -184,7 +250,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
 
     $rootScope.BulkEmailMessage = "";
 
+<<<<<<< HEAD
     $scope.bulkOptionConfirm = function (bulkOptionChk) {
+=======
+    $scope.bulkOptionConfirm = function(bulkOptionChk) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // console.log(bulkOptionChk); return false;
 
@@ -197,7 +267,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
         if (bulkOptionChk == 'saveAsPdf') {
 
             $rootScope.animateBulkEmail = true;
+<<<<<<< HEAD
             $rootScope.animateBulkEmailText = 'Downloading PDF(s)';            
+=======
+            $rootScope.animateBulkEmailText = 'Downloading PDF(s)';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             // console.log($scope.emailOrderList.length);
             var prntInvoiceUrl = $scope.$root.sales + "customer/order/bulk-print-invoice";
@@ -210,7 +284,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                     'company_logo_url': $scope.company_logo_url,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $rootScope.animateBulkEmail = false;
                     $rootScope.animateBulkEmailText = '';
@@ -231,7 +309,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
 
                         // angular.forEach(res.data.PdfLinks, function (rec) {
                         link.setAttribute('href', res.data.file_url);
+<<<<<<< HEAD
                             link.click();
+=======
+                        link.click();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // });
 
                         document.body.removeChild(link);
@@ -239,22 +321,35 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                         // $timeout(function () {
                         //     $scope.getReturnInvoiceListing();
                         // }, 500);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', "PDF(s) Generation Failed.");
                     }
                 });
 
+<<<<<<< HEAD
         }
         else if (bulkOptionChk == 'email') {
         // else if (bulkOptionChk.email == true) {
+=======
+        } else if (bulkOptionChk == 'email') {
+            // else if (bulkOptionChk.email == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rootScope.BulkEmailMessage = "Posted Credit Note(s)";
 
             ngDialog.openConfirm({
                 template: 'BulkEmailConfirmationMessage',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
+=======
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $rootScope.animateBulkEmail = true;
                 $rootScope.animateBulkEmailText = 'Sending Email(s)';
@@ -270,7 +365,11 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                         'company_logo_url': $scope.company_logo_url,
                         'token': $scope.$root.token
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rootScope.animateBulkEmail = false;
                         $rootScope.animateBulkEmailText = '';
@@ -285,6 +384,7 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                                 bodyOutputType: 'trustedHtml',
                                 tapToDismiss: false
                             });
+<<<<<<< HEAD
                         }
                         else if (res.data.ack == true) {
                             toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
@@ -299,6 +399,20 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
                         }
                     });
             }, function (reason) {
+=======
+                        } else if (res.data.ack == true) {
+                            toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+
+
+                            $timeout(function() {
+                                $scope.getReturnInvoiceListing();
+                            }, 500);
+                        } else {
+                            toaster.pop('warning', 'Info', "Email(s) Sending Failed. " + res.data.error);
+                        }
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.animateBulkEmail = false;
                 $rootScope.animateBulkEmailText = '';
                 console.log('Modal promise rejected. Reason: ', reason);
@@ -309,6 +423,10 @@ function SaleReturnInvoiceController($scope, $filter, ngParams, $resource, $time
 
 myApp.controller('ReturnOrdersController', ReturnOrdersController);
 ReturnOrdersController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "$timeout", "ngTableDataService", "$http", "ngDialog", "toaster", '$filter', "$rootScope", "moduleTracker"];
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, ngDataService, $http, ngDialog, toaster, $stateParams, $rootScope, moduleTracker) {
     'use strict';
 
@@ -316,12 +434,21 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
     moduleTracker.updateAdditional("credit_note unposted");
     moduleTracker.updateRecord("");
 
+<<<<<<< HEAD
     $scope.breadcrumbs =
         [//{'name':'Dashboard','url':'app.dashboard','isActive':false},
             // { 'name': 'Setup', 'url': '#', 'isActive': false },
             { 'name': 'Sales', 'url': '#', 'isActive': false },
             { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
             { 'name': 'Credit Notes', 'url': '#', 'isActive': false }];
+=======
+    $scope.breadcrumbs = [ //{'name':'Dashboard','url':'app.dashboard','isActive':false},
+        // { 'name': 'Setup', 'url': '#', 'isActive': false },
+        { 'name': 'Sales', 'url': '#', 'isActive': false },
+        { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+        { 'name': 'Credit Notes', 'url': '#', 'isActive': false }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     var vm = this;
     var Api = $scope.$root.sales + "customer/return-order/listings";
@@ -337,7 +464,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
     $scope.selectedRecBulkEmail = [];
     $scope.recordArray = [];
 
+<<<<<<< HEAD
     $scope.getReturnOrdersListing = function (item_paging, sort_column, sortform) {
+=======
+    $scope.getReturnOrdersListing = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = {};
         $scope.postData = {
             'token': $scope.$root.token,
@@ -364,7 +495,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
         $scope.showLoader = true;
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.showLoader = false;
                 $scope.columns = [];
@@ -381,14 +516,22 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
 
                     $scope.total_paging_record = res.data.total_paging_record;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (key != "tbl_meta_data") {
                             $scope.recordArray.push(value);
                         }
                     });
 
                     $scope.record = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -399,7 +542,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                     });
                 }
                 //else     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 // toaster.pop('error', 'info', 'Server is not Acknowledging');
                 throw new Error(message.data);
@@ -408,7 +555,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
     }
 
 
+<<<<<<< HEAD
     $scope.getItem = function (parm) {
+=======
+    $scope.getItem = function(parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.token = $scope.$root.token;
 
@@ -422,18 +573,27 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
 
     }
 
+<<<<<<< HEAD
     $scope.$on("myReload", function (event) {
+=======
+    $scope.$on("myReload", function(event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.table.tableParams5.reload();
     });
 
     $scope.$data = {};
+<<<<<<< HEAD
     $scope.delete = function (id, index, $data) {
+=======
+    $scope.delete = function(id, index, $data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         console.log('inside delete');
         var delUrl = $scope.$root.pr + "srm/srmorderreturn/delete-order-return";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
@@ -447,11 +607,26 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                     }
                 });
         }, function (reason) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delUrl, { id: id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        $data.splice(index, 1);
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
 
     };
 
+<<<<<<< HEAD
     
     
     $scope.PostAllOrders = function()
@@ -462,10 +637,21 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
         {
             angular.forEach($scope.tableData.data.response, function(order){
                 if(order.id != undefined)
+=======
+
+
+    $scope.PostAllOrders = function() {
+        var postUrl = $scope.$root.sales + "customer/order/post-all-orders";
+        var ids = '';
+        if ($scope.tableData.data.total > 0) {
+            angular.forEach($scope.tableData.data.response, function(order) {
+                if (order.id != undefined)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     ids += order.id + ',';
             });
             ids = ids.substring(0, ids.length - 1);
         }
+<<<<<<< HEAD
         if(ids.length > 0)
         {
             $rootScope.post_all_order_msg = "Are you sure you want to post these "+(ids.split(',').length)+" Credit Notes?";
@@ -490,15 +676,46 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
         }
         else 
         {
+=======
+        if (ids.length > 0) {
+            $rootScope.post_all_order_msg = "Are you sure you want to post these " + (ids.split(',').length) + " Credit Notes?";
+
+            ngDialog.openConfirm({
+                template: '_confirm_all_order_posting',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+                $scope.showLoader = true;
+                $http
+                    .post(postUrl, { 'token': $scope.$root.token, 'ids': ids, 'type': '2' })
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            $scope.showLoader = false;
+                            toaster.pop('warning', 'Info', res.data.success_count + ' posted successfully out of ' + res.data.all_count);
+                            $scope.getReturnOrdersListing(1);
+                        }
+                    });
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(390));
         }
     }
 
+<<<<<<< HEAD
     $scope.bulkEmailOption = function () {
         // console.log($scope.selectedRecBulkEmail);
 
         $scope.emailOrderList = $scope.recordArray.filter(function (o, i) {
             return ($scope.selectedRecBulkEmail.findIndex( s => s.key == o.id ) > -1);
+=======
+    $scope.bulkEmailOption = function() {
+        // console.log($scope.selectedRecBulkEmail);
+
+        $scope.emailOrderList = $scope.recordArray.filter(function(o, i) {
+            return ($scope.selectedRecBulkEmail.findIndex(s => s.key == o.id) > -1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         });
 
         // console.log($scope.emailOrderList);
@@ -516,7 +733,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
 
     $rootScope.BulkEmailMessage = "";
 
+<<<<<<< HEAD
     $scope.bulkOptionConfirm = function (bulkOptionChk) {
+=======
+    $scope.bulkOptionConfirm = function(bulkOptionChk) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // console.log(bulkOptionChk); return false;
 
@@ -542,7 +763,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                     'company_logo_url': $scope.company_logo_url,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $rootScope.animateBulkEmail = false;
                     $rootScope.animateBulkEmailText = '';
@@ -562,8 +787,13 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                         document.body.appendChild(link);
 
                         // angular.forEach(res.data.PdfLinks, function (rec) {
+<<<<<<< HEAD
                             link.setAttribute('href', res.data.file_url);
                             link.click();
+=======
+                        link.setAttribute('href', res.data.file_url);
+                        link.click();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // });
 
                         document.body.removeChild(link);
@@ -571,22 +801,35 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                         // $timeout(function () {
                         //     $scope.getReturnOrdersListing();
                         // }, 500);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', "PDF(s) Generation Failed.");
                     }
                 });
 
+<<<<<<< HEAD
         }
         else if (bulkOptionChk == 'email') {
         // else if (bulkOptionChk.email == true) {
+=======
+        } else if (bulkOptionChk == 'email') {
+            // else if (bulkOptionChk.email == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rootScope.BulkEmailMessage = "Credit Note(s)";
 
             ngDialog.openConfirm({
                 template: 'BulkEmailConfirmationMessage',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
+=======
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $rootScope.animateBulkEmail = true;
                 $rootScope.animateBulkEmailText = 'Sending Email(s)';
@@ -602,7 +845,11 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                         'company_logo_url': $scope.company_logo_url,
                         'token': $scope.$root.token
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rootScope.animateBulkEmail = false;
                         $rootScope.animateBulkEmailText = '';
@@ -617,6 +864,7 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                                 bodyOutputType: 'trustedHtml',
                                 tapToDismiss: false
                             });
+<<<<<<< HEAD
                         }
                         else if (res.data.ack == true) {
                             toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
@@ -631,6 +879,20 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
                         }
                     });
             }, function (reason) {
+=======
+                        } else if (res.data.ack == true) {
+                            toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+
+
+                            $timeout(function() {
+                                $scope.getReturnOrdersListing();
+                            }, 500);
+                        } else {
+                            toaster.pop('warning', 'Info', "Email(s) Sending Failed. " + res.data.error);
+                        }
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.animateBulkEmail = false;
                 $rootScope.animateBulkEmailText = '';
                 console.log('Modal promise rejected. Reason: ', reason);
@@ -642,12 +904,17 @@ function ReturnOrdersController($scope, $filter, ngParams, $resource, $timeout, 
 
 
 myApp.controller('ReturnOrderEditController', ReturnOrderEditController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, serviceVariables, generatePdf, moduleTracker) {
     'use strict';
     $scope.generatePdf = generatePdf;
 
     moduleTracker.updateName("credit_note");
     moduleTracker.updateRecord("");
+<<<<<<< HEAD
     
     $scope.serviceVariables = serviceVariables;
     
@@ -667,10 +934,36 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
     else
     {
+=======
+
+    $scope.serviceVariables = serviceVariables;
+
+    $scope.check_cn_readonly = false;
+
+    $scope.$on('check_cn_readonly', function(opt) {
+        $scope.check_cn_readonly = opt;
+    });
+
+
+    // $rootScope.updateSelectedGlobalData("item");
+
+    if ($stateParams.id > 0) {
+        $scope.check_so_readonly = true;
+        moduleTracker.updateRecord($stateParams.id);
+    }
+
+    $scope.rec = {};
+
+    if ($stateParams.isInvoice != undefined) {
+        $scope.isInvoice = 1;
+        $scope.rec.type2 = 2;
+    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isInvoice = 0;
         $scope.rec.type2 = 1;
     }
 
+<<<<<<< HEAD
     
    if ($scope.rec.type2 == 1){
         var link_order = 'app.return-orders';
@@ -678,12 +971,21 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         moduleTracker.updateAdditional("credit_note unposted");
     }
     else {
+=======
+
+    if ($scope.rec.type2 == 1) {
+        var link_order = 'app.return-orders';
+        var name_link = 'Credit Notes';
+        moduleTracker.updateAdditional("credit_note unposted");
+    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var link_order = 'app.sale-return-invoice';
         var name_link = 'Posted Credit Notes';
         moduleTracker.updateAdditional("credit_note posted");
     }
 
 
+<<<<<<< HEAD
     if($scope.rec.type2 == 1) {
         $scope.$root.breadcrumbs =
             [//{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
@@ -721,6 +1023,41 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             });
     }
     // if (!($stateParams.id > 0))
+=======
+    if ($scope.rec.type2 == 1) {
+        $scope.$root.breadcrumbs = [ //{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
+            { 'name': 'Sales', 'url': '#', 'isActive': false },
+            { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+            { 'name': name_link, 'url': link_order, 'isActive': false }
+        ];
+
+    } else {
+        $scope.$root.breadcrumbs = [ //{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
+            { 'name': 'Sales', 'url': '#', 'isActive': false },
+            { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+            { 'name': name_link, 'url': link_order, 'isActive': false }
+        ];
+
+    }
+
+    $scope.GetApprovalPreData = function() {
+            var APIUrl = $scope.$root.sales + "customer/order/get-approval-pre-data";
+            var postData = {
+                'token': $scope.$root.token
+            };
+            $http
+                .post(APIUrl, postData)
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        $scope.credit_note_approval_req = res.data.credit_note_approval_req;
+                    } else {
+                        $scope.credit_note_approval_req = 0;
+
+                    }
+                });
+        }
+        // if (!($stateParams.id > 0))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.GetApprovalPreData();
 
 
@@ -758,6 +1095,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.rec.posting_date = $scope.$root.get_current_date();
         $scope.rec.offer_date = $scope.$root.get_current_date();
         $scope.rec.delivery_date = $scope.$root.get_current_date();
+<<<<<<< HEAD
     }
     else
     {
@@ -767,6 +1105,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
 
     $scope.$on('InvoicePosted', function (event, data) {
+=======
+    } else {
+        $scope.rec.id = $stateParams.id;
+        $scope.$root.order_id = $stateParams.id;
+    }
+
+
+    $scope.$on('InvoicePosted', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec2 = {};
         $scope.rec = {};
@@ -779,12 +1126,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.$root.order_id = 0;
         $scope.$root.crm_id = 0;
 
+<<<<<<< HEAD
         $scope.$root.breadcrumbs =
             [//{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
                 { 'name': 'Sales', 'url': '#', 'isActive': false },
                 { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
                 { 'name': 'Credit Notes', 'url': 'app.return-orders', 'isActive': false }
             ];
+=======
+        $scope.$root.breadcrumbs = [ //{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
+            { 'name': 'Sales', 'url': '#', 'isActive': false },
+            { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+            { 'name': 'Credit Notes', 'url': 'app.return-orders', 'isActive': false }
+        ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.posting_date = $scope.$root.get_current_date();
         $scope.rec.offer_date = $scope.$root.get_current_date();
@@ -852,7 +1207,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     $rootScope.get_posting_vat();
 
+<<<<<<< HEAD
     $scope.$on("myEvent", function (event, args) {
+=======
+    $scope.$on("myEvent", function(event, args) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (args.order_id != undefined)
             $stateParams.id = args.order_id;
         if (args.arr_contact != undefined) {
@@ -892,14 +1251,22 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     // }, 2000);
 
     $scope.$root.paid_amount = 0;
+<<<<<<< HEAD
     $scope.GetRemainingAmount = function () {
+=======
+    $scope.GetRemainingAmount = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         var RAmountUrl = $scope.$root.gl + "chart-accounts/get-invoice-remaining-payment";
 
         $http
             .post(RAmountUrl, { 'doc_type': 4, 'invoice_id': $stateParams.id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
 
@@ -908,9 +1275,13 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     if (res.data.response.payed_amount == null)
                         $scope.$root.paid_amount = 0;
                     //console.log( );
+<<<<<<< HEAD
                 }
 
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                     $scope.$root.paid_amount = 0;
                 }
@@ -921,7 +1292,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
 
 
+<<<<<<< HEAD
     $scope.getAltDepot = function () {
+=======
+    $scope.getAltDepot = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Alt Delivery Location';
         //var id = $scope.rec.bill_to_cust_id;
         /*$resource('api/company/get_listing_ajax/:module_id/:module_table/:filter_id/:more_fields/:conditon')
@@ -938,14 +1313,22 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         };
         $http
             .post(ApiAjax, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.record = {};
 
                 if (res.data.record.ack == true) {
                     $scope.record = res.data.record.result;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.record.result[0], function (val, index) {
+=======
+                    angular.forEach(res.data.record.result[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -954,15 +1337,23 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     });
                     angular.element('#_orderLocationModal').modal({ show: true });
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(501, ['delivery location ', 'customer']));
                     return;
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_location = function (result) {
+=======
+    $scope.confirm_location = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.ship_to_name = result.location;
         $scope.rec.ship_to_address = result.address_1;
@@ -970,7 +1361,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.rec.ship_to_city = result.city;
         $scope.rec.ship_to_county = result.county;
         $scope.rec.ship_to_post_code = result.postcode;
+<<<<<<< HEAD
         angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+        angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elems.id == result.country)
                 $scope.rec.ship_to_country_ids = elems;
         });
@@ -983,7 +1378,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
 
 
+<<<<<<< HEAD
     $scope.showOrderTrail = function (stock, isSingleTrail) {
+=======
+    $scope.showOrderTrail = function(stock, isSingleTrail) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword_2 = {};
         var stock_trail_url = $scope.$root.setup + "warehouse/sale-stock-trial";
         var postData = {
@@ -1000,6 +1399,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             if (isSingleTrail == 1) // total qty => purchase orders
             {
                 postData.type = 1;
+<<<<<<< HEAD
             }
             else if (isSingleTrail == 2) // sold qty => sales orders
             {
@@ -1012,6 +1412,17 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 postData.sale_status = 1;
             }
             else if (isSingleTrail == 4) // Credit Notes
+=======
+            } else if (isSingleTrail == 2) // sold qty => sales orders
+            {
+                postData.type = 2
+                postData.sale_status = '2, 3';
+            } else if (isSingleTrail == 3) // allocated qty => allocated orders
+            {
+                postData.type = 2;
+                postData.sale_status = 1;
+            } else if (isSingleTrail == 4) // Credit Notes
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             {
                 postData.type = 1;
                 postData.only_cn = 1;
@@ -1019,18 +1430,30 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 postData.sale_return_status = 1;
             }
         }
+<<<<<<< HEAD
         
         postData.item_trace_unique_id = stock.item_trace_unique_id;
         $http
             .post(stock_trail_url, postData)
             .then(function (res) {
+=======
+
+        postData.item_trace_unique_id = stock.item_trace_unique_id;
+        $http
+            .post(stock_trail_url, postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns2 = [];
                 $scope.prod_warehouse_trail_data = [];
 
                 if (res.data.response != null) {
                     $scope.prod_warehouse_trail_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1043,14 +1466,22 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         angular.element('#order_trail_modal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.getShipmentMethods = function () {
+=======
+    $scope.getShipmentMethods = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Shipment Methods';
         var ApiAjax = $scope.$root.setup + "crm/shipment-methods";
         var postData = { token: $scope.$root.token }
 
         $http
             .post(ApiAjax, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = res.data.columns;
                 $scope.record = res.data.record.result;
             });
@@ -1058,13 +1489,22 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             template: 'modalDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             $.each(result, function (index, elem) {
+=======
+        }).then(function(result) {
+            $.each(result, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (index == 'Description')
                     $scope.rec.shipment_method_code = elem;
             });
             $scope.rec.shipment_method_id = result.id;
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -1072,7 +1512,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.searchKeywordSupp = {};
     //getShippingAgents
 
+<<<<<<< HEAD
     $scope.get_supplier = function (item_paging) {
+=======
+    $scope.get_supplier = function(item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Supplier Listing';
         var supplierUrl = $scope.$root.pr + "supplier/supplier/supplierListings";
 
@@ -1102,7 +1546,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(supplierUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.record = {};
                 $scope.supplierTableData = res;
@@ -1121,10 +1569,16 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                     // $scope.record = res.data.response;
                     // $scope.record_invoice = res.data.response;
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
             }).catch(function (message) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 // toaster.pop('error', 'info', 'Server is not Acknowledging');
                 throw new Error(message.data);
@@ -1132,20 +1586,32 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.confirm_supp_single = function (result) {
+=======
+    $scope.confirm_supp_single = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.shipping_agent_code = result.name;
         $scope.rec.shipping_agent_id = result.id;
         angular.element('#listing_sp_single_Modal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.getAltContact = function (arg) {
+=======
+    $scope.getAltContact = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.contactArg = arg;
 
         if ($scope.rec.sell_to_cust_id == undefined) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
             return;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.columns = [];
             $scope.record = {};
             var altContactUrl = $scope.$root.sales + "crm/crm/alt-contacts";
@@ -1160,13 +1626,21 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             }
             $http
                 .post(altContactUrl, postAltCData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     //  $scope.columns = res.data.columns;
                     //  $scope.record = res.data.record.result;
                     if (res.data.record.ack == true) {
                         $scope.columns = [];
                         $scope.record = res.data.record.result;
+<<<<<<< HEAD
                         angular.forEach(res.data.record.result[0], function (val, index) {
+=======
+                        angular.forEach(res.data.record.result[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -1175,28 +1649,47 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         });
                         angular.element('#_orderContactModal').modal({ show: true });
 
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('error', 'Error',$scope.$root.getErrorMessageByCode(501, ['contact person ', 'customer']));
+=======
+                    } else {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(501, ['contact person ', 'customer']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         return;
                     }
                 });
         }
     }
 
+<<<<<<< HEAD
     $scope.confirm_contact = function (result) {
         $scope.rec.sell_to_contact_id = result.id;
         $scope.rec.sell_to_contact_no = result.name;
         $scope.rec.bill_to_contact = result.name;        
+=======
+    $scope.confirm_contact = function(result) {
+        $scope.rec.sell_to_contact_id = result.id;
+        $scope.rec.sell_to_contact_no = result.name;
+        $scope.rec.bill_to_contact = result.name;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.cust_phone = result.phone;
         $scope.rec.cust_email = result.email;
         $scope.rec.cust_fax = result.fax;
 
         angular.element('#_orderContactModal').modal('hide');
     }
+<<<<<<< HEAD
     function toTitleCase(str) {
         var title = str.replace('_', ' ');
         return title.replace(/\w\S*/g, function (txt) {
+=======
+
+    function toTitleCase(str) {
+        var title = str.replace('_', ' ');
+        return title.replace(/\w\S*/g, function(txt) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }
@@ -1243,12 +1736,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     } */
 
     $scope.columns = [];
+<<<<<<< HEAD
     $scope.getSalePerson = function (arg) {
         if ($scope.rec.sell_to_cust_id == undefined) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
             return;
         }
         else {
+=======
+    $scope.getSalePerson = function(arg) {
+        if ($scope.rec.sell_to_cust_id == undefined) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
+            return;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.columns = [];
             $scope.record = {};
             $scope.title = 'Salesperson';
@@ -1261,11 +1762,19 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             };
             $http
                 .post(empUrl, postData)
+<<<<<<< HEAD
                 .then(function (res) {
                     if (res.data.ack == true) {
                         $scope.columns = [];
                         $scope.record = res.data.response;
                         angular.forEach(res.data.response[0], function (val, index) {
+=======
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        $scope.columns = [];
+                        $scope.record = res.data.response;
+                        angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -1274,8 +1783,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         });
                         angular.element('#_orderSalesPersonModal').modal({ show: true });
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                         return;
                     }
@@ -1284,13 +1797,18 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
     $scope.show_order = true;
 
+<<<<<<< HEAD
     $scope.confirm_sale_person = function (result) {
+=======
+    $scope.confirm_sale_person = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.sale_person = result.name;
         $scope.rec.sale_person_id = result.id;
         angular.element('#_orderSalesPersonModal').modal('hide');
     }
 
     $scope.columns = [];
+<<<<<<< HEAD
     $scope.getSalesInvoices = function (arg) {
         if ($scope.rec.sell_to_cust_id == undefined) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
@@ -1301,6 +1819,16 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             return false;
         }
         else {
+=======
+    $scope.getSalesInvoices = function(arg) {
+        if ($scope.rec.sell_to_cust_id == undefined) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
+            return;
+        } else if ($scope.items != undefined && $scope.items.length > 0) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(650));
+            return false;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.columns = [];
             $scope.record = {};
             $scope.title = 'Sales Invoices';
@@ -1317,11 +1845,19 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             };
             $http
                 .post(getInvrUrl, postData)
+<<<<<<< HEAD
                 .then(function (res) {
                     if (res.data.ack == true) {
                         $scope.columns = [];
                         $scope.record = res.data.response;
                         angular.forEach(res.data.response[0], function (val, index) {
+=======
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        $scope.columns = [];
+                        $scope.record = res.data.response;
+                        angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -1330,8 +1866,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         });
                         angular.element('#_invoicesModal').modal({ show: true });
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                         return;
                     }
@@ -1340,13 +1880,27 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
     $scope.show_order = true;
 
+<<<<<<< HEAD
     $scope.confirm_sale_invoice = function (result) {
+=======
+    $scope.confirm_sale_invoice = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.sale_invoice = result.invoice_code;
         $scope.rec.sale_invoice_id = result.id;
         $scope.rec.sale_invoice_type = result.type;
         angular.element('#_invoicesModal').modal('hide');
     }
 
+<<<<<<< HEAD
+=======
+    $scope.RemoveSaleInvFromOrder = function() {
+        $scope.rec.sale_invoice = '';
+        $scope.rec.sale_invoice_id = 0;
+        $scope.rec.sale_invoice_type = 0;
+        angular.element('#_invoicesModal').modal('hide');
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.class = 'block';
     // $scope.check_readonly = false;
@@ -1363,7 +1917,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         var getOrderUrl = $scope.$root.sales + "customer/return-order/get-order";
         $http
             .post(getOrderUrl, { 'id': id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
 
@@ -1373,21 +1931,30 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.customerInvoiceEmail = res.data.response.invoice_email;
                             $scope.customerStatementEmail = res.data.response.statement_email;
                             $scope.customerReminderEmail = res.data.response.reminder_email;
+<<<<<<< HEAD
                         }
                         catch (ex) {
+=======
+                        } catch (ex) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log(ex);
                         }
                     }
 
                     if (res.data.response.customer_emails) {
                         var customerEmails = [];
+<<<<<<< HEAD
                         angular.forEach(res.data.response.customer_emails.split(","), function (obj, i) {
+=======
+                        angular.forEach(res.data.response.customer_emails.split(","), function(obj, i) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj)
                                 customerEmails.push({ id: i, username: obj.trim() })
                         });
                         res.data.response.customer_emails = customerEmails;
                     }
 
+<<<<<<< HEAD
                     if(res.data.response.approval_type_1 == 2 && res.data.response.approval_type_2 == 2)
                     {
                         $scope.approvals_lock_order = 1;
@@ -1399,6 +1966,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     else
                         $scope.approvals_lock_order = 0;
                         
+=======
+                    if (res.data.response.approval_type_1 == 2 && res.data.response.approval_type_2 == 2) {
+                        $scope.approvals_lock_order = 1;
+                    } else if (res.data.response.approval_type_1 == 0 || res.data.response.approval_type_2 == 0) {
+                        $scope.approvals_lock_order = -1;
+                    } else
+                        $scope.approvals_lock_order = 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.on_hold_order = (res.data.response.approval_type_1 == 7 || res.data.response.approval_type_2 == 7) ? 1 : 0;
 
                     moduleTracker.updateRecord(id);
@@ -1484,6 +2060,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     else
                         $scope.rec.order_return_date = $scope.$root.convert_unix_date_to_angular(res.data.response.order_return_date);
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_payment_terms, function (elem) {
                         if (elem.id == res.data.response.payment_terms_code)
                             $scope.rec.payment_terms_codes = elem;
@@ -1493,15 +2070,34 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.rec.payment_method_ids = elem;
                     });
                     angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                    angular.forEach($rootScope.arr_payment_terms, function(elem) {
+                        if (elem.id == res.data.response.payment_terms_code)
+                            $scope.rec.payment_terms_codes = elem;
+                    });
+                    angular.forEach($rootScope.arr_payment_methods, function(elem) {
+                        if (elem.id == res.data.response.payment_method_id)
+                            $scope.rec.payment_method_ids = elem;
+                    });
+                    angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == res.data.response.country_id)
                             $scope.rec.country_ids = obj;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($scope.currency_arr_local, function (elem) {
                         if (elem.id == $scope.rec.currency_id)
                             $scope.rec.currency_id = elem;
                     })
                     // $scope.$root.customer_country = $scope.rec.country_ids;
+=======
+                    angular.forEach($scope.currency_arr_local, function(elem) {
+                            if (elem.id == $scope.rec.currency_id)
+                                $scope.rec.currency_id = elem;
+                        })
+                        // $scope.$root.customer_country = $scope.rec.country_ids;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // $timeout(function () {
                     //     $scope.$root.$apply(function () {
@@ -1511,16 +2107,28 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.rec.country_ids = obj;
                     });
  */
+<<<<<<< HEAD
                     angular.forEach($scope.currency_arr_local, function (elem) {
                         if (elem.id == $scope.rec.currency_id) $scope.rec.currency_id = elem;
                     });
 
                     angular.forEach($rootScope.crm_shippment_methods_arr, function (elem) {
+=======
+                    angular.forEach($scope.currency_arr_local, function(elem) {
+                        if (elem.id == $scope.rec.currency_id) $scope.rec.currency_id = elem;
+                    });
+
+                    angular.forEach($rootScope.crm_shippment_methods_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == $scope.rec.shipment_method_id)
                             $scope.rec.shipment_method = elem;
                     });
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // });
                     //console.log($scope.rec.currency_id);
                     // $scope.showLoader = false;
@@ -1539,7 +2147,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         name_link = 'Invoice';
                     } */
                     //  $scope.GetRemainingAmount();
+<<<<<<< HEAD
                     angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+                    angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elems.id == res.data.response.ship_to_country_id)
                             $scope.rec.ship_to_country_ids = elems;
                     });
@@ -1550,6 +2162,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         $scope.finance_response = res.data.response.order_finance_details.response;
                         // $scope.rec_finance = {};
                         $scope.$root.c_currency_id = res.data.response.order_finance_details.response.currency_id;
+<<<<<<< HEAD
                     
                         $scope.rec.bill_to_cust_no = $scope.finance_response.customer_code;
 
@@ -1558,6 +2171,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.rec.bill_to_contact = $scope.finance_response.contact_person;
                             $scope.rec.bill_to_contact_email = ($scope.finance_response.invoice_email != undefined) ? $scope.finance_response.invoice_email : $scope.finance_response.email;
                         
+=======
+
+                        $scope.rec.bill_to_cust_no = $scope.finance_response.customer_code;
+
+                        if ($scope.rec.anonymous_customer == 0) {
+                            $scope.rec.bill_to_contact = $scope.finance_response.contact_person;
+                            $scope.rec.bill_to_contact_email = ($scope.finance_response.invoice_email != undefined) ? $scope.finance_response.invoice_email : $scope.finance_response.email;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.rec.bill_to_contact_phone = $scope.finance_response.fphone;
                             $scope.rec.fax = $scope.finance_response.ffax;
 
@@ -1570,7 +2192,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                                 $scope.rec.bill_to_post_code = $scope.finance_response.blpostcode;
 
                             // $scope.rec.bill_to_country  = $scope.finance_response.blcountry;
+<<<<<<< HEAD
                             angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+                            angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (elems.id == $scope.finance_response.blcountry)
                                     $scope.rec.bill_to_country_ids = elems;
                             });
@@ -1580,18 +2206,30 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             $scope.rec.bank_name = $scope.finance_response.bank_name;
                             $scope.rec.bank_account_id = $scope.finance_response.bank_account_id;
                         }
+<<<<<<< HEAD
                         angular.forEach($rootScope.arr_payment_terms, function (elem, index) {
+=======
+                        angular.forEach($rootScope.arr_payment_terms, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.finance_response.payment_terms_id) {
                                 $scope.drp.payment_terms_ids = elem;
                             }
                         });
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.arr_payment_methods, function (elem, index) {
+=======
+                        angular.forEach($rootScope.arr_payment_methods, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.finance_response.payment_method_id) {
                                 $scope.drp.payment_method_ids = elem;
                             }
                         });
+<<<<<<< HEAD
                         angular.forEach($rootScope.arr_posting_group_ids, function (elem, index) {
+=======
+                        angular.forEach($rootScope.arr_posting_group_ids, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == $scope.finance_response.posting_group_id) {
                                 $scope.drp.vat_bus_posting_group = elem;
                                 $rootScope.order_posting_group_id = elem.id;
@@ -1625,16 +2263,25 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                         if ($scope.finance_response.generate != undefined) {
                             var arrGen = $scope.finance_response.generate.split(',');
+<<<<<<< HEAD
                             angular.forEach($scope.arr_generate, function (elem, index) {
+=======
+                            angular.forEach($scope.arr_generate, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 var indx = arrGen.indexOf(elem.id) == -1;
                                 if (!indx) {
                                     $scope.arr_generate[index].chk = true;
                                 }
                             })
                         }
+<<<<<<< HEAD
                     }
                     else {
                         angular.forEach($rootScope.arr_posting_group_ids, function (elem, index) {
+=======
+                    } else {
+                        angular.forEach($rootScope.arr_posting_group_ids, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (elem.id == res.data.response.bill_to_posting_group_id) {
                                 $scope.drp.vat_bus_posting_group = elem;
                                 $rootScope.order_posting_group_id = elem.id;
@@ -1652,12 +2299,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             }
                         }); */
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == res.data.response.bill_to_country_id)
                                 $scope.rec.bill_to_country_ids = obj;
                         });
                     }
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     //some time broadcast call but previouse $digest not end , result it products not load on some cases. this is temporary fixation. 
                     // To overcome it we must set one digest for all asyncronously calls. digest wait for to speedup the system.
                     /* setTimeout(function(){
@@ -1672,9 +2327,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         }, 500);
                     } */
                     $scope.showLoader = false;
+<<<<<<< HEAD
                     
                     // $scope.showLoader = false;
                     
+=======
+
+                    // $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.selectedPurchaseOrders = "";
                     var selectedPurchaseOrders_name = "";
 
@@ -1715,6 +2376,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
     if ($stateParams.id == undefined)
         $scope.rec.type2 = 1;
+<<<<<<< HEAD
 /* 
     $scope.$root.breadcrumbs =
         [//{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
@@ -1732,12 +2394,32 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
 
     $scope.shiping_information = function () {
+=======
+    /* 
+        $scope.$root.breadcrumbs =
+            [//{'name': 'Dashboard', 'url': 'app.dashboard', 'isActive': false},
+                { 'name': 'Sales', 'url': '#', 'isActive': false },
+                { 'name': 'Customers', 'url': 'app.customer', 'isActive': false },
+                { 'name': 'Credit Notes', 'url': 'app.return-orders', 'isActive': false }
+            ]; */
+
+
+    $scope.generalInformation = function() {
+        $scope.$root.breadcrumbs.name = 'General';
+    }
+    $scope.invoice_information = function() {
+        $scope.$root.breadcrumbs[3].name = 'Invoice';
+    }
+
+    $scope.shiping_information = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.$root.breadcrumbs[3].name = 'Shipping';
 
     }
 
 
     $scope.order_stages_array = [];
+<<<<<<< HEAD
     $scope.GetSalesOrderStages = function (flg) {
 
         $scope.order_stages_array = [];
@@ -1756,15 +2438,43 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 'token': $scope.$root.token, 
                 'order_id': $scope.$root.order_id, 
                 'type':4 
+=======
+    $scope.GetSalesOrderStages = function(flg) {
+
+        $scope.order_stages_array = [];
+        var postData = '';
+        if (flg == 0) {
+            var order_stages = $scope.$root.setup + "crm/get-order-stages-list";
+            postData = {
+                'token': $scope.$root.token,
+                'order_id': $scope.$root.order_id,
+                'type': 4,
+                'isAllowed': 1 //this parameter is to allow without permission validation
+            };
+        } else {
+            var order_stages = $scope.$root.sales + "customer/order/get-sales-order-stages";
+            postData = {
+                'token': $scope.$root.token,
+                'order_id': $scope.$root.order_id,
+                'type': 4
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             };
         }
         $http
             .post(order_stages, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.order_stages_array = res.data.response;
                     if ($scope.rec.id == undefined) {
                         angular.forEach($scope.order_stages_array, function (obj) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.order_stages_array = res.data.response;
+                    if ($scope.rec.id == undefined) {
+                        angular.forEach($scope.order_stages_array, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             obj.id = 0;
                         });
                     }
@@ -1777,7 +2487,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     //--------------------- start General   ------------------------------------------
 
+<<<<<<< HEAD
     $scope.add = function (rec) {
+=======
+    $scope.add = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var addOrderUrl = $scope.$root.sales + "customer/return-order/add-order";
         if ($stateParams.id > 0) var addOrderUrl = $scope.$root.sales + "customer/return-order/update-order";
@@ -1799,16 +2513,27 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
         $http
             .post(addOrderUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
                     $scope.$root.crm_id = rec.sell_to_cust_id;
 
+<<<<<<< HEAD
                     if ($stateParams.id === undefined) $timeout(function () {
                         $state.go("app.editReturnOrder", { id: res.data.id });
                     }, 1000);
                 }
                 else toaster.pop('error', 'Edit', res.data.error);
+=======
+                    if ($stateParams.id === undefined) $timeout(function() {
+                        $state.go("app.editReturnOrder", { id: res.data.id });
+                    }, 1000);
+                } else toaster.pop('error', 'Edit', res.data.error);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             });
@@ -1820,7 +2545,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.PurchaseOrderArr = [];
     $scope.selectedPurchaseOrderArr = [];
 
+<<<<<<< HEAD
     $scope.show_list_order = function () {
+=======
+    $scope.show_list_order = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         $scope.filterPurchaseOrder = {};
@@ -1835,10 +2564,17 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.selectedAllPurchaseOrder = false;
 
         if ($scope.PurchaseOrderArr.length > 0) {
+<<<<<<< HEAD
             angular.forEach($scope.PurchaseOrderArr, function (obj2) {
                 obj2.chk = false;
 
                 angular.forEach($scope.selectedPurchaseOrderArr, function (obj) {
+=======
+            angular.forEach($scope.PurchaseOrderArr, function(obj2) {
+                obj2.chk = false;
+
+                angular.forEach($scope.selectedPurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == obj2.id)
                         obj2.chk = true;
                 });
@@ -1846,11 +2582,18 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
             $scope.showLoader = false;
             angular.element('#_PurchaseOrdersModal').modal({ show: true });
+<<<<<<< HEAD
         }
         else {
             $http
                 .post(prodApi, postData)
                 .then(function (res) {
+=======
+        } else {
+            $http
+                .post(prodApi, postData)
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     if (res.data.ack == true) {
@@ -1864,10 +2607,17 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             }
                         }
 
+<<<<<<< HEAD
                         angular.forEach($scope.PurchaseOrderArr, function (obj2) {
                             obj2.chk = false;
 
                             angular.forEach($scope.selectedPurchaseOrderArr, function (obj) {
+=======
+                        angular.forEach($scope.PurchaseOrderArr, function(obj2) {
+                            obj2.chk = false;
+
+                            angular.forEach($scope.selectedPurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (obj.id == obj2.id)
                                     obj2.chk = true;
@@ -1875,8 +2625,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         });
 
                         angular.element('#_PurchaseOrdersModal').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(389));
                 });
         }
@@ -1884,7 +2638,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     $scope.PendingSelectedPurchaseOrder = [];
 
+<<<<<<< HEAD
     $scope.checkedPurchaseOrder = function (PurchaseOrder) {
+=======
+    $scope.checkedPurchaseOrder = function(PurchaseOrder) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedAllPurchaseOrder = 0;
 
         for (var i = 0; i < $scope.PurchaseOrderArr.length; i++) {
@@ -1898,19 +2656,31 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         }
     }
 
+<<<<<<< HEAD
     $scope.checkAllPurchaseOrder = function (val) {
+=======
+    $scope.checkAllPurchaseOrder = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedPurchaseOrder = [];
 
         if (val == true) {
 
+<<<<<<< HEAD
             angular.forEach($scope.PurchaseOrderArr, function (obj) {
+=======
+            angular.forEach($scope.PurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 obj.chk = true;
                 $scope.PendingSelectedPurchaseOrder.push(obj);
             });
 
         } else {
 
+<<<<<<< HEAD
             angular.forEach($scope.PurchaseOrderArr, function (obj) {
+=======
+            angular.forEach($scope.PurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -1918,7 +2688,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         }
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '#checkAll', function () {
+=======
+    angular.element(document).on('click', '#checkAll', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (angular.element('#checkAll').is(':checked') == true) {
             for (var i = 0; i < $scope.items.length; i++) {
                 $scope.items[i].chk = true;
@@ -1928,7 +2702,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.items[i].chk = false;
             }
         }
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.items;
         })
     });
@@ -1946,7 +2724,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
      }; */
 
     $scope.IsVisible = true;
+<<<<<<< HEAD
     $scope.show_view_data = function (classname) {
+=======
+    $scope.show_view_data = function(classname) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // 		 console.log(classname);
         //	 $(".new_button_" + classname).hide();
         //	 $(".replace_button_" + classname).show();
@@ -1958,20 +2740,32 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.check_number = function () {
+=======
+    $scope.check_number = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // var id = this.rec.supp_order_no.value;
         var id = document.getElementById('supp_order_no').value;
 
         var Url = $scope.$root.pr + "srm/srmorderreturn/get-invoice-number";
         $http
             .post(Url, { 'id': id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == false) {
                     toaster.pop('error', 'Info', 'Already Exists !');
 
                     $('.pic_block').attr("disabled", true);
+<<<<<<< HEAD
                 }
                 else $('.pic_block').attr("disabled", false);
+=======
+                } else $('.pic_block').attr("disabled", false);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             });
     }
 
@@ -1980,7 +2774,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
 
     $scope.item_paging = {};
+<<<<<<< HEAD
     $scope.itemselectPage = function (pageno) {
+=======
+    $scope.itemselectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.item_paging.spage = pageno;
     };
     //$timeout(function () {
@@ -1997,15 +2795,24 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     //  }, 1000);
 
 
+<<<<<<< HEAD
     $scope.$on('SalesLines', function (event, data) {
+=======
+    $scope.$on('SalesLines', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.items = data;
     });
     $scope.saleOrders = [];
     $scope.rec2 = {};
     $scope.searchKeyword_si = {};
     $scope.searchKeyword_cust = {};
+<<<<<<< HEAD
     $scope.getCustomer = function (item_paging) {
         if (item_paging){
+=======
+    $scope.getCustomer = function(item_paging) {
+        if (item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.searchKeyword_cust = {};
         }
         if ($scope.items != undefined && $scope.items.length > 0) {
@@ -2016,9 +2823,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         //$scope.searchKeyword_cust = {};
         $scope.title = 'Customer Listing';
         $scope.removeCustOption = 1;
+<<<<<<< HEAD
       /*   $scope.columns = [];
         $scope.record = {};
         $scope.record = $rootScope.customer_arr; */
+=======
+        /*   $scope.columns = [];
+          $scope.record = {};
+          $scope.record = $rootScope.customer_arr; */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
 
@@ -2028,6 +2841,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         var customerListingApi = $scope.$root.sales + "customer/order/customer-popup";
 
         $scope.showLoader = true;
+<<<<<<< HEAD
         
         $http
         .post(customerListingApi, $scope.postData)
@@ -2045,6 +2859,23 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             }
         });
         
+=======
+
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.customerTableData = res;
+                if (res.data.ack == true) {
+
+                    angular.element('#customer_modal_single').modal({ show: true });
+
+                    $scope.showLoader = false;
+                } else {
+                    $scope.showLoader = false;
+                }
+            });
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* 
                 $scope.title = 'Customer Listing';
                 var custUrl = $scope.$root.sales + "customer/customer/getCustomerListings";
@@ -2114,13 +2945,21 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.confirmCustomer = function (result) {
+=======
+    $scope.confirmCustomer = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var custUrl = $scope.$root.sales + "customer/customer/getCustomerForOrder";
 
         $http
             .post(custUrl, { id: result.id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     result = res.data.response;
                     $scope.rec.sale_invoice = '';
@@ -2130,7 +2969,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.currency_arr_local = res.data.response.currency_arr_local;
 
                     var objCust = {};
+<<<<<<< HEAD
                     angular.forEach($scope.currency_arr_local, function (obj) {
+=======
+                    angular.forEach($scope.currency_arr_local, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id === result.currency_id)
                             $scope.rec.currency_id = obj;
                     });
@@ -2148,9 +2991,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.rec.buying_grp_id = result.buying_id;
 
                     $rootScope.arr_vat_post_grp_sales = res.data.response.arr_vat_post_grp_sales;
+<<<<<<< HEAD
                     
 
                     angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+
+
+                    angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elems.id == result.country_id)
                             $scope.rec.country_ids = elems;
                     });
@@ -2227,12 +3076,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         $scope.rec.bill_to_county = result.billing_address_details.county;
                         $scope.rec.bill_to_post_code = result.billing_address_details.postcode;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.country_type_arr, function (elems) {
                             if (elems.id == result.billing_address_details.country)
                                 $scope.rec.bill_to_country_ids = elems;
                         });
                     }
                     else {
+=======
+                        angular.forEach($rootScope.country_type_arr, function(elems) {
+                            if (elems.id == result.billing_address_details.country)
+                                $scope.rec.bill_to_country_ids = elems;
+                        });
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.rec.bill_to_address = '';
                         $scope.rec.bill_to_address2 = '';
                         $scope.rec.bill_to_city = '';
@@ -2247,7 +3104,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                     $scope.rec.bill_to_cust_no = result.code;
                     $scope.rec.bill_to_name = result.title;
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.rec.contact_person = result.fcontact_person;
                     $scope.rec.bill_to_contact_no = result.fcontact_person;
                     $scope.rec.bill_phone = result.Telephone;
@@ -2256,16 +3117,28 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.rec.bill_to_cust_id = result.id;
                     $scope.rec.bill_to_contact_id = result.contact_id;
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_payment_terms, function (elem2) {
+=======
+                    angular.forEach($rootScope.arr_payment_terms, function(elem2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem2.id == result.payment_term)
                             $scope.rec.payment_terms_codes = elem2;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_payment_methods, function (elem3) {
                         if (elem3.id == result.payment_method)
                             $scope.rec.payment_method_ids = elem3;
                     });
                     angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+                    angular.forEach($rootScope.arr_payment_methods, function(elem3) {
+                        if (elem3.id == result.payment_method)
+                            $scope.rec.payment_method_ids = elem3;
+                    });
+                    angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elems.id == result.country_id)
                             $scope.rec.bill_to_country_ids = elems;
                     });
@@ -2281,7 +3154,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.rec.ship_to_city = result.clcity;
                     $scope.rec.ship_to_county = result.clcounty;
                     $scope.rec.ship_to_post_code = result.clpostcode;
+<<<<<<< HEAD
                     angular.forEach($rootScope.country_type_arr, function (elems) {
+=======
+                    angular.forEach($rootScope.country_type_arr, function(elems) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elems.id == result.clcountry)
                             $scope.rec.ship_to_country_ids = elems;
                     });
@@ -2303,8 +3180,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                                 $scope.$root.model_code = $scope.rec.sell_to_cust_name + ' (' + $scope.rec.return_order_code + ')';
                             else
                                 $scope.$root.model_code = $scope.rec.return_order_code;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if ($scope.rec.sell_to_cust_name != null)
                                 $scope.$root.model_code = $scope.rec.sell_to_cust_name + ' (' + $scope.rec.return_order_code + ')';
                             else
@@ -2332,7 +3213,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     }
 
 
+<<<<<<< HEAD
     $scope.RemoveCustomerFromOrder = function () {
+=======
+    $scope.RemoveCustomerFromOrder = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var check_approvals = $scope.$root.setup + "general/check-for-approvals-before-delete";
 
@@ -2342,11 +3227,16 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 'type': '3, 8',
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1) {
 
                     $rootScope.order_post_invoice_msg = "Do you want the delete the Approval history as well?";
+<<<<<<< HEAD
         
                     var postUrl = $scope.$root.setup + "general/delete-approval-history";
                     
@@ -2359,15 +3249,36 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         $http
                             .post(postUrl, {'token': $scope.$root.token, 'object_id':$scope.$root.order_id, 'type': '3, 8' })
                             .then(function (res) {
+=======
+
+                    var postUrl = $scope.$root.setup + "general/delete-approval-history";
+
+                    ngDialog.openConfirm({
+                        template: '_confirm_order_invoice_modal',
+                        className: 'ngdialog-theme-default-custom'
+                    }).then(function(value) {
+                        $scope.showLoader = true;
+
+                        $http
+                            .post(postUrl, { 'token': $scope.$root.token, 'object_id': $scope.$root.order_id, 'type': '3, 8' })
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack != undefined) {
                                     $scope.showLoader = false;
                                     // $scope.add_general($scope.rec, 1);
                                 }
                             });
+<<<<<<< HEAD
                         }, function (reason) {
                         console.log('Modal promise rejected. Reason: ', reason);
                     });
                 }            
+=======
+                    }, function(reason) {
+                        console.log('Modal promise rejected. Reason: ', reason);
+                    });
+                }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.rec.currency_id = 0;
                 $scope.rec.currency_rate = 1;
@@ -2393,7 +3304,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.rec.cust_email = '';
 
                 $scope.rec.anonymous_customer = 0;
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec.sale_person = '';
                 $scope.rec.sale_person_id = '';
 
@@ -2405,7 +3320,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.rec.alt_contact_email = '';
                 $scope.rec.bill_to_posting_group_id = '';
                 $scope.$root.c_currency_id = 0;
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.drp.payment_terms_ids = '';
                 $scope.rec.due_date = '';
                 $scope.drp.payment_method_ids = '';
@@ -2441,7 +3360,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.rec.bill_to_county = '';
                 $scope.rec.bill_to_post_code = '';
                 $scope.rec.bill_to_country_ids = '';
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.rec.bill_to_cust_no = '';
                 $scope.rec.bill_to_name = '';
@@ -2457,7 +3380,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.rec.payment_terms_codes = '';
                 $scope.rec.payment_method_ids = '';
                 $scope.rec.bill_to_country_ids = '';
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec.ship_to_name = '';
                 $scope.rec.ship_to_address = '';
                 $scope.rec.ship_to_address2 = '';
@@ -2468,9 +3395,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 $scope.rec.comm_book_in_contact = '';
                 $scope.rec.ship_to_contact = '';
                 $scope.rec.book_in_tel = '';
+<<<<<<< HEAD
                 $scope.rec.book_in_email =  '';
                 $scope.rec.alt_depo_id = '';
             });    
+=======
+                $scope.rec.book_in_email = '';
+                $scope.rec.alt_depo_id = '';
+            });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     function padNumber(number) {
@@ -2478,7 +3411,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         string = string.length < 2 ? '0' + string : string;
         return string;
     }
+<<<<<<< HEAD
     $scope.CalculateDueDate = function () {
+=======
+    $scope.CalculateDueDate = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.rec.posting_date != null) {
             var date_parts = $scope.rec.posting_date.trim().split('/');
             var invoice_date = new Date(date_parts[2], date_parts[1] - 1, date_parts[0]);
@@ -2489,13 +3426,21 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             calculated_date = new Date(invoice_date.setDate(invoice_date.getDate() + Number($scope.drp.payment_terms_ids.days)));
             formatted_date = padNumber(calculated_date.getUTCDate()) + '/' + padNumber(calculated_date.getUTCMonth() + 1) + '/' + calculated_date.getUTCFullYear();
             $scope.rec.due_date = formatted_date;
+<<<<<<< HEAD
         }
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(538));
         return;
     }
 
+<<<<<<< HEAD
     $scope.confirmFinance = function (result) {
+=======
+    $scope.confirmFinance = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // if (result.account_payable_number == null && result.purchase_code_number == null) {
         if (result.finance_id == null) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(504));
@@ -2510,16 +3455,26 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.rec.bill_to_address2 = result.address_2;
         $scope.rec.bill_to_contact = result.fcontact_person;
         $scope.rec.bill_to_contact_email = (result.invoice_email != undefined) ? result.invoice_email : result.email;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.bill_to_contact_phone = result.fphone;
         // $scope.rec.fax = result.ffax;
         $scope.rec.alt_contact_person = result.falt_contact_person;
         $scope.rec.alt_contact_email = result.falt_contact_email;
         $scope.rec.bill_to_posting_group_id = result.posting_group_id;
         $scope.$root.c_currency_id = result.currency_id;
+<<<<<<< HEAD
         
 
         angular.forEach($rootScope.arr_payment_terms, function (elem, index) {
+=======
+
+
+        angular.forEach($rootScope.arr_payment_terms, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == result.payment_terms_id) {
                 $scope.drp.payment_terms_ids = elem;
             }
@@ -2529,12 +3484,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             $scope.CalculateDueDate();
         }
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_payment_methods, function (elem, index) {
+=======
+        angular.forEach($rootScope.arr_payment_methods, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == result.payment_method_id) {
                 $scope.drp.payment_method_ids = elem;
             }
         });
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_posting_group_ids, function (elem, index) {
+=======
+        angular.forEach($rootScope.arr_posting_group_ids, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == result.posting_group_id) {
                 $scope.drp.vat_bus_posting_group = elem;
                 $rootScope.order_posting_group_id = elem.id;
@@ -2563,7 +3526,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         else
             $scope.rec.bill_to_finance_charges = 0;
         $scope.rec.bill_to_finance_charges_type = result.finchargetype;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.rec.bill_to_insurance_charges = result.inscharges;
         // $scope.rec.bill_to_insurance_charges_type = result.inschargetype;
         // $scope.rec.bill_to_finance_charges = result.fincharges;
@@ -2607,8 +3574,13 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     var getChargesUrl = $scope.$root.setup + "crm/finance-charges";
     $http
         .post(getChargesUrl, postFCData)
+<<<<<<< HEAD
         .then(function (res) {
             $scope.arr_finance_charges = res.data.response;//res.data.record.result;
+=======
+        .then(function(res) {
+            $scope.arr_finance_charges = res.data.response; //res.data.record.result;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $scope.arr_finance_charges.push({ 'id': '-1', 'Charge': '++ Add New ++' });
         });
 
@@ -2617,8 +3589,13 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     var getIChargesUrl = $scope.$root.setup + "crm/insurance-charges";
     $http
         .post(getIChargesUrl, postICData)
+<<<<<<< HEAD
         .then(function (res) {
             $scope.arr_insurance_charges = res.data.response;//res.data.record.result;
+=======
+        .then(function(res) {
+            $scope.arr_insurance_charges = res.data.response; //res.data.record.result;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // $scope.arr_insurance_charges.push({ 'id': '-1', 'Charge': '++ Add New ++' });
         });
     /* $scope.getOrders = function (item_paging) {
@@ -2777,12 +3754,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     } */
 
+<<<<<<< HEAD
     $scope.getAltContactByCustomer = function (crm_id) {
+=======
+    $scope.getAltContactByCustomer = function(crm_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = { 'crm_id': crm_id, token: $scope.$root.token }
         var ApiAjax = $scope.$root.sales + "crm/crm/get-alt-contacts-list";
         $http
             .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
             .then(function (alt_res) {
+=======
+            .then(function(alt_res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (alt_res.data.ack == true) {
                     $scope.rec.sell_to_contact_no = alt_res.data.response[0].name;
                     $scope.rec.cust_phone = alt_res.data.response[0].phone;
@@ -2794,7 +3779,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.addSaleOrder = function (ordr) {
+=======
+    $scope.addSaleOrder = function(ordr) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec2.return_order_code = $scope.rec.return_order_code;
         $scope.rec2.return_order_no = $scope.rec.return_order_no;
@@ -2831,11 +3820,19 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
              $scope.rec.delivery_date = $scope.$root.convert_unix_date_to_angular(ordr.delivery_date);
  */
 
+<<<<<<< HEAD
         $.each($rootScope.arr_currency, function (index, obj) {
             if (obj.id === ordr.currency_id) $scope.rec.currency_id = obj;
         });
 
         $.each($rootScope.country_type_arr, function (index, obj) {
+=======
+        $.each($rootScope.arr_currency, function(index, obj) {
+            if (obj.id === ordr.currency_id) $scope.rec.currency_id = obj;
+        });
+
+        $.each($rootScope.country_type_arr, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === ordr.country_id) $scope.rec.country_ids = obj;
         });
 
@@ -2859,22 +3856,38 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     // $rootScope.get_country_list();
 
+<<<<<<< HEAD
     $scope.formUrl = function () {
+=======
+    $scope.formUrl = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return "app/views/return_orders/_form.html";
     }
 
     $scope.pOrders = [];
+<<<<<<< HEAD
     $scope.getPurchaseOrders = function () {
         var ordrUrl = $scope.$root.pr + "srm/srminvoice/listings";
         $http
             .post(ordrUrl, { 'all': 1, type: 3, token: $scope.$root.token })
             .then(function (res) {
+=======
+    $scope.getPurchaseOrders = function() {
+        var ordrUrl = $scope.$root.pr + "srm/srminvoice/listings";
+        $http
+            .post(ordrUrl, { 'all': 1, type: 3, token: $scope.$root.token })
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.pOrders = res.data.response;
             });
         angular.element('#purchaseOrderModal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.addPurchaseOrder = function (ordr) {
+=======
+    $scope.addPurchaseOrder = function(ordr) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* $scope.rec.purchase_order = ordr.Code;
         $scope.rec.purchase_order_id = ordr.id;
         angular.element('#purchaseOrderModal').modal('hide'); */
@@ -2884,7 +3897,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         $scope.selectedPurchaseOrders = "";
         var selectedPurchaseOrders_name = "";
 
+<<<<<<< HEAD
         angular.forEach($scope.PurchaseOrderArr, function (obj) {
+=======
+        angular.forEach($scope.PurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.chk == true) {
                 //console.log(obj);
                 /* $scope.substitueobj = {};
@@ -2911,7 +3928,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     var currency_id = 0;
     var converted_price = 0;
     $scope.cnv_rate = 0;
+<<<<<<< HEAD
     $scope.validatePrice = function (order_date, total) {
+=======
+    $scope.validatePrice = function(order_date, total) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var price_a = 0
         var cnv_rate = 1;
         $scope.cnv_rate = 1;
@@ -2953,7 +3974,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         var currencyURL = $scope.$root.sales + "customer/customer/get-currency-conversion-rate";
         $http
             .post(currencyURL, { 'id': $scope.$root.c_currency_id, token: $scope.$root.token, or_date: order_date })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     if (res.data.response.conversion_rate == null) {
@@ -2965,11 +3990,18 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         // if (item.chk_credit)  item.credit_amount = null;
                         // if (item.chk_debit)     item.debit_amount = null;
 
+<<<<<<< HEAD
                         toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
                         $('.cur_block').attr("disabled", true);
                         return;
                     }
                     else {
+=======
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+                        $('.cur_block').attr("disabled", true);
+                        return;
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         var newPrice1 = Number(price_a);
                         var newPrice = 0;
@@ -2984,7 +4016,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         else
                             newPrice = 0;
 
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.converted_price = converted_price;
 
                         $scope.cnv_rate = res.data.response.conversion_rate;
@@ -2997,8 +4033,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         return;
 
                     }
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.converted_price = null;
                     cnv_rate = null;
                     $scope.cnv_rate = null;
@@ -3024,7 +4064,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
     $scope.doc_type = 0;
     $scope.final_amount = 0;
 
+<<<<<<< HEAD
     $scope.get_invoice_list = function (total) {
+=======
+    $scope.get_invoice_list = function(total) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         console.log(total); //return;
         var obj_rec = {};
@@ -3035,7 +4079,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             var finUrl = $scope.$root.sales + "customer/customer/get-customer-finance";
             $http
                 .post(finUrl, { 'customer_id': $scope.$root.crm_id, token: $scope.$root.token })
+<<<<<<< HEAD
                 .then(function (resp) {
+=======
+                .then(function(resp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (resp.data.ack == true) {
 
 
@@ -3047,9 +4095,13 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(505));
                             return;
+<<<<<<< HEAD
                         }
 
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             obj_rec.account_code = $scope.rec.sell_to_cust_name + " - " + $scope.rec.sell_to_cust_no;
                             obj_rec.account_id = resp.data.response.bill_to_customer_id;
@@ -3063,7 +4115,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                                 $scope.supplier_currency = true;
                             }
 
+<<<<<<< HEAD
                             $.each($rootScope.arr_currency, function (index, elem3) {
+=======
+                            $.each($rootScope.arr_currency, function(index, elem3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (elem3.id == resp.data.response.currency_id)
                                     obj_rec.currency_id = elem3;
                             });
@@ -3101,13 +4157,21 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         if ($scope.module_type === undefined) {
                             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Account Type']));
                             return;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                             $scope.postData = {};
                             if (obj_rec.account_id == undefined) {
+<<<<<<< HEAD
                                 toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(231, ['Customer','Supplier']));
+=======
+                                toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(231, ['Customer', 'Supplier']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 return;
                             }
 
@@ -3153,7 +4217,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                             $http
                                 .post(postUrl, $scope.postData)
+<<<<<<< HEAD
                                 .then(function (res) {
+=======
+                                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (res.data.ack == true) {
                                         $scope.total = res.data.total;
                                         $scope.item_paging.total_pages = res.data.total_pages;
@@ -3168,6 +4236,7 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
 
                                         angular.element('#CreditNoteInvoiceModal').modal({ show: true });
+<<<<<<< HEAD
                                     }
                                     else
                                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
@@ -3175,6 +4244,13 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         }
                     }
                     else
+=======
+                                    } else
+                                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                                });
+                        }
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(505));
                 });
         }
@@ -3182,43 +4258,71 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
 
 
+<<<<<<< HEAD
     $scope.get_payed_list = function (item) {
+=======
+    $scope.get_payed_list = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.Recipt_payed = [];
         $scope.title_payed = 'Invoice Payment';
         $scope.item_detail = item;
         $scope.postData = {};
+<<<<<<< HEAD
         $scope.postData.invoice = item.id;//item.account_id;
+=======
+        $scope.postData.invoice = item.id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData.token = $scope.$root.token;
         $scope.postData.more_fields = 1;
         var personUrledit = $scope.$root.gl + "chart-accounts/get-invoice-receipt-payment";
 
         $http
             .post(personUrledit, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.Recipt_payed = res.data.response;
                     //         angular.element('#RecptAccountpop').modal({show: true});
                     angular.element('#RecptAccountpop_payed_list').modal({ show: true });
+<<<<<<< HEAD
                 }
 
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
             });
     }
 
+<<<<<<< HEAD
     $scope.change_amount_invoice = function (item) {
+=======
+    $scope.change_amount_invoice = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item.amount > 0)
             item.chk = true;
     }
 
     $scope.postfianancedata = {};
+<<<<<<< HEAD
     $scope.get_finance_entry_account = function () {
+=======
+    $scope.get_finance_entry_account = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var getaccountcompany = $scope.$root.setup + "general/get-financial-setting";
         $http
             .post(getaccountcompany, { 'token': $scope.$root.token, 'id': $scope.$root.defaultCompany })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true)
                     $scope.postfianancedata = res.data.response;
                 else
@@ -3226,7 +4330,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             });
     }
 
+<<<<<<< HEAD
     $scope.setremainingamount = function (item) {
+=======
+    $scope.setremainingamount = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.validatePrice(item.invoice_date, $scope.amount_total);
 
@@ -3239,8 +4347,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             else if (item.orignal_grand_total - item.outstanding > 0)
                 item.amount = (item.orignal_grand_total - item.outstanding);
 
+<<<<<<< HEAD
         }
         else if (item.amount != undefined) {
+=======
+        } else if (item.amount != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ((item.orignal_grand_total - item.outstanding) == 0)
                 amount2 = item.grand_total;
             else if (item.orignal_grand_total - item.outstanding > 0)
@@ -3267,7 +4379,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.addrecptget_invoice = function (id) {
+=======
+    $scope.addrecptget_invoice = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var post = {};
         var temp = [];
@@ -3276,14 +4392,27 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         var totalrelizecount = 0
         var account_id = 0;
 
+<<<<<<< HEAD
         $.each($scope.ReciptInvoiceModalarr, function (index, obj) {
+=======
+        $.each($scope.ReciptInvoiceModalarr, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.amount > 0) {
                 console.log($scope.ReciptInvoiceModalarr); //return;
                 //if($scope.doc_type==1)
                 new_amount = Number(obj.amount);
                 temp.push({
+<<<<<<< HEAD
                     id: obj.id, amount: obj.amount, total_allocatin: new_amount, posting_group: obj.posting_group,
                     allocate_id: obj.allocate_id, converted_price: obj.converted_price
+=======
+                    id: obj.id,
+                    amount: obj.amount,
+                    total_allocatin: new_amount,
+                    posting_group: obj.posting_group,
+                    allocate_id: obj.allocate_id,
+                    converted_price: obj.converted_price
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 });
 
                 //  if ($scope.doc_type == 1)
@@ -3316,8 +4445,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         //unrealised_movement_gl_ac;
                         console.log("Gain s");
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                         if ($scope.module_type.value == 2) {
@@ -3336,8 +4469,12 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         $scope.$root.accountentry(payed_account, inv_trans_type, 5, obj.converted_price, $scope.journal_datemain, $scope.parent_id, 0, 'Gain', 0);
 
                         $scope.$root.accountentry(account_debit, inv_trans_type_secnd, 5, obj.converted_price, $scope.journal_datemain, $scope.parent_id, 0, 'loss', $scope.parent_id);
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         totalrelizecount++;
 
 
@@ -3348,7 +4485,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             }
         });
 
+<<<<<<< HEAD
         $timeout(function () {
+=======
+        $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (totalrelizecount) {
                 toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(365));
@@ -3358,14 +4499,22 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
             if (amount > Number($scope.amount_total)) {
                 toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(366));
                 return;
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var excUrl = $scope.$root.gl + "chart-accounts/add-invoice-receipt";
                 post.type_allocatin = 1;
                 post.total_allocatin = $scope.netTotalAmount();
 
+<<<<<<< HEAD
                 post.id = $scope.curent_cust_index;//id;
+=======
+                post.id = $scope.curent_cust_index; //id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 post.type = 1;
                 post.doc_type = $scope.doc_type.id;
                 post.cust_id = $scope.cust_id;
@@ -3376,12 +4525,20 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
                 $http
                     .post(excUrl, post)
+<<<<<<< HEAD
                     .then(function (res) {
                         if (res.data.ack == true) {
                             toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                             angular.element('#ReciptInvoiceModal').modal('hide');
                         }
                         else
+=======
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                            angular.element('#ReciptInvoiceModal').modal('hide');
+                        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
 
                     });
@@ -3390,9 +4547,15 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     }
 
+<<<<<<< HEAD
     $scope.netTotalAmount = function () {
         var ctotal = 0;
         angular.forEach($scope.ReciptInvoiceModalarr, function (item) {
+=======
+    $scope.netTotalAmount = function() {
+        var ctotal = 0;
+        angular.forEach($scope.ReciptInvoiceModalarr, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (item.amount >= 0)
                 ctotal += Number(item.amount);
         });
@@ -3407,18 +4570,31 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 
     /*------------------------------------*Print Credit Note*--------------------------------*/
 
+<<<<<<< HEAD
     $scope.openEmailer = function (val) {
         setTimeout(function () {
+=======
+    $scope.openEmailer = function(val) {
+        setTimeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             document.getElementById(val).click();
         }, 0)
     }
 
     function sumArray(arrayName) {
+<<<<<<< HEAD
         arrayName = arrayName.reduce(function (a, b) {
+=======
+        arrayName = arrayName.reduce(function(a, b) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return a + b;
         });
         return arrayName;
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     function findObjectByKey(array, key, value) {
         for (var i = 0; i < array.length; i++) {
             if (array[i][key] === value) {
@@ -3428,7 +4604,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
         return null;
     }
 
+<<<<<<< HEAD
     $scope.showInvoiceModal = function (templateType, noModal) {
+=======
+    $scope.showInvoiceModal = function(templateType, noModal) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log('inside function');
         if (templateType == "salesDelivery") {
             var tempIdName = '#delivery_note_modal';
@@ -3475,7 +4655,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                 'templateType': templateType,
                 token: $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     serviceVariables.generatedPDF = res.data.path;
                     $scope.print_invoice_vals = res.data.response;
@@ -3484,7 +4668,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     $scope.print_invoice_vals.vatValue = $rootScope.vatValueCreditNote;
                     $scope.print_invoice_vals.grandTotal = $rootScope.grandTotalCreditNote;
                     $scope.print_invoice_vals.templateType = templateType;
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log($scope.print_invoice_vals);
                     console.log($scope.print_invoice_vals.doc_details_arr);
 
@@ -3499,27 +4687,44 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                     } */
 
                     $scope.print_invoice_vals.volume_total = new Array();
+<<<<<<< HEAD
                     $scope.print_invoice_vals.weight_total = new Array();                        
 
                     angular.forEach($scope.print_invoice_vals.doc_details_arr, function (obj1, index1) {                           
+=======
+                    $scope.print_invoice_vals.weight_total = new Array();
+
+                    angular.forEach($scope.print_invoice_vals.doc_details_arr, function(obj1, index1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         var idx2 = findObjectByKey($scope.print_invoice_vals.volume_total, 'volume_unit', obj1.volumeUnit);
                         if (idx2 == null) {
                             $scope.print_invoice_vals.volume_total.push({ 'volume_unit': obj1.volumeUnit, 'total_qty': 0 });
                             $scope.print_invoice_vals.volume_total[findObjectByKey($scope.print_invoice_vals.volume_total, 'volume_unit', obj1.volumeUnit)].total_qty += Number(obj1.volume);
+<<<<<<< HEAD
                         }
                         else
+=======
+                        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.print_invoice_vals.volume_total[idx2].total_qty += Number(obj1.volume);
 
                         var idx3 = findObjectByKey($scope.print_invoice_vals.weight_total, 'weightunit', obj1.weightUnit2);
                         if (idx3 == null) {
                             $scope.print_invoice_vals.weight_total.push({ 'weightunit': obj1.weightUnit2, 'total_qty': 0 });
                             $scope.print_invoice_vals.weight_total[findObjectByKey($scope.print_invoice_vals.weight_total, 'weightunit', obj1.weightUnit2)].total_qty += Number(obj1.weight);
+<<<<<<< HEAD
                         }
                         else
                             $scope.print_invoice_vals.weight_total[idx3].total_qty += Number(obj1.weight);
                         
                     }); 
+=======
+                        } else
+                            $scope.print_invoice_vals.weight_total[idx3].total_qty += Number(obj1.weight);
+
+                    });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var invoicePdfModal = ModalService.showModal({
                         templateUrl: 'app/views/invoice_templates/credit_note_modal.html',
@@ -3530,7 +4735,11 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                             openEmailer: $scope.openEmailer
                         }
                     });
+<<<<<<< HEAD
                     invoicePdfModal.then(function (res) {
+=======
+                    invoicePdfModal.then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         res.element.modal();
                         if (noModal) {
                             res.element.modal("hide");
@@ -3538,15 +4747,23 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
                         $scope.showLoader = false;
                         if (noModal) {
                             generatePdf.showLoader = true;
+<<<<<<< HEAD
                             $timeout(function () {
+=======
+                            $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 generatePdf.generatePdf($scope.print_invoice_vals.templateType, $scope.print_invoice_vals, '', noModal);
                             }, 200)
                         }
                         console.log('Returned results: ', res);
                         console.log("Modal succesfully closed!");
                     });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(511));
                 }
@@ -3557,6 +4774,10 @@ function ReturnOrderEditController($scope, $filter, $resource, $timeout, $http, 
 }
 
 myApp.controller('ReturnOrderTabController', ReturnOrderTabController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $state, $resource, toaster, ngDialog, $timeout, myService, $filter, ModalService, generatePdf, moduleTracker) {
 
 
@@ -3578,6 +4799,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     $scope.showLoader = true;
 
     $http
+<<<<<<< HEAD
     .post(itemListingApi, { 'token': $scope.$root.token, 'credit_note_id':$rootScope.order_id, 'no_permission':1 })
     .then(function (res) {
         if (res.data.ack == true) {
@@ -3599,19 +4821,46 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $scope.showLoader = false;
         }
     });
+=======
+        .post(itemListingApi, { 'token': $scope.$root.token, 'credit_note_id': $rootScope.order_id, 'no_permission': 1 })
+        .then(function(res) {
+            if (res.data.ack == true) {
+                angular.forEach(res.data.response, function(value, key) {
+                    if (key != "tbl_meta_data") {
+                        $scope.tempProdArr.push(value);
+                    }
+                });
+
+                if ($scope.tempProdArr.length == 0)
+                    $scope.tempProdArr.push({ 'id': 0 });
+
+                $scope.getOrdersDetail(1);
+                $scope.showLoader = false;
+            } else {
+                $scope.tempProdArr.push({ 'id': 0 });
+                $scope.showLoader = false;
+            }
+        });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
     if ($stateParams.id > 0)
         $scope.check_so_readonly = true;
     $scope.$root.order_id = $stateParams.id;
+<<<<<<< HEAD
     $scope.showEditForm = function () {
         if($scope.approvals_lock_order == 1)
         {
+=======
+    $scope.showEditForm = function() {
+        if ($scope.approvals_lock_order == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $rootScope.approval_message = "The Credit Note is already approved. \n 1) Press Unlock to enable complete edit access to the document. It will need to be send for approval again. \n 2) Press Edit to edit general information only.";
             $rootScope.approval_type = "Unlock";
             ngDialog.openConfirm({
                 template: '_confirm_approval_confirmation_modal2',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
                 $scope.showLoader = true;
                 var postUrl = $scope.$root.setup + "general/unlock-approved-order";
@@ -3646,6 +4895,38 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         }
         else
         {
+=======
+            }).then(function(value) {
+                    $scope.showLoader = true;
+                    var postUrl = $scope.$root.setup + "general/unlock-approved-order";
+                    //'warehouse_id': item.warehouses.id
+                    $http
+                        .post(postUrl, {
+                            'object_id': $scope.$root.order_id,
+                            'type': "3, 8",
+                            'token': $scope.$root.token
+                        })
+                        .then(function(res) {
+                            if (res.data.ack == true) {
+                                $scope.showLoader = false;
+                                $scope.check_so_readonly = false;
+                                $scope.$parent.check_so_readonly = false;
+                                $scope.approvals_lock_order = 0;
+                            } else {
+                                $scope.showLoader = false;
+                                $scope.check_so_readonly = false;
+                                $scope.$parent.check_so_readonly = false;
+                            }
+                        });
+                },
+                function(reason) {
+                    $scope.showLoader = false;
+                    $scope.check_so_readonly = false;
+                    $scope.$parent.check_so_readonly = false;
+                    console.log('Modal promise rejected. Reason: ', reason);
+                });
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.check_so_readonly = false;
             $scope.$parent.check_so_readonly = false;
         }
@@ -3653,6 +4934,111 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     $scope.submit_show_invoicee = true;
 
+<<<<<<< HEAD
+=======
+    $scope.showInvoiceEditForm = function() {
+        $scope.check_cn_readonly = true;
+        $scope.$root.$broadcast('check_cn_readonly', $scope.check_cn_readonly);
+    }
+
+    $scope.saveCreditNoteInvoice = function(rec) {
+
+        $scope.showLoader = true;
+
+        var invoiceRec = {};
+
+        invoiceRec.sell_to_cust_name = rec.sell_to_cust_name;
+        invoiceRec.sell_to_address = rec.sell_to_address;
+        invoiceRec.sell_to_address2 = rec.sell_to_address2;
+        invoiceRec.sell_to_city = rec.sell_to_city;
+
+        invoiceRec.sell_to_county = rec.sell_to_county;
+        invoiceRec.sell_to_post_code = rec.sell_to_post_code;
+        invoiceRec.cust_phone = rec.cust_phone;
+        invoiceRec.cust_email = rec.cust_email;
+        invoiceRec.cust_order_no = rec.cust_order_no;
+        invoiceRec.country_id = (rec.country_ids != undefined && rec.country_ids.id != undefined) ? rec.country_ids.id : 0;
+
+        invoiceRec.sale_person = rec.sale_person;
+        invoiceRec.sale_person_id = rec.sale_person_id;
+        invoiceRec.sell_to_contact_id = rec.sell_to_contact_id;
+        invoiceRec.sell_to_contact_no = rec.sell_to_contact_no;
+
+        // invoiceRec.PurchaseOrderArr = {};
+        // invoiceRec.PurchaseOrderArr = $scope.selectedPurchaseOrderArr;
+
+        invoiceRec.bill_to_name = rec.bill_to_name;
+        invoiceRec.bill_to_address = rec.bill_to_address;
+        invoiceRec.bill_to_address2 = rec.bill_to_address2;
+        invoiceRec.bill_to_city = rec.bill_to_city;
+        invoiceRec.bill_to_county = rec.bill_to_county;
+        invoiceRec.bill_to_post_code = rec.bill_to_post_code;
+        invoiceRec.bill_to_country_id = (rec.bill_to_country_ids != undefined && rec.bill_to_country_ids.id != undefined) ? rec.bill_to_country_ids.id : 0;
+
+        invoiceRec.bill_to_contact = rec.bill_to_contact;
+        invoiceRec.bill_to_contact_phone = rec.bill_to_contact_phone;
+        invoiceRec.bill_to_contact_email = rec.bill_to_contact_email;
+
+
+        invoiceRec.ship_to_name = rec.ship_to_name;
+        invoiceRec.ship_to_address = rec.ship_to_address;
+        invoiceRec.ship_to_address2 = rec.ship_to_address2;
+        invoiceRec.ship_to_city = rec.ship_to_city;
+        invoiceRec.ship_to_county = rec.ship_to_county;
+        invoiceRec.ship_to_post_code = rec.ship_to_post_code;
+
+        invoiceRec.ship_to_contact = rec.ship_to_contact;
+        invoiceRec.comm_book_in_contact = rec.comm_book_in_contact;
+        invoiceRec.book_in_tel = rec.book_in_tel;
+        invoiceRec.book_in_email = rec.book_in_email;
+        invoiceRec.alt_depo_id = rec.alt_depo_id;
+
+        invoiceRec.shipment_method_id = (rec.shipment_method != undefined && rec.shipment_method.id != undefined) ? rec.shipment_method.id : 0;
+        invoiceRec.shipment_method_code = (rec.shipment_method != undefined && rec.shipment_method.name != undefined) ? rec.shipment_method.name : 0;
+        invoiceRec.shipping_agent_id = rec.shipping_agent_id; //(rec.shipping_agent != undefined && rec.shipping_agent.id != undefined) ? rec.shipping_agent.id : 0;
+        invoiceRec.shipping_agent_code = rec.shipping_agent_code; // (rec.shipping_agent_code != undefined && rec.shipping_agent.name != undefined) ? rec.shipping_agent.name : 0;
+        invoiceRec.ship_to_country_id = (rec.ship_to_country_ids != undefined && rec.ship_to_country_ids.id != undefined) ? rec.ship_to_country_ids.id : 0;
+
+
+        invoiceRec.container_no = rec.container_no;
+        invoiceRec.freight_charges = rec.freight_charges;
+        invoiceRec.warehouse_booking_ref = rec.warehouse_booking_ref;
+        invoiceRec.customer_warehouse_ref = rec.customer_warehouse_ref;
+
+        invoiceRec.ship_delivery_time = rec.ship_delivery_time;
+        invoiceRec.delivery_date = rec.delivery_date;
+        invoiceRec.note = rec.note;
+        // invoiceRec.externalnote = rec.externalnote;
+
+        invoiceRec.token = $scope.$root.token;
+        invoiceRec.id = $stateParams.id;
+
+        /* console.log('rec == ', rec);
+        console.log('invoiceRec == ', invoiceRec);
+        return false; */
+
+        var updateInvoiceUrl = $scope.$root.sales + "customer/return-order/update-credit-note-invoice";
+
+        return $http
+            .post(updateInvoiceUrl, invoiceRec)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.check_cn_readonly = false;
+                    $scope.$root.$broadcast('check_cn_readonly', $scope.check_cn_readonly);
+                    toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                } else
+                    return res.data.error;
+
+            }).catch(function(message) {
+                $scope.showLoader = false;
+
+                throw new Error(message.data);
+            });
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     //$scope.arrItems = [{'label':' ','value':3},{'label':'Item(s)','value':0},{'label':'Service(s)','value':2}}];
     $scope.arrItems = [{ 'label': ' ', 'value': 3 }, { 'label': 'Item(s)', 'value': 0 }, {
         'label': 'G/L Account',
@@ -3675,7 +5061,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     $scope.ec_goods_list = [{ 'title': 'Goods (and related services)', 'id': "1" }, { 'title': 'Services (standalone)', 'id': "2" }, { 'title': 'Traingulation', 'id': "3" }];
     $scope.ec_description_list = [{ 'title': 'This supply is an intra-community supply', 'id': "1" }, { 'title': 'This supply is exempt from VAT', 'id': "2" },
+<<<<<<< HEAD
                                   { 'title': 'This is a Zero rated EC Supply', 'id': "3" }, { 'title': 'This supply is outside the scope of VAT', 'id': "4" }];
+=======
+        { 'title': 'This is a Zero rated EC Supply', 'id': "3" }, { 'title': 'This supply is outside the scope of VAT', 'id': "4" }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.default_currency_code = $rootScope.defaultCurrencyCode;
     $scope.company_name = $rootScope.company_name;
@@ -3694,14 +5085,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     $scope.btnCancelUrl = 'app.srm_order_return';
 
 
+<<<<<<< HEAD
     $scope.$on("orderTabEvent", function (event, comment) {
+=======
+    $scope.$on("orderTabEvent", function(event, comment) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (comment != null) {
             $scope.rec.note = comment;
             $scope.wordsLength = comment.length;
         }
     });
 
+<<<<<<< HEAD
     $scope.$on("getSaleOrderId", function (event, sale_order_id) {
+=======
+    $scope.$on("getSaleOrderId", function(event, sale_order_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.sale_order_id = sale_order_id;
     });
 
@@ -3738,14 +5137,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     $scope.search_data = '';
     var drpCat = null;
+<<<<<<< HEAD
     $scope.getProducts = function (recs, parm) {
+=======
+    $scope.getProducts = function(recs, parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var cat_id = '';
         if (parm != '') {
             $scope.postData = { 'all': "1", token: $scope.$root.token };
             recs.category = '';
             recs.search_data = '';
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             cat_id = recs.category != null ? recs.category.id : '';
             $scope.search_data = recs.search_data;
             $scope.postData = {
@@ -3769,6 +5176,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 or_date: $scope.$root.posting_date,
                 token: $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.products = [];
@@ -3778,6 +5186,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     });
                 }
                 else {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.products = [];
+                    $.each(res.data.response, function(index, obj) {
+                        obj.chk = false;
+                        $scope.products[index] = obj;
+                    });
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.products = [];
                 }
             });
@@ -3788,14 +5206,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     //------------- Services ---------------------
 
+<<<<<<< HEAD
     $scope.getServices = function (recs, parm) {
+=======
+    $scope.getServices = function(recs, parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var cat_id = '';
         if (parm != '') {
             $scope.postData = { 'all': "1", token: $scope.$root.token };
             recs.category = '';
             recs.search_data = '';
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             cat_id = recs.category != null ? recs.category.id : '';
             $scope.search_data = recs.search_data;
             $scope.postData = {
@@ -3810,6 +5236,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         var prodApi = $scope.$root.setup + "service/products-listing/get-products-popup";
         $http
             .post(prodApi, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.products = [];
@@ -3819,6 +5246,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     });
                 }
                 else {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.products = [];
+                    $.each(res.data.response, function(index, obj) {
+                        obj.chk = false;
+                        $scope.products[index] = obj;
+                    });
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.products = [];
                 }
             });
@@ -3826,23 +5263,39 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     }
 
+<<<<<<< HEAD
     angular.element(document).on('click', '.checkAll', function () {
+=======
+    angular.element(document).on('click', '.checkAll', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (angular.element('.checkAll').is(':checked') == true) {
             for (var i = 0; i < $scope.products.length; i++) {
                 $scope.products[i].chk = true;
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = 0; i < $scope.products.length; i++) {
                 $scope.products[i].chk = false;
             }
         }
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.products;
         })
     });
 
+<<<<<<< HEAD
     $scope.selectProd = function (id) {
+=======
+    $scope.selectProd = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         for (var i = 0; i < $scope.products.length; i++) {
             if (id == $scope.products[i].id) {
                 if ($scope.products[i].chk == true)
@@ -3854,6 +5307,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.getPriceOffers = function (type) // 1-> popup, 2-> order_items
     {
         var getpriceOffersUrl = $rootScope.sales + "crm/crm/get-items-price-offers-by-custid";
@@ -3892,6 +5346,45 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 }
             });
     }
+=======
+    $scope.getPriceOffers = function(type) // 1-> popup, 2-> order_items
+        {
+            var getpriceOffersUrl = $rootScope.sales + "crm/crm/get-items-price-offers-by-custid";
+            $scope.price_offer_arr = [];
+            $http
+                .post(getpriceOffersUrl, { 'token': $rootScope.token, 'crm_id': $rootScope.crm_id })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        $scope.price_offer_arr = res.data.response;
+                        if (type == 1) {
+                            angular.forEach($scope.price_offer_arr, function(obj) {
+                                var item = $filter("filter")($scope.tempProdArr, { id: obj.item_id });
+                                var idx = $scope.tempProdArr.indexOf(item[0]);
+                                if (idx != -1) {
+                                    $scope.tempProdArr[idx].price_offer = obj.price_offer;
+                                    $scope.tempProdArr[idx].price_offer_id = obj.id;
+                                    $scope.tempProdArr[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                }
+                            });
+                        } else {
+                            angular.forEach($scope.price_offer_arr, function(obj) {
+                                var item = $filter("filter")($scope.items, { id: obj.item_id });
+                                if (item.length > 0) {
+                                    angular.forEach(item, function(obj1) {
+                                        var idx = $scope.items.indexOf(obj1);
+                                        if (idx != -1) {
+                                            $scope.items[idx].price_offer = obj.price_offer;
+                                            $scope.items[idx].price_offer_id = obj.id;
+                                            $scope.items[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+        }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.category_list_final = {};
     $scope.category_sub = {};
@@ -3899,6 +5392,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     $scope.category_list_data_second = {};
     $scope.category_list_data_third = {};
     //var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
+<<<<<<< HEAD
     $scope.selectItem = function (item_type, rec) {
 
         if (!(Number($scope.rec.sale_invoice_id) > 0) && item_type==0) {
@@ -3906,6 +5400,15 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             return false;
         }
         $scope.item_type = item_type;// rec.item_types.value;
+=======
+    $scope.selectItem = function(item_type, rec) {
+
+        if (!(Number($scope.rec.sale_invoice_id) > 0) && item_type == 0) {
+            toaster.pop('error', 'Error', 'Please select an invoice first');
+            return false;
+        }
+        $scope.item_type = item_type; // rec.item_types.value;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedAllOrderItem = false;
         if (!($scope.rec.id > 0)) {
             //console.log("updating");
@@ -3944,7 +5447,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $scope.showLoader = true;
             $http
                 .post(getCreditNodeItems, { 'token': $scope.$root.token, 'crm_id': $scope.rec.sell_to_cust_id, 'invoice_id': $scope.rec.sale_invoice_id })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
 
                         $scope.tempProdArr = res.data.response;
@@ -3954,6 +5461,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             $scope.tempProdArr[i].chk = false;
                         }
                         angular.element('#productModal').modal({ show: true });
+<<<<<<< HEAD
                         
                         $scope.showLoader = false;
                     }
@@ -3977,6 +5485,27 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $http
                 .post(getListUrl, { 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+
+                        $scope.showLoader = false;
+                    } else {
+                        $scope.showLoader = false;
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }
+                });
+
+            // $scope.showLoader = false;
+        } else if ($scope.item_type == 1) {
+            $scope.gl_accounts(1, 77);
+            $scope.filterGL = {};
+            $scope.filterGL.search = "";
+            angular.element('#accthead_modal').modal({ show: true });
+        } else if ($scope.item_type == 2) {
+            var getListUrl = $scope.$root.setup + "service/categories/get-all-categories";
+            $http
+                .post(getListUrl, { 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.arr_categories = {};
                         $scope.arr_categories = res.data.response;
@@ -4022,7 +5551,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     } */
     $scope.searchKeyword_sup_gl_code = {};
 
+<<<<<<< HEAD
     $scope.gl_accounts = function (item_paging, clr) {
+=======
+    $scope.gl_accounts = function(item_paging, clr) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //console.log($scope.item_type);
         $scope.showLoader = true;
         $scope.postData = {};
@@ -4052,9 +5585,14 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         // $timeout(function () {
         $http
             .post(postUrl_cat, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true)
                 {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.gl_account = res.data.response;
                     $scope.category_sub = res.data.response_new;
                     $scope.category_list_data_one = res.data.response_account;
@@ -4073,7 +5611,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         // }, 1000);
     }
 
+<<<<<<< HEAD
     $scope.getCode = function (rec, rec2, flg) {
+=======
+    $scope.getCode = function(rec, rec2, flg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // var getCrmCodeUrl = $scope.$root.pr + "srm/srminvoice/get-quote-code";
         var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
@@ -4100,7 +5642,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     'module_category_id': module_category_id,
                     'type': '1,2'
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == 1) {
 
@@ -4108,13 +5654,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         $scope.rec.return_order_code = res.data.code;
                         $scope.$root.model_code = res.data.code;
                         $scope.rec.return_order_no = res.data.nubmer;
+<<<<<<< HEAD
                         $scope.rec.code_type = module_category_id;//res.data.code_type;
+=======
+                        $scope.rec.code_type = module_category_id; //res.data.code_type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.count_result++;
 
                         if (res.data.type == 1) {
                             $scope.product_type = false;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.product_type = true;
                         }
 
@@ -4122,14 +5676,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             console.log($scope.count_result);
                             $scope.UpdateForm(rec, rec2, flg);
                             return true;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log($scope.count_result + 'd');
                             return false;
                         }
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', res.data.error);
                         return false;
                     }
@@ -4138,13 +5700,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     }
 
+<<<<<<< HEAD
     $scope.UpdateForm = function (rec, rec2, flg, invoice_post) {
+=======
+    $scope.UpdateForm = function(rec, rec2, flg, invoice_post) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var addOrderUrl = $scope.$root.sales + "customer/return-order/add-order";
 
         $http
             .post(addOrderUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     // 
 
@@ -4156,7 +5726,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     var id = res.data.id;
                     $scope.rec.id = res.data.id;
                     $scope.rec.return_order_code = res.data.return_order_code;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.$root.order_id = id;
                     $scope.$root.order_date = res.data.order_date;
                     $scope.$root.posting_date = res.data.posting_date;
@@ -4164,14 +5738,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.$root.crm_id = rec.sell_to_cust_id;
                     if ($scope.items.length > 0) {
                         $scope.add_sublist(rec2, flg, invoice_post);
+<<<<<<< HEAD
                     }
                     else if (flg == 1) {
+=======
+                    } else if (flg == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.$parent.check_so_readonly = true;
                         $scope.check_so_readonly = true;
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(102));
                         // $state.go("app.editReturnOrder", { id: $scope.$root.order_id });
                     }
+<<<<<<< HEAD
                     if(Number(rec2) == 1)
+=======
+                    if (Number(rec2) == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.GetSalesOrderStages();
 
 
@@ -4194,9 +5776,14 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     return true;
                     // }
 
+<<<<<<< HEAD
                 }
                 else {
                      toaster.pop('error', 'Error', res.data.error);
+=======
+                } else {
+                    toaster.pop('error', 'Error', res.data.error);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     return false;
                 }
 
@@ -4205,12 +5792,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.show_add_pop = function (id) {
+=======
+    $scope.show_add_pop = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var DetailsURL = $scope.$root.gl + "chart-accounts/get-account-heads";
         $http
             .post(DetailsURL, { 'token': $scope.$root.token, 'gl_id': id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.acItem = {};
@@ -4221,9 +5816,14 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.acItem.Price = 0;
                     $scope.acItem.Vat = res.data.response.vat_list_id;
 
+<<<<<<< HEAD
                     $.each($rootScope.arr_vat_post_grp_sales, function (index, obj) {
                         if (obj.id == $scope.acItem.Vat)
                         {
+=======
+                    $.each($rootScope.arr_vat_post_grp_sales, function(index, obj) {
+                        if (obj.id == $scope.acItem.Vat) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.acItem.vats = obj;
                             $scope.acItem.vat_id = obj.id;
                         }
@@ -4238,7 +5838,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     };
     $scope.wordsLength = 0;
+<<<<<<< HEAD
     $scope.showWordsLimits_invoice = function (val) {
+=======
+    $scope.showWordsLimits_invoice = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.wordsLength = val;
     }
 
@@ -4560,6 +6164,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
  */
 
+<<<<<<< HEAD
     $scope.checkAllOrderItem = function (val, category, brand, unit) {
         $scope.PendingSelectedOrderItems = [];
         let filtered;
@@ -4570,6 +6175,18 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 		filtered = selection_filter(filtered, unit);
         if (val == true) {
             angular.forEach(filtered, function (obj) {
+=======
+    $scope.checkAllOrderItem = function(val, category, brand, unit) {
+        $scope.PendingSelectedOrderItems = [];
+        let filtered;
+        var selection_filter = $filter('filter');
+        filtered = selection_filter($scope.tempProdArr, $scope.filterOrderItem.search);
+        filtered = selection_filter(filtered, category);
+        filtered = selection_filter(filtered, brand);
+        filtered = selection_filter(filtered, unit);
+        if (val == true) {
+            angular.forEach(filtered, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 obj.chk = val;
 
@@ -4593,7 +6210,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 $scope.PendingSelectedOrderItems.push(obj);
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.tempProdArr, function (obj) {
+=======
+            angular.forEach($scope.tempProdArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -4601,6 +6222,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         }
     }
 
+<<<<<<< HEAD
     $scope.clearPendingOrderItems = function () {
         $scope.PendingSelectedOrderItems = [];
         angular.element('#productModal').modal('hide');
@@ -4609,24 +6231,45 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         if(Number(item.qty) < 0)
         {
             var str = (Number(item.allocated_stock > 0)) ? ', '+item.allocated_stock+' already allocated ' : '';
+=======
+    $scope.clearPendingOrderItems = function() {
+        $scope.PendingSelectedOrderItems = [];
+        angular.element('#productModal').modal('hide');
+    }
+    $scope.validate_allocated_qty = function(item) {
+        if (Number(item.qty) < 0) {
+            var str = (Number(item.allocated_stock > 0)) ? ', ' + item.allocated_stock + ' already allocated ' : '';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(574, [str]));
             item.qty = (Number(item.allocated_stock)) ? item.allocated_stock : 1;
             item.remainig_qty = 0;
             item.sale_status = 1;
             return;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item.qty < item.allocated_stock) {
             toaster.pop('warning', 'Info', String(item.allocated_stock) + ' quantity is already allocated');
             item.qty = item.allocated_stock;
             item.sale_status = 1;
             item.remainig_qty = 0;
+<<<<<<< HEAD
         }
         else if (item.qty == item.allocated_stock) {
             item.remainig_qty = 0;
         }
     }
     $scope.check_min_max = function (item) {
+=======
+        } else if (item.qty == item.allocated_stock) {
+            item.remainig_qty = 0;
+        }
+    }
+    $scope.check_min_max = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* 
         if (item.item_type == 0) {
             // var item_ = $filter("filter")(item.arr_warehouse, { id: item.warehouses.id });
@@ -4697,12 +6340,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         } */
     }
 
+<<<<<<< HEAD
     
     $scope.$on('LoadOderItems', function (e) {
         // $scope.getOrdersDetail(1);
         $scope.load_item_counter = 0;
         $scope.showLoader = true;
         var refreshId = setInterval(function () {
+=======
+
+    $scope.$on('LoadOderItems', function(e) {
+        // $scope.getOrdersDetail(1);
+        $scope.load_item_counter = 0;
+        $scope.showLoader = true;
+        var refreshId = setInterval(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (($scope.tempProdArr != undefined && $scope.tempProdArr.length > 0)) {
                 $scope.getOrdersDetail(1);
                 clearInterval(refreshId);
@@ -4711,7 +6363,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $scope.showLoader = true;
             $scope.load_item_counter += 1;
             if ($scope.load_item_counter > 20) {
+<<<<<<< HEAD
                 $timeout(function () {
+=======
+                $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', 'Server is not responding');
                     location.reload(true); // true for clear the cache
                 }, 1000);
@@ -4720,21 +6376,34 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         // $scope.$parent.itempromotion = $scope.OnChangeOrderDateUpdatePromotion();
     });
+<<<<<<< HEAD
     
     $scope.addProduct = function () {
 
         if ($scope.item_type == 0) {
             var finUrl = $scope.$root.sales + "customer/customer/get-customer-finance";//get-finance-by-customer-id";
+=======
+
+    $scope.addProduct = function() {
+
+        if ($scope.item_type == 0) {
+            var finUrl = $scope.$root.sales + "customer/customer/get-customer-finance"; //get-finance-by-customer-id";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log($scope.rec.sell_to_cust_id );
             //console.log($scope.$root.crm_id);
             //console.log($scope.rec.bill_to_cust_id);
             $scope.hide_dispatch_btn = false;
             $http
                 .post(finUrl, { 'customer_id': $scope.$root.crm_id, token: $rootScope.token })
+<<<<<<< HEAD
                 .then(function (res) {
                     if (res.data.ack == true) {
                     }
                     else {
+=======
+                .then(function(res) {
+                    if (res.data.ack == true) {} else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(505));
                         return;
                     }
@@ -4742,7 +6411,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             // console.log($scope.tempProdArr);
             // console.log($scope.products);
 
+<<<<<<< HEAD
             angular.forEach($scope.tempProdArr, function (prodData) {
+=======
+            angular.forEach($scope.tempProdArr, function(prodData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (prodData.chk == true) {
                     if ($scope.$root.crm_id == 0) {
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
@@ -4775,7 +6448,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     prodData.ec_goods = $scope.ec_goods_list[0];
                     prodData.ec_description = $scope.ec_description_list[0];
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_vat_post_grp_sales, function (obj) {
+=======
+                    angular.forEach($rootScope.arr_vat_post_grp_sales, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == prodData.vat_rate_id) {
                             prodData.vat = obj.name;
                             prodData.vat_value = obj.vat_value;
@@ -4791,6 +6468,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         prodData.units = prodData.arr_units[0];
                     }
 
+<<<<<<< HEAD
                     angular.forEach($scope.arr_discount_type, function (obj) {
                         if (obj.id == prodData.discount_type)
                             prodData.discount_type_id = obj;
@@ -4798,11 +6476,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     angular.forEach($rootScope.arr_vat_post_grp_sales, function (obj) {
                         if (obj.id == prodData.vat_id)
                         {
+=======
+                    angular.forEach($scope.arr_discount_type, function(obj) {
+                        if (obj.id == prodData.discount_type)
+                            prodData.discount_type_id = obj;
+                    });
+                    angular.forEach($rootScope.arr_vat_post_grp_sales, function(obj) {
+                        if (obj.id == prodData.vat_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             prodData.vats = obj;
                             prodData.vat_id = obj.id;
                         }
                     });
 
+<<<<<<< HEAD
                     angular.forEach(prodData.arr_warehouse.response, function (obj) {
                         if (obj.id == prodData.warehouse_id)
                         {
@@ -4818,6 +6505,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                     isExist = 1;
                             }
                             if(isExist == 0)
+=======
+                    angular.forEach(prodData.arr_warehouse.response, function(obj) {
+                        if (obj.id == prodData.warehouse_id) {
+                            prodData.warehouses = obj.id;
+                            prodData.warehouse_name = obj.name;
+
+                        } else if (obj.wh_status == 2) {
+                            var isExist = 0;
+                            if ($scope.items.length > 0) {
+                                var in_active_wh = $filter("filter")($scope.items, { warehouses: obj.id });
+                                if (in_active_wh != undefined && in_active_wh.length > 0)
+                                    isExist = 1;
+                            }
+                            if (isExist == 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 prodData.arr_warehouse.response.splice(idx, 1);
                             else
                                 prodData.arr_warehouse.response[idx].disabled = 1;
@@ -4872,7 +6574,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                     $scope.items.push(prodData);
 
+<<<<<<< HEAD
                     angular.forEach($scope.items, function (obj) {
+=======
+                    angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (prodData.id == obj.id) {
                             obj.arr_warehouse = prodData.arr_warehouse;
                         }
@@ -4892,18 +6598,28 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             var item = $filter("filter")($scope.items, { item_type: 0, stock_check: 1 });
             if (item != undefined && item.length) {
                 $scope.show_btn_dispatch_stuff = true;
+<<<<<<< HEAD
             }
             else
+=======
+            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.show_btn_dispatch_stuff = false;
 
             var rec2 = {};
             $scope.addsublist(rec2);
             angular.element('#productModal').modal('hide');
 
+<<<<<<< HEAD
         }
         else if ($scope.item_type == 2) {
 
             $.each($scope.products, function (index, prodData) {
+=======
+        } else if ($scope.item_type == 2) {
+
+            $.each($scope.products, function(index, prodData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (prodData.chk == true) {
                     if ($scope.$root.crm_id == 0) {
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
@@ -4914,10 +6630,17 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                     prodData.item_type = $scope.item_type;
 
+<<<<<<< HEAD
                     var finApi = $scope.$root.sales + "customer/customer/get-customer-finance";//get-finance-by-customer-id";
                     $http
                         .post(finApi, { 'customer_id': $scope.$root.crm_id, token: $rootScope.token })
                         .then(function (res) {
+=======
+                    var finApi = $scope.$root.sales + "customer/customer/get-customer-finance"; //get-finance-by-customer-id";
+                    $http
+                        .post(finApi, { 'customer_id': $scope.$root.crm_id, token: $rootScope.token })
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data.ack == true) {
                                 /*if(res.data.response.vat_bus_posting_group == undefined){
                                  toaster.pop('error','Error','Vat Bus. Posting Group is not defined!');
@@ -4931,8 +6654,13 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 var vatApi = $scope.$root.setup + "ledger-group/get-vat";
                                 $http
                                     .post(vatApi, { token: $rootScope.token, 'id': prodData.vat_rate_id })
+<<<<<<< HEAD
                                     .then(function (vtData) {
                                        
+=======
+                                    .then(function(vtData) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         var catUnit = $scope.$root.setup + "service/cat-unit/get-cat-unit-by-cat-nd-unit_id";
                                         $http
@@ -4941,11 +6669,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                 'unit_id': prodData.unit_id,
                                                 token: $rootScope.token
                                             })
+<<<<<<< HEAD
                                             .then(function (cumData) {
+=======
+                                            .then(function(cumData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 if (cumData.data.ack != true) {
                                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(575, [prodData.description]));
                                                     $scope.$root.return_status = false;
                                                     //return false;
+<<<<<<< HEAD
                                                 }
                                                 else {
                                                     var umUrl = $scope.$root.setup + "service/unit-measure/get-unit";
@@ -4959,6 +6692,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                                 //return false;
                                                             }
                                                             else {
+=======
+                                                } else {
+                                                    var umUrl = $scope.$root.setup + "service/unit-measure/get-unit";
+                                                    $http
+                                                        .post(umUrl, { id: prodData.unit_id, token: $rootScope.token })
+                                                        .then(function(umData) {
+                                                            if (umData.data.ack != true) {
+                                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(576, [prodData.description]));
+
+                                                                $scope.$root.return_status = false;
+                                                                //return false;
+                                                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                 if (umData.data.response.parent_id !== '0') {
                                                                     $http
                                                                         .post(catUnit, {
@@ -4966,6 +6712,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                                             'unit_id': umData.data.response.parent_id,
                                                                             token: $rootScope.token
                                                                         })
+<<<<<<< HEAD
                                                                         .then(function (c2umData) {
                                                                             if (c2umData.data.ack != true) {
                                                                                 toaster.pop('error', 'Error2', $scope.$root.getErrorMessageByCode(577, [prodData.description]));
@@ -4979,6 +6726,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                                         });
                                                                 }
                                                                 else {
+=======
+                                                                        .then(function(c2umData) {
+                                                                            if (c2umData.data.ack != true) {
+                                                                                toaster.pop('error', 'Error2', $scope.$root.getErrorMessageByCode(577, [prodData.description]));
+
+                                                                                $scope.$root.return_status = false;
+                                                                                //return false;
+
+                                                                            } else
+                                                                                prodData.sale_unit_qty = c2umData.data.response.value;
+                                                                        });
+                                                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                     prodData.sale_unit_qty = cumData.data.response.value;
 
                                                                 }
@@ -4998,16 +6758,25 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                             prodData.purchase_unit_id = prodData.purchase_measure;
                                                             prodData.unit_parent = umData.data.response.parent_id;
 
+<<<<<<< HEAD
                                                             angular.forEach($rootScope.arr_vat_post_grp_sales, function (obj) {
                                                                 if (obj.id == prodData.vat_id)
                                                                 {
+=======
+                                                            angular.forEach($rootScope.arr_vat_post_grp_sales, function(obj) {
+                                                                if (obj.id == prodData.vat_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                     prodData.vats = obj;
                                                                     prodData.vat_id = obj.id;
 
                                                                 }
                                                             });
 
+<<<<<<< HEAD
                                                             $.each($scope.arr_units, function (index, obj) {
+=======
+                                                            $.each($scope.arr_units, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                 if (obj.id == prodData.sale_unit_id)
                                                                     prodData.units = obj;
                                                             });
@@ -5037,8 +6806,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                     });
 
                                 //}
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(505));
                             }
                         });
@@ -5051,8 +6824,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $scope.addsublist(rec2);
             angular.element('#serviceModal').modal('hide');
 
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var acItem = {};
             if (prodData.account_type != 1) {
@@ -5062,6 +6839,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             var accUrl = $scope.$root.setup + "ledger-group/get-ledger-posting";
             $http
                 .post(accUrl, {
+<<<<<<< HEAD
                     'account': prodData.number, 'order_type': prodData.account_type, token: $rootScope.token
                 })
                 .then(function (acData) {
@@ -5070,6 +6848,17 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         $scope.$root.return_status = false;
                     }
                     else {
+=======
+                    'account': prodData.number,
+                    'order_type': prodData.account_type,
+                    token: $rootScope.token
+                })
+                .then(function(acData) {
+                    if (acData.data.ack == false) {
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                        $scope.$root.return_status = false;
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         var ledgEntryUrl = $scope.$root.setup + "ledger-group/get-general-ledger-entry";
                         $http
                             .post(ledgEntryUrl, {
@@ -5077,12 +6866,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 'product_posting_title': acData.result.vat_prod_posting,
                                 token: $rootScope.token
                             })
+<<<<<<< HEAD
                             .then(function (gData) {
                                 if (gData.data.ack == false) {
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                                     $scope.$root.return_status = false;
                                 }
                                 else {
+=======
+                            .then(function(gData) {
+                                if (gData.data.ack == false) {
+                                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                                    $scope.$root.return_status = false;
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     var vatsetpUrl = $scope.$root.setup + "ledger-group/get-account-head";
                                     $http
@@ -5091,12 +6888,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                             'product': gData.result.product_posting,
                                             token: $rootScope.token
                                         })
+<<<<<<< HEAD
                                         .then(function (vtData) {
                                             if (gData.data.ack == false) {
                                                 toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['VAT']));
                                                 $scope.$root.return_status = false;
                                             }
                                             else {
+=======
+                                        .then(function(vtData) {
+                                            if (gData.data.ack == false) {
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['VAT']));
+                                                $scope.$root.return_status = false;
+                                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                                 var vatsetpUrl = $scope.$root.setup + "ledger-group/get-account-head";
                                                 $http
@@ -5105,7 +6910,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                                         'account_type': 'Posting',
                                                         token: $rootScope.token
                                                     })
+<<<<<<< HEAD
                                                     .then(function (acHead) {
+=======
+                                                    .then(function(acHead) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         acItem.Code = prodData.number;
                                                         acItem.Description = acHead.data.response.name;
                                                         acItem.item_type = $scope.item_type;
@@ -5134,7 +6943,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
 
 
+<<<<<<< HEAD
     $scope.add_gl_account_values = function (gl_data) {
+=======
+    $scope.add_gl_account_values = function(gl_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.$root.crm_id == 0) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
@@ -5143,24 +6956,39 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         }
 
 
+<<<<<<< HEAD
         var finUrl = $scope.$root.sales + "customer/customer/get-customer-finance";//get-finance-by-customer-id";
+=======
+        var finUrl = $scope.$root.sales + "customer/customer/get-customer-finance"; //get-finance-by-customer-id";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //console.log($scope.rec.sell_to_cust_id );
         //console.log($scope.$root.crm_id);
         //console.log($scope.rec.bill_to_cust_id);
         $http
             .post(finUrl, { 'customer_id': $scope.$root.crm_id, token: $rootScope.token })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     // console.log("heee");
                 }
                 else {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    // console.log("heee");
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(505));
                     return;
                 }
             });
 
+<<<<<<< HEAD
         angular.forEach($scope.gl_account, function (gl_data) {
+=======
+        angular.forEach($scope.gl_account, function(gl_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (gl_data.chk == true) {
 
@@ -5176,7 +7004,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 $scope.acItem.qty = '';
                 $scope.acItem.standard_price = '';
                 $scope.acItem.Price = '';
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.acItem.ec_goods = $scope.ec_goods_list[0];
                 $scope.acItem.ec_description = $scope.ec_description_list[0];
 
@@ -5184,6 +7016,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     if (obj.id == gl_data.vat_id)
                         $scope.acItem.vats = obj;
                 }); */
+<<<<<<< HEAD
                 
                 if (gl_data.vat_id == 1 || gl_data.vat_id == 2 || gl_data.vat_id == 3 || gl_data.vat_id == 4) {
                      $scope.acItem.vats = $rootScope.arr_vat[gl_data.vat_id-1];
@@ -5199,6 +7032,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     });
                 }
                 angular.forEach($rootScope.gl_arr_units, function (obj) {
+=======
+
+                if (gl_data.vat_id == 1 || gl_data.vat_id == 2 || gl_data.vat_id == 3 || gl_data.vat_id == 4) {
+                    $scope.acItem.vats = $rootScope.arr_vat[gl_data.vat_id - 1];
+                    $scope.acItem.vat_id = $rootScope.arr_vat[gl_data.vat_id - 1].id;
+                } else {
+                    angular.forEach($rootScope.arr_vat, function(obj) {
+                        if (obj.id == gl_data.vat_id) {
+                            $scope.acItem.vats = obj;
+                            $scope.acItem.vat_id = obj.id;
+                        }
+                    });
+                }
+                angular.forEach($rootScope.gl_arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == gl_data.ref_id)
                         $scope.acItem.units = obj;
                 });
@@ -5268,16 +7116,28 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     };
 
 
+<<<<<<< HEAD
     $scope.checkAllGL = function (val, category, brand, unit) {
         $scope.PendingSelectedGLItems = [];
 
         if (val == true) {
             angular.forEach($scope.gl_account, function (obj) {
+=======
+    $scope.checkAllGL = function(val, category, brand, unit) {
+        $scope.PendingSelectedGLItems = [];
+
+        if (val == true) {
+            angular.forEach($scope.gl_account, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 obj.chk = true;
                 $scope.PendingSelectedGLItems.push(obj);
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.gl_account, function (obj) {
+=======
+            angular.forEach($scope.gl_account, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -5285,11 +7145,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         }
     }
 
+<<<<<<< HEAD
     $scope.clearPendingGLitems = function () {
         $scope.PendingSelectedGLItems = [];
         angular.element('#accthead_modal').modal('hide');
     }
     $scope.checkedGL = function (glid) {
+=======
+    $scope.clearPendingGLitems = function() {
+        $scope.PendingSelectedGLItems = [];
+        angular.element('#accthead_modal').modal('hide');
+    }
+    $scope.checkedGL = function(glid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         for (var i = 0; i < $scope.gl_account.length; i++) {
 
@@ -5303,7 +7171,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.rowTotal = function (item) {
+=======
+    $scope.rowTotal = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* 
         var total = 0;
@@ -5357,9 +7229,15 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             if (item.discount_type_id.id == 'Percentage')
                 discount = (parseFloat(total) * parseFloat(item.discount) / 100);
             else if (item.discount_type_id.id == 'Value')
+<<<<<<< HEAD
                 discount =  parseFloat(item.discount);
             else if (item.discount_type_id.id == 'Unit')
                 discount =  (parseFloat(item.discount) * parseFloat(item.qty));
+=======
+                discount = parseFloat(item.discount);
+            else if (item.discount_type_id.id == 'Unit')
+                discount = (parseFloat(item.discount) * parseFloat(item.qty));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         if (isNaN(discount)) {
             discount = 0;
@@ -5367,8 +7245,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         total = parseFloat(total) - discount;
 
+<<<<<<< HEAD
         if (isNaN(total))
         {
+=======
+        if (isNaN(total)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return 0;
         }
         if (item.isGLVat == true) {
@@ -5377,7 +7259,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         return total;
     }
 
+<<<<<<< HEAD
     $scope.rowDiscount = function (item) {
+=======
+    $scope.rowDiscount = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var total = 0;
         if (item.qty > 0)
             total = parseFloat(item.qty) * parseFloat(item.standard_price);
@@ -5397,14 +7283,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             discount = 0;
         }
         item.discount_price = discount;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item.isGLVat == true) {
             discount = 0;
         }
         return discount;
     }
 
+<<<<<<< HEAD
     $scope.rowVat = function (item) {
+=======
+    $scope.rowVat = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrVat = [];
         var total = 0;
         var rowVat = 0;
@@ -5453,20 +7347,32 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         if (isNaN(rowVat)) {
             item.vat_price = 0;
             return 0;
+<<<<<<< HEAD
         }
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             item.vat_price = rowVat;
 
         return rowVat;
     }
 
+<<<<<<< HEAD
     $scope.calcDiscount = function () {
+=======
+    $scope.calcDiscount = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var TotalDiscount = 0;
         var ItemsDiscount = 0;
 
         var total = 0;
         if ($scope.items.length > 0) {
+<<<<<<< HEAD
             angular.forEach($scope.items, function (item) {
+=======
+            angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (item.discount_type_id == undefined) {
                     item.discount = "";
                 }
@@ -5509,11 +7415,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         return $scope.rec.total_discount;
     }
 
+<<<<<<< HEAD
     $scope.netTotal = function () {
         var s_total = 0;
         var items_net_total = 0;
 
         angular.forEach($scope.items, function (item) {
+=======
+    $scope.netTotal = function() {
+        var s_total = 0;
+        var items_net_total = 0;
+
+        angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var total = 0;
 
             if (item.item_type != 1) {
@@ -5550,7 +7464,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         return s_total;
     }
 
+<<<<<<< HEAD
     $scope.calcVat = function () {
+=======
+    $scope.calcVat = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrVat = [];
         var arrTotalVat = [];
         var TotalVat = 0;
@@ -5558,7 +7476,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         var total = 0;
         if ($scope.items.length > 0) {
 
+<<<<<<< HEAD
             angular.forEach($scope.items, function (item) {
+=======
+            angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (item.qty > 0)
                     var subtotal = Number(item.qty) * Number(item.standard_price);
@@ -5617,7 +7539,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
 
                 if (item.vats != undefined && item.vats.vat_value > 0) {
+<<<<<<< HEAD
                   
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     var vat_value = item.vats.vat_value;
 
                     if (arrVat[vat_value] != undefined && arrVat[vat_value].length > 0)
@@ -5655,7 +7581,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         return TotalVat;
     }
 
+<<<<<<< HEAD
     $scope.grandTotal = function () {
+=======
+    $scope.grandTotal = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.grand_total = $scope.netTotal() + $scope.calcVat();
         if (!isNaN($scope.rec.grand_total))
             $scope.rec.grand_total = Number($scope.rec.grand_total).toFixed(2);
@@ -5672,10 +7602,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.UpdateGrandTotal = function () {
 
         if($scope.rec.type2 == 2)
         {
+=======
+    $scope.UpdateGrandTotal = function() {
+
+        if ($scope.rec.type2 == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         }
         var orderUrl = $scope.$root.sales + "customer/order/update-grand-total";
@@ -5700,17 +7636,29 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
 
         postData.type = 2;
+<<<<<<< HEAD
         
         $http
             .post(orderUrl, postData)
             .then(function (res) {
+=======
+
+        $http
+            .post(orderUrl, postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     console.log('updated grand total');
                 }
             });
     }
+<<<<<<< HEAD
     
     $scope.delete = function (index, item) {
+=======
+
+    $scope.delete = function(index, item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (item.update_id == undefined) {
             $scope.items.splice(index, 1);
@@ -5722,6 +7670,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             var item = $filter("filter")($scope.items, { item_type: 0, stock_check: 1 });
             if (item != undefined && item.length) {
                 $scope.show_btn_dispatch_stuff = true;
+<<<<<<< HEAD
             }
             else
                 $scope.show_btn_dispatch_stuff = false;
@@ -5734,15 +7683,34 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 template: 'modalDeleteDialogId',
                 className: 'ngdialog-theme-default-custom'
             }).then(function (value) {
+=======
+            } else
+                $scope.show_btn_dispatch_stuff = false;
+
+        } else {
+
+
+            ngDialog.openConfirm({
+                template: 'modalDeleteDialogId',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 var orderUrl = $scope.$root.sales + "customer/return-order/delete-order-item";
                 item.token = $scope.$root.token;
                 $scope.showLoader = true;
                 $http
                     .post(orderUrl, item)
+<<<<<<< HEAD
                     .then(function (res) {
 
                         $scope.volume = 0;
                         $scope.weight = 0; 
+=======
+                    .then(function(res) {
+
+                        $scope.volume = 0;
+                        $scope.weight = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.volume_unit = '';
                         $scope.weightunit = '';
                         $scope.weight_permission = 0;
@@ -5761,16 +7729,24 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             var item = $filter("filter")($scope.items, { item_type: 0, stock_check: 1 });
                             if (item != undefined && item.length) {
                                 $scope.show_btn_dispatch_stuff = true;
+<<<<<<< HEAD
                             }
                             else
+=======
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.show_btn_dispatch_stuff = false;
 
                             if ($scope.items.length == 0) {
                                 $scope.enable_btn_dispatch = false;
                                 $scope.enable_btn_invoice = false;
                             }
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.showLoader = false;
                             toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                         }
@@ -5778,6 +7754,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         $scope.volume = res.data.volume;
                         $scope.weight = res.data.weight;
                         $scope.volume_unit = res.data.volume_unit;
+<<<<<<< HEAD
                         $scope.weightunit = res.data.weightunit;                    
                         $scope.weight_permission = res.data.weight_permission; 
                         $scope.volume_permission = res.data.volume_permission; 
@@ -5787,13 +7764,28 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                     });
             }, function (reason) {
+=======
+                        $scope.weightunit = res.data.weightunit;
+                        $scope.weight_permission = res.data.weight_permission;
+                        $scope.volume_permission = res.data.volume_permission;
+
+                        if (($scope.weight_permission > 0 && $scope.weight && $scope.weight != 0) || ($scope.volume_permission > 0 && $scope.volume && $scope.volume != 0))
+                            $scope.showVolumeWeight = 1;
+
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         }
     }
 
 
+<<<<<<< HEAD
     $scope.delete_sub = function (index, item, items) {
+=======
+    $scope.delete_sub = function(index, item, items) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if (item.update_id == undefined) items.splice(index, 1);
@@ -5801,11 +7793,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             ngDialog.openConfirm({
                 template: 'modalDeleteDialogId',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
                 var orderUrl = $scope.$root.sales + "customer/return-order/delete-order-item";
                 $http
                     .post(orderUrl, { id: item.update_id, token: $scope.$root.token })
                     .then(function (res) {
+=======
+            }).then(function(value) {
+                var orderUrl = $scope.$root.sales + "customer/return-order/delete-order-item";
+                $http
+                    .post(orderUrl, { id: item.update_id, token: $scope.$root.token })
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (res.data.ack == true) {
                             toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                             items.splice(index, 1);
@@ -5814,18 +7814,30 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 $scope.enable_btn_invoice = false;
                             }
                             // $scope.getOrdersDetail();
+<<<<<<< HEAD
                         }
                         else {
                             toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
                         }
                     });
             }, function (reason) {
+=======
+                        } else {
+                            toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                        }
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         }
     }
     var rec2 = {};
+<<<<<<< HEAD
     $scope.add_general = function (rec, rec2, flg, invoice_post) {
+=======
+    $scope.add_general = function(rec, rec2, flg, invoice_post) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.rec.id == 0 && ($scope.rec.sell_to_cust_id == undefined || $scope.rec.sell_to_cust_id == null || $scope.rec.sell_to_cust_id == '')) {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Customer No.']));
@@ -5854,8 +7866,13 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         rec.bill_to_insurance_charges_name = ($scope.drp.insurance_charges_ids != undefined) ? $scope.drp.insurance_charges_ids.Charge : '';
         rec.bill_to_posting_group_id = ($scope.drp.vat_bus_posting_group != undefined) ? $scope.drp.vat_bus_posting_group.id : 0;
         rec.bill_to_posting_group_name = ($scope.drp.vat_bus_posting_group != undefined) ? $scope.drp.vat_bus_posting_group.name : '';
+<<<<<<< HEAD
         
         
+=======
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.$root.c_currency_id = rec.currency_ids;
         $scope.$root.posting_date = rec.posting_date;
 
@@ -5870,11 +7887,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             $scope.getCode(rec, rec2, flg);
         }
         else */
+<<<<<<< HEAD
             $scope.UpdateForm(rec, rec2, flg, invoice_post);
 
     }
 
     $scope.add_sublist = function (rec2, flg, invoice_post) {
+=======
+        $scope.UpdateForm(rec, rec2, flg, invoice_post);
+
+    }
+
+    $scope.add_sublist = function(rec2, flg, invoice_post) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var rec2 = {};
         /* if ($scope.$root.posting_date == undefined || $scope.$root.posting_date == null) {
             toaster.pop('error', 'Error', 'Invoice Date is Not Defined');
@@ -5896,8 +7921,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             rec2.converted_currency_code = $scope.$root.defaultCurrencyCode;
             rec2.currency_rate = 1;
             $scope.addsublist(rec2, flg, invoice_post);
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //$rootScope.get_currency_list($scope.$root.posting_date);
 
             var currencyURL = $rootScope.sales + "customer/customer/get-currency-conversion-rate";
@@ -5908,7 +7937,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     token: $rootScope.token,
                     or_date: $scope.rec.posting_date
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         if (res.data.response.conversion_rate != null) {
 
@@ -5928,6 +7961,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 // toaster.pop('error', 'Info', 'Please Select Currency Rate.');
                                 isValide = false;
                                 // return;
+<<<<<<< HEAD
                             } 
                             // else
                                 $scope.addsublist(rec2, flg, invoice_post);
@@ -5935,15 +7969,29 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     } else toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
                 }
                 );
+=======
+                            }
+                            // else
+                            $scope.addsublist(rec2, flg, invoice_post);
+                        }
+                    } else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency Conversion Rate']));
+                });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         }
 
     }
 
+<<<<<<< HEAD
     $scope.addsublist = function (rec2, flg, invoice_post) {
         var temp_valid = 1;
         angular.forEach($scope.items, function (obj) {
+=======
+    $scope.addsublist = function(rec2, flg, invoice_post) {
+        var temp_valid = 1;
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (isNaN(obj.qty)) {
                 temp_valid = 0;
             }
@@ -5956,7 +8004,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             return;
         }
         var temp_valid = 1;
+<<<<<<< HEAD
         angular.forEach($scope.items, function (obj) {
+=======
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.standard_price != null && isNaN(obj.standard_price)) {
                 temp_valid = 0;
             }
@@ -5982,12 +8034,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         rec2.token = $rootScope.token;
         rec2.note = $scope.rec.note;
+<<<<<<< HEAD
         if(Number($rootScope.order_id) == 0)
+=======
+        if (Number($rootScope.order_id) == 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         $scope.showLoader = true;
         $http
             .post(orderUrl, rec2)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.showLoader = false;
                     if (flg) {
@@ -5996,7 +8056,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         $scope.check_so_readonly = true;
                         // $state.go("app.editReturnOrder", { id: $rootScope.order_id });
                     }
+<<<<<<< HEAD
                     if(invoice_post != undefined && invoice_post == 1)
+=======
+                    if (invoice_post != undefined && invoice_post == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.load_invoice();
                     else
                         $scope.getOrdersDetail(1);
@@ -6026,12 +8090,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
 
 
+<<<<<<< HEAD
     $scope.chk_allocation_nd_dispatch = function () {
+=======
+    $scope.chk_allocation_nd_dispatch = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var chkDis = false;
         var chkInv = false;
 
         // $timeout(function () {
+<<<<<<< HEAD
         $.each($scope.items, function (index, obj) {
+=======
+        $.each($scope.items, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.remainig_qty == 0)
                 chkDis = true;
             else
@@ -6053,6 +8125,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         // }, 2000);
     }
 
+<<<<<<< HEAD
     
     $scope.getOrdersDetail_org = function (flg) {
         // if (flg == undefined)
@@ -6060,6 +8133,15 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         $scope.volume = 0;
         $scope.weight = 0; 
+=======
+
+    $scope.getOrdersDetail_org = function(flg) {
+        // if (flg == undefined)
+        $scope.hide_dispatch_btn = true;
+
+        $scope.volume = 0;
+        $scope.weight = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.volume_unit = '';
         $scope.weightunit = '';
         $scope.weight_permission = 0;
@@ -6071,12 +8153,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         $scope.showLoader = true;
         $http
             .post(getOrderProduct, { order_id: $rootScope.order_id, token: $rootScope.token })
+<<<<<<< HEAD
             .then(function (rsQtItem) {
+=======
+            .then(function(rsQtItem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (rsQtItem.data.ack == true) {
                     // console.log(rsQtItem.data.response);
                     $scope.showLoader = false;
                     $scope.items = [];
+<<<<<<< HEAD
                     angular.forEach(rsQtItem.data.response, function (elem, detIndex) {
+=======
+                    angular.forEach(rsQtItem.data.response, function(elem, detIndex) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         var item = $filter("filter")($scope.tempProdArr, { id: elem.item_id });
                         var detail = {};
                         /* if (item) {
@@ -6118,30 +8208,51 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         detail.minSaleQty = 1;
                         detail.maxSaleQty = $scope.org_qty;
 
+<<<<<<< HEAD
                         angular.forEach($scope.arr_discount_type, function (obj) {
+=======
+                        angular.forEach($scope.arr_discount_type, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == elem.discount_type)
                                 detail.discount_type_id = obj;
                         });
 
+<<<<<<< HEAD
                         angular.forEach($scope.ec_goods_list, function (obj) {
+=======
+                        angular.forEach($scope.ec_goods_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == elem.ec_goods)
                                 detail.ec_goods = obj;
                         });
 
+<<<<<<< HEAD
                         angular.forEach($scope.ec_description_list, function (obj) {
+=======
+                        angular.forEach($scope.ec_description_list, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == elem.ec_description)
                                 detail.ec_description = obj;
                         });
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.arr_vat_post_grp_sales, function (obj) {
                             if (obj.id == elem.vat_id)
                             {
+=======
+                        angular.forEach($rootScope.arr_vat_post_grp_sales, function(obj) {
+                            if (obj.id == elem.vat_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 detail.vats = obj;
                                 detail.vat_id = obj.id;
 
                             }
                         });
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         /* $scope.vat_refresh_counter = 1;
                         var vat_refreshId = setInterval(function () {
                             if (($rootScope.arr_vat_post_grp_sales != undefined && $rootScope.arr_vat_post_grp_sales.length > 0)) {
@@ -6161,7 +8272,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             }
                         }, 500); */
 
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         detail.isGLVat = false;
 
                         if (elem.type == 1) {
@@ -6169,6 +8284,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                             if ($rootScope.defaultCompany == 133) {
 
+<<<<<<< HEAD
                                 
                                 if (detail.product_code == elem.vatRange.gl1AccountCode || 
                                     detail.product_code == elem.vatRange.gl2AccountCode || 
@@ -6179,6 +8295,17 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                     detail.isGLVat = false;
                                 }
                                 
+=======
+
+                                if (detail.product_code == elem.vatRange.gl1AccountCode ||
+                                    detail.product_code == elem.vatRange.gl2AccountCode ||
+                                    detail.product_code == elem.vatRange.gl3AccountCode) {
+                                    detail.isGLVat = true;
+                                } else {
+                                    detail.isGLVat = false;
+                                }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 detail.startVatRange = '';
                                 detail.endVatRange = '';
 
@@ -6186,8 +8313,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                                 if (detail.product_code >= elem.vatRange.startRangeCode && detail.product_code <= elem.vatRange.endRangeCode) {
                                     detail.isGLVat = true;
+<<<<<<< HEAD
                                 }
                                 else {
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     detail.isGLVat = false;
                                 }
                                 //vat ranges for gli listing
@@ -6197,7 +8328,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         }
 
                         if (elem.type == 2) {
+<<<<<<< HEAD
                             angular.forEach($scope.arr_service_units, function (index, obj) {
+=======
+                            angular.forEach($scope.arr_service_units, function(index, obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.unit_measure_id)
                                     detail.units = obj;
                             });
@@ -6247,7 +8382,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                                 detail.sale_status = detail.item_stock_allocation[0].sale_status;
                                 var ordqty = 0;
+<<<<<<< HEAD
                                 angular.forEach(detail.item_stock_allocation, function (elem) {
+=======
+                                angular.forEach(detail.item_stock_allocation, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ordqty = Number(ordqty) + Number(elem.quantity);
 
                                     if (detail.stock_check == 1 && detail.sale_status == 1) //flg == undefined && 
@@ -6262,13 +8401,18 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                                 detail.remainig_qty = Number(detail.qty) - Number(ordqty);
                                 detail.allocated_stock = ordqty;
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (detail.stock_check == 1)
                                     $scope.hide_dispatch_btn = false;
                                 detail.remainig_qty = detail.qty;
                                 detail.sale_status = 0;
                             }
+<<<<<<< HEAD
                             if (item.length > 0)// && item[0].arr_warehouse != undefined)
                             {
                                 if(item[0].arr_warehouse != undefined)
@@ -6278,6 +8422,15 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             }
                             else
                             {
+=======
+                            if (item.length > 0) // && item[0].arr_warehouse != undefined)
+                            {
+                                if (item[0].arr_warehouse != undefined)
+                                    detail.arr_warehouse = (item[0].arr_warehouse.response != undefined) ? item[0].arr_warehouse.response : item[0].arr_warehouse;
+                                if (item[0].arr_units != undefined)
+                                    detail.arr_units = (item[0].arr_units.response != undefined) ? item[0].arr_units.response : item[0].arr_units;
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 detail.arr_warehouse = [];
                                 detail.arr_units = [];
                             }
@@ -6309,11 +8462,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             // $timeout(function () {
                             //     $scope.$root.$apply(function () {
 
+<<<<<<< HEAD
                             angular.forEach(detail.arr_warehouse, function (obj, idx) {
+=======
+                            angular.forEach(detail.arr_warehouse, function(obj, idx) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.warehouse_id) {
                                     detail.warehouses = obj.id;
                                     detail.warehouse_name = obj.name;
                                     detail.selectedWarehouse = obj;
+<<<<<<< HEAD
                                 }
                                 else if(obj.wh_status == 2){
                                     var isExist = 0;
@@ -6324,6 +8482,16 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                             isExist = 1;
                                     }
                                     if(isExist == 0)
+=======
+                                } else if (obj.wh_status == 2) {
+                                    var isExist = 0;
+                                    if ($scope.items.length > 0) {
+                                        var in_active_wh = $filter("filter")($scope.items, { warehouses: obj.id });
+                                        if (in_active_wh != undefined && in_active_wh.length > 0)
+                                            isExist = 1;
+                                    }
+                                    if (isExist == 0)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         detail.arr_warehouse.splice(idx, 1);
                                     else
                                         detail.arr_warehouse[idx].disabled = 1;
@@ -6331,12 +8499,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             });
 
                             var count = $scope.items.length - 1;
+<<<<<<< HEAD
                             angular.forEach(detail.arr_units, function (obj) {
+=======
+                            angular.forEach(detail.arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.unit_measure_id)
                                     detail.units = obj;
                             });
 
+<<<<<<< HEAD
                             angular.forEach(detail.arr_units, function (obj) {
+=======
+                            angular.forEach(detail.arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.default_unit_measure_id)
                                     $scope.items[detIndex].default_units = obj;
                             });
@@ -6367,7 +8543,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             //     $scope.$root.$apply(function () {
 
                             var count = $scope.items.length - 1;
+<<<<<<< HEAD
                             angular.forEach($rootScope.gl_arr_units, function (obj) {
+=======
+                            angular.forEach($rootScope.gl_arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.unit_measure_id)
                                     detail.units = obj;
 
@@ -6389,8 +8569,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     var item = $filter("filter")($scope.items, { item_type: 0, stock_check: 1 });
                     if (item != undefined && item.length) {
                         $scope.show_btn_dispatch_stuff = true;
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.show_btn_dispatch_stuff = false;
 
 
@@ -6412,6 +8596,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.volume = rsQtItem.data.volume;
                     $scope.weight = rsQtItem.data.weight;
                     $scope.volume_unit = rsQtItem.data.volume_unit;
+<<<<<<< HEAD
                     $scope.weightunit = rsQtItem.data.weightunit;                    
                     $scope.weight_permission = rsQtItem.data.weight_permission; 
                     $scope.volume_permission = rsQtItem.data.volume_permission; 
@@ -6422,14 +8607,31 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         $scope.showVolumeWeight = 1;
                 }
                 else
+=======
+                    $scope.weightunit = rsQtItem.data.weightunit;
+                    $scope.weight_permission = rsQtItem.data.weight_permission;
+                    $scope.volume_permission = rsQtItem.data.volume_permission;
+
+                    // if($scope.weight_permission >0 || $scope.volume_permission>0)
+                    //     $scope.showVolumeWeight = 1;
+                    if (($scope.weight_permission > 0 && $scope.weight && $scope.weight != 0) || ($scope.volume_permission > 0 && $scope.volume && $scope.volume != 0))
+                        $scope.showVolumeWeight = 1;
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
             });
 
         $scope.chk_allocation_nd_dispatch();
     }
+<<<<<<< HEAD
     
     $scope.filterOrderItem = {};
     $scope.getOrdersDetail = function (flg) {
+=======
+
+    $scope.filterOrderItem = {};
+    $scope.getOrdersDetail = function(flg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.filterOrderItem = {};
         /* $scope.tempProdArr = [];
@@ -6446,6 +8648,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         $scope.showLoader = true;
 
         $http
+<<<<<<< HEAD
         .post(itemListingApi, { 'token': $scope.$root.token, 'credit_note_id':$rootScope.order_id, 'no_permission':1 })
         .then(function (res) {
             if (res.data.ack == true) {
@@ -6469,19 +8672,51 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         });
     }
     
+=======
+            .post(itemListingApi, { 'token': $scope.$root.token, 'credit_note_id': $rootScope.order_id, 'no_permission': 1 })
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.tempProdArr.push(value);
+                        }
+                    });
+
+                    if ($scope.tempProdArr.length == 0)
+                        $scope.tempProdArr.push({ 'id': 0 });
+
+                    $scope.getOrdersDetail_org(flg);
+                    $scope.showLoader = false;
+                } else {
+                    $scope.tempProdArr.push({ 'id': 0 });
+                    $scope.showLoader = false;
+                }
+            });
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     // $timeout(function () {
     /* if ($stateParams.id !== undefined)
         $scope.getOrdersDetail(); */
 
     // }, 2000);
 
+<<<<<<< HEAD
     
     $scope.NavigateOrder = function(rec){
+=======
+
+    $scope.NavigateOrder = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword = {};
         $scope.searchKeyword.navigate_search = "";
 
         $scope.navigate_data = {};
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.navigate_title = 'Credit Note No. ' + $scope.$parent.rec.return_invoice_code;
         $scope.navigate_type = 1;
 
@@ -6491,20 +8726,31 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         var navigate_url = $scope.$root.sales + "customer/order/navigate-invoice";
         var postData = {
             'token': $scope.$root.token,
+<<<<<<< HEAD
             'type':2,
             'object_id':rec.id
+=======
+            'type': 2,
+            'object_id': rec.id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         };
         $scope.showLoader = true;
         $http
             .post(navigate_url, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if(res.data.ack == 1)
                 {
+=======
+            .then(function(res) {
+                if (res.data.ack == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.navigate_data = res.data.response;
                     $scope.navigatePostingDate = res.data.posted_on;
                     $scope.navigatePostingByName = res.data.posted_by_name;
                 }
 
+<<<<<<< HEAD
                 if(res.data.ack != undefined)
                     $scope.showLoader = false;
 
@@ -6516,6 +8762,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     $scope.orderCompete = function () {
         var completeOrder = [];
         angular.forEach($scope.items, function (elem, index) {
+=======
+                if (res.data.ack != undefined)
+                    $scope.showLoader = false;
+
+            });
+
+        angular.element('#order_navigate_modal').modal({ show: true });
+    }
+
+    $scope.orderCompete = function() {
+        var completeOrder = [];
+        angular.forEach($scope.items, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var cmpOrder = {};
             cmpOrder.product_id = elem.id;
             cmpOrder.type = elem.item_type;
@@ -6538,11 +8797,18 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         $http
             .post('api/chart_of_accounts/general_ledger_entry', completeOrder)
+<<<<<<< HEAD
             .then(function (result) {
                 if (result.data == '0') {
                     toaster.pop("error", "Error", "Order can't be completed! Product head is not set!");
                 }
                 else {
+=======
+            .then(function(result) {
+                if (result.data == '0') {
+                    toaster.pop("error", "Error", "Order can't be completed! Product head is not set!");
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop("success", "Completed", "Order completed.");
                     $scope.check_order_complete = 0;
                 }
@@ -6556,7 +8822,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     $scope.all_order_stock = {};
     $scope.remainig_qty = 0;
     $scope.order_qty = 0;
+<<<<<<< HEAD
     $scope.getAllocatStock = function (warehouse_id, item_id, order_id, order_detail_id) {
+=======
+    $scope.getAllocatStock = function(warehouse_id, item_id, order_id, order_detail_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.all_wh_stock = [];
         var getStockUrl = $scope.$root.sales + "warehouse/get-sale-stock";
         $http
@@ -6570,14 +8840,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'sale_invoice_id': $scope.rec.sale_invoice_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // console.log(res.data.remaining_stock);
                 if (res.data.ack == true) {
                     $scope.all_wh_stock = res.data.response.sales_activities;
                     $scope.selected_wh_locations = res.data.response.warehouse_locations.response;
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.all_wh_stock = [];
                     $scope.selected_wh_locations = [];
                 }
@@ -6640,7 +8918,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             angular.element('#stockAllocationDetailModal').modal({ show: true });
     } */
 
+<<<<<<< HEAD
     $scope.stock_allocate_detail = function (item_id, show, warehouse_id, update_id) {
+=======
+    $scope.stock_allocate_detail = function(item_id, show, warehouse_id, update_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.all_order_stock = [];
         var getAllStockUrl = $scope.$root.sales + "warehouse/get-order-stock-allocation";
         $http
@@ -6653,11 +8935,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'wh_id': warehouse_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.all_order_stock = res.data.response;
                     var ordqty = 0;
                     angular.forEach(res.data.response, function (elem) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.all_order_stock = res.data.response;
+                    var ordqty = 0;
+                    angular.forEach(res.data.response, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ordqty = Number(ordqty) + Number(elem.quantity);
                     });
                     if (ordqty > 0)
@@ -6668,7 +8958,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.remainig_qty = Number($scope.order_qty) - Number(ordqty);
                     console.log($scope.remainig_qty);
                     if (show == 3) {
+<<<<<<< HEAD
                         angular.forEach($scope.items, function (obj, index) {
+=======
+                        angular.forEach($scope.items, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == item_id && (obj.warehouse_id == warehouse_id || obj.warehouses == warehouse_id) && obj.update_id == update_id) {
                                 $scope.items[index].remainig_qty = $scope.remainig_qty;
                                 $scope.items[index].sale_status = res.data.response[0].sale_status;
@@ -6676,13 +8970,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         });
 
                     }
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.all_order_stock = [];
                     $scope.hide_btn_delete = false;
                     $scope.remainig_qty = $scope.order_qty;
                     if (show == 3) {
+<<<<<<< HEAD
                         angular.forEach($scope.items, function (obj, index) {
+=======
+                        angular.forEach($scope.items, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == item_id && (obj.warehouse_id == warehouse_id || obj.warehouses == warehouse_id) && obj.update_id == update_id) {
                                 $scope.items[index].remainig_qty = $scope.order_qty;
                                 $scope.items[index].sale_status = 0;
@@ -6696,7 +8998,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             angular.element('#stockAllocationDetailModal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.current_stock_by_id = function (warehouse_id, item_id) {
+=======
+    $scope.current_stock_by_id = function(warehouse_id, item_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.all_order_stock = [];
         var getAllStockUrl = $scope.$root.sales + "warehouse/get-curent-stock-by-product-id-warehouse";
         $http
@@ -6705,13 +9011,21 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'warehouse_id': warehouse_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true)
                     $scope.current_stock = res.data.current_stock;
             });
     }
 
+<<<<<<< HEAD
     $scope.allocateStock = function (drpWH, item) {
+=======
+    $scope.allocateStock = function(drpWH, item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item.units == null) {
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Unit Of Measure']));
             return;
@@ -6745,11 +9059,18 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         rec2.item = item;
         rec2.token = $rootScope.token;
 
+<<<<<<< HEAD
         if($scope.rec.type2 != 2)
         {
             $http
                 .post(orderUrl, rec2)
                 .then(function (res) {
+=======
+        if ($scope.rec.type2 != 2) {
+            $http
+                .post(orderUrl, rec2)
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.showLoader = false;
                         item.update_id = res.data.id;
@@ -6772,9 +9093,13 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(104));
                     }
                 });
+<<<<<<< HEAD
         }
         else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             $scope.$root.load_date_picker('sale order');
             $scope.stock_item = item;
@@ -6788,15 +9113,26 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.OnFocusQty = function (stock_item) {
         stock_item.active_line = true;
     }
     $scope.OnBlurQty = function (stock_item) {
+=======
+    $scope.OnFocusQty = function(stock_item) {
+        stock_item.active_line = true;
+    }
+    $scope.OnBlurQty = function(stock_item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         stock_item.active_line = false;
     }
 
 
+<<<<<<< HEAD
     $scope.addStockItem = function (stock, stock_item) {
+=======
+    $scope.addStockItem = function(stock, stock_item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         stock.active_line = false;
 
         if (Number(stock.req_qty) <= 0 || stock.req_qty == undefined) {
@@ -6821,7 +9157,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         }
         if (Number(stock.req_qty) > (Number(stock.qty_sold) - Number(stock.qty_returned) - Number(stock.qty_currently_returned))) {
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(599, [(String(Number(stock.qty_sold) - Number(stock.qty_returned)))]));
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return false;
         }
 
@@ -6832,7 +9172,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         stock.type = 2;
         stock.sale_order_detail_id = stock_item.update_id;
         stock.order_detail_id = stock_item.update_id;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         stock.order_id = $scope.$root.order_id;
         stock.bl_shipment_no = stock.bl_shipment_no;
         stock.item_id = stock_item.id;
@@ -6844,14 +9188,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         stock.sale_return_status = 1;
         stock.user_id = $scope.$root.crm_id;
         stock.sale_invoice_id = $scope.rec.sale_invoice_id;
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         stock.units = stock_item.units;
         stock.primary_unit_id = stock_item.primary_unit_of_measure_id;
         stock.primary_unit_name = stock_item.primary_unit_of_measure_name;
         $scope.showLoader = true;
         $http
             .post(addStockUrl, stock)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                 if (res.data.ack == true) {
@@ -6867,12 +9219,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     stock.req_qty = '';
 
                     $scope.getAllocatStock(stock_item.warehouses, stock_item.id, $scope.$root.order_id, stock_item.update_id);
+<<<<<<< HEAD
                     $scope.stock_allocate_detail(stock.product_id, 3, stock_item.warehouses, stock_item.update_id);//stock.warehouse_id);
                     $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
                     $scope.showLoader = false;
                 }
                 else
                 {
+=======
+                    $scope.stock_allocate_detail(stock.product_id, 3, stock_item.warehouses, stock_item.update_id); //stock.warehouse_id);
+                    $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
+                    $scope.showLoader = false;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.getAllocatStock(stock_item.warehouses, stock_item.id, $scope.$root.order_id, stock_item.update_id);
                     $scope.stock_allocate_detail(stock_item.id, 0, stock_item.warehouses, stock_item.update_id);
                     $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
@@ -6885,18 +9244,30 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     }
 
+<<<<<<< HEAD
     $scope.delStockItem = function (stock, stock_item) {
+=======
+    $scope.delStockItem = function(stock, stock_item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         stock.active_line = false;
 
         if (isNaN(stock.req_qty)) {
             stock.req_qty = 0;
+<<<<<<< HEAD
             toaster.pop('error', 'Edit', $scope.$root.getErrorMessageByCode(319, ['Quantity','0']));
+=======
+            toaster.pop('error', 'Edit', $scope.$root.getErrorMessageByCode(319, ['Quantity', '0']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         }
 
         if (Number(stock.req_qty) <= 0) {
             stock.req_qty = 0;
+<<<<<<< HEAD
             toaster.pop('error', 'Edit', $scope.$root.getErrorMessageByCode(319, ['Quantity','0']));
+=======
+            toaster.pop('error', 'Edit', $scope.$root.getErrorMessageByCode(319, ['Quantity', '0']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         }
 
@@ -6924,7 +9295,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         $scope.showLoader = true;
         $http
             .post(delStockUrl, { 'token': $scope.$root.token, 'postData': postData })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     stock.active_line = true;
                     // $scope.getAllocatStock(stock.warehouse_id, stock.product_id, stock.order_id);
@@ -6935,6 +9310,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     stock.req_qty = '';
 
                     $scope.getAllocatStock(stock_item.warehouses, stock_item.id, $scope.$root.order_id, stock_item.update_id);
+<<<<<<< HEAD
                     $scope.stock_allocate_detail(stock.product_id, 3, stock_item.warehouses, stock_item.update_id);//stock.warehouse_id);
                     $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
                     $scope.chk_allocation_nd_dispatch();
@@ -6942,6 +9318,13 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 }
                 else
                 {
+=======
+                    $scope.stock_allocate_detail(stock.product_id, 3, stock_item.warehouses, stock_item.update_id); //stock.warehouse_id);
+                    $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
+                    $scope.chk_allocation_nd_dispatch();
+                    $scope.showLoader = false;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.getAllocatStock(stock_item.warehouses, stock_item.id, $scope.$root.order_id, stock_item.update_id);
                     $scope.stock_allocate_detail(stock_item.id, 0, stock_item.warehouses, stock_item.update_id);
                     $scope.current_stock_by_id(stock_item.warehouses, stock_item.id);
@@ -6966,7 +9349,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     /*--------------------------------stock-----------------------------------*/
 
 
+<<<<<<< HEAD
     $scope.edit_recive_stock = function () {
+=======
+    $scope.edit_recive_stock = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.show_recieve_list = false;
         $scope.show_recieve_list_anchor = true;
         $scope.show_recieve_list_anchor_allocate = false;
@@ -6974,7 +9361,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.get_aisle_location = function (zone_id) {
+=======
+    $scope.get_aisle_location = function(zone_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData.aisle = 0;
         $scope.formData.bin = 0;
@@ -6987,7 +9378,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'wrh_id': $scope.formData.warehouses_id,
                 'parent_id': zone_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // console.log(res);
 
                 if (res.data.ack == true) {
@@ -6995,8 +9390,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.aisle = [];
                     $scope.aisle = res.data.response;
                     $scope.formData.aisle = 1;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var cost_uom_postUrl = $scope.$root.setup + "warehouse/get-warehouse-sub-loc-cost-uom";
 
@@ -7006,7 +9405,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             'wrh_id': $scope.formData.warehouses_id,
                             'location_id': zone_id
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (res.data.ack == true) {
                                 //console.log(res.data.response);
@@ -7020,7 +9423,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.get_bin_location = function (aisle_id) {
+=======
+    $scope.get_bin_location = function(aisle_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.formData.bin = 0;
 
@@ -7032,7 +9439,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'wrh_id': $scope.formData.warehouses_id,
                 'parent_id': aisle_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // console.log(res);
 
                 if (res.data.ack == true) {
@@ -7040,8 +9451,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.bin = [];
                     $scope.bin = res.data.response;
                     $scope.formData.bin = 1;
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var cost_uom_postUrl = $scope.$root.setup + "warehouse/get-warehouse-sub-loc-cost-uom";
 
@@ -7051,7 +9466,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             'wrh_id': $scope.formData.warehouses_id,
                             'location_id': aisle_id
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (res.data.ack == true) {
                                 //console.log(res.data.response);
@@ -7065,7 +9484,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.get_cost_uom_location = function (bin_id) {
+=======
+    $scope.get_cost_uom_location = function(bin_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var cost_uom_postUrl = $scope.$root.setup + "warehouse/get-warehouse-sub-loc-cost-uom";
 
@@ -7075,7 +9498,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'wrh_id': $scope.formData.warehouses_id,
                 'location_id': bin_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     //console.log(res.data.response);
@@ -7088,7 +9515,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.get_warehouse = function (item) {
+=======
+    $scope.get_warehouse = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //console.log(item);
         $scope.$root.load_date_picker('sale order');
@@ -7139,7 +9570,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         $scope.formData.warehouses_id = item.warehouses;
         $scope.formData.warehouses_name = item.warehouses.name;
 
+<<<<<<< HEAD
         $scope.formData.bl_shipment_no = $scope.rec.comm_book_in_no;//  $scope.bl_no;
+=======
+        $scope.formData.bl_shipment_no = $scope.rec.comm_book_in_no; //  $scope.bl_no;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData.order_no = $scope.rec.sell_to_cust_no; //$scope.code;
         $scope.formData.order_date = $scope.rec.posting_date; //$scope.order_date;
 
@@ -7151,7 +9586,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
         $http
             .post(zone_postUrl, { 'token': $scope.$root.token, 'wrh_id': $scope.formData.warehouses_id })
+<<<<<<< HEAD
             .then(function (res2) {
+=======
+            .then(function(res2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // console.log(res);
 
                 if (res2.data.ack == true) {
@@ -7171,7 +9610,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'warehouses_id': $scope.formData.warehouses_id,
                 'type_id': $scope.formData.type
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.record = {};
                 $scope.columns = [];
 
@@ -7186,7 +9629,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                 }
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -7200,7 +9647,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         angular.element('#return_ware_modal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.get_warehouse_list = function () {
+=======
+    $scope.get_warehouse_list = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var postUrl = $scope.$root.setup + "warehouse/stk-allocation";
         $http
             .post(postUrl, {
@@ -7210,7 +9661,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 'warehouses_id': $scope.formData.warehouses_id,
                 'type_id': $scope.formData.type
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.record = {};
                 $scope.columns = [];
 
@@ -7225,7 +9680,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
                 }
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -7236,7 +9695,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.clear_form = function (formData) {
+=======
+    $scope.clear_form = function(formData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData.id = '';
         $scope.formData.container_no = '';
         $scope.formData.batch_no = '';
@@ -7254,10 +9717,17 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     }
 
+<<<<<<< HEAD
     $scope.add_warehouse = function (formData) {
 
         if (Number($scope.formData.stock_qty <= 0)) {
             toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(360, ['Quantity ', '0']));
+=======
+    $scope.add_warehouse = function(formData) {
+
+        if (Number($scope.formData.stock_qty <= 0)) {
+            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(360, ['Quantity ', '0']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return;
         }
 
@@ -7308,7 +9778,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             addcrmUrl = $scope.$root.setup + "warehouse/update-stk-allocation";
         $http
             .post(addcrmUrl, formData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == 1) {
                     $scope.get_warehouse_list();
                     $scope.clear_form();
@@ -7323,8 +9797,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     //  $timeout(function(){ $state.go("app.edit-srm",{id:res.data.id} ); }, 1000);
 
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (formData.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     else
@@ -7334,7 +9812,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     }
 
+<<<<<<< HEAD
     $scope.edit_ware = function (id) {
+=======
+    $scope.edit_ware = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //  var altcontUrl = $scope.$root.setup + "warehouse/get-stk-allocation";
         var altcontUrl = $scope.$root.setup + "warehouse/get-stk-allocation-by-id";
@@ -7345,7 +9827,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         };
         $http
             .post(altcontUrl, postViewData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //console.log(res);
                 // $scope.formData = res.data.response;
                 $scope.formData.id = res.data.response.id;
@@ -7363,7 +9849,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 $scope.formData.bin = 0;
                 $scope.formData.zone_location = "";
 
+<<<<<<< HEAD
                 $.each($scope.zone, function (index, elem) {
+=======
+                $.each($scope.zone, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == $scope.allocated_locations_array[0])
                         $scope.formData.zone_location = elem;
                 });
@@ -7379,7 +9869,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             'wrh_id': $scope.formData.warehouses_id,
                             'parent_id': $scope.allocated_locations_array[0]
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             // console.log(res);
 
                             if (res.data.ack == true) {
@@ -7388,7 +9882,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 $scope.aisle = res.data.response;
                                 $scope.formData.aisle = 1;
 
+<<<<<<< HEAD
                                 $.each($scope.aisle, function (index, elem) {
+=======
+                                $.each($scope.aisle, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.id == $scope.allocated_locations_array[1])
                                         $scope.formData.aisle_location = elem;
                                 });
@@ -7408,7 +9906,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             'wrh_id': $scope.formData.warehouses_id,
                             'parent_id': $scope.allocated_locations_array[0]
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             // console.log(res);
 
                             if (res.data.ack == true) {
@@ -7418,7 +9920,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 $scope.formData.aisle = 1;
 
                                 // $scope.formData.aisle_location = $scope.aisle[$scope.allocated_locations_array[1]];
+<<<<<<< HEAD
                                 $.each($scope.aisle, function (index, elem) {
+=======
+                                $.each($scope.aisle, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.id == $scope.allocated_locations_array[1])
                                         $scope.formData.aisle_location = elem;
                                 });
@@ -7434,7 +9940,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             'wrh_id': $scope.formData.warehouses_id,
                             'parent_id': $scope.allocated_locations_array[1]
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             // console.log(res);
 
                             if (res.data.ack == true) {
@@ -7444,7 +9954,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 $scope.formData.bin = 1;
 
                                 // $scope.formData.bin_location = $scope.bin[$scope.allocated_locations_array[2]];
+<<<<<<< HEAD
                                 $.each($scope.bin, function (index, elem) {
+=======
+                                $.each($scope.bin, function(index, elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (elem.id == $scope.allocated_locations_array[2])
                                         $scope.formData.bin_location = elem;
                                 });
@@ -7472,6 +9986,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.delete_ware = function (id, index, arr_data) {
         var delUrl = $scope.$root.setup + "warehouse/delete-stk-allocation";
 
@@ -7500,6 +10015,35 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     /*--------------------------------stockend--------------------------------*/
 
     $scope.convert_post_invoice = function (rec, rec2, queue_for_approval) {
+=======
+    $scope.delete_ware = function(id, index, arr_data) {
+            var delUrl = $scope.$root.setup + "warehouse/delete-stk-allocation";
+
+            ngDialog.openConfirm({
+                template: 'modalDeleteDialogId',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+                $http
+                    .post(delUrl, { id: id, 'token': $scope.$root.token })
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                            arr_data.splice(index, 1);
+                            $scope.get_warehouse_list();
+                        } else {
+                            toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                        }
+                    });
+            }, function(reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+
+
+        }
+        /*--------------------------------stockend--------------------------------*/
+
+    $scope.convert_post_invoice = function(rec, rec2, queue_for_approval) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* var convInvoiceUrl = $scope.$root.sales + "customer/return-order/convert-to-invoice";
         $http
@@ -7522,11 +10066,18 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 type: "3, 8",
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
 
                     if(queue_for_approval == undefined)
                     {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+
+                    if (queue_for_approval == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         var valid = 1;
                         var quantity_count = 0;
                         var valid_dispatch_check = 1;
@@ -7535,7 +10086,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         var item_count = 0;
                         var gl_count = 0;
 
+<<<<<<< HEAD
                         angular.forEach($scope.items, function (obj) {
+=======
+                        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.item_type == 0 && obj.stock_check == 1 && (obj.remainig_qty == undefined || obj.remainig_qty > 0))
                                 valid = 0;
 
@@ -7558,16 +10113,26 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             return;
                         }
 
+<<<<<<< HEAD
                         
                         if($scope.rec.grand_total < 0)
                         {
+=======
+
+                        if ($scope.rec.grand_total < 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop("error", "Error", "Invoice value should not be less than zero");
                             return;
                         }
 
+<<<<<<< HEAD
                         
                         if(Number(item_count) > 0 && Number($scope.rec.alt_depo_id) == 0)
                         {
+=======
+
+                        if (Number(item_count) > 0 && Number($scope.rec.alt_depo_id) == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop("error", "Error", $scope.$root.getErrorMessageByCode(230, ['Shipping Address']));
                             return;
                         }
@@ -7603,7 +10168,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(543));
                             else
                                 toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(600, [String(quantity_count)]));
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             return;
                         }
 
@@ -7611,6 +10180,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         if (!$scope.hide_dispatch_btn) {
                             if (error_count > 0) {
                                 $rootScope.credit_note_post_invoice_msg = "Are you sure you want to post this Credit Note?";
+<<<<<<< HEAD
                             }
                             else
                                 $rootScope.credit_note_post_invoice_msg = "Are you sure you want to post this Credit Note?";
@@ -7620,6 +10190,15 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                                 $rootScope.credit_note_post_invoice_msg += " Stock will be automatically received.";
                         }
                         else {
+=======
+                            } else
+                                $rootScope.credit_note_post_invoice_msg = "Are you sure you want to post this Credit Note?";
+
+
+                            if (item_count > 0)
+                                $rootScope.credit_note_post_invoice_msg += " Stock will be automatically received.";
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (error_count > 0)
                                 $rootScope.credit_note_post_invoice_msg = "Are you sure you want to post this Credit Note? . The " + error_msg + " not specified, will be set to current date";
                             else
@@ -7630,6 +10209,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                         ngDialog.openConfirm({
                             template: '_confirm_credit_note_invoice_modal',
                             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                         }).then(function (value) {
                             // $timeout(function () {
 
@@ -7721,6 +10301,88 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 }
                 else
                 {
+=======
+                        }).then(function(value) {
+                                // $timeout(function () {
+
+                                $scope.showLoader = true;
+
+                                /////////////////////////////////////////////////////////////////////////////////////////
+                                /////////////////////////CHECK CURRENCY RATE AVAILABILITY///////////////////////////////
+
+                                var rec3 = {};
+                                var currencyURL = $scope.$root.sales + "customer/customer/get-currency-conversion-rate";
+                                $scope.items_converted_arr = [];
+                                $http
+                                    .post(currencyURL, {
+                                        'id': $scope.$root.c_currency_id,
+                                        token: $scope.$root.token,
+                                        or_date: $scope.rec.posting_date
+                                    })
+                                    .then(function(res) {
+                                        if (res.data.ack != undefined) {
+                                            var conv_rate = 1;
+                                            if ($scope.$root.c_currency_id == $scope.$root.defaultCurrency) {
+                                                var currChk = true;
+                                                conv_rate = 1; //$scope.$parent.rec.currency_rate;
+                                                $scope.$parent.rec.currency_rate = 1;
+                                            } else if (res.data.ack == true) {
+                                                var currChk = false;
+                                                conv_rate = res.data.response.conversion_rate;
+                                                $scope.$parent.rec.currency_rate = res.data.response.conversion_rate;
+                                            } else {
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(601, [$scope.$parent.rec.posting_date]));
+
+                                                $scope.showLoader = false;
+                                                return;
+                                            }
+                                            // if (currChk == true) 
+                                            {
+                                                //	if (res.data.response.conversion_rate != null || currChk == true ) {
+                                                $scope.$parent.rec.currency_rate = conv_rate;
+                                                $scope.rec.grand_total_converted = Number($scope.rec.grand_total) / conv_rate;
+
+                                                $scope.rec.bill_to_posting_group_id = ($scope.drp.vat_bus_posting_group != undefined) ? $scope.drp.vat_bus_posting_group.id : 0;
+                                                if (Number($scope.rec.bill_to_posting_group_id) == 0) {
+                                                    toaster.pop('error', 'Error', ' Select Posting Group of Customer ');
+                                                    $scope.showLoader = false;
+                                                    return;
+                                                }
+                                                /* if(Number($scope.rec.sale_person_id) == 0)
+                                                {
+                                                    toaster.pop('error', 'Error', ' Select Salesperson for the Credit Note. ');
+                                                    $scope.showLoader = false;
+                                                    return;
+                                                } */
+
+                                                // $scope.add_general(rec, rec2, void 0, 1);
+                                                $scope.load_invoice();
+                                            }
+                                            /* else 
+                                            {
+                                                $scope.showLoader = false;
+                                                toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+                                            } */
+                                        }
+                                        /* else {
+                                            $scope.showLoader = false;
+                                            toaster.pop('error', 'Info',$scope.$root.getErrorMessageByCode(230,['Currency Conversion Rate']));
+                                        } */
+                                    });
+
+
+                                // $scope.showLoader = false;
+                                // }, 1000);
+
+                            },
+                            function(reason) {
+                                console.log('Modal promise rejected. Reason: ', reason);
+                            });
+                    } else {
+                        toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(666, ['Credit Note']));
+                    }
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     var already_checked = 0;
                     var response = res.data.response;
                     if (Number(response[0].type) == 3) {
@@ -7735,6 +10397,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             ngDialog.openConfirm({
                                 template: '_confirm_approval_required_modal',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
                                 $scope.showLoader = true;
                                 var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -7791,6 +10454,60 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             return;
                         }
                         else if (Number(response[0].prev_status) == 7) {
+=======
+                            }).then(function(value) {
+                                    $scope.showLoader = true;
+                                    var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                    //'warehouse_id': item.warehouses.id
+                                    $http
+                                        .post(check_approvals, {
+                                            'object_id': $scope.$root.order_id,
+                                            'object_code': $scope.rec.return_order_code,
+                                            'source_name': $scope.rec.sell_to_cust_name,
+                                            'source_code': $scope.rec.sell_to_cust_no,
+                                            'detail_id': 0,
+                                            'approval_id': response[0].id,
+                                            'code': $scope.rec.return_order_code,
+                                            'currency_code': $scope.rec.currency_id.code,
+                                            'type': "3",
+                                            'emp_id_1': response[0].emp_id_1,
+                                            'emp_id_2': response[0].emp_id_2,
+                                            'emp_id_3': response[0].emp_id_3,
+                                            'emp_id_4': response[0].emp_id_4,
+                                            'emp_id_5': response[0].emp_id_5,
+                                            'emp_id_6': response[0].emp_id_6,
+                                            'emp_email_1': response[0].emp_email_1,
+                                            'emp_email_2': response[0].emp_email_2,
+                                            'emp_email_3': response[0].emp_email_3,
+                                            'emp_email_4': response[0].emp_email_4,
+                                            'emp_email_5': response[0].emp_email_5,
+                                            'emp_email_6': response[0].emp_email_6,
+                                            'token': $scope.$root.token
+                                        })
+                                        .then(function(res) {
+                                            if (res.data.ack == true) {
+                                                $scope.showLoader = false;
+                                                toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                return;
+                                            } else {
+                                                $scope.showLoader = false;
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                return;
+                                            }
+                                        });
+                                },
+                                function(reason) {
+                                    $scope.showLoader = false;
+                                    console.log('Modal promise rejected. Reason: ', reason);
+                                });
+                        } else if (Number(response[0].prev_status) == 1) {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
+                            return;
+                        } else if (Number(response[0].prev_status) == 0) {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
+                            return;
+                        } else if (Number(response[0].prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Credit Note']));
                             return;
                         }
@@ -7816,6 +10533,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             ngDialog.openConfirm({
                                 template: '_confirm_approval_required_modal',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
                                 $scope.showLoader = true;
                                 var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -7874,6 +10592,62 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             return;
                         }
                         else if (Number(response2.prev_status) == 7) {
+=======
+                            }).then(function(value) {
+                                    $scope.showLoader = true;
+                                    var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                    //'warehouse_id': item.warehouses.id
+                                    $http
+                                        .post(check_approvals, {
+                                            'object_id': $scope.$root.order_id,
+                                            'object_code': $scope.rec.return_order_code,
+                                            'source_name': $scope.rec.sell_to_cust_name,
+                                            'source_code': $scope.rec.sell_to_cust_no,
+                                            'detail_id': 0,
+                                            'approval_id': response2.id,
+                                            'code': $scope.rec.return_order_code,
+                                            'currency_code': $scope.rec.currency_id.code,
+                                            'type': "8",
+                                            'emp_id_1': response2.emp_id_1,
+                                            'emp_id_2': response2.emp_id_2,
+                                            'emp_id_3': response2.emp_id_3,
+                                            'emp_id_4': response2.emp_id_4,
+                                            'emp_id_5': response2.emp_id_5,
+                                            'emp_id_6': response2.emp_id_6,
+                                            'emp_email_1': response2.emp_email_1,
+                                            'emp_email_2': response2.emp_email_2,
+                                            'emp_email_3': response2.emp_email_3,
+                                            'emp_email_4': response2.emp_email_4,
+                                            'emp_email_5': response2.emp_email_5,
+                                            'emp_email_6': response2.emp_email_6,
+                                            'token': $scope.$root.token
+                                        })
+                                        .then(function(res) {
+                                            if (res.data.ack == true) {
+                                                $scope.showLoader = false;
+                                                toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                return;
+                                            } else {
+                                                $scope.showLoader = false;
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                return;
+                                            }
+                                        });
+                                },
+                                function(reason) {
+                                    $scope.showLoader = false;
+                                    console.log('Modal promise rejected. Reason: ', reason);
+                                });
+                        } else if (Number(response2.prev_status) == 1) {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
+                            return;
+                        } else if (Number(response2.prev_status) == 0) {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
+                            return;
+                        } else if (Number(response2.prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.showLoader = false;
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Credit Note']));
                             return;
@@ -7885,11 +10659,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
     $scope.dsptch = {}
 
+<<<<<<< HEAD
     $scope.receiveStock_org = function (rec, rec2) {
 
 
         var valid = 1;
         angular.forEach($scope.items, function (obj) {
+=======
+    $scope.receiveStock_org = function(rec, rec2) {
+
+
+        var valid = 1;
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.item_type == "0" && obj.stock_check == "1" && (obj.remainig_qty == undefined || obj.remainig_qty > 0 || isNaN(obj.remainig_qty)))
                 valid = 0;
         });
@@ -7905,14 +10687,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         ngDialog.openConfirm({
             template: '_confirm_credit_note_receive',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
+=======
+        }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.dsptch.token = $scope.$root.token;
             $scope.dsptch.order_id = $scope.$root.order_id;
             $scope.dsptch.return_type = 1;
             $scope.dsptch.sale_return_status = 1;
             $http
                 .post(dispStockUrl, $scope.dsptch)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.hide_dispatch_btn = true;
                         $scope.$parent.check_so_readonly = true;
@@ -7922,13 +10712,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     }
 
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     
     $scope.receiveStock = function (rec, rec2) {
+=======
+
+    $scope.receiveStock = function(rec, rec2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var check_approvals = $scope.$root.setup + "general/check-for-approvals";
         //'warehouse_id': item.warehouses.id
         $http
@@ -7937,12 +10736,19 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 type: "3, 8",
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.receiveStock_org(rec, rec2);
                 }
                 else
                 {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.receiveStock_org(rec, rec2);
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     var response = res.data.response;
                     var already_checked = 0;
                     if (Number(response[0].type) == 3) {
@@ -7957,6 +10763,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             ngDialog.openConfirm({
                                 template: '_confirm_approval_required_modal',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
                                 $scope.showLoader = true;
                                 var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -8013,12 +10820,70 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             return;
                         }
                         else if (Number(response[0].prev_status) == 7) {
+=======
+                            }).then(function(value) {
+                                    $scope.showLoader = true;
+                                    var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                    //'warehouse_id': item.warehouses.id
+                                    $http
+                                        .post(check_approvals, {
+                                            'object_id': $scope.$root.order_id,
+                                            'object_code': $scope.rec.return_order_code,
+                                            'source_name': $scope.rec.sell_to_cust_name,
+                                            'source_code': $scope.rec.sell_to_cust_no,
+                                            'detail_id': 0,
+                                            'approval_id': response[0].id,
+                                            'code': $scope.rec.return_order_code,
+                                            'currency_code': $scope.rec.currency_id.code,
+                                            'type': "3",
+                                            'emp_id_1': response[0].emp_id_1,
+                                            'emp_id_2': response[0].emp_id_2,
+                                            'emp_id_3': response[0].emp_id_3,
+                                            'emp_id_4': response[0].emp_id_4,
+                                            'emp_id_5': response[0].emp_id_5,
+                                            'emp_id_6': response[0].emp_id_6,
+                                            'emp_email_1': response[0].emp_email_1,
+                                            'emp_email_2': response[0].emp_email_2,
+                                            'emp_email_3': response[0].emp_email_3,
+                                            'emp_email_4': response[0].emp_email_4,
+                                            'emp_email_5': response[0].emp_email_5,
+                                            'emp_email_6': response[0].emp_email_6,
+                                            'token': $scope.$root.token
+                                        })
+                                        .then(function(res) {
+                                            if (res.data.ack == true) {
+                                                $scope.showLoader = false;
+                                                toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                return;
+                                            } else {
+                                                $scope.showLoader = false;
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                return;
+                                            }
+                                        });
+                                },
+                                function(reason) {
+                                    $scope.showLoader = false;
+                                    console.log('Modal promise rejected. Reason: ', reason);
+                                });
+                        } else if (Number(response[0].prev_status) == 1) {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
+                            return;
+                        } else if (Number(response[0].prev_status) == 0) {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
+                            return;
+                        } else if (Number(response[0].prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Credit Note']));
                             return;
                         }
                     }
 
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var response2 = {};
                     if (response.length == 1)
@@ -8039,6 +10904,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             ngDialog.openConfirm({
                                 template: '_confirm_approval_required_modal',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
                                 $scope.showLoader = true;
                                 var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -8097,6 +10963,62 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                             return;
                         }
                         else if (Number(response2.prev_status) == 7) {
+=======
+                            }).then(function(value) {
+                                    $scope.showLoader = true;
+                                    var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                    //'warehouse_id': item.warehouses.id
+                                    $http
+                                        .post(check_approvals, {
+                                            'object_id': $scope.$root.order_id,
+                                            'object_code': $scope.rec.return_order_code,
+                                            'source_name': $scope.rec.sell_to_cust_name,
+                                            'source_code': $scope.rec.sell_to_cust_no,
+                                            'detail_id': 0,
+                                            'approval_id': response2.id,
+                                            'code': $scope.rec.return_order_code,
+                                            'currency_code': $scope.rec.currency_id.code,
+                                            'type': "8",
+                                            'emp_id_1': response2.emp_id_1,
+                                            'emp_id_2': response2.emp_id_2,
+                                            'emp_id_3': response2.emp_id_3,
+                                            'emp_id_4': response2.emp_id_4,
+                                            'emp_id_5': response2.emp_id_5,
+                                            'emp_id_6': response2.emp_id_6,
+                                            'emp_email_1': response2.emp_email_1,
+                                            'emp_email_2': response2.emp_email_2,
+                                            'emp_email_3': response2.emp_email_3,
+                                            'emp_email_4': response2.emp_email_4,
+                                            'emp_email_5': response2.emp_email_5,
+                                            'emp_email_6': response2.emp_email_6,
+                                            'token': $scope.$root.token
+                                        })
+                                        .then(function(res) {
+                                            if (res.data.ack == true) {
+                                                $scope.showLoader = false;
+                                                toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                return;
+                                            } else {
+                                                $scope.showLoader = false;
+                                                toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                return;
+                                            }
+                                        });
+                                },
+                                function(reason) {
+                                    $scope.showLoader = false;
+                                    console.log('Modal promise rejected. Reason: ', reason);
+                                });
+                        } else if (Number(response2.prev_status) == 1) {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
+                            return;
+                        } else if (Number(response2.prev_status) == 0) {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
+                            return;
+                        } else if (Number(response2.prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.showLoader = false;
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Credit Note']));
                             return;
@@ -8106,6 +11028,7 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.load_invoice = function (nettotal, vat, grand) {
        
         var dispStockUrl = $scope.$root.sales + "warehouse/invoice-stock";
@@ -8126,21 +11049,49 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                       
                     $scope.showLoader = false;
                     $scope.hide_dispatch_btn = true; 
+=======
+    $scope.load_invoice = function(nettotal, vat, grand) {
+
+        var dispStockUrl = $scope.$root.sales + "warehouse/invoice-stock";
+        $scope.invoice_params = {};
+        $scope.invoice_params.token = $scope.$root.token;
+        $scope.invoice_params.order_id = $scope.$root.order_id;
+        $scope.invoice_params.type = 2;
+        $scope.invoice_params.posting_grp = $scope.rec.bill_to_posting_group_id;
+        $scope.invoice_params.items_net_amt = $scope.rec.items_net_total;
+        $scope.invoice_params.items_net_vat = $scope.rec.items_net_vat;
+        $scope.invoice_params.items_net_disc = $scope.rec.items_net_discount;
+        $scope.invoice_params.grand_total = $scope.rec.grand_total;
+        $scope.showLoader = true;
+        $http
+            .post(dispStockUrl, $scope.invoice_params)
+            .then(function(res) {
+                if (res.data.ack == true) {
+
+                    $scope.showLoader = false;
+                    $scope.hide_dispatch_btn = true;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(628));
                     $scope.items = [];
                     $scope.showVolumeWeight = 0;
                     $scope.$emit('SalesLines', $scope.items);
                     $scope.$emit('InvoicePosted', $scope.$parent.rec);
                     $state.go("app.addReturnOrder");
+<<<<<<< HEAD
                     
                 }
                 else
                 {
+=======
+
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     toaster.pop('error', 'Info', res.data.error);
                 }
 
             });
+<<<<<<< HEAD
                        
 /* $scope.product_type = true;
         $scope.count_result = 0;
@@ -8204,6 +11155,71 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     return false;
                 }
             }); */
+=======
+
+        /* $scope.product_type = true;
+                $scope.count_result = 0;
+                var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
+                var name = $scope.$root.base64_encode('return_orders');
+                var no = $scope.$root.base64_encode('sale_invioce_no');
+                var module_category_id = 2;
+                $http
+                    .post(getCodeUrl, {
+                        'is_increment': 1,
+                        'token': $scope.$root.token,
+                        'tb': name,
+                        'm_id': 110,
+                        'no': no,
+                        'category': '',
+                        'brand': '',
+                        'module_category_id': module_category_id,
+                        'type': '2,3'
+                    })
+                    .then(function (res) {
+                        if (res.data.ack == 1) {
+                            var sale_invoice_code = res.data.code;
+                            var sale_invoice_no = res.data.nubmer;
+
+                            $scope.rec.code_type = module_category_id;//res.data.code_type;
+                            //	 $scope.count_result++;
+
+                            if (res.data.type == 1)
+                                $scope.product_type = false;
+                            else
+                                $scope.product_type = true;
+                            
+
+
+                            var convInvoiceUrl = $scope.$root.sales + "customer/return-order/convert-to-invoice";
+                            $http
+                                .post(convInvoiceUrl, {
+                                    id: $scope.$root.order_id,
+                                    type: 2,
+                                    'module': 1,
+                                    'token': $scope.$root.token,
+                                    'return_invoice_code': sale_invoice_code,
+                                    'sale_invoice_no': sale_invoice_no
+                                })
+                                .then(function (res) {
+                                    if (res.data.ack == true) {
+                                        toaster.pop('success', 'Info', 'Posted to Credit Note');
+                                        $scope.items = [];
+                                        $scope.$emit('SalesLines', $scope.items);
+                                        $scope.$emit('InvoicePosted', $scope.$parent.rec);
+                                        $state.go("app.addReturnOrder");
+                                    }
+                                    else {
+                                        $scope.showLoader = false;
+                                        toaster.pop('error', 'Error', 'Can\'t Converted into Invoice!');
+                                    }
+                                });
+                        }
+                        else {
+                            toaster.pop('error', 'Error', res.data.error);
+                            return false;
+                        }
+                    }); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* console.log(nettotal);
         var total = 0;
         angular.forEach($scope.items, function (item) {
@@ -8252,13 +11268,22 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
  */
     }
+<<<<<<< HEAD
     
     $scope.OnChangeUnitPrice = function (item) {
+=======
+
+    $scope.OnChangeUnitPrice = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         item.standard_price = Number(item.standard_price).toFixed(3);
         item.standard_price = Number(item.standard_price);
     }
 
+<<<<<<< HEAD
     $scope.onChangeDiscountType = function (item) {
+=======
+    $scope.onChangeDiscountType = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item.discount != '') {
             if (isNaN(item.discount)) {
                 item.discount = '';
@@ -8268,16 +11293,26 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
             if (item.discount_type_id.id == 'None') {
                 item.discount = '';
+<<<<<<< HEAD
             }
             else if (item.discount_type_id.id == 'Percentage') {
                 if (item.discount != '' && Number(item.discount) > 100) {
                     item.discount = '';//item.discount.slice(0, -1);
+=======
+            } else if (item.discount_type_id.id == 'Percentage') {
+                if (item.discount != '' && Number(item.discount) > 100) {
+                    item.discount = ''; //item.discount.slice(0, -1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(515));
                 }
             }
         }
     }
+<<<<<<< HEAD
     $scope.checkDuplWHItem = function (param_item, index) {
+=======
+    $scope.checkDuplWHItem = function(param_item, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (param_item.item_type == 0) {
             var chk_item = $filter("filter")(param_item.arr_warehouse, { id: param_item.warehouses }, true);
             if (chk_item != undefined && chk_item.length > 0) {
@@ -8288,8 +11323,12 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     $scope.items[index].warehouses = 0;
                     // return false;
                 } */
+<<<<<<< HEAD
             }
             else
+=======
+            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 param_item.warehouse_name = "";
 
             /* var SelectedWH = [];
@@ -8369,10 +11408,17 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.checkDuplWHLocation = function (stock_item) {
         console.log('onchange');
     }
     $scope.checkStock = function (item, index) {
+=======
+    $scope.checkDuplWHLocation = function(stock_item) {
+        console.log('onchange');
+    }
+    $scope.checkStock = function(item, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var chkStockUrl = $scope.$root.sales + 'customer/order/get-warehouse-avail-stock';
         $http
             .post(chkStockUrl, {
@@ -8381,15 +11427,23 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 item_id: item.id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     if (res.data.avail_qty < item.qty) {
                         toaster.pop('warning', 'Info', 'Available quantity is less than item quantity!');
                         $scope.items[index].warehouses = 0;
                         return false;
                     }
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('warning', 'Info', 'No stock availabe!');
                     $scope.items[index].warehouses = 0;
                     return false;
@@ -8397,17 +11451,28 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
             });
     }
 
+<<<<<<< HEAD
     $scope.checkQty = function (item, index) {
         if (item.qty > item.soled_qty) {
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(602, [item.soled_qty]));
             
+=======
+    $scope.checkQty = function(item, index) {
+        if (item.qty > item.soled_qty) {
+            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(602, [item.soled_qty]));
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.items[index].qty = item.soled_qty;
             return;
         }
     }
 
 
+<<<<<<< HEAD
     $scope.GetApprovalStatus = function () {
+=======
+    $scope.GetApprovalStatus = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.approval_history = [];
         var postUrl_ref_cat = $scope.$root.setup + "general/get-approval-status";
         $scope.show_approval_btn = false;
@@ -8420,16 +11485,27 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                 type: "3, 8",
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.approval_history = res.data.response;
                     if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Awaiting Approval' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
                     {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.approval_history = res.data.response;
+                    if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Awaiting Approval' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.show_approval_btn = true;
                         $scope.show_disapproval_btn = true;
                     }
 
+<<<<<<< HEAD
                     if($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Approved' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
+=======
+                    if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Approved' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.show_disapproval_btn = true;
                 }
             });
@@ -8437,7 +11513,11 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
     }
 
 
+<<<<<<< HEAD
     $scope.ChangeApprovalStatus = function (status, comments) {
+=======
+    $scope.ChangeApprovalStatus = function(status, comments) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var update_approvals_status = $scope.$root.setup + "general/update-approval-status";
         var id = $scope.approval_history[$scope.approval_history.length - 1].id;
         var object_code = $scope.approval_history[$scope.approval_history.length - 1].object_code;
@@ -8447,9 +11527,14 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         var requested_by_email = $scope.approval_history[$scope.approval_history.length - 1].requested_by_email;
         var current_value = $scope.approval_history[$scope.approval_history.length - 1].current_value;
         var currency_code = $scope.approval_history[$scope.approval_history.length - 1].currency_code;
+<<<<<<< HEAD
         
         if(status == 3 && (comments == undefined || comments.length == 0))
         {
+=======
+
+        if (status == 3 && (comments == undefined || comments.length == 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'error', $scope.$root.getErrorMessageByCode(664));
             return;
         }
@@ -8458,20 +11543,33 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
         $http
             .post(update_approvals_status, {
                 'object_id': $scope.$root.order_id,
+<<<<<<< HEAD
                 'detail_id':0,
+=======
+                'detail_id': 0,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 'source_name': source_name,
                 'source_code': source_code,
                 'id': id,
                 'object_code': object_code,
                 'requested_by_email': requested_by_email,
+<<<<<<< HEAD
                 'current_value':current_value,
                 'currency_code':currency_code,
+=======
+                'current_value': current_value,
+                'currency_code': currency_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 'type': type,
                 'status': status,
                 'comments': comments,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.showLoader = false;
                     if (status == 2)
@@ -8479,12 +11577,20 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
                     else
                         toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(624));
 
+<<<<<<< HEAD
                     if(status == 3)
                         angular.element('#_approval_history').modal('hide');
 
                     return;
                 }
                 else {
+=======
+                    if (status == 3)
+                        angular.element('#_approval_history').modal('hide');
+
+                    return;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     $scope.disableDisapprovalBtn = false;
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
@@ -8498,6 +11604,10 @@ function ReturnOrderTabController($scope, $rootScope, $stateParams, $http, $stat
 
 creditNoteModalController.$inject = ["$scope", "$http", "print_invoice_vals", "openEmailer", "noModal", "toaster", "$rootScope", "serviceVariables", "fileAuthentication", "generatePdf"]
 myApp.controller('creditNoteModalController', creditNoteModalController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function creditNoteModalController($scope, $http, print_invoice_vals, openEmailer, noModal, toaster, $rootScope, serviceVariables, fileAuthentication, generatePdf) {
 
     $scope.print_invoice_vals = print_invoice_vals;
@@ -8505,17 +11615,29 @@ function creditNoteModalController($scope, $http, print_invoice_vals, openEmaile
     $scope.noModal = noModal;
     $scope.fileAuthentication = fileAuthentication;
 
+<<<<<<< HEAD
     $scope.generatePDFandDownload = function (templateType, invoiceVals, x) {
+=======
+    $scope.generatePDFandDownload = function(templateType, invoiceVals, x) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         generatePdf.showLoader = true;
         generatePdf.generatePdf(templateType, invoiceVals, x);
     }
 
+<<<<<<< HEAD
     $scope.generateJSReportPDF = function (templateType, invoiceVals, x) {
+=======
+    $scope.generateJSReportPDF = function(templateType, invoiceVals, x) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         generatePdf.showLoader = true;
         generatePdf.genJSReport(templateType, invoiceVals, x);
     }
 
+<<<<<<< HEAD
     $scope.destroyPdfModal = function (modalName) {
+=======
+    $scope.destroyPdfModal = function(modalName) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         angular.element(document.querySelector("#" + modalName)).remove();
     }
 
@@ -8544,4 +11666,8 @@ function creditNoteModalController($scope, $http, print_invoice_vals, openEmaile
     //         });
     // }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

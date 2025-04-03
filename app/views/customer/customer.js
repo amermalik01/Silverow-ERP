@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* specific routes here (see file config.js) */
         $stateProvider
             .state('app.customer', {
@@ -24,19 +28,33 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
                 controller: 'CustomerEditController'
             })
 
+<<<<<<< HEAD
     }]);
 
 myApp.controller('CustomerController', CustomerController);
+=======
+    }
+]);
+
+myApp.controller('CustomerController', CustomerController);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function CustomerController($scope, $filter, $resource, $timeout, $http, ngDialog, toaster, $rootScope, moduleTracker) {
     'use strict';
 
     moduleTracker.updateName("customer");
     moduleTracker.updateRecord("");
 
+<<<<<<< HEAD
     $scope.$root.breadcrumbs =
         [{ 'name': 'Sales', 'url': '#', 'isActive': false },
         { 'name': 'Customers', 'url': '#', 'isActive': true }
         ];
+=======
+    $scope.$root.breadcrumbs = [{ 'name': 'Sales', 'url': '#', 'isActive': false },
+        { 'name': 'Customers', 'url': '#', 'isActive': true }
+    ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     var vm = this;
     var Api = $scope.$root.sales + "customer/customer/listings";
@@ -53,7 +71,11 @@ function CustomerController($scope, $filter, $resource, $timeout, $http, ngDialo
      $scope.reversee = true;
      $scope.sort_column='';*/
     $scope.searchKeyword = {};
+<<<<<<< HEAD
     $scope.getcrm_list = function (item_paging, sort_column, sortform) {
+=======
+    $scope.getcrm_list = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //pass in API
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
@@ -96,7 +118,11 @@ function CustomerController($scope, $filter, $resource, $timeout, $http, ngDialo
 
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.columns = [];
                 $scope.record_data = {};
@@ -112,7 +138,11 @@ function CustomerController($scope, $filter, $resource, $timeout, $http, ngDialo
                     $scope.total_paging_record = res.data.total_paging_record;
 
                     $scope.record_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -138,6 +168,10 @@ function CustomerController($scope, $filter, $resource, $timeout, $http, ngDialo
 }
 
 myApp.controller('CustomerEditController', CustomerEditController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function CustomerEditController($scope, $filter, $http, $state, $resource, ngDialog, toaster, $timeout, $rootScope, $stateParams, Upload, moduleTracker) {
     'use strict';
 
@@ -153,7 +187,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.convertPriceTabPermission = $rootScope.allowconvert_cust_price_tab;
 
 
+<<<<<<< HEAD
     $scope.addPriceTabPermission = $rootScope.allowadd_cust_price_tab;    
+=======
+    $scope.addPriceTabPermission = $rootScope.allowadd_cust_price_tab;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.editPriceTabPermission = $rootScope.allowedit_cust_price_tab;
     $scope.viewPriceTabPermission = $rootScope.allowview_cust_price_tab;
     $scope.deletePriceTabPermission = $rootScope.allowdelete_cust_price_tab;
@@ -173,11 +211,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.viewLocationPermission = $rootScope.allowview_cust_location_tab;
     $scope.deleteLocationPermission = $rootScope.allowdelete_cust_location_tab;
 
+<<<<<<< HEAD
     $scope.$root.breadcrumbs =
         [{ 'name': 'Sales', 'url': '#', 'style': '' },
         { 'name': 'Customers', 'url': 'app.customer', 'style': '' }];
 
     $scope.formUrl = function () {
+=======
+    $scope.$root.breadcrumbs = [{ 'name': 'Sales', 'url': '#', 'style': '' },
+        { 'name': 'Customers', 'url': 'app.customer', 'style': '' }
+    ];
+
+    $scope.formUrl = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //$scope.$root.$broadcast("goToComment", {row_id: $stateParams.id,module_id:19});
         return "app/views/customer/_form.html";
     }
@@ -188,15 +234,23 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     if ($stateParams.isPriceOffer != undefined) {
         $scope.isPriceOffer = 1;
+<<<<<<< HEAD
     }
     else
+=======
+    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isPriceOffer = 0;
 
 
     if ($stateParams.isOppCycle != undefined) {
         $scope.isOppCycle = $stateParams.isOppCycle;
+<<<<<<< HEAD
     }
     else
+=======
+    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isOppCycle = 0;
 
 
@@ -205,13 +259,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.check_cust_readonly = true;
 
 
+<<<<<<< HEAD
     $scope.showEditCRMForm = function () {
+=======
+    $scope.showEditCRMForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_cust_readonly = false;
     }
 
     $scope.$root.tabHide = 0;
     $scope.$root.lblButton = 'Add New';
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.crmRebateFormShow = false;
     $scope.crmRebateListingShow = true;
     /*$scope.oppCycleFormShow = false;
@@ -239,15 +301,24 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $rootScope.social_medias_general_form = [];
     $rootScope.social_medias_contact_form = [];
 
+<<<<<<< HEAD
     var refreshId = setInterval(function () {
+=======
+    var refreshId = setInterval(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (($rootScope.social_medias != undefined && $rootScope.social_medias.length > 0)) {
             angular.copy($rootScope.social_medias, $rootScope.social_medias_general_form);
             angular.copy($rootScope.social_medias, $rootScope.social_medias_contact_form);
             clearInterval(refreshId);
         }
     }, 500);
+<<<<<<< HEAD
     
     
+=======
+
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.qty = 5;
     $scope.defaultOption = 2;
@@ -280,7 +351,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     $scope.disableClass = 1;
 
+<<<<<<< HEAD
     $scope.changeToAddButton = function () {
+=======
+    $scope.changeToAddButton = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.$root.lblButton = 'Add New';
     }
     $scope.code = '';
@@ -307,8 +382,13 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.postData_cust.customerId = _customerId;
 
         $http
+<<<<<<< HEAD
             .post(get_customer_last_order_url,$scope.postData_cust )
             .then(function (res) {
+=======
+            .post(get_customer_last_order_url, $scope.postData_cust)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.lastCustomerActivity = res.data.response[0];
                 } else {
@@ -317,7 +397,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
 
     }
+<<<<<<< HEAD
     $scope.get_empl_list = function (arg) {
+=======
+    $scope.get_empl_list = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log(arg);
         $scope.showLoader = true;
         $scope.columns_pr = [];
@@ -341,7 +425,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(empUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = false;
 
@@ -351,7 +439,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.record_pr = res.data.response;
 
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_pr.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -368,7 +460,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_employeeList = function (result, emptype) {
+=======
+    $scope.confirm_employeeList = function(result, emptype) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (emptype == 'general') {
             $scope.PriceOffer_rec.recieved_by = result.name;
             $scope.PriceOffer_rec.recieved_by_id = result.id;
@@ -380,9 +476,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         angular.element('#_CrmEmplisting_model').modal('hide');
     }
+<<<<<<< HEAD
     
     $scope.last_selected_bucket= 0;
     $scope.get_crm_data_by_id = function () {
+=======
+
+    $scope.last_selected_bucket = 0;
+    $scope.get_crm_data_by_id = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         //  var getCrmUrl = $scope.$root.sales + "customer/customer/get-customer";
         var getCrmUrl = $scope.$root.sales + "crm/crm/get-crm";
 
@@ -395,10 +497,16 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.moduleCodeType = 1;
 
         $http
+<<<<<<< HEAD
             .post(getCrmUrl, { id: $scope.$root.crm_id, 'token': $scope.$root.token, customer: 'customer','defaultCurrency':$scope.$root.defaultCurrency })
             .then(function (res) {
                 if(res.data.ack != undefined)
                 {
+=======
+            .post(getCrmUrl, { id: $scope.$root.crm_id, 'token': $scope.$root.token, customer: 'customer', 'defaultCurrency': $scope.$root.defaultCurrency })
+            .then(function(res) {
+                if (res.data.ack != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                 }
 
@@ -413,7 +521,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     'title': 'Inactive'
                 }];
                 // saleperson
+<<<<<<< HEAD
                 if(res.data.response.crmSalesPerson){
+=======
+                if (res.data.response.crmSalesPerson) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.rec.saleperson_code = res.data.response.crmSalesPerson.name;
                     $scope.rec.saleperson_code_id = res.data.response.crmSalesPerson.id;
                 }
@@ -421,16 +533,27 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 $scope.check_cust_readonly = true;
                 $scope.allowChangeBucket = false;
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.response.RouteToMarket != undefined && res.data.response.RouteToMarket.ack == 1) {
                     $scope.RTMCrmList = res.data.response.RouteToMarket.response.RTMCrmList;
                     $scope.LinkedRTMCrmList = res.data.response.RouteToMarket.response.LinkedRTMCrmList;
                     // $scope.selectedRouteToMarkets = res.data.response.RouteToMarket.response.LinkedRTMCrmString; // did in the next loop
                     $scope.selectedRouteToMarkets = "";
+<<<<<<< HEAD
                     angular.forEach($scope.RTMCrmList, function (crm) {
                         crm.chk = false;
                         crm.is_prefered = false;
                         angular.forEach($scope.LinkedRTMCrmList, function (link_rtm) {
+=======
+                    angular.forEach($scope.RTMCrmList, function(crm) {
+                        crm.chk = false;
+                        crm.is_prefered = false;
+                        angular.forEach($scope.LinkedRTMCrmList, function(link_rtm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (crm.id == link_rtm.crm_id) {
                                 crm.chk = true;
                                 $scope.selectedRouteToMarkets += crm.code + ', ';
@@ -457,12 +580,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 $scope.rec.turnover = (parseFloat(res.data.response.turnover) > 0) ? parseFloat(res.data.response.turnover) : 0.00; // according to Osama
 
                 $scope.dynamic_socialmedia = {};
+<<<<<<< HEAD
                 $scope.customer_balance = res.data.response.customer_balance;                
                 $scope.balanceInCustomerCurrency = res.data.response.balanceInCustomerCurrency;             
                 $scope.custAvgPaymentDays = (res.data.response.custAvgPaymentDays) ? res.data.response.custAvgPaymentDays : 0;
 
                 $scope.tempSocialMedia = [];
                 angular.forEach($rootScope.social_medias_general_form, function (obj2) {
+=======
+                $scope.customer_balance = res.data.response.customer_balance;
+                $scope.balanceInCustomerCurrency = res.data.response.balanceInCustomerCurrency;
+                $scope.custAvgPaymentDays = (res.data.response.custAvgPaymentDays) ? res.data.response.custAvgPaymentDays : 0;
+
+                $scope.tempSocialMedia = [];
+                angular.forEach($rootScope.social_medias_general_form, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj2.id == $scope.rec.socialmedia1 && $scope.rec.socialmedia1 != 0) {
                         obj2.value = $scope.rec.socialmedia1_value;
@@ -493,8 +625,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                 if ($scope.rec.currency_id) {
                     $rootScope.cust_current_edit_currency = $scope.$root.get_obj_frm_arry($rootScope.arr_currency, $scope.rec.currency_id);
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $rootScope.cust_current_edit_currency = $scope.$root.defaultCurrencyCode;
                 }
 
@@ -514,7 +650,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                 if ($scope.rec.anonymous_customer == 1)
                     $scope.rec.anonymous_customer1 = true;
+<<<<<<< HEAD
                 else 
+=======
+                else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.rec.anonymous_customer1 = false;
 
 
@@ -549,7 +689,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 if ($scope.rec.ownership_type != undefined && $rootScope.arr_type_of_Business != undefined)
                     $scope.rec.ownership_type = $scope.$root.get_obj_frm_arry($rootScope.arr_type_of_Business, $scope.rec.ownership_type);
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec.arr_crm_type = [{
                     'id': '1',
                     'title': 'Standard'
@@ -566,9 +710,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.drp.currency = $scope.$root.get_obj_frm_arry($rootScope.arr_currency, $scope.rec.currency_id);
 
                 if ($scope.rec.crm_type != undefined && $scope.rec.arr_crm_type != undefined)
+<<<<<<< HEAD
                         $scope.drp.crm_type = $scope.$root.get_obj_frm_arry($scope.rec.arr_crm_type, $scope.rec.crm_type);
 
                 angular.forEach($rootScope.social_medias, function (obj2) {
+=======
+                    $scope.drp.crm_type = $scope.$root.get_obj_frm_arry($scope.rec.arr_crm_type, $scope.rec.crm_type);
+
+                angular.forEach($rootScope.social_medias, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj2.id == $scope.rec.socialmedia1)
                         $scope.rec.socialmedia1 = obj2;
@@ -603,8 +753,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
 
                 if ($scope.$root.breadcrumbs.length == 2) {
+<<<<<<< HEAD
                     $scope.$root.breadcrumbs.push(
                         { 'name': $scope.$root.bdname, 'url': '#', 'isActive': false });
+=======
+                    $scope.$root.breadcrumbs.push({ 'name': $scope.$root.bdname, 'url': '#', 'isActive': false });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
 
                 if ($scope.rec.socialmedia1_value.length > 0 || $scope.rec.socialmedia2_value.length > 0 || $scope.rec.socialmedia3_value.length > 0 || $scope.rec.socialmedia4_value.length > 0 || $scope.rec.socialmedia5_value.length > 0)
@@ -618,16 +772,26 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                 $scope.bucket_array = [];
 
+<<<<<<< HEAD
                
             }).catch(function (message) {
+=======
+
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 throw new Error(message.data);
                 console.log(message.data);
             });
 
     }
 
+<<<<<<< HEAD
     
     $scope.ShowRouteToMarketList = function (crm_type) {
+=======
+
+    $scope.ShowRouteToMarketList = function(crm_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword_rmt = {};
         var type = 0;
         if (crm_type == 2) // (from RTM to indirect)
@@ -635,18 +799,30 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             $scope.title = "Indirect List";
             $scope.route_to_market_type = 1;
             type = 1;
+<<<<<<< HEAD
         }
         else if (crm_type == 3) // (from indirect to RTM)
+=======
+        } else if (crm_type == 3) // (from indirect to RTM)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             $scope.title = "Route to Market List"
             type = 2;
             $scope.route_to_market_type = 2;
+<<<<<<< HEAD
         }
         else {
             return;
         }
         
         angular.forEach($scope.RTMCrmList, function (crm) {
+=======
+        } else {
+            return;
+        }
+
+        angular.forEach($scope.RTMCrmList, function(crm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             crm.chk = false;
         });
         var crm_id = ($scope.$root.crm_id != undefined) ? $scope.$root.crm_id : 0;
@@ -662,16 +838,27 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.showLoader = true;
         $http
             .post(ApiAjax, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.RTMCrmList = res.data.response.RTMCrmList;
                     $scope.LinkedRTMCrmList = res.data.response.LinkedRTMCrmList;
                     $scope.selectedRouteToMarkets = '';
+<<<<<<< HEAD
                     angular.forEach($scope.RTMCrmList, function (crm) {
                         crm.chk = false;
                         crm.is_prefered = false;
                         angular.forEach($scope.LinkedRTMCrmList, function (link_rtm) {
+=======
+                    angular.forEach($scope.RTMCrmList, function(crm) {
+                        crm.chk = false;
+                        crm.is_prefered = false;
+                        angular.forEach($scope.LinkedRTMCrmList, function(link_rtm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (crm.id == link_rtm.crm_id) {
                                 crm.chk = true;
                                 $scope.selectedRouteToMarkets += crm.code + ', ';
@@ -688,8 +875,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     angular.element('#customer_route_to_market_modal').modal('show');
                     if ($scope.selectedRouteToMarkets.length > 0)
                         $scope.selectedRouteToMarkets = $scope.selectedRouteToMarkets.slice(0, -2);
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (type == 1)
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(232, ['Indirect CRMs']));
                     else
@@ -698,8 +889,13 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 }
 
                 if (res.data.ack != undefined) {
+<<<<<<< HEAD
                     angular.forEach($scope.RTMCrmList, function (crm) {
                         angular.forEach($scope.RTMCrmListTemp, function (selected_rtm) {
+=======
+                    angular.forEach($scope.RTMCrmList, function(crm) {
+                        angular.forEach($scope.RTMCrmListTemp, function(selected_rtm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (crm.id == selected_rtm.id && !crm.chk && selected_rtm.chk) {
                                 crm.chk = true;
                                 $scope.selectedRouteToMarkets += crm.code + ', ';
@@ -713,7 +909,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
 
     }
+<<<<<<< HEAD
     $scope.ShowIndirectCustomers = function (crm_id) {
+=======
+    $scope.ShowIndirectCustomers = function(crm_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         console.log(crm_id);
         $scope.searchKeyword_rmt_sub = {};
         var postUrl = $scope.$root.sales + "crm/crm/get-route-to-market-associated-indirect-crm";
@@ -723,7 +923,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 crm_id: crm_id,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.RTMCrmList_sub = res.data.response;
                     angular.element('#customer_route_to_market_modal_sub').modal('show');
@@ -734,9 +938,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 }
             });
     }
+<<<<<<< HEAD
     $scope.CheckAllRMT = function (flg) {
         var chk_is_prefered = 0;
         angular.forEach($scope.RTMCrmList, function (obj) {
+=======
+    $scope.CheckAllRMT = function(flg) {
+        var chk_is_prefered = 0;
+        angular.forEach($scope.RTMCrmList, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             obj.chk = flg;
 
             if (flg == false && obj.is_prefered == true)
@@ -750,8 +960,13 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             $scope.RTMCrmList[0].is_prefered = true;
     }
 
+<<<<<<< HEAD
     $scope.CheckPreferedRMT = function (rec) {
         angular.forEach($scope.RTMCrmList, function (obj) {
+=======
+    $scope.CheckPreferedRMT = function(rec) {
+        angular.forEach($scope.RTMCrmList, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             obj.is_prefered = false;
             if (obj.id == rec.id) {
                 obj.is_prefered = true;
@@ -760,25 +975,43 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         });
     }
 
+<<<<<<< HEAD
     $scope.checkSingleRMT = function (rec) {
         if (rec.chk == false) {
             rec.is_prefered = false;
             $scope.searchKeyword_rmt.chk = false;
         }
         else {
+=======
+    $scope.checkSingleRMT = function(rec) {
+        if (rec.chk == false) {
+            rec.is_prefered = false;
+            $scope.searchKeyword_rmt.chk = false;
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (rec.crm_type == 1) {
                 ngDialog.openConfirm({
                     template: 'modalConvertCRMToIndirect',
                     className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                 }).then(function (value) {
                     console.log('checked');
                 }, function (reason) {
+=======
+                }).then(function(value) {
+                    console.log('checked');
+                }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     //console.log('Modal promise rejected. Reason: ', reason);
                     rec.chk = false;
                 });
             }
             var flg = true;
+<<<<<<< HEAD
             angular.forEach($scope.RTMCrmList, function (obj) {
+=======
+            angular.forEach($scope.RTMCrmList, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (obj.chk == false) {
                     flg = false;
                 }
@@ -792,13 +1025,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.AddRTM = function (isSave) {
+=======
+    $scope.AddRTM = function(isSave) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var str = '';
         var selected_rows = [];
         if ($scope.drp.crm_type.id == 1)
             $scope.RTMCrmList = [];
 
+<<<<<<< HEAD
         angular.forEach($scope.RTMCrmList, function (crm) {
+=======
+        angular.forEach($scope.RTMCrmList, function(crm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (crm.chk == true) {
                 str += crm.code + ', ';
                 selected_rows.push(crm);
@@ -818,14 +1059,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             var ApiAjax = $scope.$root.sales + "crm/crm/update-route-to-market";
             $http
                 .post(ApiAjax, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         if (str.length > 0)
                             $scope.selectedRouteToMarkets = str.slice(0, -2);
 
                         angular.element('#customer_route_to_market_modal').modal('hide');
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(106));
                 });
         }
@@ -844,7 +1093,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
 
+<<<<<<< HEAD
     $scope.getCode = function (rec) {
+=======
+    $scope.getCode = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         //var getCodeUrl = $scope.$root.sales+"customer/customer/get-crm-code";
 
@@ -871,34 +1124,54 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 'type': '2,3',
                 'status': ''
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1) {
 
                     $scope.rec.customer_code = res.data.code;
                     $scope.rec.customer_no = res.data.nubmer;
+<<<<<<< HEAD
                     $scope.rec.code_type = module_category_id;//res.data.code_type;
+=======
+                    $scope.rec.code_type = module_category_id; //res.data.code_type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.count_result++;
 
 
                     if (res.data.type == 1) {
                         $scope.product_type = false;
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.product_type = true;
                     }
 
                     if ($scope.count_result > 0) {
                         //console.log($scope.count_result);
                         return true;
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         //console.log($scope.count_result + 'd');
                         return false;
                     }
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'info', res.data.error);
                     return false;
                 }
@@ -910,7 +1183,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     // $scope.showLoader = false;
 
+<<<<<<< HEAD
     $scope.generate_unique_id = function () {
+=======
+    $scope.generate_unique_id = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.$root.crm_id = null;
         $scope.moduleCodeType = 1;
@@ -920,9 +1197,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(getUrl, { 'token': $scope.$root.token, type: 3, customer: 'customer' })
+<<<<<<< HEAD
             .then(function (res) {
                 $scope.showLoader = false;
                 
+=======
+            .then(function(res) {
+                $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // alert($scope.showLoader);  //return;
 
                 if (res.data.ack == 1) {
@@ -931,7 +1214,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.moduleCodeType = res.data.moduleCodeType;
 
                     $scope.allowChangeBucket = true;
+<<<<<<< HEAD
                    
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     // $scope.rec.unique_id = res.data.unique_id;
                     $scope.rec.id = res.data.id;
                     $scope.$root.crm_id = res.data.id;
@@ -978,8 +1265,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.rec.contactCollapse = true;
                     $scope.rec.primaryConSocialMediaCollapse = true;
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'info', res.data.error);
                     return false;
                 }
@@ -993,14 +1284,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     $scope.$root.crm_id = $stateParams.id;
 
+<<<<<<< HEAD
     $scope.add_general = function (rec, drp) {
+=======
+    $scope.add_general = function(rec, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (drp.status_id == undefined || drp.status_id == '') {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Status']));
             return false;
         }
 
+<<<<<<< HEAD
         if (rec.credit_limit && (isNaN(rec.credit_limit) || (rec.credit_limit != Math.floor(rec.credit_limit)))){
+=======
+        if (rec.credit_limit && (isNaN(rec.credit_limit) || (rec.credit_limit != Math.floor(rec.credit_limit)))) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(646, ['Credit Limit']));
             return false;
         }
@@ -1057,23 +1356,38 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         rec.token = $scope.$root.token;
 
 
+<<<<<<< HEAD
         if ($scope.rec.customer_code != undefined){
+=======
+        if ($scope.rec.customer_code != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // if (rec.is_delivery_collection_address != 0)
             //     toaster.pop('warning', 'info', "Contact and Delivery Hours can be added on Other Locations tab.");
             $scope.UpdateForm(rec);
 
+<<<<<<< HEAD
         }            
         else {
 
             $scope.showLoader = true;
             rec.crmModuleType = 2; 
+=======
+        } else {
+
+            $scope.showLoader = true;
+            rec.crmModuleType = 2;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.recDupChk = rec;
 
             var duplicationChkUrl = $scope.$root.sales + "crm/crm/duplication-chk-crm";
 
             $http
                 .post(duplicationChkUrl, rec)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == true) {
                         $scope.showLoader = false;
@@ -1084,7 +1398,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                             template: 'app/views/crm/duplicationChkModal.html',
                             className: 'ngdialog-theme-default-custom',
                             scope: $scope
+<<<<<<< HEAD
                         }).then(function (value) { 
+=======
+                        }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             /* code to get Customer code Start */
                             if (rec.is_delivery_collection_address != 0)
@@ -1108,7 +1426,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                     'type': '2,3',
                                     'status': ''
                                 })
+<<<<<<< HEAD
                                 .then(function (coderes) {
+=======
+                                .then(function(coderes) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     if (coderes.data.ack == 1) {
                                         // $scope.showLoader = false;
@@ -1133,8 +1455,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                                             /* code to add Customer End */
 
+<<<<<<< HEAD
                                         }
                                         else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer Code']));
+=======
+                                        } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer Code']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                                     } else {
@@ -1145,10 +1471,17 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                             /* code to get Customer code End */
 
+<<<<<<< HEAD
                             }, function (reason) {
                                 $scope.showLoader = false;
                                 console.log('Modal promise rejected. Reason: ', reason);
                             });
+=======
+                        }, function(reason) {
+                            $scope.showLoader = false;
+                            console.log('Modal promise rejected. Reason: ', reason);
+                        });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     } else {
                         /* code to get Customer code Start */
@@ -1173,7 +1506,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 'type': '2,3',
                                 'status': ''
                             })
+<<<<<<< HEAD
                             .then(function (coderes) {
+=======
+                            .then(function(coderes) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (coderes.data.ack == 1) {
                                     // $scope.showLoader = false;
@@ -1198,8 +1535,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                                         /* code to add Customer End */
 
+<<<<<<< HEAD
                                     }
                                     else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer Code']));
+=======
+                                    } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer Code']));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                                 } else {
@@ -1208,22 +1549,37 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 }
                             });
 
+<<<<<<< HEAD
                             /* code to get Customer code End */
                     }
 
                 }).catch(function (message) {
+=======
+                        /* code to get Customer code End */
+                    }
+
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                     console.log(message.data);
+<<<<<<< HEAD
                 }); 
+=======
+                });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
     }
     $scope.selectedSalesBucket = {};
 
     ///* Function to Update Customer General Form*/
+<<<<<<< HEAD
     $scope.UpdateForm = function (rec) {
+=======
+    $scope.UpdateForm = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // for primary contact crm
 
@@ -1288,7 +1644,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             // var addcrmUrl = $scope.$root.sales + "customer/customer/add-customer";
             //if ($scope.$root.crm_id > 0)
+<<<<<<< HEAD
                 var addcrmUrl = $scope.$root.sales + "customer/customer/update-customer";
+=======
+            var addcrmUrl = $scope.$root.sales + "customer/customer/update-customer";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if ($scope.rec.contact_person != undefined) {
                 if ($scope.rec.contact_person.length > 0) {
@@ -1297,6 +1657,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 }
             }
 
+<<<<<<< HEAD
             
             if ($scope.rec.address_1) {// != undefined
                 if ($scope.rec.address_1.length > 0) {
@@ -1310,15 +1671,35 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 else
                     rec.loc = {};
             } else if ($scope.rec.postcode) {// != undefined
+=======
+
+            if ($scope.rec.address_1) { // != undefined
+                if ($scope.rec.address_1.length > 0) {
+                    $scope.addAltlocationfromGeneral(rec);
+                    rec.loc = $scope.addLocdata;
+                } else if ($scope.rec.postcode && $scope.rec.postcode.length > 0) { // != undefined
+                    $scope.addAltlocationfromGeneral(rec);
+                    rec.loc = $scope.addLocdata;
+                } else
+                    rec.loc = {};
+            } else if ($scope.rec.postcode) { // != undefined
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if ($scope.rec.postcode.length > 0) {
                     $scope.addAltlocationfromGeneral(rec);
                     rec.loc = $scope.addLocdata;
                 }
+<<<<<<< HEAD
             }
             else
                 rec.loc = {};
 
             if (!(rec.loc.depot) && rec.alt_loc_id > 0) {// == undefined
+=======
+            } else
+                rec.loc = {};
+
+            if (!(rec.loc.depot) && rec.alt_loc_id > 0) { // == undefined
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(378, ['Primary Location']));
                 return false;
@@ -1326,8 +1707,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             if ($scope.rec.currency_id) {
                 $rootScope.cust_current_edit_currency = $scope.$root.get_obj_frm_arry($rootScope.arr_currency, $scope.rec.currency_id);
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.cust_current_edit_currency = $scope.$root.defaultCurrency;
             }
 
@@ -1340,13 +1725,18 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             if (rec.anonymous_customer1 == true)
                 rec.anonymous_customer = 1;
+<<<<<<< HEAD
             else 
+=======
+            else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 rec.anonymous_customer = 0;
 
             //rec.last_selected_bucket  = $scope.last_selected_bucket;
             $scope.showLoader = true;
             $http
                 .post(addcrmUrl, rec)
+<<<<<<< HEAD
                 .then(function (res) {
                     if (res.data.ack == true) {
                         
@@ -1358,6 +1748,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                          if(!$scope.rec.alt_contact_id && res.data.alt_contact_id) 
                             $scope.rec.alt_contact_id = res.data.alt_contact_id;                         
+=======
+                .then(function(res) {
+                    if (res.data.ack == true) {
+
+                        if ($scope.$root.crm_id == undefined)
+                            $scope.$root.crm_id = res.data.crm_id;
+
+                        if (!$scope.rec.alt_loc_id && res.data.alt_loc_id)
+                            $scope.rec.alt_loc_id = res.data.alt_loc_id;
+
+                        if (!$scope.rec.alt_contact_id && res.data.alt_contact_id)
+                            $scope.rec.alt_contact_id = res.data.alt_contact_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if ($scope.RTMCrmList != undefined && $scope.RTMCrmList.length > 0)
                             $scope.AddRTM(1);
@@ -1399,13 +1802,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.isSubmitting = false;
 
                         if ($stateParams.id === undefined)
+<<<<<<< HEAD
                             $timeout(function () {
+=======
+                            $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $state.go("app.editCustomer", {
                                     id: $scope.$root.crm_id
                                 });
                             }, 1500)
+<<<<<<< HEAD
                         else
                         {
+=======
+                        else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.check_cust_readonly = true;
                             $scope.showLoader = false;
                         }
@@ -1413,20 +1824,31 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         if (res.data.validBucket == 0) {
                             $scope.selectedSalesBucket = {};
                             toaster.pop('warning', 'info', 'The filters in the selected View Bucket do not match this record!');
+<<<<<<< HEAD
                         }
                         else if (res.data.validBucket && res.data.bucketAdded) {
+=======
+                        } else if (res.data.validBucket && res.data.bucketAdded) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.selectedSalesBucket.obj = {};
                             toaster.pop('success', 'Add', 'View Bucket and Salepersons Added Successfully');
                             $scope.get_crm_data_by_id();
                         }
 
 
+<<<<<<< HEAD
                     }
                     else if (res.data.ack == 2) {
                         $scope.showLoader = false;
                         toaster.pop('warning', 'Edit', res.data.error);
                     }
                     else {
+=======
+                    } else if (res.data.ack == 2) {
+                        $scope.showLoader = false;
+                        toaster.pop('warning', 'Edit', res.data.error);
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         if ($stateParams.id > 0)
                             toaster.pop('error', 'Edit', res.data.error);
@@ -1438,7 +1860,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer Code']));
     }
 
+<<<<<<< HEAD
     $scope.add_credit_rating_history = function (id, rec) {
+=======
+    $scope.add_credit_rating_history = function(id, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         var excUrl = $scope.$root.sales + "crm/crm/add-credit-rating-log";
@@ -1451,20 +1877,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         //console.log(post);
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
             });
     }
 
     $scope.set_link = function () {
+=======
+            .then(function(res) {});
+    }
+
+    $scope.set_link = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if ($scope.rec.web_address != undefined && $scope.rec.web_address.length > 0)
             $scope.rec.web_address = ($scope.rec.web_address.indexOf('://') === -1) ? 'http://' + $scope.rec.web_address : $scope.rec.web_address;
     }
 
+<<<<<<< HEAD
     $scope.deleteCustomer = function () {
+=======
+    $scope.deleteCustomer = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var delUrl = $scope.$root.sales + "crm/crm/delete-crm";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $scope.showLoader = true;
             $http
@@ -1479,25 +1917,54 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         }, 1500);
                     }
                     else {
+=======
+        }).then(function(value) {
+            $scope.showLoader = true;
+            $http
+                .post(delUrl, { id: $stateParams.id, 'token': $scope.$root.token })
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(103));
+                        $scope.showLoader = false;
+
+                        $timeout(function() {
+                            $state.go('app.customer')
+                        }, 1500);
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', res.data.error);
                         $scope.showLoader = false;
                     }
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
 
     };
 
+<<<<<<< HEAD
     
 
     $scope.convert = function () {
+=======
+
+
+    $scope.convert = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         ngDialog.openConfirm({
             template: 'app/views/customer/_confirm_convert_modal.html',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
+=======
+        }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             $scope.product_type = true;
@@ -1520,9 +1987,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     'brand': '',
                     'module_category_id': module_category_id,
                     'type': '2,3'
+<<<<<<< HEAD
                     //'status': '18'
                 })
                 .then(function (res) {
+=======
+                        //'status': '18'
+                })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == true) {
 
@@ -1536,7 +2009,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 'crm_no': res.data.nubmer,
                                 'crm_code': res.data.code
                             })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 // $data.splice(index, 1);
 
                                 if (res.data.ack == true) {
@@ -1545,9 +2022,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 } else
                                     toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(235, ['to CRM']));
 
+<<<<<<< HEAD
                             }).catch(function (message) { 
                                 $scope.showLoader = false;
                                 
+=======
+                            }).catch(function(message) {
+                                $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 throw new Error(message.data);
                                 console.log(message.data);
                             });
@@ -1557,22 +2040,36 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         toaster.pop('error', 'info', res.data.error);
                         return false;
                     }
+<<<<<<< HEAD
                 }).catch(function (message) {
                     $scope.showLoader = false;
                     
+=======
+                }).catch(function(message) {
+                    $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     throw new Error(message.data);
                     console.log(message.data);
                 });
 
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
     };
 
 
     // sync location  primary record with general start
+<<<<<<< HEAD
     $scope.getAltLocationfrmGeneral = function (arr, type) {
+=======
+    $scope.getAltLocationfrmGeneral = function(arr, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (type != undefined) {
             if (arr) {
@@ -1589,13 +2086,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 /* if ($scope.rec.primary_country != undefined && $rootScope.country_type_arr != undefined)
                     $scope.drp.country_id = $scope.$root.get_obj_frm_arry($rootScope.country_type_arr, $scope.rec.primary_country); */
 
+<<<<<<< HEAD
                 angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ($scope.rec.primary_country > 0) {
                         if (obj.id == $scope.rec.primary_country)
                             $scope.drp.country_id = obj;
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == $scope.$root.defaultCountry)
                             $scope.drp.country_id = obj;
                     }
@@ -1629,8 +2134,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 else
                     $scope.rec.is_delivery_collection_address = false;
 
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.rec.address_1 = null;
                 $scope.rec.address_2 = null;
@@ -1643,13 +2152,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 $scope.rec.is_delivery_collection_address = 0;
                 $scope.rec.is_invoice_address = 0;
 
+<<<<<<< HEAD
                 angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == $scope.$root.defaultCountry)
                         $scope.drp.country_id = obj;
                 });
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             $scope.postData = {
@@ -1662,7 +2179,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             var ApiAjax = $scope.$root.sales + "crm/crm/alt-depots";
             $http
                 .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
                 .then(function (alt_res) {
+=======
+                .then(function(alt_res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (alt_res.data.record.ack == true) {
 
                         $scope.rec.address_1 = alt_res.data.record.result[0].address_1;
@@ -1690,8 +2211,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                             $scope.rec.is_invoice_address = 1;
                         else $scope.rec.is_invoice_address = 0;
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.rec.address_1 = null;
                         $scope.rec.address_2 = null;
@@ -1704,7 +2229,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.rec.is_delivery_collection_address = 0;
                         $scope.rec.is_invoice_address = 0;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == $scope.$root.defaultCountry)
                                 $scope.drp.country_id = obj;
                         });
@@ -1714,13 +2243,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     }
 
+<<<<<<< HEAD
     $scope.addAltlocationfromGeneral = function (rec) {
+=======
+    $scope.addAltlocationfromGeneral = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var rec2 = {};
         rec2.token = $scope.$root.token;
         rec2.contact_name = rec.contact_person;
         rec2.is_primary = 1;
+<<<<<<< HEAD
         rec2.depot = rec.name;//'General Location';
+=======
+        rec2.depot = rec.name; //'General Location';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         rec2.role = rec.job_title;
         rec2.phone = rec.phone;
         rec2.email = rec.email;
@@ -1757,11 +2294,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     $scope.rec.loccaiontiming = {};
 
+<<<<<<< HEAD
     $scope.selectrecordedit_general = function () {
 
         if ($scope.rec.addcontactslisting !== undefined) {
             angular.forEach($scope.rec.addcontactslisting, function (obj2) {
                 angular.forEach($scope.record_data_contact, function (elem) {
+=======
+    $scope.selectrecordedit_general = function() {
+
+        if ($scope.rec.addcontactslisting !== undefined) {
+            angular.forEach($scope.rec.addcontactslisting, function(obj2) {
+                angular.forEach($scope.record_data_contact, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (elem.id == obj2.contact_id)
                         obj2.contact_id = elem;
                 });
@@ -1769,6 +2314,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.add_multicontact_location_dropdown_general = function (location_id, contact_id) {
 
         var post = {};
@@ -1787,6 +2333,26 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
     }
     // sync location  primary record with general finish
+=======
+    $scope.add_multicontact_location_dropdown_general = function(location_id, contact_id) {
+
+            var post = {};
+
+            post.crm_id = $rootScope.crm_id;
+            post.location_id = location_id;
+            post.contact_id = contact_id;
+            post.token = $rootScope.token;
+            post.module_type = $rootScope.CRMType;
+
+            var postUrl = $rootScope.sales + "crm/crm/add-list-contact-location-general";
+            $http
+                .post(postUrl, post)
+                .then(function(ress) {
+
+                });
+        }
+        // sync location  primary record with general finish
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
     // Requests to other controllers
@@ -1795,7 +2361,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     args[1] = undefined;
 
     // sync contact  primary record with general start
+<<<<<<< HEAD
     $scope.getAltContact_genral = function (arr, type) {
+=======
+    $scope.getAltContact_genral = function(arr, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         if (type != undefined) {
@@ -1847,7 +2417,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 */
 
                 $scope.tempContactSocialMedia = [];
+<<<<<<< HEAD
                 angular.forEach($rootScope.social_medias_contact_form, function (obj) {
+=======
+                angular.forEach($rootScope.social_medias_contact_form, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.id == $scope.rec.primaryc_socialmedia1 && $scope.rec.primaryc_socialmedia1 != 0) {
                         obj.value = $scope.rec.primaryc_socialmedia1_value;
@@ -1874,8 +2448,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.socialMediasContactGeneral = {};
                     $scope.socialMediasContactGeneral['primaryContactSM'] = $scope.tempContactSocialMedia;
                 }
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.rec.contact_person = null;
                 $scope.rec.cjob_title = null;
                 $scope.rec.cdirect_line = null;
@@ -1898,8 +2476,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 $scope.rec.csocialmedia4 = null;
                 $scope.rec.csocialmedia5 = null;
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.postData = {
                 'crm_id': $scope.$root.crm_id,
@@ -1911,7 +2493,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             var ApiAjax = $scope.$root.sales + "crm/crm/get-alt-contacts-list";
             $http
                 .post(ApiAjax, $scope.postData)
+<<<<<<< HEAD
                 .then(function (alt_res) {
+=======
+                .then(function(alt_res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (alt_res.data.ack == true) {
 
@@ -1927,7 +2513,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                         if (alt_res.data.response[0].pref_method_of_communication != undefined) {
 
+<<<<<<< HEAD
                             angular.forEach($rootScope.arr_pref_method_comm, function (elem) {
+=======
+                            angular.forEach($rootScope.arr_pref_method_comm, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (elem.id == alt_res.data.response[0].pref_method_of_communication) {
                                     $scope.drp.cpref_method_of_communication = elem;
                                 }
@@ -1940,7 +2530,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.rec.csocialmedia4_value = alt_res.data.response[0].socialmedia4_value;
                         $scope.rec.csocialmedia5_value = alt_res.data.response[0].socialmedia5_value;
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.social_medias, function (elem) {
+=======
+                        angular.forEach($rootScope.social_medias, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (elem.id == alt_res.data.response[0].socialmedia1)
                                 $scope.rec.csocialmedia1 = elem;
@@ -1958,8 +2552,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 $scope.rec.csocialmedia5 = elem;
                         });
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.rec.contact_person = null;
                         $scope.rec.cjob_title = null;
                         $scope.rec.cdirect_line = null;
@@ -1989,7 +2587,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     }
 
+<<<<<<< HEAD
     $scope.add_alt_contact = function (rec) {
+=======
+    $scope.add_alt_contact = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var rec2 = {};
         rec2.token = $scope.$root.token;
@@ -1999,7 +2601,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         rec2.crm_id = $scope.$root.crm_id;
         rec2.contact_name = rec.contact_person;
         rec2.is_primary = 1;
+<<<<<<< HEAD
         rec2.depot = $scope.rec.contact_person;//Main office';
+=======
+        rec2.depot = $scope.rec.contact_person; //Main office';
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         rec2.job_title = $scope.rec.cjob_title;
         rec2.direct_line = $scope.rec.cdirect_line;
         rec2.mobile = $scope.rec.cmobile;
@@ -2032,7 +2638,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     // sync contact  primary record with general end
 
 
+<<<<<<< HEAD
     $scope.add_credit_limit_history = function (id, rec) {
+=======
+    $scope.add_credit_limit_history = function(id, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var excUrl = $scope.$root.sales + "crm/crm/add-credit-limit-log";
         var post = {};
         post.id = id;
@@ -2041,11 +2651,18 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
             });
     }
 
     $scope.add_status_history = function (id, rec) {
+=======
+            .then(function(res) {});
+    }
+
+    $scope.add_status_history = function(id, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var excUrl = $scope.$root.sales + "crm/crm/add-status-log";
         var post = {};
         post.id = id;
@@ -2053,8 +2670,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
             });
+=======
+            .then(function(res) {});
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 
@@ -2086,7 +2707,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
 
     //general tab bucket
+<<<<<<< HEAD
     $scope.getbucketList_signle = function () {
+=======
+    $scope.getbucketList_signle = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.columns_bucket = [];
         $scope.record_bucket = {};
         $scope.rec.token = $scope.$root.token;
@@ -2096,6 +2721,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $http
             .post(bucketApi, postData)
 
+<<<<<<< HEAD
             .then(function (res) {
 
                 $scope.record_bucket = res.data.response;
@@ -2107,13 +2733,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     });
                 });
             });
+=======
+        .then(function(res) {
+
+            $scope.record_bucket = res.data.response;
+            angular.forEach(res.data.response[0], function(val, index) {
+                $scope.columns_bucket.push({
+                    'title': toTitleCase(index),
+                    'field': index,
+                    'visible': true
+                });
+            });
+        });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         ngDialog.openConfirm({
             template: 'modalBucketDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
 
             angular.forEach(result, function (elem) {
+=======
+        }).then(function(result) {
+
+            angular.forEach(result, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (index == 'Code')
                     $scope.rec.code = elem;
@@ -2129,7 +2774,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             $scope.rec.bucket = result.name;
             ////console.log(result.id+"-"+result.name);
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -2138,7 +2787,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.bucket_array = [];
     $scope.isBucketChanged = true;
 
+<<<<<<< HEAD
     $scope.getbucket_array = function (isShow) {
+=======
+    $scope.getbucket_array = function(isShow) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Bucket';
         $scope.columns = [];
         $scope.bucket_array = [];
@@ -2146,6 +2799,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         var bucketApi = $scope.$root.sales + "customer/sale-bucket/get-sale-bucket-list";
 
         $http
+<<<<<<< HEAD
             .post(bucketApi, { 'token': $scope.$root.token }).then(function (res) {
                 if (res.data.ack == true) {
 
@@ -2154,6 +2808,16 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         obj.isPrimary = false;
                         if ($scope.bucket_selected_array.length > 0) {
                             angular.forEach($scope.bucket_selected_array, function (obj2) {
+=======
+            .post(bucketApi, { 'token': $scope.$root.token }).then(function(res) {
+                if (res.data.ack == true) {
+
+                    angular.forEach(res.data.response, function(obj) {
+                        obj.chk = false;
+                        obj.isPrimary = false;
+                        if ($scope.bucket_selected_array.length > 0) {
+                            angular.forEach($scope.bucket_selected_array, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == obj2.id) {
                                     obj.chk = true;
                                     if (obj2.isPrimary)
@@ -2164,7 +2828,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.bucket_array.push(obj);
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id' && index != 'isPrimary') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -2176,13 +2844,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                     if (!isShow)
                         angular.element('#Bucket_selectedModal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+=======
+                } else toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
             });
     }
 
+<<<<<<< HEAD
     $scope.submitPendingSelBucket = function () {
+=======
+    $scope.submitPendingSelBucket = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.PendingSelBucket = [];
         $scope.PendingSelBucketTooltip = "";
@@ -2208,13 +2884,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         angular.element('#Bucket_selectedModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.clearPendingSelBucket = function () {
+=======
+    $scope.clearPendingSelBucket = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelBucket = [];
         $scope.PendingSelBucketTooltip = "";
         angular.element('#Bucket_selectedModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.checkAllBucket = function (val) {
+=======
+    $scope.checkAllBucket = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelBucket = [];
 
         if (val == true) {
@@ -2242,7 +2926,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.selectbucket_chk = function (bucket) {
+=======
+    $scope.selectbucket_chk = function(bucket) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isBucketChanged = true;
         $scope.selectedAll = false;
 
@@ -2258,11 +2946,16 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.getbucket_array_edit = function (id, bucket_id) {
+=======
+    $scope.getbucket_array_edit = function(id, bucket_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var bucketApi = $scope.$root.sales + "customer/sale-bucket/get-crm-bucket";
         $http
             .post(bucketApi, { module_id: id, 'token': $scope.$root.token, 'type': 1 })
+<<<<<<< HEAD
             .then(function (emp_data) {
 
                 if (emp_data.data.ack == true) {
@@ -2274,6 +2967,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                             obj.isPrimary = false;
 
                             angular.forEach(emp_data.data.response, function (obj2) {
+=======
+            .then(function(emp_data) {
+
+                if (emp_data.data.ack == true) {
+
+                    $scope.$root.$apply(function() {
+
+                        angular.forEach($scope.bucket_array, function(obj) {
+                            obj.chk = false;
+                            obj.isPrimary = false;
+
+                            angular.forEach(emp_data.data.response, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == obj2.bucket_id) {
                                     obj.chk = true;
 
@@ -2292,13 +2998,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
     }
 
+<<<<<<< HEAD
     $scope.add_bucket = function (id) {
+=======
+    $scope.add_bucket = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var check = false;
         var bucketApi = $scope.$root.sales + "customer/sale-bucket/add-crm-bucket";
         var post = {};
         var temp = [];
 
+<<<<<<< HEAD
         angular.forEach($scope.bucket_selected_array, function (obj) {
+=======
+        angular.forEach($scope.bucket_selected_array, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             temp.push({ bucket_id: obj.id, isPrimary: obj.isPrimary });
         });
 
@@ -2308,7 +3022,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         post.token = $scope.$root.token;
         $http
             .post(bucketApi, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true)
                     check = true;
             });
@@ -2320,7 +3038,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.PendingSelectedSpGeneral = [];
     $scope.PendingSelSalePerGenTooltip = "";
 
+<<<<<<< HEAD
     $scope.submitPendingSelectedSpGeneral = function () {
+=======
+    $scope.submitPendingSelectedSpGeneral = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.PendingSelectedSpGeneral = [];
         $scope.PendingSelSalePerGenTooltip = "";
@@ -2353,16 +3075,27 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         angular.element('#_CRMSalepersonModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.clearPendingSelectedSpGeneral = function () {
+=======
+    $scope.clearPendingSelectedSpGeneral = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedSpGeneral = [];
         $scope.PendingSelSalePerGenTooltip = "";
         angular.element('#_CRMSalepersonModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.ClearSalesPerGenFilter = function () {
         $scope.searchKeyword_SalePersons = {};
     }
     $scope.getSalePersons_general = function (isShow) {
+=======
+    $scope.ClearSalesPerGenFilter = function() {
+        $scope.searchKeyword_SalePersons = {};
+    }
+    $scope.getSalePersons_general = function(isShow) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* if (isShow == 0 && $scope.bucket_selected_array.length == 0) {
            
             return;
@@ -2387,20 +3120,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             $http
                 .post(BucpostUrl, BucpostData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         var ids = 0;
                         var ids2 = 0;
                         $scope.SalesPersonGen_arr = [];
 
+<<<<<<< HEAD
                         angular.forEach(res.data.response, function (obj) {
+=======
+                        angular.forEach(res.data.response, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             ids = obj.id.split('.')[0];
                             obj.chk = false;
                             obj.isPrimary = false;
 
                             if ($scope.selectedSalespersons.length > 0) {
 
+<<<<<<< HEAD
                                 angular.forEach($scope.selectedSalespersons, function (obj2) {
+=======
+                                angular.forEach($scope.selectedSalespersons, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ids2 = obj2.id.split('.')[0];
                                     if (ids == ids2 || $scope.selct_from_oop) {
                                         obj.chk = true;
@@ -2415,7 +3160,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         // $scope.SalesPersonGen_arr = res.data.response;
                         $scope.record = $scope.SalesPersonGen_arr;
 
+<<<<<<< HEAD
                         angular.forEach(res.data.response[0], function (val, index) {
+=======
+                        angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (index != 'chk' && index != 'id') {
                                 $scope.columns_sp.push({
                                     'title': toTitleCase(index),
@@ -2425,21 +3174,33 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                             }
                         });
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         var ids = 0;
                         var ids2 = 0;
                         $scope.SalesPersonGen_arr = [];
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.salesperson_arr, function (obj) {
+=======
+                        angular.forEach($rootScope.salesperson_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             ids = obj.id.split('.')[0];
                             obj.chk = false;
                             obj.isPrimary = false;
 
                             if ($scope.selectedSalespersons.length > 0) {
 
+<<<<<<< HEAD
                                 angular.forEach($scope.selectedSalespersons, function (obj2) {
+=======
+                                angular.forEach($scope.selectedSalespersons, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     ids2 = obj2.id.split('.')[0];
                                     if (ids == ids2 || $scope.selct_from_oop) {
                                         obj.chk = true;
@@ -2455,7 +3216,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.record = $scope.SalesPersonGen_arr;
 
 
+<<<<<<< HEAD
                         angular.forEach($rootScope.salesperson_arr[0], function (val, index) {
+=======
+                        angular.forEach($rootScope.salesperson_arr[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns_sp.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -2468,12 +3233,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             /* end  */
 
 
+<<<<<<< HEAD
         }
         else {
 
             $scope.SalesPersonGen_arr = $rootScope.salesperson_arr;
             $scope.record = $scope.SalesPersonGen_arr;
             angular.forEach($rootScope.salesperson_arr[0], function (val, index) {
+=======
+        } else {
+
+            $scope.SalesPersonGen_arr = $rootScope.salesperson_arr;
+            $scope.record = $scope.SalesPersonGen_arr;
+            angular.forEach($rootScope.salesperson_arr[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns_sp.push({
                     'title': toTitleCase(index),
                     'field': index,
@@ -2492,7 +3265,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.selectedSalespersons = [];
 
 
+<<<<<<< HEAD
     $scope.selectSaleperson_general = function (sp, isPrimary) {
+=======
+    $scope.selectSaleperson_general = function(sp, isPrimary) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.isSalePerersonChanged = true;
         $scope.selectedAll = false;
 
@@ -2522,7 +3299,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         // console.log($scope.PendingSelectedSpGeneral);
     }
 
+<<<<<<< HEAD
     $scope.checkAllSalesperson = function (val) {
+=======
+    $scope.checkAllSalesperson = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedSpGeneral = [];
 
         if (val == true) {
@@ -2555,11 +3336,16 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     // END of Customer General Page
 
+<<<<<<< HEAD
     $scope.getSalePersons_edit = function (id) {
+=======
+    $scope.getSalePersons_edit = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var salepersonUrl = $scope.$root.sales + "crm/crm/get-crm-salesperson";
         $http
             .post(salepersonUrl, { id: id, 'token': $scope.$root.token, 'type': 2 })
+<<<<<<< HEAD
             .then(function (emp_data) {
 
                 if (emp_data.data.ack == true) {
@@ -2567,11 +3353,24 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.$root.$apply(function () {
                         var ids = 0;
                         angular.forEach($scope.salepersons, function (obj) {
+=======
+            .then(function(emp_data) {
+
+                if (emp_data.data.ack == true) {
+
+                    $scope.$root.$apply(function() {
+                        var ids = 0;
+                        angular.forEach($scope.salepersons, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             ids = obj.id.split('.')[0];
                             obj.chk = false;
                             obj.isPrimary = false;
 
+<<<<<<< HEAD
                             angular.forEach(emp_data.data.response, function (obj2) {
+=======
+                            angular.forEach(emp_data.data.response, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (ids == obj2.salesperson_id) {
                                     obj.chk = true;
                                     if (obj2.is_primary == 1)
@@ -2586,13 +3385,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
     }
 
+<<<<<<< HEAD
     $scope.add_salespersons = function (id, type) {
+=======
+    $scope.add_salespersons = function(id, type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var check = false;
         var excUrl = $scope.$root.sales + "crm/crm/add-crm-salesperson";
         var post = {};
         var temp = [];
 
+<<<<<<< HEAD
         angular.forEach($scope.selectedSalespersons, function (obj) {
+=======
+        angular.forEach($scope.selectedSalespersons, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.chk)
                 temp.push({ id: obj.id, isPrimary: obj.isPrimary, bucket_id: obj.bucket_id });
         });
@@ -2604,7 +3411,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         post.token = $scope.$root.token;
         $http
             .post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     check = true;
@@ -2613,12 +3424,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         return check;
     }
 
+<<<<<<< HEAD
     $scope.add_salespersons_history = function (id) {
+=======
+    $scope.add_salespersons_history = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var excUrl = $scope.$root.sales + "crm/crm/add-crm-salesperson-log";
         var post = {};
         var temp = [];
 
+<<<<<<< HEAD
         angular.forEach($scope.selectedSalespersons, function (obj) {
+=======
+        angular.forEach($scope.selectedSalespersons, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             temp.push({ id: obj.id, isPrimary: obj.isPrimary });
         });
 
@@ -2627,14 +3446,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         post.salespersons = temp;
         post.token = $scope.$root.token;
         $http.post(excUrl, post)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //$scope.add_salespersons_log(id);
             });
     }
 
 
     $scope.isBtnPredefined = false;
+<<<<<<< HEAD
     $scope.checkPredefinedValue = function (val) {
+=======
+    $scope.checkPredefinedValue = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (!angular.isString(val)) {
             $scope.isBtnPredefined = false;
         } else {
@@ -2646,12 +3473,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.addNewPredefinedPopup = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPredefinedPopup = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         return;
     }
 
 
+<<<<<<< HEAD
     $scope.addNewCurrencyPopup = function (drp) {
+=======
+    $scope.addNewCurrencyPopup = function(drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var id = drp.currency != undefined ? drp.currency.id : 0;
         if (id > 0)
             return false;
@@ -2661,14 +3496,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             template: 'app/views/company/add_new_currency.html',
             className: 'ngdialog-theme-default-custom-large',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (currency) {
+=======
+        }).then(function(currency) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var addCurrencyUrl = $scope.$root.setup + "general/add-currency";
             currency.token = $scope.$root.token;
             currency.company_id = $scope.$root.defaultCompany;
             currency.status = $scope.currency.c_status !== undefined ? $scope.currency.c_status.value : 0;
             $http
                 .post(addCurrencyUrl, currency)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Info', res.data.msg);
                         var currencyUrl = $scope.$root.setup + "general/currency-list";
@@ -2677,13 +3520,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                                 'company_id': $scope.$root.defaultCompany,
                                 'token': $scope.$root.token
                             })
+<<<<<<< HEAD
                             .then(function (res1) {
+=======
+                            .then(function(res1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res1.data.ack == true) {
                                     //   $scope.$root.$apply(function () {
                                     $rootScope.arr_currency = res1.data.response;
                                     $rootScope.arr_currency.push({ 'id': '-1', 'name': '++ Add New ++' });
 
+<<<<<<< HEAD
                                     angular.forEach($rootScope.arr_currency, function (elem) {
+=======
+                                    angular.forEach($rootScope.arr_currency, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == res.data.id)
                                             drp.currency = elem;
                                     });
@@ -2694,12 +3545,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     } else
                         toaster.pop('warning', 'Info', res.data.msg);
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.addNewPaymentTerm = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPaymentTerm = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (Number(id) > 0 || Number(id) == 0)
@@ -2712,7 +3571,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 template: 'app/views/payment_terms/add_payment_term.html',
                 className: 'ngdialog-theme-default',
                 scope: $scope
+<<<<<<< HEAD
             }).then(function (pedefined) {
+=======
+            }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 /*//console.log(pedefined);
                  return false;*/
 
@@ -2721,38 +3584,62 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                 $http
                     .post(postUrl, pedefined)
+<<<<<<< HEAD
                     .then(function (ress) {
+=======
+                    .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (ress.data.ack == true) {
                             toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                             var constUrl = $scope.$root.setup + "crm/payment-terms";
 
                             $http
                                 .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                                 .then(function (res) {
                                     $rootScope.arr_payment_terms = res.data.response;
                                     $rootScope.arr_payment_terms.push({ 'id': '-1', 'Description': '++ Add New ++' });
 
                                     angular.forEach($rootScope.arr_payment_terms, function (elem) {
+=======
+                                .then(function(res) {
+                                    $rootScope.arr_payment_terms = res.data.response;
+                                    $rootScope.arr_payment_terms.push({ 'id': '-1', 'Description': '++ Add New ++' });
+
+                                    angular.forEach($rootScope.arr_payment_terms, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.payment_terms_ids = elem;
                                     });
                                 });
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Info', ress.data.error);
                             drp.payment_terms_ids = '';
                         }
                     });
 
 
+<<<<<<< HEAD
             }, function (reason) {
+=======
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //console.log('Modal promise rejected. Reason: ', reason);
                 drp.payment_terms_ids = '';
             });
         }
     }
 
+<<<<<<< HEAD
     $scope.addNewPaymentMethod = function (drpdown, type, title, drp) {
+=======
+    $scope.addNewPaymentMethod = function(drpdown, type, title, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var id = drpdown.id;
         if (Number(id) > 0 || Number(id) == 0)
@@ -2765,7 +3652,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 template: 'app/views/payment_methods/add_payment_method.html',
                 className: 'ngdialog-theme-default',
                 scope: $scope
+<<<<<<< HEAD
             }).then(function (pedefined) {
+=======
+            }).then(function(pedefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 /*//console.log(pedefined);
                  return false;*/
 
@@ -2774,38 +3665,62 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                 $http
                     .post(postUrl, pedefined)
+<<<<<<< HEAD
                     .then(function (ress) {
+=======
+                    .then(function(ress) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (ress.data.ack == true) {
                             toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                             var constUrl = $scope.$root.setup + "crm/payment-methods";
 
                             $http
                                 .post(constUrl, { 'token': $scope.$root.token, 'all': 1 })
+<<<<<<< HEAD
                                 .then(function (res) {
                                     $rootScope.arr_payment_methods = res.data.response;
                                     $rootScope.arr_payment_methods.push({ 'id': '-1', 'Description': '++ Add New ++' });
 
                                     angular.forEach($rootScope.arr_payment_methods, function (elem) {
+=======
+                                .then(function(res) {
+                                    $rootScope.arr_payment_methods = res.data.response;
+                                    $rootScope.arr_payment_methods.push({ 'id': '-1', 'Description': '++ Add New ++' });
+
+                                    angular.forEach($rootScope.arr_payment_methods, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (elem.id == ress.data.id)
                                             drp.payment_method_ids = elem;
                                     });
                                 });
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Info', ress.data.error);
                             drp.payment_method_ids = '';
                         }
                     });
 
 
+<<<<<<< HEAD
             }, function (reason) {
+=======
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 drp.payment_method_ids = '';
                 //console.log('Modal promise rejected. Reason: ', reason);
             });
         }
     }
 
+<<<<<<< HEAD
     $scope.confirm = function (btc) {
+=======
+    $scope.confirm = function(btc) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.recfinance.bill_to_customer = btc.name;
         $scope.recfinance.bill_to_customer_id = btc.id;
@@ -2823,13 +3738,25 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     // $rootScope.arr_payment_terms = [];
     $scope.generate = [];
 
+<<<<<<< HEAD
     $scope.gotoEdit = function () {
+=======
+    $scope.gotoEdit = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_readonly = false;
     }
 
     $scope.type_id = 0;
+<<<<<<< HEAD
     $scope.getpurchaseGL = function (arg) {
         $scope.category_list = [];
+=======
+    $scope.getpurchaseGL = function(arg) {
+        $scope.category_list = [];
+        $scope.postData = {};
+        $scope.postData.cat_id = [];
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (arg == 'saleperson') {
             $scope.type_id = 1;
             $scope.title = 'GL Sales Account';
@@ -2847,12 +3774,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $scope.postData.token = $scope.$root.token;
 
+<<<<<<< HEAD
         var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";//{'token': $scope.$root.token, cat_id: cat_id}
         $http
             .post(postUrl_cat, $scope.postData)
             .then(function (res) {
                 if (res.data.ack == true)
                     $scope.category_list = res.data.response;//response_account;
+=======
+        var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name"; //{'token': $scope.$root.token, cat_id: cat_id}
+        $http
+            .post(postUrl_cat, $scope.postData)
+            .then(function(res) {
+                if (res.data.ack == true)
+                    $scope.category_list = res.data.response; //response_account;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 else
                     $scope.category_list = [];
@@ -2860,7 +3796,38 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         angular.element('#financePurchase').modal({ show: true });
     };
 
+<<<<<<< HEAD
     $scope.assignCodes = function (gl_data) {
+=======
+    $scope.getGLcode = function() {
+
+        var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
+        $scope.postData = {};
+        $scope.title = 'G/L Accounts';
+        $scope.postData.token = $scope.$root.token;
+        $scope.searchKeyword2 = {};
+
+        $scope.type_id = 2;
+
+        $scope.showLoader = true;
+        $scope.showAllOption = true;
+
+        $http
+            .post(postUrl_cat, $scope.postData)
+            .then(function(res) {
+                $scope.gl_account = [];
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.gl_account = res.data.response;
+                    angular.element('#finance_set_gl_account').modal({ show: true });
+                } else
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.assignCodes = function(gl_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /*if ($scope.type_id == 1) {
          $scope.recfinance.purchase_code_number = number;
          } else {
@@ -2869,21 +3836,37 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         if ($scope.type_id == 1) {
 
+<<<<<<< HEAD
             $scope.recfinance.purchase_code_number = gl_data.name + " " + gl_data.code;
+=======
+            $scope.recfinance.purchase_code_number = gl_data.code + " - " + gl_data.name; //gl_data.name + " " + gl_data.code;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.recfinance.purchase_code_id = gl_data.id;
 
         } else if ($scope.type_id == 2) {
 
+<<<<<<< HEAD
             $scope.recfinance.account_payable_number = gl_data.name + " " + gl_data.code;
             $scope.recfinance.account_payable_id = gl_data.id;
         }
         angular.element('#financePurchase').modal('hide');
+=======
+            $scope.recfinance.account_payable_number = gl_data.code + " - " + gl_data.name;
+            $scope.recfinance.account_payable_id = gl_data.id;
+        }
+        angular.element('#financePurchase').modal('hide');
+        angular.element('#finance_set_gl_account').modal('hide');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     };
 
 
     $scope.columns_customer = [];
     $scope.result = {};
+<<<<<<< HEAD
     $scope.getCustomers = function () {
+=======
+    $scope.getCustomers = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = 'Customers';
 
@@ -2896,14 +3879,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         };
         $http
             .post(custUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     /* $scope.columns_customer = [];
                      $scope.result = {};*/
 
                     $scope.result = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_customer.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2913,8 +3904,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                     angular.element('#model_Bill_Finance_Customer').modal({ show: true });
 
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     //console.log('dd');
                     $scope.columns = [];
                     $scope.result = [];
@@ -2924,7 +3919,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     }
 
+<<<<<<< HEAD
     $scope.getCharges = function (arg) {
+=======
+    $scope.getCharges = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var postData = "";
         if (arg == 'finance')
             var getChargesUrl = $scope.$root.setup + "crm/finance-charges";
@@ -2936,13 +3935,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         };
         $http
             .post(getChargesUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 //$scope.columns = [];
                 //$scope.columns = res.data.columns;
                 $scope.record = res.data.response;
 
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -2957,22 +3964,38 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             template: 'modalCustDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             if (arg == 'finance') {
                 $scope.finance_charges_value = result['Description'];
                 $scope.recfinance.finance_charges_id = result.id;
             }
             else {
+=======
+        }).then(function(result) {
+            if (arg == 'finance') {
+                $scope.finance_charges_value = result['Description'];
+                $scope.recfinance.finance_charges_id = result.id;
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.insurance_charges_value = result['Description'];
                 $scope.recfinance.insurance_charges_id = result.id;
             }
 
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.getPaymentTerms = function (arg) {
+=======
+    $scope.getPaymentTerms = function(arg) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var getTermUrl = $scope.$root.setup + "crm/payment-terms";
         var postData = "";
         postData = {
@@ -2981,14 +4004,22 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         };
         $http
             .post(getTermUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 //$scope.columns = res.data.columns;
 
                 $scope.record = res.data.response;
 
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
@@ -3002,15 +4033,23 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             template: 'modalCustDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             $scope.payment_term = result['Description'];
             $scope.recfinance.payment_terms_id = result.id;
         }, function (reason) {
+=======
+        }).then(function(result) {
+            $scope.payment_term = result['Description'];
+            $scope.recfinance.payment_terms_id = result.id;
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
 
+<<<<<<< HEAD
     $scope.getBankAccount = function (arg) {
         console.log("getting banks: ", $scope.check_cfinance_readonly);
         if(!$scope.check_cfinance_readonly){
@@ -3040,12 +4079,47 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 angular.element('#_model_modal_bank_order').modal({ show: true });
 
             });
+=======
+    $scope.getBankAccount = function(arg) {
+        console.log("getting banks: ", $scope.check_cfinance_readonly);
+        if (!$scope.check_cfinance_readonly) {
+            $scope.title = 'Payable Bank';
+            var getBankUrl = $scope.$root.setup + "general/bank-accounts";
+
+            //arr_bank
+
+            var postData = { 'token': $scope.$root.token, 'filter_id': 152 };
+            $http
+                .post(getBankUrl, postData)
+                .then(function(res) {
+                    $scope.columns = [];
+                    //	$scope.columns = res.data.columns;
+                    $scope.record = res.data.response;
+
+
+                    angular.forEach(res.data.response[0], function(val, index) {
+                        $scope.columns.push({
+                            'title': toTitleCase(index),
+                            'field': index,
+                            'visible': true
+                        });
+                    });
+
+
+                    angular.element('#_model_modal_bank_order').modal({ show: true });
+
+                });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
     }
 
 
+<<<<<<< HEAD
     $scope.confirm_bank = function (btc) {
+=======
+    $scope.confirm_bank = function(btc) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.bank_name = btc.name;//elem['Account_Name'];
         console.log(btc);
         $scope.bank_name = btc.bank_name;
@@ -3055,7 +4129,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         // $scope.rec.bill_to_bank_id = btc.id;
         angular.element('#_model_modal_bank_order').modal('hide');
     }
+<<<<<<< HEAD
     $scope.setGenerate = function (id) {
+=======
+    $scope.setGenerate = function(id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         for (var i = 0; i < $scope.arr_generate.length; i++) {
             if (id == $scope.arr_generate[i].id) {
                 if ($scope.arr_generate[i].chk == true)
@@ -3066,11 +4144,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
     }
 
+<<<<<<< HEAD
     $scope.getfinancecustomer = function () {
 
         $scope.arr_generate = [{ 'id': '1', 'name': 'E-Reminder', 'chk': false },
         { 'id': '2', 'name': 'E-Statement', 'chk': false },
         { 'id': '3', 'name': 'E-Invoice', 'chk': false }];
+=======
+    $scope.getfinancecustomer = function() {
+
+        $scope.arr_generate = [{ 'id': '1', 'name': 'E-Reminder', 'chk': false },
+            { 'id': '2', 'name': 'E-Statement', 'chk': false },
+            { 'id': '3', 'name': 'E-Invoice', 'chk': false }
+        ];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // var constUrl = $scope.$root.setup + "ledger-group/get-predefine-by-type";
 
@@ -3082,7 +4169,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(getFinance, { 'token': $scope.$root.token, 'customer_id': $stateParams.id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 if (res.data.ack == true) {
@@ -3103,7 +4194,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
                     if (res.data.response.generate) {
                         var arrGen = res.data.response.generate.split(',');
+<<<<<<< HEAD
                         angular.forEach($scope.arr_generate, function (elem, index) {
+=======
+                        angular.forEach($scope.arr_generate, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             var indx = arrGen.indexOf(elem.id) == -1;
                             if (!indx) {
                                 $scope.arr_generate[index].chk = true;
@@ -3133,16 +4228,25 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.drp.email_2 = res.data.response.statement_email;
                     $scope.drp.email_3 = res.data.response.invoice_email;
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.postingGroups, function (elem2) {
+=======
+                    angular.forEach($rootScope.postingGroups, function(elem2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem2.id == res.data.response.posting_group_id)
                             $scope.drp.posting_group_ids = elem2;
                     });
 
                     // if ($scope.recfinance.posting_group_id != undefined && $rootScope.arr_posting_group_ids != undefined) 
                     //     $scope.drp.posting_group_ids = $scope.$root.get_obj_frm_arry($rootScope.arr_posting_group_ids, $scope.recfinance.posting_group_id);
+<<<<<<< HEAD
                 }
                 else {
                     $scope.recfinance = {};//res.data.response;
+=======
+                } else {
+                    $scope.recfinance = {}; //res.data.response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.recfinance.finance_check = false;
                     $scope.recfinance.insurance_check = false;
                     $scope.check_cfinance_readonly = false;
@@ -3152,7 +4256,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
 
     $scope.recfinance = {};
+<<<<<<< HEAD
     $scope.addcust_finance = function (recfinance, drp) {
+=======
+    $scope.addcust_finance = function(recfinance, drp) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var addFinance = $scope.$root.sales + 'customer/customer/add-finance';
         //recfinance.generate = $scope.drp.generate != undefined?$scope.drp.generate.id:0;
@@ -3190,21 +4298,33 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(addFinance, recfinance)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     if (recfinance.update_id > 0) {
                         $scope.check_cfinance_readonly = true;
                         toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.check_cfinance_readonly = true;
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                         recfinance.update_id = res.data.id;
                     }
 
                     //$scope.$root.$broadcast("myEventReload", {});
+<<<<<<< HEAD
                 }
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Add', $scope.$root.getErrorMessageByCode(105));
             });
     }
@@ -3212,7 +4332,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     if ($stateParams.id > 0)
         $scope.check_cfinance_readonly = true;
 
+<<<<<<< HEAD
     $scope.showEditCFinanceForm = function () {
+=======
+    $scope.showEditCFinanceForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_cfinance_readonly = false;
     }
 
@@ -3245,8 +4369,13 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
     $scope.searchKeyword = {};
 
+<<<<<<< HEAD
     $scope.get_balance_info = function (id, item_paging) {
         if (id == undefined){
+=======
+    $scope.get_balance_info = function(id, item_paging) {
+        if (id == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             id = $scope.rec.id;
         }
         $scope.postData = {};
@@ -3264,7 +4393,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.postData.external_module = 1;
 
         $scope.postData.defaultCurrency = $scope.$root.defaultCurrency;
+<<<<<<< HEAD
         $scope.postData.customerCurrencyID = $rootScope.cust_current_edit_currency.id;//$scope.drp.currency.id;
+=======
+        $scope.postData.customerCurrencyID = $rootScope.cust_current_edit_currency.id; //$scope.drp.currency.id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.postData.pagination_limits == -1) {
             $scope.postData.page = -1;
@@ -3284,11 +4417,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(getUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
                 $scope.receipt_sub_list = [];
                 if (res.data.ack == true) {
                     $scope.tableData = res;
                     angular.forEach(res.data.response, function(obj,index){
+=======
+            .then(function(res) {
+                $scope.receipt_sub_list = [];
+                if (res.data.ack == true) {
+                    $scope.tableData = res;
+                    angular.forEach(res.data.response, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.on_hold = obj.on_hold == 1 ? true : false
                     });
                     $scope.total = res.data.total;
@@ -3306,6 +4447,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.custAvgPaymentDays = (res.data.custAvgPaymentDays != undefined) ? res.data.custAvgPaymentDays : 0;
 
                     // if (res.data.response.length > 0)
+<<<<<<< HEAD
                         $scope.receipt_sub_list = res.data.response;
                     angular.forEach($scope.tableData.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
                         if (obj.event && obj.event.name && obj.event.trigger) {
@@ -3318,11 +4460,26 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 //$scope.receipt_sub_list.push({'id':'' ,currency_id:$scope.array_submit_jurnal.currency_id });
                 //  else   toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
             });        
+=======
+                    $scope.receipt_sub_list = res.data.response;
+                    angular.forEach($scope.tableData.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+                        if (obj.event && obj.event.name && obj.event.trigger) {
+                            obj.generatedEvent = $scope[obj.event.name];
+                        }
+                    });
+                }
+                if (res.data.ack != undefined)
+                    $scope.showLoader = false;
+                //$scope.receipt_sub_list.push({'id':'' ,currency_id:$scope.array_submit_jurnal.currency_id });
+                //  else   toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $('#ReciptInvoiceModal').modal('hide');
         // $scope.getinvoice_all(id, item_paging);
     }
 
+<<<<<<< HEAD
     
    
 
@@ -3333,6 +4490,18 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $scope.postData_cust = {};
         $scope.postData_cust.sell_to_cust_id = id;//item.account_id;
+=======
+
+
+
+    $scope.$root.itemselectPage(1);
+    $scope.cust_id = 0;
+    $scope.getinvoice_all = function(id, item_paging) {
+
+
+        $scope.postData_cust = {};
+        $scope.postData_cust.sell_to_cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData_cust.token = $scope.$root.token;
         $scope.postData_cust.more_fields = 1;
 
@@ -3343,7 +4512,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             var postUrl = $scope.$root.pr + "srm/srminvoice/listings";
 
         $scope.postData_cust.parent_id = $scope.parent_id;
+<<<<<<< HEAD
         $scope.postData_cust.cust_id = id;//item.account_id;
+=======
+        $scope.postData_cust.cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.postData_cust.doc_type = 1;
         //	$scope.postData.parent_id=80;
@@ -3368,7 +4541,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(postUrl, $scope.postData_cust)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
 
                     $scope.invoice_sub = res.data.response;
@@ -3379,7 +4556,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     }
     $scope.final_amount = 0;
 
+<<<<<<< HEAD
     $scope.getInvoiceList = function (arry, id, index, p_id) {
+=======
+    $scope.getInvoiceList = function(arry, id, index, p_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.cust_id = id;
         $scope.final_amount = arry.final_amount;
@@ -3394,8 +4575,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.module_type.value = arry.module_type;
         $scope.posting_groupmain = arry.posting_group_id;
         $scope.balance_id_main = arry.balance_id;
+<<<<<<< HEAD
         $scope.parent_account_id = arry.parent_id;
         ;
+=======
+        $scope.parent_account_id = arry.parent_id;;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns = [];
         $scope.ReciptInvoiceModalarr = [];
@@ -3407,17 +4592,26 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         if (id === undefined) {
             toaster.pop('error', 'info', 'Select Account Type or Customer ');
             return;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.postData = {};
 
 
+<<<<<<< HEAD
             $scope.postData.sell_to_cust_id = id;//item.account_id;
+=======
+            $scope.postData.sell_to_cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.postData.token = $scope.$root.token;
             $scope.postData.more_fields = 1;
 
             if ($scope.module_type_account == 2) {
+<<<<<<< HEAD
                 $scope.postData.title_invoice = 'Customer Payment';//('+item.account_code+')';
                 var postUrl = $scope.$root.sales + "customer/order/listings";
             }
@@ -3427,6 +4621,17 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             }
             $scope.postData.parent_id = $scope.parent_id;
             $scope.postData.cust_id = id;//item.account_id;
+=======
+                $scope.postData.title_invoice = 'Customer Payment'; //('+item.account_code+')';
+                var postUrl = $scope.$root.sales + "customer/order/listings";
+            }
+            if ($scope.module_type_account == 3) {
+                $scope.postData.title_invoice = 'Supplier Payment'; //('+item.account_code+')';
+                var postUrl = $scope.$root.pr + "srm/srminvoice/listings";
+            }
+            $scope.postData.parent_id = $scope.parent_id;
+            $scope.postData.cust_id = id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $scope.postData.doc_type = 1;
             //	$scope.postData.parent_id=80;
@@ -3436,7 +4641,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             $http
                 .post(postUrl, $scope.postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         //	$scope.balance_payed = res.data.balance_payed;
 
@@ -3452,18 +4661,27 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.ReciptInvoiceModalarr = res.data.response;
 
                         angular.element('#ReciptInvoiceModal').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 });
         }
     }
 
+<<<<<<< HEAD
     $scope.openDocumentLink = function(record){
+=======
+    $scope.openDocumentLink = function(record) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
         var url;
+<<<<<<< HEAD
         if (record.docType == 'Sales Invoice'){
             url = $state.href("app.viewOrder", ({ id: record.order_id, isInvoice: 1 }));
         }
@@ -3489,12 +4707,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             url = $state.href("app.openingBalances", ({ module: 'bank' }));
         }
         else if (record.docType == 'Bank Opening Balance Refund') {
+=======
+        if (record.docType == 'Sales Invoice') {
+            url = $state.href("app.viewOrder", ({ id: record.order_id, isInvoice: 1 }));
+        } else if (record.docType == 'Credit Note') {
+            url = $state.href("app.viewReturnOrder", ({ id: record.order_id, isInvoice: 1 }));
+        } else if (record.docType == 'Customer Payment') {
+            url = $state.href("app.view-receipt-journal-gl-cust", ({ id: record.order_id }));
+        } else if (record.docType == 'Customer Refund') {
+            url = $state.href("app.view-receipt-journal-gl-cust", ({ id: record.order_id }));
+        } else if (record.docType == 'General Journal') {
+            url = $state.href("app.view-receipt-journal-gl", ({ id: record.order_id }));
+        } else if (record.docType == 'Opening Balance Invoice') {
+            url = $state.href("app.openingBalances", ({ module: 'customer' }));
+        } else if (record.docType == 'Opening Balance Credit Note') {
+            url = $state.href("app.openingBalances", ({ module: 'customer' }));
+        } else if (record.docType == 'Bank Opening Balance Payment') {
+            url = $state.href("app.openingBalances", ({ module: 'bank' }));
+        } else if (record.docType == 'Bank Opening Balance Refund') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             url = $state.href("app.openingBalances", ({ module: 'bank' }));
         }
         window.open(url, '_blank');
 
     }
 
+<<<<<<< HEAD
     $scope.ValidateAllocationDate = function(record){
     
         var date_parts = record.allocation_date.trim().split('/');
@@ -3512,13 +4750,33 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
         else if (doc_to_alloc_date >= doc_from_alloc_date && alloc_date < doc_to_alloc_date)
         {
+=======
+    $scope.ValidateAllocationDate = function(record) {
+
+        var date_parts = record.allocation_date.trim().split('/');
+        var doc_to_alloc_date_parts = record.invoice_date.trim().split('/');
+        var doc_from_alloc_date_parts = $scope.posting_date.trim().split('/');
+
+        var alloc_date = new Date(date_parts[2], date_parts[1] - 1, date_parts[0]);
+        var doc_to_alloc_date = new Date(doc_to_alloc_date_parts[2], doc_to_alloc_date_parts[1] - 1, doc_to_alloc_date_parts[0]);
+        var doc_from_alloc_date = new Date(doc_from_alloc_date_parts[2], doc_from_alloc_date_parts[1] - 1, doc_from_alloc_date_parts[0]);
+
+        if (doc_from_alloc_date >= doc_to_alloc_date && alloc_date < doc_from_alloc_date) {
+            toaster.pop('error', 'Error', 'Allocation date cannot be earlier than ' + $scope.posting_date);
+            record.allocation_date = $scope.posting_date;
+        } else if (doc_to_alloc_date >= doc_from_alloc_date && alloc_date < doc_to_alloc_date) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', 'Allocation date cannot be earlier than ' + record.invoice_date);
             record.allocation_date = record.invoice_date;
         }
     }
     $scope.amount_total = 0;
     $scope.allocated_amount = 0;
+<<<<<<< HEAD
     $scope.getPaymentEntries = function (record, type, index) {
+=======
+    $scope.getPaymentEntries = function(record, type, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
@@ -3546,12 +4804,18 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             type = 11;
         if (record.docType == 'Bank Opening Balance Refund')
             type = 12;
+<<<<<<< HEAD
         if(record.on_hold)
         {
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(349));
         }
         else
         {
+=======
+        if (record.on_hold) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(349));
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.disable_save = false;
             var id = record.order_id;
             var detail_id = record.detail_id;
@@ -3560,7 +4824,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             var postData = {};
 
+<<<<<<< HEAD
             $scope.entry_type = type; 
+=======
+            $scope.entry_type = type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // 1=> sales invoice 2=> credit note, 5=>Payment, 6=> Refund, 7=> Customer opening balance invoice, 8=> Customer opening balance Credit Note, 
             // 9=> Supplier opening balance invoice, 10=> Supplier opening balance Credit Note, 11=> Customer Opening balance Payment (bank),
             // 12=> Customer Opening balance Refund (bank), 13=> Supplier Opening balance Payment (bank), 14=> Supplier Opening balance Refund (bank) 
@@ -3570,6 +4838,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             if ($scope.entry_type == 1 || $scope.entry_type == 6 || $scope.entry_type == 7 || $scope.entry_type == 12) {
                 $scope.module_type.value = 2;
                 $scope.doc_type = 1; // sale invoice
+<<<<<<< HEAD
                 $scope.postData.title = 'Allocation of '+record.docType+' ('+record.invoice_code+')';
                 var postUrl = $scope.$root.sales + "customer/order/invoice-for-payment-listings";
             }
@@ -3582,15 +4851,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             if($scope.entry_type == 1 || $scope.entry_type == 2 || $scope.entry_type == 7 || $scope.entry_type == 8 || $scope.entry_type == 11 || $scope.entry_type == 12)
             {
+=======
+                $scope.postData.title = 'Allocation of ' + record.docType + ' (' + record.invoice_code + ')';
+                var postUrl = $scope.$root.sales + "customer/order/invoice-for-payment-listings";
+            } else if ($scope.entry_type == 2 || $scope.entry_type == 5 || $scope.entry_type == 8 || $scope.entry_type == 11) {
+                $scope.module_type.value = 2;
+                $scope.doc_type = 2; // credit note
+                $scope.postData.title = 'Allocation of  ' + record.docType + ' (' + record.invoice_code + ')';
+                var postUrl = $scope.$root.sales + "customer/order/invoice-for-refund-listings";
+            }
+
+            if ($scope.entry_type == 1 || $scope.entry_type == 2 || $scope.entry_type == 7 || $scope.entry_type == 8 || $scope.entry_type == 11 || $scope.entry_type == 12) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.invoice_id = id;
 
                 $scope.payment_id = 0;
                 $scope.payment_detail_id = 0;
                 postData.parent_id = 0;
+<<<<<<< HEAD
             
             }
             else if($scope.entry_type == 5 || $scope.entry_type == 6)
             {
+=======
+
+            } else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.payment_id = id;
                 $scope.payment_detail_id = detail_id;
                 postData.parent_id = id;
@@ -3600,7 +4886,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             $scope.current_payment_index = index;
             $scope.posting_date = record.posting_date;
             $scope.from_entry_currency_rate = record.currency_rate;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             postData.token = $scope.$root.token;
             postData.account_id = $scope.$root.crm_id;
             postData.currency_id = record.currency_id;
@@ -3609,7 +4899,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
             $http
                 .post(postUrl, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.total = res.data.total;
                         $scope.item_paging.total_pages = res.data.total_pages;
@@ -3621,18 +4915,28 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         $scope.ReciptInvoiceModalarr = res.data.response;
                         $scope.currency_code = res.data.response[0].currency_code;
                         $scope.showLoader = false;
+<<<<<<< HEAD
             
                         angular.element('#InvoicesForPayments').modal({ show: true });
                     }
                     else
                     {
+=======
+
+                        angular.element('#InvoicesForPayments').modal({ show: true });
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                     }
                 });
         }
     }
+<<<<<<< HEAD
     $scope.getPaidEntries = function (record, type, index) {
+=======
+    $scope.getPaidEntries = function(record, type, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
@@ -3668,7 +4972,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         var postData = {};
 
+<<<<<<< HEAD
         $scope.entry_type = type; 
+=======
+        $scope.entry_type = type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // 1=> sales invoice 2=> credit note, 5=>Payment, 6=> Refund, 7=> Customer opening balance invoice, 8=> Customer opening balance Credit Note, 
         // 9=> Supplier opening balance invoice, 10=> Supplier opening balance Credit Note, 11=> Customer Opening balance Payment (bank),
         // 12=> Customer Opening balance Refund (bank), 13=> Supplier Opening balance Payment (bank), 14=> Supplier Opening balance Refund (bank) 
@@ -3678,6 +4986,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         if ($scope.entry_type == 1 || $scope.entry_type == 6 || $scope.entry_type == 7 || $scope.entry_type == 12) {
             $scope.module_type.value = 2;
             $scope.doc_type = 1; // sale invoice
+<<<<<<< HEAD
             $scope.postData.title = 'Allocation details for '+record.docType+' ('+record.invoice_code+')';
             var postUrl = $scope.$root.sales + "customer/order/invoice-for-payment-listings-paid";
         }
@@ -3690,15 +4999,32 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         if($scope.entry_type == 1 || $scope.entry_type == 2 || $scope.entry_type == 7 || $scope.entry_type == 8 || $scope.entry_type == 11 || $scope.entry_type == 12)
         {
+=======
+            $scope.postData.title = 'Allocation details for ' + record.docType + ' (' + record.invoice_code + ')';
+            var postUrl = $scope.$root.sales + "customer/order/invoice-for-payment-listings-paid";
+        } else if ($scope.entry_type == 2 || $scope.entry_type == 5 || $scope.entry_type == 8 || $scope.entry_type == 11) {
+            $scope.module_type.value = 2;
+            $scope.doc_type = 2; // credit note
+            $scope.postData.title = 'Allocation details for  ' + record.docType + ' (' + record.invoice_code + ')';
+            var postUrl = $scope.$root.sales + "customer/order/invoice-for-refund-listings-paid";
+        }
+
+        if ($scope.entry_type == 1 || $scope.entry_type == 2 || $scope.entry_type == 7 || $scope.entry_type == 8 || $scope.entry_type == 11 || $scope.entry_type == 12) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.invoice_id = id;
 
             $scope.payment_id = 0;
             $scope.payment_detail_id = 0;
             postData.parent_id = 0;
+<<<<<<< HEAD
         
         }
         else if($scope.entry_type == 5 || $scope.entry_type == 6)
         {
+=======
+
+        } else if ($scope.entry_type == 5 || $scope.entry_type == 6) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.payment_id = id;
             $scope.payment_detail_id = detail_id;
             postData.parent_id = id;
@@ -3709,17 +5035,29 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         postData.token = $scope.$root.token;
         postData.account_id = $scope.$root.crm_id;
         postData.invoice_id = id;
+<<<<<<< HEAD
         postData.detail_id  = detail_id;
+=======
+        postData.detail_id = detail_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         postData.invoice_type = $scope.entry_type;
 
         $scope.total_amount = 0;
         $scope.total_setteled = 0;
         $scope.currency_code = '';
+<<<<<<< HEAD
         
         $scope.showLoader = true;
         $http
             .post(postUrl, postData)
             .then(function (res) {
+=======
+
+        $scope.showLoader = true;
+        $http
+            .post(postUrl, postData)
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.total = res.data.total;
                     $scope.item_paging.total_pages = res.data.total_pages;
@@ -3734,6 +5072,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.currency_code = record.currency_code;
 
                     $scope.total_setteled = 0;
+<<<<<<< HEAD
                     angular.forEach($scope.ReciptInvoiceModalarrPaid, function(obj){
                         $scope.total_setteled += Number(obj.paid_amount);
                     });
@@ -3743,15 +5082,30 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                 }
                 else
                 {
+=======
+                    angular.forEach($scope.ReciptInvoiceModalarrPaid, function(obj) {
+                        $scope.total_setteled += Number(obj.paid_amount);
+                    });
+                    $scope.showLoader = false;
+
+                    angular.element('#InvoicesForAllocatedPayments').modal({ show: true });
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.netTotal = function () {
         var ctotal = 0;
         angular.forEach($scope.ReciptInvoiceModalarr, function (item) {
+=======
+    $scope.netTotal = function() {
+        var ctotal = 0;
+        angular.forEach($scope.ReciptInvoiceModalarr, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (item.amount >= 0)
                 ctotal += Number(item.amount);
             // ctotal += Number(item.paid_amount);
@@ -3778,7 +5132,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     } */
 
 
+<<<<<<< HEAD
     $scope.AddPaymentAllocation = function (module_type, doc_type) {
+=======
+    $scope.AddPaymentAllocation = function(module_type, doc_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.disable_save = true;
         var postData = {};
         postData.token = $scope.$root.token;
@@ -3791,6 +5149,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         postData.entry_type = $scope.entry_type;
         postData.posting_date = $scope.posting_date;
         postData.from_entry_currency_rate = $scope.from_entry_currency_rate;
+<<<<<<< HEAD
        
         if (doc_type == 1)// sales invoice
         {
@@ -3798,10 +5157,19 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             postData.transaction_type = 1;
         }
         else if (doc_type == 2)// credit  invoice
+=======
+
+        if (doc_type == 1) // sales invoice
+        {
+            postData.document_type = 1;
+            postData.transaction_type = 1;
+        } else if (doc_type == 2) // credit  invoice
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         {
             postData.document_type = 2;
             postData.transaction_type = 2;
         }
+<<<<<<< HEAD
        
         var selected_items = [];
         var negative_amount_check = 0;
@@ -3812,6 +5180,17 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             }
             else if (obj.amount != undefined && Number(obj.amount) > 0)
             {    var invoice_type = 0;
+=======
+
+        var selected_items = [];
+        var negative_amount_check = 0;
+
+        angular.forEach($scope.ReciptInvoiceModalarr, function(obj) {
+            if (obj.amount < 0) {
+                negative_amount_check = 1;
+            } else if (obj.amount != undefined && Number(obj.amount) > 0) {
+                var invoice_type = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (obj.payment_type == "Sales Invoice")
                     invoice_type = 1;
                 else if (obj.payment_type == "Credit Note")
@@ -3828,7 +5207,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     invoice_type = 11;
                 else if (obj.payment_type == "Bank Opening Balance Refund")
                     invoice_type = 12;
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 selected_items.push({
                     'invoice_id': obj.order_id,
                     'amount_allocated': obj.amount,
@@ -3843,8 +5226,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             }
         });
 
+<<<<<<< HEAD
         if(negative_amount_check > 0)
         {
+=======
+        if (negative_amount_check > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(350));
             return;
         }
@@ -3853,15 +5240,23 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         $http
             .post(allocation_url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
                     angular.element('#InvoicesForPayments').modal('hide');
                     $scope.get_balance_info($scope.$root.crm_id);
                     // $scope.receipt_sub_list[$scope.current_payment_index].remaining_amount = Number($scope.receipt_sub_list[$scope.current_payment_index].remaining_amount)- Number(res.data.total_allocated);
+<<<<<<< HEAD
                 }
                 else
                 {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.disable_save = false;
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
                     angular.element('#InvoicesForPayments').modal('hide');
@@ -3870,7 +5265,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     }
 
 
+<<<<<<< HEAD
     $scope.edit_on_hold = function (rec, idx) {
+=======
+    $scope.edit_on_hold = function(rec, idx) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.on_hold_selected_data = {};
 
         $scope.on_hold_selected_data.id = rec.id;
@@ -3878,8 +5277,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.on_hold_selected_data.index = idx;
     }
 
+<<<<<<< HEAD
     $scope.submit_on_hold = function()
     {
+=======
+    $scope.submit_on_hold = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var updateUrl = $scope.$root.gl + "chart-accounts/add-comment-on-for-invoice-hold";
         // module_type = 1-> customer
         // module_type = 2-> supplier
@@ -3895,14 +5298,21 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         $scope.showLoader = true;
         $http
             .post(updateUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     if ($scope.on_hold_selected_data.id == undefined)
                     {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    if ($scope.on_hold_selected_data.id == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('success', 'Success', 'Comment Added Successfully');
                         $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold = (Number($scope.on_hold_selected_data.on_hold_invoice) > 0 ? 0 : 1);
                         $scope.on_hold_selected_data.on_hold_invoice = ($scope.on_hold_selected_data.on_hold_invoice == 0) ? 1 : 0;
+<<<<<<< HEAD
                     }
                     else
                     {
@@ -3912,6 +5322,15 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                         
                     // $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold_message = $scope.on_hold_selected_data.comments;
                     
+=======
+                    } else {
+                        $scope.showLoader = false;
+                        toaster.pop('success', 'Success', 'Comment Updated Successfully');
+                    }
+
+                    // $scope.receipt_sub_list[$scope.on_hold_invoice_index].on_hold_message = $scope.on_hold_selected_data.comments;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.on_hold_selected_data.id = undefined;
                     $scope.on_hold_selected_data.comments = '';
 
@@ -3919,15 +5338,23 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     var updateUrl = $scope.$root.gl + "chart-accounts/get-on-hold-status";
                     $http
                         .post(updateUrl, { invoice_id: $scope.on_hold_invoice_id, invoice_type: $scope.on_hold_invoice_type, 'token': $scope.$root.token, 'status': 0, module_type: 1 })
+<<<<<<< HEAD
                         .then(function (res) {
                             if (res.data.ack == true) {
                                 $scope.on_hold_data = res.data.response;
                             }
                             else
+=======
+                        .then(function(res) {
+                            if (res.data.ack == true) {
+                                $scope.on_hold_data = res.data.response;
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(400));
 
                         });
                     // angular.element('#on_hold_comment').modal('hide');
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(106));
@@ -3939,6 +5366,17 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         var record = mainRecord.record;
         var index = mainRecord.index;
         record.on_hold = record.on_hold ? 1:0;
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(106));
+            });
+    }
+    $scope.CheckOnHold = function(record) {
+        var mainRecord = record;
+        var record = mainRecord.record;
+        var index = mainRecord.index;
+        record.on_hold = record.on_hold ? 1 : 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.on_hold_selected_data = {};
         $scope.on_hold_invoice_id = 0;
         $scope.on_hold_invoice_index = mainRecord.index;
@@ -3947,15 +5385,23 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         if (record.docType == 'Customer Payment' || record.docType == 'Customer Refund' || record.docType == 'General Journal') {
             $scope.on_hold_invoice_id = record.detail_id;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.on_hold_invoice_id = record.order_id;
         }
         $scope.on_hold_data = '';
         var updateUrl = $scope.$root.gl + "chart-accounts/get-on-hold-status";
         $http
             .post(updateUrl, { invoice_id: $scope.on_hold_invoice_id, invoice_type: $scope.on_hold_invoice_type, 'token': $scope.$root.token, 'status': 0, module_type: 1 })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.on_hold_data = res.data.response;
                 }
@@ -4052,6 +5498,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
             });
         } */
     }
+<<<<<<< HEAD
     $scope.clearOnHold = function()
     {
         $scope.on_hold_selected_data = {};
@@ -4061,37 +5508,65 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         
         if($scope.on_hold_comment.comments != undefined && $scope.on_hold_comment.comments.length)
         {
+=======
+    $scope.clearOnHold = function() {
+        $scope.on_hold_selected_data = {};
+    }
+    $scope.addOnHoldComment = function() {
+
+        if ($scope.on_hold_comment.comments != undefined && $scope.on_hold_comment.comments.length) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var updateUrl = $scope.$root.gl + "chart-accounts/add-comment-on-for-invoice-hold";
             // module_type = 1-> customer
             // module_type = 2-> supplier
             $scope.showLoader = true;
             $http
                 .post(updateUrl, $scope.on_hold_comment)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $scope.showLoader = false;
                         toaster.pop('success', 'Success', 'Comment Added Successfully');
                         $scope.receipt_sub_list[$scope.on_hold_comment.index].on_hold_message = $scope.on_hold_comment.comments;
                         angular.element('#on_hold_comment').modal('hide');
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(106));
                         $scope.showLoader = false;
                     }
                 });
+<<<<<<< HEAD
         }
         else
         {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(247, ['Comments']));
         }
     }
     $scope.postfianancedata = {};
+<<<<<<< HEAD
     $scope.get_finance_entry_account = function () {
+=======
+    $scope.get_finance_entry_account = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var getaccountcompany = $scope.$root.setup + "general/get-financial-setting";
         $http
             .post(getaccountcompany, { 'token': $scope.$root.token, 'id': $scope.$root.defaultCompany })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true)
                     $scope.postfianancedata = res.data.response;
                 else
@@ -4100,6 +5575,7 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     }
 
 
+<<<<<<< HEAD
     $scope.setremainingamount = function (item, param) {
         var amount2 = 0;
          
@@ -4132,6 +5608,33 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         }
         else if (item.amount != undefined) {
            
+=======
+    $scope.setremainingamount = function(item, param) {
+        var amount2 = 0;
+
+        if (item.is_infull == true) {
+            var tempAmount = item.amount;
+            if ((item.grand_total - item.paid_amount) == 0) {
+                item.amount = item.grand_total;
+            } else if (item.grand_total - item.paid_amount > 0) {
+                item.amount = (item.grand_total - item.paid_amount);
+            }
+
+            if ($scope.amount_left < item.amount) {
+
+                if (tempAmount != undefined && tempAmount != '') {
+
+                    item.amount = Number($scope.amount_left) + tempAmount;
+                } else {
+
+                    item.amount = Number($scope.amount_left);
+                }
+            }
+
+
+        } else if (item.amount != undefined) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if ((item.grand_total - item.paid_amount) == 0)
                 item.amount = 0;
             else if (item.grand_total - item.paid_amount > 0)
@@ -4142,8 +5645,12 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
 
         }
 
+<<<<<<< HEAD
         if(param != undefined && param == 1)
         {
+=======
+        if (param != undefined && param == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (item.is_infull == false)
                 item.amount = '';
 
@@ -4151,61 +5658,101 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         // if ($scope.amount_left < item.amount)
         //     item.amount = Number($scope.amount_left);
 
+<<<<<<< HEAD
         if(Number(item.amount) > 0)
         {
+=======
+        if (Number(item.amount) > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             item.amount = item.amount.toFixed(2);
             item.amount = Number(item.amount);
         }
 
     }
 
+<<<<<<< HEAD
     $scope.get_payed_list = function (item) {
+=======
+    $scope.get_payed_list = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.Recipt_payed = [];
         $scope.title_payed = 'Invoice Payment';
         $scope.item_detail = item;
         $scope.postData = {};
+<<<<<<< HEAD
         $scope.postData.invoice = item.id;//item.account_id;
+=======
+        $scope.postData.invoice = item.id; //item.account_id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData.token = $scope.$root.token;
         $scope.postData.more_fields = 1;
         var personUrledit = $scope.$root.gl + "chart-accounts/get-invoice-receipt-payment";
 
         $http
             .post(personUrledit, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.Recipt_payed = res.data.response;
                     //         angular.element('#RecptAccountpop').modal({show: true});
                     angular.element('#RecptAccountpop_payed_list').modal({ show: true });
+<<<<<<< HEAD
                 }
 
                 else
+=======
+                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
             });
     }
 
+<<<<<<< HEAD
     $scope.deletepayedlist = function (id, index, arry) {
+=======
+    $scope.deletepayedlist = function(id, index, arry) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
+=======
+        }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var delUrl = $scope.$root.gl + "chart-accounts/delete-invoice-receipt-payment";
 
             $http
                 .post(delUrl, { id: id, 'token': $scope.$root.token })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(103));
                         arry.splice(index, 1);
 
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
 
                 });
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             //console.log('Modal promise rejected. Reason: ', reason);
         });
 
@@ -4221,7 +5768,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.columns_history = [];
     $scope.history_title = "";
     $scope.history_type = "";
+<<<<<<< HEAD
     $scope.historytype = function (type) {
+=======
+    $scope.historytype = function(type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.history_type = type;
 
         $scope.showLoader = true;
@@ -4242,7 +5793,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
         };
         $http
             .post(Url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
@@ -4250,7 +5805,11 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
                     $scope.columns_history = [];
                     $scope.crm_history = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_history.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -4273,12 +5832,20 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.$root.load_date_picker('customer');
 
     $scope.item_paging = {};
+<<<<<<< HEAD
     $scope.itemselectPage = function (pageno) {
+=======
+    $scope.itemselectPage = function(pageno) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.item_paging.spage = pageno;
     };
     $scope.$root.set_document_internal($scope.$root.hr_general_module);
 
+<<<<<<< HEAD
     $scope.row_id = 0;//$stateParams.id;
+=======
+    $scope.row_id = 0; //$stateParams.id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.module_id = 19;
     $scope.subtype = 1;
     $scope.module = "Sales & Customer";
@@ -4288,4 +5855,8 @@ function CustomerEditController($scope, $filter, $http, $state, $resource, ngDia
     $scope.$root.$broadcast("image_module", $scope.row_id, $scope.module, $scope.module_id, $scope.module_name, $scope.module_code, $scope.subtype, $scope.$root.tab_id);
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

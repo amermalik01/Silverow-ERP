@@ -83,7 +83,11 @@ $app->post('/dashboard/open-widget-options-modal', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/dashboard/get-widget-option-data-for-label', function () use ($app) {
+=======
+/* $app->post('/dashboard/get-widget-option-data-for-label', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objDash, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -93,7 +97,11 @@ $app->post('/dashboard/get-widget-option-data-for-label', function () use ($app)
     $app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/dashboard/check-user-widgets', function () use ($app) {
@@ -168,4 +176,7 @@ $app->post('/dashboard/check-released-version', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

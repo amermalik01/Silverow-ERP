@@ -1,6 +1,7 @@
 <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 <div class="panel-wrapper" ng-controller="LoginFormController">
 
+<<<<<<< HEAD
     <img src="app/img/login-logo.png" class="silverow-logo" style="padding: 30px 30px;
   background: #103701;
   opacity: 0.85;
@@ -406,4 +407,181 @@
 
         </div>
 
+=======
+    <div class="main-panel" style="background: url(app/img/bg2.jpg); background-repeat: no-repeat; background-size: 100% 100%; margin-left:0px;">
+
+        <div class="main-panel__table">
+
+            <div class="main-panel__table-cell" style="padding-bottom: 0px;">
+
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6" style="text-align: center">
+                                    <img src="app/img/login-logo.png" class="silverow-logo2">
+
+                                    <div class="main-panel__content2">
+                                        <div class="enterprise-panel__content">
+
+                                            <h2 class="enterprise-panel__header">
+                                                <small class="enterprise-panel__subheader"> GO BEYOND WITH SILVEROW </small> Take full control of your business
+                                            </h2>
+
+                                            <p class="enterprise-panel__footer__lead" style="color: #fff;    margin-top: 20px;">
+                                                Business in Motion
+                                            </p>
+                                            <div class="icon-holder">
+                                                <span class="mbri-growing-chart" style="font-size: 20px; color: #fff;"></span>
+                                                <div class="icon-name" style="color: #fff;font-weight: bold; font-size: 10px; margin-top: 9px;">
+                                                    Finance
+                                                </div>
+                                            </div>
+
+                                            <div class="icon-holder">
+                                                <span class="mbri-sale" style="font-size: 20px; color: #fff; "></span>
+                                                <div class="icon-name" style="color: #fff;font-weight: bold; font-size: 10px; margin-top: 9px;">
+                                                    Sales
+                                                </div>
+                                            </div>
+
+                                            <div class="icon-holder">
+                                                <span class="mbri-shopping-bag" style="font-size: 20px; color: #fff;"></span>
+                                                <div class="icon-name" style="color: #fff;font-weight: bold; font-size: 10px; margin-top: 9px;">
+                                                    Purchases</div>
+                                            </div>
+
+                                            <div class="icon-holder">
+                                                <span class="mbri-extension" style="font-size: 20px; color: #fff; "></span>
+                                                <div class="icon-name" style="color: #fff;font-weight: bold; font-size: 10px; margin-top: 9px;">
+                                                    Inventory</div>
+                                            </div>
+
+                                            <div class="icon-holder">
+                                                <span class="mbri-letter" style="font-size: 20px; color: #fff; "></span>
+                                                <div class="icon-name" style="color: #fff;font-weight: bold; font-size: 10px; margin-top: 9px;">
+                                                    Mail
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="enterprise-panel__footer2" style="  padding: 0 20px;">
+                                            
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="main-panel__content">
+
+                                        <div class="ipadUsermessage">
+                                            <span class="mbri-italic"></span> Tablet users: For better user experince, view silverow in landscape mode.
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div style="width:100%">
+                                            <div style="width:50%;float: left; color: #000044">
+                                                <h1 class="main-panel__heading ">
+                                                    Sign in to Silverow
+
+                                                    <small class="main-panel__subheading">Enter your details below. </small>
+                                                </h1>
+                                            </div>
+
+                                            <div class="site-visit-link-div">
+                                                <button class="site-visit-link btn btn-default" name="site-visit-link" type="button" onClick="javascript:window.open('https://silverow.co.uk/', '_blank');" formtarget="_blank">Visit Our Website</button>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                            <form role="form" ng-submit="login(credentials)" validate-form="" novalidate="" style="background-color: #fff;">
+
+                                                <div class="authmessage" ng-if="session_expiry_message">
+                                                    <i class="material-icons">error_outline</i> {{session_expiry_message}}
+                                                </div>
+                                                <div class="authmessage" ng-if="authMsg">
+                                                    <i class="material-icons">error_outline</i> {{authMsg}}
+                                                </div>
+                                                <div class="form__group">
+                                                    <label class="form__label">Email Address</label>
+                                                    <input type="text" ng-class="{'border-color':authMsg}" class="form__input topre fields_h" id="userName" placeholder="Username" autocomplete="off" ng-model="credentials.user_name" required="required">
+                                                </div>
+
+                                                <div class="form__group">
+                                                    <label class="form__label">Password</label>
+                                                    <input type="password" ng-class="{'border-color':authMsg}" class="form__input botre fields_h" id="Password1" placeholder="Password" ng-model="credentials.password" required="required" style="margin-bottom: 10px;">
+                                                </div>
+                                                <div class="actions text-center">
+                                                    <button class="btn-login2 btn btn-default" name="Login" type="submit" ng-class="{'disable-sign':flagSignin}">
+                                                      <span ng-if="!flagSignin">SIGN IN</span>
+                                                      <span ng-if="flagSignin">
+                                                        SIGNING IN
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="font-size: 13px"></i>
+                                                      </span>
+                                                    </button>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-panel-footer">
+                <a data-toggle="modal" data-target="#forgotPassword" class="tooltips_clsshilight cursorPointer" style="font-size: 13px;"><b>Reset your password</b></a>
+            </div>
+        </div>
+    </div>
+    <div id="forgotPassword" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="material-icons" style="font-size: 60px;color: #2196F3;">lock_open </i>
+                        <h4 style="font-weight: 300;margin-top: 6px;">Your password has expired</h4>
+                        <p style="font-size: 13px; display: block; border-bottom: 1px solid whitesmoke; padding-bottom: 16px; margin-bottom: 24px;">Fill in the details below to change password.</p>
+                    </div>
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Email</label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Current Password</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">New Password</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Retype New Password</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_add2" data-dismiss="modal" style="width:auto;">Change Password</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="width:auto;">Cancel</button>
+                </div>
+            </div>
+        </div>
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     </div>

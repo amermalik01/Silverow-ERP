@@ -12,7 +12,10 @@ $app->post('/sales/warehouse/get-all-list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/sales/warehouse/get-items-warehouse', function () use ($app) {
@@ -26,7 +29,10 @@ $app->post('/sales/warehouse/get-items-warehouse', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 
@@ -118,7 +124,11 @@ $app->post('/sales/warehouse/get-warehouse-code', function () use ($app) {
 });
 
 
+<<<<<<< HEAD
 $app->post('/sales/warehouse/update-finance', function () use ($app) {
+=======
+/* $app->post('/sales/warehouse/update-finance', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -128,7 +138,11 @@ $app->post('/sales/warehouse/update-finance', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Alt Contact Module
@@ -578,7 +592,11 @@ $app->post('/sales/warehouse/delete-warehouse-area', function () use ($app) {
 // CRM Document Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/sales/warehouse/srm-documents', function () use ($app) {
+=======
+/* $app->post('/sales/warehouse/srm-documents', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -588,7 +606,11 @@ $app->post('/sales/warehouse/srm-documents', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/warehouse/get-warehouse-document-by-id', function () use ($app) {
     global $objWarehouse, $input;
@@ -602,7 +624,11 @@ $app->post('/sales/warehouse/get-warehouse-document-by-id', function () use ($ap
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/warehouse/add-warehouse-document', function () use ($app) {
     global $objWarehouse, $input;
     $input_array = array();
@@ -627,7 +653,11 @@ $app->post('/sales/warehouse/update-warehouse-document', function () use ($app) 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/warehouse/delete-warehouse-document', function () use ($app) {
     global $objWarehouse, $input;
@@ -642,7 +672,11 @@ $app->post('/sales/warehouse/delete-warehouse-document', function () use ($app) 
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/sales/warehouse/folders', function () use ($app) {
+=======
+/* $app->post('/sales/warehouse/folders', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objWarehouse, $input;
     $input_array = array();
 
@@ -668,7 +702,11 @@ $app->post('/sales/warehouse/add-folder', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Price Offer Volume Module
@@ -698,7 +736,11 @@ $app->post('/sales/warehouse/get-price-offer-volume', function () use ($app) {
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/sales/warehouse/add-price-offer-volume', function () use ($app) {
     global $objWarehouse, $input;
     $input_array = array();
@@ -723,7 +765,11 @@ $app->post('/sales/warehouse/update-price-offer-volume', function () use ($app) 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/sales/warehouse/get-price-offer-volume-by-id', function () use ($app) {
     global $objWarehouse, $input;
@@ -777,7 +823,10 @@ $app->post('/sales/warehouse/supplier_list', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/sales/warehouse/supplier_by_id', function () use ($app) {
@@ -789,7 +838,10 @@ $app->post('/sales/warehouse/supplier_by_id', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/sales/warehouse/delete_sp_id', function () use ($app) {
@@ -803,7 +855,10 @@ $app->post('/sales/warehouse/delete_sp_id', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 });
 
 $app->post('/sales/warehouse/update_product_values', function () use ($app) {
@@ -1362,5 +1417,8 @@ $app->post('/sales/warehouse/invoice-stock', function () use ($app) {
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

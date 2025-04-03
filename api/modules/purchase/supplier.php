@@ -145,7 +145,11 @@ $app->post('/purchase/supplier/supplier/delete-supplier', function () use ($app)
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/convert', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/convert', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -155,7 +159,11 @@ $app->post('/purchase/supplier/supplier/convert', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/get-supplier-code', function () use ($app) {
     global $objSupplier, $input;
@@ -199,7 +207,11 @@ $app->post('/purchase/supplier/supplier/update-finance', function () use ($app) 
 // Alt Contact Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/alt-contacts', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/alt-contacts', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -210,7 +222,11 @@ $app->post('/purchase/supplier/supplier/alt-contacts', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/get-alt-contact', function () use ($app) {
     global $objSupplier, $input;
@@ -225,7 +241,11 @@ $app->post('/purchase/supplier/supplier/get-alt-contact', function () use ($app)
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/add-alt-contact', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/add-alt-contact', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -249,7 +269,11 @@ $app->post('/purchase/supplier/supplier/update-alt-contact', function () use ($a
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/get-alt-contact-by-id', function () use ($app) {
     global $objSupplier, $input;
@@ -264,7 +288,11 @@ $app->post('/purchase/supplier/supplier/get-alt-contact-by-id', function () use 
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/delete-alt-contact', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/delete-alt-contact', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -288,13 +316,21 @@ $app->post('/purchase/supplier/supplier/get-alt-contacts-list', function () use 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Alt Depot Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/alt-depots', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/alt-depots', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     global $objSupplier, $input;
     $input_array = array();
@@ -306,7 +342,11 @@ $app->post('/purchase/supplier/supplier/alt-depots', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/get-alt-depot-by-id', function () use ($app) {
     global $objSupplier, $input;
@@ -321,7 +361,11 @@ $app->post('/purchase/supplier/supplier/get-alt-depot-by-id', function () use ($
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/add-alt-depot', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/add-alt-depot', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
 
@@ -345,7 +389,11 @@ $app->post('/purchase/supplier/supplier/update-alt-depot', function () use ($app
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/delete-alt-depot', function () use ($app) {
     global $objSupplier, $input;
@@ -564,7 +612,11 @@ $app->post('/purchase/supplier/supplier/delete-supplier-shipping', function () u
 // CRM Document Module
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/srm-documents', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/srm-documents', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -574,7 +626,11 @@ $app->post('/purchase/supplier/supplier/srm-documents', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/get-supplier-document-by-id', function () use ($app) {
     global $objSupplier, $input;
@@ -590,7 +646,11 @@ $app->post('/purchase/supplier/supplier/get-supplier-document-by-id', function (
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/add-supplier-document', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/add-supplier-document', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
 
@@ -614,7 +674,11 @@ $app->post('/purchase/supplier/supplier/update-supplier-document', function () u
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/delete-supplier-document', function () use ($app) {
     global $objSupplier, $input;
@@ -630,7 +694,11 @@ $app->post('/purchase/supplier/supplier/delete-supplier-document', function () u
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/folders', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/folders', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
 
@@ -656,7 +724,11 @@ $app->post('/purchase/supplier/supplier/add-folder', function () use ($app) {
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // Price Offer Volume Module
@@ -688,7 +760,11 @@ $app->post('/purchase/supplier/supplier/get-price-offer-volume', function () use
 });
 
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/add-price-offer-volume', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/add-price-offer-volume', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -724,7 +800,11 @@ $app->post('/purchase/supplier/supplier/get-price-offer-volume-by-id', function 
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/supplier/supplier/delete-price-offer-volume', function () use ($app) {
     global $objSupplier, $input;
@@ -740,7 +820,11 @@ $app->post('/purchase/supplier/supplier/delete-price-offer-volume', function () 
     echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/get-price-offer-volume-by-type', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/get-price-offer-volume-by-type', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     global $objSupplier, $input;
     $input_array = array();
     foreach ($input as $key => $val) {
@@ -750,7 +834,11 @@ $app->post('/purchase/supplier/supplier/get-price-offer-volume-by-type', functio
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 ///////////////// for volume discount ///////////////
 
@@ -807,7 +895,10 @@ $app->post('/purchase/supplier/supplier/update_product_values', function () use 
     $app->response()->headers->set('Content-Type', 'application/json');
     echo json_encode($result);
 });
+<<<<<<< HEAD
 
 
 ?>
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -1,0 +1,22 @@
+<div>
+    <!--  ng-controller="hr_values_controler as table" -->
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+    <!-- <a ng-if="allowaddhr_employee" id="prompt" ui-sref="app.add_hr_values" class="btn pull-right btn_add oval">
+        <i class="fa fa-plus"></i>
+    </a> -->
+    <style>
+        .addHeight {
+            margin-top: -12px !important;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div ng-if="tableData.data.ack " style="margin-top: 18px;">
+                <div class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="HR" x-filter-function="emplyeesList()" x-filter-object="searchKeywordHR">
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

@@ -14,7 +14,11 @@ $app->post('/stock/brands', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/stock/brands/get-brand', function () use ($app) {
+=======
+/* $app->post('/stock/brands/get-brand', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objStock, $input;	
 	$array = array(
 				"id"=> $input->id
@@ -23,7 +27,11 @@ $app->post('/stock/brands/get-brand', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/stock/brands/get-all-brands', function () use ($app) {
 	global $objStock, $input;	
@@ -74,7 +82,11 @@ $app->post('/stock/brands/delete-brand', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
+=======
+/* 
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/stock/brands/upload-image', function () use ($app) {
 	global $objStock, $input, $user_info;
 	
@@ -106,6 +118,10 @@ $app->post('/stock/brands/upload-image', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
 
 ?>
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

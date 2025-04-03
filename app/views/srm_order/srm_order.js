@@ -1,5 +1,9 @@
 myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+<<<<<<< HEAD
     function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+=======
+    function($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         /* specific routes here (see file config.js) */
         $stateProvider
             .state('app.srmorder', {
@@ -42,13 +46,22 @@ myApp.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'Rout
                 resolve: helper.resolveFor('ngTable', 'ngDialog'),
                 controller: 'SrmOrderEditController'
             })
+<<<<<<< HEAD
     }]);
+=======
+    }
+]);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 /* templateUrl: helper.basepath('srm_order/add_form.html'), */
 
 SRMInvoiceController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "ngTableDataService", "$http", "ngDialog", "toaster", "$rootScope", '$stateParams', 'moduleTracker', "$timeout"];
 myApp.controller('SRMInvoiceController', SRMInvoiceController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataService, $http, ngDialog, toaster, $rootScope, $stateParams, moduleTracker, $timeout) {
     'use strict';
 
@@ -71,9 +84,17 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
     var SrmInvoiceListingCount;
 
+<<<<<<< HEAD
     $scope.searchKeyword = {};
     $scope.selectedRecBulkEmail = [];
     $scope.getSrmInvoiceListing = function (item_paging, sort_column, sortform, SrmInvoiceListingCount) {
+=======
+    $scope.check_pi_readonly = false;
+
+    $scope.searchKeyword = {};
+    $scope.selectedRecBulkEmail = [];
+    $scope.getSrmInvoiceListing = function(item_paging, sort_column, sortform, SrmInvoiceListingCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = {};
         $scope.postData = {
             'token': $scope.$root.token,
@@ -99,7 +120,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
         if (SrmInvoiceListingCount == undefined) SrmInvoiceListingCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.columns = [];
                 $scope.recordArray = [];
@@ -124,13 +149,21 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                     $scope.record_data = res.data.response;
                     $scope.$data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (key != "tbl_meta_data") {
                             $scope.recordArray.push(value);
                         }
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -141,7 +174,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                     });
                 }
                 //else     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (SrmInvoiceListingCount != 0) return $scope.getSrmInvoiceListing(item_paging, sort_column, sortform, SrmInvoiceListingCount - 1);
 
                 $scope.showLoader = false;
@@ -152,7 +189,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
     // $scope.getSrmInvoiceListing(1);
 
+<<<<<<< HEAD
     $scope.getItem = function (parm) {
+=======
+    $scope.getItem = function(parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.token = $scope.$root.token;
 
         if (parm == 'all') {
@@ -166,14 +207,22 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
     }
 
 
+<<<<<<< HEAD
     $scope.$on("myReload", function (event) {
+=======
+    $scope.$on("myReload", function(event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.table.tableParams5.reload();
     });
 
 
     var showLinkToSOCount;
 
+<<<<<<< HEAD
     $scope.ShowLinkToSO = function (id, showLinkToSOCount) {
+=======
+    $scope.ShowLinkToSO = function(id, showLinkToSOCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.showLoader = true;
         $scope.filterPurchaseOrder = {};
 
@@ -189,7 +238,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
         if (showLinkToSOCount == undefined) showLinkToSOCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 if (res.data.ack == true) {
@@ -200,10 +253,16 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                         $scope.SaleOrderArr[i].chk = true;
                     }
                     angular.element('#_saleOrdersModal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(561));
             }).catch(function (e) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(561));
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (showLinkToSOCount != 0) return $scope.ShowLinkToSO(id, showLinkToSOCount - 1);
 
                 $scope.showLoader = false;
@@ -213,15 +272,26 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
     }
 
+<<<<<<< HEAD
     $scope.bulkEmailOption = function () {
 
         $scope.emailOrderList = $scope.recordArray.filter(function (o, i) {
             return ($scope.selectedRecBulkEmail.findIndex( s => s.key == o.id ) > -1);
+=======
+    $scope.bulkEmailOption = function() {
+
+        $scope.emailOrderList = $scope.recordArray.filter(function(o, i) {
+            return ($scope.selectedRecBulkEmail.findIndex(s => s.key == o.id) > -1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         });
 
         if ($scope.emailOrderList.length > 0) {
 
+<<<<<<< HEAD
             angular.element('#_bulkOptionsModal').modal({ show: true });  
+=======
+            angular.element('#_bulkOptionsModal').modal({ show: true });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         } else {
             $rootScope.animateBulkEmail = false;
@@ -231,7 +301,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
     $rootScope.BulkEmailMessage = "";
 
+<<<<<<< HEAD
     $scope.bulkOptionConfirm = function (bulkOptionChk) {
+=======
+    $scope.bulkOptionConfirm = function(bulkOptionChk) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         angular.element('#_bulkOptionsModal').modal('hide');
 
@@ -254,7 +328,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                     'company_logo_url': $scope.company_logo_url,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $rootScope.animateBulkEmail = false;
                     $rootScope.animateBulkEmailText = '';
@@ -275,7 +353,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
                         // angular.forEach(res.data.PdfLinks, function (rec) {
                         link.setAttribute('href', res.data.file_url);
+<<<<<<< HEAD
                             link.click();
+=======
+                        link.click();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // });
 
                         document.body.removeChild(link);
@@ -283,22 +365,35 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                         // $timeout(function () {
                         //     $scope.getSrmInvoiceListing();
                         // }, 500);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', "PDF(s) Generation Failed.");
                     }
                 });
 
+<<<<<<< HEAD
         }
         else if (bulkOptionChk == 'email') {
         // else if (bulkOptionChk.email == true) {
+=======
+        } else if (bulkOptionChk == 'email') {
+            // else if (bulkOptionChk.email == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rootScope.BulkEmailMessage = "Purchase Invoice(s)";
 
             ngDialog.openConfirm({
                 template: 'BulkEmailConfirmationMessage',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
+=======
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $rootScope.animateBulkEmail = true;
                 $rootScope.animateBulkEmailText = 'Sending Email(s)';
@@ -313,7 +408,11 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                         'company_logo_url': $scope.company_logo_url,
                         'token': $scope.$root.token
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rootScope.animateBulkEmail = false;
                         $rootScope.animateBulkEmailText = '';
@@ -328,6 +427,7 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                                 bodyOutputType: 'trustedHtml',
                                 tapToDismiss: false
                             });
+<<<<<<< HEAD
                         }
                         else if (res.data.ack == true) {
                             toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
@@ -342,10 +442,25 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                         }
                     });
             }, function (reason) {
+=======
+                        } else if (res.data.ack == true) {
+                            toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+
+
+                            $timeout(function() {
+                                $scope.getSrmInvoiceListing();
+                            }, 500);
+                        } else {
+                            toaster.pop('warning', 'Info', "Email(s) Sending Failed. " + res.data.error);
+                        }
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.animateBulkEmail = false;
                 $rootScope.animateBulkEmailText = '';
                 console.log('Modal promise rejected. Reason: ', reason);
             });
+<<<<<<< HEAD
         }
         else if (bulkOptionChk == 'xml'){
 
@@ -354,6 +469,15 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
             console.log("creatign xml...")
             // console.log($scope.emailOrderList.length);
+=======
+        } else if (bulkOptionChk == 'xml') {
+
+            $rootScope.animateBulkEmail = true;
+            $rootScope.animateBulkEmailText = 'Uploading E-Archive'; //Creating Xml(s)
+
+            console.log("creatign xml...")
+                // console.log($scope.emailOrderList.length);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var prntInvoiceUrl = $scope.$root.sales + "customer/order/bulk-xml-invoice";
             $http
                 .post(prntInvoiceUrl, {
@@ -364,33 +488,54 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
                     'company_logo_url': $scope.company_logo_url,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $rootScope.animateBulkEmail = false;
                     $rootScope.animateBulkEmailText = '';
 
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Info', 'E-Archive Uploaded Successfully.');
 
                         if (res.data.rejectedXMLCounter > 0)
                             toaster.pop('warning', 'Info', res.data.rejectedXMLMsg);
+<<<<<<< HEAD
                                   
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         /* var link = document.createElement('a');
 
                         link.setAttribute('download', null);
                         link.style.display = 'none';
 
                         link.setAttribute('href', res.data.file_url);
+<<<<<<< HEAD
                         link.click();  */                      
                     }
                     else {
+=======
+                        link.click();  */
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', "E-Archive Uploading Failed.");
 
                         if (res.data.rejectedXMLCounter > 0)
                             toaster.pop('warning', 'Info', res.data.rejectedXMLMsg);
                     }
+<<<<<<< HEAD
                 }, function(err){
+=======
+                }, function(err) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     console.log(err);
                 });
 
@@ -401,6 +546,10 @@ function SRMInvoiceController($scope, $filter, ngParams, $resource, ngDataServic
 
 SRMOrderController.$inject = ["$scope", "$filter", "ngTableParams", "$resource", "ngTableDataService", "$http", "ngDialog", "toaster", "$rootScope", '$stateParams', 'moduleTracker', "$timeout"];
 myApp.controller('SRMOrderController', SRMOrderController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService, $http, ngDialog, toaster, $rootScope, $stateParams, moduleTracker, $timeout) {
     'use strict';
 
@@ -415,7 +564,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
 
     var SRMOrderlistCount;
 
+<<<<<<< HEAD
     $scope.getSRMOrderlist = function (item_paging, sort_column, sortform, SRMOrderlistCount) {
+=======
+    $scope.getSRMOrderlist = function(item_paging, sort_column, sortform, SRMOrderlistCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var Api = $scope.$root.pr + "srm/srminvoice/listings";
         // var Api = $rootScope.pr + "srm/srminvoice/listings";
@@ -445,12 +598,20 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
 
         $scope.showLoader = true;
 
+<<<<<<< HEAD
         $scope.postData.tableMetaData = 'PurchaseOrder';//SRMOrder
+=======
+        $scope.postData.tableMetaData = 'PurchaseOrder'; //SRMOrder
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (SRMOrderlistCount == undefined) SRMOrderlistCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(Api, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.tableData = res;
                 $scope.columns = [];
                 $scope.recordArray = [];
@@ -472,12 +633,20 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                     $scope.record_data = res.data.response;
                     $scope.$data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (key != "tbl_meta_data") {
                             $scope.recordArray.push(value);
                         }
                     });
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (index != 'chk' && index != 'id') {
                             $scope.columns.push({
                                 'title': toTitleCase(index),
@@ -488,7 +657,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                     });
                 }
                 //else     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (SRMOrderlistCount != 0) return $scope.getSRMOrderlist(item_paging, sort_column, sortform, SRMOrderlistCount - 1);
 
                 $scope.showLoader = false;
@@ -500,7 +673,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
     // $scope.getSRMOrderlist(1);
 
 
+<<<<<<< HEAD
     $scope.getItem = function (parm) {
+=======
+    $scope.getItem = function(parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.token = $scope.$root.token;
 
         if (parm == 'all') {
@@ -513,13 +690,21 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
         $scope.$root.$broadcast("myReload");
     }
 
+<<<<<<< HEAD
     $scope.$on("myReload", function (event) {
+=======
+    $scope.$on("myReload", function(event) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.table.tableParams5.reload();
     });
 
     var ShowLinkToSOCount;
 
+<<<<<<< HEAD
     $scope.ShowLinkToSO = function (id, ShowLinkToSOCount) {
+=======
+    $scope.ShowLinkToSO = function(id, ShowLinkToSOCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.showLoader = true;
         $scope.filterPurchaseOrder = {};
         $scope.SaleOrderArrlistingchk = true;
@@ -535,7 +720,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
         if (ShowLinkToSOCount == undefined) ShowLinkToSOCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(prodApi, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 if (res.data.ack == true) {
@@ -546,10 +735,16 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                         $scope.SaleOrderArr[i].chk = true;
                     }
                     angular.element('#_saleOrdersModal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(561));
             }).catch(function (e) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(561));
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (ShowLinkToSOCount != 0) return $scope.ShowLinkToSO(id, ShowLinkToSOCount - 1);
 
                 $scope.showLoader = false;
@@ -558,15 +753,26 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
             });
     }
 
+<<<<<<< HEAD
     $scope.bulkEmailOption = function () {
 
         $scope.emailOrderList = $scope.recordArray.filter(function (o, i) {
             return ($scope.selectedRecBulkEmail.findIndex( s => s.key == o.id ) > -1);
+=======
+    $scope.bulkEmailOption = function() {
+
+        $scope.emailOrderList = $scope.recordArray.filter(function(o, i) {
+            return ($scope.selectedRecBulkEmail.findIndex(s => s.key == o.id) > -1);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         });
 
         if ($scope.emailOrderList.length > 0) {
 
+<<<<<<< HEAD
             angular.element('#_bulkOptionsModal').modal({ show: true });             
+=======
+            angular.element('#_bulkOptionsModal').modal({ show: true });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         } else {
             $rootScope.animateBulkEmail = false;
@@ -576,7 +782,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
 
     $rootScope.BulkEmailMessage = "";
 
+<<<<<<< HEAD
     $scope.bulkOptionConfirm = function (bulkOptionChk) {
+=======
+    $scope.bulkOptionConfirm = function(bulkOptionChk) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         angular.element('#_bulkOptionsModal').modal('hide');
 
@@ -599,7 +809,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                     'company_logo_url': $scope.company_logo_url,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $rootScope.animateBulkEmail = false;
                     $rootScope.animateBulkEmailText = '';
@@ -620,7 +834,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
 
                         // angular.forEach(res.data.PdfLinks, function (rec) {
                         link.setAttribute('href', res.data.file_url);
+<<<<<<< HEAD
                             link.click();
+=======
+                        link.click();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // });
 
                         document.body.removeChild(link);
@@ -628,22 +846,35 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                         // $timeout(function () {
                         //     $scope.getSRMOrderlist();
                         // }, 500);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', "PDF(s) Generation Failed.");
                     }
                 });
 
+<<<<<<< HEAD
         }        
         else if (bulkOptionChk == 'email') {
         //else if (bulkOptionChk.email == true) {
+=======
+        } else if (bulkOptionChk == 'email') {
+            //else if (bulkOptionChk.email == true) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             $rootScope.BulkEmailMessage = "Purchase Order(s)";
 
             ngDialog.openConfirm({
                 template: 'BulkEmailConfirmationMessage',
                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
             }).then(function (value) {
+=======
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $rootScope.animateBulkEmail = true;
                 $rootScope.animateBulkEmailText = 'Sending Email(s)';
@@ -658,7 +889,11 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                         'company_logo_url': $scope.company_logo_url,
                         'token': $scope.$root.token
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $rootScope.animateBulkEmail = false;
                         $rootScope.animateBulkEmailText = '';
@@ -673,6 +908,7 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                                 bodyOutputType: 'trustedHtml',
                                 tapToDismiss: false
                             });
+<<<<<<< HEAD
                         }
                         else if (res.data.ack == true) {
                             toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
@@ -686,6 +922,19 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
                         }
                     });
             }, function (reason) {
+=======
+                        } else if (res.data.ack == true) {
+                            toaster.pop('success', 'Info', 'Email(s) Sent Successfully.');
+
+                            $timeout(function() {
+                                $scope.getSRMOrderlist();
+                            }, 500);
+                        } else {
+                            toaster.pop('warning', 'Info', "Email(s) Sending Failed. " + res.data.error);
+                        }
+                    });
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.animateBulkEmail = false;
                 $rootScope.animateBulkEmailText = '';
                 console.log('Modal promise rejected. Reason: ', reason);
@@ -696,6 +945,10 @@ function SRMOrderController($scope, $filter, ngParams, $resource, ngDataService,
 
 SrmOrderEditController.$inject = ["$scope", "$filter", "$resource", "$http", "ngDialog", "toaster", "$stateParams", "$state", "$rootScope", "ModalService", "serviceVariables", "generatePdf", "moduleTracker", "$timeout"];
 myApp.controller('SrmOrderEditController', SrmOrderEditController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toaster, $stateParams, $state, $rootScope, ModalService, serviceVariables, generatePdf, moduleTracker, $timeout) {
     'use strict'
 
@@ -727,17 +980,34 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         moduleTracker.updateAdditional("purchase order");
     }
 
+<<<<<<< HEAD
+=======
+    $scope.check_pi_readonly = false;
+
+    $scope.showInvoiceEditForm = function() {
+        $scope.check_pi_readonly = true;
+    }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     if ($stateParams.id > 0) {
         $scope.check_srm_readonly = true;
         $scope.recnew = $stateParams.id;
         moduleTracker.updateRecord($stateParams.id);
+<<<<<<< HEAD
     }
     else{
+=======
+    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedSaleOrderArr = [];
         $scope.selectedSaleOrderModal = [];
     }
 
+<<<<<<< HEAD
     $scope.$on('InvoicePosted', function (event, data) {
+=======
+    $scope.$on('InvoicePosted', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec2 = {};
         $scope.rec = {};
@@ -757,6 +1027,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.rec.receiptDate = $scope.$root.get_current_date();
     });
 
+<<<<<<< HEAD
     $scope.GetApprovalPreData = function () {
         var APIUrl = $scope.$root.sales + "customer/order/get-approval-pre-data";
         var postData = {
@@ -775,28 +1046,67 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
     // if (!($stateParams.id > 0))
+=======
+    $scope.GetApprovalPreData = function() {
+            var APIUrl = $scope.$root.sales + "customer/order/get-approval-pre-data";
+            var postData = {
+                'token': $scope.$root.token
+            };
+            $http
+                .post(APIUrl, postData)
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        $scope.purchase_order_approval_req = res.data.purchase_order_approval_req;
+                    } else {
+                        $scope.purchase_order_approval_req = 0;
+
+                    }
+                });
+        }
+        // if (!($stateParams.id > 0))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     $scope.GetApprovalPreData();
 
     $scope.SaleOrderArrlistingchk = false;
 
+<<<<<<< HEAD
     $scope.showEditForm = function () {
+=======
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_srm_readonly = false;
         //$scope.perreadonly = true;
     }
     $rootScope.updateSelectedGlobalData("uom");
     // $rootScope.updateSelectedGlobalData('item');
 
+<<<<<<< HEAD
     $scope.showEditorderForm = function (flg) {
         
         if(flg != undefined && flg == 1)
         {
             if($scope.approvals_lock_order == 1)
             {
+=======
+    $scope.showReceiveStuff = false;
+
+    $scope.$on('showReceiveStuff', function(event, data) {
+        $scope.showReceiveStuff = data;
+    });
+
+    $scope.showEditorderForm = function(flg) {
+
+        toaster.pop('warning', 'Info', 'On order update the payment will be deallocated');
+
+        if (flg != undefined && flg == 1) {
+            if ($scope.approvals_lock_order == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $rootScope.approval_message = "The purchase order is already approved. \n 1) Press Unlock to enable complete edit access to the document. It will need to be send for approval again. \n 2) Press Edit to edit general information only.";
                 $rootScope.approval_type = "Unlock";
                 ngDialog.openConfirm({
                     template: '_confirm_approval_confirmation_modal2',
                     className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                 }).then(function (value) {
                     $scope.showLoader = true;
                     var postUrl = $scope.$root.setup + "general/unlock-approved-order";
@@ -834,6 +1144,41 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     }
 
     $scope.makeInvoiceFormReadonly = function () {
+=======
+                }).then(function(value) {
+                        $scope.showLoader = true;
+                        var postUrl = $scope.$root.setup + "general/unlock-approved-order";
+                        //'warehouse_id': item.warehouses.id
+                        $http
+                            .post(postUrl, {
+                                'object_id': $scope.rec.id,
+                                'type': "4, 7",
+                                'token': $scope.$root.token
+                            })
+                            .then(function(res) {
+                                if (res.data.ack == true) {
+                                    $scope.showLoader = false;
+                                    $scope.check_srm_readonly = false;
+                                    $scope.approvals_lock_order = 0;
+                                } else {
+                                    $scope.showLoader = false;
+                                    $scope.check_srm_readonly = false;
+                                }
+                            });
+                    },
+                    function(reason) {
+                        $scope.showLoader = false;
+                        $scope.check_srm_readonly = false;
+                        console.log('Modal promise rejected. Reason: ', reason);
+                    });
+            } else
+                $scope.check_srm_readonly = false;
+        } else
+            $scope.check_srm_readonly = false;
+    }
+
+    $scope.makeInvoiceFormReadonly = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_srm_readonly = true;
     }
     $scope.arrItems = [{ 'label': 'Please select type', 'value': 3 }, { 'label': 'Item', 'value': 0 }, { 'label': 'G/L Account', 'value': 1 }, { 'label': 'Item Additional cost', 'value': 2 }];
@@ -870,7 +1215,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.rec.receiptDate = $rootScope.get_current_date();
         $scope.purchaseOrderDeleteBtn = true;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_currency, function (elem) {
+=======
+        angular.forEach($rootScope.arr_currency, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem.id == $scope.$root.defaultCurrency)
                 $scope.rec.currency_id = elem;
         });
@@ -879,7 +1228,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.rec.ReasonForshippingNotReq = 'n/a';
     }
 
+<<<<<<< HEAD
     $scope.add_general = function (rec) {
+=======
+    $scope.add_general = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         rec.token = $scope.$root.token;
         rec.id = $stateParams.id;
@@ -919,7 +1272,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         rec.shipment_method_id = (rec.shipment_method_code != undefined && rec.shipment_method_code != '') ? rec.shipment_method_code.id : 0;
         rec.shipment_method = (rec.shipment_method_code != undefined && rec.shipment_method_code != '') ? rec.shipment_method_code.name : 0;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_currency, function (obj) {
+=======
+        angular.forEach($rootScope.arr_currency, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === rec.currency_ids)
                 $rootScope.currencyID_PO = obj;
             // $rootScope.currency_id = obj;
@@ -947,24 +1304,39 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
             return $http
                 .post(addQuoteUrl, rec)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         $stateParams.id = res.data.id;
                         $scope.recnew = res.data.id;
                         $scope.rec.id = res.data.id;
                         $scope.rec.update_id = res.data.id;
                         return 1;
+<<<<<<< HEAD
                     }
                     else
                         return res.data.error;
                     
                 }).catch(function (message) {
+=======
+                    } else
+                        return res.data.error;
+
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
             var name = $scope.$root.base64_encode('srm_order');
@@ -984,11 +1356,19 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     'module_category_id': module_category_id,
                     'type': '3,2'
                 })
+<<<<<<< HEAD
                 .then(function (res) {
 
                     if (res.data.ack == 1) {
                         $scope.rec.order_code = res.data.code;
                         $scope.rec.code_type = module_category_id;//res.data.code_type;
+=======
+                .then(function(res) {
+
+                    if (res.data.ack == 1) {
+                        $scope.rec.order_code = res.data.code;
+                        $scope.rec.code_type = module_category_id; //res.data.code_type;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.count_result++;
 
                         if ($scope.$root.breadcrumbs.length > 3) {
@@ -1003,8 +1383,12 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                         if (res.data.type == 1) {
                             $scope.product_type = false;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.product_type = true;
                         }
 
@@ -1026,11 +1410,19 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                             return $http
                                 .post(addQuoteUrl, rec)
+<<<<<<< HEAD
                                 .then(function (res) {
                                     if (res.data.ack == true) {
                                         
                                         $stateParams.id = res.data.id;
                                         
+=======
+                                .then(function(res) {
+                                    if (res.data.ack == true) {
+
+                                        $stateParams.id = res.data.id;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.recnew = res.data.id;
                                         $scope.rec.id = res.data.id;
                                         $scope.rec.update_id = res.data.id;
@@ -1038,15 +1430,23 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                         moduleTracker.updateRecord($stateParams.id);
                                         moduleTracker.updateRecordName($scope.rec.order_code);
                                         return 1;
+<<<<<<< HEAD
                                     }
                                     else
                                         return res.data.error;
                                     
                                 }).catch(function (message) {
+=======
+                                    } else
+                                        return res.data.error;
+
+                                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.showLoader = false;
 
                                     throw new Error(message.data);
                                 });
+<<<<<<< HEAD
                         }
                         else {
                             console.log($scope.count_result + 'd');
@@ -1058,6 +1458,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         return false;
                     }
                 }).catch(function (message) {
+=======
+                        } else {
+                            console.log($scope.count_result + 'd');
+                            return $scope.count_result + 'd';
+                        }
+                    } else {
+                        toaster.pop('error', 'info', res.data.error);
+                        return false;
+                    }
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
@@ -1067,7 +1478,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     $scope.show_recieve_list = false;
 
+<<<<<<< HEAD
     $scope.$on('show_recieve_list', function (event, data) {
+=======
+    $scope.$on('show_recieve_list', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.show_recieve_list = data;
     });
 
@@ -1078,14 +1493,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.searchKeyword_sup = {};
     $scope.items = [];
 
+<<<<<<< HEAD
     $scope.$on('PurchaseLines', function (event, data) {
+=======
+    $scope.$on('PurchaseLines', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.items = data;
     });
 
     $scope.PurchaseStatus = 0;
     $scope.removeSupp = 0;
 
+<<<<<<< HEAD
     $scope.$on('PurchaseStatus', function (event, data) {
+=======
+    $scope.$on('PurchaseStatus', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PurchaseStatus = data;
     });
 
@@ -1093,6 +1516,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     var get_supplierCount;
     $scope.marketPromotionCustomer = {};
     $scope.confirmCustomer = function(result) {
+<<<<<<< HEAD
       $scope.marketPromotionCustomer = result;
       $scope.rec.linktoCustID = result.id;
       $scope.rec.linktoCustName = result.customer_code;
@@ -1107,19 +1531,44 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
       //         }
       //     });
+=======
+        $scope.marketPromotionCustomer = result;
+        $scope.rec.linktoCustID = result.id;
+        $scope.rec.linktoCustName = result.customer_code;
+        angular.element("#customer_modal_single").modal("hide");
+        // var custUrl = $scope.$root.sales + "customer/customer/getCustomerForOrder";
+        // $scope.showLoader = true;
+        // $http
+        //     .post(custUrl, { id: result.id, 'token': $scope.$root.token })
+        //     .then(function (res) {
+        //         if (res.data.ack == true) {
+        //             result = res.data.response;
+
+        //         }
+        //     });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     };
 
     $scope.searchKeyword_cust = {};
 
+<<<<<<< HEAD
     $scope.getCustomer = function (item_paging) {
         if (item_paging){
+=======
+    $scope.getCustomer = function(item_paging) {
+        if (item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.searchKeyword_cust = {};
         }
         $scope.title = "Customer Listing";
         /* $scope.columns = [];
         $scope.record = {};
         $scope.record = $rootScope.customer_arr; */
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
 
@@ -1128,6 +1577,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         var customerListingApi = $scope.$root.sales + "customer/order/customer-popup";
 
         $scope.showLoader = true;
+<<<<<<< HEAD
         
         $http
         .post(customerListingApi, $scope.postData)
@@ -1144,12 +1594,33 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 $scope.showLoader = false;
             }
         });
+=======
+
+        $http
+            .post(customerListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.customerTableData = res;
+                if (res.data.ack == true) {
+
+                    angular.element('#customer_modal_single').modal({ show: true });
+
+                    $scope.showLoader = false;
+                } else {
+                    $scope.showLoader = false;
+                }
+            });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
     $scope.searchKeywordSupp = {};
 
+<<<<<<< HEAD
     $scope.get_supplier = function (item_paging, shipagent, get_supplierCount) {
         if (item_paging){
+=======
+    $scope.get_supplier = function(item_paging, shipagent, get_supplierCount) {
+        if (item_paging) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.searchKeywordSupp = {};
         }
         $scope.title = 'Supplier Listing';
@@ -1194,7 +1665,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (get_supplierCount == undefined) get_supplierCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(supplierUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $scope.columns = [];
                 $scope.record = {};
                 $scope.showLoader = false;
@@ -1205,11 +1680,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $rootScope.currencyArrPurchase = res.data.currency_arr_local;
                     // $scope.record = res.data.response;
                     angular.element('#listing_sp_single_Modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 
             }).catch(function (e) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_supplierCount != 0) return $scope.get_supplier(item_paging, shipagent, get_supplierCount - 1);
 
                 $scope.showLoader = false;
@@ -1220,7 +1702,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     $rootScope.saveRecAfterAddSupp = 0;
 
+<<<<<<< HEAD
     $scope.confirm_supp_single = function (result) {
+=======
+    $scope.confirm_supp_single = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var objCust = {};
         var counter_rec = 0;
 
@@ -1274,7 +1760,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
             else
                 $scope.$root.model_code = $scope.rec.sell_to_cust_name;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false });
         }
 
@@ -1295,7 +1785,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         else
             $scope.anonymousSupplierFlag = true;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === result.country_id) {
                 $scope.rec.billToSupplierCountry = obj;
                 $scope.rec.country = obj;
@@ -1327,12 +1821,20 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.rec.bill_to_cust_id = result.id;
         $scope.rec.bill_to_contact_id = result.contact_id;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === result.billing_country)
                 $scope.rec.billToSupplierCountry = obj;
         });
 
+<<<<<<< HEAD
         angular.forEach($rootScope.currencyArrPurchase, function (obj) {
+=======
+        angular.forEach($rootScope.currencyArrPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === result.currency_id) {
                 $rootScope.currencyID_PO = obj;
                 $scope.rec.currency_id = obj;
@@ -1346,12 +1848,20 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             }
         }); */
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_srm_payment_terms, function (elem2) {
+=======
+        angular.forEach($rootScope.arr_srm_payment_terms, function(elem2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem2.id == result.payment_term)
                 $scope.rec.payment_terms_codes = elem2;
         });
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_srm_payment_methods, function (elem3) {
+=======
+        angular.forEach($rootScope.arr_srm_payment_methods, function(elem3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem3.id == result.payment_method)
                 $scope.rec.payment_method_ids = elem3;
         });
@@ -1392,7 +1902,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             $scope.rec.ship_to_email = result.ship_to_email;
             $scope.rec.ship_to_phone = result.booking_telephone;
 
+<<<<<<< HEAD
             angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+            angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (obj.id === result.country_id)
                     $scope.rec.shipToSupplierLocCountry = obj;
             });
@@ -1406,11 +1920,16 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.supplier_emails(result.id);
     }
 
+<<<<<<< HEAD
     $scope.supplier_emails = function(supplier_id){
+=======
+    $scope.supplier_emails = function(supplier_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var postData = { 'token': $scope.$root.token, 'supplier_id': supplier_id };
         var supplierEmailUrl = $scope.$root.pr + "srm/srminvoice/get-supplier-emails";;
         $http
             .post(supplierEmailUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     
@@ -1443,11 +1962,48 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
             }).catch(function (e) {
                $scope.showLoader = false;
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+
+                    if (Number(supplier_id) > 0)
+                        $scope.removeSupp = 1;
+                    else
+                        $scope.removeSupp = 0;
+
+                    if (res.data.response.e_emails) {
+                        try {
+                            $scope.supplierOrderEmail = res.data.response.e_emails.response.purchaseOrderEmail;
+                            $scope.supplierDebitEmail = res.data.response.e_emails.response.debitNoteEmail;
+                            $scope.supplierRemittanceEmail = res.data.response.e_emails.response.remittanceAdviceEmail;
+                            //alert($scope.supplierOrderEmail);
+                        } catch (ex) {
+                            console.log(ex);
+                        }
+                    }
+                    $scope.rec.supplier_emails = [];
+                    if (res.data.response.supplier_emails && res.data.response.supplier_emails.Emails) {
+                        var supplierEmails = [];
+                        angular.forEach(res.data.response.supplier_emails.Emails, function(obj, i) {
+                            supplierEmails.push({ id: i, username: obj.trim() })
+                        });
+                        $scope.rec.supplier_emails['Emails'] = supplierEmails;
+                    }
+                    console.log($scope.rec);
+                }
+
+            }).catch(function(e) {
+                $scope.showLoader = false;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 throw new Error(e.data);
             });
     }
 
+<<<<<<< HEAD
     $scope.RemoveSupplier = function () {
+=======
+    $scope.RemoveSupplier = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.rec.currency_id = 0;
         // $scope.rec.currency_rate = 1;        
 
@@ -1459,11 +2015,16 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 'type': "4, 7",
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == 1) {
 
                     $rootScope.order_post_invoice_msg = "Do you want the delete the Approval history as well?";
+<<<<<<< HEAD
         
                     var postUrl = $scope.$root.setup + "general/delete-approval-history";
                     
@@ -1476,16 +2037,39 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         $http
                             .post(postUrl, {'token': $scope.$root.token, 'object_id':$scope.rec.id, 'type': '4,7' })
                             .then(function (res) {
+=======
+
+                    var postUrl = $scope.$root.setup + "general/delete-approval-history";
+
+                    ngDialog.openConfirm({
+                        template: '_confirm_order_invoice_modal',
+                        className: 'ngdialog-theme-default-custom'
+                    }).then(function(value) {
+                        $scope.showLoader = true;
+
+                        $http
+                            .post(postUrl, { 'token': $scope.$root.token, 'object_id': $scope.rec.id, 'type': '4,7' })
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (res.data.ack != undefined) {
                                     $scope.showLoader = false;
                                 }
                             });
+<<<<<<< HEAD
                         }, function (reason) {
                         console.log('Modal promise rejected. Reason: ', reason);
                     });                    
                 }
 
                 $scope.removeSupp = 0;            
+=======
+                    }, function(reason) {
+                        console.log('Modal promise rejected. Reason: ', reason);
+                    });
+                }
+
+                $scope.removeSupp = 0;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $rootScope.order_posting_group_id = 0;
                 $scope.rec.payable_number = 0;
@@ -1584,6 +2168,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                 angular.element('#listing_sp_single_Modal').modal('hide');
 
+<<<<<<< HEAD
         });
 
         
@@ -1594,6 +2179,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.searchKeywordshippingAgent = {};
 
     $scope.selectshippingAgent = function (item_paging,get_supplierCount) {
+=======
+            });
+
+
+
+    }
+
+
+    $scope.searchKeywordshippingAgent = {};
+
+    $scope.selectshippingAgent = function(item_paging, get_supplierCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = 'Shipping Agent';
         $scope.columns = [];
@@ -1624,7 +2221,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (get_supplierCount == undefined) get_supplierCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(supplierUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // $scope.columns = [];
                 $scope.record = {};
                 $scope.showLoader = false;
@@ -1632,11 +2233,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                 if (res.data.ack == true) {
                     angular.element('#listing_shippingAgents_Modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 
             }).catch(function (e) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_supplierCount != 0) return $scope.get_supplier(item_paging, get_supplierCount - 1);
 
                 $scope.showLoader = false;
@@ -1644,8 +2252,13 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
 
+<<<<<<< HEAD
     $scope.confirmshippingAgent = function (result) {
         
+=======
+    $scope.confirmshippingAgent = function(result) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.shipping_agent_id = result.id;
         $scope.rec.shipping_agent = result.name;
         angular.element('#listing_shippingAgents_Modal').modal('hide');
@@ -1654,7 +2267,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     var get_empl_listCount;
 
+<<<<<<< HEAD
     $scope.get_empl_list = function (arg, get_empl_listCount) {
+=======
+    $scope.get_empl_list = function(arg, get_empl_listCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
         $scope.columns_pr = [];
         $scope.record_pr = {};
@@ -1678,7 +2295,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (get_empl_listCount == undefined) get_empl_listCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(empUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.columns_pr = [];
@@ -1686,7 +2307,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.record_pr = res.data.response;
                     $scope.showLoader = false;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns_pr.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1697,7 +2322,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     angular.element('#_SrmEmplisting_model').modal({ show: true });
                 } else
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_empl_listCount != 0) return $scope.get_empl_list(arg, get_empl_listCount - 1);
 
                 $scope.showLoader = false;
@@ -1706,7 +2335,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_employeeList = function (result, emptype) {
+=======
+    $scope.confirm_employeeList = function(result, emptype) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (emptype == 'purchaser_code') {
             //$scope.rec.purchaser_code = result.name;
@@ -1716,7 +2349,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         angular.element('#_SrmEmplisting_model').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.get_supplier3 = function () {
+=======
+    $scope.get_supplier3 = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.columns = [];
         $scope.record = {};
         $scope.title = 'Supplier Listing';
@@ -1729,12 +2366,20 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         };
         $http
             .post(custUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns = [];
                 $scope.record = {};
                 $scope.record = res.data.response;
 
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (index != "country" && index != "purchase_code") {
                         $scope.columns.push({
                             'title': toTitleCase(index),
@@ -1743,7 +2388,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         });
                     }
                 });
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -1755,10 +2404,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             templateUrl: 'customerModalDialogId',
             controller: 'ModalInstanceCtrl',
             resolve: {
+<<<<<<< HEAD
                 columns: function () {
                     return $scope.columns;
                 },
                 record: function () {
+=======
+                columns: function() {
+                    return $scope.columns;
+                },
+                record: function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     return $scope.record;
                 }
             }
@@ -1771,7 +2427,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         return string;
     }
 
+<<<<<<< HEAD
     $scope.updateDueDate = function (invoiceDate) {
+=======
+    $scope.updateDueDate = function(invoiceDate) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (invoiceDate != null) {
             var date_parts = invoiceDate.trim().split('/');
@@ -1788,8 +2448,12 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.rec.due_date = padNumber(calculated_date.getDate()) + '/' + padNumber(calculated_date.getMonth() + 1) + '/' + calculated_date.getFullYear();
                 }
             }
+<<<<<<< HEAD
         }
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(503));
 
         return;
@@ -1798,14 +2462,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.searchKeywordSuppInv = {};
 
     var get_suppliers_invoicingCount;
+<<<<<<< HEAD
     $scope.get_suppliers_invoicing = function (item_paging, get_suppliers_invoicingCount) {
+=======
+    $scope.get_suppliers_invoicing = function(item_paging, get_suppliers_invoicingCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.recordSuppInvoice = {};
 
         //pass in API
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (item_paging == 1)
             $scope.item_paging.spage = 1
 
@@ -1824,17 +2496,27 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (get_suppliers_invoicingCount == undefined) get_suppliers_invoicingCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(supplierUrl, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 $scope.supplierInvTableData = res;
 
                 if (res.data.ack == true) {
                     // $scope.recordSuppInvoice = res.data.response;
                     angular.element('#listing_sp_single_invoice_Modal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
             }).catch(function (e) {
+=======
+                } else
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_suppliers_invoicingCount != 0) return $scope.get_suppliers_invoicing(arg, get_suppliers_invoicingCount - 1);
 
                 $scope.showLoader = false;
@@ -1843,7 +2525,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_supp_invoicing_single = function (result) {
+=======
+    $scope.confirm_supp_invoicing_single = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.bill_to_cust_no = result.code;
         $scope.rec.bill_to_name = result.name;
@@ -1859,17 +2545,29 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         else
             $scope.bill_anonymousSupplierFlag = true;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_srm_payment_terms, function (elem2) {
+=======
+        angular.forEach($rootScope.arr_srm_payment_terms, function(elem2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem2.id == result.payment_term)
                 $scope.rec.payment_terms_codes = elem2;
         });
 
+<<<<<<< HEAD
         angular.forEach($rootScope.arr_srm_payment_methods, function (elem3) {
+=======
+        angular.forEach($rootScope.arr_srm_payment_methods, function(elem3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (elem3.id == result.payment_method)
                 $scope.rec.payment_method_ids = elem3;
         });
 
+<<<<<<< HEAD
         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.id === result.country_id)
                 $scope.rec.billToSupplierCountry = obj;
         });
@@ -1903,7 +2601,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     var getBankAccountCount;
 
+<<<<<<< HEAD
     $scope.getBankAccount = function (getBankAccountCount) {
+=======
+    $scope.getBankAccount = function(getBankAccountCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.searchKeyword = '';
         $scope.showLoader = true;
@@ -1916,7 +2618,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (getBankAccountCount == undefined) getBankAccountCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(getBankUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 $scope.columns = [];
@@ -1926,7 +2632,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     $scope.record = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -1935,7 +2645,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     });
                     angular.element('#_model_modal_bank_order').modal({ show: true });
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getBankAccountCount != 0) return $scope.getBankAccount(getBankAccountCount - 1);
 
                 $scope.showLoader = false;
@@ -1944,7 +2658,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
 
+<<<<<<< HEAD
     $scope.confirm_bank = function (btc) {
+=======
+    $scope.confirm_bank = function(btc) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.payable_bank = btc.bank_name;
         // $scope.rec.payable_bank = btc.preferred_name;
         $scope.rec.bank_account_id = btc.id;
@@ -1954,7 +2672,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.selected_count = 0;
     var get_purchase_code_empCount;
 
+<<<<<<< HEAD
     $scope.get_purchase_code_emp = function (arg, id, get_purchase_code_empCount) {
+=======
+    $scope.get_purchase_code_emp = function(arg, id, get_purchase_code_empCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var postData_sale = {
             'token': $scope.$root.token,
@@ -1967,7 +2689,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (get_purchase_code_empCount == undefined) get_purchase_code_empCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(emp_Url, postData_sale)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.selection_record_del = {};
                 $scope.columnss = [];
 
@@ -1976,7 +2702,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.selection_record_del = res.data.response;
                     var test_name = '';
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (value, key) {
+=======
+                    angular.forEach(res.data.response, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (value.checked == 1) {
                             test_name += value.name + ",";
                         }
@@ -1984,7 +2714,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     $scope.rec.srm_purchase_code = test_name.substring(0, test_name.length - 1);
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_purchase_code_empCount != 0) return $scope.get_purchase_code_emp(arg, id, get_purchase_code_empCount - 1);
 
                 $scope.showLoader = false;
@@ -1995,14 +2729,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     var getAltDepotCount;
 
+<<<<<<< HEAD
     $scope.getAltDepot = function (getAltDepotCount) {
+=======
+    $scope.getAltDepot = function(getAltDepotCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.title = 'Location Listing';
 
         if ($scope.rec.sell_to_cust_id == undefined) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier']));
             return;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = true;
             var ApiAjax = $scope.$root.pr + "srm/srm/alt-delivery-depots";
             var postData = {
@@ -2014,7 +2756,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             if (getAltDepotCount == undefined) getAltDepotCount = $rootScope.maxHttpRepeatCount;
             $http
                 .post(ApiAjax, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns = [];
                     $scope.record = {};
                     $scope.filterLoc = {};
@@ -2023,7 +2769,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     if (res.data.record.ack == true) {
                         $scope.record = res.data.record.result;
 
+<<<<<<< HEAD
                         angular.forEach(res.data.record.result[0], function (val, index) {
+=======
+                        angular.forEach(res.data.record.result[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -2032,11 +2782,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         });
 
                         angular.element('#deliveryLocationsModal').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(563));
 
                 }).catch(function (e) {
+=======
+                    } else
+                        toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(563));
+
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getAltDepotCount != 0) return $scope.getAltDepot(getAltDepotCount - 1);
 
                     $scope.showLoader = false;
@@ -2046,7 +2803,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         }
     }
 
+<<<<<<< HEAD
     $scope.confirmLocation = function (result) {
+=======
+    $scope.confirmLocation = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.rec.ship_to_name = result.location;
         $scope.rec.ship_to_address = result.address_1;
@@ -2061,7 +2822,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         $scope.rec.ship_to_contact = result.cldirect_line;
         $scope.rec.ship_to_county = result.county;
 
+<<<<<<< HEAD
         angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+        angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             // if (obj.id === result.shipToSupplierLocCountry)
             if (obj.id === result.country_id)
                 $scope.rec.shipToSupplierLocCountry = obj;
@@ -2070,7 +2835,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         angular.element('#deliveryLocationsModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.getShippingAgents = function () {
+=======
+    $scope.getShippingAgents = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.columns = [];
         $scope.record = {};
         $scope.title = 'Shipping Agents';
@@ -2079,19 +2848,31 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
         $http
             .post(ApiAjax, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns = [];
                 $scope.record = {};
                 $scope.record = res.data.response;
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
                         'visible': true
                     });
                 });
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -2101,19 +2882,32 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             template: 'modalDialogId',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             angular.forEach(result, function (elem, index) {
+=======
+        }).then(function(result) {
+            angular.forEach(result, function(elem, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (index == 'Name')
                     $scope.rec.shipping_agent_code = elem;
             });
             $scope.rec.shipping_agent_id = result.id;
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
     var getAltContactCount;
+<<<<<<< HEAD
     $scope.getAltContact = function (arg, getAltContactCount) {
+=======
+    $scope.getAltContact = function(arg, getAltContactCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.title = 'Contacts';
         $scope.contactArg = arg;
@@ -2121,8 +2915,12 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if ($scope.rec.sell_to_cust_id == undefined) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier']));
             return;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = true;
             var postAltCData = {
                 'acc_id': $scope.rec.sell_to_cust_id,
@@ -2135,7 +2933,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             if (getAltContactCount == undefined) getAltContactCount = $rootScope.maxHttpRepeatCount;
             $http
                 .post(altContactUrl, postAltCData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $scope.columns = [];
                     $scope.record = {};
@@ -2145,7 +2947,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     if (res.data.record.ack == true) {
                         $scope.record = res.data.record.result;
 
+<<<<<<< HEAD
                         angular.forEach(res.data.record.result[0], function (val, index) {
+=======
+                        angular.forEach(res.data.record.result[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.columns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -2154,10 +2960,16 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         });
 
                         angular.element('#orderContactModal').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(564));
                 }).catch(function (e) {
+=======
+                    } else
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(564));
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getAltContactCount != 0) return $scope.getAltContact(arg, getAltContactCount - 1);
 
                     $scope.showLoader = false;
@@ -2166,6 +2978,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 });
         }
     }
+<<<<<<< HEAD
     $scope.callbackAfterItemsMigration = function () {
         $scope.showLoader = true;
         $timeout(function () {
@@ -2174,14 +2987,32 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         }, 1500)
     }
     $scope.callbackBeforeItemsMigration = function (data) {
+=======
+    $scope.callbackAfterItemsMigration = function() {
+        $scope.showLoader = true;
+        $timeout(function() {
+            $state.go("app.editsrmorder", { id: $scope.rec.id }, { reload: true });
+            // $state.go($state.current, $stateParams, { reload: true })
+        }, 1500)
+    }
+    $scope.callbackBeforeItemsMigration = function(data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         data.additionalParams = [
             { type: "Number", sourceTable: "", sourceField: "", targetTable: "srm_invoice_detail", targetField: "invoice_id", columnName: "Purchase Order Number", value: $scope.rec.id },
             { type: "String", sourceTable: "", sourceField: "", targetTable: "srm_invoice_detail", targetField: "invoice_code", columnName: "Purchase Order Number", value: $scope.rec.order_code },
+<<<<<<< HEAD
             { type: "Number", sourceTable: "", sourceField: "", targetTable: "srm_invoice_detail", targetField: "supplier_id", columnName: "Supplier ID", value: $scope.rec.sell_to_cust_id }]
         return data;
     }
     $scope.confirm_contact = function (result) {
+=======
+            { type: "Number", sourceTable: "", sourceField: "", targetTable: "srm_invoice_detail", targetField: "supplier_id", columnName: "Supplier ID", value: $scope.rec.sell_to_cust_id }
+        ]
+        return data;
+    }
+    $scope.confirm_contact = function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.contactArg == 1) {
 
@@ -2205,7 +3036,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     var getSalePersonCount;
 
+<<<<<<< HEAD
     $scope.getSalePerson = function (arg, getSalePersonCount) {
+=======
+    $scope.getSalePerson = function(arg, getSalePersonCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.columns = [];
         $scope.record = {};
         var empUrl = $scope.$root.hr + "employee/listings";
@@ -2217,14 +3052,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (getSalePersonCount == undefined) getSalePersonCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(empUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.columns = [];
                     $scope.record = {};
                     $scope.record = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2234,7 +3077,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 } else {
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getSalePersonCount != 0) return $scope.getSalePerson(arg, getSalePersonCount - 1);
 
                 $scope.showLoader = false;
@@ -2246,10 +3093,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             template: 'modalDialogId_cus',
             className: 'ngdialog-theme-default',
             scope: $scope
+<<<<<<< HEAD
         }).then(function (result) {
             $scope.rec.sale_person = result.first_name + ' ' + result.last_name;
             $scope.rec.sale_person_id = result.id;
         }, function (reason) {
+=======
+        }).then(function(result) {
+            $scope.rec.sale_person = result.first_name + ' ' + result.last_name;
+            $scope.rec.sale_person_id = result.id;
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
@@ -2258,12 +3112,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     var OrderStagesCounter;
 
     $scope.order_stages_array = [];
+<<<<<<< HEAD
     $scope.GetSalesOrderStages = function (flg, OrderStagesCounter) {
+=======
+    $scope.GetSalesOrderStages = function(flg, OrderStagesCounter) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (OrderStagesCounter == undefined) OrderStagesCounter = 3;
 
         $scope.order_stages_array = [];
         var postData = '';
+<<<<<<< HEAD
         if (flg == 0){            
             var order_stages = $scope.$root.setup + "crm/get-order-stages-list";
             postData = {
@@ -2278,23 +3137,50 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             postData = {
                 'token': $scope.$root.token, 
                 'type': 2, 
+=======
+        if (flg == 0) {
+            var order_stages = $scope.$root.setup + "crm/get-order-stages-list";
+            postData = {
+                'token': $scope.$root.token,
+                'type': 2,
+                'order_id': $stateParams.id,
+                'isAllowed': 1 //this parameter is to allow without permission validation
+            };
+        } else {
+            var order_stages = $scope.$root.sales + "customer/order/get-sales-order-stages";
+            postData = {
+                'token': $scope.$root.token,
+                'type': 2,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 'order_id': $stateParams.id
             };
         }
 
         $http
             .post(order_stages, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.order_stages_array = res.data.response;
                     // if ($scope.rec.id == undefined) {
                     if ($stateParams.id == undefined) {
+<<<<<<< HEAD
                         angular.forEach($scope.order_stages_array, function (obj) {
+=======
+                        angular.forEach($scope.order_stages_array, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             obj.id = 0;
                         });
                     }
                 }
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (--OrderStagesCounter != 0) return $scope.GetSalesOrderStages(flg, OrderStagesCounter);
                 $scope.showLoader = false;
 
@@ -2326,7 +3212,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.$root.breadcrumbs = [{ 'name': 'Purchases', 'url': '#', 'isActive': false }, { 'name': 'Suppliers', 'url': 'app.supplier', 'isActive': false }, { 'name': name_link, 'url': link_order, 'isActive': false }];
 
     var getMainInvDataCount;
+<<<<<<< HEAD
     $scope.getMainInvData = function (getMainInvDataCount) {
+=======
+    $scope.getMainInvData = function(getMainInvDataCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = true;
 
         var getQuoteUrl = $scope.$root.pr + "srm/srminvoice/get-invoice";
@@ -2334,7 +3224,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         if (getMainInvDataCount == undefined) getMainInvDataCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(getQuoteUrl, { 'id': $stateParams.id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.rec = res.data.response;
@@ -2348,8 +3242,13 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         $scope.removeSupp = 1;
                     else
                         $scope.removeSupp = 0;
+<<<<<<< HEAD
                  
                     moduleTracker.updateRecordName(res.data.response.order_code + 
+=======
+
+                    moduleTracker.updateRecordName(res.data.response.order_code +
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         ((res.data.response.invoice_code != null && res.data.response.invoice_code != "0") ? "/" : "") + ((res.data.response.invoice_code != null && res.data.response.invoice_code != "0") ? res.data.response.invoice_code : ""));
 
                     if (res.data.response.e_emails) {
@@ -2357,15 +3256,23 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                             $scope.supplierOrderEmail = res.data.response.e_emails.response.purchaseOrderEmail;
                             $scope.supplierDebitEmail = res.data.response.e_emails.response.debitNoteEmail;
                             $scope.supplierRemittanceEmail = res.data.response.e_emails.response.remittanceAdviceEmail;
+<<<<<<< HEAD
                         }
                         catch (ex) {
+=======
+                        } catch (ex) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             console.log(ex);
                         }
                     }
 
                     if ($scope.rec.supplier_emails && $scope.rec.supplier_emails.Emails) {
                         var supplierEmails = [];
+<<<<<<< HEAD
                         angular.forEach($scope.rec.supplier_emails.Emails, function (obj, i) {
+=======
+                        angular.forEach($scope.rec.supplier_emails.Emails, function(obj, i) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             supplierEmails.push({ id: i, username: obj.trim() })
                         });
                         $scope.rec.supplier_emails.Emails = supplierEmails;
@@ -2389,8 +3296,12 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                             $scope.$root.model_code = res.data.response.sell_to_cust_name + '(' + res.data.response.order_code + ')';
                         else
                             $scope.$root.model_code = res.data.response.order_code;
+<<<<<<< HEAD
                     }
                     else{
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (res.data.response.sell_to_cust_name != null)
                             $scope.$root.model_code = res.data.response.sell_to_cust_name + '(' + res.data.response.invoice_code + ')';
                         else
@@ -2398,6 +3309,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     }
 
                     // $scope.$root.order_id = $scope.rec.id;
+<<<<<<< HEAD
                     if(res.data.response.approval_type_1 == 2 && res.data.response.approval_type_2 == 2)
                     {
                         $scope.approvals_lock_order = 1;
@@ -2411,6 +3323,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     $scope.on_hold_order = (res.data.response.approval_type_1 == 7 || res.data.response.approval_type_2 == 7) ? 1 : 0;
     
+=======
+                    if (res.data.response.approval_type_1 == 2 && res.data.response.approval_type_2 == 2) {
+                        $scope.approvals_lock_order = 1;
+                    } else if (res.data.response.approval_type_1 == 0 || res.data.response.approval_type_2 == 0) {
+                        $scope.approvals_lock_order = -1;
+                    } else
+                        $scope.approvals_lock_order = 0;
+
+                    $scope.on_hold_order = (res.data.response.approval_type_1 == 7 || res.data.response.approval_type_2 == 7) ? 1 : 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.module_code = $scope.$root.model_code;
 
                     if ($scope.rec.type == 3) {
@@ -2418,15 +3341,23 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         name_link = 'Purchase Orders';
 
                         $scope.$root.breadcrumbs = [{ 'name': 'Purchases', 'url': '#', 'isActive': false }, { 'name': 'Suppliers', 'url': 'app.supplier', 'isActive': false }, { 'name': name_link, 'url': link_order, 'isActive': false }];
+<<<<<<< HEAD
                     }
                     else if ($scope.rec.type == 2) {
+=======
+                    } else if ($scope.rec.type == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         var link_order = 'app.srminvoice';
 
                         $scope.$root.breadcrumbs = [{ 'name': 'Purchases', 'url': '#', 'isActive': false }, { 'name': 'Suppliers', 'url': 'app.supplier', 'isActive': false }, { 'name': 'Purchase Invoices', 'url': link_order, 'isActive': false }];
                     }
 
+<<<<<<< HEAD
                     $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false });//, { 'name': 'General', 'url': '#', 'isActive': false }
+=======
+                    $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false }); //, { 'name': 'General', 'url': '#', 'isActive': false }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.response.invoice_date == 0)
                         $scope.rec.invoice_date = null;
@@ -2483,17 +3414,29 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     if (res.data.response.selSaleOrderslisting && res.data.response.selSaleOrderslisting.response) {
 
+<<<<<<< HEAD
                         angular.forEach(res.data.response.selSaleOrderslisting.response, function (obj) {
                             if(obj.id>0){
+=======
+                        angular.forEach(res.data.response.selSaleOrderslisting.response, function(obj) {
+                            if (obj.id > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.selectedSaleOrderArr.push(obj);
 
                                 var selRecord = {};
                                 selRecord.key = obj.id;
                                 selRecord.record = obj;
+<<<<<<< HEAD
                                 selRecord.value = obj.sale_order_code;							
 
                                 $scope.selectedSaleOrderModal.push(selRecord); 
                             
+=======
+                                selRecord.value = obj.sale_order_code;
+
+                                $scope.selectedSaleOrderModal.push(selRecord);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 selectedSaleOrders_name += obj.sale_order_code + "; ";
                             }
                         });
@@ -2501,16 +3444,25 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         $scope.selectedSaleOrders = selectedSaleOrders_name.substring(0, selectedSaleOrders_name.length - 2);
                     }
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.srm_shippment_methods_arr, function (elem) {
+=======
+                    angular.forEach($rootScope.srm_shippment_methods_arr, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.shipment_method_id)
                             $scope.rec.shipment_method_code = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_srm_payment_terms, function (elem) {
+=======
+                    angular.forEach($rootScope.arr_srm_payment_terms, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == res.data.response.payment_terms_code)
                             $scope.rec.payment_terms_codes = elem;
                     });
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arr_srm_payment_methods, function (elem) {
                         if (elem.id == res.data.response.payment_method_id)
                             $scope.rec.payment_method_ids = elem;
@@ -2520,14 +3472,31 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     // angular.forEach($rootScope.arr_currency, function (elem) {
                     angular.forEach($rootScope.currencyArrPurchase, function (elem) {
+=======
+                    angular.forEach($rootScope.arr_srm_payment_methods, function(elem) {
+                        if (elem.id == res.data.response.payment_method_id)
+                            $scope.rec.payment_method_ids = elem;
+                    });
+
+                    $rootScope.currencyArrPurchase = res.data.currency_arr_local;
+
+                    // angular.forEach($rootScope.arr_currency, function (elem) {
+                    angular.forEach($rootScope.currencyArrPurchase, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (elem.id == $scope.rec.currency_id) {
                             // $rootScope.currency_id = elem;
                             $rootScope.currencyID_PO = elem;
                             $scope.rec.currency_id = elem;
                         }
+<<<<<<< HEAD
                     });                     
 
                     angular.forEach($rootScope.country_type_arr, function (obj) {
+=======
+                    });
+
+                    angular.forEach($rootScope.country_type_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id === res.data.response.country)
                             $scope.rec.country = obj;
 
@@ -2546,7 +3515,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                 //     $scope.showLoader = false;
 
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getMainInvDataCount != 0) return $scope.getMainInvData(getMainInvDataCount - 1);
 
                 $scope.showLoader = false;
@@ -2555,14 +3528,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             });
     }
 
+<<<<<<< HEAD
     $scope.$on('turnOnLoader', function (event, data) {
+=======
+    $scope.$on('turnOnLoader', function(event, data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.showLoader = false;
     });
 
     if ($stateParams.id > 0) $scope.getMainInvData();
 
 
+<<<<<<< HEAD
     $scope.generalInformation = function () {
+=======
+    $scope.generalInformation = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.$root.breadcrumbs.length == 2) {
             // $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
@@ -2573,19 +3554,31 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.order_code;
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if ($scope.rec.sell_to_cust_name != null)
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.invoice_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.invoice_code;
             }
 
+<<<<<<< HEAD
             $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false });//, { 'name': 'General', 'url': '#', 'isActive': false }
         }
     }
 
     $scope.invoice_information = function () {
+=======
+            $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false }); //, { 'name': 'General', 'url': '#', 'isActive': false }
+        }
+    }
+
+    $scope.invoice_information = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.$root.breadcrumbs.length == 2) {
             // $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
@@ -2596,19 +3589,31 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.order_code;
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if ($scope.rec.sell_to_cust_name != null)
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.invoice_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.invoice_code;
             }
 
+<<<<<<< HEAD
             $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false });//, { 'name': 'Shipping', 'url': '#', 'isActive': false }
         }
     }
 
     $scope.shiping_information = function () {
+=======
+            $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false }); //, { 'name': 'Shipping', 'url': '#', 'isActive': false }
+        }
+    }
+
+    $scope.shiping_information = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.$root.breadcrumbs.length == 2) {
             // $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
@@ -2619,41 +3624,66 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.order_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.order_code;
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if ($scope.rec.sell_to_cust_name != null)
                     $scope.$root.model_code = $scope.rec.sell_to_cust_name + '(' + $scope.rec.invoice_code + ')';
                 else
                     $scope.$root.model_code = $scope.rec.invoice_code;
             }
 
+<<<<<<< HEAD
             $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false });//, { 'name': 'Shipping', 'url': '#', 'isActive': false }
+=======
+            $scope.$root.breadcrumbs.push({ 'name': $scope.$root.model_code, 'url': '#', 'isActive': false }); //, { 'name': 'Shipping', 'url': '#', 'isActive': false }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
     }
 
     $scope.list_order = true;
 
+<<<<<<< HEAD
     $scope.openSaleOrderLink = function (record) {
+=======
+    $scope.openSaleOrderLink = function(record) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
         var url;
+<<<<<<< HEAD
         url = $state.href("app.viewOrder", ({ id: record.id }));//app.viewOrder({id:SaleOrder.id})
         window.open(url, '_blank');
     }
 
     $scope.openSaleInvoiceLink = function (record) {
+=======
+        url = $state.href("app.viewOrder", ({ id: record.id })); //app.viewOrder({id:SaleOrder.id})
+        window.open(url, '_blank');
+    }
+
+    $scope.openSaleInvoiceLink = function(record) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var mainRecord = record;
         var record = mainRecord.record;
         var index = mainRecord.index;
         var url;
+<<<<<<< HEAD
         url = $state.href("app.viewOrder", ({ id: record.id, isInvoice:1 }));//app.viewOrder({id:SaleOrder.id})
+=======
+        url = $state.href("app.viewOrder", ({ id: record.id, isInvoice: 1 })); //app.viewOrder({id:SaleOrder.id})
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         window.open(url, '_blank');
     }
 
     $scope.searchKeywordSaleOrder = {};
     $scope.selectedSaleOrders = '';
     $scope.tableDataSO = [];
+<<<<<<< HEAD
     
     $scope.show_list_order = function () {		
         $scope.searchKeywordSaleOrder = {};
@@ -2768,13 +3798,132 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     //////////////////////////////////////////////////////////////////////////////////
 
     $scope.showlistPOorder = function () {
+=======
+
+    $scope.show_list_order = function() {
+        $scope.searchKeywordSaleOrder = {};
+        $scope.selectSaleOrders();
+    }
+
+    $scope.selectSaleOrders = function(item_paging, sort_column, sortform) {
+
+        $scope.postData = {};
+        $scope.postData.token = $scope.$root.token;
+
+        if (item_paging == 1)
+            $scope.item_paging.spage = 1
+
+        $scope.postData.page = $scope.item_paging.spage;
+
+        $scope.postData.searchKeyword = $scope.searchKeywordSaleOrder;
+
+        if ($scope.postData.pagination_limits == -1) {
+            $scope.postData.page = -1;
+            $scope.searchKeywordSaleOrder = {};
+            $scope.record_data = {};
+        }
+
+        if ((sort_column != undefined) && (sort_column != null)) {
+            //sort by column
+            $scope.postData.sort_column = sort_column;
+            $scope.postData.sortform = sortform;
+
+            $rootScope.sortform = sortform;
+            $rootScope.reversee = ('desc' === $scope.sortform) ? !$scope.reversee : false;
+            $rootScope.sort_column = sort_column;
+
+            $rootScope.save_single_value($rootScope.sort_column, 'sale_invioce_code');
+        }
+
+        var saleOrderListingApi = $scope.$root.pr + "srm/srminvoice/getSalesOrderforPO";
+
+        $scope.showLoader = true;
+        $http
+            .post(saleOrderListingApi, $scope.postData)
+            .then(function(res) {
+                $scope.tableDataSO = res;
+                $scope.columns = [];
+                $scope.record_data = {};
+                $scope.recordArray = [];
+                $scope.tempSOList = [];
+
+                if (res.data.ack == true) {
+                    //console.log(res.data);
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+
+                    $scope.total_paging_record = res.data.total_paging_record;
+
+                    $scope.record_data = res.data.response;
+                    $scope.tempSOList = res.data;
+
+                    angular.forEach($scope.record_data.tbl_meta_data.response.colMeta, function(obj, index) {
+                        if (obj.event && obj.event.name && obj.event.trigger) {
+                            obj.generatedEvent = $scope[obj.event.name];
+                        }
+                    });
+
+                    angular.forEach(res.data.response, function(value, key) {
+                        if (key != "tbl_meta_data") {
+                            $scope.recordArray.push(value);
+                        }
+                    });
+
+                    if ($scope.tempSOList.response)
+                        angular.element('#_saleOrdersModal').modal({ show: true });
+
+                } else {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                }
+                $scope.showLoader = false;
+            });
+    }
+
+    $scope.clearPendingSaleOrder = function() {
+        angular.element('#_saleOrdersModal').modal('hide');
+    }
+
+    $scope.addSaleOrder = function() {
+        var selSaleOrdersList = [];
+
+        angular.forEach($scope.selectedSaleOrderModal, function(obj) {
+            selSaleOrdersList.push(obj.record);
+        });
+
+        $scope.selectedSaleOrderArr = [];
+        $scope.selectedSaleOrders = "";
+
+        angular.forEach(selSaleOrdersList, function(recData) {
+            $scope.selectedSaleOrderArr.push(recData);
+
+            if ($scope.selectedSaleOrders == "")
+                $scope.selectedSaleOrders = recData.sale_order_code;
+            else
+                $scope.selectedSaleOrders = $scope.selectedSaleOrders + '; ' + recData.sale_order_code;
+        });
+
+        angular.element('#_saleOrdersModal').modal('hide');
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////
+
+    $scope.showlistPOorder = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var invoice_id = 0;
 
         if ($stateParams.id > 0)
             invoice_id = $stateParams.id;
         else
+<<<<<<< HEAD
             invoice_id = $scope.rec.id; 
+=======
+            invoice_id = $scope.rec.id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         $scope.filterPurchaseOrder = {};
@@ -2784,16 +3933,27 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             'token': $scope.$root.token,
             'all': "1",
             'type': 2,
+<<<<<<< HEAD
             'invoice_id':invoice_id
+=======
+            'invoice_id': invoice_id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         };
 
         $scope.selectedAllPurchaseOrder = false;
 
         if ($scope.PurchaseOrderArr.length > 0) {
+<<<<<<< HEAD
             angular.forEach($scope.PurchaseOrderArr, function (obj2) {
                 obj2.chk = false;
 
                 angular.forEach($scope.selectedPurchaseOrderArr, function (obj) {
+=======
+            angular.forEach($scope.PurchaseOrderArr, function(obj2) {
+                obj2.chk = false;
+
+                angular.forEach($scope.selectedPurchaseOrderArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == obj2.id)
                         obj2.chk = true;
                 });
@@ -2801,11 +3961,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
             $scope.showLoader = false;
             angular.element('#_PurchaseOrdersModal').modal({ show: true });
+<<<<<<< HEAD
         }
         else {
             $http
                 .post(prodApi, postData)
                 .then(function (res) {
+=======
+        } else {
+            $http
+                .post(prodApi, postData)
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     if (res.data.ack == true) {
@@ -2819,10 +3986,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                             }
                         }
 
+<<<<<<< HEAD
                         angular.forEach($scope.PurchaseOrderArr, function (obj2) {
                             obj2.chk = false;
 
                             angular.forEach($scope.selectedPurchaseOrdersIDs, function (obj) {
+=======
+                        angular.forEach($scope.PurchaseOrderArr, function(obj2) {
+                            obj2.chk = false;
+
+                            angular.forEach($scope.selectedPurchaseOrdersIDs, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (obj == obj2.id)
                                     obj2.chk = true;
@@ -2830,14 +4004,22 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                         });
 
                         angular.element('#_PurchaseOrdersModal').modal({ show: true });
+<<<<<<< HEAD
                     }
                     else
+=======
+                    } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(389));
                 });
         }
     }
 
+<<<<<<< HEAD
     $scope.selectShippingPO = function(rec){
+=======
+    $scope.selectShippingPO = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // console.log(rec);
         $scope.rec.selectedShippingPO = rec.order_code;
         $scope.rec.selectedShippingPOid = rec.id;
@@ -2845,7 +4027,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         angular.element('#_PurchaseOrdersModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.removeLinkedPO = function(){
+=======
+    $scope.removeLinkedPO = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.rec.selectedShippingPO = '';
         $scope.rec.selectedShippingPOid = 0;
 
@@ -2854,6 +4040,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     }
     $scope.disableShippingPOLink = false;
 
+<<<<<<< HEAD
     $scope.changeshippingPONotReq = function(mode){
 
         // console.log(mode);
@@ -2864,12 +4051,27 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             $scope.disableShippingPOLink = true;
         }
         else
+=======
+    $scope.changeshippingPONotReq = function(mode) {
+
+        // console.log(mode);
+
+        if (mode == 1) {
+            $scope.rec.selectedShippingPO = '';
+            $scope.rec.selectedShippingPOid = 0;
+            $scope.disableShippingPOLink = true;
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.disableShippingPOLink = false;
     }
 
     /////////////////////////////////////////////////////
 
+<<<<<<< HEAD
     angular.element(document).on('click', '#checkAll', function () {
+=======
+    angular.element(document).on('click', '#checkAll', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (angular.element('#checkAll').is(':checked') == true) {
             for (var i = 0; i < $scope.items.length; i++) {
                 $scope.items[i].chk = true;
@@ -2879,31 +4081,52 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                 $scope.items[i].chk = false;
             }
         }
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.items;
         })
     });
 
     $scope.IsVisible = true;
+<<<<<<< HEAD
     $scope.show_view_data = function (classname) {
         $scope.IsVisible = $scope.IsVisible ? false : true;
     }
 
     $scope.check_number = function () {
+=======
+    $scope.show_view_data = function(classname) {
+        $scope.IsVisible = $scope.IsVisible ? false : true;
+    }
+
+    $scope.check_number = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // var id = this.rec.supp_order_no.value;
         var id = document.getElementById('supp_order_no').value;
 
         var Url = $scope.$root.pr + "srm/srminvoice/get-invoice-number";
         $http
             .post(Url, { 'id': id, 'token': $scope.$root.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == false) {
                     toaster.pop('error', 'Info', 'Already Exists !');
 
                     angular.element('.pic_block').attr("disabled", true);
+<<<<<<< HEAD
                 }
                 else angular.element('.pic_block').attr("disabled", false);
             }).catch(function (message) {
+=======
+                } else angular.element('.pic_block').attr("disabled", false);
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -2916,7 +4139,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
     $scope.customers = [];
 
+<<<<<<< HEAD
     $scope.getlinkToCUST = function () {
+=======
+    $scope.getlinkToCUST = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.columns = [];
         $scope.tempCustomerArr = [];
@@ -2929,18 +4156,30 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         var customerListingApi = $scope.$root.reports + "module/customer-data-for-report";
         $http
             .post(customerListingApi, $scope.customerListing)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 if (res.data.ack == true) {
                     // $scope.tempCustomerArr = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response, function (obj) {
+=======
+                    angular.forEach(res.data.response, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id > 0)
                             $scope.tempCustomerArr.push(obj);
                     });
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -2950,13 +4189,18 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                     if ($scope.tempCustomerArr[0].id)
                         angular.element('#_customerModal').modal({ show: true });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                 }
             });
     }
 
+<<<<<<< HEAD
     $scope.clearCustomers = function () {
         angular.element('#_customerModal').modal('hide');
     }
@@ -2964,6 +4208,15 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
     $scope.addCustomers = function (recData) {
 
         angular.forEach($scope.tempCustomerArr, function (obj) {
+=======
+    $scope.clearCustomers = function() {
+        angular.element('#_customerModal').modal('hide');
+    }
+
+    $scope.addCustomers = function(recData) {
+
+        angular.forEach($scope.tempCustomerArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (obj.id == recData.id) {
                 $scope.rec.linktoCustName = recData.name;
@@ -2974,7 +4227,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         angular.element('#_customerModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.getPriceOffers = function (type, ChkPurchasePrice, getPriceOffersCount) {
+=======
+    $scope.getPriceOffers = function(type, ChkPurchasePrice, getPriceOffersCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // for Item Recomended Purchase Price
 
         if ($scope.rec.order_date != undefined)
@@ -2992,7 +4249,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
             if (getPriceOffersCount == undefined) getPriceOffersCount = $rootScope.maxHttpRepeatCount;
             $http
                 .post(getpricePurchasePriceUrl, { 'token': $scope.$root.token, 'orderDate': orderDate })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == true) {
                         $scope.pricePurchasePriceArr = res.data.response;
@@ -3003,13 +4264,21 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                     $scope.price_offer_arr = [];
                     $http
                         .post(getpriceOffersUrl, { 'token': $scope.$root.token, 'srm_id': $scope.rec.sell_to_cust_id, 'order_date': orderDate })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data.ack == true) {
                                 $scope.price_offer_arr = res.data.response;
 
                                 if (type == 1) {
 
+<<<<<<< HEAD
                                     angular.forEach($scope.items, function (obja, index) {
+=======
+                                    angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (obja.item_type == 0) {
 
@@ -3029,7 +4298,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                         }
                                     });
 
+<<<<<<< HEAD
                                     angular.forEach($scope.items, function (obja, index) {
+=======
+                                    angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (obja.item_type == 0) {
 
@@ -3041,7 +4314,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                                 var flg = 0;
 
                                                 if ($scope.items[index].qty && $scope.items[index].arr_volume_discounts) {
+<<<<<<< HEAD
                                                     angular.forEach($scope.items[index].arr_volume_discounts, function (obj) {
+=======
+                                                    angular.forEach($scope.items[index].arr_volume_discounts, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         if (Number($scope.items[index].qty) >= Number(obj.min_qty)) {
                                                             flg = 1;
 
@@ -3057,7 +4334,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                                                                 if (item3.length > 0) {
 
+<<<<<<< HEAD
                                                                     angular.forEach(itemArray, function (rec) {
+=======
+                                                                    angular.forEach(itemArray, function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                         if (rec.id == obja.id)
                                                                             rec.type = 2;
                                                                     });
@@ -3079,7 +4360,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                                                     if (item3.length > 0) {
 
+<<<<<<< HEAD
                                                         angular.forEach(itemArray, function (rec) {
+=======
+                                                        angular.forEach(itemArray, function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             if (rec.id == obja.id)
                                                                 rec.type = 2;
                                                         });
@@ -3093,9 +4378,14 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                             }
                                         }
                                     });
+<<<<<<< HEAD
                                 }
                                 else {
                                     angular.forEach($scope.items, function (obja, index) {
+=======
+                                } else {
+                                    angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (obja.item_type == 0) {
 
@@ -3107,7 +4397,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                                 var flg = 0;
 
                                                 if ($scope.items[index].qty && $scope.items[index].arr_volume_discounts) {
+<<<<<<< HEAD
                                                     angular.forEach($scope.items[index].arr_volume_discounts, function (obj) {
+=======
+                                                    angular.forEach($scope.items[index].arr_volume_discounts, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         if (Number($scope.items[index].qty) >= Number(obj.min_qty)) {
                                                             flg = 1;
 
@@ -3123,7 +4417,11 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
                                                                 if (item3.length > 0) {
 
+<<<<<<< HEAD
                                                                     angular.forEach(itemArray, function (rec) {
+=======
+                                                                    angular.forEach(itemArray, function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                                         if (rec.id == obja.id)
                                                                             rec.type = 2;
                                                                     });
@@ -3142,10 +4440,17 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                                     $scope.items[index].standard_price = item2[0].price_offer;
 
                                                     var item3 = $filter("filter")(itemArray, { id: obja.id });
+<<<<<<< HEAD
                                                     
                                                     if (item3.length > 0) {
 
                                                         angular.forEach(itemArray, function (rec) {
+=======
+
+                                                    if (item3.length > 0) {
+
+                                                        angular.forEach(itemArray, function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             if (rec.id == obja.id)
                                                                 rec.type = 2;
                                                         });
@@ -3162,11 +4467,16 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                     });
                                 }
 
+<<<<<<< HEAD
                                 angular.forEach(itemArray, function (obj2) {
+=======
+                                angular.forEach(itemArray, function(obj2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     /* toaster.pop('warning', 'Info', 'Standard price changed to ' + (String(obj2.standard_price)) + ' for item ' + obj2.product_code); */
 
                                     if (obj2.type == 2)
 
+<<<<<<< HEAD
                                         toaster.pop('warning', 'Info','Unit Price for item ' + obj2.product_code + ' has changed to '
                                             + $rootScope.defaultCurrencyCode + ' ' + (parseFloat(obj2.standard_price).toFixed(3)) + ' (Supplier Specific Price) following date change.');//String(obj2.standard_price)
                                         
@@ -3180,6 +4490,20 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                 if (type == 1) {
 
                                     angular.forEach($scope.items, function (obja, index) {
+=======
+                                        toaster.pop('warning', 'Info', 'Unit Price for item ' + obj2.product_code + ' has changed to ' +
+                                        $rootScope.defaultCurrencyCode + ' ' + (parseFloat(obj2.standard_price).toFixed(3)) + ' (Supplier Specific Price) following date change.'); //String(obj2.standard_price)
+
+                                    else
+                                        toaster.pop('warning', 'Info', 'Unit Price for item ' + obj2.product_code + ' has changed to ' +
+                                            $rootScope.defaultCurrencyCode + ' ' + (parseFloat(obj2.standard_price).toFixed(3)) + ' (Standard Price) following date change.');
+
+                                });
+                            } else {
+                                if (type == 1) {
+
+                                    angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (obja.item_type == 0) {
 
@@ -3197,15 +4521,26 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
                                         }
                                     });
 
+<<<<<<< HEAD
                                     angular.forEach(itemArray, function (obj2) {
 
                                         toaster.pop('warning', 'Info','Unit Price for item ' + obj2.product_code + ' has changed to '
                                             + (String($scope.rec.currency_id.code)) + ' ' + (parseFloat(obj2.standard_price).toFixed(3)) + ' (Standard Price) following date change.');
+=======
+                                    angular.forEach(itemArray, function(obj2) {
+
+                                        toaster.pop('warning', 'Info', 'Unit Price for item ' + obj2.product_code + ' has changed to ' +
+                                            (String($scope.rec.currency_id.code)) + ' ' + (parseFloat(obj2.standard_price).toFixed(3)) + ' (Standard Price) following date change.');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     });
                                 }
                             }
                         });
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getPriceOffersCount != 0) return $scope.getPriceOffers(type, ChkPurchasePrice, getPriceOffersCount - 1);
 
                     $scope.showLoader = false;
@@ -3215,6 +4550,7 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         }
     }
 
+<<<<<<< HEAD
     $scope.updateReceiptDateChk = function (getReceiptDateChkCount) {
 
         $scope.showLoader = true;
@@ -3227,17 +4563,40 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
         var updateReceiptDateAlloc = 0;
 
         angular.forEach($scope.items, function (obja, index) {
+=======
+    $scope.updateReceiptDateChk = function(getReceiptDateChkCount) {
+
+        $scope.showLoader = true;
+
+        if ($stateParams.id > 0)
+            var invoice_id = $stateParams.id;
+        else
+            var invoice_id = $scope.rec.id;
+
+        var updateReceiptDateAlloc = 0;
+
+        angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (obja.item_type == 0 && parseFloat(obja.qtyItemAllocated) > 0)
                 updateReceiptDateAlloc++;
         });
 
+<<<<<<< HEAD
         if (updateReceiptDateAlloc > 0) {   
             
             if ($scope.rec.receiptDate)
                 var receiptDate = $scope.rec.receiptDate;
             else
                 var receiptDate = 0;//$scope.$root.get_current_date();
+=======
+        if (updateReceiptDateAlloc > 0) {
+
+            if ($scope.rec.receiptDate)
+                var receiptDate = $scope.rec.receiptDate;
+            else
+                var receiptDate = 0; //$scope.$root.get_current_date();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var updateReceiptDateUrl = $scope.$root.stock + "products-listing/update-receipt-date-chk";
 
@@ -3245,19 +4604,32 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
             $http
                 .post(updateReceiptDateUrl, { 'token': $scope.$root.token, 'receiptDate': receiptDate, 'invoice_id': invoice_id })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     if (res.data.ack == true) {
                         toaster.pop('warning', 'Info', 'Since Receipt Date has been changed, Date Received for Items allocation has also been changed.');
                     }
 
+<<<<<<< HEAD
                 }).catch(function (e) {
                     if (getReceiptDateChkCount != 0) return $scope.updateReceiptDateChk(param,getReceiptDateChkCount - 1);
                     $scope.showLoader = false;
                     throw new Error(e.data);
                 });
         }else{
+=======
+                }).catch(function(e) {
+                    if (getReceiptDateChkCount != 0) return $scope.updateReceiptDateChk(param, getReceiptDateChkCount - 1);
+                    $scope.showLoader = false;
+                    throw new Error(e.data);
+                });
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
         }
     }
@@ -3265,6 +4637,10 @@ function SrmOrderEditController($scope, $filter, $resource, $http, ngDialog, toa
 
 SrmOrderTabController.$inject = ["$scope", "$filter", "Upload", "$resource", "$http", "ngDialog", "$stateParams", "toaster", "$state", "$rootScope", "$timeout", "ModalService", "$q", "generatePdf"];
 myApp.controller('SrmOrderTabController', SrmOrderTabController);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDialog, $stateParams, toaster, $state, $rootScope, $timeout, ModalService, $q, generatePdf) {
 
     if ($stateParams.id > 0)
@@ -3273,8 +4649,14 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.orderDispatchedStatus = false;
     $scope.show_recieve_list = false;
     $scope.showReceiveStuff = false;
+<<<<<<< HEAD
 
     $scope.showEditForm = function () {
+=======
+    $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+
+    $scope.showEditForm = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.check_srm_readonly = false;
         //$scope.perreadonly = true;
 
@@ -3307,18 +4689,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.search_data = '';
     var drpCat = null;
 
+<<<<<<< HEAD
     $scope.updateReceiptDateChk = function (param, getReceiptDateChkCount) {
+=======
+    $scope.updateReceiptDateChk = function(param, getReceiptDateChkCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
         if ($stateParams.id > 0)
             var invoice_id = $stateParams.id;
         else
+<<<<<<< HEAD
             var invoice_id = $scope.rec.id;      
 
         var updateReceiptDateAlloc = 0;
 
         angular.forEach($scope.items, function (obja, index) {
+=======
+            var invoice_id = $scope.rec.id;
+
+        var updateReceiptDateAlloc = 0;
+
+        angular.forEach($scope.items, function(obja, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (obja.item_type == 0 && parseFloat(obja.qtyItemAllocated) > 0)
                 updateReceiptDateAlloc++;
@@ -3329,7 +4723,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             if ($scope.rec.receiptDate)
                 var receiptDate = $scope.rec.receiptDate;
             else
+<<<<<<< HEAD
                 var receiptDate = 0;//$scope.$root.get_current_date();
+=======
+                var receiptDate = 0; //$scope.$root.get_current_date();
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var updateReceiptDateUrl = $scope.$root.stock + "products-listing/update-receipt-date-chk";
 
@@ -3337,7 +4735,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
             $http
                 .post(updateReceiptDateUrl, { 'token': $scope.$root.token, 'receiptDate': receiptDate, 'invoice_id': invoice_id })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (param != 1)
                         $scope.showLoader = false;
@@ -3346,7 +4748,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         toaster.pop('warning', 'Info', 'Since Receipt Date has been changed, Date Received for Items allocation has also been changed.');
                     }
 
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getReceiptDateChkCount != 0) return $scope.updateReceiptDateChk(param, getReceiptDateChkCount - 1);
                     $scope.showLoader = false;
                     throw new Error(e.data);
@@ -3354,15 +4760,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.getProducts = function (recs, parm) {
+=======
+    $scope.getProducts = function(recs, parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var cat_id = '';
 
         if (parm != '') {
             $scope.postData = { 'all': "1", 'token': $scope.$root.token, 'suppler_id': $scope.rec.sell_to_cust_id };
             recs.category = '';
             recs.search_data = '';
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             cat_id = recs.category != null ? recs.category.id : '';
             $scope.search_data = recs.search_data;
             $scope.postData = {
@@ -3381,6 +4795,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         var prodApi = $scope.$root.sales + "stock/products-listing/get-purchased-products-supplier-price-popup";
         $http
             .post(prodApi, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
                 $scope.products = [];
                 if (res.data.ack == true) {
@@ -3393,20 +4808,41 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
                 }
             }).catch(function (message) {
+=======
+            .then(function(res) {
+                $scope.products = [];
+                if (res.data.ack == true) {
+                    angular.forEach(res.data.response, function(obj, index) {
+                        obj.chk = false;
+                        $scope.products[index] = obj;
+                    });
+                } else {
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                }
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
             });
     }
 
+<<<<<<< HEAD
     $scope.getServicepop = function (recs, parm) {
+=======
+    $scope.getServicepop = function(recs, parm) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var cat_id = '';
         if (parm != '') {
             $scope.postData = { 'all': "1", 'token': $scope.$root.token };
             recs.category = '';
             recs.search_data = '';
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             cat_id = recs.category != null ? recs.category.id : '';
             $scope.search_data = recs.search_data;
             $scope.postData = {
@@ -3421,6 +4857,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         var prodApi = $scope.$root.setup + "service/products-listing/get-products-popup";
         $http
             .post(prodApi, $scope.postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                     $scope.products = [];
@@ -3432,6 +4869,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 else
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
             }).catch(function (message) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.products = [];
+                    angular.forEach(res.data.response, function(obj, index) {
+                        obj.chk = false;
+                        $scope.products[index] = obj;
+                    });
+                } else
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -3439,26 +4888,45 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     angular.element(document).on('click', '#checkAll_price', function () {
+=======
+    angular.element(document).on('click', '#checkAll_price', function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         if (angular.element('#checkAll_price').is(':checked') == true) {
             for (var i = 0; i < $scope.products.length; i++) {
                 $scope.products[i].chk = true;
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             for (var i = 0; i < $scope.products.length; i++) {
                 $scope.products[i].chk = false;
             }
         }
+<<<<<<< HEAD
         $scope.$root.$apply(function () {
+=======
+        $scope.$root.$apply(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.products;
         })
     });
 
+<<<<<<< HEAD
     $scope.checkAll = function () {
         var bool = angular.element("#selecctall").is(':checked');
         var i = 0;
         angular.forEach($scope.products, function (item) {
+=======
+    $scope.checkAll = function() {
+        var bool = angular.element("#selecctall").is(':checked');
+        var i = 0;
+        angular.forEach($scope.products, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.products[i].chk = bool;
             i++;
         });
@@ -3467,7 +4935,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.arrSpread = {};
     $scope.arrSpread = [{ 'id': '1', 'name': 'Weighted Average' }, { 'id': '2', 'name': 'Equal' }, { 'id': '3', 'name': 'Custom' }];
 
+<<<<<<< HEAD
     $scope.applySpread = function (selSpread, Amount) {
+=======
+    $scope.applySpread = function(selSpread, Amount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (selSpread != undefined) {
 
@@ -3476,13 +4948,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 var countQty = 0;
                 var emptyQty = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.chk == true) {
                         if (parseInt(obj.qty) > 0) {
                             countQty = parseInt(countQty) + parseInt(obj.qty);
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             emptyQty++;
                         }
                     }
@@ -3498,7 +4978,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 var ttlAdditionAmount = 0;
                 var totalCalAmountFixed = parseFloat(totalCalAmount);
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.chk == true) {
 
@@ -3511,8 +4995,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         obj.additionAmount2 = parseFloat(additionAmount).toFixed(4);
 
                         ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.calcAmount = '';
                         obj.additionAmount = '';
 
@@ -3523,19 +5011,31 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 $scope.formData.allocatedAdditionalCost = parseFloat(ttlAdditionAmount);
                 $scope.formData.remainingAdditionalCost = parseFloat($scope.formData.additionalCost) - parseFloat(ttlAdditionAmount);
+<<<<<<< HEAD
             }
             else if (selSpread.id == 2) {
+=======
+            } else if (selSpread.id == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var countRec = 0;
                 var emptyQty = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.chk == true) {
                         if (parseInt(obj.qty) > 0) {
                             countRec++;
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             emptyQty++;
                         }
                     }
@@ -3550,7 +5050,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.chk == true) {
 
@@ -3563,8 +5067,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         obj.additionAmount2 = parseFloat(additionAmount).toFixed(2);
 
                         ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.calcAmount = '';
                         obj.additionAmount = '';
 
@@ -3576,12 +5084,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 $scope.formData.allocatedAdditionalCost = ttlAdditionAmount;
                 $scope.formData.remainingAdditionalCost = parseFloat($scope.formData.additionalCost).toFixed(2) - parseFloat(ttlAdditionAmount).toFixed(2);
 
+<<<<<<< HEAD
             }
             else if (selSpread.id == 3) {
 
                 var ttlAdditionAmount = 0;
 
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+            } else if (selSpread.id == 3) {
+
+                var ttlAdditionAmount = 0;
+
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.chk == true) {
                         obj.calcAmount = 0;
@@ -3589,8 +5105,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         obj.calcAmount2 = 0;
                         obj.additionAmount2 = 0;
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         obj.calcAmount = '';
                         obj.additionAmount = '';
 
@@ -3608,16 +5128,27 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 $scope.formData.remainingAdditionalCost = parseFloat(remAdditionalCost).toFixed(2);
 
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('warning', 'info', $scope.$root.getErrorMessageByCode(230, ['Spread']));
         }
     }
 
+<<<<<<< HEAD
     $scope.clearAdditionalCostFilter = function () {
 
         if ($scope.rec.purchaseStatus != 3){
             angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+    $scope.clearAdditionalCostFilter = function() {
+
+        if ($scope.rec.purchaseStatus != 3) {
+            angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 obj.chk = false;
             });
         }
@@ -3625,28 +5156,46 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.additionalCostSearch = {};
     }
 
+<<<<<<< HEAD
     $scope.checkIfAllChecked = function () {
         if ($scope.itemAddCostPurchaseOrderFiltered) {
             var temp = $scope.itemAddCostPurchaseOrderFiltered.filter(function (obj) {
+=======
+    $scope.checkIfAllChecked = function() {
+        if ($scope.itemAddCostPurchaseOrderFiltered) {
+            var temp = $scope.itemAddCostPurchaseOrderFiltered.filter(function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return obj.chk == true;
             });
 
             if ($scope.itemAddCostPurchaseOrderFiltered.length == temp.length) {
                 return true;
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return false;
             }
         }
         return false;
     }
 
+<<<<<<< HEAD
     $scope.checkedItemAddCostPurchaseOrder = function (rec) {
+=======
+    $scope.checkedItemAddCostPurchaseOrder = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedAllItemAddCostPurchaseOrder = false;
 
         var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (rec.allocationRecID == obj.allocationRecID) {
                 obj.calcAmount = '';
@@ -3666,6 +5215,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.formData.remainingAdditionalCost = parseFloat(remAdditionalCost).toFixed(2);
     }
 
+<<<<<<< HEAD
     $scope.checkAllItemAddCostPurchaseOrder = function (selectedAll) {
 
         if (selectedAll == true) {
@@ -3677,6 +5227,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
         else {
             angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function (obj) {
+=======
+    $scope.checkAllItemAddCostPurchaseOrder = function(selectedAll) {
+
+        if (selectedAll == true) {
+
+            angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function(obj) {
+                if (!(obj.postedChk > 0))
+                    obj.chk = true;
+            });
+        } else {
+            angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 obj.chk = false;
             });
         }
@@ -3690,9 +5252,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.searchKeyword_sup_item = {};
     $scope.searchKeyword_sup_gl_code = {};
 
+<<<<<<< HEAD
     $scope.openDocumentLink = function(){ // getSupplierPrice
 
         var url = $state.href("app.edit-supplier", ({ 'id' : $scope.rec.sell_to_cust_id, 'isPriceOffer':1}));
+=======
+    $scope.openDocumentLink = function() { // getSupplierPrice
+
+        var url = $state.href("app.edit-supplier", ({ 'id': $scope.rec.sell_to_cust_id, 'isPriceOffer': 1 }));
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         window.open(url, '_blank');
 
         // $state.goNewTab("app.edit-supplier", { 'id' : $scope.rec.sell_to_cust_id, 'isPriceOffer':1});
@@ -3705,7 +5273,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.selectedRecFromModalsItem = [];
 
     $scope.moduleType = '';
+<<<<<<< HEAD
     $scope.clearAndSearchItems = function(){
+=======
+    $scope.clearAndSearchItems = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeywordItem = {};
         // $scope.searchKeywordItem = {};
         $scope.selectedRecFromModalsItem = [];
@@ -3719,7 +5291,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.tableDataItmList = [];
     $scope.tempProdArr = [];
 
+<<<<<<< HEAD
     $scope.selectOnlyItem = function (item_paging,sort_column,sortform) {
+=======
+    $scope.selectOnlyItem = function(item_paging, sort_column, sortform) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.postData = {};
         $scope.postData.token = $scope.$root.token;
@@ -3776,11 +5352,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.showLoader = true;
 
             $scope.add_general($scope.rec)
+<<<<<<< HEAD
                 .then(function (resAA) {
 
                     $scope.item_type = 0;
 
                     if(resAA == 1){
+=======
+                .then(function(resAA) {
+
+                    $scope.item_type = 0;
+
+                    if (resAA == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.GetSalesOrderStages();
 
@@ -3788,13 +5372,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         if ($scope.item_type == 0) {
 
+<<<<<<< HEAD
                             $scope.filterPurchaseItem = {};                        
+=======
+                            $scope.filterPurchaseItem = {};
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             var itemListingApi = $scope.$root.stock + "products-listing/item-details-price-qty";
 
                             $scope.showLoader = true;
                             $http
                                 .post(itemListingApi, $scope.postData)
+<<<<<<< HEAD
                                 .then(function (res) {
+=======
+                                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.tableDataItmList = res;
                                     $scope.columns = [];
                                     $scope.record_data = {};
@@ -3816,7 +5408,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                         $scope.record_data = res.data.response;
                                         $scope.tempProdArr = res.data;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.tempProdArr, function (value, key) {
+=======
+                                        angular.forEach($scope.tempProdArr, function(value, key) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (key != "tbl_meta_data") {
                                                 $scope.recordArray.push(value);
                                             }
@@ -3828,7 +5424,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                             $scope.tempProdArr[i].calc_current_stock = Number($scope.tempProdArr[i].allocated_stock) + Number($scope.tempProdArr[i].available_stock);
                                         }
 
+<<<<<<< HEAD
                                         angular.forEach($scope.tableDataItmList.data.response.tbl_meta_data.response.colMeta, function (obj, index) {
+=======
+                                        angular.forEach($scope.tableDataItmList.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (obj.event && obj.event.name && obj.event.trigger) {
                                                 obj.generatedEvent = $scope[obj.event.name];
                                             }
@@ -3840,6 +5440,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                         // $scope.getPriceOffers(1, 1);
 
+<<<<<<< HEAD
                                     }
                                     else {
                                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
@@ -3850,13 +5451,27 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.rec.item_types = $scope.arrItems[0];
                     }
                     else{
+=======
+                                    } else {
+                                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                                    }
+                                });
+                        }
+
+                        $scope.rec.item_types = $scope.arrItems[0];
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'info', resAA);
                         $scope.showLoader = false;
                         return false;
                     }
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.item_type = 0;
 
             $scope.showLoader = true;
@@ -3868,6 +5483,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 // var itemListingApi = $scope.$root.reports + "module/item-data-for-report";
                 var itemListingApi = $scope.$root.stock + "products-listing/item-details-price-qty";
 
+<<<<<<< HEAD
                         $scope.showLoader = true;
                         $http
                             .post(itemListingApi, $scope.postData)
@@ -3919,15 +5535,73 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                                 }
                             });              
+=======
+                $scope.showLoader = true;
+                $http
+                    .post(itemListingApi, $scope.postData)
+                    .then(function(res) {
+                        $scope.tableDataItmList = res;
+                        $scope.columns = [];
+                        $scope.record_data = {};
+                        $scope.recordArray = [];
+                        $scope.showLoader = false;
+                        $scope.PendingSelectedItems = [];
+
+                        if (res.data.ack == true) {
+                            $scope.total = res.data.total;
+                            $scope.item_paging.total_pages = res.data.total_pages;
+                            $scope.item_paging.cpage = res.data.cpage;
+                            $scope.item_paging.ppage = res.data.ppage;
+                            $scope.item_paging.npage = res.data.npage;
+                            $scope.item_paging.pages = res.data.pages;
+
+                            $scope.total_paging_record = res.data.total_paging_record;
+
+                            $scope.record_data = res.data.response;
+                            $scope.tempProdArr = res.data;
+
+                            angular.forEach($scope.tempProdArr, function(value, key) {
+                                if (key != "tbl_meta_data") {
+                                    $scope.recordArray.push(value);
+                                }
+                            });
+
+                            for (var i = 0; i < $scope.tempProdArr.length; i++) {
+
+                                $scope.tempProdArr[i].chk = false;
+                                $scope.tempProdArr[i].calc_current_stock = Number($scope.tempProdArr[i].allocated_stock) + Number($scope.tempProdArr[i].available_stock);
+                            }
+                            angular.forEach($scope.tableDataItmList.data.response.tbl_meta_data.response.colMeta, function(obj, index) {
+                                if (obj.event && obj.event.name && obj.event.trigger) {
+                                    obj.generatedEvent = $scope[obj.event.name];
+                                }
+                            });
+
+                            if ($scope.tempProdArr.response)
+                                angular.element('#productModal').modal({ show: true });
+
+                            //  $scope.getPriceOffers(1, 1);
+
+                        } else {
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                        }
+                    });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             $scope.rec.item_types = $scope.arrItems[0];
         }
     }
 
+<<<<<<< HEAD
     
 
     $scope.selectItem = function (drp, item_paging, rec ) {
+=======
+
+
+    $scope.selectItem = function(drp, item_paging, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -3943,7 +5617,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.showLoader = true;
 
             $scope.add_general($scope.rec)
+<<<<<<< HEAD
                 .then(function (resAA) {
+=======
+                .then(function(resAA) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (drp == 4)
                         $scope.item_type = 0;
@@ -3972,14 +5650,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             $scope.tempProdArr[i].calc_current_stock = Number($scope.tempProdArr[i].allocated_stock) + Number($scope.tempProdArr[i].available_stock);
                         }
                         $scope.showLoader = false;
+<<<<<<< HEAD
                         angular.element('#productModal').modal({ show: true }); 
+=======
+                        angular.element('#productModal').modal({ show: true });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         // $scope.item_types = $scope.arrItems[0];
                         $scope.getPriceOffers(1, 1);
 
 
+<<<<<<< HEAD
                     }
                     else if ($scope.item_type == 1) {
+=======
+                    } else if ($scope.item_type == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.title = 'G/L No.';
                         $scope.filterGL = {};
@@ -4003,8 +5689,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         } */
 
                         $http
+<<<<<<< HEAD
                             .post(postUrl_cat, $scope.postData)//{'token': $scope.$root.token, 'display_id': 10},
                             .then(function (res) {
+=======
+                            .post(postUrl_cat, $scope.postData) //{'token': $scope.$root.token, 'display_id': 10},
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 $scope.gl_account = [];
                                 $scope.showLoader = false;
@@ -4025,20 +5716,32 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                     angular.element('#accthead_modal').modal({ show: true });
                                     $scope.gl_account = res.data.response;
+<<<<<<< HEAD
                                 }
                                 else
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
 
 
                             }).catch(function (message) {
+=======
+                                } else
+                                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+
+
+                            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.showLoader = false;
 
                                 throw new Error(message.data);
                             });
 
 
+<<<<<<< HEAD
                     }
                     else if ($scope.item_type == 2) {
+=======
+                    } else if ($scope.item_type == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                         $scope.addCostRec = {};
@@ -4047,7 +5750,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         var addCostRecUrl = $scope.$root.stock + "products-listing/get-add-cost-list";
                         $http
                             .post(addCostRecUrl, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                             .then(function (res) {
+=======
+                            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.showLoader = false;
                                 if (res.data.ack == true) {
                                     $scope.addCostRec = res.data.response;
@@ -4058,8 +5765,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                         else
                                             $scope.addCostRec[i].disableCheck = 0;
 
+<<<<<<< HEAD
                                         angular.forEach($scope.items, function (obj) {
                                             
+=======
+                                        angular.forEach($scope.items, function(obj) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (obj.id == $scope.addCostRec[i].id && obj.item_type == 2) {
                                                 $scope.addCostRec[i].chk = 1;
                                                 $scope.addCostRec[i].disableCheck = 1;
@@ -4069,10 +5781,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     }
 
                                     angular.element('#listingAdditionalCostModal').modal({ show: true });
+<<<<<<< HEAD
                                 }
                                 else
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                             }).catch(function (message) {
+=======
+                                } else
+                                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.showLoader = false;
 
                                 throw new Error(message.data);
@@ -4081,8 +5799,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     $scope.rec.item_types = $scope.arrItems[0];
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (drp == 4)
                 $scope.item_type = 0;
             else if (drp == 6)
@@ -4112,11 +5834,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
 
                 $scope.showLoader = false;
+<<<<<<< HEAD
                 angular.element('#productModal').modal({ show: true }); 
                 $scope.getPriceOffers(1, 1);
 
             }
             else if ($scope.item_type == 1) {
+=======
+                angular.element('#productModal').modal({ show: true });
+                $scope.getPriceOffers(1, 1);
+
+            } else if ($scope.item_type == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.title = 'G/L No.';
                 $scope.filterGL = {};
@@ -4140,8 +5869,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 } */
 
                 $http
+<<<<<<< HEAD
                     .post(postUrl_cat, $scope.postData)//{'token': $scope.$root.token, 'display_id': 10},
                     .then(function (res) {
+=======
+                    .post(postUrl_cat, $scope.postData) //{'token': $scope.$root.token, 'display_id': 10},
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.gl_account = [];
                         $scope.showLoader = false;
@@ -4164,18 +5898,28 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             // $scope.showLoader = false;
                             angular.element('#accthead_modal').modal({ show: true });
                             $scope.gl_account = res.data.response;
+<<<<<<< HEAD
                         }
                         else
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                     }).catch(function (message) {
+=======
+                        } else
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
 
 
+<<<<<<< HEAD
             }
             else if ($scope.item_type == 2) {
+=======
+            } else if ($scope.item_type == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.addCostRec = {};
                 $scope.title = 'Item Additional Cost';
@@ -4183,7 +5927,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 var addCostRecUrl = $scope.$root.stock + "products-listing/get-add-cost-list";
                 $http
                     .post(addCostRecUrl, { 'token': $scope.$root.token })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         if (res.data.ack == true) {
                             $scope.addCostRec = res.data.response;
@@ -4194,8 +5942,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 else
                                     $scope.addCostRec[i].disableCheck = 0;
 
+<<<<<<< HEAD
                                 angular.forEach($scope.items, function (obj) {
                                     
+=======
+                                angular.forEach($scope.items, function(obj) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == $scope.addCostRec[i].id && obj.item_type == 2) {
                                         $scope.addCostRec[i].chk = 1;
                                         $scope.addCostRec[i].disableCheck = 1;
@@ -4205,10 +5958,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             }
 
                             angular.element('#listingAdditionalCostModal').modal({ show: true });
+<<<<<<< HEAD
                         }
                         else
                             toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
                     }).catch(function (message) {
+=======
+                        } else
+                            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(400));
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
@@ -4221,7 +5980,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     $scope.PendingSelectedPurchaseItems = [];
 
+<<<<<<< HEAD
     $scope.checkedPurchaseItem = function (priceitem) {
+=======
+    $scope.checkedPurchaseItem = function(priceitem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedAllPurchaseItem = false;
 
         for (var i = 0; i < $scope.tempProdArr.length; i++) {
@@ -4235,8 +5998,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     
     $scope.checkAllPurchaseItem = function (val, category, brand, unit) {
+=======
+
+    $scope.checkAllPurchaseItem = function(val, category, brand, unit) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var selection_filter = $filter('filter');
         var filtered = selection_filter($scope.tempProdArr, $scope.filterPurchaseItem.search);
         var filtered2 = selection_filter(filtered, category);
@@ -4245,7 +6013,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.PendingSelectedPurchaseItems = [];
 
         if (val == true) {
+<<<<<<< HEAD
             angular.forEach(filtered4, function (obj) {
+=======
+            angular.forEach(filtered4, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 obj.chk = false;
 
@@ -4269,7 +6041,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 $scope.PendingSelectedPurchaseItems.push(obj);
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.tempProdArr, function (obj) {
+=======
+            angular.forEach($scope.tempProdArr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -4277,14 +6053,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.clearPendingPurchaseItems = function () {
+=======
+    $scope.clearPendingPurchaseItems = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedPurchaseItems = [];
         angular.element('#productModal').modal('hide');
     }
 
     $scope.PendingSelectedAdditionalCost = [];
 
+<<<<<<< HEAD
     $scope.checkedAdditionalCost = function (addCost) {
+=======
+    $scope.checkedAdditionalCost = function(addCost) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.selectedAllAdditionalCost = false;
 
         for (var i = 0; i < $scope.addCostRec.length; i++) {
@@ -4298,7 +6082,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
     $scope.filterAddCost = {}
+<<<<<<< HEAD
     $scope.checkAllAdditionalCost = function (val) {
+=======
+    $scope.checkAllAdditionalCost = function(val) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var selection_filter = $filter('filter');
         var filtered = selection_filter($scope.addCostRec, $scope.filterAddCost.search);
@@ -4306,6 +6094,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.PendingSelectedAdditionalCost = [];
 
         if (val == true) {
+<<<<<<< HEAD
             angular.forEach(filtered, function (obj) {
                 obj.chk = true;
                 $scope.PendingSelectedAdditionalCost.push(obj);
@@ -4313,6 +6102,14 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
         else {
             angular.forEach($scope.addCostRec, function (obj) {
+=======
+            angular.forEach(filtered, function(obj) {
+                obj.chk = true;
+                $scope.PendingSelectedAdditionalCost.push(obj);
+            });
+        } else {
+            angular.forEach($scope.addCostRec, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -4320,14 +6117,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.clearPendingAdditionalCost = function () {
+=======
+    $scope.clearPendingAdditionalCost = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedAdditionalCost = [];
         angular.element('#listingAdditionalCostModal').modal('hide');
     }
 
     $scope.PendingSelectedGLItems = [];
 
+<<<<<<< HEAD
     $scope.checkedGL = function (glid) {
+=======
+    $scope.checkedGL = function(glid) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         for (var i = 0; i < $scope.gl_account.length; i++) {
 
@@ -4340,17 +6145,29 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.checkAllGL = function (val, category, brand, unit) {
         $scope.PendingSelectedGLItems = [];
 
         if (val == true) {
             angular.forEach($scope.gl_account, function (obj) {
+=======
+    $scope.checkAllGL = function(val, category, brand, unit) {
+        $scope.PendingSelectedGLItems = [];
+
+        if (val == true) {
+            angular.forEach($scope.gl_account, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (obj.status > 0)
                     obj.chk = true;
                 $scope.PendingSelectedGLItems.push(obj);
             });
         } else {
+<<<<<<< HEAD
             angular.forEach($scope.gl_account, function (obj) {
+=======
+            angular.forEach($scope.gl_account, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (!obj.disableCheck)
                     obj.chk = false;
             });
@@ -4359,7 +6176,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.clearPendingGLitems = function () {
+=======
+    $scope.clearPendingGLitems = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.PendingSelectedGLItems = [];
         angular.element('#accthead_modal').modal('hide');
     }
@@ -4367,6 +6188,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     var getPriceOffersCount;
 
     $scope.pricePurchasePriceArr = [];
+<<<<<<< HEAD
     
     $scope.getPriceOffers = function (type, ChkPurchasePrice, getPriceOffersCount) // 1-> popup, 2-> order_items
     {
@@ -4434,11 +6256,42 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 var tempArr2 = [];
                                 Object.keys($scope.tempProdArr.response).forEach(function(key) {
                                     if (key != "tbl_meta_data"){
+=======
+
+    $scope.getPriceOffers = function(type, ChkPurchasePrice, getPriceOffersCount) // 1-> popup, 2-> order_items
+        {
+            // for Item Recomended Purchase Price
+
+            if ($scope.rec.order_date != undefined)
+                var orderDate = $scope.rec.order_date;
+            else
+                var orderDate = $scope.$root.get_current_date();
+
+            if (ChkPurchasePrice > 0) {
+
+                var getpricePurchasePriceUrl = $scope.$root.stock + "products-listing/get-recomended-purchase-price";
+                // $scope.pricePurchasePriceArr = [];
+
+
+                if (getPriceOffersCount == undefined) getPriceOffersCount = $rootScope.maxHttpRepeatCount;
+                $http
+                    .post(getpricePurchasePriceUrl, { 'token': $scope.$root.token, 'orderDate': orderDate })
+                    .then(function(res) {
+
+                        if (res.data.ack == true) {
+                            $scope.pricePurchasePriceArr = res.data.response;
+
+                            if (type == 1) {
+                                var tempArr2 = [];
+                                Object.keys($scope.tempProdArr.response).forEach(function(key) {
+                                    if (key != "tbl_meta_data") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         tempArr2.push($scope.tempProdArr.response[key]);
                                     }
 
                                 });
 
+<<<<<<< HEAD
                                 if (type == 1) {
                                     angular.forEach($scope.price_offer_arr, function (obj) {
 
@@ -4476,12 +6329,67 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                                     $scope.items[idx].arr_volume_discounts = obj.arr_volume_discounts;
                                                 }
                                             });
+=======
+                                angular.forEach($scope.pricePurchasePriceArr, function(obj) {
+
+                                    var item = $filter("filter")(tempArr2, { id: obj.item_id }); //product_id
+
+                                    var idx = tempArr2.indexOf(item[0]);
+                                    if (idx != -1) {
+                                        tempArr2[idx].standard_purchase_cost = obj.standard_price;
+                                        tempArr2[idx].minPurchaseQty = obj.min_qty;
+                                        tempArr2[idx].maxPurchaseQty = obj.max_qty;
+                                    }
+
+                                    var item2 = $filter("filter")($scope.items, { product_id: obj.product_id, item_type: 0 });
+                                    var idx2 = $scope.items.indexOf(item2[0]);
+                                    if (idx2 != -1) {
+                                        $scope.items[idx2].standard_price = obj.standard_price;
+                                    }
+
+                                });
+                                $scope.tempProdArr.response = tempArr2;
+                            }
+                        }
+
+                        // for Supplier Price Offer
+                        var getpriceOffersUrl = $scope.$root.sales + "crm/crm/get-items-price-offers-by-custid";
+                        $scope.price_offer_arr = [];
+                        $http
+                            .post(getpriceOffersUrl, { 'token': $scope.$root.token, 'srm_id': $scope.rec.sell_to_cust_id, 'order_date': orderDate })
+                            .then(function(res) {
+                                if (res.data.ack == true) {
+                                    $scope.price_offer_arr = res.data.response;
+
+                                    var tempArr2 = [];
+                                    Object.keys($scope.tempProdArr.response).forEach(function(key) {
+                                        if (key != "tbl_meta_data") {
+                                            tempArr2.push($scope.tempProdArr.response[key]);
+                                        }
+
+                                    });
+
+                                    if (type == 1) {
+                                        angular.forEach($scope.price_offer_arr, function(obj) {
+
+                                            var item = $filter("filter")(tempArr2, { id: obj.item_id }); //product_id
+
+                                            var idx = tempArr2.indexOf(item[0]);
+                                            if (idx != -1) {
+                                                tempArr2[idx].price_offer = obj.price_offer;
+                                                tempArr2[idx].price_offer_id = obj.id;
+                                                tempArr2[idx].minPurchaseQty = obj.minSaleQty;
+                                                tempArr2[idx].maxPurchaseQty = obj.maxSaleQty;
+                                                tempArr2[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                             var item2 = $filter("filter")($scope.items, { product_id: obj.item_id, item_type: 0 });
                                             var idx2 = $scope.items.indexOf(item2[0]);
                                             if (idx2 != -1) {
                                                 $scope.items[idx2].standard_price = obj.price_offer;
                                             }
+<<<<<<< HEAD
                                         }
                                     });
                                 }
@@ -4564,6 +6472,111 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     // ############ ADD GL code for purchase-cost-detail ##############
 
     $scope.addProduct = function () {
+=======
+                                        });
+
+                                        $scope.tempProdArr.response = tempArr2;
+                                    } else {
+                                        angular.forEach($scope.price_offer_arr, function(obj) {
+                                            var item = $filter("filter")($scope.items, { id: obj.item_id });
+                                            if (item.length > 0) {
+                                                angular.forEach(item, function(obj1) {
+                                                    var idx = $scope.items.indexOf(obj1);
+                                                    if (idx != -1) {
+                                                        $scope.items[idx].price_offer = obj.price_offer;
+                                                        $scope.items[idx].price_offer_id = obj.id;
+                                                        $scope.items[idx].minPurchaseQty = obj.minSaleQty;
+                                                        $scope.items[idx].maxPurchaseQty = obj.maxSaleQty;
+                                                        $scope.items[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                                    }
+                                                });
+
+                                                var item2 = $filter("filter")($scope.items, { product_id: obj.item_id, item_type: 0 });
+                                                var idx2 = $scope.items.indexOf(item2[0]);
+                                                if (idx2 != -1) {
+                                                    $scope.items[idx2].standard_price = obj.price_offer;
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                    }).catch(function(e) {
+                        if (getPriceOffersCount != 0) return $scope.getPriceOffers(type, ChkPurchasePrice, getPriceOffersCount - 1);
+
+                        $scope.showLoader = false;
+
+                        throw new Error(e.data);
+                    });
+            } else {
+
+                // for Supplier Price Offer
+                var getpriceOffersUrl = $scope.$root.sales + "crm/crm/get-items-price-offers-by-custid";
+                $scope.price_offer_arr = [];
+
+                if (getPriceOffersCount == undefined) getPriceOffersCount = $rootScope.maxHttpRepeatCount;
+                $http
+                    .post(getpriceOffersUrl, { 'token': $scope.$root.token, 'srm_id': $scope.rec.sell_to_cust_id, 'order_date': orderDate })
+                    .then(function(res) {
+
+                        if (res.data.ack == true) {
+                            $scope.price_offer_arr = res.data.response;
+
+                            if (type == 1) {
+
+                                var tempArr2 = [];
+                                Object.keys($scope.tempProdArr.response).forEach(function(key) {
+                                    if (key != "tbl_meta_data") {
+                                        tempArr2.push($scope.tempProdArr.response[key]);
+                                    }
+
+                                });
+
+
+                                angular.forEach($scope.price_offer_arr, function(obj) {
+                                    var item = $filter("filter")(tempArr2, { id: obj.item_id });
+                                    var idx = tempArr2.indexOf(item[0]);
+                                    if (idx != -1) {
+                                        tempArr2[idx].price_offer = obj.price_offer;
+                                        tempArr2[idx].price_offer_id = obj.id;
+                                        tempArr2[idx].minPurchaseQty = obj.minSaleQty;
+                                        tempArr2[idx].maxPurchaseQty = obj.maxSaleQty;
+                                        tempArr2[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                    }
+                                });
+                                $scope.tempProdArr.response = tempArr2;
+                            } else {
+                                angular.forEach($scope.price_offer_arr, function(obj) {
+                                    var item = $filter("filter")($scope.items, { id: obj.item_id });
+                                    if (item.length > 0) {
+                                        angular.forEach(item, function(obj1) {
+                                            var idx = $scope.items.indexOf(obj1);
+                                            if (idx != -1) {
+                                                $scope.items[idx].price_offer = obj.price_offer;
+                                                $scope.items[idx].price_offer_id = obj.id;
+                                                $scope.items[idx].minPurchaseQty = obj.minSaleQty;
+                                                $scope.items[idx].maxPurchaseQty = obj.maxSaleQty;
+                                                $scope.items[idx].arr_volume_discounts = obj.arr_volume_discounts;
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    }).catch(function(e) {
+                        if (getPriceOffersCount != 0) return $scope.getPriceOffers(type, ChkPurchasePrice, getPriceOffersCount - 1);
+
+                        $scope.showLoader = false;
+
+                        throw new Error(e.data);
+                    });
+            }
+        }
+
+    // ############ ADD GL code for purchase-cost-detail ##############
+
+    $scope.addProduct = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.tempOrderLineitems = [];
         var tempOrderData = {};
@@ -4586,7 +6599,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 return false;
             }
 
+<<<<<<< HEAD
             if($scope.selectedRecFromModalsItem && !($scope.selectedRecFromModalsItem.length>0)){
+=======
+            if ($scope.selectedRecFromModalsItem && !($scope.selectedRecFromModalsItem.length > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 toaster.pop('error', 'Error', 'Please select item(s) first.');
                 $scope.$root.return_status = false;
                 $scope.showLoader = false;
@@ -4601,44 +6618,71 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 return false;
             } */
 
+<<<<<<< HEAD
             if(!$rootScope.arrVATPostGrpPurchase){
+=======
+            if (!$rootScope.arrVATPostGrpPurchase) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance';
                 $http
                     .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (res.data.ack != true) {
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
                             angular.element('#productModal').modal('hide');
                             $scope.showLoader = false;
                             return false;
+<<<<<<< HEAD
                         }
                         else{
                             if(!$rootScope.arrVATPostGrpPurchase) 
+=======
+                        } else {
+                            if (!$rootScope.arrVATPostGrpPurchase)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
 
                             $scope.newItemAddition(tempOrderData);
                         }
+<<<<<<< HEAD
                         
                     }).catch(function (message) {
+=======
+
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance';
                 $http
                     .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (res.data.ack != true) {
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
                             angular.element('#productModal').modal('hide');
                             $scope.showLoader = false;
                             return false;
+<<<<<<< HEAD
                         }
                         else{
                             if(!$rootScope.arrVATPostGrpPurchase) 
@@ -4646,13 +6690,25 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         }
                         
                     }).catch(function (message) {
+=======
+                        } else {
+                            if (!$rootScope.arrVATPostGrpPurchase)
+                                $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
+                        }
+
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
 
                 $scope.newItemAddition(tempOrderData);
+<<<<<<< HEAD
             }                    
+=======
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         /* else if ($scope.item_type == 1) {
 
@@ -4763,11 +6819,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 return false;
             }
 
+<<<<<<< HEAD
             if(!$rootScope.arrVATPostGrpPurchase){
+=======
+            if (!$rootScope.arrVATPostGrpPurchase) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance'
                 $http
                     .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+<<<<<<< HEAD
                     .then(function (res) {
 
                         if (res.data.ack != true) {
@@ -4778,22 +6839,42 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         }
                         else{
                             if(!$rootScope.arrVATPostGrpPurchase) 
+=======
+                    .then(function(res) {
+
+                        if (res.data.ack != true) {
+                            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
+                            angular.element('#productModal').modal('hide');
+                            $scope.showLoader = false;
+                            return false;
+                        } else {
+                            if (!$rootScope.arrVATPostGrpPurchase)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
 
                             $scope.newAdditionalCostAddition(tempOrderData);
                         }
+<<<<<<< HEAD
                     }).catch(function (message) {
+=======
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
 
+<<<<<<< HEAD
             }
             else{
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance'
                 $http
                     .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+<<<<<<< HEAD
                     .then(function (res) {
 
                         if (res.data.ack != true) {
@@ -4807,18 +6888,40 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
                         }
                     }).catch(function (message) {
+=======
+                    .then(function(res) {
+
+                        if (res.data.ack != true) {
+                            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
+                            angular.element('#productModal').modal('hide');
+                            $scope.showLoader = false;
+                            return false;
+                        } else {
+                            if (!$rootScope.arrVATPostGrpPurchase)
+                                $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
+                        }
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
 
                 $scope.newAdditionalCostAddition(tempOrderData);
+<<<<<<< HEAD
             }            
+=======
+            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         // $scope.item_types = $scope.arrItems[0];
     }
 
+<<<<<<< HEAD
     $scope.newItemAddition = function(tempOrderData){
+=======
+    $scope.newItemAddition = function(tempOrderData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var currencyID = parseFloat($scope.rec.currency_id.id);
         var currencyConversionRate = 1;
@@ -4834,7 +6937,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'or_date': $scope.rec.order_date,
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         if (res.data.response.conversion_rate == null) {
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(590, [$scope.rec.currency_id.name]));
@@ -4853,7 +6960,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     $scope.items_array = [];
 
+<<<<<<< HEAD
                     angular.copy($scope.tempProdArr.response, $scope.items_array);                      
+=======
+                    angular.copy($scope.tempProdArr.response, $scope.items_array);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // angular.forEach($scope.items_array, function (prodData) {
 
@@ -4861,12 +6972,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var selItemList = [];
 
+<<<<<<< HEAD
                     angular.forEach($scope.selectedRecFromModalsItem, function (obj) {
                         selItemList.push(obj.record);
                     });
                 
                     // angular.forEach($scope.selectedRecFromModalsItem, function (obj,key) {
                     angular.forEach(selItemList, function (prodData) {
+=======
+                    angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+                        selItemList.push(obj.record);
+                    });
+
+                    // angular.forEach($scope.selectedRecFromModalsItem, function (obj,key) {
+                    angular.forEach(selItemList, function(prodData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         // var key = obj.key;
                         // var prodData = obj.record;
@@ -4893,16 +7013,24 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             if (prodData.price_offer != undefined) {
                                 prodData.standard_price = parseFloat(prodData.price_offer);
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (prodData.unit_price == null || prodData.unit_price == undefined) {
                                     if (prodData.standard_purchase_cost != undefined)
                                         itemPrice = parseFloat(prodData.standard_purchase_cost) * parseFloat(currencyConversionRate);
                                     else
                                         itemPrice = 0;
                                     // prodData.standard_price = parseFloat(prodData.standard_purchase_cost);
+<<<<<<< HEAD
                                 }
                                 else
+=======
+                                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     itemPrice = parseFloat(prodData.unit_price) * parseFloat(currencyConversionRate);
                                 // prodData.standard_price = parseFloat(prodData.unit_price);
 
@@ -4924,8 +7052,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     prodData.units = prodData.arr_units[0];
                                 else
                                     prodData.units = '';
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 prodData.arr_units = '';
                                 prodData.units = '';
                             }
@@ -4934,7 +7066,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 prodData.arr_prod_warehouse = prodData.arr_warehouse.response;
 
                                 if (prodData.arr_prod_warehouse != undefined) {
+<<<<<<< HEAD
                                     angular.forEach(prodData.arr_prod_warehouse, function (obj) {
+=======
+                                    angular.forEach(prodData.arr_prod_warehouse, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (obj.id == prodData.arr_warehouse.default_wh)
                                             prodData.warehouses = obj;
                                     });
@@ -4949,9 +7085,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             prodData.vat_id = '';
 
 
+<<<<<<< HEAD
                             if ($rootScope.arrVATPostGrpPurchase) {// != undefined
 
                                 angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                            if ($rootScope.arrVATPostGrpPurchase) { // != undefined
+
+                                angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == prodData.vat_rate_id) {
                                         prodData.vat = obj.name;
                                         prodData.vat_value = obj.vat_value;
@@ -4972,15 +7114,27 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     });
 
                     $scope.showReceiveStuff = true;
+<<<<<<< HEAD
                     angular.element('#productModal').modal('hide');
 
                     $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
                         .then(function (res) {
+=======
+                    $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+                    angular.element('#productModal').modal('hide');
+
+                    $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                             $scope.showLoader = false;
 
+<<<<<<< HEAD
                             angular.forEach($scope.tempOrderLineitems2, function (elem) {
+=======
+                            angular.forEach($scope.tempOrderLineitems2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (elem.item_type == 0) {
                                     if (elem.arr_units != undefined) {
@@ -4990,7 +7144,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
                                     if (elem.arr_prod_warehouse != undefined) {
+<<<<<<< HEAD
                                         angular.forEach(elem.arr_prod_warehouse, function (obj) {
+=======
+                                        angular.forEach(elem.arr_prod_warehouse, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (obj.id == elem.arr_warehouse.default_wh)
                                                 elem.warehouses = obj;
                                         });
@@ -5006,9 +7164,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     else
                                         elem.qty = 1;
 
+<<<<<<< HEAD
                                     if ($rootScope.arrVATPostGrpPurchase) {// != undefined
 
                                         angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                                    if ($rootScope.arrVATPostGrpPurchase) { // != undefined
+
+                                        angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (obj.id == elem.vat_rate_id) {
                                                 elem.vat = obj.name;
                                                 elem.vat_value = obj.vat_value;
@@ -5037,6 +7201,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
             // angular.forEach($scope.items_array, function (prodData) {
 
+<<<<<<< HEAD
             
             var selItemList = [];
 
@@ -5046,6 +7211,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         
             // angular.forEach($scope.selectedRecFromModalsItem, function (chk_item,key) {
             angular.forEach(selItemList, function (prodData) {
+=======
+
+            var selItemList = [];
+
+            angular.forEach($scope.selectedRecFromModalsItem, function(obj) {
+                selItemList.push(obj.record);
+            });
+
+            // angular.forEach($scope.selectedRecFromModalsItem, function (chk_item,key) {
+            angular.forEach(selItemList, function(prodData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // var resRec = $filter("filter")($scope.items_array, { id: key });
                 /* var chk_item = $filter("filter")($scope.items_array, function(rec){
@@ -5054,6 +7230,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 // if (resRec[0]) {
 
+<<<<<<< HEAD
                     // var prodData = resRec[0];
 
                     $scope.PendingSelectedPurchaseItems.push(prodData);
@@ -5140,10 +7317,97 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     $scope.tempOrderLineitems.push(prodData);
                     $scope.$root.return_status = true;
+=======
+                // var prodData = resRec[0];
+
+                $scope.PendingSelectedPurchaseItems.push(prodData);
+                prodData.item_type = $scope.item_type;
+                prodData.product_name = prodData.description;
+                // prodData.qty = 1;
+
+                if (parseFloat(prodData.minPurchaseQty) > 0)
+                    prodData.qty = parseFloat(prodData.minPurchaseQty);
+                else
+                    prodData.qty = 1;
+
+                prodData.standard_price = 0;
+
+
+                if (prodData.price_offer != undefined)
+                    prodData.standard_price = parseFloat(prodData.price_offer);
+                else {
+                    if (prodData.unit_price == null) {
+                        if (prodData.standard_purchase_cost != undefined)
+                            prodData.standard_price = parseFloat(prodData.standard_purchase_cost);
+                        else
+                            itemPrice = 0;
+                    } else
+                        prodData.standard_price = parseFloat(prodData.unit_price);
+                }
+
+                prodData.total_price = parseFloat(prodData.standard_price);
+
+                if (prodData.arr_units != undefined) {
+
+                    if (prodData.arr_units.response != undefined)
+                        prodData.arr_units = prodData.arr_units.response;
+                    else
+                        prodData.arr_units = '';
+
+                    if (prodData.arr_units.length[0])
+                        prodData.units = prodData.arr_units[0];
+                    else
+                        prodData.units = '';
+                } else {
+                    prodData.arr_units = '';
+                    prodData.units = '';
+                }
+
+                if (prodData.arr_warehouse != undefined) {
+                    prodData.arr_prod_warehouse = prodData.arr_warehouse.response;
+
+                    if (prodData.arr_prod_warehouse != undefined) {
+                        angular.forEach(prodData.arr_prod_warehouse, function(obj) {
+                            if (obj.id == prodData.arr_warehouse.default_wh)
+                                prodData.warehouses = obj;
+                        });
+
+                        if ((prodData.warehouses == undefined) && (prodData.arr_prod_warehouse[0].id > 0))
+                            prodData.warehouses = prodData.arr_prod_warehouse[0];
+                    }
+                }
+
+                prodData.vat = '';
+                prodData.vat_value = '';
+                prodData.vat_id = '';
+
+
+                if ($rootScope.arrVATPostGrpPurchase) { // != undefined
+
+                    angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+                        if (obj.id == prodData.vat_rate_id) {
+                            prodData.vat = obj.name;
+                            prodData.vat_value = obj.vat_value;
+                            prodData.vat_id = obj.id;
+                            prodData.vats = obj;
+                        }
+                    });
+                }
+
+                prodData.purchase_unit = prodData.uom_id;
+                prodData.total_landing_cost = 0;
+                prodData.supplier_id = $scope.rec.sell_to_cust_id;
+
+                var count = $scope.items.length - 1;
+
+                $scope.tempOrderLineitems.push(prodData);
+                $scope.$root.return_status = true;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 // }
             });
 
             $scope.showReceiveStuff = true;
+<<<<<<< HEAD
             angular.element('#productModal').modal('hide');
 
             $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
@@ -5152,6 +7416,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.showLoader = false;
 
                     angular.forEach($scope.tempOrderLineitems2, function (elem) {
+=======
+            $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+            angular.element('#productModal').modal('hide');
+
+            $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
+                .then(function(res) {
+
+                    $scope.showLoader = false;
+
+                    angular.forEach($scope.tempOrderLineitems2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (elem.item_type == 0) {
                             if (elem.arr_units != undefined) {
@@ -5161,7 +7436,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
                             if (elem.arr_prod_warehouse != undefined) {
+<<<<<<< HEAD
                                 angular.forEach(elem.arr_prod_warehouse, function (obj) {
+=======
+                                angular.forEach(elem.arr_prod_warehouse, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == elem.arr_warehouse.default_wh)
                                         elem.warehouses = obj;
                                 });
@@ -5177,9 +7456,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             else
                                 elem.qty = 1;
 
+<<<<<<< HEAD
                             if ($rootScope.arrVATPostGrpPurchase) {// != undefined
 
                                 angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                            if ($rootScope.arrVATPostGrpPurchase) { // != undefined
+
+                                angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == elem.vat_rate_id) {
                                         elem.vat = obj.name;
                                         elem.vat_value = obj.vat_value;
@@ -5202,12 +7487,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.newAdditionalCostAddition = function(tempOrderData){
+=======
+    $scope.newAdditionalCostAddition = function(tempOrderData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.addCostRecarray = [];
         angular.copy($scope.addCostRec, $scope.addCostRecarray);
 
+<<<<<<< HEAD
         angular.forEach($scope.addCostRecarray, function (addCost) {
+=======
+        angular.forEach($scope.addCostRecarray, function(addCost) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (addCost.chk == true && addCost.disableCheck == false) {
 
@@ -5225,6 +7518,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 if (vatRate == 1 || vatRate == 2 || vatRate == 3 || vatRate == 4) {
 
+<<<<<<< HEAD
                     if ($rootScope.arrVATPostGrpPurchase)// != undefined
                         addCost.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
                 }
@@ -5232,6 +7526,14 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     if ($rootScope.arrVATPostGrpPurchase){
                         angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                    if ($rootScope.arrVATPostGrpPurchase) // != undefined
+                        addCost.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
+                } else {
+
+                    if ($rootScope.arrVATPostGrpPurchase) {
+                        angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == addCost.vatRateID)
                                 addCost.vats = obj;
                         });
@@ -5249,22 +7551,38 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         angular.element('#listingAdditionalCostModal').modal('hide');
 
         $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
+<<<<<<< HEAD
             .then(function (res) {
 
                 $scope.showLoader = false;
 
                 angular.forEach($scope.tempOrderLineitems2, function (elem) {
+=======
+            .then(function(res) {
+
+                $scope.showLoader = false;
+
+                angular.forEach($scope.tempOrderLineitems2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var vatRate = elem.vatRateID;
 
                     if (vatRate == 1 || vatRate == 2 || vatRate == 3 || vatRate == 4) {
 
+<<<<<<< HEAD
                         if ($rootScope.arrVATPostGrpPurchase)// != undefined
                             elem.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
                     }
                     else {
                         if ($rootScope.arrVATPostGrpPurchase){
                             angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                        if ($rootScope.arrVATPostGrpPurchase) // != undefined
+                            elem.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
+                    } else {
+                        if ($rootScope.arrVATPostGrpPurchase) {
+                            angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.vatRateID)
                                     elem.vats = obj;
                             });
@@ -5279,7 +7597,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             });
     }
 
+<<<<<<< HEAD
     $scope.add_gl_account_values = function () {//gl_data
+=======
+    $scope.add_gl_account_values = function() { //gl_data
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -5290,11 +7612,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             return false;
         }
 
+<<<<<<< HEAD
         if ($rootScope.arrVATPostGrpPurchase){
+=======
+        if ($rootScope.arrVATPostGrpPurchase) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance'
             $http
                 .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+<<<<<<< HEAD
                 .then(function (res) {
 
                     if (res.data.ack == true) {
@@ -5302,17 +7629,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
                     }
                     else {
+=======
+                .then(function(res) {
+
+                    if (res.data.ack == true) {
+                        if (!$rootScope.arrVATPostGrpPurchase)
+                            $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
                         angular.element('#productModal').modal('hide');
                         $scope.showLoader = false;
                         return false;
                     }
+<<<<<<< HEAD
                 }).catch(function (message) {
+=======
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                 });
 
+<<<<<<< HEAD
                 $scope.newGlAccountAddition();
 
         }
@@ -5329,20 +7669,47 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.newGlAccountAddition();
                     }
                     else {
+=======
+            $scope.newGlAccountAddition();
+
+        } else {
+            var finApi = $scope.$root.pr + 'supplier/supplier/get-supplier-finance'
+            $http
+                .post(finApi, { 'supplier_id': $scope.rec.sell_to_cust_id, 'token': $rootScope.token })
+                .then(function(res) {
+
+                    if (res.data.ack == true) {
+                        if (!$rootScope.arrVATPostGrpPurchase)
+                            $rootScope.arrVATPostGrpPurchase = res.data.arrVATPostGrpPurchase;
+
+                        $scope.newGlAccountAddition();
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(536));
                         angular.element('#productModal').modal('hide');
                         $scope.showLoader = false;
                         return false;
                     }
+<<<<<<< HEAD
                 }).catch(function (message) {
+=======
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                 });
+<<<<<<< HEAD
         }      
     }
 
     $scope.newGlAccountAddition = function(){
+=======
+        }
+    }
+
+    $scope.newGlAccountAddition = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.tempOrderLineitems = [];
 
@@ -5354,7 +7721,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         tempOrderData.invoice_type = $scope.rec.type;
         tempOrderData.type_id = $scope.rec.type;
 
+<<<<<<< HEAD
         angular.forEach($scope.gl_account, function (gl_data) {
+=======
+        angular.forEach($scope.gl_account, function(gl_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (gl_data.chk == true) {
 
@@ -5368,22 +7739,35 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 $scope.acItem.qty = 1;
                 $scope.acItem.vat_id = gl_data.vat_id;
                 $scope.acItem.ref_id = gl_data.ref_id;
+<<<<<<< HEAD
                 $scope.acItem.Price = 0;//"";
+=======
+                $scope.acItem.Price = 0; //"";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 var vatRate = gl_data.vat_id;
 
                 if (vatRate == 1 || vatRate == 2 || vatRate == 3 || vatRate == 4) {
 
                     if ($rootScope.arrVATPostGrpPurchase)
                         $scope.acItem.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
+<<<<<<< HEAD
                 }
                 else {
                     angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                } else {
+                    angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == gl_data.vat_id)
                             $scope.acItem.vats = obj;
                     });
                 }
 
+<<<<<<< HEAD
                 angular.forEach($rootScope.gl_arr_units, function (obj) {
+=======
+                angular.forEach($rootScope.gl_arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (obj.id == gl_data.ref_id)
                         $scope.acItem.units = obj;
                 });
@@ -5398,11 +7782,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         angular.element('#accthead_modal').modal('hide');
 
         $scope.insertNewOrderLine($scope.tempOrderLineitems, tempOrderData)
+<<<<<<< HEAD
             .then(function (res) {
 
                 $scope.showLoader = false;
 
                 angular.forEach($scope.tempOrderLineitems2, function (elem) {
+=======
+            .then(function(res) {
+
+                $scope.showLoader = false;
+
+                angular.forEach($scope.tempOrderLineitems2, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     // if ($rootScope.arr_vat_post_grp != undefined && $rootScope.order_posting_group_id != undefined) {
                     if ($rootScope.arrVATPostGrpPurchase) {
@@ -5411,9 +7803,14 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         if (vatRate == 1 || vatRate == 2 || vatRate == 3 || vatRate == 4) {
                             elem.vats = $rootScope.arrVATPostGrpPurchase[vatRate - 1];
+<<<<<<< HEAD
                         }
                         else {
                             angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                        } else {
+                            angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (obj.id == elem.vat_id) {
                                     elem.vat = obj.name;
@@ -5427,7 +7824,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     elem.qty = 1;
                     elem.standard_price = elem.Price;
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.gl_arr_units, function (obj) {
+=======
+                    angular.forEach($rootScope.gl_arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.id == elem.ref_id)
                             elem.units = obj;
                     });
@@ -5438,6 +7839,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         if (elem.item_type == 1) {
                             //PBI: check is vat gl code.
+<<<<<<< HEAD
                             if (elem.product_code == $scope.VatRange.gl1AccountCode || 
                                 elem.product_code == $scope.VatRange.gl2AccountCode || 
                                 elem.product_code == $scope.VatRange.gl3AccountCode) 
@@ -5445,6 +7847,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 elem.isGLVat = true;
                             }
                             else {
+=======
+                            if (elem.product_code == $scope.VatRange.gl1AccountCode ||
+                                elem.product_code == $scope.VatRange.gl2AccountCode ||
+                                elem.product_code == $scope.VatRange.gl3AccountCode) {
+                                elem.isGLVat = true;
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 elem.isGLVat = false;
                             }
                             //vat ranges for gli listing
@@ -5452,15 +7861,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             // elem.endVatRange = $scope.VatRange.endRangeCode;
                         }
 
+<<<<<<< HEAD
                     }
                     else{
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (elem.item_type == 1) {
                             //PBI: check is vat gl code.
                             if (elem.product_code >= $scope.VatRange.startRangeCode && elem.product_code <= $scope.VatRange.endRangeCode) {
                                 elem.isGLVat = true;
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 elem.isGLVat = false;
                             }
                             //vat ranges for gli listing
@@ -5479,7 +7896,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     var newLineCount;
 
+<<<<<<< HEAD
     $scope.insertNewOrderLine = function (tempOrderLineitems, tempOrderData, newLineCount) {
+=======
+    $scope.insertNewOrderLine = function(tempOrderLineitems, tempOrderData, newLineCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var insertNewOrderLine = $scope.$root.pr + "srm/srminvoice/insert-new-order-line";
 
@@ -5490,7 +7911,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'tempOrderData': tempOrderData,
                 'tempOrderLineitems': tempOrderLineitems
             })
+<<<<<<< HEAD
             .then(function (result) {
+=======
+            .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.tempOrderLineitems2 = [];
 
@@ -5502,7 +7927,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
                 return result.data.ack;
 
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (newLineCount != 0) return $scope.insertNewOrderLine(tempOrderLineitems, tempOrderData, newLineCount - 1);
 
                 $scope.showLoader = false;
@@ -5515,18 +7944,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     $scope.arr_units = [];
     var getSetupItemListCount;
 
+<<<<<<< HEAD
     $scope.get_setup_item_list = function (product_id, getSetupItemListCount) {
+=======
+    $scope.get_setup_item_list = function(product_id, getSetupItemListCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (getSetupItemListCount == undefined) getSetupItemListCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(unitUrl_item, { 'token': $scope.$root.token, 'product_id': product_id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.arr_units = res.data.response;
                     //  $scope.item.units = $scope.arr_units[0];
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getSetupItemListCount != 0) return $scope.get_setup_item_list(product_id, getSetupItemListCount - 1);
 
                 $scope.showLoader = false;
@@ -5537,14 +7978,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     var show_add_popCount;
 
+<<<<<<< HEAD
     $scope.show_add_pop = function (id, show_add_popCount) {
+=======
+    $scope.show_add_pop = function(id, show_add_popCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var DetailsURL = $scope.$root.gl + "chart-accounts/get-account-heads";
 
         if (show_add_popCount == undefined) show_add_popCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(DetailsURL, { 'token': $scope.$root.token, 'gl_id': id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
 
@@ -5556,7 +8005,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.acItem.Price = 0;
                     $scope.acItem.Vat = res.data.response.vat_list_id;
 
+<<<<<<< HEAD
                     angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                    angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj.id == $scope.acItem.Vat)
                             $scope.acItem.vats = obj;
@@ -5565,7 +8018,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.items.push($scope.acItem);
                     ///$scope.$root.return_status = true;
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (show_add_popCount != 0) return $scope.show_add_pop(id, show_add_popCount - 1);
 
                 $scope.showLoader = false;
@@ -5579,48 +8036,78 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
     $scope.wordsLength = 0;
+<<<<<<< HEAD
     $scope.showWordsLimits_invoice = function () {
+=======
+    $scope.showWordsLimits_invoice = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.wordsLength = $scope.rec.note.length;
     }
 
     // ############ Show-landing-cost-setup-modal ##############
 
+<<<<<<< HEAD
     $scope.check_quantity = function (item) {
+=======
+    $scope.check_quantity = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var produnit = $scope.$root.stock + "unit-measure/get-unit-quanitity-record-popup";
         item.quantity_unit_price = $scope.rec.item_price = $scope.rec.item_quantity = 0;
 
         $http
             .post(produnit, { 'token': $scope.$root.token, 'unit_id': item.units.id, 'product_id': item.id })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     angular.element('.pic_block').attr("disabled", false);
                     item.quantity_unit_price = (Number(item.standard_price)) * (Number(res.data.quantity));
                     item.quantity_limit = res.data.quantity;
                     $scope.rec.item_price = (Number(item.standard_price));
                     $scope.rec.item_quantity = (Number(res.data.quantity));
+<<<<<<< HEAD
                 }
                 else if (res.data.ack == 0) {
                     angular.element('.pic_block').attr("disabled", true);
                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(565));
                 }
             }).catch(function (message) {
+=======
+                } else if (res.data.ack == 0) {
+                    angular.element('.pic_block').attr("disabled", true);
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(565));
+                }
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
             });
     }
 
+<<<<<<< HEAD
     $scope.rowTotal = function (item) {
+=======
+    $scope.rowTotal = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var total = 0;
 
         if (item.item_type != 1) {
 
             if (item.units != undefined)
+<<<<<<< HEAD
                 total = item.qty * parseFloat(item.standard_price);//.toFixed(3)
             else
                 total = item.qty * parseFloat(item.standard_price);//.toFixed(3)
+=======
+                total = item.qty * parseFloat(item.standard_price); //.toFixed(3)
+            else
+                total = item.qty * parseFloat(item.standard_price); //.toFixed(3)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         } else {
             if (item.qty > 0)
@@ -5648,7 +8135,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         return total;
     }
 
+<<<<<<< HEAD
     $scope.rowOriginalAmount = function (item) {
+=======
+    $scope.rowOriginalAmount = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var rowOriginalAmount = 0;
 
@@ -5663,7 +8154,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         return rowOriginalAmount;
     }
 
+<<<<<<< HEAD
     $scope.rowDiscount = function (item) {
+=======
+    $scope.rowDiscount = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var total = 0;
         if (item.qty > 0)
             total = parseFloat(parseFloat(item.qty) * parseFloat(item.standard_price)).toFixed(3);
@@ -5678,7 +8173,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 discount = item.discount;
             else
                 discount = (parseFloat(item.discount) * parseFloat(item.qty)); //parseFloat(total) - 
+<<<<<<< HEAD
         }//parseFloat(item.discount) * parseFloat(item.qty);
+=======
+        } //parseFloat(item.discount) * parseFloat(item.qty);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         item.discount_price = discount;
 
         if (item.isGLVat == true) {
@@ -5687,15 +8186,25 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         return discount;
     }
 
+<<<<<<< HEAD
     $scope.rowVat = function (item) {
+=======
+    $scope.rowVat = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrVat = [];
         var rowVat = 0;
         var total = 0;
 
         if (item.qty > 0)
+<<<<<<< HEAD
             total = parseFloat(parseFloat(item.qty) * parseFloat(item.standard_price));//.toFixed(3)
         else
             total = parseFloat(item.standard_price);//.toFixed(3)
+=======
+            total = parseFloat(parseFloat(item.qty) * parseFloat(item.standard_price)); //.toFixed(3)
+        else
+            total = parseFloat(item.standard_price); //.toFixed(3)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         total = parseFloat(total).toFixed(2);
 
@@ -5731,25 +8240,41 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             else if (vat_value > 0)
                 arrVat[vat_value] = price;
 
+<<<<<<< HEAD
             rowVat = parseFloat((vat_value * arrVat[vat_value]) / 100).toFixed(2);// For 5 digit decimals case
+=======
+            rowVat = parseFloat((vat_value * arrVat[vat_value]) / 100).toFixed(2); // For 5 digit decimals case
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
 
         if (isNaN(rowVat)) {
             item.vat_price = 0;
             return 0;
+<<<<<<< HEAD
         }
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             item.vat_price = rowVat;
         return rowVat;
     }
 
+<<<<<<< HEAD
     $scope.netTotal = function () {
+=======
+    $scope.netTotal = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // var total = 0;
         var netTotal = 0;
         var s_total = 0;
         var items_net_total = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.items, function (item) {
+=======
+        angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var total = 0;
 
@@ -5809,7 +8334,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 else if (item.discount_type_id.id == 'Value')
                     total = parseFloat(total) - item.discount;
                 else
+<<<<<<< HEAD
                     total = parseFloat(total) - (parseFloat(item.discount) * parseFloat(item.qty));// //parseFloat(total) - (item.discount * item.qty);
+=======
+                    total = parseFloat(total) - (parseFloat(item.discount) * parseFloat(item.qty)); // //parseFloat(total) - (item.discount * item.qty);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             }
 
             if (total > 0)
@@ -5827,7 +8356,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.calcVat = function () {
+=======
+    $scope.calcVat = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var arrVat = [];
         var arrTotalVat = [];
         var TotalVat = 0;
@@ -5835,7 +8368,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         var total = 0;
 
         if ($scope.items.length > 0) {
+<<<<<<< HEAD
             angular.forEach($scope.items, function (item) {
+=======
+            angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // var unitPrice = (item.standard_price != undefined && item.standard_price != '') ? item.standard_price : 0;
                 var unitPrice = (item.standard_price != undefined && item.standard_price != '' && isNaN(item.standard_price) == false) ? item.standard_price : 0;
@@ -5850,7 +8387,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var total = 0;
                 // total += Number(subtotal);
+<<<<<<< HEAD
                 total += parseFloat(parseFloat(subtotal).toFixed(2));//parseFloat(subtotal).toFixed(2);
+=======
+                total += parseFloat(parseFloat(subtotal).toFixed(2)); //parseFloat(subtotal).toFixed(2);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (item.discount_type_id != undefined && item.discount > 0) {
                     /* if (item.discount_type_id.id == 'Percentage')
@@ -5863,7 +8404,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     else if (item.discount_type_id.id == 'Value')
                         total = parseFloat(total) - item.discount;
                     else
+<<<<<<< HEAD
                         total = parseFloat(total) - (parseFloat(item.discount) * parseFloat(item.qty));//  
+=======
+                        total = parseFloat(total) - (parseFloat(item.discount) * parseFloat(item.qty)); //  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     //parseFloat(total) - (item.discount * item.qty);
                 }
 
@@ -5879,9 +8424,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         arrVat[vat_value] = price;
 
                     if (item.ref_prod_id > 0)
+<<<<<<< HEAD
                         TotalVat = TotalVat - parseFloat(arrVat[vat_value]);//.toFixed(2))
                     else
                         TotalVat = TotalVat + parseFloat(arrVat[vat_value]);//.toFixed(2))
+=======
+                        TotalVat = TotalVat - parseFloat(arrVat[vat_value]); //.toFixed(2))
+                    else
+                        TotalVat = TotalVat + parseFloat(arrVat[vat_value]); //.toFixed(2))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var itemVatVal = parseFloat((vat_value / 100) * arrVat[vat_value]).toFixed(2);
 
@@ -5898,12 +8449,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     if (arrVat[vat_value] != undefined && arrVat[vat_value].length > 0)
                         arrVat[vat_value] = parseFloat(arrVat[vat_value]) + parseFloat(price);
+<<<<<<< HEAD
                     else if
                         (vat_value > 0) arrVat[vat_value] = price;
 
                     // TotalVat += parseFloat((vat_value / 100) * arrVat[vat_value]);//.toFixed(2))
 
                     var itemVatVal2 = parseFloat((vat_value * arrVat[vat_value])/ 100).toFixed(2);
+=======
+                    else if (vat_value > 0) arrVat[vat_value] = price;
+
+                    // TotalVat += parseFloat((vat_value / 100) * arrVat[vat_value]);//.toFixed(2))
+
+                    var itemVatVal2 = parseFloat((vat_value * arrVat[vat_value]) / 100).toFixed(2);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     TotalVat += parseFloat(itemVatVal2);
 
@@ -5920,14 +8479,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.calcDiscount = function () {
+=======
+    $scope.calcDiscount = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var TotalDiscount = 0;
         var ItemsDiscount = 0;
         var total = 0;
 
         if ($scope.items.length > 0) {
+<<<<<<< HEAD
             angular.forEach($scope.items, function (item) {
+=======
+            angular.forEach($scope.items, function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // var unitPrice = (item.standard_price != undefined && item.standard_price != '') ? item.standard_price : 0;
                 var unitPrice = (item.standard_price != undefined && item.standard_price != '' && isNaN(item.standard_price) == false) ? item.standard_price : 0;
@@ -5950,7 +8517,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         else if (item.discount_type_id.id == 'Value')
                             total = item.discount;
                         else
+<<<<<<< HEAD
                             total = (parseFloat(item.discount) * parseFloat(item.qty));//parseFloat(total) - (item.discount * item.qty);//item.discount * item.qty;
+=======
+                            total = (parseFloat(item.discount) * parseFloat(item.qty)); //parseFloat(total) - (item.discount * item.qty);//item.discount * item.qty;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (item.item_type == 0 || item.item_type == 2)
                             ItemsDiscount += parseFloat(total.toFixed(2));
@@ -5964,6 +8535,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         TotalDiscount = (parseFloat(TotalDiscount).toFixed(2));
 
+<<<<<<< HEAD
         $scope.rec.items_net_discount = ItemsDiscount;//.toFixed(2)
         $scope.rec.total_discount = TotalDiscount;//.toFixed(2)
         $rootScope.discountedPurchaseOrder = TotalDiscount;//.toFixed(2)
@@ -5972,6 +8544,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
     $scope.onChangeDiscountType = function (item) {
+=======
+        $scope.rec.items_net_discount = ItemsDiscount; //.toFixed(2)
+        $scope.rec.total_discount = TotalDiscount; //.toFixed(2)
+        $rootScope.discountedPurchaseOrder = TotalDiscount; //.toFixed(2)
+        return TotalDiscount; //.toFixed(2)
+    }
+
+
+    $scope.onChangeDiscountType = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // var unitPrice = (item.standard_price != undefined && item.standard_price != '') ? item.standard_price : 0;
         var unitPrice = (item.standard_price != undefined && item.standard_price != '' && isNaN(item.standard_price) == false) ? item.standard_price : 0;
@@ -5992,6 +8574,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     item.discount = '';
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(515));
                 }
+<<<<<<< HEAD
             }
             else if (item.discount_type_id.id == 'Value') {
 
@@ -6001,6 +8584,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
             }
             else if (item.discount_type_id.id == 'Unit') {
+=======
+            } else if (item.discount_type_id.id == 'Value') {
+
+                if (item.discount != '' && actualPrice > 0 && parseFloat(item.discount) > actualPrice) {
+                    item.discount = '';
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(321, ['Maximim Value', 'Original Amount']));
+                }
+            } else if (item.discount_type_id.id == 'Unit') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (item.qty != '') {
                     if (item.discount != '' && (parseFloat(item.discount) * parseFloat(item.qty)) > actualPrice) {
@@ -6012,14 +8604,24 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.checkItemPrice = function (item) {
+=======
+    $scope.checkItemPrice = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (item.standard_price != '' && Number(item.standard_price) > 999999999999999999) {
             item.standard_price = '';
             toaster.pop('error', 'Error', 'Maximum Value can not be greater than 999,999,999,999,999,999');
         }
 
+<<<<<<< HEAD
         if(item.pricePurchaseInfoArray && item.pricePurchaseInfoArray.maxPurchasePrice)
+=======
+        console.log('$scope.currencyConversionRatePO == ', $scope.currencyConversionRatePO);
+
+        if (item.pricePurchaseInfoArray && item.pricePurchaseInfoArray.maxPurchasePrice)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var convMaxPurchasePrice = parseFloat(item.pricePurchaseInfoArray.maxPurchasePrice) * parseFloat($scope.currencyConversionRatePO);
         // else if(item.pricePurchaseInfoArray && item.pricePurchaseInfoArray.maxPurchasePrice)
         //     var convMaxPurchasePrice = item.pricePurchaseInfoArray.maxPurchasePrice;
@@ -6029,9 +8631,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             toaster.pop('error', 'Error', 'Maximum Unit Price can not be greater than ' + convMaxPurchasePrice);
         }
 
+<<<<<<< HEAD
         if(item.MaxPrice && $scope.currencyConversionRatePO)
             var convMaxPurchasePrice = parseFloat(item.MaxPrice) * parseFloat($scope.currencyConversionRatePO);
         else if(item.MaxPrice)
+=======
+        if (item.MaxPrice && $scope.currencyConversionRatePO)
+            var convMaxPurchasePrice = parseFloat(item.MaxPrice) * parseFloat($scope.currencyConversionRatePO);
+        else if (item.MaxPrice)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var convMaxPurchasePrice = item.MaxPrice;
 
         if (item.standard_price && item.MaxPrice && parseFloat(item.standard_price) > convMaxPurchasePrice) {
@@ -6041,6 +8649,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.grandTotal = function () {
         // return ($scope.netTotal() + $scope.calcVat());
         // $scope.rec.grand_total = $scope.netTotal() + $scope.calcVat();
@@ -6051,11 +8660,47 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         // $scope.rec.grand_total = +(Number(netTotal).toFixed(2)) + +(Number(calcVat).toFixed(2));
         $scope.rec.grand_total = Number(+(netTotal) + +(calcVat)).toFixed(2);
         
+=======
+    $scope.grandTotal = function() {
+
+        var netTotal = Number($scope.netTotal());
+        var calcVat = Number($scope.calcVat());
+
+        // $scope.rec.grand_total = +(Number(netTotal).toFixed(2)) + +(Number(calcVat).toFixed(2));
+        $scope.rec.grand_total = Number(+(netTotal) + +(calcVat)).toFixed(2);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $rootScope.grandTotalPurchaseOrder = $scope.rec.grand_total;
         return $scope.rec.grand_total;
     }
 
+<<<<<<< HEAD
     $scope.updateGrandTotal = function () {
+=======
+    $scope.rec.grand_total_converted = Number($scope.$parent.rec.grand_total / $scope.rec.currency_rate).toFixed(2);
+
+    $scope.onChangeCurrencyRate = function() {
+
+        console.log('rec.currency_rate == ', $scope.rec.currency_rate);
+
+        if ($scope.rec.currency_rate && $scope.rec.currency_rate != 1)
+            $scope.rec.grand_total_converted = Number($scope.rec.grand_total / $scope.rec.currency_rate).toFixed(2);
+        else
+            $scope.rec.grand_total_converted = $scope.rec.grand_total;
+
+        // $scope.rec.grand_total_converted = ($scope.rec.currency_rate != undefined && Number($scope.rec.currency_rate) > 0) ? $scope.rec.grand_total / $scope.rec.currency_rate : $scope.rec.grand_total;
+
+        /* if (!isNaN($scope.rec.grand_total_converted))
+            $scope.rec.grand_total_converted = Number($scope.rec.grand_total_converted).toFixed(2);
+        else
+            $scope.rec.grand_total_converted = $scope.rec.grand_total; */
+
+        // $rootScope.grandTotalPurchaseOrder = $scope.rec.grand_total;
+        return $scope.rec.grand_total_converted;
+    }
+
+    $scope.updateGrandTotal = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var updateGrandTotalUrl = $scope.$root.pr + "srm/srminvoice/update-grand-total";
 
         var postData = {};
@@ -6072,6 +8717,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $http
             .post(updateGrandTotalUrl, postData)
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
                 }
@@ -6079,6 +8725,14 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
     $scope.deleteOrderLine = function (index, item, items) {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {}
+            });
+    }
+
+    $scope.deleteOrderLine = function(index, item, items) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         /* if ($scope.rec.sell_to_cust_no == undefined || $scope.rec.sell_to_cust_no == null) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier No.']));
@@ -6102,6 +8756,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.items.splice(index, 1);
             $scope.showReceiveStuff = false;
 
+<<<<<<< HEAD
             angular.forEach($scope.items, function (obj) {
                 if (obj.item_type == 0)
                     $scope.showReceiveStuff = true;// || obj.item_type == 2
@@ -6112,6 +8767,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 template: 'modalDeleteDialogId',
                 className: 'ngdialog-theme-default-custom'
             }).then(function (value) {
+=======
+
+            angular.forEach($scope.items, function(obj) {
+                if (obj.item_type == 0)
+                    $scope.showReceiveStuff = true; // || obj.item_type == 2
+            });
+
+            $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+        } else {
+            ngDialog.openConfirm({
+                template: 'modalDeleteDialogId',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $http
                     .post(del_sub_exp, {
                         'id': update_id,
@@ -6122,13 +8791,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         'item_type': item.item_type,
                         'token': $scope.$root.token
                     })
+<<<<<<< HEAD
                     .then(function (res) {
+=======
+                    .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (res.data.ack == true) {
                             // $scope.items.splice(index);
                             $scope.items.splice(index, 1);
                             // $scope.getOrdersDetail(1);
                             $scope.showReceiveStuff = false;
 
+<<<<<<< HEAD
                             angular.forEach($scope.items, function (obj) {
                                 if (obj.item_type == 0 )
                                     $scope.showReceiveStuff = true;//|| obj.item_type == 2
@@ -6142,10 +8816,28 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             $scope.volume_permission = res.data.volume_permission; 
                             if(($scope.weight_permission >0 && $scope.weight && $scope.weight!=0) || ($scope.volume_permission>0 && $scope.volume && $scope.volume!=0))
                                     $scope.showVolumeWeight = 1;
+=======
+                            angular.forEach($scope.items, function(obj) {
+                                if (obj.item_type == 0)
+                                    $scope.showReceiveStuff = true; //|| obj.item_type == 2
+                            });
+
+                            $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+
+                            $scope.volume = res.data.volume;
+                            $scope.weight = res.data.weight;
+                            $scope.volume_unit = res.data.volume_unit;
+                            $scope.weightunit = res.data.weightunit;
+                            $scope.weight_permission = res.data.weight_permission;
+                            $scope.volume_permission = res.data.volume_permission;
+                            if (($scope.weight_permission > 0 && $scope.weight && $scope.weight != 0) || ($scope.volume_permission > 0 && $scope.volume && $scope.volume != 0))
+                                $scope.showVolumeWeight = 1;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             $scope.updateGrandTotal();
 
                             toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+<<<<<<< HEAD
                         }
                         else if (res.data.ack == 2) {
 
@@ -6154,30 +8846,54 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         }
                         else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(108));
                     }).catch(function (message) {
+=======
+                        } else if (res.data.ack == 2) {
+
+                            toaster.pop('success', 'Deleted', res.data.error);
+
+                        } else toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(108));
+                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
 
                         throw new Error(message.data);
                     });
+<<<<<<< HEAD
             }, function (reason) {
+=======
+            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 console.log('Modal promise rejected. Reason: ', reason);
             });
         }
     }
 
+<<<<<<< HEAD
     $scope.check_min_max = function (item) {
+=======
+    $scope.check_min_max = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // Validation for price offers
         if (item.arr_volume_discounts != undefined && item.arr_volume_discounts.length) {
             var flg = 0;
+<<<<<<< HEAD
             angular.forEach(item.arr_volume_discounts, function (obj) {
+=======
+            angular.forEach(item.arr_volume_discounts, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (Number(item.qty) >= Number(obj.min_qty)) {
                     flg = 1;
                     if (obj.discount_type == 1) // %
                         item.standard_price = parseFloat(item.price_offer) - parseFloat(item.price_offer) * (parseFloat(obj.volume_discount) / 100);
                     else // value
                         item.standard_price = parseFloat(item.price_offer) - parseFloat(obj.volume_discount);
+<<<<<<< HEAD
                     item.standard_price = parseFloat(item.standard_price);//.toFixed(2) //Number
+=======
+                    item.standard_price = parseFloat(item.standard_price); //.toFixed(2) //Number
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 }
             });
             if (!flg)
@@ -6186,7 +8902,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.UpdateQty = function (item) {
+=======
+    $scope.UpdateQty = function(item) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (parseFloat(item.minPurchaseQty) != 0 && parseFloat(item.maxPurchaseQty) != 0) {
 
@@ -6203,8 +8923,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         if (item.item_type == 0 && parseFloat(item.qty) < 0) {
             item.remainig_qty = 0;
+<<<<<<< HEAD
         }
         else if (item.item_type == 0 && item.qty != item.qtyItemAllocated) {
+=======
+        } else if (item.item_type == 0 && item.qty != item.qtyItemAllocated) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (item.qty < item.qtyItemAllocated) {
                 toaster.pop('warning', 'Info', String(item.qtyItemAllocated) + ' quantity is already allocated!');
                 item.qty = item.qtyItemAllocated;
@@ -6214,8 +8938,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 item.remainig_qty = 0;
             else
                 item.remainig_qty = parseFloat(item.qty) - parseFloat(item.qtyItemAllocated);
+<<<<<<< HEAD
         }
         else if (item.item_type == 0 && item.qty == item.qtyItemAllocated)
+=======
+        } else if (item.item_type == 0 && item.qty == item.qtyItemAllocated)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             item.remainig_qty = 0;
 
         if (item.item_type == 2) {
@@ -6227,6 +8955,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 toaster.pop('warning', 'Info', String(item.alreadyAddedAmount) + ' Amount is already allocated!');
                 item.qty = parseFloat(item.alreadyAddedAmount) / parseFloat(item.standard_price);
                 item.remainingAdditionalCost = 0;
+<<<<<<< HEAD
             }
             else
                 item.remainingAdditionalCost = parseFloat(remainingAdditionalCost).toFixed(2);                    
@@ -6238,6 +8967,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         if (item.item_type == 2) {
 
             var ttlCalcAdditionalCost = parseFloat(item.total_price);//parseFloat(item.qty) * parseFloat(item.standard_price);
+=======
+            } else
+                item.remainingAdditionalCost = parseFloat(remainingAdditionalCost).toFixed(2);
+        }
+    }
+
+    $scope.UpdateStandardPrice = function(item, discountOpt) {
+
+        if (item.item_type == 2) {
+
+            var ttlCalcAdditionalCost = parseFloat(item.total_price); //parseFloat(item.qty) * parseFloat(item.standard_price);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var remainingAdditionalCost = parseFloat(ttlCalcAdditionalCost) - parseFloat(item.alreadyAddedAmount);
 
             if (remainingAdditionalCost < 0) {
@@ -6269,6 +9010,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     // discount = item.discount;
 
                     item.discount = '';
+<<<<<<< HEAD
                 }
                 else
                     item.standard_price = parseFloat(item.alreadyAddedAmount) / parseFloat(item.qty);
@@ -6279,17 +9021,35 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 item.remainingAdditionalCost = parseFloat(remainingAdditionalCost).toFixed(2);
         }
         
+=======
+                } else
+                    item.standard_price = parseFloat(item.alreadyAddedAmount) / parseFloat(item.qty);
+
+                item.remainingAdditionalCost = 0;
+            } else
+                item.remainingAdditionalCost = parseFloat(remainingAdditionalCost).toFixed(2);
+        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         item.standard_price = Number(item.standard_price);
     }
 
     var rec2 = {};
+<<<<<<< HEAD
     $scope.get_vat_range = function () {
+=======
+    $scope.get_vat_range = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // setup/srm/getVatRange
         var apiurl = $scope.$root.setup + 'srm/getVatRange';
         $scope.showLoader = true;
         $http
             .post(apiurl, { token: $rootScope.token })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 if (res.data.ack == true) {
                     $scope.VatRange = res.data.response[0];
@@ -6301,7 +9061,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     $scope.get_vat_range();
 
+<<<<<<< HEAD
     $scope.savePurchaseOrder = function (rec2, rec, mode) {
+=======
+    $scope.savePurchaseOrder = function(rec2, rec, mode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
 
@@ -6338,7 +9102,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         if (!$scope.rec.sell_to_cust_no && $scope.rec.order_code) {
 
             $scope.add_general(rec)
+<<<<<<< HEAD
                 .then(function (resAA) {
+=======
+                .then(function(resAA) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     var rec2 = {};
 
@@ -6377,7 +9145,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     rec2.note = rec.note;
                     rec2.defaultCurrencyID = $scope.$root.defaultCurrency;
 
+<<<<<<< HEAD
                     rec2.currency_id = $rootScope.currencyID_PO.id;// $rootScope.currency_id.id;
+=======
+                    rec2.currency_id = $rootScope.currencyID_PO.id; // $rootScope.currency_id.id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     rec2.posting_date = $rootScope.posting_date;
                     rec2.order_date = $scope.rec.order_date;
 
@@ -6395,7 +9167,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     var validationchk = 0;
                     $scope.supplierLocMandatory = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.items, function (obj) {
+=======
+                    angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj.item_type == 0)
                             $scope.supplierLocMandatory = 1;
@@ -6405,8 +9181,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             $scope.showLoader = false;
                             obj.discount = "";
                             validationchk++;
+<<<<<<< HEAD
                         }
                         else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+=======
+                        } else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(592, [obj.product_name]));
                             $scope.showLoader = false;
                             obj.discount = "";
@@ -6507,13 +9287,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             throw new Error(message.data);
                         }); */
+<<<<<<< HEAD
                 }).catch(function (message) {
+=======
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var check_approvals = $scope.$root.setup + "general/check-for-approvals";
 
@@ -6526,12 +9314,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'type': "4, 7",
                     'token': $scope.$root.token
                 })
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (res.data.ack == 0) {
                         var response = res.data.response;
                         var already_checked = 0;
+<<<<<<< HEAD
                         if (Number(response[0].type) == 4) {// && Number(response[0].criteria) < Number($scope.rec.grand_total)) {
+=======
+                        if (Number(response[0].type) == 4) { // && Number(response[0].criteria) < Number($scope.rec.grand_total)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (Number(response[0].prev_status) == -1 || Number(response[0].prev_status) == 3 || Number(response[0].prev_status) == 6) {
 
                                 var str = '';
@@ -6551,7 +9347,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             response2 = response[0];
                         else if (response.length == 2)
                             response2 = response[1];
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (already_checked == 0 && Number(response2.type) == 7 && Number(response2.criteria) < Number($scope.rec.grand_total)) {
                             if (Number(response2.prev_status) == -1 || Number(response2.prev_status) == 3 || Number(response2.prev_status) == 6) {
 
@@ -6569,7 +9369,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     }
 
                     $scope.add_general(rec)
+<<<<<<< HEAD
                         .then(function (resAA) {
+=======
+                        .then(function(resAA) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             var rec2 = {};
 
@@ -6608,12 +9412,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             rec2.note = rec.note;
                             rec2.defaultCurrencyID = $scope.$root.defaultCurrency;
 
+<<<<<<< HEAD
                             rec2.currency_id = $rootScope.currencyID_PO.id;// $rootScope.currency_id.id;
+=======
+                            rec2.currency_id = $rootScope.currencyID_PO.id; // $rootScope.currency_id.id;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             rec2.posting_date = $rootScope.posting_date;
                             rec2.order_date = $scope.rec.order_date;
 
                             rec2.supplier_id = $scope.rec.sell_to_cust_id;
                             rec2.invoice_type = $scope.rec.type;
+<<<<<<< HEAD
+=======
+                            rec2.currency_rate = $scope.rec.currency_rate;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 
@@ -6626,8 +9438,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             var validationchk = 0;
                             $scope.supplierLocMandatory = 0;
 
+<<<<<<< HEAD
                             angular.forEach($scope.items, function (obj) {
                                 
+=======
+                            angular.forEach($scope.items, function(obj) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.item_type == 0)
                                     $scope.supplierLocMandatory = 1;
 
@@ -6636,15 +9453,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     $scope.showLoader = false;
                                     obj.discount = "";
                                     validationchk++;
+<<<<<<< HEAD
                                 }
                                 else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+=======
+                                } else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(592, [obj.product_name]));
                                     $scope.showLoader = false;
                                     obj.discount = "";
                                     validationchk++;
                                 }
                             });
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             /* if (rec2.invoice_id > 0) {
 
@@ -6677,18 +9502,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             $http
                                 .post(updateOrderUrl, rec2)
+<<<<<<< HEAD
                                 .then(function (res2) {
 
 
                                     if (res2.data.ack == true) {
                                         
+=======
+                                .then(function(res2) {
+
+
+                                    if (res2.data.ack == true) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (!(mode > 0)) {
 
                                             $rootScope.updateSelectedGlobalData("uom");
                                             // $rootScope.updateSelectedGlobalData('item');
                                             // $scope.showLoader = true;
                                             $scope.getOrdersDetail()
+<<<<<<< HEAD
                                                 .then(function () {
+=======
+                                                .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     $scope.showLoader = false;
                                                     toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
 
@@ -6704,13 +9541,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                             $scope.returnItems = res2.data.returnItems;
                                             return true;
                                         }
+<<<<<<< HEAD
                                     }
                                     else if (res2.data.ack == 2) {
+=======
+                                    } else if (res2.data.ack == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (!(mode > 0)) {
 
                                             $scope.getOrdersDetail()
+<<<<<<< HEAD
                                                 .then(function () {
+=======
+                                                .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     $scope.showLoader = false;
                                                     toaster.pop('success', 'Edit', res2.data.error);
                                                     $scope.purchaseOrderDeleteBtn = false;
@@ -6723,11 +9568,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                             $scope.returnItems = res2.data.returnItems;
                                             return true;
                                         }
+<<<<<<< HEAD
                                     }
                                     else {
 
                                         $scope.getOrdersDetail()
                                             .then(function () {
+=======
+                                    } else {
+
+                                        $scope.getOrdersDetail()
+                                            .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 $scope.showLoader = false;
                                                 toaster.pop('error', 'Edit', res2.data.error);
                                             });
@@ -6735,7 +9587,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     }
 
                                 })
+<<<<<<< HEAD
                                 .catch(function (message) {
+=======
+                                .catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.showLoader = false;
 
                                     throw new Error(message.data);
@@ -6745,10 +9601,97 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
 
 
 
     $scope.add_sublist = function (rec2, rec, mode) {
+=======
+    $scope.savePurchaseInvoice = function(rec) {
+
+        /* 
+
+        if ($scope.rec.order_date == null || $scope.rec.order_date == '' || $scope.rec.order_date == undefined) {
+            $scope.rec.order_date = $scope.$root.get_current_date();
+        }
+
+        if ($scope.showReceiveStuff == true && ($scope.rec.receiptDate == null || $scope.rec.receiptDate == '' || $scope.rec.receiptDate == undefined)) {
+            $scope.rec.receiptDate = $scope.$root.get_current_date();
+            $scope.updateReceiptDateChk(1);
+        } */
+
+        $scope.showLoader = true;
+
+        var invoiceRec = {};
+
+        invoiceRec.srm_purchase_code = rec.srm_purchase_code;
+        invoiceRec.purchase_code_id = rec.purchase_code_id;
+        invoiceRec.comm_book_in_no = rec.comm_book_in_no;
+        invoiceRec.cust_order_no = rec.cust_order_no;
+        invoiceRec.SaleOrderArr = {};
+        invoiceRec.SaleOrderArr = $scope.selectedSaleOrderArr;
+
+        invoiceRec.supp_order_no = rec.supp_order_no;
+        invoiceRec.payable_bank = rec.payable_bank;
+        invoiceRec.bank_account_id = rec.bank_account_id;
+
+        invoiceRec.payment_terms_code = (rec.payment_terms_codes != undefined && rec.payment_terms_codes != '') ? rec.payment_terms_codes.id : 0;
+        invoiceRec.payment_method_id = (rec.payment_method_ids != undefined && rec.payment_method_ids != '') ? rec.payment_method_ids.id : 0;
+
+        invoiceRec.due_date = rec.due_date;
+        invoiceRec.prev_code = rec.prev_code;
+        invoiceRec.linktoCustID = rec.linktoCustID;
+        invoiceRec.linktoCustName = rec.linktoCustName;
+        invoiceRec.marketingProm = rec.marketingProm;
+        invoiceRec.ship_to_phone = rec.ship_to_phone;
+        invoiceRec.ship_to_contact = rec.ship_to_contact;
+        invoiceRec.ship_to_email = rec.ship_to_email;
+
+        invoiceRec.shipment_method_id = (rec.shipment_method_code != undefined && rec.shipment_method_code != '') ? rec.shipment_method_code.id : 0;
+        invoiceRec.shipment_method = (rec.shipment_method_code != undefined && rec.shipment_method_code != '') ? rec.shipment_method_code.name : 0;
+
+        invoiceRec.shipping_agent_id = rec.shipping_agent_id;
+        invoiceRec.shipping_agent = rec.shipping_agent;
+        invoiceRec.container_no = rec.container_no;
+        invoiceRec.warehouse_booking_ref = rec.warehouse_booking_ref;
+        invoiceRec.shippingPONotReq = rec.shippingPONotReq;
+        invoiceRec.ReasonForshippingNotReq = rec.ReasonForshippingNotReq;
+
+        invoiceRec.selectedShippingPO = rec.selectedShippingPO;
+        invoiceRec.selectedShippingPOid = rec.selectedShippingPOid;
+
+        invoiceRec.sale_person = rec.sale_person;
+        invoiceRec.sale_person_id = rec.sale_person_id;
+
+        invoiceRec.token = $scope.$root.token;
+        invoiceRec.id = $stateParams.id;
+        invoiceRec.note = rec.note;
+        invoiceRec.externalnote = rec.externalnote;
+
+        console.log('invoiceRec == ', invoiceRec);
+
+        var updateInvoiceUrl = $scope.$root.pr + "srm/srminvoice/update-posted-invoice";
+
+        return $http
+            .post(updateInvoiceUrl, invoiceRec)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.check_pi_readonly = false;
+                    toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+                } else
+                    return res.data.error;
+
+            }).catch(function(message) {
+                $scope.showLoader = false;
+
+                throw new Error(message.data);
+            });
+    }
+
+    $scope.add_sublist = function(rec2, rec, mode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var deferred = $q.defer();
 
         // $scope.showLoader = true;
@@ -6773,7 +9716,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         if ($scope.saverecord == 0)
             return false; */
         $scope.add_general(rec)
+<<<<<<< HEAD
             .then(function (resAA) {
+=======
+            .then(function(resAA) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 var rec2 = {};
 
@@ -6805,9 +9752,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 rec2.note = rec.note;
                 rec2.defaultCurrencyID = $scope.$root.defaultCurrency;
 
+<<<<<<< HEAD
                 rec2.currency_id = $rootScope.currencyID_PO.id;//$rootScope.currency_id.id;
                 rec2.posting_date = $rootScope.posting_date;
                 rec2.order_date = $scope.rec.order_date;
+=======
+                rec2.currency_id = $rootScope.currencyID_PO.id; //$rootScope.currency_id.id;
+                rec2.posting_date = $rootScope.posting_date;
+                rec2.order_date = $scope.rec.order_date;
+                rec2.currency_rate = $scope.rec.currency_rate;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 rec2.supplier_id = $scope.rec.sell_to_cust_id;
                 rec2.invoice_type = $scope.rec.type;
@@ -6826,7 +9780,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 var validationchk = 0;
                 $scope.supplierLocMandatory = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.items, function (obj) {
+=======
+                angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.item_type == 0)
                         $scope.supplierLocMandatory = 1;
@@ -6839,8 +9797,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         deferred.reject('Discount price for Item ' + obj.product_name + ' is invalid!');
                         obj.discount = "";
                         validationchk++;
+<<<<<<< HEAD
                     }
                     else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+=======
+                    } else if (obj.discount_type_id == undefined && obj.discount != null && obj.discount != '' && obj.discount != undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // toaster.pop('error', 'Info', 'Discount Type for Item ' + obj.product_name + ' is not Selected!');
                         $scope.showLoader = false;
                         $scope.disablePostInvBtn = false;
@@ -6861,7 +9823,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 if (rec2.invoice_id > 0) {
 
+<<<<<<< HEAD
                     if ($scope.supplierLocMandatory == 1 && $scope.rec.ship_to_name) {// != undefined
+=======
+                    if ($scope.supplierLocMandatory == 1 && $scope.rec.ship_to_name) { // != undefined
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (!($scope.rec.ship_to_name.length > 0)) {
                             // toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(560));
@@ -6871,14 +9837,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             // deferred.reject('Please add shipping data in shipping tab!');
                             deferred.reject('Please add shipping location!');
                             // return false;
+<<<<<<< HEAD
                         }
                         else if (mode != 2) {
+=======
+                        } else if (mode != 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.showLoader = false;
                             $scope.disableReceiveBtn = false;
                             $scope.disablePostInvBtn = false;
                         }
+<<<<<<< HEAD
                     }
                     else if ($scope.supplierLocMandatory == 1 && !$scope.rec.ship_to_name) {// == undefined
+=======
+                    } else if ($scope.supplierLocMandatory == 1 && !$scope.rec.ship_to_name) { // == undefined
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(560));
                         $scope.showLoader = false;
                         $scope.disableReceiveBtn = false;
@@ -6886,13 +9860,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         // deferred.reject('Please add shipping data in shipping tab!');
                         deferred.reject('Please add shipping location!');
                         // return false;
+<<<<<<< HEAD
                     }
                     else if ($scope.supplierLocMandatory == 0 && mode != 2){
+=======
+                    } else if ($scope.supplierLocMandatory == 0 && mode != 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.disableReceiveBtn = false;
                         $scope.disablePostInvBtn = false;
                     }
 
+<<<<<<< HEAD
                     if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1 ) {
+=======
+                    if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (!$scope.rec.ReasonForshippingNotReq || !($scope.rec.ReasonForshippingNotReq.length > 0)) {
                             $scope.showLoader = false;
@@ -6900,8 +9882,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             $scope.disablePostInvBtn = false;
                             deferred.reject('Please add reason for shipment not required.');
                         }
+<<<<<<< HEAD
                     }
                     else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+=======
+                    } else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         $scope.disableReceiveBtn = false;
                         $scope.disablePostInvBtn = false;
@@ -6922,11 +9908,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 return $http
                     .post(updateOrderUrl, rec2)
+<<<<<<< HEAD
                     .then(function (res2) {
                         // $scope.showLoader = false;
 
                         if (res2.data.ack == true) {
                             
+=======
+                    .then(function(res2) {
+                        // $scope.showLoader = false;
+
+                        if (res2.data.ack == true) {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (!(mode > 0)) {
                                 toaster.pop('success', 'Edit', $scope.$root.getErrorMessageByCode(102));
                                 $rootScope.updateSelectedGlobalData("uom");
@@ -6940,8 +9934,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 // return true;
                                 deferred.resolve();
                             }
+<<<<<<< HEAD
                         }
                         else if (res2.data.ack == 2) {
+=======
+                        } else if (res2.data.ack == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (!(mode > 0)) {
                                 toaster.pop('success', 'Edit', res2.data.error);
@@ -6951,8 +9949,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 // return true;
                                 deferred.resolve();
                             }
+<<<<<<< HEAD
                         }
                         else {
+=======
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             // toaster.pop('error', 'Edit', res2.data.error);
                             $scope.getOrdersDetail();
                             $scope.disableReceiveBtn = false;
@@ -6969,7 +9971,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         deferred.resolve();
 
                     })
+<<<<<<< HEAD
                     .catch(function (message) {
+=======
+                    .catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         $scope.disablePostInvBtn = false;
                         $scope.disableReceiveBtn = false;
@@ -6984,14 +9990,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.openEmailer = function (val) {
         setTimeout(function () {
+=======
+    $scope.openEmailer = function(val) {
+        setTimeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             document.getElementById(val).click();
         }, 0)
     }
 
     function sumArray(arrayName) {
+<<<<<<< HEAD
         arrayName = arrayName.reduce(function (a, b) {
+=======
+        arrayName = arrayName.reduce(function(a, b) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return a + b;
         });
         return arrayName;
@@ -7007,7 +10022,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.showInvoiceModal = function (templateType, noModal) {
+=======
+    $scope.showInvoiceModal = function(templateType, noModal) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (templateType == "salesDelivery") {
             var tempIdName = '#delivery_note_modal';
@@ -7048,10 +10067,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             return;
         }
         */
+<<<<<<< HEAD
        
        if ($scope.check_srm_readonly == false) {
            toaster.pop('error', 'Error', 'Please Save');
            return;
+=======
+
+        if ($scope.check_srm_readonly == false) {
+            toaster.pop('error', 'Error', 'Please Save');
+            return;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         }
         $scope.showLoader = true;
         $scope.print_invoice_vals = {};
@@ -7066,7 +10092,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             separate_by_allocation = 1;
 
         var postOptions = {
+<<<<<<< HEAD
             id: $scope.rec.update_id,            
+=======
+            id: $scope.rec.update_id,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             'type': '2',
             'separate_by_warehouse': separate_by_warehouse,
             'separate_by_allocation': separate_by_allocation,
@@ -7081,7 +10111,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $rootScope.printinvoiceFlag = false;
         $http
             .post(prntInvoiceUrl, postOptions)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.print_invoice_vals = res.data.response;
                     $scope.print_invoice_vals.discountedValue = $rootScope.discountedPurchaseOrder;
@@ -7089,7 +10123,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.print_invoice_vals.vatValue = $rootScope.vatValuePurchaseOrder;
                     $scope.print_invoice_vals.grandTotal = $rootScope.grandTotalPurchaseOrder;
                     $scope.print_invoice_vals.templateType = templateType;
+<<<<<<< HEAD
                     $scope.print_invoice_vals.itemExists = $scope.showReceiveStuff;                   
+=======
+                    $scope.print_invoice_vals.itemExists = $scope.showReceiveStuff;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                     /* if ($scope.print_invoice_vals.address_1 == $scope.print_invoice_vals.ship_address_1
@@ -7105,11 +10143,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     $scope.showShipFrom = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.print_invoice_vals.doc_details_arr, function (obj) {
+=======
+                    angular.forEach($scope.print_invoice_vals.doc_details_arr, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (obj.type == 0)
                             $scope.showShipFrom = 1;
                     });
+<<<<<<< HEAD
                     
 
                     if ($scope.print_invoice_vals.templateType == 'purchaseDelivery' || 
@@ -7129,6 +10172,27 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.print_invoice_vals.uom_qty_total = new Array();
                         
                         angular.forEach($scope.print_invoice_vals.doc_details_arr, function (obj1, index1) {
+=======
+
+
+                    if ($scope.print_invoice_vals.templateType == 'purchaseDelivery' ||
+                        $scope.print_invoice_vals.templateType == 'purchaseWarehouse' ||
+                        $scope.print_invoice_vals.templateType == "receiptNote") {
+
+                        let currentUrl = window.location.href;
+                        $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+                        $scope.print_invoice_vals.company_name = $rootScope.company_name;
+                        $scope.print_invoice_vals.company_logo_url = $scope.company_logo_url;
+
+
+
+                        $scope.print_invoice_vals.itemsSummary = [];
+                        $scope.print_invoice_vals.total_records = Object.keys($scope.print_invoice_vals.doc_details_arr);
+
+                        $scope.print_invoice_vals.uom_qty_total = new Array();
+
+                        angular.forEach($scope.print_invoice_vals.doc_details_arr, function(obj1, index1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             var itemsSummary = {};
                             itemsSummary.qty = [];
                             itemsSummary.uom_qty = [];
@@ -7143,7 +10207,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             itemsSummary.weightunit = [];
 
 
+<<<<<<< HEAD
                             angular.forEach(obj1, function (obj, index) {
+=======
+                            angular.forEach(obj1, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 itemsSummary.qty.push(Number(obj.quantity));
                                 itemsSummary.uom_qty.push(Number(obj.uom_qty));
                                 itemsSummary.total_pallet_qty.push(Number(obj.pallet_qty));
@@ -7158,25 +10226,40 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 if (idx == null) {
                                     itemsSummary.uom_qty_total.push({ 'uom': obj.uom, 'total_qty': 0 });
                                     itemsSummary.uom_qty_total[findObjectByKey(itemsSummary.uom_qty_total, 'uom', obj.uom)].total_qty += Number(obj.quantity);
+<<<<<<< HEAD
                                 }
                                 else
                                 itemsSummary.uom_qty_total[idx].total_qty += Number(obj.quantity);
+=======
+                                } else
+                                    itemsSummary.uom_qty_total[idx].total_qty += Number(obj.quantity);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 idx2 = findObjectByKey(itemsSummary.volume_total, 'volume_unit', obj.volumeUnit);
                                 if (idx2 == null) {
                                     itemsSummary.volume_total.push({ 'volume_unit': obj.volumeUnit, 'total_qty': 0 });
                                     itemsSummary.volume_total[findObjectByKey(itemsSummary.volume_total, 'volume_unit', obj.volumeUnit)].total_qty += Number(obj.volume);
+<<<<<<< HEAD
                                 }
                                 else
                                 itemsSummary.volume_total[idx2].total_qty += Number(obj.volume);
+=======
+                                } else
+                                    itemsSummary.volume_total[idx2].total_qty += Number(obj.volume);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 idx3 = findObjectByKey(itemsSummary.weight_total, 'weightunit', obj.weightUnit2);
                                 if (idx3 == null) {
                                     itemsSummary.weight_total.push({ 'weightunit': obj.weightUnit2, 'total_qty': 0 });
                                     itemsSummary.weight_total[findObjectByKey(itemsSummary.weight_total, 'weightunit', obj.weightUnit2)].total_qty += Number(obj.weight);
+<<<<<<< HEAD
                                 }
                                 else
                                 itemsSummary.weight_total[idx3].total_qty += Number(obj.weight);
+=======
+                                } else
+                                    itemsSummary.weight_total[idx3].total_qty += Number(obj.weight);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             });
 
                             itemsSummary.totalQty = sumArray(itemsSummary.qty);
@@ -7184,11 +10267,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             itemsSummary.sumOfPallets = sumArray(itemsSummary.total_pallet_qty);
                             $scope.print_invoice_vals.itemsSummary.push(itemsSummary);
                         });
+<<<<<<< HEAD
                         
                     }
 
                     if ($scope.print_invoice_vals.templateType == "purchaseOrder" || 
                         $scope.print_invoice_vals.templateType == "purchaseInvoice") { 
+=======
+
+                    }
+
+                    if ($scope.print_invoice_vals.templateType == "purchaseOrder" ||
+                        $scope.print_invoice_vals.templateType == "purchaseInvoice") {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.print_invoice_vals.total_records = Object.keys($scope.print_invoice_vals.doc_details_arr);
 
@@ -7208,9 +10299,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         $scope.print_invoice_vals.volume_total = new Array();
                         $scope.print_invoice_vals.weight_total = new Array();
+<<<<<<< HEAD
                         
 
                         angular.forEach($scope.print_invoice_vals.doc_details_arr, function (obj1, index1) {                           
+=======
+
+
+                        angular.forEach($scope.print_invoice_vals.doc_details_arr, function(obj1, index1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             // obj1.volume.push(Number(obj1.volume));
                             // obj1.weight.push(Number(obj1.weight));
@@ -7222,23 +10319,34 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             if (idx2 == null) {
                                 $scope.print_invoice_vals.volume_total.push({ 'volume_unit': obj1.volumeUnit, 'total_qty': 0 });
                                 $scope.print_invoice_vals.volume_total[findObjectByKey($scope.print_invoice_vals.volume_total, 'volume_unit', obj1.volumeUnit)].total_qty += Number(obj1.volume);
+<<<<<<< HEAD
                             }
                             else
+=======
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.print_invoice_vals.volume_total[idx2].total_qty += Number(obj1.volume);
 
                             idx3 = findObjectByKey($scope.print_invoice_vals.weight_total, 'weightunit', obj1.weightUnit2);
                             if (idx3 == null) {
                                 $scope.print_invoice_vals.weight_total.push({ 'weightunit': obj1.weightUnit2, 'total_qty': 0 });
                                 $scope.print_invoice_vals.weight_total[findObjectByKey($scope.print_invoice_vals.weight_total, 'weightunit', obj1.weightUnit2)].total_qty += Number(obj1.weight);
+<<<<<<< HEAD
                             }
                             else
                                 $scope.print_invoice_vals.weight_total[idx3].total_qty += Number(obj1.weight);
                             
+=======
+                            } else
+                                $scope.print_invoice_vals.weight_total[idx3].total_qty += Number(obj1.weight);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         });
                     }
 
                     if (templateType == "purchaseInvoice") {
                         templateUrl = "app/views/invoice_templates/purchase_invoice_modal.html"
+<<<<<<< HEAD
                     }
                     else if (templateType == "purchaseOrder") {
                         templateUrl = "app/views/invoice_templates/purchase_order_modal.html"
@@ -7252,10 +10360,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             templateUrl = 'app/views/invoice_templates/warehouse_instructions_modal.html';
                         } 
                         else if (templateType == 'receiptNote') {
+=======
+                    } else if (templateType == "purchaseOrder") {
+                        templateUrl = "app/views/invoice_templates/purchase_order_modal.html"
+                    } else if (templateType == "purchaseDelivery" || templateType == "purchaseWarehouse" || templateType == "receiptNote") {
+
+                        if (templateType == 'purchaseDelivery') {
+                            templateUrl = 'app/views/invoice_templates/delivery_note_modal.html';
+                        } else if (templateType == 'purchaseWarehouse') {
+                            templateUrl = 'app/views/invoice_templates/warehouse_instructions_modal.html';
+                        } else if (templateType == 'receiptNote') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             templateUrl = "app/views/invoice_templates/receipt_note_modal.html";
                         }
 
                         $scope.print_invoice_vals.detailed = {
+<<<<<<< HEAD
                             delivery_date : $scope.rec.delivery_date,
                             delivery_time : $scope.rec.delivery_time,
                             shipping_agent : $scope.rec.shipping_agent,
@@ -7267,6 +10387,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             ship_to_city : $scope.rec.ship_to_city
 
                         } ;
+=======
+                            delivery_date: $scope.rec.delivery_date,
+                            delivery_time: $scope.rec.delivery_time,
+                            shipping_agent: $scope.rec.shipping_agent,
+                            shipping_agent_ref_no: $scope.rec.container_no,
+                            ship_to_address: $scope.rec.ship_to_address,
+                            ship_to_name: $scope.rec.ship_to_name,
+                            ship_to_address2: $scope.rec.ship_to_address2,
+                            ship_to_post_code: $scope.rec.ship_to_post_code,
+                            ship_to_city: $scope.rec.ship_to_city
+
+                        };
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     }
 
                     var invoicePdfModal = ModalService.showModal({
@@ -7279,7 +10412,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         }
                     });
 
+<<<<<<< HEAD
                     invoicePdfModal.then(function (res) {
+=======
+                    invoicePdfModal.then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         res.element.modal();
                         if (noModal) {
                             res.element.modal("hide");
@@ -7288,15 +10425,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.showLoader = false;
                         if (noModal) {
                             generatePdf.showLoader = true;
+<<<<<<< HEAD
                             $timeout(function () {
+=======
+                            $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 generatePdf.generatePdf($scope.print_invoice_vals.templateType, $scope.print_invoice_vals, '', noModal);
                             }, 200)
                         }
                         // }
                         $scope.showLoader = false;
                     });
+<<<<<<< HEAD
                 }
                 else {
+=======
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(511));
                 }
@@ -7304,13 +10449,1009 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     }
 
+<<<<<<< HEAD
 
 
     $scope.deletePurchaseOrder = function () {
+=======
+    $scope.ReciptInvoiceModalarr = [];
+    $scope.searchKeywordInv = {};
+
+    $scope.getInvoicesForPaymentsList = function(rec) {
+
+        $scope.disable_save = false;
+
+        var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-refund-listings";
+        // invoice-for-payment-listings
+
+        $scope.postData = {};
+
+        // $scope.postData.searchKeywordInv = {};
+
+        $scope.postData.parent_id = rec.parent_id;
+        $scope.postData.doc_type = 2;
+        $scope.postData.account_id = $scope.rec.bill_to_cust_id;
+        $scope.postData.posting_date = $scope.paymentData.invoice_date; // rec.invoice_date;
+        $scope.postData.currency_id = ($scope.rec.currency_id) ? $scope.rec.currency_id.id : 0;
+        $scope.postData.sell_to_cust_id = $scope.rec.bill_to_cust_id;
+        $scope.postData.token = $scope.$root.token;
+        $scope.postData.more_fields = 1;
+        $scope.postData.type = 1;
+
+        $scope.showLoader = true;
+
+        $http
+            .post(postUrl, $scope.postData)
+            .then(function(res) {
+
+                if (res.data.ack == true) {
+                    $scope.total = res.data.total;
+                    $scope.item_paging.total_pages = res.data.total_pages;
+                    $scope.item_paging.cpage = res.data.cpage;
+                    $scope.item_paging.ppage = res.data.ppage;
+                    $scope.item_paging.npage = res.data.npage;
+                    $scope.item_paging.pages = res.data.pages;
+                    $scope.total_paging_record = res.data.total_paging_record;
+                    $scope.showLoader = false;
+                    $scope.ReciptInvoiceModalarr = res.data.response;
+
+                    // $scope.total_setteled = 0;
+
+                    /*  $scope.paymentData.allocated_amount = 0
+                    angular.forEach($scope.ReciptInvoiceModalarr, function(obj) {
+                        $scope.paymentData.allocated_amount += Number(obj.paid_amount);
+                    }); */
+
+                    $scope.currency_code = res.data.response[0].currency_code;
+                    // angular.element('#InvoicesForPayments').modal({ show: true });
+                } else {
+                    $scope.showLoader = false;
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                }
+            });
+
+    }
+
+    // $scope.amount_total = 0;
+
+    $scope.netTotalPayment = function() {
+
+        if ($scope.paymentData) {
+
+            var ctotal = 0;
+            angular.forEach($scope.ReciptInvoiceModalarr, function(item) {
+
+                if (item.amount >= 0)
+                    ctotal += Number(item.amount);
+            });
+            console.log('$scope.paymentData.debit_amount == ', $scope.paymentData.debit_amount);
+            console.log('$scope.paymentData.allocated_amount == ', $scope.paymentData.allocated_amount);
+            console.log('ctotal == ', ctotal);
+
+            $scope.amount_left = Number(Number($scope.paymentData.debit_amount).toFixed(2) - Number(ctotal).toFixed(2) - Number($scope.paymentData.allocated_amount).toFixed(2)).toFixed(2);
+            // console.log('$scope.amount_left == ', $scope.amount_left);
+        } else
+            $scope.amount_left = 0;
+
+        return $scope.amount_left;
+
+    }
+
+    $scope.setremainingamount = function(item) {
+
+        var amount2 = 0;
+
+        if (item.is_infull == true) {
+
+            if ((item.grand_total - item.paid_amount) == 0)
+                item.amount = item.grand_total;
+            else if (item.grand_total - item.paid_amount > 0)
+                item.amount = (item.grand_total - item.paid_amount);
+
+            if ($scope.amount_left < item.amount) item.amount = Number($scope.amount_left);
+
+        } else if (item.amount != undefined) {
+
+            if ((item.grand_total - item.paid_amount) == 0)
+                item.amount = 0;
+            else if (item.grand_total - item.paid_amount > 0)
+                amount2 = (item.grand_total - item.paid_amount);
+
+            if (item.amount > Number(amount2)) item.amount = Number(amount2);
+        }
+
+        item.amount = Number(item.amount).toFixed(2);
+        // item.amount = Number(item.amount);
+    }
+
+    $scope.postJournal = function() {
+        var dates_arr = [];
+        var unbalanced_dates = '';
+        var in_valid_entries = "";
+        $scope.postponeVATCHK = 0;
+
+        if ($scope.postponeVATCHK == 1) {
+
+            ngDialog.openConfirm({
+                template: 'app/views/srm_order/_confirm_postponed_vat.html',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+                $scope.showLoader = true;
+
+                console.log(value);
+
+                if (value == 1) $scope.postponed_vat = 1;
+                else $scope.postponed_vat = 0;
+
+                ngDialog.openConfirm({
+                    // template: 'app/views/_confirm_modal.html',
+                    template: 'modalcontinueid',
+                    className: 'ngdialog-theme-default-custom'
+                }).then(function(value) {
+
+                    var post = {};
+                    post.token = $scope.$root.token;
+                    post.parent = $scope.postData.parent_id;
+                    // post.items = $scope.receipt_sub_list;
+                    post.postponed_vat = $scope.postponed_vat;
+
+                    var editUrl = $scope.$root.gl + "chart-accounts/convert-posting-receipt";
+                    $scope.showLoader = true;
+
+                    $http
+                        .post(editUrl, post)
+                        .then(function(res) {
+
+                            if (res.data.ack == true) {
+                                toaster.pop('success', 'info', 'Record Posted Successfully');
+                                $scope.backend_data = 0;
+                                $scope.showLoader = false;
+                                angular.element('#payment_modal').modal('hide');
+                            } else {
+                                $scope.showLoader = false;
+                                toaster.pop('error', 'Error', res.data.error);
+                            }
+                        });
+                }, function(reason) {
+                    $scope.showLoader = false;
+                    console.log('Modal promise rejected. Reason: ', reason);
+                });
+
+            }, function(reason) {
+
+                $scope.disablePostInvBtn = false;
+                $scope.showLoader = false;
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        } else {
+
+            ngDialog.openConfirm({
+                // template: 'app/views/_confirm_modal.html',
+                template: 'modalcontinueid',
+                className: 'ngdialog-theme-default-custom'
+            }).then(function(value) {
+                var post = {};
+                post.token = $scope.$root.token;
+                post.parent = $scope.postData.parent_id;
+                // post.items = $scope.receipt_sub_list;
+
+                var editUrl = $scope.$root.gl + "chart-accounts/convert-posting-receipt";
+                $scope.showLoader = true;
+                $http
+                    .post(editUrl, post)
+                    .then(function(res) {
+                        if (res.data.ack == true) {
+                            //$scope.get_gl_recipt_;sublist(1);
+                            // $scope.get_receipt_main_list(1);
+                            toaster.pop('success', 'info', 'Record Posted Successfully');
+                            $scope.backend_data = 0;
+                            $scope.showLoader = false;
+                            angular.element('#payment_modal').modal('hide');
+                        } else {
+                            $scope.showLoader = false;
+                            toaster.pop('error', 'Error', res.data.error);
+                        }
+                    });
+            }, function(reason) {
+                $scope.showLoader = false;
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        }
+    }
+
+    $scope.AddPaymentAllocation = function(flag = 0) {
+
+        $scope.disable_save = true;
+        $scope.showLoader = true;
+
+        var postData = {};
+        postData.transaction_type = 1;
+        postData.module_type = 2;
+        postData.invoice_type = 5;
+
+        postData.token = $scope.$root.token;
+        postData.payment_id = $scope.postData.parent_id
+        postData.payment_detail_id = $scope.paymentData.payment_detail_id;
+
+
+        /* if (module_type == 2) // customer
+        {
+            postData.module_type = 1; //customer
+
+            if (doc_type == 2)
+                postData.invoice_type = 5; // sales invoice -> payment
+            else if (doc_type == 3)
+                postData.invoice_type = 6; // credit  invoice -> refund
+        }
+        */
+
+        var selected_items = [];
+
+        console.log('$scope.ReciptInvoiceModalarr == ', $scope.ReciptInvoiceModalarr);
+
+        if ($scope.ReciptInvoiceModalarr) {
+
+            angular.forEach($scope.ReciptInvoiceModalarr, function(obj) {
+
+                if (obj.amount > 0) {
+                    var invoice_type = 3;
+                    selected_items.push({
+                        'invoice_id': obj.order_id,
+                        'amount_allocated': obj.amount,
+                        'document_type': invoice_type,
+                        'cust_payment_id': obj.cust_payment_id,
+                        'allocation_date': obj.allocation_date
+                    });
+                }
+            });
+
+            postData.items = selected_items;
+            var allocation_url = $scope.$root.gl + "chart-accounts/add-payment-allocation";
+
+            $http
+                .post(allocation_url, postData)
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        toaster.pop('success', 'Info', $scope.$root.getErrorMessageByCode(101));
+
+                        // $scope.receipt_sub_list[$scope.current_index].allocated_amount = Number($scope.receipt_sub_list[$scope.current_index].allocated_amount) + Number(res.data.total_allocated);
+                        // $scope.paymentData.allocated_amount = Number($scope.paymentData.allocated_amount) + Number(res.data.total_allocated);
+
+                        // $scope.paymentData.total_remaining = Number(Number($scope.paymentData.debit_amount) - Number($scope.paymentData.allocated_amount)).toFixed(2);
+
+                        if (flag > 0) {
+                            $scope.postJournal();
+                        } else {
+                            $scope.showLoader = false;
+                            angular.element('#payment_modal').modal('hide');
+                        }
+
+                    } else {
+                        $scope.disable_save = false;
+                        $scope.showLoader = false;
+                        toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(105));
+                        // angular.element('#payment_modal').modal('hide');
+                    }
+                });
+        }
+
+    }
+
+    $scope.sendforJournalPost = function() {
+        $scope.showLoader = true;
+        $scope.AddPaymentAllocation(1); // flag and is_post
+    }
+
+    $scope.supplierPayment = function(rec) {
+        console.log('rec == ', rec);
+
+        $scope.showLoader = true;
+
+        var journalGetUrl = $scope.$root.pr + "srm/srminvoice/get-supplier-journal-for-invoice";
+
+        let postData = {};
+        postData.token = $scope.$root.token;
+        postData.invoice_id = rec.id;
+
+        $http
+            .post(journalGetUrl, postData)
+            .then(function(res) {
+                $scope.showLoader = false;
+
+                $scope.paymentData = {};
+                $scope.paymentDataSearch = {}
+
+                if (!($rootScope.order_posting_group_id > 0)) {
+                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Supplier Posting Group']));
+                    $scope.showLoader = false;
+                    return;
+                }
+
+                $scope.paymentData.supplierId = rec.bill_to_cust_id;
+                $scope.paymentData.supplierCode = rec.bill_to_cust_no;
+
+                $scope.paymentData.posting_group_id = $rootScope.order_posting_group_id;
+
+                $scope.paymentData.doc_type = 2;
+                $scope.paymentData.module_type = 3;
+                $scope.paymentData.grand_total = rec.grand_total;
+                $scope.paymentData.currency = rec.currency_id.code;
+
+                $scope.paymentData.invoice_id = rec.id;
+
+                if (rec.currency_id.code == $scope.$root.defaultCurrencyCode)
+                    rec.currency_rate = 1;
+
+                if (res.data.ack == true) {
+                    var resData = res.data.response;
+                    $scope.paymentData.cnv_rate = resData.cnv_rate;
+                    // $scope.paymentData.currency_id = rec.currency_id.id;
+                    // $scope.paymentData.net_amount = rec.net_amount;
+
+                    $scope.paymentData.supplier = resData.account_name;
+                    $scope.paymentData.glcode = resData.glcode;
+                    $scope.paymentData.acc_code = resData.glcode;
+                    $scope.paymentData.postedStatus = resData.postedStatus;
+                    $scope.paymentData.invoice_date = resData.posting_date;
+                    $scope.paymentData.allocation_date = resData.allocation_date;
+                    $scope.paymentData.debit_amount = resData.debit_amount;
+                    $scope.paymentData.allocated_amount = resData.allocated_amount;
+                    $scope.paymentData.converted_price = resData.converted_price;
+                    $scope.paymentData.total_remaining = Number(resData.debit_amount) - Number(resData.allocated_amount);
+                    $scope.paymentData.total_setteled_other = 0;
+                    // $scope.paymentData.total_setteled_other = resData.grand_total;
+                    $scope.paymentData.parent_id = resData.parent_id;
+                    $scope.paymentData.payment_detail_id = resData.payment_detail_id;
+                    $scope.paymentData.paid = resData.paid;
+                    $scope.paymentData.document_no = resData.document_no;
+
+                    $scope.paymentData.balancing_account_code = resData.balancing_account_code;
+                    $scope.paymentData.balancing_account_name = resData.balancing_account_name;
+                    $scope.paymentData.balancing_account_id = resData.balancing_account_id;
+                    $scope.paymentData.balancing_account = resData.balancing_account_code + ' - ' + resData.balancing_account_name;
+
+                    $scope.getInvoicesForPaymentsList($scope.paymentData);
+
+                    if (Number($scope.paymentData.debit_amount) == Number($scope.paymentData.debit_amount)) $scope.paymentData.allocate_full = 1;
+
+                } else {
+
+                    $scope.paymentData.supplier = rec.bill_to_name;
+                    $scope.paymentData.cnv_rate = rec.currency_rate;
+                    // $scope.paymentData.currency_id = rec.currency_id.id;                    
+                    // $scope.paymentData.net_amount = rec.net_amount;                    
+                    // $scope.paymentData.order_date = rec.order_date;
+                    $scope.paymentData.glcode = '';
+                    $scope.paymentData.acc_code = '';
+                    $scope.paymentData.postedStatus = 0;
+                    $scope.paymentData.invoice_date = rec.invoice_date;
+                    $scope.paymentData.allocation_date = rec.invoice_date;
+                    $scope.paymentData.debit_amount = rec.grand_total;
+                    $scope.paymentData.allocated_amount = 0;
+                    $scope.paymentData.converted_price = rec.grand_total_converted;
+                    // $scope.paymentData.total_setteled = rec.grand_total;
+                    $scope.paymentData.total_remaining = 0;
+                    $scope.paymentData.total_setteled_other = 0;
+                    $scope.paymentData.parent_id = 0;
+                    $scope.paymentData.payment_detail_id = 0;
+                    $scope.paymentData.paid = 0;
+                    $scope.paymentData.allocate_full = 1;
+                    $scope.paymentData.document_no = $scope.rec.order_code;
+
+                    if (rec.payable_number && rec.account_payable_id) {
+
+                        let accountStr = rec.payable_number.split(' - ');
+                        let accountName = accountStr.slice(1, 10);
+
+                        $scope.paymentData.balancing_account_code = accountStr[0];
+                        $scope.paymentData.balancing_account_name = accountName.join(' - ');
+                        $scope.paymentData.balancing_account_id = rec.account_payable_id;
+                        $scope.paymentData.balancing_account = rec.payable_number;
+                    }
+                }
+                angular.element('#payment_modal').modal({ show: true });
+            });
+
+        // $scope.get_invoice_list();
+    }
+
+
+
+    $scope.savePaymentModal = function(rec) {
+
+        $scope.showLoader = true;
+        payData = {};
+
+        if (!(rec.supplierId > 0)) {
+            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier No.']));
+            $scope.showLoader = false;
+            return false;
+        }
+
+        if (!(rec.balancing_account_id > 0)) {
+            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Balancing Account']));
+            $scope.showLoader = false;
+            return false;
+        }
+
+        if (!(rec.cnv_rate > 0)) {
+            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Conversion Rate']));
+            $scope.showLoader = false;
+            return false;
+        }
+
+        if (!(rec.debit_amount > 0)) {
+            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Amount']));
+            $scope.showLoader = false;
+            return false;
+        }
+
+        if (!($rootScope.order_posting_group_id > 0)) {
+            toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(230, ['Supplier Posting Group']));
+            $scope.showLoader = false;
+            return;
+        }
+
+        payData.invoice_id = rec.invoice_id;
+        payData.account_id = rec.supplierId;
+        payData.account_no = rec.supplierCode;
+        payData.account_name = rec.supplier;
+
+        payData.allocated_amount = rec.allocated_amount;
+        payData.temp_allocated_amount = rec.allocated_amount;
+
+
+        payData.balancing_account_code = rec.balancing_account_code;
+        payData.balancing_account_name = rec.balancing_account_name;
+        payData.balancing_account_id = rec.balancing_account_id;
+
+        payData.cnv_rate = rec.cnv_rate;
+        payData.converted_price = rec.converted_price;
+        payData.created_date = rec.invoice_date;
+        payData.transaction_type = 3;
+        payData.credit_amount = 0;
+        payData.debit_amount = rec.debit_amount;
+        payData.currency_id = $scope.rec.currency_id;
+        payData.converted_currency_id = $scope.$root.defaultCurrency;
+
+        payData.document_no = rec.document_no;
+        payData.doc_type = { id: "2", name: "Payment" };
+        payData.document_type = payData.doc_type.id;
+
+        payData.paid = rec.paid;
+        payData.parent_id = rec.parent_id;
+        payData.payment_detail_id = rec.payment_detail_id;
+
+        payData.posting_date = rec.invoice_date;
+        payData.allocation_date = rec.allocation_date;
+        payData.posting_group_id = $rootScope.order_posting_group_id;
+
+        console.log('payData === ', payData);
+
+        if ($scope.paymentData.acc_code && $scope.paymentData.acc_code.length > 0) {
+
+            console.log('acc_code == ', $scope.paymentData.acc_code);
+
+            payData.acc_code = $scope.paymentData.acc_code;
+
+            var journalAddUrl = $scope.$root.pr + "srm/srminvoice/add-supplier-journal-for-invoice";
+
+            let post = {};
+            post.selectdata = payData;
+            post.token = $scope.$root.token;
+
+            $http
+                .post(journalAddUrl, post)
+                .then(function(res) {
+                    if (res.data.ack == true) {
+                        // $scope.showLoader = false;
+                        toaster.pop('success', 'Add', res.data.error);
+
+                        $scope.paymentData.parent_id = res.data.parent_id;
+                        // angular.element('#payment_modal').modal('hide');
+
+                        $scope.supplierPayment($scope.rec);
+                        // $scope.getInvoicesForPaymentsList(rec);
+
+                        // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
+
+
+                        return true;
+                    } else {
+                        $scope.showLoader = false;
+                        return false;
+                    }
+                });
+
+
+        } else {
+
+            console.log('acc_code 1 == ', $scope.paymentData.acc_code);
+
+            $scope.rec.module_type = 2;
+            var table = 'gl_journal_receipt_supp';
+            var getCodeUrl = $scope.$root.stock + "products-listing/get-code";
+            var name = $scope.$root.base64_encode(table);
+            var no = $scope.$root.base64_encode('acc_no');
+            var module_category_id = 2;
+
+            $http
+                .post(getCodeUrl, {
+                    'is_increment': 1,
+                    'token': $scope.$root.token,
+                    'tb': name,
+                    'module_type': $scope.rec.module_type,
+                    'm_id': 54,
+                    'no': no,
+                    'category': '',
+                    'brand': '',
+                    'module_category_id': module_category_id
+                })
+                .then(function(res) {
+                    if (res.data.ack == 1) {
+                        payData.acc_code = res.data.code;
+
+                        var journalAddUrl = $scope.$root.pr + "srm/srminvoice/add-supplier-journal-for-invoice";
+
+                        let post = {};
+                        post.selectdata = payData;
+                        post.token = $scope.$root.token;
+
+                        $http
+                            .post(journalAddUrl, post)
+                            .then(function(res) {
+                                if (res.data.ack == true) {
+                                    $scope.showLoader = false;
+
+                                    toaster.pop('success', 'Add', res.data.error);
+                                    // angular.element('#payment_modal').modal('hide');
+                                    $scope.paymentData.parent_id = res.data.parent_id;
+
+                                    $scope.supplierPayment($scope.rec);
+                                    // $scope.getInvoicesForPaymentsList(rec);
+
+                                    // $scope.get_gl_recipt_sublist($scope.parent_id, is_post);
+
+                                    return true;
+                                } else {
+                                    $scope.showLoader = false;
+                                    return false;
+                                }
+                            });
+
+                    } else {
+                        $scope.showLoader = false;
+                        toaster.pop('error', 'info', res.data.error);
+                        return false;
+                    }
+                });
+        }
+
+        // $scope.showLoader = false;
+
+    }
+
+
+    $scope.getGLcode = function() {
+
+        var postUrl_cat = $scope.$root.gl + "chart-accounts/get-category-by-name";
+        $scope.postData = {};
+        $scope.title = 'G/L Accounts';
+        $scope.postData.token = $scope.$root.token;
+        $scope.searchKeyword2 = {};
+
+        $scope.type_id = 2;
+
+        $scope.showLoader = true;
+        $scope.showAllOption = true;
+
+        $http
+            .post(postUrl_cat, $scope.postData)
+            .then(function(res) {
+                $scope.gl_account = [];
+                $scope.showLoader = false;
+
+                if (res.data.ack == true) {
+                    $scope.gl_account = res.data.response;
+                    angular.element('#finance_set_gl_account').modal({ show: true });
+                } else
+                    toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+            });
+    }
+
+    $scope.assignCodes = function(gl_data) {
+
+        $scope.paymentData.balancing_account_code = gl_data.code;
+        $scope.paymentData.balancing_account_name = gl_data.name;
+        $scope.paymentData.balancing_account_id = gl_data.id;
+        $scope.paymentData.balancing_account = gl_data.code + " - " + gl_data.name;
+
+        angular.element('#finance_set_gl_account').modal('hide');
+    };
+
+    $scope.allocateFullAmount = function(rec, flag) {
+        /* 
+        console.log('rec ==  ', rec);
+        console.log('flag ==  ', flag);
+        console.log('paymentData.allocated_amount ', $scope.paymentData.allocated_amount); 
+        */
+
+        /* if (flag > 0)
+            $scope.paymentData.allocate_full = 0;
+
+        if ($scope.paymentData.allocate_full > 0 && Number($scope.paymentData.total_remaining) >= Number($scope.paymentData.grand_total)) {
+            $scope.paymentData.allocated_amount = Number($scope.paymentData.grand_total).toFixed(2);
+
+            // $scope.paymentData.total_remaining = Number($scope.paymentData.total_remaining - $scope.paymentData.grand_total).toFixed(2);
+        } else if (Number($scope.paymentData.allocated_amount) > Number(Number($scope.paymentData.debit_amount) - Number($scope.paymentData.total_setteled_other)).toFixed(2)) {
+            toaster.pop('error', 'info', 'Allocated amount exceeds than payment');
+
+            // console.log('total_remaining == ', $scope.paymentData.total_remaining, ', grand_total == ', $scope.paymentData.grand_total);
+            // console.log('debit_amount == ', $scope.paymentData.debit_amount, ', total_setteled_other == ', $scope.paymentData.total_setteled_other);
+
+            if (Number($scope.paymentData.total_remaining) >= Number($scope.paymentData.grand_total)) {
+                $scope.paymentData.allocated_amount = Number($scope.paymentData.grand_total).toFixed(2);
+            } else {
+                $scope.paymentData.allocated_amount = Number(Number($scope.paymentData.debit_amount) - Number($scope.paymentData.total_setteled_other)).toFixed(2);
+            }
+        } */
+        // else{
+        // $scope.paymentData.total_remaining = Number($scope.paymentData.debit_amount - ($scope.paymentData.total_setteled_other + $scope.paymentData.grand_total)).toFixed(2); 
+        // }
+        // $scope.paymentData.total_remaining = Number(Number($scope.paymentData.debit_amount) - (Number($scope.paymentData.total_setteled_other) + Number($scope.paymentData.allocated_amount))).toFixed(2);
+    }
+
+    $scope.chk_allocate_amount = function() {
+
+        /* var amount2 = 0;
+        if ($scope.paymentData.allocate_full = 1) {
+            if (($scope.paymentData.debit_amount - $scope.paymentData.total_setteled) == 0)
+                $scope.paymentData.total_setteled = $scope.paymentData.debit_amount;
+            else if ($scope.paymentData.debit_amount - $scope.paymentData.total_setteled > 0)
+                item.amount = ($scope.paymentData.debit_amount - $scope.paymentData.total_setteled);
+            if ($scope.amount_left < item.amount)
+                item.amount = Number($scope.amount_left);
+            // if (($scope.paymentData.debit_amount - $scope.paymentData.total_setteled) == 0)
+            //     $scope.paymentData.total_setteled = $scope.paymentData.debit_amount;
+            // else if ($scope.paymentData.debit_amount - $scope.paymentData.total_setteled > 0)
+            //     item.amount = ($scope.paymentData.debit_amount - item.paid_amount);
+            // if ($scope.amount_left < item.amount)
+            //     item.amount = Number($scope.amount_left);
+        } else if ($scope.paymentData.debit_amount) {
+            if (($scope.paymentData.debit_amount - item.paid_amount) == 0)
+                item.amount = 0;
+            else if ($scope.paymentData.debit_amount - item.paid_amount > 0)
+                amount2 = ($scope.paymentData.debit_amount - item.paid_amount);
+            if (item.amount > Number(amount2))
+                item.amount = Number(amount2);
+        }
+
+        item.amount = Number(item.amount).toFixed(2);
+        $scope.amount_left = Number(Number($scope.amount_total.toFixed(2)) - Number(ctotal.toFixed(2)) - Number($scope.allocated_amount).toFixed(2)).toFixed(2); */
+        // return $scope.amount_left;
+    }
+
+    $scope.ValidateAllocationDate = function() {
+        var date_parts = $scope.paymentData.allocation_date.trim().split('/');
+        var doc_to_alloc_date_parts = $scope.rec.invoice_date.trim().split('/');
+        var doc_from_alloc_date_parts = $scope.paymentData.invoice_date.trim().split('/');
+        var alloc_date = new Date(date_parts[2], date_parts[1] - 1, date_parts[0]);
+        var doc_to_alloc_date = new Date(doc_to_alloc_date_parts[2], doc_to_alloc_date_parts[1] - 1, doc_to_alloc_date_parts[0]);
+        var doc_from_alloc_date = new Date(doc_from_alloc_date_parts[2], doc_from_alloc_date_parts[1] - 1, doc_from_alloc_date_parts[0]);
+
+        if (doc_from_alloc_date >= doc_to_alloc_date && alloc_date < doc_from_alloc_date) {
+            toaster.pop('error', 'Error', 'Allocation date can not be earlier than ' + $scope.paymentData.invoice_date);
+            $scope.paymentData.allocation_date = $scope.paymentData.invoice_date;
+
+        } else if (doc_to_alloc_date >= doc_from_alloc_date && alloc_date < doc_to_alloc_date) {
+            toaster.pop('error', 'Error', 'Allocation date can not be earlier than ' + $scope.rec.invoice_date);
+            $scope.paymentData.allocation_date = $scope.rec.invoice_date;
+        }
+    }
+
+    $scope.convert_amount = function() {
+
+        console.log('cnv_rate ==  ', $scope.paymentData.cnv_rate);
+
+        if ($scope.paymentData.cnv_rate && $scope.paymentData.cnv_rate != 1)
+            $scope.paymentData.converted_price = Number($scope.paymentData.debit_amount / $scope.paymentData.cnv_rate).toFixed(2);
+        else
+            $scope.paymentData.converted_price = $scope.paymentData.debit_amount;
+    }
+
+
+
+    $scope.closePaymentModal = function() {
+        angular.element('#payment_modal').modal('hide');
+    }
+
+    $scope.get_invoice_list = function(item, index) {
+
+        $scope.disable_save = false;
+
+        var singleSaveUrl = $scope.$root.gl + "chart-accounts/add-jl-journal-receipt-single";
+
+        var item_data = {};
+
+        item_data.token = $scope.$root.token;
+
+
+
+        $scope.selected_doc_posting_date = item.posting_date;
+
+
+
+        if (item.module_type != undefined)
+
+            item.transaction_type = item.module_type.value;
+
+        else
+
+            item.transaction_type = 0;
+
+
+
+        if (item.doc_type != undefined)
+
+            item.document_type = item.doc_type.id;
+
+        else
+
+            item.document_type = 0;
+
+
+
+
+
+        item_data.item = item;
+
+        item_data.parent_id = $scope.parent_id;
+
+
+
+        $http
+
+            .post(singleSaveUrl, item_data)
+
+        .then(function(res) {
+
+            if (res.data.ack == true) {
+
+                $scope.backend_data = 1;
+
+                item.id = res.data.id;
+
+                item.parent_id = $scope.parent_id;
+
+                $scope.columns = [];
+
+                $scope.ReciptInvoiceModalarr = [];
+
+                //$scope.title = 'Salesperson';
+
+
+
+                $scope.current_index = index;
+
+                $scope.module_type = item.module_type;
+
+
+
+                $scope.module_type_main = item.module_type;
+
+                $scope.doc_type_main = (item.doc_type != undefined && item.doc_type.id > 0) ? item.doc_type.id : 0;
+
+                $scope.balance_id_main = item.balance_id;
+
+                $scope.journal_datemain = item.journal_date;
+
+                $scope.posting_groupmain = item.posting_group_id;
+
+                $scope.allocated_amount = item.allocated_amount;
+
+
+
+                $scope.curency_code = (item.currency_id != undefined && item.currency_id.code != '') ? item.currency_id.code : '';
+
+                $scope.select_curency_id = (item.currency_id != undefined && item.currency_id.id != '') ? item.currency_id.id : 0;
+
+
+
+                $scope.payment_id = item.parent_id;
+
+                $scope.payment_detail_id = item.id;
+
+
+
+                if (item.cnv_rate)
+
+                    $scope.cnv_rate = item.cnv_rate;
+
+                else
+
+                    $scope.cnv_rate = 0;
+
+
+
+
+
+                if (item.posting_date === undefined || item.posting_date === null || item.posting_date === 0) {
+
+                    toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Posting Date']));
+
+                    return;
+
+                }
+
+
+
+                if (item.cnv_rate === undefined || item.cnv_rate === null || item.cnv_rate === 0) {
+
+                    toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Converion Rate']));
+
+                    return;
+
+                }
+
+
+
+                if (item.doc_type == undefined) {
+
+                    toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Doc Type']));
+
+                    return;
+
+                }
+
+
+
+                if (item.module_type === undefined) {
+
+                    toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Transaction Type']));
+
+                    return;
+
+                } else {
+
+
+
+
+
+                    $scope.postData = {};
+
+
+
+                    $scope.cust_id = item.account_id;
+
+                    $scope.doc_type = item.doc_type.id;
+
+
+
+                    if (item.module_type.value == 1) {
+
+                        toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(231, ['Customer', 'Supplier']));
+
+                        return;
+
+                    } else if (item.module_type.value == 2) {
+
+                        $scope.postData.type = 2;
+
+                        $scope.postData.title = 'Customer ' + item.doc_type.name + ' (' + item.account_no + ')';
+
+                    } else if (item.module_type.value == 3) {
+
+
+
+                        $scope.postData.type = 1;
+
+                        $scope.postData.title = 'Supplier  ' + item.doc_type.name + ' (' + item.account_no + ')';
+
+                    }
+
+
+
+                    if (item.account_id == undefined || item.account_no == undefined || item.account_no == "" || Number(item.account_id) == 0) {
+
+                        if ($scope.postData.type == 1)
+
+                            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier']));
+
+                        else
+
+                            toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Customer']));
+
+                        return;
+
+                    }
+
+
+
+                    if (item.credit_amount > 0)
+
+                        $scope.amount_total = item.credit_amount;
+
+                    if (item.debit_amount > 0)
+
+                        $scope.amount_total = item.debit_amount;
+
+
+
+                    $scope.final_amount = $scope.amount_total;
+                    $scope.payment_currency = item.currency_id;
+                    $scope.current_currency_id = item.currency_id;
+                    $scope.journal_date = item.journal_date;
+                    $scope.postData.sell_to_cust_id = item.account_id;
+                    $scope.postData.token = $scope.$root.token;
+                    $scope.postData.more_fields = 1;
+
+                    /* if (item.module_type.value == 2) { // customer
+                    
+                                            if (item.doc_type.id == 2) // payment
+                    
+                                                var postUrl = $scope.$root.sales + "customer/order/invoice-for-refund-listings";
+                    
+                                            if (item.doc_type.id == 3) // refund
+                    
+                                                var postUrl = $scope.$root.sales + "customer/order/invoice-for-payment-listings";
+                    
+                                        } else if (item.module_type.value == 3) { // supplier
+                    
+                                            if (item.doc_type.id == 2) // payment */
+
+                    var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-refund-listings";
+
+                    /*     if (item.doc_type.id == 3) // refund
+                    
+                                                var postUrl = $scope.$root.pr + "srm/srminvoice/invoice-for-payment-listings";
+                    
+                                        } */
+
+
+
+                    $scope.postData.parent_id = $scope.parent_id;
+                    $scope.postData.doc_type = item.doc_type.id;
+                    $scope.postData.account_id = item.account_id;
+                    $scope.postData.posting_date = item.posting_date;
+                    $scope.postData.currency_id = item.currency_id.id;
+                    $scope.showLoader = true;
+
+                    $http
+                        .post(postUrl, $scope.postData)
+                        .then(function(res) {
+
+                            if (res.data.ack == true) {
+                                $scope.total = res.data.total;
+                                $scope.item_paging.total_pages = res.data.total_pages;
+                                $scope.item_paging.cpage = res.data.cpage;
+                                $scope.item_paging.ppage = res.data.ppage;
+                                $scope.item_paging.npage = res.data.npage;
+                                $scope.item_paging.pages = res.data.pages;
+                                $scope.total_paging_record = res.data.total_paging_record;
+                                $scope.showLoader = false;
+                                $scope.ReciptInvoiceModalarr = res.data.response;
+                                $scope.currency_code = res.data.response[0].currency_code;
+                                angular.element('#InvoicesForPayments').modal({ show: true });
+                            } else {
+                                $scope.showLoader = false;
+                                toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+                            }
+                        });
+                }
+            } else
+                toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+        });
+    }
+
+
+
+    $scope.deletePurchaseOrder = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var deletePurchaseOrderUrl = $scope.$root.pr + "srm/srminvoice/delete-Purchase-Order-before-save";
         ngDialog.openConfirm({
             template: 'modalDeleteDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(deletePurchaseOrderUrl, { 'id': $scope.rec.id, 'token': $scope.$root.token })
@@ -7324,23 +11465,46 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     }
 
                 }).catch(function (message) {
+=======
+        }).then(function(value) {
+            $http
+                .post(deletePurchaseOrderUrl, { 'id': $scope.rec.id, 'token': $scope.$root.token })
+                .then(function(res) {
+
+                    if (res.data.ack == true) {
+                        $state.go("app.srmorder");
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                    }
+
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     throw new Error(message.data);
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
+<<<<<<< HEAD
     $scope.discardPurchaseOrder = function (rec2, rec) {
+=======
+    $scope.discardPurchaseOrder = function(rec2, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var deletePurchaseOrderUrl = $scope.$root.pr + "srm/srminvoice/delete-Purchase-Order-before-save";
 
         ngDialog.openConfirm({
             template: 'modalDiscardPurchaseOrderDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(deletePurchaseOrderUrl, { 'id': $scope.rec.id, 'token': $scope.$root.token })
@@ -7362,6 +11526,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.showLoader = false;
             console.log('Modal promise rejected. Reason: ', reason);
         });
+=======
+        }).then(function(value) {
+                $http
+                    .post(deletePurchaseOrderUrl, { 'id': $scope.rec.id, 'token': $scope.$root.token })
+                    .then(function(res) {
+
+                        $state.go("app.srmorder");
+                        /* if (res.data.ack == true) {
+                            toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
+                        }
+                        else {
+                            toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+                        } */
+                    }).catch(function(message) {
+                        $scope.showLoader = false;
+
+                        throw new Error(message.data);
+                    });
+            },
+            function(reason) {
+                $scope.showLoader = false;
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     }
 
 
@@ -7380,7 +11568,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.getOrdersDetail = function (readonlyModeFalse, additionalCostMode, getOrdersDetailCount) {
+=======
+    $scope.getOrdersDetail = function(readonlyModeFalse, additionalCostMode, getOrdersDetailCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var total_rec_recvie = total_rec_invice = 0;
         var StillNeedAllocation = 0;
@@ -7391,6 +11583,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.showReceiveStuff = false;
         $scope.allWarehouseEmails = [];
 
+<<<<<<< HEAD
+=======
+        $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.volume = 0;
         $scope.weight = 0;
         $scope.volume_unit = '';
@@ -7404,8 +11601,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.makeInvoiceFormReadonly();
             $scope.check_srm_readonly = true;
             var invoiceid = $stateParams.id;
+<<<<<<< HEAD
         }
         else
+=======
+        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var invoiceid = $scope.rec.update_id;
 
         // if(readonlyModeFalse == -1) 
@@ -7420,7 +11621,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'orderType': $rootScope.orderType,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (rsQtItem) {
+=======
+            .then(function(rsQtItem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.items = [];
 
                 // if(readonlyModeFalse == -1) 
@@ -7429,26 +11634,45 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 if (rsQtItem.data.ack == true) {
 
+<<<<<<< HEAD
                     if(!$rootScope.arrVATPostGrpPurchase) 
                         $rootScope.arrVATPostGrpPurchase = rsQtItem.data.arrVATPostGrpPurchase;
 
                     angular.forEach(rsQtItem.data.response, function (elem, detIndex) {
+=======
+                    if (!$rootScope.arrVATPostGrpPurchase)
+                        $rootScope.arrVATPostGrpPurchase = rsQtItem.data.arrVATPostGrpPurchase;
+
+                    angular.forEach(rsQtItem.data.response, function(elem, detIndex) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         var detail = {};
                         detail.warehouse_email = elem.warehouse_email;
                         try {
                             detail.warehouse_email = detail.warehouse_email.split(";");
+<<<<<<< HEAD
                             angular.forEach(detail.warehouse_email, function (emailObj, index) {
                                 var filteredWarehouseEmail = $scope.allWarehouseEmails.filter(function (o) {
+=======
+                            angular.forEach(detail.warehouse_email, function(emailObj, index) {
+                                var filteredWarehouseEmail = $scope.allWarehouseEmails.filter(function(o) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     return o.username == emailObj;
                                 })
                                 if (filteredWarehouseEmail.length == 0)
                                     $scope.allWarehouseEmails.push({ id: $scope.allWarehouseEmails.length, username: emailObj });
                             });
+<<<<<<< HEAD
                         }
                         catch (msg) {
                             console.log("no warehouse email set or e-dispatch note turned off..");
                         }
                         
+=======
+                        } catch (msg) {
+                            console.log("no warehouse email set or e-dispatch note turned off..");
+                        }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         detail.purchase_status = elem.purchase_status;
                         detail.stock_check = elem.stock_check;
@@ -7492,6 +11716,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             if (detail.item_type == 1) {
                                 //PBI: check is vat gl code.
+<<<<<<< HEAD
                                 if (detail.product_code == elem.vatRange.gl1AccountCode || 
                                     detail.product_code == elem.vatRange.gl2AccountCode || 
                                     detail.product_code == elem.vatRange.gl3AccountCode) 
@@ -7504,13 +11729,28 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             }
                         }
                         else{
+=======
+                                if (detail.product_code == elem.vatRange.gl1AccountCode ||
+                                    detail.product_code == elem.vatRange.gl2AccountCode ||
+                                    detail.product_code == elem.vatRange.gl3AccountCode) {
+                                    detail.isGLVat = true;
+                                } else {
+                                    detail.isGLVat = false;
+                                }
+                            }
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (detail.item_type == 1) {
                                 //PBI: check is vat gl code.
                                 if (detail.product_code >= elem.vatRange.startRangeCode && detail.product_code <= elem.vatRange.endRangeCode) {
                                     detail.isGLVat = true;
+<<<<<<< HEAD
                                 }
                                 else {
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     detail.isGLVat = false;
                                 }
                                 //vat ranges for gli listing
@@ -7538,7 +11778,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         detail.primary_unit_of_measure_id = elem.primary_unit_of_measure_id;
                         detail.primary_unit_of_measure_name = elem.primary_unit_of_measure_name;
 
+<<<<<<< HEAD
                         angular.forEach($scope.arr_discount_type, function (obj) {
+=======
+                        angular.forEach($scope.arr_discount_type, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.id == elem.discount_type)
                                 detail.discount_type_id = obj;
                         });
@@ -7550,9 +11794,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         if (!($rootScope.order_posting_group_id)) {
                             $rootScope.order_posting_group_id = elem.bill_to_posting_group_id;
+<<<<<<< HEAD
                         }                        
 
                         angular.forEach($rootScope.arrVATPostGrpPurchase, function (obj) {
+=======
+                        }
+
+                        angular.forEach($rootScope.arrVATPostGrpPurchase, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (obj.id == elem.vat_id) {
                                 detail.vat = obj.name;
@@ -7575,18 +11825,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             detail.arr_prod_warehouse = elem.arr_warehouse.response;
 
                             detail.pricePurchaseInfoArray = [];
+<<<<<<< HEAD
                             detail.pricePurchaseInfoArray = elem.pricePurchaseInfoArray;                            
 
                             if (detail.arr_units != undefined) {
 
                                 angular.forEach(detail.arr_units, function (obj) {
+=======
+                            detail.pricePurchaseInfoArray = elem.pricePurchaseInfoArray;
+
+                            if (detail.arr_units != undefined) {
+
+                                angular.forEach(detail.arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == elem.unit_measure_id)
                                         detail.units = obj;
                                 });
                             }
 
                             if (detail.arr_prod_warehouse != undefined) {
+<<<<<<< HEAD
                                 angular.forEach(detail.arr_prod_warehouse, function (obj) {
+=======
+                                angular.forEach(detail.arr_prod_warehouse, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     if (obj.id == elem.warehouse_id)
                                         detail.warehouses = obj;
                                 });
@@ -7595,13 +11857,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             detail.qtyItemAllocated = elem.allocQty;
                             // detail.arr_volume_discounts = [];
 
+<<<<<<< HEAD
                             if (elem.priceOfferArray && elem.priceOfferArray[0]){
+=======
+                            if (elem.priceOfferArray && elem.priceOfferArray[0]) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 detail.price_offer = elem.priceOfferArray[0].price_offer;
                                 detail.price_offer_id = elem.priceOfferArray[0].id;
                                 detail.minPurchaseQty = elem.priceOfferArray[0].minSaleQty;
                                 detail.maxPurchaseQty = elem.priceOfferArray[0].maxSaleQty;
                                 detail.arr_volume_discounts = elem.priceOfferArray[0].arr_volume_discounts;
+<<<<<<< HEAD
                             }  
+=======
+                            }
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             detail.remainig_qty = parseFloat(detail.qty) - parseFloat(elem.allocQty);
 
@@ -7623,13 +11893,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             }
 
                             $scope.showReceiveStuff = true;
+<<<<<<< HEAD
+=======
+                            $scope.$emit('showReceiveStuff', $scope.showReceiveStuff);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         }
 
                         if (detail.item_type == 1) {
                             // total_rec_invice++;
                             var count = $scope.items.length - 1;
 
+<<<<<<< HEAD
                             angular.forEach($rootScope.gl_arr_units, function (obj) {
+=======
+                            angular.forEach($rootScope.gl_arr_units, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.id == elem.unit_measure_id)
                                     detail.units = obj;
                             });
@@ -7685,6 +11963,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.volume = rsQtItem.data.volume;
                     $scope.weight = rsQtItem.data.weight;
                     $scope.volume_unit = rsQtItem.data.volume_unit;
+<<<<<<< HEAD
                     $scope.weightunit = rsQtItem.data.weightunit;                    
                     $scope.weight_permission = rsQtItem.data.weight_permission; 
                     $scope.volume_permission = rsQtItem.data.volume_permission; 
@@ -7692,11 +11971,24 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     // if($scope.weight_permission >0 || $scope.volume_permission>0)
                     //     $scope.showVolumeWeight = 1;
                     if(($scope.weight_permission >0 && $scope.weight && $scope.weight!=0) || ($scope.volume_permission>0 && $scope.volume && $scope.volume!=0))
+=======
+                    $scope.weightunit = rsQtItem.data.weightunit;
+                    $scope.weight_permission = rsQtItem.data.weight_permission;
+                    $scope.volume_permission = rsQtItem.data.volume_permission;
+
+                    // if($scope.weight_permission >0 || $scope.volume_permission>0)
+                    //     $scope.showVolumeWeight = 1;
+                    if (($scope.weight_permission > 0 && $scope.weight && $scope.weight != 0) || ($scope.volume_permission > 0 && $scope.volume && $scope.volume != 0))
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showVolumeWeight = 1;
                 }
 
 
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getOrdersDetailCount != 0) return $scope.getOrdersDetail(readonlyModeFalse, additionalCostMode, getOrdersDetailCount - 1);
 
                 $scope.showLoader = false;
@@ -7723,7 +12015,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.edit_recive_stock = function () {
+=======
+    $scope.edit_recive_stock = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.show_recieve_list = false;
         $scope.show_recieve_list_anchor = true;
         $scope.show_recieve_list_anchor_allocate = false;
@@ -7733,7 +12029,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.get_storage_location_data = function (loc_id, getStorageLocCount) {
+=======
+    $scope.get_storage_location_data = function(loc_id, getStorageLocCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var cost_uom_postUrl = $scope.$root.setup + "warehouse/get-warehouse-sub-loc-cost-uom";
 
@@ -7744,14 +12044,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'wrh_id': $scope.formData.warehouses_id,
                 'location_id': loc_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.formData.uom = res.data.response.uom;
                     $scope.formData.cost = res.data.response.cost;
                     $scope.formData.currency = res.data.response.currency;
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getStorageLocCount != 0) return $scope.get_storage_location_data(loc_id, getStorageLocCount - 1);
 
                 $scope.showLoader = false;
@@ -7764,7 +12072,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.get_cost_uom_location = function (bin_id, getCostUomLocCount) {
+=======
+    $scope.get_cost_uom_location = function(bin_id, getCostUomLocCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var cost_uom_postUrl = $scope.$root.setup + "warehouse/get-warehouse-sub-loc-cost-uom";
 
@@ -7775,14 +12087,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'wrh_id': $scope.formData.warehouses_id,
                 'location_id': bin_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.ack == true) {
                     $scope.formData.uom = res.data.response.uom;
                     $scope.formData.cost = res.data.response.cost;
                     $scope.formData.currency = res.data.response.currency;
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getCostUomLocCount != 0) return $scope.get_cost_uom_location(bin_id, getCostUomLocCount - 1);
 
                 $scope.showLoader = false;
@@ -7791,6 +12111,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             });
     }
 
+<<<<<<< HEAD
     $scope.callbackBeforeStockAllocationMigration = function (data) {
         var storageLocList = []
         angular.forEach($scope.storage_loc, function(obj){
@@ -7799,6 +12120,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         storageLocList = storageLocList.join(",");
         data.additionalParams = [
             {
+=======
+    $scope.callbackBeforeStockAllocationMigration = function(data) {
+        var storageLocList = []
+        angular.forEach($scope.storage_loc, function(obj) {
+            storageLocList.push(`${obj.id}/${obj.Storage_location.split("(")[0]}`)
+        });
+        storageLocList = storageLocList.join(",");
+        data.additionalParams = [{
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 type: "Number",
                 sourceTable: "",
                 sourceField: "",
@@ -7958,7 +12288,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     var get_warehouseCount;
 
 
+<<<<<<< HEAD
     $scope.get_warehouse = function (item, rec, index, get_warehouseCount) {
+=======
+    $scope.get_warehouse = function(item, rec, index, get_warehouseCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (rec.sell_to_cust_no == undefined || rec.sell_to_cust_no == null) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier No.']));
@@ -8056,7 +12390,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'itemData': item,
                     'itemDataArr': $scope.items
                 })
+<<<<<<< HEAD
                 .then(function (result) {
+=======
+                .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     $scope.stockAllocationRecord = {};
                     $scope.stockAllocationcolumns = [];
@@ -8064,7 +12402,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     if (result.data.ack == true) {
                         $scope.storage_loc = result.data.storage_loc.response;
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         /* $scope.items = [];
                         $scope.items = result.data.allitemArray;
                         $scope.makeInvoice44444444FormReadonly();
@@ -8073,7 +12415,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.updateGrandTotal();
 
                         $scope.getOrdersDetail()
+<<<<<<< HEAD
                             .then(function () {
+=======
+                            .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
                                 $scope.check_srm_readonly = false;
@@ -8086,13 +12432,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $scope.formData.orderLineID = result.data.orderLineID;
                                 item.update_id = result.data.orderLineID;
 
+<<<<<<< HEAD
                                 angular.forEach($scope.items, function (obj) {
                                     if(obj.update_id == result.data.orderLineID && obj.currentStock){
+=======
+                                angular.forEach($scope.items, function(obj) {
+                                    if (obj.update_id == result.data.orderLineID && obj.currentStock) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.formData.currentStock = obj.currentStock;
                                     }
                                 });
 
+<<<<<<< HEAD
                                 angular.forEach($scope.stockAllocationRecord, function (obj) {
+=======
+                                angular.forEach($scope.stockAllocationRecord, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     /* angular.forEach($scope.storage_loc, function (elem) {
                                         if (elem.wh_loc_id == obj.storage_loc_id)
@@ -8102,7 +12457,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     if ($scope.storage_loc.length == 1)
                                         obj.storage_location = $scope.storage_loc[0];
                                     else {
+<<<<<<< HEAD
                                         angular.forEach($scope.storage_loc, function (elem) {
+=======
+                                        angular.forEach($scope.storage_loc, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             if (elem.wh_loc_id == obj.storage_loc_id)
                                                 obj.storage_location = elem;
                                         });
@@ -8125,7 +12484,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     $scope.formData.stock_qty = $scope.total_remaing;
                                 }
 
+<<<<<<< HEAD
                                 angular.forEach(result.data.stockAlloc.response[0], function (val, index) {
+=======
+                                angular.forEach(result.data.stockAlloc.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.stockAllocationcolumns.push({
                                         'title': toTitleCase(index),
                                         'field': index,
@@ -8134,12 +12497,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 });
 
                                 $scope.getAllocatStock(item.warehouses.id, item.id, $scope.formData.order_id)
+<<<<<<< HEAD
                                     .then(function () {
                                         $scope.showLoader = false;
                                         
                                         if ($scope.formData.purchase_status == undefined)
                                             $scope.formData.purchase_status = 0;
                                         
+=======
+                                    .then(function() {
+                                        $scope.showLoader = false;
+
+                                        if ($scope.formData.purchase_status == undefined)
+                                            $scope.formData.purchase_status = 0;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         $scope.selStorageLoc = '';
 
@@ -8162,8 +12534,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                                     'editchk': 1
                                                 });
                                             }
+<<<<<<< HEAD
                                         }
                                         else {
+=======
+                                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             $scope.stockAllocationRecord = [{
                                                 'warehouse': $scope.formData.warehouses_name,
                                                 'storage_location': $scope.selStorageLoc,
@@ -8178,7 +12554,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                                 'editchk': 1
                                             }];
 
+<<<<<<< HEAD
                                             angular.forEach($scope.stockAllocationRecord[0], function (val, index) {
+=======
+                                            angular.forEach($scope.stockAllocationRecord[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 $scope.stockAllocationcolumns.push({
                                                     'title': toTitleCase(index),
                                                     'field': index,
@@ -8195,21 +12575,33 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     });
                             });
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('error', 'info', result.data.error);
                     }
 
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (get_warehouseCount != 0) return $scope.get_warehouse(item, rec, index, get_warehouseCount - 1);
 
                     $scope.showLoader = false;
 
                     throw new Error(e.data);
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var getWarehouseAllocOrderLine = $scope.$root.pr + "srm/srminvoice/get-warehouse-alloc-order-line";
 
             if (get_warehouseCount == undefined) get_warehouseCount = $rootScope.maxHttpRepeatCount;
@@ -8218,10 +12610,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'token': $scope.$root.token,
                     'itemData': item,
                 })
+<<<<<<< HEAD
                 .then(function (result) {
 
                     $scope.stockAllocationRecord = {};
                     $scope.stockAllocationcolumns = [];                   
+=======
+                .then(function(result) {
+
+                    $scope.stockAllocationRecord = {};
+                    $scope.stockAllocationcolumns = [];
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (result.data.ack == true) {
                         $scope.storage_loc = result.data.storage_loc.response;
@@ -8233,16 +12632,28 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.formData.orderLineID = result.data.orderLineID;
                         item.update_id = result.data.orderLineID;
 
+<<<<<<< HEAD
                         angular.forEach($scope.items, function (obj) {
                             if(obj.update_id == result.data.orderLineID && obj.currentStock){
+=======
+                        angular.forEach($scope.items, function(obj) {
+                            if (obj.update_id == result.data.orderLineID && obj.currentStock) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.formData.currentStock = obj.currentStock;
                             }
                         });
 
+<<<<<<< HEAD
                         angular.forEach($scope.stockAllocationRecord, function (obj) {
 
 
                             angular.forEach($scope.storage_loc, function (elem) {
+=======
+                        angular.forEach($scope.stockAllocationRecord, function(obj) {
+
+
+                            angular.forEach($scope.storage_loc, function(elem) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (elem.wh_loc_id == obj.storage_loc_id)
                                     obj.storage_location = elem;
                             });
@@ -8267,7 +12678,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             $scope.formData.stock_qty = $scope.total_remaing;
                         }
 
+<<<<<<< HEAD
                         angular.forEach(result.data.stockAlloc.response[0], function (val, index) {
+=======
+                        angular.forEach(result.data.stockAlloc.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.stockAllocationcolumns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -8278,10 +12693,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         // $scope.getAllocatStock(item.warehouses.id, item.id, $scope.formData.order_id);
 
                         $scope.getAllocatStock(item.warehouses.id, item.id, $scope.formData.order_id)
+<<<<<<< HEAD
                             .then(function () {
 
                                 $scope.showLoader = false;
                                 
+=======
+                            .then(function() {
+
+                                $scope.showLoader = false;
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if ($scope.formData.purchase_status == undefined)
                                     $scope.formData.purchase_status = 0;
 
@@ -8309,8 +12731,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                             'editchk': 1
                                         });
                                     }
+<<<<<<< HEAD
                                 }
                                 else {
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.stockAllocationRecord = [{
                                         'warehouse': $scope.formData.warehouses_name,
                                         'storage_location': $scope.selStorageLoc,
@@ -8325,7 +12751,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                         'editchk': 1
                                     }];
 
+<<<<<<< HEAD
                                     angular.forEach($scope.stockAllocationRecord[0], function (val, index) {
+=======
+                                    angular.forEach($scope.stockAllocationRecord[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.stockAllocationcolumns.push({
                                             'title': toTitleCase(index),
                                             'field': index,
@@ -8339,14 +12769,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $scope.show_import_div = false;
                                 angular.element('#ware_modal').modal({ show: true });
                             });
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('error', 'info', result.data.error);
                     }
 
 
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (get_warehouseCount != 0) return $scope.get_warehouse(item, rec, index, get_warehouseCount - 1);
 
                     $scope.showLoader = false;
@@ -8367,6 +12805,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.getAdditionalItemCost = function (item, rec, index, getAdditionalItemCostCount) {
         // $scope.lastParams = {};
 
@@ -8375,6 +12814,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.lastParams = { item: item, rec: rec, index: index };
         }
         else {
+=======
+    $scope.getAdditionalItemCost = function(item, rec, index, getAdditionalItemCostCount) {
+        // $scope.lastParams = {};
+
+        if (item && rec && index != undefined) { // && index
+            var justGetTheInfoWithoutSaving = false;
+            $scope.lastParams = { item: item, rec: rec, index: index };
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var justGetTheInfoWithoutSaving = true;
             item = $scope.lastParams.item;
             rec = $scope.lastParams.rec;
@@ -8434,7 +12882,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $scope.items[index].chk = 2;
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData.orderLineID = item.orderLineID;
         // $scope.searchKeyword = {};
         $scope.searchKeyword.wa = {};
@@ -8455,7 +12907,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'invoiceRec': $scope.invoiceRec,
                     'searchKeyword': $scope.searchKeyword
                 })
+<<<<<<< HEAD
                 .then(function (result) {
+=======
+                .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if ($scope.itemAddCostPurchaseOrder == undefined)
                         $scope.itemAddCostPurchaseOrder = {};
@@ -8464,13 +12920,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     if (result.data.ack == true) {
 
+<<<<<<< HEAD
                         $scope.itemAddCostPurchaseOrder = result.data.itemAddCostPurchaseOrder.response;                        
+=======
+                        $scope.itemAddCostPurchaseOrder = result.data.itemAddCostPurchaseOrder.response;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         $scope.formData.orderLineID = result.data.orderLineID;
                         item.update_id = result.data.orderLineID;
 
                         $scope.getOrdersDetail(1, 1)
+<<<<<<< HEAD
                             .then(function () {
+=======
+                            .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 $scope.showLoader = false;
 
@@ -8480,7 +12944,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                 if ($scope.itemAddCostPurchaseOrder.length > 0) {
 
+<<<<<<< HEAD
                                     angular.forEach($scope.itemAddCostPurchaseOrder[0], function (val, index) {
+=======
+                                    angular.forEach($scope.itemAddCostPurchaseOrder[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.itemAddCostPurchaseOrderColumns.push({
                                             'title': toTitleCase(index),
                                             'field': index,
@@ -8492,7 +12960,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     var ttlAdditionAmount = 0;
 
 
+<<<<<<< HEAD
                                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         if (obj.calcAmount != undefined) {
                                             if (parseFloat(obj.calcAmount) > 0) {
                                                 obj.chk = true;
@@ -8505,15 +12977,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                         if (parseFloat(obj.calcAmount) > 0) {
                                             obj.calcAmount2 = parseFloat(obj.calcAmount).toFixed(4);
+<<<<<<< HEAD
                                         }
                                         else {
+=======
+                                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             obj.calcAmount2 = '';
                                         }
 
                                         if (parseFloat(obj.additionAmount) > 0) {
                                             obj.additionAmount2 = parseFloat(obj.additionAmount).toFixed(4);
+<<<<<<< HEAD
                                         }
                                         else {
+=======
+                                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             obj.additionAmount2 = '';
                                         }
 
@@ -8525,7 +13005,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                     $scope.applyLocalFilterAdditionalItemCost();
 
+<<<<<<< HEAD
                                     angular.forEach($scope.items, function (obj) {
+=======
+                                    angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if (obj.update_id == item.orderLineID) {
                                             obj.ttlCalcAdditionalCost = parseFloat(obj.qty) * parseFloat(obj.standard_price);
@@ -8534,7 +13018,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                             var remainingAdditionalCost = parseFloat(obj.ttlCalcAdditionalCost) - parseFloat(ttlAdditionAmount);
                                             obj.remainingAdditionalCost = parseFloat(remainingAdditionalCost).toFixed(4);
+<<<<<<< HEAD
                                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             // obj.remainingAdditionalCost = parseFloat($scope.formData.additionalCost) - parseFloat($scope.ttlAdditionAmount);
                                         }
                                     });
@@ -8548,28 +13036,44 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                         $scope.formData.purchase_status = 0;
 
                                     angular.element('#additionalCostModal').modal({ show: true });
+<<<<<<< HEAD
                                 }
                                 else
+=======
+                                } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(567));
 
                                 $scope.updateGrandTotal();
 
                             });
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.showLoader = false;
                         toaster.pop('error', 'info', result.data.error);
                     }
 
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getAdditionalItemCostCount != 0) return $scope.getAdditionalItemCost(item, rec, index, getAdditionalItemCostCount - 1);
 
                     $scope.showLoader = false;
 
                     throw new Error(e.data);
                 });
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var getItemAddCostOrderLine = $scope.$root.pr + "srm/srminvoice/get-additional-cost-purchase-order";
 
             if ($stateParams.id > 0)
@@ -8588,7 +13092,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     'invoiceRec': $scope.invoiceRec,
                     'searchKeyword': $scope.searchKeyword
                 })
+<<<<<<< HEAD
                 .then(function (result) {
+=======
+                .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.itemAddCostPurchaseOrder = {};
                     $scope.itemAddCostPurchaseOrderColumns = [];
                     $scope.showLoader = false;
@@ -8599,7 +13107,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                         if ($scope.itemAddCostPurchaseOrder.length > 0) {
 
+<<<<<<< HEAD
                             angular.forEach($scope.itemAddCostPurchaseOrder[0], function (val, index) {
+=======
+                            angular.forEach($scope.itemAddCostPurchaseOrder[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.itemAddCostPurchaseOrderColumns.push({
                                     'title': toTitleCase(index),
                                     'field': index,
@@ -8610,7 +13122,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             // $scope.ttlAdditionAmount = 0;
                             var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                             angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                            angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (obj.calcAmount != undefined) {
 
                                     if (parseFloat(obj.calcAmount) > 0) {
@@ -8626,21 +13142,33 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                 if (parseFloat(obj.calcAmount) > 0) {
                                     obj.calcAmount2 = parseFloat(obj.calcAmount).toFixed(2);
+<<<<<<< HEAD
                                 }
                                 else {
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     obj.calcAmount2 = '';
                                 }
 
                                 if (parseFloat(obj.additionAmount) > 0) {
                                     obj.additionAmount2 = parseFloat(obj.additionAmount).toFixed(2);
+<<<<<<< HEAD
                                 }
                                 else {
+=======
+                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     obj.additionAmount2 = '';
                                 }
 
                             });
 
+<<<<<<< HEAD
                             angular.forEach($scope.items, function (obj) {
+=======
+                            angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 if (obj.update_id == item.update_id) {
                                     obj.ttlCalcAdditionalCost = parseFloat(obj.qty) * parseFloat(obj.standard_price);
@@ -8652,7 +13180,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 }
                             });
 
+<<<<<<< HEAD
                             $scope.formData.allocatedAdditionalCost = parseFloat(ttlAdditionAmount).toFixed(2);//ttlAdditionAmount;
+=======
+                            $scope.formData.allocatedAdditionalCost = parseFloat(ttlAdditionAmount).toFixed(2); //ttlAdditionAmount;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.formData.remainingAdditionalCost = parseFloat($scope.formData.additionalCost) - parseFloat(ttlAdditionAmount);
 
 
@@ -8661,10 +13193,16 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             angular.element('#additionalCostModal').modal({ show: true });
                         }
+<<<<<<< HEAD
                     }
                     else {
 
                         angular.forEach($scope.items, function (obj) {
+=======
+                    } else {
+
+                        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             if (obj.update_id == item.update_id) {
                                 obj.ttlCalcAdditionalCost = parseFloat(obj.qty) * parseFloat(obj.standard_price);
@@ -8677,7 +13215,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     // else
                     //     toaster.pop('error', 'info', result.data.error);
 
+<<<<<<< HEAD
                 }).catch(function (e) {
+=======
+                }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (getAdditionalItemCostCount != 0) return $scope.getAdditionalItemCost(item, rec, index, getAdditionalItemCostCount - 1);
 
                     $scope.showLoader = false;
@@ -8689,7 +13231,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     $scope.searchParam = 0;
 
+<<<<<<< HEAD
     $scope.clearSearchFilter = function () {
+=======
+    $scope.clearSearchFilter = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.itemAddCostPurchaseOrderFiltered.length = 0;
 
         if ($scope.searchKeyword.si.invoice_code == undefined && $scope.searchKeyword.si.consignment_no == undefined && $scope.searchKeyword.wa.container_no == undefined) {
@@ -8702,9 +13248,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.applyFilterAdditionalItemCost();
     }
 
+<<<<<<< HEAD
     $scope.checkChecked = function () {
         var flag = false;
         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj, ind) {
+=======
+    $scope.checkChecked = function() {
+        var flag = false;
+        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj, ind) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.chk) {
                 flag = true;
                 return true;
@@ -8713,9 +13265,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         return flag;
     }
 
+<<<<<<< HEAD
     $scope.checkUnchecked = function () {
         var flag = false;
         angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function (obj, ind) {
+=======
+    $scope.checkUnchecked = function() {
+        var flag = false;
+        angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function(obj, ind) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (!obj.chk) {
                 flag = true;
                 return true;
@@ -8724,7 +13282,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         return flag;
     }
 
+<<<<<<< HEAD
     $scope.applyLocalFilterAdditionalItemCost = function (param) {
+=======
+    $scope.applyLocalFilterAdditionalItemCost = function(param) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.itemAddCostPurchaseOrderFiltered = [];
         $scope.searchKeyword.si == undefined ? '' : $scope.searchKeyword.si;
         $scope.searchKeyword.wa == undefined ? '' : $scope.searchKeyword.wa;
@@ -8740,7 +13302,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         ($scope.searchKeyword.si.consignment_no && obj.consignmentNo.toLowerCase().indexOf($scope.searchKeyword.si.consignment_no.toLowerCase()) > -1)
         */
 
+<<<<<<< HEAD
         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj, ind) {
+=======
+        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj, ind) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (
                 ($scope.searchKeyword.si.invoice_code && obj.invoice_code.toLowerCase().indexOf($scope.searchKeyword.si.invoice_code.toLowerCase()) > -1) &&
                 ($scope.searchKeyword.wa.container_no && obj.ref_no.toLowerCase().indexOf($scope.searchKeyword.wa.container_no.toLowerCase()) > -1) &&
@@ -8748,21 +13314,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             ) {
 
                 $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+<<<<<<< HEAD
             }
             else if (
                 !$scope.searchKeyword.si.invoice_code && 
+=======
+            } else if (!$scope.searchKeyword.si.invoice_code &&
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 ($scope.searchKeyword.wa.container_no && obj.ref_no.toLowerCase().indexOf($scope.searchKeyword.wa.container_no.toLowerCase()) > -1) &&
                 ($scope.searchKeyword.si.consignment_no && obj.consignmentNo.toLowerCase().indexOf($scope.searchKeyword.si.consignment_no.toLowerCase()) > -1)
             ) {
 
                 $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+<<<<<<< HEAD
             }
             else if (
+=======
+            } else if (
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 ($scope.searchKeyword.si.invoice_code && obj.invoice_code.toLowerCase().indexOf($scope.searchKeyword.si.invoice_code.toLowerCase()) > -1) &&
                 ($scope.searchKeyword.si.consignment_no && obj.consignmentNo.toLowerCase().indexOf($scope.searchKeyword.si.consignment_no.toLowerCase()) > -1) && !$scope.searchKeyword.wa.container_no
             ) {
 
                 $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+<<<<<<< HEAD
             }
             else if (
                 ($scope.searchKeyword.si.invoice_code && obj.invoice_code.toLowerCase().indexOf($scope.searchKeyword.si.invoice_code.toLowerCase()) > -1) &&
@@ -8789,6 +13364,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 $scope.itemAddCostPurchaseOrderFiltered.push(obj);
             }
         
+=======
+            } else if (
+                ($scope.searchKeyword.si.invoice_code && obj.invoice_code.toLowerCase().indexOf($scope.searchKeyword.si.invoice_code.toLowerCase()) > -1) &&
+                ($scope.searchKeyword.wa.container_no && obj.ref_no.toLowerCase().indexOf($scope.searchKeyword.wa.container_no.toLowerCase()) > -1) && !$scope.searchKeyword.si.consignment_no
+            ) {
+
+                $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+            } else if (!$scope.searchKeyword.si.invoice_code &&
+                !$scope.searchKeyword.wa.container_no &&
+                ($scope.searchKeyword.si.consignment_no && obj.consignmentNo.toLowerCase().indexOf($scope.searchKeyword.si.consignment_no.toLowerCase()) > -1)
+            ) {
+
+                $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+            } else if (!$scope.searchKeyword.si.invoice_code &&
+                ($scope.searchKeyword.wa.container_no && obj.ref_no.toLowerCase().indexOf($scope.searchKeyword.wa.container_no.toLowerCase()) > -1) && !$scope.searchKeyword.si.consignment_no) {
+
+                $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+            } else if (($scope.searchKeyword.si.invoice_code && obj.invoice_code.toLowerCase().indexOf($scope.searchKeyword.si.invoice_code.toLowerCase()) > -1) && !$scope.searchKeyword.wa.container_no &&
+                !$scope.searchKeyword.si.consignment_no) {
+
+                $scope.itemAddCostPurchaseOrderFiltered.push(obj);
+            }
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         });
 
         if ($scope.itemAddCostPurchaseOrderFiltered.length > 500) {
@@ -8799,7 +13398,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
             var PurchaseInvOrders = '';
 
+<<<<<<< HEAD
             angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function (obj, index) {
+=======
+            angular.forEach($scope.itemAddCostPurchaseOrderFiltered, function(obj, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (obj.AllocPurchaseCode != '0' && obj.AllocPurchaseInv == '0') {
                     $scope.itemAddCostPurchaseOrderFiltered.splice(index, 1);
@@ -8814,12 +13417,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
             if (PurchaseInvOrders.length > 0)
                 toaster.pop('error', 'Info', 'Additional Cost already allocated to ' + PurchaseInvOrders.substring(0, PurchaseInvOrders.length - 2));
+<<<<<<< HEAD
         }
         else if ($scope.itemAddCostPurchaseOrderFiltered.length == 0 && param == 1)
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
     }
 
     $scope.applyFilterAdditionalItemCost = function (item, rec, index) {
+=======
+        } else if ($scope.itemAddCostPurchaseOrderFiltered.length == 0 && param == 1)
+            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(400));
+    }
+
+    $scope.applyFilterAdditionalItemCost = function(item, rec, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         // $scope.applyFilterAdditionalItemCost = function (param) {
         // $scope.lastParams = {};
 
@@ -8827,11 +13438,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $scope.searchParam = 0;
 
+<<<<<<< HEAD
         if (item && rec && index != undefined) {// && index
             var justGetTheInfoWithoutSaving = false;
             $scope.lastParams = { item: item, rec: rec, index: index };
         }
         else {
+=======
+        if (item && rec && index != undefined) { // && index
+            var justGetTheInfoWithoutSaving = false;
+            $scope.lastParams = { item: item, rec: rec, index: index };
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             var justGetTheInfoWithoutSaving = true;
             item = $scope.lastParams.item;
             rec = $scope.lastParams.rec;
@@ -8879,7 +13497,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'defaultCurrencyID': $scope.$root.defaultCurrency,
                 'searchKeyword': $scope.searchKeyword
             })
+<<<<<<< HEAD
             .then(function (result) {
+=======
+            .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.itemAddCostPurchaseOrder = {};
                 $scope.itemAddCostPurchaseOrderColumns = [];
                 $scope.showLoader = false;
@@ -8890,7 +13512,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     if ($scope.itemAddCostPurchaseOrder.length > 0) {
 
+<<<<<<< HEAD
                         angular.forEach($scope.itemAddCostPurchaseOrder[0], function (val, index) {
+=======
+                        angular.forEach($scope.itemAddCostPurchaseOrder[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.itemAddCostPurchaseOrderColumns.push({
                                 'title': toTitleCase(index),
                                 'field': index,
@@ -8901,7 +13527,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         // $scope.ttlAdditionAmount = 0;
                         var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.calcAmount != undefined) {
 
                                 if (parseFloat(obj.calcAmount) > 0) {
@@ -8917,34 +13547,56 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             if (parseFloat(obj.calcAmount) > 0) {
                                 obj.calcAmount2 = parseFloat(obj.calcAmount).toFixed(2);
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 obj.calcAmount2 = '';
                             }
 
                             if (parseFloat(obj.additionAmount) > 0) {
                                 obj.additionAmount2 = parseFloat(obj.additionAmount).toFixed(2);
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 obj.additionAmount2 = '';
                             }
 
                         });
 
+<<<<<<< HEAD
                         $scope.formData.allocatedAdditionalCost = parseFloat(ttlAdditionAmount).toFixed(2);//ttlAdditionAmount;
                         $scope.formData.remainingAdditionalCost = parseFloat($scope.formData.additionalCost) - parseFloat(ttlAdditionAmount);
 
                     }
                     else {
+=======
+                        $scope.formData.allocatedAdditionalCost = parseFloat(ttlAdditionAmount).toFixed(2); //ttlAdditionAmount;
+                        $scope.formData.remainingAdditionalCost = parseFloat($scope.formData.additionalCost) - parseFloat(ttlAdditionAmount);
+
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         // $scope.formData.item_qty = item.qty;
                         $scope.formData.allocatedAdditionalCost = 0;
                         $scope.formData.remainingAdditionalCost = $scope.formData.additionalCost;
                     }
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(400));
 
             }).catch(function (message) {
+=======
+                } else
+                    toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(400));
+
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -8953,7 +13605,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.calculateAdditionalAmount = function (rec, type, selSpread) {
+=======
+    $scope.calculateAdditionalAmount = function(rec, type, selSpread) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if (rec.chk != true) {
             rec.calcAmount = '';
@@ -8985,7 +13641,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var ttlAdditionAmount2 = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.calcAmount != undefined && obj.calcAmount != '')
                         ttlAdditionAmount2 = parseFloat(ttlAdditionAmount2) + parseFloat(obj.calcAmount);
@@ -9006,7 +13666,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.calcAmount != undefined && obj.calcAmount != '')
                             ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
                     });
@@ -9018,14 +13682,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(570));
                 }
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 rec.calcAmount = '';
                 rec.calcAmount2 = '';
 
                 var ttlAdditionAmount2 = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.calcAmount != undefined && obj.calcAmount != '')
                         ttlAdditionAmount2 = parseFloat(ttlAdditionAmount2) + parseFloat(obj.calcAmount);
@@ -9046,7 +13718,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.calcAmount != undefined && obj.calcAmount != '')
                             ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
                     });
@@ -9060,8 +13736,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
             }
 
+<<<<<<< HEAD
         }
         else if (type == 2) {
+=======
+        } else if (type == 2) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             rec.calcAmount = rec.calcAmount2;
 
@@ -9074,7 +13754,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var ttlAdditionAmount2 = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.calcAmount != undefined && obj.calcAmount != '')
                         ttlAdditionAmount2 = parseFloat(ttlAdditionAmount2) + parseFloat(obj.calcAmount);
@@ -9096,7 +13780,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.calcAmount != undefined && obj.calcAmount != '')
                             ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
                     });
@@ -9108,14 +13796,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(570));
                 }
+<<<<<<< HEAD
             }
             else {
+=======
+            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 rec.additionAmount = '';
                 rec.additionAmount2 = '';
 
                 var ttlAdditionAmount2 = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.calcAmount != undefined && obj.calcAmount != '')
                         ttlAdditionAmount2 = parseFloat(ttlAdditionAmount2) + parseFloat(obj.calcAmount);
@@ -9136,7 +13832,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.calcAmount != undefined && obj.calcAmount != '')
                             ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
                     });
@@ -9149,8 +13849,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(570));
                 }
             }
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (!(parseFloat(rec.calcAmount) < 0) && !(parseFloat(rec.additionAmount) < 0)) {
                 var additionAmount = parseFloat(rec.calcAmount) / parseFloat(rec.qty);
@@ -9159,7 +13863,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
                 angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                     if (obj.calcAmount != undefined && obj.calcAmount != '')
                         ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
@@ -9180,7 +13888,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                     var ttlAdditionAmount2 = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                    angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         if (obj.calcAmount != undefined && obj.calcAmount != '')
                             ttlAdditionAmount2 = parseFloat(ttlAdditionAmount2) + parseFloat(obj.calcAmount);
                     });
@@ -9197,14 +13909,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.updateAdditionalCostResults = function () {
+=======
+    $scope.updateAdditionalCostResults = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword.wa = {};
         $scope.searchKeyword.si = {};
         $scope.seladditionalcostPurchaseOrder = [];
         // $scope.ttlAdditionAmount = 0;
         var ttlAdditionAmount = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (parseFloat(obj.calcAmount) != undefined && parseFloat(obj.calcAmount) > 0) {
                 ttlAdditionAmount = parseFloat(ttlAdditionAmount) + parseFloat(obj.calcAmount);
@@ -9212,7 +13932,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             }
         });
 
+<<<<<<< HEAD
         angular.forEach($scope.items, function (obj) {
+=======
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (obj.update_id == $scope.formData.orderLineID) {
                 // obj.ttlCalcAdditionalCost = parseFloat(obj.qty) * parseFloat(obj.standard_price);
@@ -9253,7 +13977,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'order_id': order_id,
                 'orderLineID': $scope.formData.orderLineID
             })
+<<<<<<< HEAD
             .then(function (result) {
+=======
+            .then(function(result) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 // $scope.itemAddCostPurchaseOrder = {};
                 // $scope.itemAddCostPurchaseOrderColumns = [];
@@ -9264,7 +13992,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     if ($scope.formData.remainingAdditionalCost > 0) {
                         var addCostModalCloseChk = 0;
 
+<<<<<<< HEAD
                         angular.forEach($scope.itemAddCostPurchaseOrder, function (obj) {
+=======
+                        angular.forEach($scope.itemAddCostPurchaseOrder, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (obj.postedChk == 0) addCostModalCloseChk++;
                         });
 
@@ -9276,11 +14008,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     } else {
                         angular.element('#additionalCostModal').modal('hide');
                     }
+<<<<<<< HEAD
                 }
                 else
                     toaster.pop('error', 'info', result.data.error);
 
             }).catch(function (message) {
+=======
+                } else
+                    toaster.pop('error', 'info', result.data.error);
+
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -9290,7 +14029,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         angular.element('#additionalCostModal').modal('hide');
     }
 
+<<<<<<< HEAD
     $scope.NavigateOrder = function (rec) {
+=======
+    $scope.NavigateOrder = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword = {};
         $scope.searchKeyword.navigate_search = "";
 
@@ -9311,7 +14054,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.showLoader = true;
         $http
             .post(navigate_url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == 1) {
                     $scope.navigate_data = res.data.response;
                     $scope.navigatePostingDate = res.data.posted_on;
@@ -9328,7 +14075,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         angular.element('#order_navigate_modal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.getAllocatStock = function (warehouse_id, item_id, order_id, getAllocatStockCount) {
+=======
+    $scope.getAllocatStock = function(warehouse_id, item_id, order_id, getAllocatStockCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.all_wh_stock = [];
         var getStockUrl = $scope.$root.sales + "warehouse/get-purchase-stock";
 
@@ -9343,17 +14094,29 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         if (getAllocatStockCount == undefined) getAllocatStockCount = $rootScope.maxHttpRepeatCount;
         return $http
             .post(getStockUrl, postdata)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.formData.total_available_qty = 0;
 
                 if (res.data.ack == true) {
                     $scope.all_wh_stock = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach($scope.all_wh_stock, function (obj) {
                         $scope.formData.total_available_qty += Number(obj.avail_qty);
                     });
                 }
             }).catch(function (e) {
+=======
+                    angular.forEach($scope.all_wh_stock, function(obj) {
+                        $scope.formData.total_available_qty += Number(obj.avail_qty);
+                    });
+                }
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (getAllocatStockCount != 0) return $scope.getAllocatStock(warehouse_id, item_id, order_id, getAllocatStockCount - 1);
 
                 $scope.showLoader = false;
@@ -9364,7 +14127,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     var showOrderTrailCount;
 
+<<<<<<< HEAD
     $scope.showOrderTrail = function (stock, list_type, entries_type) {
+=======
+    $scope.showOrderTrail = function(stock, list_type, entries_type) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.searchKeyword_2 = {};
         var stock_trail_url = $scope.$root.setup + "warehouse/sale-stock-trial";
         var postData = {
@@ -9376,6 +14143,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             'warehose_id': $scope.formData.warehouses_id
         };
 
+<<<<<<< HEAD
         if(list_type == 'current_stock')
         {
             $scope.stock_activity_title = 'Current Stock';
@@ -9386,6 +14154,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
         else if(list_type == 'allocated_stock')
         {
+=======
+        if (list_type == 'current_stock') {
+            $scope.stock_activity_title = 'Current Stock';
+        } else if (list_type == 'available_stock') {
+            $scope.stock_activity_title = 'Available Stock';
+        } else if (list_type == 'allocated_stock') {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.stock_activity_title = 'Allocated Stock';
         }
 
@@ -9399,7 +14174,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         if (showOrderTrailCount == undefined) showOrderTrailCount = $rootScope.maxHttpRepeatCount;
         $http
             .post(stock_trail_url, postData)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns2 = [];
                 $scope.prod_warehouse_trail_data = [];
@@ -9408,7 +14187,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 if (res.data.response != null) {
                     $scope.prod_warehouse_trail_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -9416,7 +14199,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         });
                     });
                 }
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (showOrderTrailCount != 0) return $scope.showOrderTrail(stock, formData, showOrderTrailCount - 1);
 
                 $scope.showLoader = false;
@@ -9427,6 +14214,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         angular.element('#order_trail_modal').modal({ show: true });
     }
 
+<<<<<<< HEAD
     $scope.updateAllocationResults = function () {
 
         angular.forEach($scope.items, function (obj) {
@@ -9442,6 +14230,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     // $scope.downloadpath = $rootScope.basePath + 'download/migrationSamples/';
     // $scope.show_migrate_pop = function (arg) {
     //     $scope.disableBtn = true;
+=======
+    $scope.updateAllocationResults = function() {
+
+            angular.forEach($scope.items, function(obj) {
+
+                if (obj.update_id == $scope.formData.orderLineID) {
+                    obj.remainig_qty = $scope.total_remaing;
+                    obj.qtyItemAllocated = parseFloat($scope.formData.item_qty) - parseFloat($scope.total_remaing);
+                }
+            });
+
+            angular.element('#ware_modal').modal('hide');
+        }
+        // $scope.downloadpath = $rootScope.basePath + 'download/migrationSamples/';
+        // $scope.show_migrate_pop = function (arg) {
+        //     $scope.disableBtn = true;
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     //     $scope.file = {};
     //     $scope.file_data = {};
@@ -9452,7 +14257,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
     //         $scope.sample = $scope.downloadpath + 'stock_alloc.xlsx';
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     //     $scope.sampledownload = $scope.sample;
     //     $scope.errorfiledownload = 0;
     //     $scope.errorLog = 0;
@@ -9464,7 +14273,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     var get_warehouse_listCount;
 
+<<<<<<< HEAD
     $scope.get_warehouse_list = function (get_warehouse_listCount) {
+=======
+    $scope.get_warehouse_list = function(get_warehouse_listCount) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var postUrl = $scope.$root.setup + "warehouse/stk-allocation";
 
         if (get_warehouse_listCount == undefined) get_warehouse_listCount = $rootScope.maxHttpRepeatCount;
@@ -9476,7 +14289,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'warehouses_id': $scope.formData.warehouses_id,
                 'type_id': $scope.formData.type
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.record = {};
                 $scope.columns = [];
                 $scope.record = res.data.response;
@@ -9491,14 +14308,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.total_remaing = 0;
                     $scope.formData.stock_qty = $scope.total_remaing;
                 }
+<<<<<<< HEAD
                 angular.forEach(res.data.response[0], function (val, index) {
+=======
+                angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.columns.push({
                         'title': toTitleCase(index),
                         'field': index,
                         'visible': true
                     });
                 });
+<<<<<<< HEAD
             }).catch(function (e) {
+=======
+            }).catch(function(e) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (get_warehouse_listCount != 0) return $scope.get_warehouse_list(get_warehouse_listCount - 1);
 
                 $scope.showLoader = false;
@@ -9507,7 +14332,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             });
     }
 
+<<<<<<< HEAD
     $scope.clear_form = function (formData) {
+=======
+    $scope.clear_form = function(formData) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.formData.id = '';
         $scope.formData.container_no = '';
         $scope.formData.batch_no = '';
@@ -9525,7 +14354,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $scope.formData.cost = '';
     }
 
+<<<<<<< HEAD
     $scope.validateDates = function (prod_date, date_received, use_by_date) {
+=======
+    $scope.validateDates = function(prod_date, date_received, use_by_date) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var prod, received, useby;
 
         prod = prod_date.split("/")[2] + "-" + prod_date.split("/")[1] + "-" + prod_date.split("/")[0];
@@ -9562,19 +14395,31 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
     }
 
+<<<<<<< HEAD
     $scope.editModeAllocation = function (rec) {
+=======
+    $scope.editModeAllocation = function(rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         rec.editchk = 1;
     }
 
     $scope.disableWarehouseAllocRowBtn = false;
 
+<<<<<<< HEAD
     $scope.allocateQty = function (rec, update) {
+=======
+    $scope.allocateQty = function(rec, update) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.disableWarehouseAllocRowBtn = true;
 
         var ttlqty = 0;
         var allocationError = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.stockAllocationRecord, function (obj) {
+=======
+        angular.forEach($scope.stockAllocationRecord, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (obj.id > 0 && Number(obj.stock_qty) > 0)
                 ttlqty += Number(obj.stock_qty);
@@ -9676,7 +14521,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $http
             .post(addcrmUrl, rec)
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == 1) {
                     //$scope.get_warehouse_list();
                     // $scope.clear_form();
@@ -9709,8 +14558,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             !($scope.stockAllocationRecord[$scope.stockAllocationRecord.length - 1].id > 0))
                             $scope.stockAllocationRecord.splice(-1, 1);
 
+<<<<<<< HEAD
                     }
                     else {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('success', 'Add', $scope.$root.getErrorMessageByCode(630));
                         $scope.disableWarehouseAllocRowBtn = false;
                         rec.id = res.data.id;
@@ -9738,19 +14591,30 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.formData.purchase_status = 1;
                         $scope.formData.remainig_qty = 0;
                     }
+<<<<<<< HEAD
                 }
                 else if (res.data.ack == 2) {
                     toaster.pop('error', 'Error', res.data.error);
                     $scope.disableWarehouseAllocRowBtn = false;
                 }
                 else {
+=======
+                } else if (res.data.ack == 2) {
+                    toaster.pop('error', 'Error', res.data.error);
+                    $scope.disableWarehouseAllocRowBtn = false;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (rec.id > 0)
                         toaster.pop('error', 'Edit', res.data.error);
                     else
                         toaster.pop('error', 'Error', res.data.error);
                     $scope.disableWarehouseAllocRowBtn = false;
                 }
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 $scope.disableWarehouseAllocRowBtn = false;
 
@@ -9759,7 +14623,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.show_warehouse_loc_info = function (loc_id, warehouse_id, storage_loc_id, prod_id) {
+=======
+    $scope.show_warehouse_loc_info = function(loc_id, warehouse_id, storage_loc_id, prod_id) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var prod_warehouse_loc_Url = $scope.$root.setup + "warehouse/get-prod-WH-loc-for-stock-alloc";
 
@@ -9769,12 +14637,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'prod_id': prod_id,
                 'loc_wrh_id': loc_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if (res.data.response != null) {
                     $scope.warehouse_location_details_data = res.data.response;
                 }
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -9791,13 +14667,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'wrh_id': warehouse_id,
                 'bin_loc_wrh_id': storage_loc_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.columns1 = [];
                 $scope.bin_loc_add_cost_data = [];
 
                 if (res.data.response != null) {
                     $scope.bin_loc_add_cost_data = res.data.response;
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns1.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -9806,7 +14690,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     });
                     // $scope.warehouse_loc_add_cost_setup_Show = true;
                 }
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -9824,7 +14712,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'prod_id': prod_id,
                 'warehouse_loc_id': loc_id
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.columns2 = [];
                 $scope.prod_warehouse_loc_add_cost_data = [];
@@ -9832,7 +14724,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 if (res.data.response != null) {
                     $scope.prod_warehouse_loc_add_cost_data = res.data.response;
 
+<<<<<<< HEAD
                     angular.forEach(res.data.response[0], function (val, index) {
+=======
+                    angular.forEach(res.data.response[0], function(val, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.columns2.push({
                             'title': toTitleCase(index),
                             'field': index,
@@ -9840,7 +14736,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         });
                     });
                 }
+<<<<<<< HEAD
             }).catch(function (message) {
+=======
+            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
 
                 throw new Error(message.data);
@@ -9852,7 +14752,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.checkDuplWHItem = function (param_item, index) {
+=======
+    $scope.checkDuplWHItem = function(param_item, index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         console.log(param_item.warehouses);
         return;
 
@@ -9868,7 +14772,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                 var SelectedWH = [];
 
+<<<<<<< HEAD
                 angular.forEach($scope.items, function (item, obj_index) {
+=======
+                angular.forEach($scope.items, function(item, obj_index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (param_item.id == item.id && item.warehouses != undefined) {
                         var chk_item = $filter("filter")(item.arr_prod_warehouse, { id: item.warehouses.id }, true);
 
@@ -9878,6 +14786,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     }
                 });
 
+<<<<<<< HEAD
                 angular.forEach($scope.items, function (item) {
                     if (param_item.id == item.id) {
                         angular.forEach(item.arr_prod_warehouse, function (obj, idx) {
@@ -9886,17 +14795,34 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 obj.disabled = true;
                             }
                             else
+=======
+                angular.forEach($scope.items, function(item) {
+                    if (param_item.id == item.id) {
+                        angular.forEach(item.arr_prod_warehouse, function(obj, idx) {
+
+                            if (SelectedWH.indexOf(idx) != -1) {
+                                obj.disabled = true;
+                            } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 obj.disabled = false;
                         });
                     }
                 });
             }
+<<<<<<< HEAD
         }
         else if ($scope.items != undefined) {
 
             var SelectedWH = [];
 
             angular.forEach($scope.items, function (item, obj_index) {
+=======
+        } else if ($scope.items != undefined) {
+
+            var SelectedWH = [];
+
+            angular.forEach($scope.items, function(item, obj_index) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (param_item.id == item.id && item.warehouses != undefined) {
                     var chk_item = $filter("filter")(item.arr_prod_warehouse, { id: item.warehouses.id }, true);
 
@@ -9906,6 +14832,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
             });
 
+<<<<<<< HEAD
             angular.forEach($scope.items, function (item) {
                 if (param_item.id == item.id) {
                     angular.forEach(item.arr_prod_warehouse, function (obj, idx) {
@@ -9914,6 +14841,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             obj.disabled = true;
                         }
                         else
+=======
+            angular.forEach($scope.items, function(item) {
+                if (param_item.id == item.id) {
+                    angular.forEach(item.arr_prod_warehouse, function(obj, idx) {
+
+                        if (SelectedWH.indexOf(idx) != -1) {
+                            obj.disabled = true;
+                        } else
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             obj.disabled = false;
                     });
                 }
@@ -9923,7 +14859,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
 
+<<<<<<< HEAD
     $scope.delete_ware = function (id, index, arr_data) {
+=======
+    $scope.delete_ware = function(id, index, arr_data) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.disableWarehouseAllocRowBtn = true;
         var delStockAllocationUrl = $scope.$root.setup + "warehouse/delete-stk-allocation";
@@ -9936,10 +14876,17 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         ngDialog.openConfirm({
             template: 'modalUnallocateDialogId',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
             $http
                 .post(delStockAllocationUrl, { 'id': id, 'order_id' : $scope.rec.id, 'token': $scope.$root.token })
                 .then(function (res) {
+=======
+        }).then(function(value) {
+            $http
+                .post(delStockAllocationUrl, { 'id': id, 'order_id': $scope.rec.id, 'token': $scope.$root.token })
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (res.data.ack == true) {
                         toaster.pop('success', 'Deleted', $scope.$root.getErrorMessageByCode(103));
                         $scope.disableWarehouseAllocRowBtn = false;
@@ -9974,8 +14921,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             } else
                                 $scope.stockAllocationRecord[$scope.stockAllocationRecord.length - 1].stock_qty = $scope.tmpStockQty;
 
+<<<<<<< HEAD
                         }
                         else if ($scope.tmpStockQty > 0) {
+=======
+                        } else if ($scope.tmpStockQty > 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.stockAllocationRecord.push({
                                 'warehouse': $scope.formData.warehouses_name,
                                 'storage_location': '',
@@ -9990,30 +14941,50 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 'editchk': 1
                             });
                         }
+<<<<<<< HEAD
                     }
                     else {
                         toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
 
                     }
                 }).catch(function (message) {
+=======
+                    } else {
+                        toaster.pop('error', 'Deleted', $scope.$root.getErrorMessageByCode(108));
+
+                    }
+                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     $scope.disableWarehouseAllocRowBtn = false;
 
                     throw new Error(message.data);
                 });
+<<<<<<< HEAD
         }, function (reason) {
+=======
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
 
+<<<<<<< HEAD
     $scope.check_min_max_war = function (item) {
     }
 
     $scope.disableReceiveBtn = false;
 
     $scope.reciveStock = function (rec2, rec, mode, recReceivedMode) {
+=======
+    $scope.check_min_max_war = function(item) {}
+
+    $scope.disableReceiveBtn = false;
+
+    $scope.reciveStock = function(rec2, rec, mode, recReceivedMode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.showLoader = true;
         $scope.disableReceiveBtn = true;
@@ -10057,12 +15028,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $scope.supplierLocMandatory = 0;
 
+<<<<<<< HEAD
         angular.forEach($scope.items, function (obj) {
+=======
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             if (obj.item_type == 0)
                 $scope.supplierLocMandatory = 1;
         });
 
+<<<<<<< HEAD
         if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1 ) {
+=======
+        if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (!$scope.rec.ReasonForshippingNotReq || !($scope.rec.ReasonForshippingNotReq.length > 0)) {
                 $scope.showLoader = false;
@@ -10071,8 +15050,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 toaster.pop('error', 'Info', 'Please add reason for shipment not required.');
                 return false;
             }
+<<<<<<< HEAD
         }
         else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+=======
+        } else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             $scope.disableReceiveBtn = false;
             $scope.disablePostInvBtn = false;
@@ -10091,7 +15074,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
         $scope.add_sublist(rec2, rec, 1)
+<<<<<<< HEAD
             .then(function () {
+=======
+            .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 if ($scope.rec.invoice_date != null && $scope.rec.order_date != null) {
 
@@ -10104,8 +15091,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.disablePostInvBtn = false;
                         return;
                     }
+<<<<<<< HEAD
                 }
                 else if ($scope.rec.order_date == null) {
+=======
+                } else if ($scope.rec.order_date == null) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     toaster.pop('error', 'Info', 'Order Date is Null');
                     $scope.showLoader = false;
                     $scope.disableReceiveBtn = false;
@@ -10122,7 +15113,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 ngDialog.openConfirm({
                     template: 'app/views/srm_order/_confirm_purchase_status_modal.html',
                     className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                 }).then(function (value) {
+=======
+                }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.allItemsArray = [];
                     $scope.receivedItemsArray = [];
                     $scope.NoStockAllocReqArray = [];
@@ -10131,7 +15126,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.showLoader = true;
 
 
+<<<<<<< HEAD
                     angular.forEach($scope.returnItems, function (obj) {
+=======
+                    angular.forEach($scope.returnItems, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (isNaN(parseFloat(obj.remainig_qty))) {
                             obj.remainig_qty = obj.qty;
@@ -10147,8 +15146,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             receivedItems += obj.update_id + ",";
                             $scope.receivedItemsArray.push(detail);
+<<<<<<< HEAD
                         }
                         else if (obj.stock_check > 0 && ((obj.remainig_qty > 0) || ((obj.remainig_qty == undefined || obj.remainig_qty == null) && parseFloat(obj.qty) > 0))) {
+=======
+                        } else if (obj.stock_check > 0 && ((obj.remainig_qty > 0) || ((obj.remainig_qty == undefined || obj.remainig_qty == null) && parseFloat(obj.qty) > 0))) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             toaster.pop('error', 'Error', 'Stock Allocation is Required for ' + obj.product_name);
                             $scope.showLoader = false;
                             $scope.disableReceiveBtn = false;
@@ -10239,7 +15242,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                             }
                         } */
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         itemArray.rawMaterialProduct = obj.rawMaterialProduct;
                         itemArray.raw_material_gl_id = obj.raw_material_gl_id;
                         itemArray.raw_material_gl_code = obj.raw_material_gl_code;
@@ -10271,7 +15278,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         return false;
                     }
 
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     if (receivedItems.length > 0)
                         receivedItems = receivedItems.substring(0, receivedItems.length - 1);
 
@@ -10281,8 +15292,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         var invoice_id = $scope.rec.id;
 
                     $http
+<<<<<<< HEAD
                         .post(convertRecievedStockUrl,
                         {
+=======
+                        .post(convertRecievedStockUrl, {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             'invoice_id': invoice_id,
                             'type': 2,
                             'token': $scope.$root.token,
@@ -10294,13 +15309,21 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             'suppInvNo': $scope.rec.supp_order_no,
                             'recReceivedMode': recReceivedMode, // 1 means Goods are going to be received first but not invoiced
                             'recGoodsReceived': $scope.recGoodsReceived,
+<<<<<<< HEAD
                             'invoiceCurrencyID': $rootScope.currencyID_PO.id,//$rootScope.currency_id.id,
+=======
+                            'invoiceCurrencyID': $rootScope.currencyID_PO.id, //$rootScope.currency_id.id,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             'defaultCurrencyID': $scope.$root.defaultCurrency,
                             'currencyExchangeRateDate': $scope.rec.currencyExchangeRateDate,
                             'orderDate': $scope.rec.order_date,
                             'directInvoice': mode
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             $scope.showLoader = false;
                             $scope.disableReceiveBtn = false;
@@ -10311,33 +15334,53 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $scope.getOrdersDetail();
                                 // $scope.show_recieve_list = true;
                                 $scope.purchaseOrderDeleteBtn = false;
+<<<<<<< HEAD
                             }
                             else{
 
                                 toaster.pop('error', 'Info', res.data.error);
 
                                 $timeout(function () {
+=======
+                            } else {
+
+                                toaster.pop('error', 'Info', res.data.error);
+
+                                $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $state.go("app.viewsrmorder", { id: $scope.rec.id });
                                 }, 1500);
                                 return;
                             }
                             // toaster.pop('error', 'Info', 'Can\'t Receive Stock!');
 
+<<<<<<< HEAD
                         }).catch(function (message) {
+=======
+                        }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.showLoader = false;
                             $scope.disableReceiveBtn = false;
                             $scope.disablePostInvBtn = false;
 
                             throw new Error(message.data);
                         });
+<<<<<<< HEAD
                 }, function (reason) {
+=======
+                }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     $scope.disableReceiveBtn = false;
                     $scope.disablePostInvBtn = false;
                     console.log('Modal promise rejected. Reason: ', reason);
                 });
             })
+<<<<<<< HEAD
             .catch(function (message) {
+=======
+            .catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.disableReceiveBtn = false;
                 $scope.disablePostInvBtn = false;
                 $scope.showLoader = false;
@@ -10345,7 +15388,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             });
     }
 
+<<<<<<< HEAD
     $scope.convert_to_sales_order = function (rec2, rec) {
+=======
+    $scope.convert_to_sales_order = function(rec2, rec) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         if ($scope.rec.sell_to_cust_no == undefined || $scope.rec.sell_to_cust_no == null) {
             toaster.pop('error', 'info', $scope.$root.getErrorMessageByCode(230, ['Supplier No.']));
@@ -10357,7 +15404,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         ngDialog.openConfirm({
             template: '_confirm_quote_to_order_invoice_modal',
             className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
         }).then(function (value) {
+=======
+        }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var order_id = rec.id;
 
@@ -10369,7 +15420,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.showLoader = true;
             $http
                 .post(convertApi, postData)
+<<<<<<< HEAD
                 .then(function (res) {
+=======
+                .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
 
                     if (res.data.ack == true) {
@@ -10377,18 +15432,29 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $state.go("app.viewOrder", {
                             id: sale_order_id
                         });
+<<<<<<< HEAD
                     }
                     else
                         toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(235, ['to Sales Order']));
                 });
         }, function (reason) {
+=======
+                    } else
+                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(235, ['to Sales Order']));
+                });
+        }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             console.log('Modal promise rejected. Reason: ', reason);
         });
     }
 
 
+<<<<<<< HEAD
     $scope.recivedStockBeforePosting = function (rec2, rec, mode, recReceivedMode) {
+=======
+    $scope.recivedStockBeforePosting = function(rec2, rec, mode, recReceivedMode) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         var deferred = $q.defer();
         $scope.showLoader = true;
@@ -10417,7 +15483,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 
         $scope.add_sublist(rec2, rec, 2)
+<<<<<<< HEAD
             .then(function () {
+=======
+            .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                 $scope.showLoader = true;
 
@@ -10429,8 +15499,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         $scope.disablePostInvBtn = false;
                         deferred.reject('Invoice Date is Earlier than Order Date!');
                     }
+<<<<<<< HEAD
                 }
                 else if ($scope.rec.order_date == null) {
+=======
+                } else if ($scope.rec.order_date == null) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.disablePostInvBtn = false;
                     deferred.reject('Order Date is Null');
                 }
@@ -10449,7 +15523,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     var receivedItems = "";
                     var stockCheckConfirm = 0;
 
+<<<<<<< HEAD
                     angular.forEach($scope.returnItems, function (obj) {
+=======
+                    angular.forEach($scope.returnItems, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                         if (isNaN(parseFloat(obj.remainig_qty))) {
                             obj.remainig_qty = obj.qty;
@@ -10464,8 +15542,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             detail.supplier_id = $scope.rec.sell_to_cust_id;
                             receivedItems += obj.update_id + ",";
                             $scope.receivedItemsArray.push(detail);
+<<<<<<< HEAD
                         }
                         else if (obj.stock_check > 0 && ((obj.remainig_qty > 0) || ((obj.remainig_qty == undefined || obj.remainig_qty == null) && parseFloat(obj.qty) > 0))) {
+=======
+                        } else if (obj.stock_check > 0 && ((obj.remainig_qty > 0) || ((obj.remainig_qty == undefined || obj.remainig_qty == null) && parseFloat(obj.qty) > 0))) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             // toaster.pop('error', 'Error', 'Stock Allocation is Mandatory for ' + obj.product_name);
                             $scope.disablePostInvBtn = false;
                             deferred.reject('Stock Allocation is Required for ' + obj.product_name);
@@ -10586,8 +15668,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.rec.grandTotal = $scope.grandTotal();
 
                     return $http
+<<<<<<< HEAD
                         .post(convertRecievedStockUrl,
                         {
+=======
+                        .post(convertRecievedStockUrl, {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             'invoice_id': invoice_id,
                             'type': 2,
                             'token': $scope.$root.token,
@@ -10600,19 +15686,31 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             'recGoodsReceived': $scope.recGoodsReceived,
                             'supplierID': $scope.rec.bill_to_cust_id,
                             'suppInvNo': $scope.rec.supp_order_no,
+<<<<<<< HEAD
                             'invoiceCurrencyID': $rootScope.currencyID_PO.id,//$rootScope.currency_id.id,
+=======
+                            'invoiceCurrencyID': $rootScope.currencyID_PO.id, //$rootScope.currency_id.id,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             'defaultCurrencyID': $scope.$root.defaultCurrency,
                             'orderDate': $scope.rec.order_date,
                             'directInvoice': mode
                         })
+<<<<<<< HEAD
                         .then(function (res) {
+=======
+                        .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (res.data != undefined && res.data.ack == true) {
                                 $scope.purchaseOrderDeleteBtn = false;
                                 // toaster.pop('success', 'Info', 'Received Stock Successfully');
                                 // return true;
                                 deferred.resolve();
+<<<<<<< HEAD
                             }
                             else {
+=======
+                            } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 // toaster.pop('error', 'Info', 'Can\'t Receive Stock!');
                                 $scope.disablePostInvBtn = false;
                                 deferred.reject(res.data.error);
@@ -10621,7 +15719,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 // return 0;
                             }
 
+<<<<<<< HEAD
                         }).catch(function (message) {
+=======
+                        }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             $scope.disablePostInvBtn = false;
                             $scope.showLoader = false;
 
@@ -10631,7 +15733,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 }
 
             })
+<<<<<<< HEAD
             .catch(function (message) {
+=======
+            .catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 $scope.showLoader = false;
                 $scope.disablePostInvBtn = false;
                 toaster.pop('error', 'info', message);
@@ -10643,7 +15749,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
     $scope.disablePostInvBtn = false;
 
+<<<<<<< HEAD
     $scope.convert_post_invoice = function (rec2, rec, queue_for_approval) {
+=======
+    $scope.convert_post_invoice = function(rec2, rec, queue_for_approval) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $scope.netTotalAmount = $scope.netTotal();
         $scope.grand_totalAmount = $scope.grandTotal();
@@ -10689,8 +15799,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.showEditForm();
             $scope.showEditorderForm();
             return false;
+<<<<<<< HEAD
         }
         else {
+=======
+        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             var dateValidationRes = $rootScope.dateValidation($scope.rec.order_date, $scope.rec.invoice_date);
 
@@ -10706,7 +15820,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
         $scope.rec.currencyExchangeRateDate = $scope.rec.invoice_date;
 
+<<<<<<< HEAD
         if (($scope.rec.supp_order_no == undefined || $scope.rec.supp_order_no == '') && queue_for_approval == undefined ) {
+=======
+        if (($scope.rec.supp_order_no == undefined || $scope.rec.supp_order_no == '') && queue_for_approval == undefined) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.disablePostInvBtn = false;
             $scope.showLoader = false;
             toaster.pop('error', 'info', 'Supplier Invoice No. is Empty');
@@ -10716,7 +15834,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         }
 
         if ($rootScope.currencyID_PO == null && $rootScope.currencyID_PO == undefined) {
+<<<<<<< HEAD
             $scope.disablePostInvBtn = false;//$rootScope.currency_id
+=======
+            $scope.disablePostInvBtn = false; //$rootScope.currency_id
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(230, ['Currency']));
             $scope.showEditForm();
@@ -10724,12 +15846,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             return;
         }
 
+<<<<<<< HEAD
         var stockCheckConfirm = 0;// Check for stock allocation required  
+=======
+        var stockCheckConfirm = 0; // Check for stock allocation required  
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.supplierLocMandatory = 0;
         $scope.postponeVATCHK = 0;
         // in case when a user directly post the invoice without doing stock allocation for items
 
+<<<<<<< HEAD
         angular.forEach($scope.items, function (obj) {
+=======
+        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
             if (isNaN(parseFloat(obj.remainig_qty))) {
@@ -10792,11 +15922,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
             $scope.disablePostInvBtn = false;
             $scope.disableReceiveBtn = false;
             $scope.showLoader = false;
+<<<<<<< HEAD
             toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(560));            
             return false;
         }
 
         if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1 ) {
+=======
+            toaster.pop('error', 'Info', $scope.$root.getErrorMessageByCode(560));
+            return false;
+        }
+
+        if ($scope.supplierLocMandatory == 1 && $scope.rec.shippingPONotReq == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
             if (!$scope.rec.ReasonForshippingNotReq || !($scope.rec.ReasonForshippingNotReq.length > 0)) {
                 $scope.showLoader = false;
@@ -10805,8 +15943,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 toaster.pop('error', 'Info', 'Please add reason for shipment not required.');
                 return false;
             }
+<<<<<<< HEAD
         }
         else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+=======
+        } else if ($scope.supplierLocMandatory == 1 && (!$scope.rec.shippingPONotReq || $scope.rec.shippingPONotReq == 0) && !($scope.rec.selectedShippingPOid > 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = false;
             $scope.disableReceiveBtn = false;
             $scope.disablePostInvBtn = false;
@@ -10859,6 +16001,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'type': "4, 7",
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
                 if (res.data.ack == true) {
 
@@ -10872,18 +16015,38 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 $rootScope.order_post_invoice_msg = "Are you sure you want to convert this order to a Purchase Invoice? Stock will be automatically Received.";
                         }
                         else {
+=======
+            .then(function(res) {
+                if (res.data.ack == true) {
+
+                    if (queue_for_approval == undefined) {
+                        if (!$scope.show_recieve_list && $scope.showReceiveStuff == true) {
+                            if (error_count > 0) {
+                                $rootScope.order_post_invoice_msg = "Are you sure you want to convert this order to a Purchase Invoice? Stock will be automatically Received. The " + error_msg + " not specified, will be set to current date";
+                            } else
+                                $rootScope.order_post_invoice_msg = "Are you sure you want to convert this order to a Purchase Invoice? Stock will be automatically Received.";
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                             if (error_count > 0)
                                 $rootScope.order_post_invoice_msg = "Are you sure you want to convert this order to a Purchase Invoice? . The " + error_msg + " not specified, will be set to current date";
                             else
                                 $rootScope.order_post_invoice_msg = "Are you sure you want to convert this order to a Purchase Invoice?";
                         }
 
+<<<<<<< HEAD
                         if($scope.postponeVATCHK == 1){   
+=======
+                        if ($scope.postponeVATCHK == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             ngDialog.openConfirm({
                                 template: 'app/views/srm_order/_confirm_postponed_vat.html',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
+=======
+                            }).then(function(value) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 $scope.showLoader = true;
 
                                 console.log(value);
@@ -10894,11 +16057,19 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                 ngDialog.openConfirm({
                                     template: 'app/views/srm_order/_confirm_convert_modal.html',
                                     className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                                 }).then(function (value) {
                                     $scope.showLoader = true;
 
                                     $scope.recivedStockBeforePosting(rec2, rec, 1, $scope.recReceivedMode)
                                         .then(function () {
+=======
+                                }).then(function(value) {
+                                    $scope.showLoader = true;
+
+                                    $scope.recivedStockBeforePosting(rec2, rec, 1, $scope.recReceivedMode)
+                                        .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                             if ($scope.$parent.rec.invoice_date == null) {
                                                 $scope.$parent.rec.invoice_date = $scope.$root.get_current_date();
@@ -10915,7 +16086,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                             // Check if there is no item
                                             $scope.noItemExist = 1;
+<<<<<<< HEAD
                                             angular.forEach($scope.items, function (obj) {
+=======
+                                            angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                                 if (obj.item_type == 0)
                                                     $scope.noItemExist = 0;
@@ -10934,14 +16109,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                                     'rec': rec3,
                                                     'token': $rootScope.token,
                                                     'supplier_id': $scope.rec.sell_to_cust_id,
+<<<<<<< HEAD
                                                     'invoiceCurrencyID': $rootScope.currencyID_PO.id,//$rootScope.currency_id.id,
+=======
+                                                    'invoiceCurrencyID': $rootScope.currencyID_PO.id, //$rootScope.currency_id.id,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     'defaultCurrencyID': $scope.$root.defaultCurrency,
                                                     'currencyExchangeRateDate': $scope.rec.currencyExchangeRateDate,
                                                     'orderDate': $scope.rec.order_date,
                                                     'suppInvNo': $scope.rec.supp_order_no,
                                                     'noItemExist': $scope.noItemExist,
                                                     'recReceivedMode': $scope.recReceivedMode
+<<<<<<< HEAD
                                                 }).then(function (res) {
+=======
+                                                }).then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                                     $scope.showLoader = false;
 
@@ -10962,15 +16145,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                                         $scope.$emit('InvoicePosted', $scope.$parent.rec);
 
+<<<<<<< HEAD
                                                         $timeout(function () {
+=======
+                                                        $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             if ($state.current.name == "app.addsrmorder")
                                                                 $state.reload();
                                                             else
                                                                 $state.go("app.addsrmorder");
                                                         }, 1500);
                                                         return;
+<<<<<<< HEAD
                                                     }
                                                     else if (res.data.ack == 2 || res.data.ack == 3) {
+=======
+                                                    } else if (res.data.ack == 2 || res.data.ack == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         toaster.pop('error', 'error', res.data.error);
                                                         /* $scope.items = [];
                                                         $scope.returnItems = [];
@@ -10986,38 +16177,59 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                                         $scope.$emit('InvoicePosted', $scope.$parent.rec); */
 
+<<<<<<< HEAD
                                                         $timeout(function () {
+=======
+                                                        $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                             $state.go("app.srmorder");
                                                         }, 1500);
                                                         return;
 
+<<<<<<< HEAD
                                                     }
                                                     else {
+=======
+                                                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         $scope.disablePostInvBtn = false;
                                                         $scope.showLoader = false;
                                                         toaster.pop('error', 'error', res.data.error);
                                                         return false;
                                                     }
 
+<<<<<<< HEAD
                                                 }).catch(function (message) {
+=======
+                                                }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     $scope.showLoader = false;
                                                     $scope.disablePostInvBtn = false;
 
                                                     throw new Error(message.data);
                                                 });
+<<<<<<< HEAD
                                         }).catch(function (message) {
+=======
+                                        }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                             $scope.showLoader = false;
                                             $scope.disablePostInvBtn = false;
                                             toaster.pop('error', 'info', message);
                                             throw new Error(message.data);
                                         });
+<<<<<<< HEAD
                                 }, function (reason) {
+=======
+                                }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                     $scope.disablePostInvBtn = false;
                                     $scope.showLoader = false;
                                     console.log('Modal promise rejected. Reason: ', reason);
                                 });
 
+<<<<<<< HEAD
                             }, function (reason) {
 
                                 $scope.disablePostInvBtn = false;
@@ -11026,17 +16238,35 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             });
                             
                         }else{
+=======
+                            }, function(reason) {
+
+                                $scope.disablePostInvBtn = false;
+                                $scope.showLoader = false;
+                                console.log('Modal promise rejected. Reason: ', reason);
+                            });
+
+                        } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                             rec.postponed_vat = 0;
 
                             ngDialog.openConfirm({
                                 template: 'app/views/srm_order/_confirm_convert_modal.html',
                                 className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                             }).then(function (value) {
                                 $scope.showLoader = true;
 
                                 $scope.recivedStockBeforePosting(rec2, rec, 1, $scope.recReceivedMode)
                                     .then(function () {
+=======
+                            }).then(function(value) {
+                                $scope.showLoader = true;
+
+                                $scope.recivedStockBeforePosting(rec2, rec, 1, $scope.recReceivedMode)
+                                    .then(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                         if ($scope.$parent.rec.invoice_date == null) {
                                             $scope.$parent.rec.invoice_date = $scope.$root.get_current_date();
@@ -11053,7 +16283,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                         // Check if there is no item
                                         $scope.noItemExist = 1;
+<<<<<<< HEAD
                                         angular.forEach($scope.items, function (obj) {
+=======
+                                        angular.forEach($scope.items, function(obj) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                             if (obj.item_type == 0)
                                                 $scope.noItemExist = 0;
@@ -11072,14 +16306,22 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                                 'rec': rec3,
                                                 'token': $rootScope.token,
                                                 'supplier_id': $scope.rec.sell_to_cust_id,
+<<<<<<< HEAD
                                                 'invoiceCurrencyID': $rootScope.currencyID_PO.id,//$rootScope.currency_id.id,
+=======
+                                                'invoiceCurrencyID': $rootScope.currencyID_PO.id, //$rootScope.currency_id.id,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 'defaultCurrencyID': $scope.$root.defaultCurrency,
                                                 'currencyExchangeRateDate': $scope.rec.currencyExchangeRateDate,
                                                 'orderDate': $scope.rec.order_date,
                                                 'suppInvNo': $scope.rec.supp_order_no,
                                                 'noItemExist': $scope.noItemExist,
                                                 'recReceivedMode': $scope.recReceivedMode
+<<<<<<< HEAD
                                             }).then(function (res) {
+=======
+                                            }).then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                                 $scope.showLoader = false;
 
@@ -11100,15 +16342,23 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                                     $scope.$emit('InvoicePosted', $scope.$parent.rec);
 
+<<<<<<< HEAD
                                                     $timeout(function () {
+=======
+                                                    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         if ($state.current.name == "app.addsrmorder")
                                                             $state.reload();
                                                         else
                                                             $state.go("app.addsrmorder");
                                                     }, 1500);
                                                     return;
+<<<<<<< HEAD
                                                 }
                                                 else if (res.data.ack == 2 || res.data.ack == 3) {
+=======
+                                                } else if (res.data.ack == 2 || res.data.ack == 3) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     toaster.pop('error', 'error', res.data.error);
                                                     /* $scope.items = [];
                                                     $scope.returnItems = [];
@@ -11124,32 +16374,52 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
                                                     $scope.$emit('InvoicePosted', $scope.$parent.rec); */
 
+<<<<<<< HEAD
                                                     $timeout(function () {
+=======
+                                                    $timeout(function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                         $state.go("app.srmorder");
                                                     }, 1500);
                                                     return;
 
+<<<<<<< HEAD
                                                 }
                                                 else {
+=======
+                                                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                     $scope.disablePostInvBtn = false;
                                                     $scope.showLoader = false;
                                                     toaster.pop('error', 'error', res.data.error);
                                                     return false;
                                                 }
 
+<<<<<<< HEAD
                                             }).catch(function (message) {
+=======
+                                            }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                                 $scope.showLoader = false;
                                                 $scope.disablePostInvBtn = false;
 
                                                 throw new Error(message.data);
                                             });
+<<<<<<< HEAD
                                     }).catch(function (message) {
+=======
+                                    }).catch(function(message) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                         $scope.showLoader = false;
                                         $scope.disablePostInvBtn = false;
                                         toaster.pop('error', 'info', message);
                                         throw new Error(message.data);
                                     });
+<<<<<<< HEAD
                             }, function (reason) {
+=======
+                            }, function(reason) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
                                 $scope.disablePostInvBtn = false;
                                 $scope.showLoader = false;
@@ -11157,13 +16427,18 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                             });
 
                         }
+<<<<<<< HEAD
                     }
                     else
                     {
+=======
+                    } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(666, ['Purchase Order']));
                         $scope.disablePostInvBtn = false;
                         $scope.showLoader = false;
                     }
+<<<<<<< HEAD
                 }
                 else {
                     var response = res.data.response;
@@ -11172,6 +16447,15 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         .then(function () {
 
                             if (Number(response[0].type) == 4) {// && Number(response[0].criteria) <= Number($scope.rec.grand_total)) {
+=======
+                } else {
+                    var response = res.data.response;
+                    already_checked = 0;
+                    $scope.add_sublist(rec2, rec, 1)
+                        .then(function() {
+
+                            if (Number(response[0].type) == 4) { // && Number(response[0].criteria) <= Number($scope.rec.grand_total)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                 if (Number(response[0].prev_status) == -1 || Number(response[0].prev_status) == 3 || Number(response[0].prev_status) == 6) {
                                     var str = '';
                                     if (Number(response[0].prev_status) == 3) {
@@ -11183,6 +16467,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     ngDialog.openConfirm({
                                         template: '_confirm_approval_required_modal',
                                         className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                                     }).then(function (value) {
                                         $scope.showLoader = true;
                                         var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -11233,18 +16518,76 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                         });
                                 }
                                 else if (Number(response[0].prev_status) == 1) {
+=======
+                                    }).then(function(value) {
+                                            $scope.showLoader = true;
+                                            var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                            //'warehouse_id': item.warehouses.id
+                                            $http
+                                                .post(check_approvals, {
+                                                    'object_id': $scope.rec.id,
+                                                    'object_code': $scope.rec.order_code,
+                                                    'source_name': $scope.rec.sell_to_cust_name,
+                                                    'source_code': $scope.rec.sell_to_cust_no,
+                                                    'detail_id': 0,
+                                                    'approval_id': response[0].id,
+                                                    'code': $scope.rec.order_code,
+                                                    'criteria': response[0].criteria,
+                                                    'type': "4",
+                                                    'current_value': $scope.grand_totalAmount,
+                                                    'currency_code': $scope.rec.currency_id.code,
+                                                    'emp_id_1': response[0].emp_id_1,
+                                                    'emp_id_2': response[0].emp_id_2,
+                                                    'emp_id_3': response[0].emp_id_3,
+                                                    'emp_id_4': response[0].emp_id_4,
+                                                    'emp_id_5': response[0].emp_id_5,
+                                                    'emp_id_6': response[0].emp_id_6,
+                                                    'emp_email_1': response[0].emp_email_1,
+                                                    'emp_email_2': response[0].emp_email_2,
+                                                    'emp_email_3': response[0].emp_email_3,
+                                                    'emp_email_4': response[0].emp_email_4,
+                                                    'emp_email_5': response[0].emp_email_5,
+                                                    'emp_email_6': response[0].emp_email_6,
+                                                    'token': $scope.$root.token
+                                                })
+                                                .then(function(res) {
+                                                    if (res.data.ack == true) {
+                                                        $scope.showLoader = false;
+                                                        toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                        return;
+                                                    } else {
+                                                        $scope.showLoader = false;
+                                                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                        return;
+                                                    }
+                                                });
+                                        },
+                                        function(reason) {
+                                            $scope.showLoader = false;
+                                            console.log('Modal promise rejected. Reason: ', reason);
+                                        });
+                                } else if (Number(response[0].prev_status) == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     already_checked = 1;
                                     $scope.showLoader = false;
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
                                     // return;
+<<<<<<< HEAD
                                 }
                                 else if (Number(response[0].prev_status) == 0) {
+=======
+                                } else if (Number(response[0].prev_status) == 0) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     already_checked = 1;
                                     $scope.showLoader = false;
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
                                     // return;
+<<<<<<< HEAD
                                 }
                                 else if (Number(response[0].prev_status) == 7) {
+=======
+                                } else if (Number(response[0].prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     already_checked = 1;
                                     $scope.showLoader = false;
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Purchase Order']));
@@ -11271,6 +16614,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     ngDialog.openConfirm({
                                         template: '_confirm_approval_required_modal',
                                         className: 'ngdialog-theme-default-custom'
+<<<<<<< HEAD
                                     }).then(function (value) {
                                         $scope.showLoader = true;
                                         var check_approvals = $scope.$root.setup + "general/send-for-approval";
@@ -11331,19 +16675,85 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                                     return;
                                 }
                                 else if (Number(response2.prev_status) == 7) {
+=======
+                                    }).then(function(value) {
+                                            $scope.showLoader = true;
+                                            var check_approvals = $scope.$root.setup + "general/send-for-approval";
+                                            //'warehouse_id': item.warehouses.id
+                                            $http
+                                                .post(check_approvals, {
+                                                    'object_id': $scope.rec.id,
+                                                    'object_code': $scope.rec.order_code,
+                                                    'source_name': $scope.rec.sell_to_cust_name,
+                                                    'source_code': $scope.rec.sell_to_cust_no,
+                                                    'detail_id': 0,
+                                                    'approval_id': response2.id,
+                                                    'code': $scope.rec.order_code,
+                                                    'criteria': response2.criteria,
+                                                    'type': "7",
+                                                    'current_value': $scope.grand_totalAmount,
+                                                    'currency_code': $scope.rec.currency_id.code,
+                                                    'emp_id_1': response2.emp_id_1,
+                                                    'emp_id_2': response2.emp_id_2,
+                                                    'emp_id_3': response2.emp_id_3,
+                                                    'emp_id_4': response2.emp_id_4,
+                                                    'emp_id_5': response2.emp_id_5,
+                                                    'emp_id_6': response2.emp_id_6,
+                                                    'emp_email_1': response2.emp_email_1,
+                                                    'emp_email_2': response2.emp_email_2,
+                                                    'emp_email_3': response2.emp_email_3,
+                                                    'emp_email_4': response2.emp_email_4,
+                                                    'emp_email_5': response2.emp_email_5,
+                                                    'emp_email_6': response2.emp_email_6,
+                                                    'token': $scope.$root.token
+                                                })
+                                                .then(function(res) {
+                                                    if (res.data.ack == true) {
+                                                        $scope.showLoader = false;
+                                                        toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(622));
+                                                        return;
+                                                    } else {
+                                                        $scope.showLoader = false;
+                                                        toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
+                                                        return;
+                                                    }
+                                                });
+                                        },
+                                        function(reason) {
+                                            $scope.showLoader = false;
+                                            console.log('Modal promise rejected. Reason: ', reason);
+                                        });
+                                } else if (Number(response2.prev_status) == 1) {
+                                    $scope.showLoader = false;
+                                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(372));
+                                    return;
+                                } else if (Number(response2.prev_status) == 0) {
+                                    $scope.showLoader = false;
+                                    toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(391));
+                                    return;
+                                } else if (Number(response2.prev_status) == 7) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                                     $scope.showLoader = false;
                                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(392, ['Purchase Order']));
                                     return;
                                 }
                             }
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         });
                 }
             });
     }
 
 
+<<<<<<< HEAD
     $scope.GetApprovalStatus = function () {
+=======
+    $scope.GetApprovalStatus = function() {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $scope.approval_history = [];
         var postUrl_ref_cat = $scope.$root.setup + "general/get-approval-status";
         $scope.show_approval_btn = false;
@@ -11353,6 +16763,7 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         $http
             .post(postUrl_ref_cat, {
                 'object_id': $scope.rec.id,
+<<<<<<< HEAD
                 'expense_id':$scope.rec.expense_id,
                 'type': "4, 7",
                 'token': $scope.$root.token
@@ -11362,11 +16773,25 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                     $scope.approval_history = res.data.response;
                     if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Awaiting Approval' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
                     {
+=======
+                'expense_id': $scope.rec.expense_id,
+                'type': "4, 7",
+                'token': $scope.$root.token
+            })
+            .then(function(res) {
+                if (res.data.ack == true) {
+                    $scope.approval_history = res.data.response;
+                    if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Awaiting Approval' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.show_approval_btn = true;
                         $scope.show_disapproval_btn = true;
                     }
 
+<<<<<<< HEAD
                     if($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Approved' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
+=======
+                    if ($scope.approval_history[$scope.approval_history.length - 1].statuss == 'Approved' && Number($scope.approval_history[$scope.approval_history.length - 1].approver) == 1)
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                         $scope.show_disapproval_btn = true;
                 }
             });
@@ -11374,7 +16799,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
     }
 
 
+<<<<<<< HEAD
     $scope.ChangeApprovalStatus = function (status, comments) {
+=======
+    $scope.ChangeApprovalStatus = function(status, comments) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         var update_approvals_status = $scope.$root.setup + "general/update-approval-status";
         var id = $scope.approval_history[$scope.approval_history.length - 1].id;
         var object_code = $scope.approval_history[$scope.approval_history.length - 1].object_code;
@@ -11385,8 +16814,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
         var current_value = $scope.approval_history[$scope.approval_history.length - 1].current_value;
         var currency_code = $scope.approval_history[$scope.approval_history.length - 1].currency_code;
 
+<<<<<<< HEAD
         if(status == 3 && (comments == undefined || comments.length == 0))
         {
+=======
+        if (status == 3 && (comments == undefined || comments.length == 0)) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             toaster.pop('error', 'error', $scope.$root.getErrorMessageByCode(664));
             return;
         }
@@ -11399,8 +16832,13 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'source_name': source_name,
                 'source_code': source_code,
                 'requested_by_email': requested_by_email,
+<<<<<<< HEAD
                 'current_value':current_value,
                 'currency_code':currency_code,
+=======
+                'current_value': current_value,
+                'currency_code': currency_code,
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 'id': id,
                 'object_code': object_code,
                 'type': type,
@@ -11408,7 +16846,11 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                 'comments': comments,
                 'token': $scope.$root.token
             })
+<<<<<<< HEAD
             .then(function (res) {
+=======
+            .then(function(res) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 if (res.data.ack == true) {
                     $scope.showLoader = false;
                     if (status == 2)
@@ -11417,12 +16859,20 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
                         toaster.pop('success', 'Success', $scope.$root.getErrorMessageByCode(624));
 
 
+<<<<<<< HEAD
                     if(status == 3)
                         angular.element('#_approval_history').modal('hide');
                     
                     return;
                 }
                 else {
+=======
+                    if (status == 3)
+                        angular.element('#_approval_history').modal('hide');
+
+                    return;
+                } else {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                     $scope.showLoader = false;
                     $scope.disableDisapprovalBtn = false;
                     toaster.pop('error', 'Error', $scope.$root.getErrorMessageByCode(371));
@@ -11440,7 +16890,12 @@ function SrmOrderTabController($scope, $filter, Upload, $resource, $http, ngDial
 
 purchaseInvoiceModalController.$inject = ["$scope", "$http", "print_invoice_vals", "openEmailer", "noModal", "toaster", "$rootScope", 'serviceVariables', 'fileAuthentication', 'generatePdf']
 myApp.controller('purchaseInvoiceModalController', purchaseInvoiceModalController);
+<<<<<<< HEAD
 function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEmailer, noModal, toaster, $rootScope, serviceVariables, fileAuthentication, generatePdf) {
+=======
+
+function purchaseInvoiceModalController($scope, $http, print_invoice_vals, openEmailer, noModal, toaster, $rootScope, serviceVariables, fileAuthentication, generatePdf) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
     $scope.print_invoice_vals = print_invoice_vals;
     // $scope.print_invoice_obj = print_invoice_obj;
@@ -11449,7 +16904,11 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
     $scope.fileAuthentication = fileAuthentication;
 
     function sumArray(arrayName) {
+<<<<<<< HEAD
         arrayName = arrayName.reduce(function (a, b) {
+=======
+        arrayName = arrayName.reduce(function(a, b) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             return a + b;
         });
         return arrayName;
@@ -11464,16 +16923,24 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
         return null;
     }
 
+<<<<<<< HEAD
     $scope.generatePDFandDownload = function (templateType, invoiceVals, x) {
 
         if(templateType == 'purchaseDelivery'){
             
+=======
+    $scope.generatePDFandDownload = function(templateType, invoiceVals, x) {
+
+        if (templateType == 'purchaseDelivery') {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = true;
             let currentUrl = window.location.href;
             $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
             invoiceVals.company_name = $rootScope.company_name;
             invoiceVals.company_logo_url = $scope.company_logo_url;
             invoiceVals.known_as = $rootScope.known_as;
+<<<<<<< HEAD
             
             $http({
                 url: $rootScope.jsreports,
@@ -11529,6 +16996,64 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
                 });
         }else if(templateType == 'receiptNote'){
         
+=======
+
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": "HklYDxY9pE"
+                        },
+                        "data": invoiceVals
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.showLoader = false;
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, 'DeliveryNote-' + invoiceVals.order_no + '.pdf');
+
+                });
+        } else if (templateType == 'purchaseWarehouse') {
+
+            $scope.showLoader = true;
+            let currentUrl = window.location.href;
+            $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
+            invoiceVals.company_name = $rootScope.company_name;
+            invoiceVals.company_logo_url = $scope.company_logo_url;
+            invoiceVals.known_as = $rootScope.known_as;
+
+            $http({
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": "BJeo2KYcpN"
+                        },
+                        "data": invoiceVals
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.showLoader = false;
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, 'WarehouseInstructions-' + invoiceVals.order_no + '.pdf');
+
+                });
+        } else if (templateType == 'receiptNote') {
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
             $scope.showLoader = true;
             let currentUrl = window.location.href;
             $scope.company_logo_url = currentUrl.substring(0, currentUrl.indexOf('#')) + "upload/company_logo_temp/" + $rootScope.defaultLogo;
@@ -11551,6 +17076,7 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
 
 
             $http({
+<<<<<<< HEAD
                 url: $rootScope.jsreports,
                 method: 'POST',
                 params: {},
@@ -11570,21 +17096,56 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
                     var file = new Blob([data], { type: 'application/pdf' });
                     saveAs(file, 'receiptNote-'+ invoiceVals.order_no+ '.pdf');
     
+=======
+                    url: $rootScope.jsreports,
+                    method: 'POST',
+                    params: {},
+                    data: {
+                        "template": {
+                            "shortid": "SJeL63wRAV"
+                        },
+                        "data": invoiceVals
+                    },
+                    headers: {
+                        'Content-type': 'application/json',
+                        "Authorization": "Basic " + btoa("admin:admin123"),
+                    },
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    $scope.showLoader = false;
+                    var file = new Blob([data], { type: 'application/pdf' });
+                    saveAs(file, 'receiptNote-' + invoiceVals.order_no + '.pdf');
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 });
         } else {
             generatePdf.showLoader = true;
             generatePdf.generatePdf(templateType, invoiceVals, x);
+<<<<<<< HEAD
     
         }
  
     }
 
     $scope.generateJSReportPDF = function (templateType, invoiceVals, x) {
+=======
+
+        }
+
+    }
+
+    $scope.generateJSReportPDF = function(templateType, invoiceVals, x) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         generatePdf.showLoader = true;
         generatePdf.genJSReport(templateType, invoiceVals, x);
     }
 
+<<<<<<< HEAD
     $scope.destroyPdfModal = function (modalName) {
+=======
+    $scope.destroyPdfModal = function(modalName) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         angular.element(document.querySelector("#" + modalName)).remove();
     }
 
@@ -11617,4 +17178,8 @@ function purchaseInvoiceModalController($scope, $http, print_invoice_vals,openEm
             });
     } */
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

@@ -647,7 +647,11 @@ class Document extends Xtreme
     {
         return; // removing table document_permision from db as it is not being used
         if (!empty($arr_attr['deparment']))
+<<<<<<< HEAD
             $where_clause .= "AND (cs.salesperson_id='$arr_attr[deparment]' OR cs.salesperson_id='$arr_attr[user_id]' ) ";
+=======
+            $where_clause .= "AND (cs.salesperson_id='$arr_attr[deparment]' OR cs.salesperson_id='".$arr_attr['user_id']."' ) ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         $response = array();
 

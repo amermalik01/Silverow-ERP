@@ -2,7 +2,11 @@
 //	 $result = $objSrm->get_data_by_id('srm_invoice',$input_array['id']);
 //	 $result = $objSrm->delete_update_status('srm_invoice','status',$input_array['id']);
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srminvoice/accounts-entry', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srminvoice/accounts-entry', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -12,7 +16,11 @@ $app->post('/purchase/srm/srminvoice/accounts-entry', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 // General Tab
@@ -155,7 +163,11 @@ $app->post('/purchase/srm/srminvoice/update-purchase-status', function () use ($
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srminvoice/purchase-stock-received', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srminvoice/purchase-stock-received', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	
@@ -167,7 +179,11 @@ $app->post('/purchase/srm/srminvoice/purchase-stock-received', function () use (
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srminvoice/post-purchase-invoice', function () use ($app) {
 	global $objSrm, $input;
@@ -229,6 +245,33 @@ $app->post('/purchase/srm/srminvoice/update-srminvoice', function () use ($app) 
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
+=======
+$app->post('/purchase/srm/srminvoice/update-posted-invoice', function () use ($app) {
+	global $objSrm, $input;
+	$input_array = array();
+	 foreach($input as $key => $val){
+	  $input_array[$key] = $val; 
+	 }
+	$result = $objSrm->update_posted_invoice($input_array);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+});
+
+/* $app->post('/purchase/srm/srminvoice/update-posted-invoice', function () use ($app) {
+	global $objSrm, $input;
+	$input_array = array();
+	 foreach($input as $key => $val){
+	  $input_array[$key] = $val; 
+	 }
+	$result = $objSrm->update_posted_invoice($input_array);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+}); */
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 $app->post('/purchase/srm/srminvoice/delete-srminvoice', function () use ($app) {
 	global $objSrm, $input;
@@ -278,7 +321,11 @@ $app->post('/purchase/srm/srminvoice/get-contact-code', function () use ($app) {
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
 $app->post('/purchase/supplier/supplier/check-customer-limit', function () use ($app) {
+=======
+/* $app->post('/purchase/supplier/supplier/check-customer-limit', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -288,7 +335,11 @@ $app->post('/purchase/supplier/supplier/check-customer-limit', function () use (
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 //---------Invoicing Details-----------------------------
 
@@ -355,6 +406,33 @@ $app->post('/purchase/srm/srminvoice/get-item-add-cost-purchase-order', function
 	echo json_encode($result);
 });
 
+<<<<<<< HEAD
+=======
+$app->post('/purchase/srm/srminvoice/get-supplier-journal-for-invoice', function () use ($app) {	
+	global $objSrm, $input;
+	$input_array = array();
+	 foreach($input as $key => $val){
+	  $input_array[$key] = $val; 
+	 }
+	$result = $objSrm->getSuppJournalInvoice($input_array);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+});
+
+$app->post('/purchase/srm/srminvoice/add-supplier-journal-for-invoice', function () use ($app) {	
+	global $objSrm, $input;
+	$input_array = array();
+	 foreach($input as $key => $val){
+	  $input_array[$key] = $val; 
+	 }
+	$result = $objSrm->addSuppJournalInvoice($input_array);
+	$app->response->setStatus(200);
+	$app->response()->headers->set('Content-Type', 'application/json');
+	echo json_encode($result);
+});
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 $app->post('/purchase/srm/srminvoice/insert-new-order-line', function () use ($app) {	
 	global $objSrm, $input;
 	$input_array = array();
@@ -517,7 +595,11 @@ $app->post('/purchase/srm/srminvoice/getSalesOrderbyPurchaseID', function () use
 // Invoicing
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srminvoice/invoice', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srminvoice/invoice', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
  
@@ -529,12 +611,20 @@ $app->post('/purchase/srm/srminvoice/invoice', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 // Shipping
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srminvoice/shipping', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srminvoice/shipping', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -544,12 +634,20 @@ $app->post('/purchase/srm/srminvoice/shipping', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 // Comment
 //--------------------------------------
 
+<<<<<<< HEAD
 $app->post('/purchase/srm/srminvoice/comment', function () use ($app) {
+=======
+/* $app->post('/purchase/srm/srminvoice/comment', function () use ($app) {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 	global $objSrm, $input;
 	$input_array = array();
 	 foreach($input as $key => $val){
@@ -559,7 +657,11 @@ $app->post('/purchase/srm/srminvoice/comment', function () use ($app) {
 	$app->response->setStatus(200);
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
+<<<<<<< HEAD
 });
+=======
+}); */
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 
 $app->post('/purchase/srm/srminvoice/genarate-pdf', function () use ($app) {
@@ -573,6 +675,9 @@ $app->post('/purchase/srm/srminvoice/genarate-pdf', function () use ($app) {
 	$app->response()->headers->set('Content-Type', 'application/json');
 	echo json_encode($result);
 });
+<<<<<<< HEAD
 
 ?>
 
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

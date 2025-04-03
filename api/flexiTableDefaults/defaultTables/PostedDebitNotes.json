@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 [
     {
+=======
+[{
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Debit Note Date",
         "field_name": "supplierCreditNoteDate",
         "visible": "1",
@@ -382,6 +386,27 @@
         "data_type": "string"
     },
     {
+<<<<<<< HEAD
+=======
+        "title": "Linked PO",
+        "field_name": "purchaseOrderCode",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "VAT Posted",
+        "field_name": "vatPosted",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         "title": "Docs. Attached for DN",
         "field_name": "documentDNCount",
         "visible": "1",

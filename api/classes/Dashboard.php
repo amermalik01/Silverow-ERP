@@ -1116,4 +1116,7 @@ class Dashboard extends Xtreme{
         return $response;
     }
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

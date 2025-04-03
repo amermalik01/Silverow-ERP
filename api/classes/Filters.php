@@ -26,7 +26,11 @@ class Filters extends Xtreme
 		//echo "in constructor ----";exit;	
 	}
 
+<<<<<<< HEAD
 	function get_module_listing($module_id, $module_table,$whr_col,$whr_val,$more_fields,$filter_id,$where,$order_by){
+=======
+	function get_module_listing($module_id, $module_table,$whr_col=null,$whr_val=null,$more_fields=null,$filter_id=0,$where=null,$order_by=null){
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 		$is_posted='';
 
@@ -57,7 +61,11 @@ class Filters extends Xtreme
 
 		//echo '<pre>'; print_r($arr_filters[response]); exit;
 
+<<<<<<< HEAD
 		foreach($arr_filters[response] as $drp){
+=======
+		foreach($arr_filters['response'] as $drp){
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
 			$dropdown['value']= $drp['id'];
 			$dropdown['label']= $drp['name'];
@@ -432,6 +440,7 @@ function getIndex($name, $array){
 
 		if($table_name !=  'company'){
 			if($str_where != '')
+<<<<<<< HEAD
 					$str_where.= " AND ".$table_name.".company_id = '".$this->arrUser[company_id]."'";
 			else
 					$str_where.= " WHERE ".$table_name.".company_id = '".$this->arrUser[company_id]."'";
@@ -441,6 +450,17 @@ function getIndex($name, $array){
 					$str_where.= " AND (".$table_name.".id = '".$this->arrUser[company_id]."' || ".$table_name.".parent_id = '".$this->arrUser[company_id]."')";
 			else
 					$str_where.= " WHERE ".$table_name.".id = '".$this->arrUser[company_id]."' || ".$table_name.".parent_id = '".$this->arrUser[company_id]."'";
+=======
+					$str_where.= " AND ".$table_name.".company_id = '".$this->arrUser['company_id']."'";
+			else
+					$str_where.= " WHERE ".$table_name.".company_id = '".$this->arrUser['company_id']."'";
+		}
+		if($table_name ==  'company'){
+			if($str_where != '')
+					$str_where.= " AND (".$table_name.".id = '".$this->arrUser['company_id']."' || ".$table_name.".parent_id = '".$this->arrUser['company_id']."')";
+			else
+					$str_where.= " WHERE ".$table_name.".id = '".$this->arrUser['company_id']."' || ".$table_name.".parent_id = '".$this->arrUser['company_id']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		}
 
 		/*if(isset($whr_col) && !empty($whr_col) && isset($whr_val) && !empty($whr_val)){
@@ -468,11 +488,19 @@ function getIndex($name, $array){
 
 					if($whr_col == 'company_type'){
 
+<<<<<<< HEAD
 							$str_where = " WHERE crm.type IN (2,3) AND crm.status = 'Active' AND crm.company_id = '".$this->arrUser[company_id]."' AND ".$whr_col." IN (".$whr_val.")";
 					}
 					else{
 
 						$str_where = " WHERE crm.type IN (2,3) AND crm.status = 'Active' AND crm.company_id = '".$this->arrUser[company_id]."' AND ".$whr_col." = '".$whr_val."'";
+=======
+							$str_where = " WHERE crm.type IN (2,3) AND crm.status = 'Active' AND crm.company_id = '".$this->arrUser['company_id']."' AND ".$whr_col." IN (".$whr_val.")";
+					}
+					else{
+
+						$str_where = " WHERE crm.type IN (2,3) AND crm.status = 'Active' AND crm.company_id = '".$this->arrUser['company_id']."' AND ".$whr_col." = '".$whr_val."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 					}
 				}
 				else
@@ -535,6 +563,11 @@ function getIndex($name, $array){
 
 		$where_clause .= " AND module_codes_id = ".$attr['module_id'];
 
+<<<<<<< HEAD
+=======
+		$limit_clause = '';
+
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 		$response = array();
 		
 		$Sql = "SELECT filter.*,ref_module_code.module_title as module_name,CONCAT(employees.first_name,' ',employees.last_name) as emp_name
@@ -571,4 +604,7 @@ function getIndex($name, $array){
 	}
  
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564

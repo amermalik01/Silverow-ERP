@@ -31,10 +31,17 @@ class ReportCrm extends Xtreme {
         // error_reporting(E_ALL);
         // ini_set('display_error', 1);
         $path = APP_PATH . "upload/mail_attachments/";
+<<<<<<< HEAD
         $ordrSql = "SELECT *	FROM orders	WHERE id='$attr[order_id]'	LIMIT 1";
         $order = (object) $this->objsetup->CSI($ordrSql)->FetchRow();
 
         $ordrDetailSql = "SELECT *	FROM order_details			WHERE order_id='$attr[order_id]'";
+=======
+        $ordrSql = "SELECT *	FROM orders	WHERE id='".$attr['order_id']."'	LIMIT 1";
+        $order = (object) $this->objsetup->CSI($ordrSql)->FetchRow();
+
+        $ordrDetailSql = "SELECT *	FROM order_details			WHERE order_id='".$attr['order_id']."'";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $order_detail = (object) $this->objsetup->CSI($ordrDetailSql);
 
         $compSql = "SELECT *	FROM company	WHERE id=" . $this->arrUser['company_id'] . "		LIMIT 1	";
@@ -1883,6 +1890,14 @@ class ReportCrm extends Xtreme {
     }
 
     function postVATReport($attr) {
+<<<<<<< HEAD
+=======
+
+        // error_reporting(E_ALL);
+
+        // echo '<pre>';
+        // print_r($attr);
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         $module = $attr['module'];
         $vatEntriesStatusID = $attr['vatEntriesStatusID'];
         $vatEntriesPeriodID = $attr['vatEntriesPeriodID'];
@@ -1901,6 +1916,7 @@ class ReportCrm extends Xtreme {
             $dateFrom = 0;
         } */
 
+<<<<<<< HEAD
         $this->objsetup->SRTraceLogsPHP(LOG_LEVEL_2, 
                                         __CLASS__, 
                                         __FUNCTION__, 
@@ -1910,6 +1926,32 @@ class ReportCrm extends Xtreme {
                                         'dateFrom:'.$dateFrom,
                                         'dateTo:'.$dateTo,
                                         'vatEntriesStatusID:'.$vatEntriesStatusID);
+=======
+        $srLogTrace = array();
+
+        $srLogTrace['ErrorCode'] = '';
+        $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+        $srLogTrace['Function'] = __FUNCTION__;
+        $srLogTrace['CLASS'] = __CLASS__;
+        $srLogTrace['Parameter1'] = 'Enter';
+        $srLogTrace['Parameter2'] = 'postVATReport';
+        $srLogTrace['Parameter3'] = 'dateFrom:"'.$dateFrom.'"';
+        $srLogTrace['Parameter4'] = 'dateTo:"'.$dateTo.'"';
+        $srLogTrace['Parameter5'] = 'vatEntriesStatusID:"'.$vatEntriesStatusID.'"';
+
+        $this->objsetup->SRTraceLogsPHP($srLogTrace);
+
+
+        // $this->objsetup->SRTraceLogsPHP(LOG_LEVEL_2, 
+        //                                 __CLASS__, 
+        //                                 __FUNCTION__, 
+        //                                 SR_TRACE_PHP, 
+        //                                 'Enter',
+        //                                 'postVATReport',
+        //                                 'dateFrom:"'.$dateFrom.'"',
+        //                                 'dateTo:"'.$dateTo.'"',
+        //                                 'vatEntriesStatusID:"'.$vatEntriesStatusID.'"');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
     
         $this->Conn->beginTrans();
         $this->Conn->autoCommit = false;
@@ -1945,6 +1987,7 @@ class ReportCrm extends Xtreme {
                 $response['error'] = NULL;
                 $this->Conn->commitTrans();
                 $this->Conn->autoCommit = true;
+<<<<<<< HEAD
                 
                 $this->objsetup->SRTraceLogsPHP(LOG_LEVEL_2, 
                                             __CLASS__, 
@@ -1955,6 +1998,32 @@ class ReportCrm extends Xtreme {
                                             'dateFrom:'.$dateFrom,
                                             'dateTo:'.$dateTo,
                                             'vatEntriesStatusID:'.$vatEntriesStatusID);
+=======
+
+                $srLogTrace = array();
+
+                $srLogTrace['ErrorCode'] = '';
+                $srLogTrace['LOG_LEVEL'] = LOG_LEVEL_2;
+                $srLogTrace['Function'] = __FUNCTION__;
+                $srLogTrace['CLASS'] = __CLASS__;
+                $srLogTrace['Parameter1'] = 'Exit';
+                $srLogTrace['Parameter2'] = 'postVATReport';
+                $srLogTrace['Parameter3'] = 'dateFrom:"'.$dateFrom.'"';
+                $srLogTrace['Parameter4'] = 'dateTo:"'.$dateTo.'"';
+                $srLogTrace['Parameter5'] = 'vatEntriesStatusID:"'.$vatEntriesStatusID.'"';
+
+                $this->objsetup->SRTraceLogsPHP($srLogTrace);
+                
+                // $this->objsetup->SRTraceLogsPHP(LOG_LEVEL_2, 
+                //                             __CLASS__, 
+                //                             __FUNCTION__, 
+                //                             SR_TRACE_PHP, 
+                //                             'Exit',
+                //                             'postVATReport',
+                //                             'dateFrom:"'.$dateFrom.'"',
+                //                             'dateTo:"'.$dateTo.'"',
+                //                             'vatEntriesStatusID:"'.$vatEntriesStatusID.'"');
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
                 return $response;
             } 
             else {
@@ -2122,7 +2191,12 @@ class ReportCrm extends Xtreme {
                 WHERE c.type IN (2,3) AND 
                       c.customer_code IS NOT NULL AND 
                       c.name !='' AND 
+<<<<<<< HEAD
                       c.id=" . $customerID. "";
+=======
+                      c.id=" . $customerID. "
+                Order by c.customer_code DESC";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
         
         $RS = $this->objsetup->CSI($Sql);
 
@@ -2282,7 +2356,12 @@ class ReportCrm extends Xtreme {
 				  LEFT JOIN ref_posting_group as ref on ref.id=finance.posting_group_id
 				  WHERE c.type IN (2,3) AND 
 				  	  	c.customer_code IS NOT NULL AND 
+<<<<<<< HEAD
 						c.company_id=" . $this->arrUser['company_id'] . ") AS tbl  where 1  " . $where_clause . " ";
+=======
+						c.company_id=" . $this->arrUser['company_id'] . " 
+                Order by c.customer_code DESC) AS tbl  where 1  " . $where_clause . " ";
+>>>>>>> e31237e9eb73244117d4370f0a4bd96ad1c30564
 
         // $Sql = $this->objsetup->whereClauseAppender($Sql, 24);
 
